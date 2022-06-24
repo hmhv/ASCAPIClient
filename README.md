@@ -1,4 +1,4 @@
-[한글](README_KR.md) [日本語](README_JP.md)
+[한글](README_KR.md)　 | 　[日本語](README_JP.md)
 
 # Swift API client for App Store Connect API with Swift Concurrency (async/await)
 
