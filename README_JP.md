@@ -6,14 +6,14 @@
 
 ### Swift Package Manager
 
-#### Xcode
+#### ● Xcode
 1. Xcode projectを開く
 2. メニューで `File -> Add Packages...`を選択
 3. 検索窓で `https://github.com/hmhv/ASCAPIClient.git`を入力後、`ASCAPIClient`を選択
 
 ![SPM with Xcode](images/README.md-10-34-34.png)
 
-#### Package.swift
+#### ● Package.swift
 `Package.swift`の`dependencies`に`ASCAPIClient`を追加
 
 ```swift
@@ -22,10 +22,10 @@ dependencies: [
 ]
 ```
 
-## how to use
+## How to use
 [ASCAPIClient-Example-iOS](https://github.com/hmhv/ASCAPIClient-Example-iOS)を参考にしてください。
 
-## how to generate
+## How to generate
 
 生成時使ったコマンド
 

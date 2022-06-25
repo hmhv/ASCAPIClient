@@ -9,14 +9,15 @@ and some manual changes.
 
 ### Swift Package Manager
 
-#### Xcode
+#### ● Xcode
 1. Open your Xcode project
 2. Select `File -> Add Packages...`
 3. Enter `https://github.com/hmhv/ASCAPIClient.git` in search field and select `ASCAPIClient`
 
 ![SPM with Xcode](images/README.md-10-34-34.png)
 
-#### Package.swift
+#### ● Package.swift
+
 adding `ASCAPIClient` as a dependency is as easy as adding it to the `dependencies` value of your `Package.swift`.
 
 ```swift
@@ -25,10 +26,10 @@ dependencies: [
 ]
 ```
 
-## how to use
+## How to use
 Check [ASCAPIClient-Example-iOS](https://github.com/hmhv/ASCAPIClient-Example-iOS).
 
-## how to generate
+## How to generate
 
 used command for code generation
 
