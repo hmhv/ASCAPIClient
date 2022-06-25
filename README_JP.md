@@ -1,4 +1,4 @@
-# Swift API client for App Store Connect API with Swift Concurrency (async/await)
+# Swift client for App Store Connect API with Swift Concurrency (async/await)
 
 [App Store Connect API OpenAPI specification 1.8](https://developer.apple.com/documentation/appstoreconnectapi) と [OpenAPI Generator](https://openapi-generator.tech)で生成して、少しだけ手直し。
 
