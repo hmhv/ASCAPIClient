@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct AppEventScreenshotUpdateRequest: Codable, Hashable {
+public struct AppEventScreenshotUpdateRequest: Codable, JSONEncodable, Hashable {
 
     public var data: AppEventScreenshotUpdateRequestData
 

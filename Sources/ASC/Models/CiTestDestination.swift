@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct CiTestDestination: Codable, Hashable {
+public struct CiTestDestination: Codable, JSONEncodable, Hashable {
 
     public var deviceTypeName: String?
     public var deviceTypeIdentifier: String?

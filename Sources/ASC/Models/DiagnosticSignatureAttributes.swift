@@ -10,10 +10,11 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct DiagnosticSignatureAttributes: Codable, Hashable {
+public struct DiagnosticSignatureAttributes: Codable, JSONEncodable, Hashable {
 
     public enum DiagnosticType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case diskWrites = "DISK_WRITES"
+        case hangs = "HANGS"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     public var diagnosticType: DiagnosticType?

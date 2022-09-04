@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct BuildAttributes: Codable, Hashable {
+public struct BuildAttributes: Codable, JSONEncodable, Hashable {
 
     public enum ProcessingState: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case processing = "PROCESSING"

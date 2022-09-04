@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct BuildUpdateRequestDataRelationshipsAppEncryptionDeclaration: Codable, Hashable {
+public struct BuildUpdateRequestDataRelationshipsAppEncryptionDeclaration: Codable, JSONEncodable, Hashable {
 
     public var data: BuildRelationshipsAppEncryptionDeclarationData?
 

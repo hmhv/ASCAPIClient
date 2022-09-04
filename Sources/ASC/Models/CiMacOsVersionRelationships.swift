@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct CiMacOsVersionRelationships: Codable, Hashable {
+public struct CiMacOsVersionRelationships: Codable, JSONEncodable, Hashable {
 
     public var xcodeVersions: CiMacOsVersionRelationshipsXcodeVersions?
 

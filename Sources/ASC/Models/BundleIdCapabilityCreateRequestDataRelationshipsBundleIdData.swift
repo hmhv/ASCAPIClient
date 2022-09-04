@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct BundleIdCapabilityCreateRequestDataRelationshipsBundleIdData: Codable, Hashable {
+public struct BundleIdCapabilityCreateRequestDataRelationshipsBundleIdData: Codable, JSONEncodable, Hashable {
 
     public enum ModelType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case bundleids = "bundleIds"

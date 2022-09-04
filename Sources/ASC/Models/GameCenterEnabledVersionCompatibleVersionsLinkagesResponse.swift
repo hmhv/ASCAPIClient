@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct GameCenterEnabledVersionCompatibleVersionsLinkagesResponse: Codable, Hashable {
+public struct GameCenterEnabledVersionCompatibleVersionsLinkagesResponse: Codable, JSONEncodable, Hashable {
 
     public var data: [AppRelationshipsGameCenterEnabledVersionsDataInner]
     public var links: PagedDocumentLinks

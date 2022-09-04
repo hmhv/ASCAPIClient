@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct AppStoreVersionRelationships: Codable, Hashable {
+public struct AppStoreVersionRelationships: Codable, JSONEncodable, Hashable {
 
     public var app: AppClipRelationshipsApp?
     @available(*, deprecated, message: "This property is deprecated.")
@@ -21,11 +21,10 @@ public struct AppStoreVersionRelationships: Codable, Hashable {
     public var routingAppCoverage: AppStoreVersionRelationshipsRoutingAppCoverage?
     public var appStoreReviewDetail: AppStoreReviewAttachmentRelationshipsAppStoreReviewDetail?
     public var appStoreVersionSubmission: AppStoreVersionRelationshipsAppStoreVersionSubmission?
-    public var idfaDeclaration: AppStoreVersionRelationshipsIdfaDeclaration?
     public var appClipDefaultExperience: AppClipAppStoreReviewDetailRelationshipsAppClipDefaultExperience?
     public var appStoreVersionExperiments: AppStoreVersionRelationshipsAppStoreVersionExperiments?
 
-    public init(app: AppClipRelationshipsApp? = nil, ageRatingDeclaration: AppStoreVersionRelationshipsAgeRatingDeclaration? = nil, appStoreVersionLocalizations: AppStoreVersionRelationshipsAppStoreVersionLocalizations? = nil, build: AppStoreVersionRelationshipsBuild? = nil, appStoreVersionPhasedRelease: AppStoreVersionRelationshipsAppStoreVersionPhasedRelease? = nil, routingAppCoverage: AppStoreVersionRelationshipsRoutingAppCoverage? = nil, appStoreReviewDetail: AppStoreReviewAttachmentRelationshipsAppStoreReviewDetail? = nil, appStoreVersionSubmission: AppStoreVersionRelationshipsAppStoreVersionSubmission? = nil, idfaDeclaration: AppStoreVersionRelationshipsIdfaDeclaration? = nil, appClipDefaultExperience: AppClipAppStoreReviewDetailRelationshipsAppClipDefaultExperience? = nil, appStoreVersionExperiments: AppStoreVersionRelationshipsAppStoreVersionExperiments? = nil) {
+    public init(app: AppClipRelationshipsApp? = nil, ageRatingDeclaration: AppStoreVersionRelationshipsAgeRatingDeclaration? = nil, appStoreVersionLocalizations: AppStoreVersionRelationshipsAppStoreVersionLocalizations? = nil, build: AppStoreVersionRelationshipsBuild? = nil, appStoreVersionPhasedRelease: AppStoreVersionRelationshipsAppStoreVersionPhasedRelease? = nil, routingAppCoverage: AppStoreVersionRelationshipsRoutingAppCoverage? = nil, appStoreReviewDetail: AppStoreReviewAttachmentRelationshipsAppStoreReviewDetail? = nil, appStoreVersionSubmission: AppStoreVersionRelationshipsAppStoreVersionSubmission? = nil, appClipDefaultExperience: AppClipAppStoreReviewDetailRelationshipsAppClipDefaultExperience? = nil, appStoreVersionExperiments: AppStoreVersionRelationshipsAppStoreVersionExperiments? = nil) {
         self.app = app
         self.ageRatingDeclaration = ageRatingDeclaration
         self.appStoreVersionLocalizations = appStoreVersionLocalizations
@@ -34,7 +33,6 @@ public struct AppStoreVersionRelationships: Codable, Hashable {
         self.routingAppCoverage = routingAppCoverage
         self.appStoreReviewDetail = appStoreReviewDetail
         self.appStoreVersionSubmission = appStoreVersionSubmission
-        self.idfaDeclaration = idfaDeclaration
         self.appClipDefaultExperience = appClipDefaultExperience
         self.appStoreVersionExperiments = appStoreVersionExperiments
     }
@@ -48,7 +46,6 @@ public struct AppStoreVersionRelationships: Codable, Hashable {
         case routingAppCoverage
         case appStoreReviewDetail
         case appStoreVersionSubmission
-        case idfaDeclaration
         case appClipDefaultExperience
         case appStoreVersionExperiments
     }
@@ -65,7 +62,6 @@ public struct AppStoreVersionRelationships: Codable, Hashable {
         try container.encodeIfPresent(routingAppCoverage, forKey: .routingAppCoverage)
         try container.encodeIfPresent(appStoreReviewDetail, forKey: .appStoreReviewDetail)
         try container.encodeIfPresent(appStoreVersionSubmission, forKey: .appStoreVersionSubmission)
-        try container.encodeIfPresent(idfaDeclaration, forKey: .idfaDeclaration)
         try container.encodeIfPresent(appClipDefaultExperience, forKey: .appClipDefaultExperience)
         try container.encodeIfPresent(appStoreVersionExperiments, forKey: .appStoreVersionExperiments)
     }

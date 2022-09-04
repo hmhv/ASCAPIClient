@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct CiBranchPatterns: Codable, Hashable {
+public struct CiBranchPatterns: Codable, JSONEncodable, Hashable {
 
     public var isAllMatch: Bool?
     public var patterns: [CiBranchPatternsPatternsInner]?

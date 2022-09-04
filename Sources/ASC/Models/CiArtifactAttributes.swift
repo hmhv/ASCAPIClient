@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct CiArtifactAttributes: Codable, Hashable {
+public struct CiArtifactAttributes: Codable, JSONEncodable, Hashable {
 
     public enum FileType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case archive = "ARCHIVE"

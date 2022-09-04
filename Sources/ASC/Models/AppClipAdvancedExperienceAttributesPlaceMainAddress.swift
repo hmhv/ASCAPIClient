@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct AppClipAdvancedExperienceAttributesPlaceMainAddress: Codable, Hashable {
+public struct AppClipAdvancedExperienceAttributesPlaceMainAddress: Codable, JSONEncodable, Hashable {
 
     public var fullAddress: String?
     public var structuredAddress: AppClipAdvancedExperienceAttributesPlaceMainAddressStructuredAddress?

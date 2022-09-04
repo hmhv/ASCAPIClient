@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct AppStoreReviewAttachmentsResponse: Codable, Hashable {
+public struct AppStoreReviewAttachmentsResponse: Codable, JSONEncodable, Hashable {
 
     public var data: [AppStoreReviewAttachment]
     public var included: [AppStoreReviewDetail]?

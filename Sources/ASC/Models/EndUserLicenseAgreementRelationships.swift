@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct EndUserLicenseAgreementRelationships: Codable, Hashable {
+public struct EndUserLicenseAgreementRelationships: Codable, JSONEncodable, Hashable {
 
     public var app: AppClipRelationshipsApp?
     public var territories: AppRelationshipsAvailableTerritories?

@@ -362,9 +362,11 @@ open class BuildsAPI {
         case bundleid = "bundleId"
         case ciproduct = "ciProduct"
         case contentrightsdeclaration = "contentRightsDeclaration"
+        case customerreviews = "customerReviews"
         case enduserlicenseagreement = "endUserLicenseAgreement"
         case gamecenterenabledversions = "gameCenterEnabledVersions"
         case inapppurchases = "inAppPurchases"
+        case inapppurchasesv2 = "inAppPurchasesV2"
         case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
         case name = "name"
         case perfpowermetrics = "perfPowerMetrics"
@@ -373,8 +375,11 @@ open class BuildsAPI {
         case pricepoints = "pricePoints"
         case prices = "prices"
         case primarylocale = "primaryLocale"
+        case promotedpurchases = "promotedPurchases"
         case reviewsubmissions = "reviewSubmissions"
         case sku = "sku"
+        case subscriptiongraceperiod = "subscriptionGracePeriod"
+        case subscriptiongroups = "subscriptionGroups"
         case subscriptionstatusurl = "subscriptionStatusUrl"
         case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
         case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
@@ -564,25 +569,13 @@ open class BuildsAPI {
         case build = "build"
         case copyright = "copyright"
         case createddate = "createdDate"
+        case customerreviews = "customerReviews"
         case downloadable = "downloadable"
         case earliestreleasedate = "earliestReleaseDate"
-        case idfadeclaration = "idfaDeclaration"
         case platform = "platform"
         case releasetype = "releaseType"
         case routingappcoverage = "routingAppCoverage"
-        case usesidfa = "usesIdfa"
         case versionstring = "versionString"
-    }
-
-    /**
-     * enum for parameter fieldsIdfaDeclarations
-     */
-    public enum FieldsIdfaDeclarations_buildsAppStoreVersionGetToOneRelated: String, CaseIterable, JSONEncodable {
-        case appstoreversion = "appStoreVersion"
-        case attributesactionwithpreviousad = "attributesActionWithPreviousAd"
-        case attributesappinstallationtopreviousad = "attributesAppInstallationToPreviousAd"
-        case honorslimitedadtracking = "honorsLimitedAdTracking"
-        case servesads = "servesAds"
     }
 
     /**
@@ -605,9 +598,11 @@ open class BuildsAPI {
         case bundleid = "bundleId"
         case ciproduct = "ciProduct"
         case contentrightsdeclaration = "contentRightsDeclaration"
+        case customerreviews = "customerReviews"
         case enduserlicenseagreement = "endUserLicenseAgreement"
         case gamecenterenabledversions = "gameCenterEnabledVersions"
         case inapppurchases = "inAppPurchases"
+        case inapppurchasesv2 = "inAppPurchasesV2"
         case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
         case name = "name"
         case perfpowermetrics = "perfPowerMetrics"
@@ -616,8 +611,11 @@ open class BuildsAPI {
         case pricepoints = "pricePoints"
         case prices = "prices"
         case primarylocale = "primaryLocale"
+        case promotedpurchases = "promotedPurchases"
         case reviewsubmissions = "reviewSubmissions"
         case sku = "sku"
+        case subscriptiongraceperiod = "subscriptionGracePeriod"
+        case subscriptiongroups = "subscriptionGroups"
         case subscriptionstatusurl = "subscriptionStatusUrl"
         case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
         case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
@@ -719,7 +717,6 @@ open class BuildsAPI {
         case appstoreversionphasedrelease = "appStoreVersionPhasedRelease"
         case appstoreversionsubmission = "appStoreVersionSubmission"
         case build = "build"
-        case idfadeclaration = "idfaDeclaration"
         case routingappcoverage = "routingAppCoverage"
     }
 
@@ -731,7 +728,6 @@ open class BuildsAPI {
      - parameter fieldsAppStoreVersionSubmissions: (query) the fields to include for returned resources of type appStoreVersionSubmissions (optional)
      - parameter fieldsAppStoreReviewDetails: (query) the fields to include for returned resources of type appStoreReviewDetails (optional)
      - parameter fieldsAppStoreVersions: (query) the fields to include for returned resources of type appStoreVersions (optional)
-     - parameter fieldsIdfaDeclarations: (query) the fields to include for returned resources of type idfaDeclarations (optional)
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
      - parameter fieldsRoutingAppCoverages: (query) the fields to include for returned resources of type routingAppCoverages (optional)
      - parameter fieldsAppClipDefaultExperiences: (query) the fields to include for returned resources of type appClipDefaultExperiences (optional)
@@ -744,7 +740,7 @@ open class BuildsAPI {
      - returns: AppStoreVersionResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildsAppStoreVersionGetToOneRelated(id: String, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAgeRatingDeclarations: [FieldsAgeRatingDeclarations_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionSubmissions: [FieldsAppStoreVersionSubmissions_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreReviewDetails: [FieldsAppStoreReviewDetails_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsIdfaDeclarations: [FieldsIdfaDeclarations_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsApps: [FieldsApps_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsRoutingAppCoverages: [FieldsRoutingAppCoverages_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppClipDefaultExperiences: [FieldsAppClipDefaultExperiences_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionPhasedReleases: [FieldsAppStoreVersionPhasedReleases_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsBuilds: [FieldsBuilds_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionLocalizations: [FieldsAppStoreVersionLocalizations_buildsAppStoreVersionGetToOneRelated]? = nil, limitAppStoreVersionLocalizations: Int? = nil, limitAppStoreVersionExperiments: Int? = nil, include: [Include_buildsAppStoreVersionGetToOneRelated]? = nil) async throws -> AppStoreVersionResponse {
+    open class func buildsAppStoreVersionGetToOneRelated(id: String, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAgeRatingDeclarations: [FieldsAgeRatingDeclarations_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionSubmissions: [FieldsAppStoreVersionSubmissions_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreReviewDetails: [FieldsAppStoreReviewDetails_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsApps: [FieldsApps_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsRoutingAppCoverages: [FieldsRoutingAppCoverages_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppClipDefaultExperiences: [FieldsAppClipDefaultExperiences_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionPhasedReleases: [FieldsAppStoreVersionPhasedReleases_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsBuilds: [FieldsBuilds_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionLocalizations: [FieldsAppStoreVersionLocalizations_buildsAppStoreVersionGetToOneRelated]? = nil, limitAppStoreVersionLocalizations: Int? = nil, limitAppStoreVersionExperiments: Int? = nil, include: [Include_buildsAppStoreVersionGetToOneRelated]? = nil) async throws -> AppStoreVersionResponse {
         var requestTask: RequestTask?
         return try await withTaskCancellationHandler {
             try Task.checkCancellation()
@@ -754,7 +750,7 @@ open class BuildsAPI {
                   return
                 }
 
-                requestTask = buildsAppStoreVersionGetToOneRelatedWithRequestBuilder(id: id, fieldsAppStoreVersionExperiments: fieldsAppStoreVersionExperiments, fieldsAgeRatingDeclarations: fieldsAgeRatingDeclarations, fieldsAppStoreVersionSubmissions: fieldsAppStoreVersionSubmissions, fieldsAppStoreReviewDetails: fieldsAppStoreReviewDetails, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsIdfaDeclarations: fieldsIdfaDeclarations, fieldsApps: fieldsApps, fieldsRoutingAppCoverages: fieldsRoutingAppCoverages, fieldsAppClipDefaultExperiences: fieldsAppClipDefaultExperiences, fieldsAppStoreVersionPhasedReleases: fieldsAppStoreVersionPhasedReleases, fieldsBuilds: fieldsBuilds, fieldsAppStoreVersionLocalizations: fieldsAppStoreVersionLocalizations, limitAppStoreVersionLocalizations: limitAppStoreVersionLocalizations, limitAppStoreVersionExperiments: limitAppStoreVersionExperiments, include: include).execute { result in
+                requestTask = buildsAppStoreVersionGetToOneRelatedWithRequestBuilder(id: id, fieldsAppStoreVersionExperiments: fieldsAppStoreVersionExperiments, fieldsAgeRatingDeclarations: fieldsAgeRatingDeclarations, fieldsAppStoreVersionSubmissions: fieldsAppStoreVersionSubmissions, fieldsAppStoreReviewDetails: fieldsAppStoreReviewDetails, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsApps: fieldsApps, fieldsRoutingAppCoverages: fieldsRoutingAppCoverages, fieldsAppClipDefaultExperiences: fieldsAppClipDefaultExperiences, fieldsAppStoreVersionPhasedReleases: fieldsAppStoreVersionPhasedReleases, fieldsBuilds: fieldsBuilds, fieldsAppStoreVersionLocalizations: fieldsAppStoreVersionLocalizations, limitAppStoreVersionLocalizations: limitAppStoreVersionLocalizations, limitAppStoreVersionExperiments: limitAppStoreVersionExperiments, include: include).execute { result in
                     switch result {
                     case let .success(response):
                         continuation.resume(returning: response.body)
@@ -808,7 +804,6 @@ open class BuildsAPI {
      - parameter fieldsAppStoreVersionSubmissions: (query) the fields to include for returned resources of type appStoreVersionSubmissions (optional)
      - parameter fieldsAppStoreReviewDetails: (query) the fields to include for returned resources of type appStoreReviewDetails (optional)
      - parameter fieldsAppStoreVersions: (query) the fields to include for returned resources of type appStoreVersions (optional)
-     - parameter fieldsIdfaDeclarations: (query) the fields to include for returned resources of type idfaDeclarations (optional)
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
      - parameter fieldsRoutingAppCoverages: (query) the fields to include for returned resources of type routingAppCoverages (optional)
      - parameter fieldsAppClipDefaultExperiences: (query) the fields to include for returned resources of type appClipDefaultExperiences (optional)
@@ -820,7 +815,7 @@ open class BuildsAPI {
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: RequestBuilder<AppStoreVersionResponse> 
      */
-    open class func buildsAppStoreVersionGetToOneRelatedWithRequestBuilder(id: String, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAgeRatingDeclarations: [FieldsAgeRatingDeclarations_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionSubmissions: [FieldsAppStoreVersionSubmissions_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreReviewDetails: [FieldsAppStoreReviewDetails_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsIdfaDeclarations: [FieldsIdfaDeclarations_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsApps: [FieldsApps_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsRoutingAppCoverages: [FieldsRoutingAppCoverages_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppClipDefaultExperiences: [FieldsAppClipDefaultExperiences_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionPhasedReleases: [FieldsAppStoreVersionPhasedReleases_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsBuilds: [FieldsBuilds_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionLocalizations: [FieldsAppStoreVersionLocalizations_buildsAppStoreVersionGetToOneRelated]? = nil, limitAppStoreVersionLocalizations: Int? = nil, limitAppStoreVersionExperiments: Int? = nil, include: [Include_buildsAppStoreVersionGetToOneRelated]? = nil) -> RequestBuilder<AppStoreVersionResponse> {
+    open class func buildsAppStoreVersionGetToOneRelatedWithRequestBuilder(id: String, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAgeRatingDeclarations: [FieldsAgeRatingDeclarations_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionSubmissions: [FieldsAppStoreVersionSubmissions_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreReviewDetails: [FieldsAppStoreReviewDetails_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsApps: [FieldsApps_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsRoutingAppCoverages: [FieldsRoutingAppCoverages_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppClipDefaultExperiences: [FieldsAppClipDefaultExperiences_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionPhasedReleases: [FieldsAppStoreVersionPhasedReleases_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsBuilds: [FieldsBuilds_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionLocalizations: [FieldsAppStoreVersionLocalizations_buildsAppStoreVersionGetToOneRelated]? = nil, limitAppStoreVersionLocalizations: Int? = nil, limitAppStoreVersionExperiments: Int? = nil, include: [Include_buildsAppStoreVersionGetToOneRelated]? = nil) -> RequestBuilder<AppStoreVersionResponse> {
         var localVariablePath = "/v1/builds/{id}/appStoreVersion"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -835,7 +830,6 @@ open class BuildsAPI {
             "fields[appStoreVersionSubmissions]": fieldsAppStoreVersionSubmissions?.encodeToJSON(),
             "fields[appStoreReviewDetails]": fieldsAppStoreReviewDetails?.encodeToJSON(),
             "fields[appStoreVersions]": fieldsAppStoreVersions?.encodeToJSON(),
-            "fields[idfaDeclarations]": fieldsIdfaDeclarations?.encodeToJSON(),
             "fields[apps]": fieldsApps?.encodeToJSON(),
             "fields[routingAppCoverages]": fieldsRoutingAppCoverages?.encodeToJSON(),
             "fields[appClipDefaultExperiences]": fieldsAppClipDefaultExperiences?.encodeToJSON(),
@@ -1431,6 +1425,7 @@ open class BuildsAPI {
      */
     public enum FilterDiagnosticType_buildsDiagnosticSignaturesGetToManyRelated: String, CaseIterable, JSONEncodable {
         case diskWrites = "DISK_WRITES"
+        case hangs = "HANGS"
     }
 
     /**
@@ -1718,13 +1713,12 @@ open class BuildsAPI {
         case build = "build"
         case copyright = "copyright"
         case createddate = "createdDate"
+        case customerreviews = "customerReviews"
         case downloadable = "downloadable"
         case earliestreleasedate = "earliestReleaseDate"
-        case idfadeclaration = "idfaDeclaration"
         case platform = "platform"
         case releasetype = "releaseType"
         case routingappcoverage = "routingAppCoverage"
-        case usesidfa = "usesIdfa"
         case versionstring = "versionString"
     }
 
@@ -1787,9 +1781,11 @@ open class BuildsAPI {
         case bundleid = "bundleId"
         case ciproduct = "ciProduct"
         case contentrightsdeclaration = "contentRightsDeclaration"
+        case customerreviews = "customerReviews"
         case enduserlicenseagreement = "endUserLicenseAgreement"
         case gamecenterenabledversions = "gameCenterEnabledVersions"
         case inapppurchases = "inAppPurchases"
+        case inapppurchasesv2 = "inAppPurchasesV2"
         case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
         case name = "name"
         case perfpowermetrics = "perfPowerMetrics"
@@ -1798,8 +1794,11 @@ open class BuildsAPI {
         case pricepoints = "pricePoints"
         case prices = "prices"
         case primarylocale = "primaryLocale"
+        case promotedpurchases = "promotedPurchases"
         case reviewsubmissions = "reviewSubmissions"
         case sku = "sku"
+        case subscriptiongraceperiod = "subscriptionGracePeriod"
+        case subscriptiongroups = "subscriptionGroups"
         case subscriptionstatusurl = "subscriptionStatusUrl"
         case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
         case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
@@ -2126,13 +2125,12 @@ open class BuildsAPI {
         case build = "build"
         case copyright = "copyright"
         case createddate = "createdDate"
+        case customerreviews = "customerReviews"
         case downloadable = "downloadable"
         case earliestreleasedate = "earliestReleaseDate"
-        case idfadeclaration = "idfaDeclaration"
         case platform = "platform"
         case releasetype = "releaseType"
         case routingappcoverage = "routingAppCoverage"
-        case usesidfa = "usesIdfa"
         case versionstring = "versionString"
     }
 
@@ -2195,9 +2193,11 @@ open class BuildsAPI {
         case bundleid = "bundleId"
         case ciproduct = "ciProduct"
         case contentrightsdeclaration = "contentRightsDeclaration"
+        case customerreviews = "customerReviews"
         case enduserlicenseagreement = "endUserLicenseAgreement"
         case gamecenterenabledversions = "gameCenterEnabledVersions"
         case inapppurchases = "inAppPurchases"
+        case inapppurchasesv2 = "inAppPurchasesV2"
         case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
         case name = "name"
         case perfpowermetrics = "perfPowerMetrics"
@@ -2206,8 +2206,11 @@ open class BuildsAPI {
         case pricepoints = "pricePoints"
         case prices = "prices"
         case primarylocale = "primaryLocale"
+        case promotedpurchases = "promotedPurchases"
         case reviewsubmissions = "reviewSubmissions"
         case sku = "sku"
+        case subscriptiongraceperiod = "subscriptionGracePeriod"
+        case subscriptiongroups = "subscriptionGroups"
         case subscriptionstatusurl = "subscriptionStatusUrl"
         case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
         case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
@@ -2958,10 +2961,10 @@ open class BuildsAPI {
      - parameter filterDeviceType: (query) filter by attribute &#39;deviceType&#39; (optional)
      - parameter filterMetricType: (query) filter by attribute &#39;metricType&#39; (optional)
      - parameter filterPlatform: (query) filter by attribute &#39;platform&#39; (optional)
-     - returns: AnyCodable
+     - returns: XcodeMetrics
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildsPerfPowerMetricsGetToManyRelated(id: String, filterDeviceType: [String]? = nil, filterMetricType: [FilterMetricType_buildsPerfPowerMetricsGetToManyRelated]? = nil, filterPlatform: [FilterPlatform_buildsPerfPowerMetricsGetToManyRelated]? = nil) async throws -> AnyCodable {
+    open class func buildsPerfPowerMetricsGetToManyRelated(id: String, filterDeviceType: [String]? = nil, filterMetricType: [FilterMetricType_buildsPerfPowerMetricsGetToManyRelated]? = nil, filterPlatform: [FilterPlatform_buildsPerfPowerMetricsGetToManyRelated]? = nil) async throws -> XcodeMetrics {
         var requestTask: RequestTask?
         return try await withTaskCancellationHandler {
             try Task.checkCancellation()
@@ -2987,10 +2990,10 @@ open class BuildsAPI {
 
     /**
      - parameter urlString: next or first url from App Store Connect API
-     - returns: AnyCodable
+     - returns: XcodeMetrics
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildsPerfPowerMetricsGetToManyRelated(urlString: String) async throws -> AnyCodable {
+    open class func buildsPerfPowerMetricsGetToManyRelated(urlString: String) async throws -> XcodeMetrics {
         var requestTask: RequestTask?
         return try await withTaskCancellationHandler {
             try Task.checkCancellation()
@@ -3023,9 +3026,9 @@ open class BuildsAPI {
      - parameter filterDeviceType: (query) filter by attribute &#39;deviceType&#39; (optional)
      - parameter filterMetricType: (query) filter by attribute &#39;metricType&#39; (optional)
      - parameter filterPlatform: (query) filter by attribute &#39;platform&#39; (optional)
-     - returns: RequestBuilder<AnyCodable> 
+     - returns: RequestBuilder<XcodeMetrics> 
      */
-    open class func buildsPerfPowerMetricsGetToManyRelatedWithRequestBuilder(id: String, filterDeviceType: [String]? = nil, filterMetricType: [FilterMetricType_buildsPerfPowerMetricsGetToManyRelated]? = nil, filterPlatform: [FilterPlatform_buildsPerfPowerMetricsGetToManyRelated]? = nil) -> RequestBuilder<AnyCodable> {
+    open class func buildsPerfPowerMetricsGetToManyRelatedWithRequestBuilder(id: String, filterDeviceType: [String]? = nil, filterMetricType: [FilterMetricType_buildsPerfPowerMetricsGetToManyRelated]? = nil, filterPlatform: [FilterPlatform_buildsPerfPowerMetricsGetToManyRelated]? = nil) -> RequestBuilder<XcodeMetrics> {
         var localVariablePath = "/v1/builds/{id}/perfPowerMetrics"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -3046,7 +3049,7 @@ open class BuildsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AnyCodable>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<XcodeMetrics>.Type = ASCAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }
@@ -3057,10 +3060,10 @@ open class BuildsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
-     - returns: RequestBuilder<AnyCodable> 
+     - returns: RequestBuilder<XcodeMetrics> 
      */
-    open class func buildsPerfPowerMetricsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AnyCodable> {
-        let localVariableRequestBuilder: RequestBuilder<AnyCodable>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+    open class func buildsPerfPowerMetricsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<XcodeMetrics> {
+        let localVariableRequestBuilder: RequestBuilder<XcodeMetrics>.Type = ASCAPI.requestBuilderFactory.getBuilder()
         return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil)
     }
 

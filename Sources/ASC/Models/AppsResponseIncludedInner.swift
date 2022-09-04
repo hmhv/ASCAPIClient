@@ -27,8 +27,12 @@ public enum AppsResponseIncludedInner: Codable, JSONEncodable, Hashable {
     case typeEndUserLicenseAgreement(EndUserLicenseAgreement)
     case typeGameCenterEnabledVersion(GameCenterEnabledVersion)
     case typeInAppPurchase(InAppPurchase)
+    case typeInAppPurchaseV2(InAppPurchaseV2)
     case typePrereleaseVersion(PrereleaseVersion)
+    case typePromotedPurchase(PromotedPurchase)
     case typeReviewSubmission(ReviewSubmission)
+    case typeSubscriptionGracePeriod(SubscriptionGracePeriod)
+    case typeSubscriptionGroup(SubscriptionGroup)
     case typeTerritory(Territory)
 
     public func encode(to encoder: Encoder) throws {
@@ -66,9 +70,17 @@ public enum AppsResponseIncludedInner: Codable, JSONEncodable, Hashable {
             try container.encode(value)
         case .typeInAppPurchase(let value):
             try container.encode(value)
+        case .typeInAppPurchaseV2(let value):
+            try container.encode(value)
         case .typePrereleaseVersion(let value):
             try container.encode(value)
+        case .typePromotedPurchase(let value):
+            try container.encode(value)
         case .typeReviewSubmission(let value):
+            try container.encode(value)
+        case .typeSubscriptionGracePeriod(let value):
+            try container.encode(value)
+        case .typeSubscriptionGroup(let value):
             try container.encode(value)
         case .typeTerritory(let value):
             try container.encode(value)
@@ -109,10 +121,18 @@ public enum AppsResponseIncludedInner: Codable, JSONEncodable, Hashable {
             self = .typeGameCenterEnabledVersion(value)
         } else if let value = try? container.decode(InAppPurchase.self) {
             self = .typeInAppPurchase(value)
+        } else if let value = try? container.decode(InAppPurchaseV2.self) {
+            self = .typeInAppPurchaseV2(value)
         } else if let value = try? container.decode(PrereleaseVersion.self) {
             self = .typePrereleaseVersion(value)
+        } else if let value = try? container.decode(PromotedPurchase.self) {
+            self = .typePromotedPurchase(value)
         } else if let value = try? container.decode(ReviewSubmission.self) {
             self = .typeReviewSubmission(value)
+        } else if let value = try? container.decode(SubscriptionGracePeriod.self) {
+            self = .typeSubscriptionGracePeriod(value)
+        } else if let value = try? container.decode(SubscriptionGroup.self) {
+            self = .typeSubscriptionGroup(value)
         } else if let value = try? container.decode(Territory.self) {
             self = .typeTerritory(value)
         } else {

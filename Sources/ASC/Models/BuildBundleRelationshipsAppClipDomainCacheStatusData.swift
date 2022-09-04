@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct BuildBundleRelationshipsAppClipDomainCacheStatusData: Codable, Hashable {
+public struct BuildBundleRelationshipsAppClipDomainCacheStatusData: Codable, JSONEncodable, Hashable {
 
     public enum ModelType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case appclipdomainstatuses = "appClipDomainStatuses"

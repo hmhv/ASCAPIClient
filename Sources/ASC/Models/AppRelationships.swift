@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct AppRelationships: Codable, Hashable {
+public struct AppRelationships: Codable, JSONEncodable, Hashable {
 
     public var ciProduct: AppRelationshipsCiProduct?
     public var betaGroups: AppRelationshipsBetaGroups?
@@ -26,13 +26,18 @@ public struct AppRelationships: Codable, Hashable {
     public var preOrder: AppRelationshipsPreOrder?
     public var prices: AppRelationshipsPrices?
     public var availableTerritories: AppRelationshipsAvailableTerritories?
+    @available(*, deprecated, message: "This property is deprecated.")
     public var inAppPurchases: AppRelationshipsInAppPurchases?
+    public var subscriptionGroups: AppRelationshipsSubscriptionGroups?
     public var gameCenterEnabledVersions: AppRelationshipsGameCenterEnabledVersions?
     public var appCustomProductPages: AppRelationshipsAppCustomProductPages?
+    public var inAppPurchasesV2: AppRelationshipsInAppPurchasesV2?
+    public var promotedPurchases: AppRelationshipsPromotedPurchases?
     public var appEvents: AppRelationshipsAppEvents?
     public var reviewSubmissions: AppRelationshipsReviewSubmissions?
+    public var subscriptionGracePeriod: AppRelationshipsSubscriptionGracePeriod?
 
-    public init(ciProduct: AppRelationshipsCiProduct? = nil, betaGroups: AppRelationshipsBetaGroups? = nil, appStoreVersions: AppRelationshipsAppStoreVersions? = nil, preReleaseVersions: AppRelationshipsPreReleaseVersions? = nil, betaAppLocalizations: AppRelationshipsBetaAppLocalizations? = nil, builds: AppRelationshipsBuilds? = nil, betaLicenseAgreement: AppRelationshipsBetaLicenseAgreement? = nil, betaAppReviewDetail: AppRelationshipsBetaAppReviewDetail? = nil, appInfos: AppRelationshipsAppInfos? = nil, appClips: AppRelationshipsAppClips? = nil, endUserLicenseAgreement: AppRelationshipsEndUserLicenseAgreement? = nil, preOrder: AppRelationshipsPreOrder? = nil, prices: AppRelationshipsPrices? = nil, availableTerritories: AppRelationshipsAvailableTerritories? = nil, inAppPurchases: AppRelationshipsInAppPurchases? = nil, gameCenterEnabledVersions: AppRelationshipsGameCenterEnabledVersions? = nil, appCustomProductPages: AppRelationshipsAppCustomProductPages? = nil, appEvents: AppRelationshipsAppEvents? = nil, reviewSubmissions: AppRelationshipsReviewSubmissions? = nil) {
+    public init(ciProduct: AppRelationshipsCiProduct? = nil, betaGroups: AppRelationshipsBetaGroups? = nil, appStoreVersions: AppRelationshipsAppStoreVersions? = nil, preReleaseVersions: AppRelationshipsPreReleaseVersions? = nil, betaAppLocalizations: AppRelationshipsBetaAppLocalizations? = nil, builds: AppRelationshipsBuilds? = nil, betaLicenseAgreement: AppRelationshipsBetaLicenseAgreement? = nil, betaAppReviewDetail: AppRelationshipsBetaAppReviewDetail? = nil, appInfos: AppRelationshipsAppInfos? = nil, appClips: AppRelationshipsAppClips? = nil, endUserLicenseAgreement: AppRelationshipsEndUserLicenseAgreement? = nil, preOrder: AppRelationshipsPreOrder? = nil, prices: AppRelationshipsPrices? = nil, availableTerritories: AppRelationshipsAvailableTerritories? = nil, inAppPurchases: AppRelationshipsInAppPurchases? = nil, subscriptionGroups: AppRelationshipsSubscriptionGroups? = nil, gameCenterEnabledVersions: AppRelationshipsGameCenterEnabledVersions? = nil, appCustomProductPages: AppRelationshipsAppCustomProductPages? = nil, inAppPurchasesV2: AppRelationshipsInAppPurchasesV2? = nil, promotedPurchases: AppRelationshipsPromotedPurchases? = nil, appEvents: AppRelationshipsAppEvents? = nil, reviewSubmissions: AppRelationshipsReviewSubmissions? = nil, subscriptionGracePeriod: AppRelationshipsSubscriptionGracePeriod? = nil) {
         self.ciProduct = ciProduct
         self.betaGroups = betaGroups
         self.appStoreVersions = appStoreVersions
@@ -48,10 +53,14 @@ public struct AppRelationships: Codable, Hashable {
         self.prices = prices
         self.availableTerritories = availableTerritories
         self.inAppPurchases = inAppPurchases
+        self.subscriptionGroups = subscriptionGroups
         self.gameCenterEnabledVersions = gameCenterEnabledVersions
         self.appCustomProductPages = appCustomProductPages
+        self.inAppPurchasesV2 = inAppPurchasesV2
+        self.promotedPurchases = promotedPurchases
         self.appEvents = appEvents
         self.reviewSubmissions = reviewSubmissions
+        self.subscriptionGracePeriod = subscriptionGracePeriod
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -70,10 +79,14 @@ public struct AppRelationships: Codable, Hashable {
         case prices
         case availableTerritories
         case inAppPurchases
+        case subscriptionGroups
         case gameCenterEnabledVersions
         case appCustomProductPages
+        case inAppPurchasesV2
+        case promotedPurchases
         case appEvents
         case reviewSubmissions
+        case subscriptionGracePeriod
     }
 
     // Encodable protocol methods
@@ -95,10 +108,14 @@ public struct AppRelationships: Codable, Hashable {
         try container.encodeIfPresent(prices, forKey: .prices)
         try container.encodeIfPresent(availableTerritories, forKey: .availableTerritories)
         try container.encodeIfPresent(inAppPurchases, forKey: .inAppPurchases)
+        try container.encodeIfPresent(subscriptionGroups, forKey: .subscriptionGroups)
         try container.encodeIfPresent(gameCenterEnabledVersions, forKey: .gameCenterEnabledVersions)
         try container.encodeIfPresent(appCustomProductPages, forKey: .appCustomProductPages)
+        try container.encodeIfPresent(inAppPurchasesV2, forKey: .inAppPurchasesV2)
+        try container.encodeIfPresent(promotedPurchases, forKey: .promotedPurchases)
         try container.encodeIfPresent(appEvents, forKey: .appEvents)
         try container.encodeIfPresent(reviewSubmissions, forKey: .reviewSubmissions)
+        try container.encodeIfPresent(subscriptionGracePeriod, forKey: .subscriptionGracePeriod)
     }
 }
 

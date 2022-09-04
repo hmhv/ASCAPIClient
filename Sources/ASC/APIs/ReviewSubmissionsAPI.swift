@@ -488,13 +488,12 @@ open class ReviewSubmissionsAPI {
         case build = "build"
         case copyright = "copyright"
         case createddate = "createdDate"
+        case customerreviews = "customerReviews"
         case downloadable = "downloadable"
         case earliestreleasedate = "earliestReleaseDate"
-        case idfadeclaration = "idfaDeclaration"
         case platform = "platform"
         case releasetype = "releaseType"
         case routingappcoverage = "routingAppCoverage"
-        case usesidfa = "usesIdfa"
         case versionstring = "versionString"
     }
 

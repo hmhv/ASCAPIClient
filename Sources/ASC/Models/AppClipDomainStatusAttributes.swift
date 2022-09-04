@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct AppClipDomainStatusAttributes: Codable, Hashable {
+public struct AppClipDomainStatusAttributes: Codable, JSONEncodable, Hashable {
 
     public var domains: [AppClipDomainStatusAttributesDomainsInner]?
     public var lastUpdatedDate: Date?

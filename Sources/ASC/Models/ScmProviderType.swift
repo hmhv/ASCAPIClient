@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct ScmProviderType: Codable, Hashable {
+public struct ScmProviderType: Codable, JSONEncodable, Hashable {
 
     public enum Kind: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case bitbucketCloud = "BITBUCKET_CLOUD"

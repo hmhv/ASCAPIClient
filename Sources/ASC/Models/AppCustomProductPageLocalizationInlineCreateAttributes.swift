@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct AppCustomProductPageLocalizationInlineCreateAttributes: Codable, Hashable {
+public struct AppCustomProductPageLocalizationInlineCreateAttributes: Codable, JSONEncodable, Hashable {
 
     public var locale: String
     public var promotionalText: String?

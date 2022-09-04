@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct AppStoreReviewDetailAttributes: Codable, Hashable {
+public struct AppStoreReviewDetailAttributes: Codable, JSONEncodable, Hashable {
 
     public var contactFirstName: String?
     public var contactLastName: String?

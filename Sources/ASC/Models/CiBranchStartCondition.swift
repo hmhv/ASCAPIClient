@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct CiBranchStartCondition: Codable, Hashable {
+public struct CiBranchStartCondition: Codable, JSONEncodable, Hashable {
 
     public var source: CiBranchPatterns?
     public var filesAndFoldersRule: CiFilesAndFoldersRule?

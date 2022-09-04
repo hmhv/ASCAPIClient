@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct AppInfoLocalizationRelationshipsAppInfo: Codable, Hashable {
+public struct AppInfoLocalizationRelationshipsAppInfo: Codable, JSONEncodable, Hashable {
 
     public var links: AppCategoryRelationshipsSubcategoriesLinks?
     public var data: AppInfoLocalizationRelationshipsAppInfoData?

@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct BuildBundleAttributes: Codable, Hashable {
+public struct BuildBundleAttributes: Codable, JSONEncodable, Hashable {
 
     public enum BundleType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case app = "APP"

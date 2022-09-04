@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct CiXcodeVersionAttributesTestDestinationsInnerAvailableRuntimesInner: Codable, Hashable {
+public struct CiXcodeVersionAttributesTestDestinationsInnerAvailableRuntimesInner: Codable, JSONEncodable, Hashable {
 
     public var runtimeName: String?
     public var runtimeIdentifier: String?

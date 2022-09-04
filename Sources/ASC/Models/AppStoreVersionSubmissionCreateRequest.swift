@@ -11,7 +11,7 @@ import AnyCodable
 #endif
 
 @available(*, deprecated, message: "This schema is deprecated.")
-public struct AppStoreVersionSubmissionCreateRequest: Codable, Hashable {
+public struct AppStoreVersionSubmissionCreateRequest: Codable, JSONEncodable, Hashable {
 
     public var data: AppStoreVersionSubmissionCreateRequestData
 

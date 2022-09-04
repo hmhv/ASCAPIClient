@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct AppPreviewAttributes: Codable, Hashable {
+public struct AppPreviewAttributes: Codable, JSONEncodable, Hashable {
 
     public var fileSize: Int?
     public var fileName: String?

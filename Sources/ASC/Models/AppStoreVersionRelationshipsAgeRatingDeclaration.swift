@@ -11,7 +11,7 @@ import AnyCodable
 #endif
 
 @available(*, deprecated, message: "This schema is deprecated.")
-public struct AppStoreVersionRelationshipsAgeRatingDeclaration: Codable, Hashable {
+public struct AppStoreVersionRelationshipsAgeRatingDeclaration: Codable, JSONEncodable, Hashable {
 
     public var links: AppCategoryRelationshipsSubcategoriesLinks?
     public var data: AppInfoRelationshipsAgeRatingDeclarationData?

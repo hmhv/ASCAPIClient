@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct CiXcodeVersionsResponse: Codable, Hashable {
+public struct CiXcodeVersionsResponse: Codable, JSONEncodable, Hashable {
 
     public var data: [CiXcodeVersion]
     public var included: [CiMacOsVersion]?

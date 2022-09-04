@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct PagingInformationPaging: Codable, Hashable {
+public struct PagingInformationPaging: Codable, JSONEncodable, Hashable {
 
     public var total: Int?
     public var limit: Int

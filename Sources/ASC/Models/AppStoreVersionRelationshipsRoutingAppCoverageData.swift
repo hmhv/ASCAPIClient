@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct AppStoreVersionRelationshipsRoutingAppCoverageData: Codable, Hashable {
+public struct AppStoreVersionRelationshipsRoutingAppCoverageData: Codable, JSONEncodable, Hashable {
 
     public enum ModelType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case routingappcoverages = "routingAppCoverages"

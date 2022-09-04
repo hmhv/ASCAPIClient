@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct CiAction: Codable, Hashable {
+public struct CiAction: Codable, JSONEncodable, Hashable {
 
     public enum Destination: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case iosDevice = "ANY_IOS_DEVICE"

@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct AppInfoLocalizationCreateRequest: Codable, Hashable {
+public struct AppInfoLocalizationCreateRequest: Codable, JSONEncodable, Hashable {
 
     public var data: AppInfoLocalizationCreateRequestData
 

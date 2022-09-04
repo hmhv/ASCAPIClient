@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct TerritoryAttributes: Codable, Hashable {
+public struct TerritoryAttributes: Codable, JSONEncodable, Hashable {
 
     public var currency: String?
 

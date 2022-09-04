@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct AppUpdateRequest: Codable, Hashable {
+public struct AppUpdateRequest: Codable, JSONEncodable, Hashable {
 
     public var data: AppUpdateRequestData
     public var included: [AppPriceInlineCreate]?

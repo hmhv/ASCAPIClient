@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct AppStoreVersionUpdateRequestDataAttributes: Codable, Hashable {
+public struct AppStoreVersionUpdateRequestDataAttributes: Codable, JSONEncodable, Hashable {
 
     public enum ReleaseType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case manual = "MANUAL"
@@ -22,16 +22,13 @@ public struct AppStoreVersionUpdateRequestDataAttributes: Codable, Hashable {
     public var copyright: String?
     public var releaseType: ReleaseType?
     public var earliestReleaseDate: Date?
-    @available(*, deprecated, message: "This property is deprecated.")
-    public var usesIdfa: Bool?
     public var downloadable: Bool?
 
-    public init(versionString: String? = nil, copyright: String? = nil, releaseType: ReleaseType? = nil, earliestReleaseDate: Date? = nil, usesIdfa: Bool? = nil, downloadable: Bool? = nil) {
+    public init(versionString: String? = nil, copyright: String? = nil, releaseType: ReleaseType? = nil, earliestReleaseDate: Date? = nil, downloadable: Bool? = nil) {
         self.versionString = versionString
         self.copyright = copyright
         self.releaseType = releaseType
         self.earliestReleaseDate = earliestReleaseDate
-        self.usesIdfa = usesIdfa
         self.downloadable = downloadable
     }
 
@@ -40,7 +37,6 @@ public struct AppStoreVersionUpdateRequestDataAttributes: Codable, Hashable {
         case copyright
         case releaseType
         case earliestReleaseDate
-        case usesIdfa
         case downloadable
     }
 
@@ -52,7 +48,6 @@ public struct AppStoreVersionUpdateRequestDataAttributes: Codable, Hashable {
         try container.encodeIfPresent(copyright, forKey: .copyright)
         try container.encodeIfPresent(releaseType, forKey: .releaseType)
         try container.encodeIfPresent(earliestReleaseDate, forKey: .earliestReleaseDate)
-        try container.encodeIfPresent(usesIdfa, forKey: .usesIdfa)
         try container.encodeIfPresent(downloadable, forKey: .downloadable)
     }
 }

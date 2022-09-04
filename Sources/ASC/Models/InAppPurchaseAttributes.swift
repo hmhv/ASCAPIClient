@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct InAppPurchaseAttributes: Codable, Hashable {
+public struct InAppPurchaseAttributes: Codable, JSONEncodable, Hashable {
 
     public enum InAppPurchaseType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case automaticallyRenewableSubscription = "AUTOMATICALLY_RENEWABLE_SUBSCRIPTION"

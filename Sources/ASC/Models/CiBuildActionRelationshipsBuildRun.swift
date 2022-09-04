@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct CiBuildActionRelationshipsBuildRun: Codable, Hashable {
+public struct CiBuildActionRelationshipsBuildRun: Codable, JSONEncodable, Hashable {
 
     public var links: AppCategoryRelationshipsSubcategoriesLinks?
     public var data: CiBuildActionRelationshipsBuildRunData?

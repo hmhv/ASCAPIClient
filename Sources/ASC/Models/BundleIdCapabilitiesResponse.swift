@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct BundleIdCapabilitiesResponse: Codable, Hashable {
+public struct BundleIdCapabilitiesResponse: Codable, JSONEncodable, Hashable {
 
     public var data: [BundleIdCapability]
     public var links: PagedDocumentLinks

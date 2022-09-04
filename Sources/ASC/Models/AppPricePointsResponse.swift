@@ -11,7 +11,7 @@ import AnyCodable
 #endif
 
 @available(*, deprecated, message: "This schema is deprecated.")
-public struct AppPricePointsResponse: Codable, Hashable {
+public struct AppPricePointsResponse: Codable, JSONEncodable, Hashable {
 
     public var data: [AppPricePoint]
     public var included: [AppPricePointsResponseIncludedInner]?

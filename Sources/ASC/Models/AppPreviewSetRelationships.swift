@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct AppPreviewSetRelationships: Codable, Hashable {
+public struct AppPreviewSetRelationships: Codable, JSONEncodable, Hashable {
 
     public var appStoreVersionLocalization: AppPreviewSetRelationshipsAppStoreVersionLocalization?
     public var appCustomProductPageLocalization: AppPreviewSetRelationshipsAppCustomProductPageLocalization?

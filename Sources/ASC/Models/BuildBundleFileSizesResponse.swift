@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct BuildBundleFileSizesResponse: Codable, Hashable {
+public struct BuildBundleFileSizesResponse: Codable, JSONEncodable, Hashable {
 
     public var data: [BuildBundleFileSize]
     public var links: PagedDocumentLinks

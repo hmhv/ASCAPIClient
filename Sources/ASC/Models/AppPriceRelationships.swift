@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct AppPriceRelationships: Codable, Hashable {
+public struct AppPriceRelationships: Codable, JSONEncodable, Hashable {
 
     public var app: AppClipRelationshipsApp?
     public var priceTier: AppPricePointV2RelationshipsPriceTier?

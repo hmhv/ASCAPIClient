@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct AppEncryptionDeclaration: Codable, Hashable {
+public struct AppEncryptionDeclaration: Codable, JSONEncodable, Hashable {
 
     public enum ModelType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case appencryptiondeclarations = "appEncryptionDeclarations"

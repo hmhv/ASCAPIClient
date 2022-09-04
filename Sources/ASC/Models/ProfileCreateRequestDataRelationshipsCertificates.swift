@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct ProfileCreateRequestDataRelationshipsCertificates: Codable, Hashable {
+public struct ProfileCreateRequestDataRelationshipsCertificates: Codable, JSONEncodable, Hashable {
 
     public var data: [ProfileRelationshipsCertificatesDataInner]
 

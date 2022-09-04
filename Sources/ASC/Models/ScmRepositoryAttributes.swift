@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct ScmRepositoryAttributes: Codable, Hashable {
+public struct ScmRepositoryAttributes: Codable, JSONEncodable, Hashable {
 
     public var lastAccessedDate: Date?
     public var httpCloneUrl: String?

@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct AppMediaAssetState: Codable, Hashable {
+public struct AppMediaAssetState: Codable, JSONEncodable, Hashable {
 
     public enum State: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case awaitingUpload = "AWAITING_UPLOAD"

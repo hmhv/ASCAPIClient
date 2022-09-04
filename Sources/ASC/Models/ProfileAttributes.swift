@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct ProfileAttributes: Codable, Hashable {
+public struct ProfileAttributes: Codable, JSONEncodable, Hashable {
 
     public enum ProfileType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case iosAppDevelopment = "IOS_APP_DEVELOPMENT"

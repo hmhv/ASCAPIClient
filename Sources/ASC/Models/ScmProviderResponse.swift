@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct ScmProviderResponse: Codable, Hashable {
+public struct ScmProviderResponse: Codable, JSONEncodable, Hashable {
 
     public var data: ScmProvider
     public var links: DocumentLinks

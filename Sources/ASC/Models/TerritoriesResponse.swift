@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct TerritoriesResponse: Codable, Hashable {
+public struct TerritoriesResponse: Codable, JSONEncodable, Hashable {
 
     public var data: [Territory]
     public var links: PagedDocumentLinks

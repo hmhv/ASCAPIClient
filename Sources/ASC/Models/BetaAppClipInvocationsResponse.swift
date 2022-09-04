@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct BetaAppClipInvocationsResponse: Codable, Hashable {
+public struct BetaAppClipInvocationsResponse: Codable, JSONEncodable, Hashable {
 
     public var data: [BetaAppClipInvocation]
     public var included: [BetaAppClipInvocationLocalization]?

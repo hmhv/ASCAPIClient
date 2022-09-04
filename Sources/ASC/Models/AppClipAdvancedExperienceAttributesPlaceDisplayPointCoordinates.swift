@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct AppClipAdvancedExperienceAttributesPlaceDisplayPointCoordinates: Codable, Hashable {
+public struct AppClipAdvancedExperienceAttributesPlaceDisplayPointCoordinates: Codable, JSONEncodable, Hashable {
 
     public var latitude: Double?
     public var longitude: Double?

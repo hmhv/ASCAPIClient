@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct CiProductRelationshipsPrimaryRepositories: Codable, Hashable {
+public struct CiProductRelationshipsPrimaryRepositories: Codable, JSONEncodable, Hashable {
 
     public var links: AppCategoryRelationshipsSubcategoriesLinks?
     public var meta: PagingInformation?

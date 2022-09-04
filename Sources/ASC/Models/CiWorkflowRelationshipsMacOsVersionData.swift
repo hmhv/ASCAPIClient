@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct CiWorkflowRelationshipsMacOsVersionData: Codable, Hashable {
+public struct CiWorkflowRelationshipsMacOsVersionData: Codable, JSONEncodable, Hashable {
 
     public enum ModelType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case cimacosversions = "ciMacOsVersions"

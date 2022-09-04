@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct BetaAppClipInvocationCreateRequestDataRelationshipsBuildBundle: Codable, Hashable {
+public struct BetaAppClipInvocationCreateRequestDataRelationshipsBuildBundle: Codable, JSONEncodable, Hashable {
 
     public var data: BetaAppClipInvocationCreateRequestDataRelationshipsBuildBundleData
 

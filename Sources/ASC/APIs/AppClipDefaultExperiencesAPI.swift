@@ -561,13 +561,12 @@ open class AppClipDefaultExperiencesAPI {
         case build = "build"
         case copyright = "copyright"
         case createddate = "createdDate"
+        case customerreviews = "customerReviews"
         case downloadable = "downloadable"
         case earliestreleasedate = "earliestReleaseDate"
-        case idfadeclaration = "idfaDeclaration"
         case platform = "platform"
         case releasetype = "releaseType"
         case routingappcoverage = "routingAppCoverage"
-        case usesidfa = "usesIdfa"
         case versionstring = "versionString"
     }
 
@@ -779,25 +778,13 @@ open class AppClipDefaultExperiencesAPI {
         case build = "build"
         case copyright = "copyright"
         case createddate = "createdDate"
+        case customerreviews = "customerReviews"
         case downloadable = "downloadable"
         case earliestreleasedate = "earliestReleaseDate"
-        case idfadeclaration = "idfaDeclaration"
         case platform = "platform"
         case releasetype = "releaseType"
         case routingappcoverage = "routingAppCoverage"
-        case usesidfa = "usesIdfa"
         case versionstring = "versionString"
-    }
-
-    /**
-     * enum for parameter fieldsIdfaDeclarations
-     */
-    public enum FieldsIdfaDeclarations_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated: String, CaseIterable, JSONEncodable {
-        case appstoreversion = "appStoreVersion"
-        case attributesactionwithpreviousad = "attributesActionWithPreviousAd"
-        case attributesappinstallationtopreviousad = "attributesAppInstallationToPreviousAd"
-        case honorslimitedadtracking = "honorsLimitedAdTracking"
-        case servesads = "servesAds"
     }
 
     /**
@@ -820,9 +807,11 @@ open class AppClipDefaultExperiencesAPI {
         case bundleid = "bundleId"
         case ciproduct = "ciProduct"
         case contentrightsdeclaration = "contentRightsDeclaration"
+        case customerreviews = "customerReviews"
         case enduserlicenseagreement = "endUserLicenseAgreement"
         case gamecenterenabledversions = "gameCenterEnabledVersions"
         case inapppurchases = "inAppPurchases"
+        case inapppurchasesv2 = "inAppPurchasesV2"
         case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
         case name = "name"
         case perfpowermetrics = "perfPowerMetrics"
@@ -831,8 +820,11 @@ open class AppClipDefaultExperiencesAPI {
         case pricepoints = "pricePoints"
         case prices = "prices"
         case primarylocale = "primaryLocale"
+        case promotedpurchases = "promotedPurchases"
         case reviewsubmissions = "reviewSubmissions"
         case sku = "sku"
+        case subscriptiongraceperiod = "subscriptionGracePeriod"
+        case subscriptiongroups = "subscriptionGroups"
         case subscriptionstatusurl = "subscriptionStatusUrl"
         case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
         case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
@@ -934,7 +926,6 @@ open class AppClipDefaultExperiencesAPI {
         case appstoreversionphasedrelease = "appStoreVersionPhasedRelease"
         case appstoreversionsubmission = "appStoreVersionSubmission"
         case build = "build"
-        case idfadeclaration = "idfaDeclaration"
         case routingappcoverage = "routingAppCoverage"
     }
 
@@ -946,7 +937,6 @@ open class AppClipDefaultExperiencesAPI {
      - parameter fieldsAppStoreVersionSubmissions: (query) the fields to include for returned resources of type appStoreVersionSubmissions (optional)
      - parameter fieldsAppStoreReviewDetails: (query) the fields to include for returned resources of type appStoreReviewDetails (optional)
      - parameter fieldsAppStoreVersions: (query) the fields to include for returned resources of type appStoreVersions (optional)
-     - parameter fieldsIdfaDeclarations: (query) the fields to include for returned resources of type idfaDeclarations (optional)
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
      - parameter fieldsRoutingAppCoverages: (query) the fields to include for returned resources of type routingAppCoverages (optional)
      - parameter fieldsAppClipDefaultExperiences: (query) the fields to include for returned resources of type appClipDefaultExperiences (optional)
@@ -959,7 +949,7 @@ open class AppClipDefaultExperiencesAPI {
      - returns: AppStoreVersionResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated(id: String, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAgeRatingDeclarations: [FieldsAgeRatingDeclarations_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionSubmissions: [FieldsAppStoreVersionSubmissions_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreReviewDetails: [FieldsAppStoreReviewDetails_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsIdfaDeclarations: [FieldsIdfaDeclarations_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsApps: [FieldsApps_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsRoutingAppCoverages: [FieldsRoutingAppCoverages_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAppClipDefaultExperiences: [FieldsAppClipDefaultExperiences_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionPhasedReleases: [FieldsAppStoreVersionPhasedReleases_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsBuilds: [FieldsBuilds_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionLocalizations: [FieldsAppStoreVersionLocalizations_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, limitAppStoreVersionLocalizations: Int? = nil, limitAppStoreVersionExperiments: Int? = nil, include: [Include_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil) async throws -> AppStoreVersionResponse {
+    open class func appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated(id: String, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAgeRatingDeclarations: [FieldsAgeRatingDeclarations_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionSubmissions: [FieldsAppStoreVersionSubmissions_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreReviewDetails: [FieldsAppStoreReviewDetails_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsApps: [FieldsApps_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsRoutingAppCoverages: [FieldsRoutingAppCoverages_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAppClipDefaultExperiences: [FieldsAppClipDefaultExperiences_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionPhasedReleases: [FieldsAppStoreVersionPhasedReleases_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsBuilds: [FieldsBuilds_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionLocalizations: [FieldsAppStoreVersionLocalizations_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, limitAppStoreVersionLocalizations: Int? = nil, limitAppStoreVersionExperiments: Int? = nil, include: [Include_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil) async throws -> AppStoreVersionResponse {
         var requestTask: RequestTask?
         return try await withTaskCancellationHandler {
             try Task.checkCancellation()
@@ -969,7 +959,7 @@ open class AppClipDefaultExperiencesAPI {
                   return
                 }
 
-                requestTask = appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelatedWithRequestBuilder(id: id, fieldsAppStoreVersionExperiments: fieldsAppStoreVersionExperiments, fieldsAgeRatingDeclarations: fieldsAgeRatingDeclarations, fieldsAppStoreVersionSubmissions: fieldsAppStoreVersionSubmissions, fieldsAppStoreReviewDetails: fieldsAppStoreReviewDetails, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsIdfaDeclarations: fieldsIdfaDeclarations, fieldsApps: fieldsApps, fieldsRoutingAppCoverages: fieldsRoutingAppCoverages, fieldsAppClipDefaultExperiences: fieldsAppClipDefaultExperiences, fieldsAppStoreVersionPhasedReleases: fieldsAppStoreVersionPhasedReleases, fieldsBuilds: fieldsBuilds, fieldsAppStoreVersionLocalizations: fieldsAppStoreVersionLocalizations, limitAppStoreVersionLocalizations: limitAppStoreVersionLocalizations, limitAppStoreVersionExperiments: limitAppStoreVersionExperiments, include: include).execute { result in
+                requestTask = appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelatedWithRequestBuilder(id: id, fieldsAppStoreVersionExperiments: fieldsAppStoreVersionExperiments, fieldsAgeRatingDeclarations: fieldsAgeRatingDeclarations, fieldsAppStoreVersionSubmissions: fieldsAppStoreVersionSubmissions, fieldsAppStoreReviewDetails: fieldsAppStoreReviewDetails, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsApps: fieldsApps, fieldsRoutingAppCoverages: fieldsRoutingAppCoverages, fieldsAppClipDefaultExperiences: fieldsAppClipDefaultExperiences, fieldsAppStoreVersionPhasedReleases: fieldsAppStoreVersionPhasedReleases, fieldsBuilds: fieldsBuilds, fieldsAppStoreVersionLocalizations: fieldsAppStoreVersionLocalizations, limitAppStoreVersionLocalizations: limitAppStoreVersionLocalizations, limitAppStoreVersionExperiments: limitAppStoreVersionExperiments, include: include).execute { result in
                     switch result {
                     case let .success(response):
                         continuation.resume(returning: response.body)
@@ -1023,7 +1013,6 @@ open class AppClipDefaultExperiencesAPI {
      - parameter fieldsAppStoreVersionSubmissions: (query) the fields to include for returned resources of type appStoreVersionSubmissions (optional)
      - parameter fieldsAppStoreReviewDetails: (query) the fields to include for returned resources of type appStoreReviewDetails (optional)
      - parameter fieldsAppStoreVersions: (query) the fields to include for returned resources of type appStoreVersions (optional)
-     - parameter fieldsIdfaDeclarations: (query) the fields to include for returned resources of type idfaDeclarations (optional)
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
      - parameter fieldsRoutingAppCoverages: (query) the fields to include for returned resources of type routingAppCoverages (optional)
      - parameter fieldsAppClipDefaultExperiences: (query) the fields to include for returned resources of type appClipDefaultExperiences (optional)
@@ -1035,7 +1024,7 @@ open class AppClipDefaultExperiencesAPI {
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: RequestBuilder<AppStoreVersionResponse> 
      */
-    open class func appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelatedWithRequestBuilder(id: String, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAgeRatingDeclarations: [FieldsAgeRatingDeclarations_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionSubmissions: [FieldsAppStoreVersionSubmissions_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreReviewDetails: [FieldsAppStoreReviewDetails_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsIdfaDeclarations: [FieldsIdfaDeclarations_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsApps: [FieldsApps_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsRoutingAppCoverages: [FieldsRoutingAppCoverages_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAppClipDefaultExperiences: [FieldsAppClipDefaultExperiences_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionPhasedReleases: [FieldsAppStoreVersionPhasedReleases_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsBuilds: [FieldsBuilds_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionLocalizations: [FieldsAppStoreVersionLocalizations_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, limitAppStoreVersionLocalizations: Int? = nil, limitAppStoreVersionExperiments: Int? = nil, include: [Include_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil) -> RequestBuilder<AppStoreVersionResponse> {
+    open class func appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelatedWithRequestBuilder(id: String, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAgeRatingDeclarations: [FieldsAgeRatingDeclarations_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionSubmissions: [FieldsAppStoreVersionSubmissions_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreReviewDetails: [FieldsAppStoreReviewDetails_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsApps: [FieldsApps_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsRoutingAppCoverages: [FieldsRoutingAppCoverages_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAppClipDefaultExperiences: [FieldsAppClipDefaultExperiences_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionPhasedReleases: [FieldsAppStoreVersionPhasedReleases_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsBuilds: [FieldsBuilds_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionLocalizations: [FieldsAppStoreVersionLocalizations_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, limitAppStoreVersionLocalizations: Int? = nil, limitAppStoreVersionExperiments: Int? = nil, include: [Include_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil) -> RequestBuilder<AppStoreVersionResponse> {
         var localVariablePath = "/v1/appClipDefaultExperiences/{id}/releaseWithAppStoreVersion"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -1050,7 +1039,6 @@ open class AppClipDefaultExperiencesAPI {
             "fields[appStoreVersionSubmissions]": fieldsAppStoreVersionSubmissions?.encodeToJSON(),
             "fields[appStoreReviewDetails]": fieldsAppStoreReviewDetails?.encodeToJSON(),
             "fields[appStoreVersions]": fieldsAppStoreVersions?.encodeToJSON(),
-            "fields[idfaDeclarations]": fieldsIdfaDeclarations?.encodeToJSON(),
             "fields[apps]": fieldsApps?.encodeToJSON(),
             "fields[routingAppCoverages]": fieldsRoutingAppCoverages?.encodeToJSON(),
             "fields[appClipDefaultExperiences]": fieldsAppClipDefaultExperiences?.encodeToJSON(),

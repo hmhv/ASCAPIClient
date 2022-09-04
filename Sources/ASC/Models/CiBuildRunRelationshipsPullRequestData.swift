@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct CiBuildRunRelationshipsPullRequestData: Codable, Hashable {
+public struct CiBuildRunRelationshipsPullRequestData: Codable, JSONEncodable, Hashable {
 
     public enum ModelType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case scmpullrequests = "scmPullRequests"

@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct BetaGroupCreateRequestDataAttributes: Codable, Hashable {
+public struct BetaGroupCreateRequestDataAttributes: Codable, JSONEncodable, Hashable {
 
     public var name: String
     public var isInternalGroup: Bool?

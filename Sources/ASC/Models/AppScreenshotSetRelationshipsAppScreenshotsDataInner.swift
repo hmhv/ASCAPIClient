@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct AppScreenshotSetRelationshipsAppScreenshotsDataInner: Codable, Hashable {
+public struct AppScreenshotSetRelationshipsAppScreenshotsDataInner: Codable, JSONEncodable, Hashable {
 
     public enum ModelType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case appscreenshots = "appScreenshots"

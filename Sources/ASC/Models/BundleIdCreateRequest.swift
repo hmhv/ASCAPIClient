@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct BundleIdCreateRequest: Codable, Hashable {
+public struct BundleIdCreateRequest: Codable, JSONEncodable, Hashable {
 
     public var data: BundleIdCreateRequestData
 

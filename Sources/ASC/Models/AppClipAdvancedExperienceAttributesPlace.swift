@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct AppClipAdvancedExperienceAttributesPlace: Codable, Hashable {
+public struct AppClipAdvancedExperienceAttributesPlace: Codable, JSONEncodable, Hashable {
 
     public enum MapAction: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case buyTickets = "BUY_TICKETS"

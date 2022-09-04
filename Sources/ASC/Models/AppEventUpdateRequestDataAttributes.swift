@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct AppEventUpdateRequestDataAttributes: Codable, Hashable {
+public struct AppEventUpdateRequestDataAttributes: Codable, JSONEncodable, Hashable {
 
     public enum Badge: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case liveEvent = "LIVE_EVENT"

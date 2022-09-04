@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct CiWorkflowUpdateRequestDataRelationshipsXcodeVersion: Codable, Hashable {
+public struct CiWorkflowUpdateRequestDataRelationshipsXcodeVersion: Codable, JSONEncodable, Hashable {
 
     public var data: CiMacOsVersionRelationshipsXcodeVersionsDataInner?
 

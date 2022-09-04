@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct BuildBundleRelationshipsBuildBundleFileSizesDataInner: Codable, Hashable {
+public struct BuildBundleRelationshipsBuildBundleFileSizesDataInner: Codable, JSONEncodable, Hashable {
 
     public enum ModelType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case buildbundlefilesizes = "buildBundleFileSizes"

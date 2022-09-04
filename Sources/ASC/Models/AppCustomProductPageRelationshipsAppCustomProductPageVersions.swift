@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct AppCustomProductPageRelationshipsAppCustomProductPageVersions: Codable, Hashable {
+public struct AppCustomProductPageRelationshipsAppCustomProductPageVersions: Codable, JSONEncodable, Hashable {
 
     public var links: AppCategoryRelationshipsSubcategoriesLinks?
     public var meta: PagingInformation?

@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct ProfileRelationships: Codable, Hashable {
+public struct ProfileRelationships: Codable, JSONEncodable, Hashable {
 
     public var bundleId: CiProductRelationshipsBundleId?
     public var devices: ProfileRelationshipsDevices?

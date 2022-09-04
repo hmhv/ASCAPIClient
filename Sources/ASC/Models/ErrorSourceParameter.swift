@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct ErrorSourceParameter: Codable, Hashable {
+public struct ErrorSourceParameter: Codable, JSONEncodable, Hashable {
 
     public var parameter: String?
 

@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct CiArtifactResponse: Codable, Hashable {
+public struct CiArtifactResponse: Codable, JSONEncodable, Hashable {
 
     public var data: CiArtifact
     public var links: DocumentLinks

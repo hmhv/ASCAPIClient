@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct BetaLicenseAgreementUpdateRequestData: Codable, Hashable {
+public struct BetaLicenseAgreementUpdateRequestData: Codable, JSONEncodable, Hashable {
 
     public enum ModelType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case betalicenseagreements = "betaLicenseAgreements"

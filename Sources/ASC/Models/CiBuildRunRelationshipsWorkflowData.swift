@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct CiBuildRunRelationshipsWorkflowData: Codable, Hashable {
+public struct CiBuildRunRelationshipsWorkflowData: Codable, JSONEncodable, Hashable {
 
     public enum ModelType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case ciworkflows = "ciWorkflows"

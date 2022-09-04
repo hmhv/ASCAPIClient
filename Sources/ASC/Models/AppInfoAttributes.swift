@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct AppInfoAttributes: Codable, Hashable {
+public struct AppInfoAttributes: Codable, JSONEncodable, Hashable {
 
     public var appStoreState: AppStoreVersionState?
     public var appStoreAgeRating: AppStoreAgeRating?

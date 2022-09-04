@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct CiTestResultAttributes: Codable, Hashable {
+public struct CiTestResultAttributes: Codable, JSONEncodable, Hashable {
 
     public var className: String?
     public var name: String?

@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct CiMacOsVersionAttributes: Codable, Hashable {
+public struct CiMacOsVersionAttributes: Codable, JSONEncodable, Hashable {
 
     public var version: String?
     public var name: String?

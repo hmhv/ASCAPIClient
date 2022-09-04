@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct CiIssueCounts: Codable, Hashable {
+public struct CiIssueCounts: Codable, JSONEncodable, Hashable {
 
     public var analyzerWarnings: Int?
     public var errors: Int?

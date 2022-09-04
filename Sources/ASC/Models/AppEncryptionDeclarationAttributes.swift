@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct AppEncryptionDeclarationAttributes: Codable, Hashable {
+public struct AppEncryptionDeclarationAttributes: Codable, JSONEncodable, Hashable {
 
     public var usesEncryption: Bool?
     public var exempt: Bool?

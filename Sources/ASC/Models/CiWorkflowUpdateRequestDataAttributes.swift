@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct CiWorkflowUpdateRequestDataAttributes: Codable, Hashable {
+public struct CiWorkflowUpdateRequestDataAttributes: Codable, JSONEncodable, Hashable {
 
     public var name: String?
     public var description: String?

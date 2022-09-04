@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct CiActionTestConfiguration: Codable, Hashable {
+public struct CiActionTestConfiguration: Codable, JSONEncodable, Hashable {
 
     public enum Kind: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case useSchemeSettings = "USE_SCHEME_SETTINGS"

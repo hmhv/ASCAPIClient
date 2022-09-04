@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct CiBuildRunCreateRequestDataAttributes: Codable, Hashable {
+public struct CiBuildRunCreateRequestDataAttributes: Codable, JSONEncodable, Hashable {
 
     public var clean: Bool?
 

@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct AppClipHeaderImageRelationships: Codable, Hashable {
+public struct AppClipHeaderImageRelationships: Codable, JSONEncodable, Hashable {
 
     public var appClipDefaultExperienceLocalization: AppClipHeaderImageRelationshipsAppClipDefaultExperienceLocalization?
 

@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct CiScheduledStartCondition: Codable, Hashable {
+public struct CiScheduledStartCondition: Codable, JSONEncodable, Hashable {
 
     public var source: CiBranchPatterns?
     public var schedule: CiScheduledStartConditionSchedule?

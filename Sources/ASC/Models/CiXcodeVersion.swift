@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct CiXcodeVersion: Codable, Hashable {
+public struct CiXcodeVersion: Codable, JSONEncodable, Hashable {
 
     public enum ModelType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case cixcodeversions = "ciXcodeVersions"

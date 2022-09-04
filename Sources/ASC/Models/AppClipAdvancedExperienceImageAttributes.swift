@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct AppClipAdvancedExperienceImageAttributes: Codable, Hashable {
+public struct AppClipAdvancedExperienceImageAttributes: Codable, JSONEncodable, Hashable {
 
     public var fileSize: Int?
     public var fileName: String?

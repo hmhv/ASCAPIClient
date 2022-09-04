@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct CiScheduledStartConditionSchedule: Codable, Hashable {
+public struct CiScheduledStartConditionSchedule: Codable, JSONEncodable, Hashable {
 
     public enum Frequency: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case weekly = "WEEKLY"

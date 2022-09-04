@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct AgeRatingDeclarationUpdateRequestData: Codable, Hashable {
+public struct AgeRatingDeclarationUpdateRequestData: Codable, JSONEncodable, Hashable {
 
     public enum ModelType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case ageratingdeclarations = "ageRatingDeclarations"

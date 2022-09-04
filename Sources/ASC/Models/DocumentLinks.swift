@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct DocumentLinks: Codable, Hashable {
+public struct DocumentLinks: Codable, JSONEncodable, Hashable {
 
     public var _self: String
 

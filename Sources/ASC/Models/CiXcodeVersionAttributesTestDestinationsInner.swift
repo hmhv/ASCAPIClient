@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct CiXcodeVersionAttributesTestDestinationsInner: Codable, Hashable {
+public struct CiXcodeVersionAttributesTestDestinationsInner: Codable, JSONEncodable, Hashable {
 
     public var deviceTypeName: String?
     public var deviceTypeIdentifier: String?

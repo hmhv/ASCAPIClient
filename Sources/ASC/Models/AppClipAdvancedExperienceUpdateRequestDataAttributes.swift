@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct AppClipAdvancedExperienceUpdateRequestDataAttributes: Codable, Hashable {
+public struct AppClipAdvancedExperienceUpdateRequestDataAttributes: Codable, JSONEncodable, Hashable {
 
     public enum BusinessCategory: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case automotive = "AUTOMOTIVE"

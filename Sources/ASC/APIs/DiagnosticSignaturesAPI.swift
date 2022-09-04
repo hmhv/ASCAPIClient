@@ -16,10 +16,10 @@ open class DiagnosticSignaturesAPI {
 
      - parameter id: (path) the id of the requested resource 
      - parameter limit: (query) maximum resources per page (optional)
-     - returns: AnyCodable
+     - returns: DiagnosticLogs
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func diagnosticSignaturesLogsGetToManyRelated(id: String, limit: Int? = nil) async throws -> AnyCodable {
+    open class func diagnosticSignaturesLogsGetToManyRelated(id: String, limit: Int? = nil) async throws -> DiagnosticLogs {
         var requestTask: RequestTask?
         return try await withTaskCancellationHandler {
             try Task.checkCancellation()
@@ -45,10 +45,10 @@ open class DiagnosticSignaturesAPI {
 
     /**
      - parameter urlString: next or first url from App Store Connect API
-     - returns: AnyCodable
+     - returns: DiagnosticLogs
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func diagnosticSignaturesLogsGetToManyRelated(urlString: String) async throws -> AnyCodable {
+    open class func diagnosticSignaturesLogsGetToManyRelated(urlString: String) async throws -> DiagnosticLogs {
         var requestTask: RequestTask?
         return try await withTaskCancellationHandler {
             try Task.checkCancellation()
@@ -79,9 +79,9 @@ open class DiagnosticSignaturesAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter limit: (query) maximum resources per page (optional)
-     - returns: RequestBuilder<AnyCodable> 
+     - returns: RequestBuilder<DiagnosticLogs> 
      */
-    open class func diagnosticSignaturesLogsGetToManyRelatedWithRequestBuilder(id: String, limit: Int? = nil) -> RequestBuilder<AnyCodable> {
+    open class func diagnosticSignaturesLogsGetToManyRelatedWithRequestBuilder(id: String, limit: Int? = nil) -> RequestBuilder<DiagnosticLogs> {
         var localVariablePath = "/v1/diagnosticSignatures/{id}/logs"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -100,7 +100,7 @@ open class DiagnosticSignaturesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AnyCodable>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<DiagnosticLogs>.Type = ASCAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }
@@ -111,10 +111,10 @@ open class DiagnosticSignaturesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
-     - returns: RequestBuilder<AnyCodable> 
+     - returns: RequestBuilder<DiagnosticLogs> 
      */
-    open class func diagnosticSignaturesLogsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AnyCodable> {
-        let localVariableRequestBuilder: RequestBuilder<AnyCodable>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+    open class func diagnosticSignaturesLogsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<DiagnosticLogs> {
+        let localVariableRequestBuilder: RequestBuilder<DiagnosticLogs>.Type = ASCAPI.requestBuilderFactory.getBuilder()
         return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil)
     }
 }

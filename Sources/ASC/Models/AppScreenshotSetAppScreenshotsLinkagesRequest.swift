@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct AppScreenshotSetAppScreenshotsLinkagesRequest: Codable, Hashable {
+public struct AppScreenshotSetAppScreenshotsLinkagesRequest: Codable, JSONEncodable, Hashable {
 
     public var data: [AppScreenshotSetRelationshipsAppScreenshotsDataInner]
 

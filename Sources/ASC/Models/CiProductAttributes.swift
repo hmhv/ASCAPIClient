@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct CiProductAttributes: Codable, Hashable {
+public struct CiProductAttributes: Codable, JSONEncodable, Hashable {
 
     public enum ProductType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case app = "APP"

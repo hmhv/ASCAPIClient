@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct BuildRelationshipsBetaAppReviewSubmission: Codable, Hashable {
+public struct BuildRelationshipsBetaAppReviewSubmission: Codable, JSONEncodable, Hashable {
 
     public var links: AppCategoryRelationshipsSubcategoriesLinks?
     public var data: BuildRelationshipsBetaAppReviewSubmissionData?

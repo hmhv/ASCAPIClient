@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct AppClipAdvancedExperienceAttributesPlaceDisplayPoint: Codable, Hashable {
+public struct AppClipAdvancedExperienceAttributesPlaceDisplayPoint: Codable, JSONEncodable, Hashable {
 
     public enum Source: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case calculated = "CALCULATED"
