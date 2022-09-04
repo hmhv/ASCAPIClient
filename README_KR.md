@@ -18,7 +18,7 @@
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/hmhv/ASCAPIClient.git", .upToNextMajor(from: "0.1.0"))
+    .package(url: "https://github.com/hmhv/ASCAPIClient.git", .upToNextMajor(from: "2.0.0"))
 ]
 ```
 
@@ -32,7 +32,7 @@ dependencies: [
 ```bash
 brew install openapi-generator
 
-openapi-generator generate -i app_store_connect_api_1.8_openapi.json -t ./swift_template -g swift5 --additional-properties=responseAs=AsyncAwait,projectName=ASC,useSPMFileStructure=true,enumUnknownDefaultCase=true -o ./ASC
+openapi-generator generate -i app_store_connect_api_2.0_openapi.json -t ./swift_template -g swift5 --additional-properties=responseAs=AsyncAwait,projectName=ASC,useSPMFileStructure=true,enumUnknownDefaultCase=true -o ./ASC
 ```
 
 생성시에 사용한 스펙파일과 템플릿은 [여기에](./raw_data).
