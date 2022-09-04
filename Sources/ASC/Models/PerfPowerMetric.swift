@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct PerfPowerMetric: Codable, Hashable {
+public struct PerfPowerMetric: Codable, JSONEncodable, Hashable {
 
     public enum ModelType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case perfpowermetrics = "perfPowerMetrics"

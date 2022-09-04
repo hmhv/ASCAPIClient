@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct AppStoreVersionReleaseRequestCreateRequest: Codable, Hashable {
+public struct AppStoreVersionReleaseRequestCreateRequest: Codable, JSONEncodable, Hashable {
 
     public var data: AppStoreVersionReleaseRequestCreateRequestData
 

@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct CiWorkflowCreateRequestDataRelationshipsRepository: Codable, Hashable {
+public struct CiWorkflowCreateRequestDataRelationshipsRepository: Codable, JSONEncodable, Hashable {
 
     public var data: CiProductRelationshipsPrimaryRepositoriesDataInner
 

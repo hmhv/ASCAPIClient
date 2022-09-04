@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct UploadOperation: Codable, Hashable {
+public struct UploadOperation: Codable, JSONEncodable, Hashable {
 
     public var method: String?
     public var url: String?

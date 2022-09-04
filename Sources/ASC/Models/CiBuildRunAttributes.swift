@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct CiBuildRunAttributes: Codable, Hashable {
+public struct CiBuildRunAttributes: Codable, JSONEncodable, Hashable {
 
     public enum StartReason: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case gitRefChange = "GIT_REF_CHANGE"

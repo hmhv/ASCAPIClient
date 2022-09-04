@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct ScmRepositoryRelationshipsScmProvider: Codable, Hashable {
+public struct ScmRepositoryRelationshipsScmProvider: Codable, JSONEncodable, Hashable {
 
     public var links: AppCategoryRelationshipsSubcategoriesLinks?
     public var data: ScmRepositoryRelationshipsScmProviderData?

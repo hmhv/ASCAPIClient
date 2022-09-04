@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct AppClipAdvancedExperienceAttributes: Codable, Hashable {
+public struct AppClipAdvancedExperienceAttributes: Codable, JSONEncodable, Hashable {
 
     public enum Status: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case received = "RECEIVED"

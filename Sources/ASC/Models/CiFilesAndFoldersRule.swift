@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct CiFilesAndFoldersRule: Codable, Hashable {
+public struct CiFilesAndFoldersRule: Codable, JSONEncodable, Hashable {
 
     public enum Mode: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case startIfAnyFileMatches = "START_IF_ANY_FILE_MATCHES"

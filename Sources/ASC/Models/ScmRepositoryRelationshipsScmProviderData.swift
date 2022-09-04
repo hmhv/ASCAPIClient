@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct ScmRepositoryRelationshipsScmProviderData: Codable, Hashable {
+public struct ScmRepositoryRelationshipsScmProviderData: Codable, JSONEncodable, Hashable {
 
     public enum ModelType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case scmproviders = "scmProviders"

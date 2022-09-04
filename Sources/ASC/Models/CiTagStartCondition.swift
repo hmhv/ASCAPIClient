@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct CiTagStartCondition: Codable, Hashable {
+public struct CiTagStartCondition: Codable, JSONEncodable, Hashable {
 
     public var source: CiTagPatterns?
     public var filesAndFoldersRule: CiFilesAndFoldersRule?

@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct CapabilityOption: Codable, Hashable {
+public struct CapabilityOption: Codable, JSONEncodable, Hashable {
 
     public enum Key: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case xcode5 = "XCODE_5"

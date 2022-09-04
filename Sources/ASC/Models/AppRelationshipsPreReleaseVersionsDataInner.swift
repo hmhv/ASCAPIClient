@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct AppRelationshipsPreReleaseVersionsDataInner: Codable, Hashable {
+public struct AppRelationshipsPreReleaseVersionsDataInner: Codable, JSONEncodable, Hashable {
 
     public enum ModelType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case prereleaseversions = "preReleaseVersions"

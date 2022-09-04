@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct GameCenterEnabledVersionsResponse: Codable, Hashable {
+public struct GameCenterEnabledVersionsResponse: Codable, JSONEncodable, Hashable {
 
     public var data: [GameCenterEnabledVersion]
     public var included: [GameCenterEnabledVersionsResponseIncludedInner]?

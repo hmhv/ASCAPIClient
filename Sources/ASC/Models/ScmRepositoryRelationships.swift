@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct ScmRepositoryRelationships: Codable, Hashable {
+public struct ScmRepositoryRelationships: Codable, JSONEncodable, Hashable {
 
     public var scmProvider: ScmRepositoryRelationshipsScmProvider?
     public var defaultBranch: CiBuildRunRelationshipsSourceBranchOrTag?

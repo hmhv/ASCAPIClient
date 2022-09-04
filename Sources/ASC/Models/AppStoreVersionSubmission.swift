@@ -11,7 +11,7 @@ import AnyCodable
 #endif
 
 @available(*, deprecated, message: "This schema is deprecated.")
-public struct AppStoreVersionSubmission: Codable, Hashable {
+public struct AppStoreVersionSubmission: Codable, JSONEncodable, Hashable {
 
     public enum ModelType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case appstoreversionsubmissions = "appStoreVersionSubmissions"

@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct RoutingAppCoverage: Codable, Hashable {
+public struct RoutingAppCoverage: Codable, JSONEncodable, Hashable {
 
     public enum ModelType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case routingappcoverages = "routingAppCoverages"

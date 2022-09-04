@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct ScmGitReferenceResponse: Codable, Hashable {
+public struct ScmGitReferenceResponse: Codable, JSONEncodable, Hashable {
 
     public var data: ScmGitReference
     public var included: [ScmRepository]?

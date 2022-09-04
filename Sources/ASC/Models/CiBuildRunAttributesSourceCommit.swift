@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct CiBuildRunAttributesSourceCommit: Codable, Hashable {
+public struct CiBuildRunAttributesSourceCommit: Codable, JSONEncodable, Hashable {
 
     public var commitSha: String?
     public var message: String?

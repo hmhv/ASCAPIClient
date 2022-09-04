@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct BuildBundleFileSizeAttributes: Codable, Hashable {
+public struct BuildBundleFileSizeAttributes: Codable, JSONEncodable, Hashable {
 
     public var deviceModel: String?
     public var osVersion: String?

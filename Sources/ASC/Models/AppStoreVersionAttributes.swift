@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct AppStoreVersionAttributes: Codable, Hashable {
+public struct AppStoreVersionAttributes: Codable, JSONEncodable, Hashable {
 
     public enum ReleaseType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case manual = "MANUAL"
@@ -24,19 +24,16 @@ public struct AppStoreVersionAttributes: Codable, Hashable {
     public var copyright: String?
     public var releaseType: ReleaseType?
     public var earliestReleaseDate: Date?
-    @available(*, deprecated, message: "This property is deprecated.")
-    public var usesIdfa: Bool?
     public var downloadable: Bool?
     public var createdDate: Date?
 
-    public init(platform: Platform? = nil, versionString: String? = nil, appStoreState: AppStoreVersionState? = nil, copyright: String? = nil, releaseType: ReleaseType? = nil, earliestReleaseDate: Date? = nil, usesIdfa: Bool? = nil, downloadable: Bool? = nil, createdDate: Date? = nil) {
+    public init(platform: Platform? = nil, versionString: String? = nil, appStoreState: AppStoreVersionState? = nil, copyright: String? = nil, releaseType: ReleaseType? = nil, earliestReleaseDate: Date? = nil, downloadable: Bool? = nil, createdDate: Date? = nil) {
         self.platform = platform
         self.versionString = versionString
         self.appStoreState = appStoreState
         self.copyright = copyright
         self.releaseType = releaseType
         self.earliestReleaseDate = earliestReleaseDate
-        self.usesIdfa = usesIdfa
         self.downloadable = downloadable
         self.createdDate = createdDate
     }
@@ -48,7 +45,6 @@ public struct AppStoreVersionAttributes: Codable, Hashable {
         case copyright
         case releaseType
         case earliestReleaseDate
-        case usesIdfa
         case downloadable
         case createdDate
     }
@@ -63,7 +59,6 @@ public struct AppStoreVersionAttributes: Codable, Hashable {
         try container.encodeIfPresent(copyright, forKey: .copyright)
         try container.encodeIfPresent(releaseType, forKey: .releaseType)
         try container.encodeIfPresent(earliestReleaseDate, forKey: .earliestReleaseDate)
-        try container.encodeIfPresent(usesIdfa, forKey: .usesIdfa)
         try container.encodeIfPresent(downloadable, forKey: .downloadable)
         try container.encodeIfPresent(createdDate, forKey: .createdDate)
     }

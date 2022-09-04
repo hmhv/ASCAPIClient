@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct UserUpdateRequestDataAttributes: Codable, Hashable {
+public struct UserUpdateRequestDataAttributes: Codable, JSONEncodable, Hashable {
 
     public var roles: [UserRole]?
     public var allAppsVisible: Bool?

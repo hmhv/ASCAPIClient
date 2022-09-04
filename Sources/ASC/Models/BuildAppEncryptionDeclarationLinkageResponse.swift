@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct BuildAppEncryptionDeclarationLinkageResponse: Codable, Hashable {
+public struct BuildAppEncryptionDeclarationLinkageResponse: Codable, JSONEncodable, Hashable {
 
     public var data: BuildRelationshipsAppEncryptionDeclarationData
     public var links: DocumentLinks

@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct AppClipDomainStatusAttributesDomainsInner: Codable, Hashable {
+public struct AppClipDomainStatusAttributesDomainsInner: Codable, JSONEncodable, Hashable {
 
     public enum ErrorCode: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case badHttpResponse = "BAD_HTTP_RESPONSE"

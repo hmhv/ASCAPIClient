@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct CiBuildRunRelationshipsSourceBranchOrTagData: Codable, Hashable {
+public struct CiBuildRunRelationshipsSourceBranchOrTagData: Codable, JSONEncodable, Hashable {
 
     public enum ModelType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case scmgitreferences = "scmGitReferences"

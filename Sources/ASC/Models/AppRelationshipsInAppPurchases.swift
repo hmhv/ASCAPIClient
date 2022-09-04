@@ -10,7 +10,8 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct AppRelationshipsInAppPurchases: Codable, Hashable {
+@available(*, deprecated, message: "This schema is deprecated.")
+public struct AppRelationshipsInAppPurchases: Codable, JSONEncodable, Hashable {
 
     public var links: AppCategoryRelationshipsSubcategoriesLinks?
     public var meta: PagingInformation?

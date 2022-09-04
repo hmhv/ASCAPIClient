@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct AppStoreVersionExperimentTreatmentAttributes: Codable, Hashable {
+public struct AppStoreVersionExperimentTreatmentAttributes: Codable, JSONEncodable, Hashable {
 
     public var name: String?
     public var appIcon: ImageAsset?

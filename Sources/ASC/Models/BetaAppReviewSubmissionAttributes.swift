@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct BetaAppReviewSubmissionAttributes: Codable, Hashable {
+public struct BetaAppReviewSubmissionAttributes: Codable, JSONEncodable, Hashable {
 
     public var betaReviewState: BetaReviewState?
     public var submittedDate: Date?

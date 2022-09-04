@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct BuildBundleRelationshipsBetaAppClipInvocations: Codable, Hashable {
+public struct BuildBundleRelationshipsBetaAppClipInvocations: Codable, JSONEncodable, Hashable {
 
     public var links: AppCategoryRelationshipsSubcategoriesLinks?
     public var meta: PagingInformation?

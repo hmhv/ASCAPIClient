@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct CiIssueAttributes: Codable, Hashable {
+public struct CiIssueAttributes: Codable, JSONEncodable, Hashable {
 
     public enum IssueType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case analyzerWarning = "ANALYZER_WARNING"

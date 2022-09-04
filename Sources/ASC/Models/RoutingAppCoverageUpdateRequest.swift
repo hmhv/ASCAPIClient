@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct RoutingAppCoverageUpdateRequest: Codable, Hashable {
+public struct RoutingAppCoverageUpdateRequest: Codable, JSONEncodable, Hashable {
 
     public var data: RoutingAppCoverageUpdateRequestData
 

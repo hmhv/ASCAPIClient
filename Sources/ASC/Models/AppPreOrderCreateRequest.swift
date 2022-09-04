@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct AppPreOrderCreateRequest: Codable, Hashable {
+public struct AppPreOrderCreateRequest: Codable, JSONEncodable, Hashable {
 
     public var data: AppPreOrderCreateRequestData
 

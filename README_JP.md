@@ -1,6 +1,6 @@
 # Swift client for App Store Connect API with Swift Concurrency (async/await)
 
-[App Store Connect API OpenAPI specification 1.8](https://developer.apple.com/documentation/appstoreconnectapi) と [OpenAPI Generator](https://openapi-generator.tech)で生成して、少しだけ手直し。
+[App Store Connect API OpenAPI specification 2.0](https://developer.apple.com/documentation/appstoreconnectapi) と [OpenAPI Generator](https://openapi-generator.tech)で生成して、少しだけ手直し。
 
 ## Installation
 
@@ -18,7 +18,7 @@
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/hmhv/ASCAPIClient.git", .upToNextMajor(from: "0.1.0"))
+    .package(url: "https://github.com/hmhv/ASCAPIClient.git", .upToNextMajor(from: "2.0.0"))
 ]
 ```
 
@@ -32,7 +32,7 @@ dependencies: [
 ```bash
 brew install openapi-generator
 
-openapi-generator generate -i app_store_connect_api_1.8_openapi.json -t ./swift_template -g swift5 --additional-properties=responseAs=AsyncAwait,projectName=ASC,useSPMFileStructure=true,enumUnknownDefaultCase=true -o ./ASC
+openapi-generator generate -i ./raw_data/app_store_connect_api_2.0_openapi.json -t ./raw_data/swift_template -g swift5 --additional-properties=responseAs=AsyncAwait,projectName=ASC,useSPMFileStructure=true,enumUnknownDefaultCase=true -o ./ASC
 ```
 
 生成時使ったスペックファイルとテンプレートふぁいるは [ここ](./raw_data).

@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct BuildBetaDetailAttributes: Codable, Hashable {
+public struct BuildBetaDetailAttributes: Codable, JSONEncodable, Hashable {
 
     public var autoNotifyEnabled: Bool?
     public var internalBuildState: InternalBetaState?

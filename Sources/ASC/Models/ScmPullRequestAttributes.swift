@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct ScmPullRequestAttributes: Codable, Hashable {
+public struct ScmPullRequestAttributes: Codable, JSONEncodable, Hashable {
 
     public var title: String?
     public var number: Int?

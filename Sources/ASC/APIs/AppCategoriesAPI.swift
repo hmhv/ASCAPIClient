@@ -49,7 +49,7 @@ open class AppCategoriesAPI {
      - returns: AppCategoriesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appCategoriesGetCollection(filterPlatforms: [FilterPlatforms_appCategoriesGetCollection]? = nil, existsParent: [String]? = nil, fieldsAppCategories: [FieldsAppCategories_appCategoriesGetCollection]? = nil, limit: Int? = nil, include: [Include_appCategoriesGetCollection]? = nil, limitSubcategories: Int? = nil) async throws -> AppCategoriesResponse {
+    open class func appCategoriesGetCollection(filterPlatforms: [FilterPlatforms_appCategoriesGetCollection]? = nil, existsParent: Bool? = nil, fieldsAppCategories: [FieldsAppCategories_appCategoriesGetCollection]? = nil, limit: Int? = nil, include: [Include_appCategoriesGetCollection]? = nil, limitSubcategories: Int? = nil) async throws -> AppCategoriesResponse {
         var requestTask: RequestTask?
         return try await withTaskCancellationHandler {
             try Task.checkCancellation()
@@ -115,7 +115,7 @@ open class AppCategoriesAPI {
      - parameter limitSubcategories: (query) maximum number of related subcategories returned (when they are included) (optional)
      - returns: RequestBuilder<AppCategoriesResponse> 
      */
-    open class func appCategoriesGetCollectionWithRequestBuilder(filterPlatforms: [FilterPlatforms_appCategoriesGetCollection]? = nil, existsParent: [String]? = nil, fieldsAppCategories: [FieldsAppCategories_appCategoriesGetCollection]? = nil, limit: Int? = nil, include: [Include_appCategoriesGetCollection]? = nil, limitSubcategories: Int? = nil) -> RequestBuilder<AppCategoriesResponse> {
+    open class func appCategoriesGetCollectionWithRequestBuilder(filterPlatforms: [FilterPlatforms_appCategoriesGetCollection]? = nil, existsParent: Bool? = nil, fieldsAppCategories: [FieldsAppCategories_appCategoriesGetCollection]? = nil, limit: Int? = nil, include: [Include_appCategoriesGetCollection]? = nil, limitSubcategories: Int? = nil) -> RequestBuilder<AppCategoriesResponse> {
         let localVariablePath = "/v1/appCategories"
         let localVariableURLString = ASCAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil

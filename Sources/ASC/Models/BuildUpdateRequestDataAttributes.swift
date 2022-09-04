@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct BuildUpdateRequestDataAttributes: Codable, Hashable {
+public struct BuildUpdateRequestDataAttributes: Codable, JSONEncodable, Hashable {
 
     public var expired: Bool?
     public var usesNonExemptEncryption: Bool?

@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct AppStoreVersionPhasedReleaseCreateRequestDataAttributes: Codable, Hashable {
+public struct AppStoreVersionPhasedReleaseCreateRequestDataAttributes: Codable, JSONEncodable, Hashable {
 
     public var phasedReleaseState: PhasedReleaseState?
 

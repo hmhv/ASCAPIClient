@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct AppPreviewUpdateRequestDataAttributes: Codable, Hashable {
+public struct AppPreviewUpdateRequestDataAttributes: Codable, JSONEncodable, Hashable {
 
     public var sourceFileChecksum: String?
     public var previewFrameTimeCode: String?

@@ -179,13 +179,12 @@ open class AppStoreVersionsAPI {
         case build = "build"
         case copyright = "copyright"
         case createddate = "createdDate"
+        case customerreviews = "customerReviews"
         case downloadable = "downloadable"
         case earliestreleasedate = "earliestReleaseDate"
-        case idfadeclaration = "idfaDeclaration"
         case platform = "platform"
         case releasetype = "releaseType"
         case routingappcoverage = "routingAppCoverage"
-        case usesidfa = "usesIdfa"
         case versionstring = "versionString"
     }
 
@@ -581,13 +580,12 @@ open class AppStoreVersionsAPI {
         case build = "build"
         case copyright = "copyright"
         case createddate = "createdDate"
+        case customerreviews = "customerReviews"
         case downloadable = "downloadable"
         case earliestreleasedate = "earliestReleaseDate"
-        case idfadeclaration = "idfaDeclaration"
         case platform = "platform"
         case releasetype = "releaseType"
         case routingappcoverage = "routingAppCoverage"
-        case usesidfa = "usesIdfa"
         case versionstring = "versionString"
     }
 
@@ -788,13 +786,12 @@ open class AppStoreVersionsAPI {
         case build = "build"
         case copyright = "copyright"
         case createddate = "createdDate"
+        case customerreviews = "customerReviews"
         case downloadable = "downloadable"
         case earliestreleasedate = "earliestReleaseDate"
-        case idfadeclaration = "idfaDeclaration"
         case platform = "platform"
         case releasetype = "releaseType"
         case routingappcoverage = "routingAppCoverage"
-        case usesidfa = "usesIdfa"
         case versionstring = "versionString"
     }
 
@@ -1195,13 +1192,12 @@ open class AppStoreVersionsAPI {
         case build = "build"
         case copyright = "copyright"
         case createddate = "createdDate"
+        case customerreviews = "customerReviews"
         case downloadable = "downloadable"
         case earliestreleasedate = "earliestReleaseDate"
-        case idfadeclaration = "idfaDeclaration"
         case platform = "platform"
         case releasetype = "releaseType"
         case routingappcoverage = "routingAppCoverage"
-        case usesidfa = "usesIdfa"
         case versionstring = "versionString"
     }
 
@@ -1767,6 +1763,411 @@ open class AppStoreVersionsAPI {
     }
 
     /**
+     * enum for parameter filterTerritory
+     */
+    public enum FilterTerritory_appStoreVersionsCustomerReviewsGetToManyRelated: String, CaseIterable, JSONEncodable {
+        case abw = "ABW"
+        case afg = "AFG"
+        case ago = "AGO"
+        case aia = "AIA"
+        case alb = "ALB"
+        case and = "AND"
+        case ant = "ANT"
+        case are = "ARE"
+        case arg = "ARG"
+        case arm = "ARM"
+        case asm = "ASM"
+        case atg = "ATG"
+        case aus = "AUS"
+        case aut = "AUT"
+        case aze = "AZE"
+        case bdi = "BDI"
+        case bel = "BEL"
+        case ben = "BEN"
+        case bes = "BES"
+        case bfa = "BFA"
+        case bgd = "BGD"
+        case bgr = "BGR"
+        case bhr = "BHR"
+        case bhs = "BHS"
+        case bih = "BIH"
+        case blr = "BLR"
+        case blz = "BLZ"
+        case bmu = "BMU"
+        case bol = "BOL"
+        case bra = "BRA"
+        case brb = "BRB"
+        case brn = "BRN"
+        case btn = "BTN"
+        case bwa = "BWA"
+        case caf = "CAF"
+        case can = "CAN"
+        case che = "CHE"
+        case chl = "CHL"
+        case chn = "CHN"
+        case civ = "CIV"
+        case cmr = "CMR"
+        case cod = "COD"
+        case cog = "COG"
+        case cok = "COK"
+        case col = "COL"
+        case com = "COM"
+        case cpv = "CPV"
+        case cri = "CRI"
+        case cub = "CUB"
+        case cuw = "CUW"
+        case cxr = "CXR"
+        case cym = "CYM"
+        case cyp = "CYP"
+        case cze = "CZE"
+        case deu = "DEU"
+        case dji = "DJI"
+        case dma = "DMA"
+        case dnk = "DNK"
+        case dom = "DOM"
+        case dza = "DZA"
+        case ecu = "ECU"
+        case egy = "EGY"
+        case eri = "ERI"
+        case esp = "ESP"
+        case est = "EST"
+        case eth = "ETH"
+        case fin = "FIN"
+        case fji = "FJI"
+        case flk = "FLK"
+        case fra = "FRA"
+        case fro = "FRO"
+        case fsm = "FSM"
+        case gab = "GAB"
+        case gbr = "GBR"
+        case geo = "GEO"
+        case ggy = "GGY"
+        case gha = "GHA"
+        case gib = "GIB"
+        case gin = "GIN"
+        case glp = "GLP"
+        case gmb = "GMB"
+        case gnb = "GNB"
+        case gnq = "GNQ"
+        case grc = "GRC"
+        case grd = "GRD"
+        case grl = "GRL"
+        case gtm = "GTM"
+        case guf = "GUF"
+        case gum = "GUM"
+        case guy = "GUY"
+        case hkg = "HKG"
+        case hnd = "HND"
+        case hrv = "HRV"
+        case hti = "HTI"
+        case hun = "HUN"
+        case idn = "IDN"
+        case imn = "IMN"
+        case ind = "IND"
+        case irl = "IRL"
+        case irq = "IRQ"
+        case isl = "ISL"
+        case isr = "ISR"
+        case ita = "ITA"
+        case jam = "JAM"
+        case jey = "JEY"
+        case jor = "JOR"
+        case jpn = "JPN"
+        case kaz = "KAZ"
+        case ken = "KEN"
+        case kgz = "KGZ"
+        case khm = "KHM"
+        case kir = "KIR"
+        case kna = "KNA"
+        case kor = "KOR"
+        case kwt = "KWT"
+        case lao = "LAO"
+        case lbn = "LBN"
+        case lbr = "LBR"
+        case lby = "LBY"
+        case lca = "LCA"
+        case lie = "LIE"
+        case lka = "LKA"
+        case lso = "LSO"
+        case ltu = "LTU"
+        case lux = "LUX"
+        case lva = "LVA"
+        case mac = "MAC"
+        case mar = "MAR"
+        case mco = "MCO"
+        case mda = "MDA"
+        case mdg = "MDG"
+        case mdv = "MDV"
+        case mex = "MEX"
+        case mhl = "MHL"
+        case mkd = "MKD"
+        case mli = "MLI"
+        case mlt = "MLT"
+        case mmr = "MMR"
+        case mne = "MNE"
+        case mng = "MNG"
+        case mnp = "MNP"
+        case moz = "MOZ"
+        case mrt = "MRT"
+        case msr = "MSR"
+        case mtq = "MTQ"
+        case mus = "MUS"
+        case mwi = "MWI"
+        case mys = "MYS"
+        case myt = "MYT"
+        case nam = "NAM"
+        case ncl = "NCL"
+        case ner = "NER"
+        case nfk = "NFK"
+        case nga = "NGA"
+        case nic = "NIC"
+        case niu = "NIU"
+        case nld = "NLD"
+        case nor = "NOR"
+        case npl = "NPL"
+        case nru = "NRU"
+        case nzl = "NZL"
+        case omn = "OMN"
+        case pak = "PAK"
+        case pan = "PAN"
+        case per = "PER"
+        case phl = "PHL"
+        case plw = "PLW"
+        case png = "PNG"
+        case pol = "POL"
+        case pri = "PRI"
+        case prt = "PRT"
+        case pry = "PRY"
+        case pse = "PSE"
+        case pyf = "PYF"
+        case qat = "QAT"
+        case reu = "REU"
+        case rou = "ROU"
+        case rus = "RUS"
+        case rwa = "RWA"
+        case sau = "SAU"
+        case sen = "SEN"
+        case sgp = "SGP"
+        case shn = "SHN"
+        case slb = "SLB"
+        case sle = "SLE"
+        case slv = "SLV"
+        case smr = "SMR"
+        case som = "SOM"
+        case spm = "SPM"
+        case srb = "SRB"
+        case ssd = "SSD"
+        case stp = "STP"
+        case sur = "SUR"
+        case svk = "SVK"
+        case svn = "SVN"
+        case swe = "SWE"
+        case swz = "SWZ"
+        case sxm = "SXM"
+        case syc = "SYC"
+        case tca = "TCA"
+        case tcd = "TCD"
+        case tgo = "TGO"
+        case tha = "THA"
+        case tjk = "TJK"
+        case tkm = "TKM"
+        case tls = "TLS"
+        case ton = "TON"
+        case tto = "TTO"
+        case tun = "TUN"
+        case tur = "TUR"
+        case tuv = "TUV"
+        case twn = "TWN"
+        case tza = "TZA"
+        case uga = "UGA"
+        case ukr = "UKR"
+        case umi = "UMI"
+        case ury = "URY"
+        case usa = "USA"
+        case uzb = "UZB"
+        case vat = "VAT"
+        case vct = "VCT"
+        case ven = "VEN"
+        case vgb = "VGB"
+        case vir = "VIR"
+        case vnm = "VNM"
+        case vut = "VUT"
+        case wlf = "WLF"
+        case wsm = "WSM"
+        case yem = "YEM"
+        case zaf = "ZAF"
+        case zmb = "ZMB"
+        case zwe = "ZWE"
+    }
+
+    /**
+     * enum for parameter sort
+     */
+    public enum Sort_appStoreVersionsCustomerReviewsGetToManyRelated: String, CaseIterable, JSONEncodable {
+        case createddate = "createdDate"
+        case createddate_desc = "-createdDate"
+        case rating = "rating"
+        case rating_desc = "-rating"
+    }
+
+    /**
+     * enum for parameter fieldsCustomerReviews
+     */
+    public enum FieldsCustomerReviews_appStoreVersionsCustomerReviewsGetToManyRelated: String, CaseIterable, JSONEncodable {
+        case body = "body"
+        case createddate = "createdDate"
+        case rating = "rating"
+        case response = "response"
+        case reviewernickname = "reviewerNickname"
+        case territory = "territory"
+        case title = "title"
+    }
+
+    /**
+     * enum for parameter fieldsCustomerReviewResponses
+     */
+    public enum FieldsCustomerReviewResponses_appStoreVersionsCustomerReviewsGetToManyRelated: String, CaseIterable, JSONEncodable {
+        case lastmodifieddate = "lastModifiedDate"
+        case responsebody = "responseBody"
+        case review = "review"
+        case state = "state"
+    }
+
+    /**
+     * enum for parameter include
+     */
+    public enum Include_appStoreVersionsCustomerReviewsGetToManyRelated: String, CaseIterable, JSONEncodable {
+        case response = "response"
+    }
+
+    /**
+
+     - parameter id: (path) the id of the requested resource 
+     - parameter filterRating: (query) filter by attribute &#39;rating&#39; (optional)
+     - parameter filterTerritory: (query) filter by attribute &#39;territory&#39; (optional)
+     - parameter existsPublishedResponse: (query) filter by publishedResponse (optional)
+     - parameter sort: (query) comma-separated list of sort expressions; resources will be sorted as specified (optional)
+     - parameter fieldsCustomerReviews: (query) the fields to include for returned resources of type customerReviews (optional)
+     - parameter fieldsCustomerReviewResponses: (query) the fields to include for returned resources of type customerReviewResponses (optional)
+     - parameter limit: (query) maximum resources per page (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
+     - returns: CustomerReviewsResponse
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func appStoreVersionsCustomerReviewsGetToManyRelated(id: String, filterRating: [String]? = nil, filterTerritory: [FilterTerritory_appStoreVersionsCustomerReviewsGetToManyRelated]? = nil, existsPublishedResponse: Bool? = nil, sort: [Sort_appStoreVersionsCustomerReviewsGetToManyRelated]? = nil, fieldsCustomerReviews: [FieldsCustomerReviews_appStoreVersionsCustomerReviewsGetToManyRelated]? = nil, fieldsCustomerReviewResponses: [FieldsCustomerReviewResponses_appStoreVersionsCustomerReviewsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appStoreVersionsCustomerReviewsGetToManyRelated]? = nil) async throws -> CustomerReviewsResponse {
+        var requestTask: RequestTask?
+        return try await withTaskCancellationHandler {
+            try Task.checkCancellation()
+            return try await withCheckedThrowingContinuation { continuation in
+                guard !Task.isCancelled else {
+                  continuation.resume(throwing: CancellationError())
+                  return
+                }
+
+                requestTask = appStoreVersionsCustomerReviewsGetToManyRelatedWithRequestBuilder(id: id, filterRating: filterRating, filterTerritory: filterTerritory, existsPublishedResponse: existsPublishedResponse, sort: sort, fieldsCustomerReviews: fieldsCustomerReviews, fieldsCustomerReviewResponses: fieldsCustomerReviewResponses, limit: limit, include: include).execute { result in
+                    switch result {
+                    case let .success(response):
+                        continuation.resume(returning: response.body)
+                    case let .failure(error):
+                        continuation.resume(throwing: error)
+                    }
+                }
+            }
+        } onCancel: { [requestTask] in
+            requestTask?.cancel()
+        }
+    }
+
+    /**
+     - parameter urlString: next or first url from App Store Connect API
+     - returns: CustomerReviewsResponse
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func appStoreVersionsCustomerReviewsGetToManyRelated(urlString: String) async throws -> CustomerReviewsResponse {
+        var requestTask: RequestTask?
+        return try await withTaskCancellationHandler {
+            try Task.checkCancellation()
+            return try await withCheckedThrowingContinuation { continuation in
+                guard !Task.isCancelled else {
+                  continuation.resume(throwing: CancellationError())
+                  return
+                }
+
+                requestTask = appStoreVersionsCustomerReviewsGetToManyRelatedWithRequestBuilder(urlString: urlString).execute { result in
+                    switch result {
+                    case let .success(response):
+                        continuation.resume(returning: response.body)
+                    case let .failure(error):
+                        continuation.resume(throwing: error)
+                    }
+                }
+            }
+        } onCancel: { [requestTask] in
+            requestTask?.cancel()
+        }
+    }
+
+    /**
+     - GET /v1/appStoreVersions/{id}/customerReviews
+     - BASIC:
+       - type: http
+       - name: itc-bearer-token
+     - parameter id: (path) the id of the requested resource 
+     - parameter filterRating: (query) filter by attribute &#39;rating&#39; (optional)
+     - parameter filterTerritory: (query) filter by attribute &#39;territory&#39; (optional)
+     - parameter existsPublishedResponse: (query) filter by publishedResponse (optional)
+     - parameter sort: (query) comma-separated list of sort expressions; resources will be sorted as specified (optional)
+     - parameter fieldsCustomerReviews: (query) the fields to include for returned resources of type customerReviews (optional)
+     - parameter fieldsCustomerReviewResponses: (query) the fields to include for returned resources of type customerReviewResponses (optional)
+     - parameter limit: (query) maximum resources per page (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
+     - returns: RequestBuilder<CustomerReviewsResponse> 
+     */
+    open class func appStoreVersionsCustomerReviewsGetToManyRelatedWithRequestBuilder(id: String, filterRating: [String]? = nil, filterTerritory: [FilterTerritory_appStoreVersionsCustomerReviewsGetToManyRelated]? = nil, existsPublishedResponse: Bool? = nil, sort: [Sort_appStoreVersionsCustomerReviewsGetToManyRelated]? = nil, fieldsCustomerReviews: [FieldsCustomerReviews_appStoreVersionsCustomerReviewsGetToManyRelated]? = nil, fieldsCustomerReviewResponses: [FieldsCustomerReviewResponses_appStoreVersionsCustomerReviewsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appStoreVersionsCustomerReviewsGetToManyRelated]? = nil) -> RequestBuilder<CustomerReviewsResponse> {
+        var localVariablePath = "/v1/appStoreVersions/{id}/customerReviews"
+        let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
+        let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
+        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+            "filter[rating]": filterRating?.encodeToJSON(),
+            "filter[territory]": filterTerritory?.encodeToJSON(),
+            "exists[publishedResponse]": existsPublishedResponse?.encodeToJSON(),
+            "sort": sort?.encodeToJSON(),
+            "fields[customerReviews]": fieldsCustomerReviews?.encodeToJSON(),
+            "fields[customerReviewResponses]": fieldsCustomerReviewResponses?.encodeToJSON(),
+            "limit": limit?.encodeToJSON(),
+            "include": include?.encodeToJSON(),
+        ])
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<CustomerReviewsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
+    }
+
+    /**
+     - GET /v1/appStoreVersions/{id}/customerReviews
+     - BASIC:
+       - type: http
+       - name: itc-bearer-token
+     - parameter urlString: next or first url from App Store Connect API
+     - returns: RequestBuilder<CustomerReviewsResponse> 
+     */
+    open class func appStoreVersionsCustomerReviewsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<CustomerReviewsResponse> {
+        let localVariableRequestBuilder: RequestBuilder<CustomerReviewsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil)
+    }
+
+    /**
 
      - parameter id: (path) the id of the requested resource 
      - returns: Void
@@ -1883,13 +2284,12 @@ open class AppStoreVersionsAPI {
         case build = "build"
         case copyright = "copyright"
         case createddate = "createdDate"
+        case customerreviews = "customerReviews"
         case downloadable = "downloadable"
         case earliestreleasedate = "earliestReleaseDate"
-        case idfadeclaration = "idfaDeclaration"
         case platform = "platform"
         case releasetype = "releaseType"
         case routingappcoverage = "routingAppCoverage"
-        case usesidfa = "usesIdfa"
         case versionstring = "versionString"
     }
 
@@ -1906,7 +2306,6 @@ open class AppStoreVersionsAPI {
         case appstoreversionphasedrelease = "appStoreVersionPhasedRelease"
         case appstoreversionsubmission = "appStoreVersionSubmission"
         case build = "build"
-        case idfadeclaration = "idfaDeclaration"
         case routingappcoverage = "routingAppCoverage"
     }
 
@@ -1956,6 +2355,19 @@ open class AppStoreVersionsAPI {
     }
 
     /**
+     * enum for parameter fieldsCustomerReviews
+     */
+    public enum FieldsCustomerReviews_appStoreVersionsGetInstance: String, CaseIterable, JSONEncodable {
+        case body = "body"
+        case createddate = "createdDate"
+        case rating = "rating"
+        case response = "response"
+        case reviewernickname = "reviewerNickname"
+        case territory = "territory"
+        case title = "title"
+    }
+
+    /**
      * enum for parameter fieldsAppStoreReviewDetails
      */
     public enum FieldsAppStoreReviewDetails_appStoreVersionsGetInstance: String, CaseIterable, JSONEncodable {
@@ -1969,17 +2381,6 @@ open class AppStoreVersionsAPI {
         case demoaccountpassword = "demoAccountPassword"
         case demoaccountrequired = "demoAccountRequired"
         case notes = "notes"
-    }
-
-    /**
-     * enum for parameter fieldsIdfaDeclarations
-     */
-    public enum FieldsIdfaDeclarations_appStoreVersionsGetInstance: String, CaseIterable, JSONEncodable {
-        case appstoreversion = "appStoreVersion"
-        case attributesactionwithpreviousad = "attributesActionWithPreviousAd"
-        case attributesappinstallationtopreviousad = "attributesAppInstallationToPreviousAd"
-        case honorslimitedadtracking = "honorsLimitedAdTracking"
-        case servesads = "servesAds"
     }
 
     /**
@@ -2072,8 +2473,8 @@ open class AppStoreVersionsAPI {
      - parameter fieldsAppStoreVersionExperiments: (query) the fields to include for returned resources of type appStoreVersionExperiments (optional)
      - parameter fieldsAppStoreVersionSubmissions: (query) the fields to include for returned resources of type appStoreVersionSubmissions (optional)
      - parameter fieldsAgeRatingDeclarations: (query) the fields to include for returned resources of type ageRatingDeclarations (optional)
+     - parameter fieldsCustomerReviews: (query) the fields to include for returned resources of type customerReviews (optional)
      - parameter fieldsAppStoreReviewDetails: (query) the fields to include for returned resources of type appStoreReviewDetails (optional)
-     - parameter fieldsIdfaDeclarations: (query) the fields to include for returned resources of type idfaDeclarations (optional)
      - parameter fieldsAppClipDefaultExperiences: (query) the fields to include for returned resources of type appClipDefaultExperiences (optional)
      - parameter fieldsRoutingAppCoverages: (query) the fields to include for returned resources of type routingAppCoverages (optional)
      - parameter fieldsAppStoreVersionPhasedReleases: (query) the fields to include for returned resources of type appStoreVersionPhasedReleases (optional)
@@ -2084,7 +2485,7 @@ open class AppStoreVersionsAPI {
      - returns: AppStoreVersionResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionsGetInstance(id: String, fieldsAppStoreVersions: [FieldsAppStoreVersions_appStoreVersionsGetInstance]? = nil, include: [Include_appStoreVersionsGetInstance]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_appStoreVersionsGetInstance]? = nil, fieldsAppStoreVersionSubmissions: [FieldsAppStoreVersionSubmissions_appStoreVersionsGetInstance]? = nil, fieldsAgeRatingDeclarations: [FieldsAgeRatingDeclarations_appStoreVersionsGetInstance]? = nil, fieldsAppStoreReviewDetails: [FieldsAppStoreReviewDetails_appStoreVersionsGetInstance]? = nil, fieldsIdfaDeclarations: [FieldsIdfaDeclarations_appStoreVersionsGetInstance]? = nil, fieldsAppClipDefaultExperiences: [FieldsAppClipDefaultExperiences_appStoreVersionsGetInstance]? = nil, fieldsRoutingAppCoverages: [FieldsRoutingAppCoverages_appStoreVersionsGetInstance]? = nil, fieldsAppStoreVersionPhasedReleases: [FieldsAppStoreVersionPhasedReleases_appStoreVersionsGetInstance]? = nil, fieldsBuilds: [FieldsBuilds_appStoreVersionsGetInstance]? = nil, fieldsAppStoreVersionLocalizations: [FieldsAppStoreVersionLocalizations_appStoreVersionsGetInstance]? = nil, limitAppStoreVersionExperiments: Int? = nil, limitAppStoreVersionLocalizations: Int? = nil) async throws -> AppStoreVersionResponse {
+    open class func appStoreVersionsGetInstance(id: String, fieldsAppStoreVersions: [FieldsAppStoreVersions_appStoreVersionsGetInstance]? = nil, include: [Include_appStoreVersionsGetInstance]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_appStoreVersionsGetInstance]? = nil, fieldsAppStoreVersionSubmissions: [FieldsAppStoreVersionSubmissions_appStoreVersionsGetInstance]? = nil, fieldsAgeRatingDeclarations: [FieldsAgeRatingDeclarations_appStoreVersionsGetInstance]? = nil, fieldsCustomerReviews: [FieldsCustomerReviews_appStoreVersionsGetInstance]? = nil, fieldsAppStoreReviewDetails: [FieldsAppStoreReviewDetails_appStoreVersionsGetInstance]? = nil, fieldsAppClipDefaultExperiences: [FieldsAppClipDefaultExperiences_appStoreVersionsGetInstance]? = nil, fieldsRoutingAppCoverages: [FieldsRoutingAppCoverages_appStoreVersionsGetInstance]? = nil, fieldsAppStoreVersionPhasedReleases: [FieldsAppStoreVersionPhasedReleases_appStoreVersionsGetInstance]? = nil, fieldsBuilds: [FieldsBuilds_appStoreVersionsGetInstance]? = nil, fieldsAppStoreVersionLocalizations: [FieldsAppStoreVersionLocalizations_appStoreVersionsGetInstance]? = nil, limitAppStoreVersionExperiments: Int? = nil, limitAppStoreVersionLocalizations: Int? = nil) async throws -> AppStoreVersionResponse {
         var requestTask: RequestTask?
         return try await withTaskCancellationHandler {
             try Task.checkCancellation()
@@ -2094,7 +2495,7 @@ open class AppStoreVersionsAPI {
                   return
                 }
 
-                requestTask = appStoreVersionsGetInstanceWithRequestBuilder(id: id, fieldsAppStoreVersions: fieldsAppStoreVersions, include: include, fieldsAppStoreVersionExperiments: fieldsAppStoreVersionExperiments, fieldsAppStoreVersionSubmissions: fieldsAppStoreVersionSubmissions, fieldsAgeRatingDeclarations: fieldsAgeRatingDeclarations, fieldsAppStoreReviewDetails: fieldsAppStoreReviewDetails, fieldsIdfaDeclarations: fieldsIdfaDeclarations, fieldsAppClipDefaultExperiences: fieldsAppClipDefaultExperiences, fieldsRoutingAppCoverages: fieldsRoutingAppCoverages, fieldsAppStoreVersionPhasedReleases: fieldsAppStoreVersionPhasedReleases, fieldsBuilds: fieldsBuilds, fieldsAppStoreVersionLocalizations: fieldsAppStoreVersionLocalizations, limitAppStoreVersionExperiments: limitAppStoreVersionExperiments, limitAppStoreVersionLocalizations: limitAppStoreVersionLocalizations).execute { result in
+                requestTask = appStoreVersionsGetInstanceWithRequestBuilder(id: id, fieldsAppStoreVersions: fieldsAppStoreVersions, include: include, fieldsAppStoreVersionExperiments: fieldsAppStoreVersionExperiments, fieldsAppStoreVersionSubmissions: fieldsAppStoreVersionSubmissions, fieldsAgeRatingDeclarations: fieldsAgeRatingDeclarations, fieldsCustomerReviews: fieldsCustomerReviews, fieldsAppStoreReviewDetails: fieldsAppStoreReviewDetails, fieldsAppClipDefaultExperiences: fieldsAppClipDefaultExperiences, fieldsRoutingAppCoverages: fieldsRoutingAppCoverages, fieldsAppStoreVersionPhasedReleases: fieldsAppStoreVersionPhasedReleases, fieldsBuilds: fieldsBuilds, fieldsAppStoreVersionLocalizations: fieldsAppStoreVersionLocalizations, limitAppStoreVersionExperiments: limitAppStoreVersionExperiments, limitAppStoreVersionLocalizations: limitAppStoreVersionLocalizations).execute { result in
                     switch result {
                     case let .success(response):
                         continuation.resume(returning: response.body)
@@ -2148,8 +2549,8 @@ open class AppStoreVersionsAPI {
      - parameter fieldsAppStoreVersionExperiments: (query) the fields to include for returned resources of type appStoreVersionExperiments (optional)
      - parameter fieldsAppStoreVersionSubmissions: (query) the fields to include for returned resources of type appStoreVersionSubmissions (optional)
      - parameter fieldsAgeRatingDeclarations: (query) the fields to include for returned resources of type ageRatingDeclarations (optional)
+     - parameter fieldsCustomerReviews: (query) the fields to include for returned resources of type customerReviews (optional)
      - parameter fieldsAppStoreReviewDetails: (query) the fields to include for returned resources of type appStoreReviewDetails (optional)
-     - parameter fieldsIdfaDeclarations: (query) the fields to include for returned resources of type idfaDeclarations (optional)
      - parameter fieldsAppClipDefaultExperiences: (query) the fields to include for returned resources of type appClipDefaultExperiences (optional)
      - parameter fieldsRoutingAppCoverages: (query) the fields to include for returned resources of type routingAppCoverages (optional)
      - parameter fieldsAppStoreVersionPhasedReleases: (query) the fields to include for returned resources of type appStoreVersionPhasedReleases (optional)
@@ -2159,7 +2560,7 @@ open class AppStoreVersionsAPI {
      - parameter limitAppStoreVersionLocalizations: (query) maximum number of related appStoreVersionLocalizations returned (when they are included) (optional)
      - returns: RequestBuilder<AppStoreVersionResponse> 
      */
-    open class func appStoreVersionsGetInstanceWithRequestBuilder(id: String, fieldsAppStoreVersions: [FieldsAppStoreVersions_appStoreVersionsGetInstance]? = nil, include: [Include_appStoreVersionsGetInstance]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_appStoreVersionsGetInstance]? = nil, fieldsAppStoreVersionSubmissions: [FieldsAppStoreVersionSubmissions_appStoreVersionsGetInstance]? = nil, fieldsAgeRatingDeclarations: [FieldsAgeRatingDeclarations_appStoreVersionsGetInstance]? = nil, fieldsAppStoreReviewDetails: [FieldsAppStoreReviewDetails_appStoreVersionsGetInstance]? = nil, fieldsIdfaDeclarations: [FieldsIdfaDeclarations_appStoreVersionsGetInstance]? = nil, fieldsAppClipDefaultExperiences: [FieldsAppClipDefaultExperiences_appStoreVersionsGetInstance]? = nil, fieldsRoutingAppCoverages: [FieldsRoutingAppCoverages_appStoreVersionsGetInstance]? = nil, fieldsAppStoreVersionPhasedReleases: [FieldsAppStoreVersionPhasedReleases_appStoreVersionsGetInstance]? = nil, fieldsBuilds: [FieldsBuilds_appStoreVersionsGetInstance]? = nil, fieldsAppStoreVersionLocalizations: [FieldsAppStoreVersionLocalizations_appStoreVersionsGetInstance]? = nil, limitAppStoreVersionExperiments: Int? = nil, limitAppStoreVersionLocalizations: Int? = nil) -> RequestBuilder<AppStoreVersionResponse> {
+    open class func appStoreVersionsGetInstanceWithRequestBuilder(id: String, fieldsAppStoreVersions: [FieldsAppStoreVersions_appStoreVersionsGetInstance]? = nil, include: [Include_appStoreVersionsGetInstance]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_appStoreVersionsGetInstance]? = nil, fieldsAppStoreVersionSubmissions: [FieldsAppStoreVersionSubmissions_appStoreVersionsGetInstance]? = nil, fieldsAgeRatingDeclarations: [FieldsAgeRatingDeclarations_appStoreVersionsGetInstance]? = nil, fieldsCustomerReviews: [FieldsCustomerReviews_appStoreVersionsGetInstance]? = nil, fieldsAppStoreReviewDetails: [FieldsAppStoreReviewDetails_appStoreVersionsGetInstance]? = nil, fieldsAppClipDefaultExperiences: [FieldsAppClipDefaultExperiences_appStoreVersionsGetInstance]? = nil, fieldsRoutingAppCoverages: [FieldsRoutingAppCoverages_appStoreVersionsGetInstance]? = nil, fieldsAppStoreVersionPhasedReleases: [FieldsAppStoreVersionPhasedReleases_appStoreVersionsGetInstance]? = nil, fieldsBuilds: [FieldsBuilds_appStoreVersionsGetInstance]? = nil, fieldsAppStoreVersionLocalizations: [FieldsAppStoreVersionLocalizations_appStoreVersionsGetInstance]? = nil, limitAppStoreVersionExperiments: Int? = nil, limitAppStoreVersionLocalizations: Int? = nil) -> RequestBuilder<AppStoreVersionResponse> {
         var localVariablePath = "/v1/appStoreVersions/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -2174,8 +2575,8 @@ open class AppStoreVersionsAPI {
             "fields[appStoreVersionExperiments]": fieldsAppStoreVersionExperiments?.encodeToJSON(),
             "fields[appStoreVersionSubmissions]": fieldsAppStoreVersionSubmissions?.encodeToJSON(),
             "fields[ageRatingDeclarations]": fieldsAgeRatingDeclarations?.encodeToJSON(),
+            "fields[customerReviews]": fieldsCustomerReviews?.encodeToJSON(),
             "fields[appStoreReviewDetails]": fieldsAppStoreReviewDetails?.encodeToJSON(),
-            "fields[idfaDeclarations]": fieldsIdfaDeclarations?.encodeToJSON(),
             "fields[appClipDefaultExperiences]": fieldsAppClipDefaultExperiences?.encodeToJSON(),
             "fields[routingAppCoverages]": fieldsRoutingAppCoverages?.encodeToJSON(),
             "fields[appStoreVersionPhasedReleases]": fieldsAppStoreVersionPhasedReleases?.encodeToJSON(),
@@ -2206,127 +2607,6 @@ open class AppStoreVersionsAPI {
      */
     open class func appStoreVersionsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppStoreVersionResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppStoreVersionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil)
-    }
-
-    /**
-     * enum for parameter fieldsIdfaDeclarations
-     */
-    public enum FieldsIdfaDeclarations_appStoreVersionsIdfaDeclarationGetToOneRelated: String, CaseIterable, JSONEncodable {
-        case appstoreversion = "appStoreVersion"
-        case attributesactionwithpreviousad = "attributesActionWithPreviousAd"
-        case attributesappinstallationtopreviousad = "attributesAppInstallationToPreviousAd"
-        case honorslimitedadtracking = "honorsLimitedAdTracking"
-        case servesads = "servesAds"
-    }
-
-    /**
-
-     - parameter id: (path) the id of the requested resource 
-     - parameter fieldsIdfaDeclarations: (query) the fields to include for returned resources of type idfaDeclarations (optional)
-     - returns: IdfaDeclarationResponse
-     */
-    @available(*, deprecated, message: "This operation is deprecated.")
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionsIdfaDeclarationGetToOneRelated(id: String, fieldsIdfaDeclarations: [FieldsIdfaDeclarations_appStoreVersionsIdfaDeclarationGetToOneRelated]? = nil) async throws -> IdfaDeclarationResponse {
-        var requestTask: RequestTask?
-        return try await withTaskCancellationHandler {
-            try Task.checkCancellation()
-            return try await withCheckedThrowingContinuation { continuation in
-                guard !Task.isCancelled else {
-                  continuation.resume(throwing: CancellationError())
-                  return
-                }
-
-                requestTask = appStoreVersionsIdfaDeclarationGetToOneRelatedWithRequestBuilder(id: id, fieldsIdfaDeclarations: fieldsIdfaDeclarations).execute { result in
-                    switch result {
-                    case let .success(response):
-                        continuation.resume(returning: response.body)
-                    case let .failure(error):
-                        continuation.resume(throwing: error)
-                    }
-                }
-            }
-        } onCancel: { [requestTask] in
-            requestTask?.cancel()
-        }
-    }
-
-    /**
-     - parameter urlString: next or first url from App Store Connect API
-     - returns: IdfaDeclarationResponse
-     */
-    @available(*, deprecated, message: "This operation is deprecated.")
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionsIdfaDeclarationGetToOneRelated(urlString: String) async throws -> IdfaDeclarationResponse {
-        var requestTask: RequestTask?
-        return try await withTaskCancellationHandler {
-            try Task.checkCancellation()
-            return try await withCheckedThrowingContinuation { continuation in
-                guard !Task.isCancelled else {
-                  continuation.resume(throwing: CancellationError())
-                  return
-                }
-
-                requestTask = appStoreVersionsIdfaDeclarationGetToOneRelatedWithRequestBuilder(urlString: urlString).execute { result in
-                    switch result {
-                    case let .success(response):
-                        continuation.resume(returning: response.body)
-                    case let .failure(error):
-                        continuation.resume(throwing: error)
-                    }
-                }
-            }
-        } onCancel: { [requestTask] in
-            requestTask?.cancel()
-        }
-    }
-
-    /**
-     - GET /v1/appStoreVersions/{id}/idfaDeclaration
-     - BASIC:
-       - type: http
-       - name: itc-bearer-token
-     - parameter id: (path) the id of the requested resource 
-     - parameter fieldsIdfaDeclarations: (query) the fields to include for returned resources of type idfaDeclarations (optional)
-     - returns: RequestBuilder<IdfaDeclarationResponse> 
-     */
-    @available(*, deprecated, message: "This operation is deprecated.")
-    open class func appStoreVersionsIdfaDeclarationGetToOneRelatedWithRequestBuilder(id: String, fieldsIdfaDeclarations: [FieldsIdfaDeclarations_appStoreVersionsIdfaDeclarationGetToOneRelated]? = nil) -> RequestBuilder<IdfaDeclarationResponse> {
-        var localVariablePath = "/v1/appStoreVersions/{id}/idfaDeclaration"
-        let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
-        let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters: [String: Any]? = nil
-
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[idfaDeclarations]": fieldsIdfaDeclarations?.encodeToJSON(),
-        ])
-
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
-
-        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
-
-        let localVariableRequestBuilder: RequestBuilder<IdfaDeclarationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
-    }
-
-    /**
-     - GET /v1/appStoreVersions/{id}/idfaDeclaration
-     - BASIC:
-       - type: http
-       - name: itc-bearer-token
-     - parameter urlString: next or first url from App Store Connect API
-     - returns: RequestBuilder<IdfaDeclarationResponse> 
-     */
-    @available(*, deprecated, message: "This operation is deprecated.")
-    open class func appStoreVersionsIdfaDeclarationGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<IdfaDeclarationResponse> {
-        let localVariableRequestBuilder: RequestBuilder<IdfaDeclarationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
         return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil)
     }
 

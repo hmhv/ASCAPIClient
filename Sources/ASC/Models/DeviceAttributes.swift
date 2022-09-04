@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct DeviceAttributes: Codable, Hashable {
+public struct DeviceAttributes: Codable, JSONEncodable, Hashable {
 
     public enum DeviceClass: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case appleWatch = "APPLE_WATCH"

@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct AppUpdateRequestDataAttributes: Codable, Hashable {
+public struct AppUpdateRequestDataAttributes: Codable, JSONEncodable, Hashable {
 
     public enum ContentRightsDeclaration: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case doesNotUseThirdPartyContent = "DOES_NOT_USE_THIRD_PARTY_CONTENT"

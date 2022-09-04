@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct GameCenterEnabledVersionAttributes: Codable, Hashable {
+public struct GameCenterEnabledVersionAttributes: Codable, JSONEncodable, Hashable {
 
     public var platform: Platform?
     public var versionString: String?

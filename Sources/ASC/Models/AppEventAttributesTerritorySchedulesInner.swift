@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct AppEventAttributesTerritorySchedulesInner: Codable, Hashable {
+public struct AppEventAttributesTerritorySchedulesInner: Codable, JSONEncodable, Hashable {
 
     public var territories: [String]?
     public var publishStart: Date?

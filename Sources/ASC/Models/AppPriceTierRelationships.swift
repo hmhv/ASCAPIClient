@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct AppPriceTierRelationships: Codable, Hashable {
+public struct AppPriceTierRelationships: Codable, JSONEncodable, Hashable {
 
     @available(*, deprecated, message: "This property is deprecated.")
     public var pricePoints: AppPriceTierRelationshipsPricePoints?

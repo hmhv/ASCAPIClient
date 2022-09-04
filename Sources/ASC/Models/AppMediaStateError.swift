@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct AppMediaStateError: Codable, Hashable {
+public struct AppMediaStateError: Codable, JSONEncodable, Hashable {
 
     public var code: String?
     public var description: String?

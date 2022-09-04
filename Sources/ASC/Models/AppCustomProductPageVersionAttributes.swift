@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct AppCustomProductPageVersionAttributes: Codable, Hashable {
+public struct AppCustomProductPageVersionAttributes: Codable, JSONEncodable, Hashable {
 
     public enum State: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case prepareForSubmission = "PREPARE_FOR_SUBMISSION"

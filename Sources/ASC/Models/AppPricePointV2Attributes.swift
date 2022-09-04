@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct AppPricePointV2Attributes: Codable, Hashable {
+public struct AppPricePointV2Attributes: Codable, JSONEncodable, Hashable {
 
     public var customerPrice: String?
     public var proceeds: String?

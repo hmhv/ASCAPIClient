@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct AppClipAppStoreReviewDetailAttributes: Codable, Hashable {
+public struct AppClipAppStoreReviewDetailAttributes: Codable, JSONEncodable, Hashable {
 
     public var invocationUrls: [String]?
 

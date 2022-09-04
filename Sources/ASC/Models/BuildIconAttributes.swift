@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct BuildIconAttributes: Codable, Hashable {
+public struct BuildIconAttributes: Codable, JSONEncodable, Hashable {
 
     public var name: String?
     public var iconAsset: ImageAsset?

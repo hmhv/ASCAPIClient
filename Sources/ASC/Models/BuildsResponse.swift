@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct BuildsResponse: Codable, Hashable {
+public struct BuildsResponse: Codable, JSONEncodable, Hashable {
 
     public var data: [Build]
     public var included: [BuildsResponseIncludedInner]?

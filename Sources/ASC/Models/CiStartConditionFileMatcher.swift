@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct CiStartConditionFileMatcher: Codable, Hashable {
+public struct CiStartConditionFileMatcher: Codable, JSONEncodable, Hashable {
 
     public var directory: String?
     public var fileExtension: String?

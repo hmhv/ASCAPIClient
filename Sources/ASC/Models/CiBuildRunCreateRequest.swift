@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct CiBuildRunCreateRequest: Codable, Hashable {
+public struct CiBuildRunCreateRequest: Codable, JSONEncodable, Hashable {
 
     public var data: CiBuildRunCreateRequestData
 

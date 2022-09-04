@@ -252,17 +252,6 @@ open class CiProductsAPI {
     }
 
     /**
-     * enum for parameter fieldsInAppPurchases
-     */
-    public enum FieldsInAppPurchases_ciProductsAppGetToOneRelated: String, CaseIterable, JSONEncodable {
-        case apps = "apps"
-        case inapppurchasetype = "inAppPurchaseType"
-        case productid = "productId"
-        case referencename = "referenceName"
-        case state = "state"
-    }
-
-    /**
      * enum for parameter fieldsCiProducts
      */
     public enum FieldsCiProducts_ciProductsAppGetToOneRelated: String, CaseIterable, JSONEncodable {
@@ -275,6 +264,37 @@ open class CiProductsAPI {
         case primaryrepositories = "primaryRepositories"
         case producttype = "productType"
         case workflows = "workflows"
+    }
+
+    /**
+     * enum for parameter fieldsInAppPurchases
+     */
+    public enum FieldsInAppPurchases_ciProductsAppGetToOneRelated: String, CaseIterable, JSONEncodable {
+        case app = "app"
+        case appstorereviewscreenshot = "appStoreReviewScreenshot"
+        case availableinallterritories = "availableInAllTerritories"
+        case content = "content"
+        case contenthosting = "contentHosting"
+        case familysharable = "familySharable"
+        case iappriceschedule = "iapPriceSchedule"
+        case inapppurchaselocalizations = "inAppPurchaseLocalizations"
+        case inapppurchasetype = "inAppPurchaseType"
+        case name = "name"
+        case pricepoints = "pricePoints"
+        case productid = "productId"
+        case promotedpurchase = "promotedPurchase"
+        case reviewnote = "reviewNote"
+        case state = "state"
+    }
+
+    /**
+     * enum for parameter fieldsSubscriptionGroups
+     */
+    public enum FieldsSubscriptionGroups_ciProductsAppGetToOneRelated: String, CaseIterable, JSONEncodable {
+        case app = "app"
+        case referencename = "referenceName"
+        case subscriptiongrouplocalizations = "subscriptionGroupLocalizations"
+        case subscriptions = "subscriptions"
     }
 
     /**
@@ -340,6 +360,27 @@ open class CiProductsAPI {
     }
 
     /**
+     * enum for parameter fieldsSubscriptionGracePeriods
+     */
+    public enum FieldsSubscriptionGracePeriods_ciProductsAppGetToOneRelated: String, CaseIterable, JSONEncodable {
+        case app = "app"
+        case optin = "optIn"
+    }
+
+    /**
+     * enum for parameter fieldsPromotedPurchases
+     */
+    public enum FieldsPromotedPurchases_ciProductsAppGetToOneRelated: String, CaseIterable, JSONEncodable {
+        case app = "app"
+        case enabled = "enabled"
+        case inapppurchasev2 = "inAppPurchaseV2"
+        case promotionimages = "promotionImages"
+        case state = "state"
+        case subscription = "subscription"
+        case visibleforallusers = "visibleForAllUsers"
+    }
+
+    /**
      * enum for parameter fieldsEndUserLicenseAgreements
      */
     public enum FieldsEndUserLicenseAgreements_ciProductsAppGetToOneRelated: String, CaseIterable, JSONEncodable {
@@ -364,13 +405,12 @@ open class CiProductsAPI {
         case build = "build"
         case copyright = "copyright"
         case createddate = "createdDate"
+        case customerreviews = "customerReviews"
         case downloadable = "downloadable"
         case earliestreleasedate = "earliestReleaseDate"
-        case idfadeclaration = "idfaDeclaration"
         case platform = "platform"
         case releasetype = "releaseType"
         case routingappcoverage = "routingAppCoverage"
-        case usesidfa = "usesIdfa"
         case versionstring = "versionString"
     }
 
@@ -407,9 +447,11 @@ open class CiProductsAPI {
         case bundleid = "bundleId"
         case ciproduct = "ciProduct"
         case contentrightsdeclaration = "contentRightsDeclaration"
+        case customerreviews = "customerReviews"
         case enduserlicenseagreement = "endUserLicenseAgreement"
         case gamecenterenabledversions = "gameCenterEnabledVersions"
         case inapppurchases = "inAppPurchases"
+        case inapppurchasesv2 = "inAppPurchasesV2"
         case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
         case name = "name"
         case perfpowermetrics = "perfPowerMetrics"
@@ -418,8 +460,11 @@ open class CiProductsAPI {
         case pricepoints = "pricePoints"
         case prices = "prices"
         case primarylocale = "primaryLocale"
+        case promotedpurchases = "promotedPurchases"
         case reviewsubmissions = "reviewSubmissions"
         case sku = "sku"
+        case subscriptiongraceperiod = "subscriptionGracePeriod"
+        case subscriptiongroups = "subscriptionGroups"
         case subscriptionstatusurl = "subscriptionStatusUrl"
         case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
         case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
@@ -500,10 +545,14 @@ open class CiProductsAPI {
         case enduserlicenseagreement = "endUserLicenseAgreement"
         case gamecenterenabledversions = "gameCenterEnabledVersions"
         case inapppurchases = "inAppPurchases"
+        case inapppurchasesv2 = "inAppPurchasesV2"
         case preorder = "preOrder"
         case prereleaseversions = "preReleaseVersions"
         case prices = "prices"
+        case promotedpurchases = "promotedPurchases"
         case reviewsubmissions = "reviewSubmissions"
+        case subscriptiongraceperiod = "subscriptionGracePeriod"
+        case subscriptiongroups = "subscriptionGroups"
     }
 
     /**
@@ -515,13 +564,16 @@ open class CiProductsAPI {
      - parameter fieldsBetaAppLocalizations: (query) the fields to include for returned resources of type betaAppLocalizations (optional)
      - parameter fieldsAppInfos: (query) the fields to include for returned resources of type appInfos (optional)
      - parameter fieldsPreReleaseVersions: (query) the fields to include for returned resources of type preReleaseVersions (optional)
-     - parameter fieldsInAppPurchases: (query) the fields to include for returned resources of type inAppPurchases (optional)
      - parameter fieldsCiProducts: (query) the fields to include for returned resources of type ciProducts (optional)
+     - parameter fieldsInAppPurchases: (query) the fields to include for returned resources of type inAppPurchases (optional)
+     - parameter fieldsSubscriptionGroups: (query) the fields to include for returned resources of type subscriptionGroups (optional)
      - parameter fieldsReviewSubmissions: (query) the fields to include for returned resources of type reviewSubmissions (optional)
      - parameter fieldsBetaGroups: (query) the fields to include for returned resources of type betaGroups (optional)
      - parameter fieldsAppPreOrders: (query) the fields to include for returned resources of type appPreOrders (optional)
      - parameter fieldsAppPrices: (query) the fields to include for returned resources of type appPrices (optional)
      - parameter fieldsGameCenterEnabledVersions: (query) the fields to include for returned resources of type gameCenterEnabledVersions (optional)
+     - parameter fieldsSubscriptionGracePeriods: (query) the fields to include for returned resources of type subscriptionGracePeriods (optional)
+     - parameter fieldsPromotedPurchases: (query) the fields to include for returned resources of type promotedPurchases (optional)
      - parameter fieldsEndUserLicenseAgreements: (query) the fields to include for returned resources of type endUserLicenseAgreements (optional)
      - parameter fieldsAppStoreVersions: (query) the fields to include for returned resources of type appStoreVersions (optional)
      - parameter fieldsAppCustomProductPages: (query) the fields to include for returned resources of type appCustomProductPages (optional)
@@ -539,15 +591,18 @@ open class CiProductsAPI {
      - parameter limitPrices: (query) maximum number of related prices returned (when they are included) (optional)
      - parameter limitAvailableTerritories: (query) maximum number of related availableTerritories returned (when they are included) (optional)
      - parameter limitInAppPurchases: (query) maximum number of related inAppPurchases returned (when they are included) (optional)
+     - parameter limitSubscriptionGroups: (query) maximum number of related subscriptionGroups returned (when they are included) (optional)
      - parameter limitGameCenterEnabledVersions: (query) maximum number of related gameCenterEnabledVersions returned (when they are included) (optional)
      - parameter limitAppCustomProductPages: (query) maximum number of related appCustomProductPages returned (when they are included) (optional)
+     - parameter limitInAppPurchasesV2: (query) maximum number of related inAppPurchasesV2 returned (when they are included) (optional)
+     - parameter limitPromotedPurchases: (query) maximum number of related promotedPurchases returned (when they are included) (optional)
      - parameter limitAppEvents: (query) maximum number of related appEvents returned (when they are included) (optional)
      - parameter limitReviewSubmissions: (query) maximum number of related reviewSubmissions returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: AppResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciProductsAppGetToOneRelated(id: String, fieldsBetaLicenseAgreements: [FieldsBetaLicenseAgreements_ciProductsAppGetToOneRelated]? = nil, fieldsBetaAppReviewDetails: [FieldsBetaAppReviewDetails_ciProductsAppGetToOneRelated]? = nil, fieldsAppClips: [FieldsAppClips_ciProductsAppGetToOneRelated]? = nil, fieldsBetaAppLocalizations: [FieldsBetaAppLocalizations_ciProductsAppGetToOneRelated]? = nil, fieldsAppInfos: [FieldsAppInfos_ciProductsAppGetToOneRelated]? = nil, fieldsPreReleaseVersions: [FieldsPreReleaseVersions_ciProductsAppGetToOneRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_ciProductsAppGetToOneRelated]? = nil, fieldsCiProducts: [FieldsCiProducts_ciProductsAppGetToOneRelated]? = nil, fieldsReviewSubmissions: [FieldsReviewSubmissions_ciProductsAppGetToOneRelated]? = nil, fieldsBetaGroups: [FieldsBetaGroups_ciProductsAppGetToOneRelated]? = nil, fieldsAppPreOrders: [FieldsAppPreOrders_ciProductsAppGetToOneRelated]? = nil, fieldsAppPrices: [FieldsAppPrices_ciProductsAppGetToOneRelated]? = nil, fieldsGameCenterEnabledVersions: [FieldsGameCenterEnabledVersions_ciProductsAppGetToOneRelated]? = nil, fieldsEndUserLicenseAgreements: [FieldsEndUserLicenseAgreements_ciProductsAppGetToOneRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_ciProductsAppGetToOneRelated]? = nil, fieldsAppCustomProductPages: [FieldsAppCustomProductPages_ciProductsAppGetToOneRelated]? = nil, fieldsApps: [FieldsApps_ciProductsAppGetToOneRelated]? = nil, fieldsAppEvents: [FieldsAppEvents_ciProductsAppGetToOneRelated]? = nil, fieldsTerritories: [FieldsTerritories_ciProductsAppGetToOneRelated]? = nil, fieldsBuilds: [FieldsBuilds_ciProductsAppGetToOneRelated]? = nil, limitBetaGroups: Int? = nil, limitAppStoreVersions: Int? = nil, limitPreReleaseVersions: Int? = nil, limitBetaAppLocalizations: Int? = nil, limitBuilds: Int? = nil, limitAppInfos: Int? = nil, limitAppClips: Int? = nil, limitPrices: Int? = nil, limitAvailableTerritories: Int? = nil, limitInAppPurchases: Int? = nil, limitGameCenterEnabledVersions: Int? = nil, limitAppCustomProductPages: Int? = nil, limitAppEvents: Int? = nil, limitReviewSubmissions: Int? = nil, include: [Include_ciProductsAppGetToOneRelated]? = nil) async throws -> AppResponse {
+    open class func ciProductsAppGetToOneRelated(id: String, fieldsBetaLicenseAgreements: [FieldsBetaLicenseAgreements_ciProductsAppGetToOneRelated]? = nil, fieldsBetaAppReviewDetails: [FieldsBetaAppReviewDetails_ciProductsAppGetToOneRelated]? = nil, fieldsAppClips: [FieldsAppClips_ciProductsAppGetToOneRelated]? = nil, fieldsBetaAppLocalizations: [FieldsBetaAppLocalizations_ciProductsAppGetToOneRelated]? = nil, fieldsAppInfos: [FieldsAppInfos_ciProductsAppGetToOneRelated]? = nil, fieldsPreReleaseVersions: [FieldsPreReleaseVersions_ciProductsAppGetToOneRelated]? = nil, fieldsCiProducts: [FieldsCiProducts_ciProductsAppGetToOneRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_ciProductsAppGetToOneRelated]? = nil, fieldsSubscriptionGroups: [FieldsSubscriptionGroups_ciProductsAppGetToOneRelated]? = nil, fieldsReviewSubmissions: [FieldsReviewSubmissions_ciProductsAppGetToOneRelated]? = nil, fieldsBetaGroups: [FieldsBetaGroups_ciProductsAppGetToOneRelated]? = nil, fieldsAppPreOrders: [FieldsAppPreOrders_ciProductsAppGetToOneRelated]? = nil, fieldsAppPrices: [FieldsAppPrices_ciProductsAppGetToOneRelated]? = nil, fieldsGameCenterEnabledVersions: [FieldsGameCenterEnabledVersions_ciProductsAppGetToOneRelated]? = nil, fieldsSubscriptionGracePeriods: [FieldsSubscriptionGracePeriods_ciProductsAppGetToOneRelated]? = nil, fieldsPromotedPurchases: [FieldsPromotedPurchases_ciProductsAppGetToOneRelated]? = nil, fieldsEndUserLicenseAgreements: [FieldsEndUserLicenseAgreements_ciProductsAppGetToOneRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_ciProductsAppGetToOneRelated]? = nil, fieldsAppCustomProductPages: [FieldsAppCustomProductPages_ciProductsAppGetToOneRelated]? = nil, fieldsApps: [FieldsApps_ciProductsAppGetToOneRelated]? = nil, fieldsAppEvents: [FieldsAppEvents_ciProductsAppGetToOneRelated]? = nil, fieldsTerritories: [FieldsTerritories_ciProductsAppGetToOneRelated]? = nil, fieldsBuilds: [FieldsBuilds_ciProductsAppGetToOneRelated]? = nil, limitBetaGroups: Int? = nil, limitAppStoreVersions: Int? = nil, limitPreReleaseVersions: Int? = nil, limitBetaAppLocalizations: Int? = nil, limitBuilds: Int? = nil, limitAppInfos: Int? = nil, limitAppClips: Int? = nil, limitPrices: Int? = nil, limitAvailableTerritories: Int? = nil, limitInAppPurchases: Int? = nil, limitSubscriptionGroups: Int? = nil, limitGameCenterEnabledVersions: Int? = nil, limitAppCustomProductPages: Int? = nil, limitInAppPurchasesV2: Int? = nil, limitPromotedPurchases: Int? = nil, limitAppEvents: Int? = nil, limitReviewSubmissions: Int? = nil, include: [Include_ciProductsAppGetToOneRelated]? = nil) async throws -> AppResponse {
         var requestTask: RequestTask?
         return try await withTaskCancellationHandler {
             try Task.checkCancellation()
@@ -557,7 +612,7 @@ open class CiProductsAPI {
                   return
                 }
 
-                requestTask = ciProductsAppGetToOneRelatedWithRequestBuilder(id: id, fieldsBetaLicenseAgreements: fieldsBetaLicenseAgreements, fieldsBetaAppReviewDetails: fieldsBetaAppReviewDetails, fieldsAppClips: fieldsAppClips, fieldsBetaAppLocalizations: fieldsBetaAppLocalizations, fieldsAppInfos: fieldsAppInfos, fieldsPreReleaseVersions: fieldsPreReleaseVersions, fieldsInAppPurchases: fieldsInAppPurchases, fieldsCiProducts: fieldsCiProducts, fieldsReviewSubmissions: fieldsReviewSubmissions, fieldsBetaGroups: fieldsBetaGroups, fieldsAppPreOrders: fieldsAppPreOrders, fieldsAppPrices: fieldsAppPrices, fieldsGameCenterEnabledVersions: fieldsGameCenterEnabledVersions, fieldsEndUserLicenseAgreements: fieldsEndUserLicenseAgreements, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsAppCustomProductPages: fieldsAppCustomProductPages, fieldsApps: fieldsApps, fieldsAppEvents: fieldsAppEvents, fieldsTerritories: fieldsTerritories, fieldsBuilds: fieldsBuilds, limitBetaGroups: limitBetaGroups, limitAppStoreVersions: limitAppStoreVersions, limitPreReleaseVersions: limitPreReleaseVersions, limitBetaAppLocalizations: limitBetaAppLocalizations, limitBuilds: limitBuilds, limitAppInfos: limitAppInfos, limitAppClips: limitAppClips, limitPrices: limitPrices, limitAvailableTerritories: limitAvailableTerritories, limitInAppPurchases: limitInAppPurchases, limitGameCenterEnabledVersions: limitGameCenterEnabledVersions, limitAppCustomProductPages: limitAppCustomProductPages, limitAppEvents: limitAppEvents, limitReviewSubmissions: limitReviewSubmissions, include: include).execute { result in
+                requestTask = ciProductsAppGetToOneRelatedWithRequestBuilder(id: id, fieldsBetaLicenseAgreements: fieldsBetaLicenseAgreements, fieldsBetaAppReviewDetails: fieldsBetaAppReviewDetails, fieldsAppClips: fieldsAppClips, fieldsBetaAppLocalizations: fieldsBetaAppLocalizations, fieldsAppInfos: fieldsAppInfos, fieldsPreReleaseVersions: fieldsPreReleaseVersions, fieldsCiProducts: fieldsCiProducts, fieldsInAppPurchases: fieldsInAppPurchases, fieldsSubscriptionGroups: fieldsSubscriptionGroups, fieldsReviewSubmissions: fieldsReviewSubmissions, fieldsBetaGroups: fieldsBetaGroups, fieldsAppPreOrders: fieldsAppPreOrders, fieldsAppPrices: fieldsAppPrices, fieldsGameCenterEnabledVersions: fieldsGameCenterEnabledVersions, fieldsSubscriptionGracePeriods: fieldsSubscriptionGracePeriods, fieldsPromotedPurchases: fieldsPromotedPurchases, fieldsEndUserLicenseAgreements: fieldsEndUserLicenseAgreements, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsAppCustomProductPages: fieldsAppCustomProductPages, fieldsApps: fieldsApps, fieldsAppEvents: fieldsAppEvents, fieldsTerritories: fieldsTerritories, fieldsBuilds: fieldsBuilds, limitBetaGroups: limitBetaGroups, limitAppStoreVersions: limitAppStoreVersions, limitPreReleaseVersions: limitPreReleaseVersions, limitBetaAppLocalizations: limitBetaAppLocalizations, limitBuilds: limitBuilds, limitAppInfos: limitAppInfos, limitAppClips: limitAppClips, limitPrices: limitPrices, limitAvailableTerritories: limitAvailableTerritories, limitInAppPurchases: limitInAppPurchases, limitSubscriptionGroups: limitSubscriptionGroups, limitGameCenterEnabledVersions: limitGameCenterEnabledVersions, limitAppCustomProductPages: limitAppCustomProductPages, limitInAppPurchasesV2: limitInAppPurchasesV2, limitPromotedPurchases: limitPromotedPurchases, limitAppEvents: limitAppEvents, limitReviewSubmissions: limitReviewSubmissions, include: include).execute { result in
                     switch result {
                     case let .success(response):
                         continuation.resume(returning: response.body)
@@ -612,13 +667,16 @@ open class CiProductsAPI {
      - parameter fieldsBetaAppLocalizations: (query) the fields to include for returned resources of type betaAppLocalizations (optional)
      - parameter fieldsAppInfos: (query) the fields to include for returned resources of type appInfos (optional)
      - parameter fieldsPreReleaseVersions: (query) the fields to include for returned resources of type preReleaseVersions (optional)
-     - parameter fieldsInAppPurchases: (query) the fields to include for returned resources of type inAppPurchases (optional)
      - parameter fieldsCiProducts: (query) the fields to include for returned resources of type ciProducts (optional)
+     - parameter fieldsInAppPurchases: (query) the fields to include for returned resources of type inAppPurchases (optional)
+     - parameter fieldsSubscriptionGroups: (query) the fields to include for returned resources of type subscriptionGroups (optional)
      - parameter fieldsReviewSubmissions: (query) the fields to include for returned resources of type reviewSubmissions (optional)
      - parameter fieldsBetaGroups: (query) the fields to include for returned resources of type betaGroups (optional)
      - parameter fieldsAppPreOrders: (query) the fields to include for returned resources of type appPreOrders (optional)
      - parameter fieldsAppPrices: (query) the fields to include for returned resources of type appPrices (optional)
      - parameter fieldsGameCenterEnabledVersions: (query) the fields to include for returned resources of type gameCenterEnabledVersions (optional)
+     - parameter fieldsSubscriptionGracePeriods: (query) the fields to include for returned resources of type subscriptionGracePeriods (optional)
+     - parameter fieldsPromotedPurchases: (query) the fields to include for returned resources of type promotedPurchases (optional)
      - parameter fieldsEndUserLicenseAgreements: (query) the fields to include for returned resources of type endUserLicenseAgreements (optional)
      - parameter fieldsAppStoreVersions: (query) the fields to include for returned resources of type appStoreVersions (optional)
      - parameter fieldsAppCustomProductPages: (query) the fields to include for returned resources of type appCustomProductPages (optional)
@@ -636,14 +694,17 @@ open class CiProductsAPI {
      - parameter limitPrices: (query) maximum number of related prices returned (when they are included) (optional)
      - parameter limitAvailableTerritories: (query) maximum number of related availableTerritories returned (when they are included) (optional)
      - parameter limitInAppPurchases: (query) maximum number of related inAppPurchases returned (when they are included) (optional)
+     - parameter limitSubscriptionGroups: (query) maximum number of related subscriptionGroups returned (when they are included) (optional)
      - parameter limitGameCenterEnabledVersions: (query) maximum number of related gameCenterEnabledVersions returned (when they are included) (optional)
      - parameter limitAppCustomProductPages: (query) maximum number of related appCustomProductPages returned (when they are included) (optional)
+     - parameter limitInAppPurchasesV2: (query) maximum number of related inAppPurchasesV2 returned (when they are included) (optional)
+     - parameter limitPromotedPurchases: (query) maximum number of related promotedPurchases returned (when they are included) (optional)
      - parameter limitAppEvents: (query) maximum number of related appEvents returned (when they are included) (optional)
      - parameter limitReviewSubmissions: (query) maximum number of related reviewSubmissions returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: RequestBuilder<AppResponse> 
      */
-    open class func ciProductsAppGetToOneRelatedWithRequestBuilder(id: String, fieldsBetaLicenseAgreements: [FieldsBetaLicenseAgreements_ciProductsAppGetToOneRelated]? = nil, fieldsBetaAppReviewDetails: [FieldsBetaAppReviewDetails_ciProductsAppGetToOneRelated]? = nil, fieldsAppClips: [FieldsAppClips_ciProductsAppGetToOneRelated]? = nil, fieldsBetaAppLocalizations: [FieldsBetaAppLocalizations_ciProductsAppGetToOneRelated]? = nil, fieldsAppInfos: [FieldsAppInfos_ciProductsAppGetToOneRelated]? = nil, fieldsPreReleaseVersions: [FieldsPreReleaseVersions_ciProductsAppGetToOneRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_ciProductsAppGetToOneRelated]? = nil, fieldsCiProducts: [FieldsCiProducts_ciProductsAppGetToOneRelated]? = nil, fieldsReviewSubmissions: [FieldsReviewSubmissions_ciProductsAppGetToOneRelated]? = nil, fieldsBetaGroups: [FieldsBetaGroups_ciProductsAppGetToOneRelated]? = nil, fieldsAppPreOrders: [FieldsAppPreOrders_ciProductsAppGetToOneRelated]? = nil, fieldsAppPrices: [FieldsAppPrices_ciProductsAppGetToOneRelated]? = nil, fieldsGameCenterEnabledVersions: [FieldsGameCenterEnabledVersions_ciProductsAppGetToOneRelated]? = nil, fieldsEndUserLicenseAgreements: [FieldsEndUserLicenseAgreements_ciProductsAppGetToOneRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_ciProductsAppGetToOneRelated]? = nil, fieldsAppCustomProductPages: [FieldsAppCustomProductPages_ciProductsAppGetToOneRelated]? = nil, fieldsApps: [FieldsApps_ciProductsAppGetToOneRelated]? = nil, fieldsAppEvents: [FieldsAppEvents_ciProductsAppGetToOneRelated]? = nil, fieldsTerritories: [FieldsTerritories_ciProductsAppGetToOneRelated]? = nil, fieldsBuilds: [FieldsBuilds_ciProductsAppGetToOneRelated]? = nil, limitBetaGroups: Int? = nil, limitAppStoreVersions: Int? = nil, limitPreReleaseVersions: Int? = nil, limitBetaAppLocalizations: Int? = nil, limitBuilds: Int? = nil, limitAppInfos: Int? = nil, limitAppClips: Int? = nil, limitPrices: Int? = nil, limitAvailableTerritories: Int? = nil, limitInAppPurchases: Int? = nil, limitGameCenterEnabledVersions: Int? = nil, limitAppCustomProductPages: Int? = nil, limitAppEvents: Int? = nil, limitReviewSubmissions: Int? = nil, include: [Include_ciProductsAppGetToOneRelated]? = nil) -> RequestBuilder<AppResponse> {
+    open class func ciProductsAppGetToOneRelatedWithRequestBuilder(id: String, fieldsBetaLicenseAgreements: [FieldsBetaLicenseAgreements_ciProductsAppGetToOneRelated]? = nil, fieldsBetaAppReviewDetails: [FieldsBetaAppReviewDetails_ciProductsAppGetToOneRelated]? = nil, fieldsAppClips: [FieldsAppClips_ciProductsAppGetToOneRelated]? = nil, fieldsBetaAppLocalizations: [FieldsBetaAppLocalizations_ciProductsAppGetToOneRelated]? = nil, fieldsAppInfos: [FieldsAppInfos_ciProductsAppGetToOneRelated]? = nil, fieldsPreReleaseVersions: [FieldsPreReleaseVersions_ciProductsAppGetToOneRelated]? = nil, fieldsCiProducts: [FieldsCiProducts_ciProductsAppGetToOneRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_ciProductsAppGetToOneRelated]? = nil, fieldsSubscriptionGroups: [FieldsSubscriptionGroups_ciProductsAppGetToOneRelated]? = nil, fieldsReviewSubmissions: [FieldsReviewSubmissions_ciProductsAppGetToOneRelated]? = nil, fieldsBetaGroups: [FieldsBetaGroups_ciProductsAppGetToOneRelated]? = nil, fieldsAppPreOrders: [FieldsAppPreOrders_ciProductsAppGetToOneRelated]? = nil, fieldsAppPrices: [FieldsAppPrices_ciProductsAppGetToOneRelated]? = nil, fieldsGameCenterEnabledVersions: [FieldsGameCenterEnabledVersions_ciProductsAppGetToOneRelated]? = nil, fieldsSubscriptionGracePeriods: [FieldsSubscriptionGracePeriods_ciProductsAppGetToOneRelated]? = nil, fieldsPromotedPurchases: [FieldsPromotedPurchases_ciProductsAppGetToOneRelated]? = nil, fieldsEndUserLicenseAgreements: [FieldsEndUserLicenseAgreements_ciProductsAppGetToOneRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_ciProductsAppGetToOneRelated]? = nil, fieldsAppCustomProductPages: [FieldsAppCustomProductPages_ciProductsAppGetToOneRelated]? = nil, fieldsApps: [FieldsApps_ciProductsAppGetToOneRelated]? = nil, fieldsAppEvents: [FieldsAppEvents_ciProductsAppGetToOneRelated]? = nil, fieldsTerritories: [FieldsTerritories_ciProductsAppGetToOneRelated]? = nil, fieldsBuilds: [FieldsBuilds_ciProductsAppGetToOneRelated]? = nil, limitBetaGroups: Int? = nil, limitAppStoreVersions: Int? = nil, limitPreReleaseVersions: Int? = nil, limitBetaAppLocalizations: Int? = nil, limitBuilds: Int? = nil, limitAppInfos: Int? = nil, limitAppClips: Int? = nil, limitPrices: Int? = nil, limitAvailableTerritories: Int? = nil, limitInAppPurchases: Int? = nil, limitSubscriptionGroups: Int? = nil, limitGameCenterEnabledVersions: Int? = nil, limitAppCustomProductPages: Int? = nil, limitInAppPurchasesV2: Int? = nil, limitPromotedPurchases: Int? = nil, limitAppEvents: Int? = nil, limitReviewSubmissions: Int? = nil, include: [Include_ciProductsAppGetToOneRelated]? = nil) -> RequestBuilder<AppResponse> {
         var localVariablePath = "/v1/ciProducts/{id}/app"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -659,13 +720,16 @@ open class CiProductsAPI {
             "fields[betaAppLocalizations]": fieldsBetaAppLocalizations?.encodeToJSON(),
             "fields[appInfos]": fieldsAppInfos?.encodeToJSON(),
             "fields[preReleaseVersions]": fieldsPreReleaseVersions?.encodeToJSON(),
-            "fields[inAppPurchases]": fieldsInAppPurchases?.encodeToJSON(),
             "fields[ciProducts]": fieldsCiProducts?.encodeToJSON(),
+            "fields[inAppPurchases]": fieldsInAppPurchases?.encodeToJSON(),
+            "fields[subscriptionGroups]": fieldsSubscriptionGroups?.encodeToJSON(),
             "fields[reviewSubmissions]": fieldsReviewSubmissions?.encodeToJSON(),
             "fields[betaGroups]": fieldsBetaGroups?.encodeToJSON(),
             "fields[appPreOrders]": fieldsAppPreOrders?.encodeToJSON(),
             "fields[appPrices]": fieldsAppPrices?.encodeToJSON(),
             "fields[gameCenterEnabledVersions]": fieldsGameCenterEnabledVersions?.encodeToJSON(),
+            "fields[subscriptionGracePeriods]": fieldsSubscriptionGracePeriods?.encodeToJSON(),
+            "fields[promotedPurchases]": fieldsPromotedPurchases?.encodeToJSON(),
             "fields[endUserLicenseAgreements]": fieldsEndUserLicenseAgreements?.encodeToJSON(),
             "fields[appStoreVersions]": fieldsAppStoreVersions?.encodeToJSON(),
             "fields[appCustomProductPages]": fieldsAppCustomProductPages?.encodeToJSON(),
@@ -683,8 +747,11 @@ open class CiProductsAPI {
             "limit[prices]": limitPrices?.encodeToJSON(),
             "limit[availableTerritories]": limitAvailableTerritories?.encodeToJSON(),
             "limit[inAppPurchases]": limitInAppPurchases?.encodeToJSON(),
+            "limit[subscriptionGroups]": limitSubscriptionGroups?.encodeToJSON(),
             "limit[gameCenterEnabledVersions]": limitGameCenterEnabledVersions?.encodeToJSON(),
             "limit[appCustomProductPages]": limitAppCustomProductPages?.encodeToJSON(),
+            "limit[inAppPurchasesV2]": limitInAppPurchasesV2?.encodeToJSON(),
+            "limit[promotedPurchases]": limitPromotedPurchases?.encodeToJSON(),
             "limit[appEvents]": limitAppEvents?.encodeToJSON(),
             "limit[reviewSubmissions]": limitReviewSubmissions?.encodeToJSON(),
             "include": include?.encodeToJSON(),
@@ -1186,9 +1253,11 @@ open class CiProductsAPI {
         case bundleid = "bundleId"
         case ciproduct = "ciProduct"
         case contentrightsdeclaration = "contentRightsDeclaration"
+        case customerreviews = "customerReviews"
         case enduserlicenseagreement = "endUserLicenseAgreement"
         case gamecenterenabledversions = "gameCenterEnabledVersions"
         case inapppurchases = "inAppPurchases"
+        case inapppurchasesv2 = "inAppPurchasesV2"
         case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
         case name = "name"
         case perfpowermetrics = "perfPowerMetrics"
@@ -1197,8 +1266,11 @@ open class CiProductsAPI {
         case pricepoints = "pricePoints"
         case prices = "prices"
         case primarylocale = "primaryLocale"
+        case promotedpurchases = "promotedPurchases"
         case reviewsubmissions = "reviewSubmissions"
         case sku = "sku"
+        case subscriptiongraceperiod = "subscriptionGracePeriod"
+        case subscriptiongroups = "subscriptionGroups"
         case subscriptionstatusurl = "subscriptionStatusUrl"
         case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
         case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
@@ -1442,9 +1514,11 @@ open class CiProductsAPI {
         case bundleid = "bundleId"
         case ciproduct = "ciProduct"
         case contentrightsdeclaration = "contentRightsDeclaration"
+        case customerreviews = "customerReviews"
         case enduserlicenseagreement = "endUserLicenseAgreement"
         case gamecenterenabledversions = "gameCenterEnabledVersions"
         case inapppurchases = "inAppPurchases"
+        case inapppurchasesv2 = "inAppPurchasesV2"
         case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
         case name = "name"
         case perfpowermetrics = "perfPowerMetrics"
@@ -1453,8 +1527,11 @@ open class CiProductsAPI {
         case pricepoints = "pricePoints"
         case prices = "prices"
         case primarylocale = "primaryLocale"
+        case promotedpurchases = "promotedPurchases"
         case reviewsubmissions = "reviewSubmissions"
         case sku = "sku"
+        case subscriptiongraceperiod = "subscriptionGracePeriod"
+        case subscriptiongroups = "subscriptionGroups"
         case subscriptionstatusurl = "subscriptionStatusUrl"
         case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
         case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"

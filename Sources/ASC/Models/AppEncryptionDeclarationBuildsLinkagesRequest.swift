@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct AppEncryptionDeclarationBuildsLinkagesRequest: Codable, Hashable {
+public struct AppEncryptionDeclarationBuildsLinkagesRequest: Codable, JSONEncodable, Hashable {
 
     public var data: [AppStoreVersionRelationshipsBuildData]
 

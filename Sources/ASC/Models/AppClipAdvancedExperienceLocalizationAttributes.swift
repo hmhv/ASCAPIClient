@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct AppClipAdvancedExperienceLocalizationAttributes: Codable, Hashable {
+public struct AppClipAdvancedExperienceLocalizationAttributes: Codable, JSONEncodable, Hashable {
 
     public var language: AppClipAdvancedExperienceLanguage?
     public var title: String?

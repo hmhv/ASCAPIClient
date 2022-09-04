@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct ScmGitReferenceRelationships: Codable, Hashable {
+public struct ScmGitReferenceRelationships: Codable, JSONEncodable, Hashable {
 
     public var repository: CiWorkflowRelationshipsRepository?
 

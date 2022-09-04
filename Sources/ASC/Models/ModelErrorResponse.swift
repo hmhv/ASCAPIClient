@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct ModelErrorResponse: Codable, Hashable {
+public struct ModelErrorResponse: Codable, JSONEncodable, Hashable {
 
     public var errors: [ErrorResponseErrorsInner]?
 

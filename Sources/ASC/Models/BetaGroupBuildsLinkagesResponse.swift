@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct BetaGroupBuildsLinkagesResponse: Codable, Hashable {
+public struct BetaGroupBuildsLinkagesResponse: Codable, JSONEncodable, Hashable {
 
     public var data: [AppStoreVersionRelationshipsBuildData]
     public var links: PagedDocumentLinks

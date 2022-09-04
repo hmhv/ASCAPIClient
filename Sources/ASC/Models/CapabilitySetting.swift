@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct CapabilitySetting: Codable, Hashable {
+public struct CapabilitySetting: Codable, JSONEncodable, Hashable {
 
     public enum Key: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case icloudVersion = "ICLOUD_VERSION"

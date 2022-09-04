@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct ReviewSubmissionAttributes: Codable, Hashable {
+public struct ReviewSubmissionAttributes: Codable, JSONEncodable, Hashable {
 
     public enum State: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case readyForReview = "READY_FOR_REVIEW"

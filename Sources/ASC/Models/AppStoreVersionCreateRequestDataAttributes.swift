@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct AppStoreVersionCreateRequestDataAttributes: Codable, Hashable {
+public struct AppStoreVersionCreateRequestDataAttributes: Codable, JSONEncodable, Hashable {
 
     public enum ReleaseType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case manual = "MANUAL"
@@ -23,16 +23,13 @@ public struct AppStoreVersionCreateRequestDataAttributes: Codable, Hashable {
     public var copyright: String?
     public var releaseType: ReleaseType?
     public var earliestReleaseDate: Date?
-    @available(*, deprecated, message: "This property is deprecated.")
-    public var usesIdfa: Bool?
 
-    public init(platform: Platform, versionString: String, copyright: String? = nil, releaseType: ReleaseType? = nil, earliestReleaseDate: Date? = nil, usesIdfa: Bool? = nil) {
+    public init(platform: Platform, versionString: String, copyright: String? = nil, releaseType: ReleaseType? = nil, earliestReleaseDate: Date? = nil) {
         self.platform = platform
         self.versionString = versionString
         self.copyright = copyright
         self.releaseType = releaseType
         self.earliestReleaseDate = earliestReleaseDate
-        self.usesIdfa = usesIdfa
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -41,7 +38,6 @@ public struct AppStoreVersionCreateRequestDataAttributes: Codable, Hashable {
         case copyright
         case releaseType
         case earliestReleaseDate
-        case usesIdfa
     }
 
     // Encodable protocol methods
@@ -53,7 +49,6 @@ public struct AppStoreVersionCreateRequestDataAttributes: Codable, Hashable {
         try container.encodeIfPresent(copyright, forKey: .copyright)
         try container.encodeIfPresent(releaseType, forKey: .releaseType)
         try container.encodeIfPresent(earliestReleaseDate, forKey: .earliestReleaseDate)
-        try container.encodeIfPresent(usesIdfa, forKey: .usesIdfa)
     }
 }
 

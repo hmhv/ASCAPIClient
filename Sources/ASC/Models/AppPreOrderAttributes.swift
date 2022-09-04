@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct AppPreOrderAttributes: Codable, Hashable {
+public struct AppPreOrderAttributes: Codable, JSONEncodable, Hashable {
 
     public var preOrderAvailableDate: Date?
     public var appReleaseDate: Date?

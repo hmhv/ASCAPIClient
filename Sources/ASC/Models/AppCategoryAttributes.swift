@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct AppCategoryAttributes: Codable, Hashable {
+public struct AppCategoryAttributes: Codable, JSONEncodable, Hashable {
 
     public var platforms: [Platform]?
 
