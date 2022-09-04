@@ -9066,21 +9066,6 @@
           "explode" : false,
           "required" : false
         }, {
-          "name" : "fields[inAppPurchases]",
-          "in" : "query",
-          "description" : "the fields to include for returned resources of type inAppPurchases",
-          "schema" : {
-            "type" : "array",
-            "items" : {
-              "type" : "string",
-              "enum" : [ "apps", "inAppPurchaseType", "productId", "referenceName", "state" ]
-            }
-          },
-          "style" : "form",
-          "explode" : false,
-          "required" : false,
-          "deprecated" : true
-        }, {
           "name" : "fields[preReleaseVersions]",
           "in" : "query",
           "description" : "the fields to include for returned resources of type preReleaseVersions",
@@ -9667,21 +9652,6 @@
           "style" : "form",
           "explode" : false,
           "required" : false
-        }, {
-          "name" : "fields[inAppPurchases]",
-          "in" : "query",
-          "description" : "the fields to include for returned resources of type inAppPurchases",
-          "schema" : {
-            "type" : "array",
-            "items" : {
-              "type" : "string",
-              "enum" : [ "apps", "inAppPurchaseType", "productId", "referenceName", "state" ]
-            }
-          },
-          "style" : "form",
-          "explode" : false,
-          "required" : false,
-          "deprecated" : true
         }, {
           "name" : "fields[preReleaseVersions]",
           "in" : "query",
@@ -19055,103 +19025,6 @@
           }
         }
       }
-    },
-    "/v1/inAppPurchases/{id}" : {
-      "get" : {
-        "tags" : [ "InAppPurchases" ],
-        "operationId" : "inAppPurchases-get_instance",
-        "parameters" : [ {
-          "name" : "fields[inAppPurchases]",
-          "in" : "query",
-          "description" : "the fields to include for returned resources of type inAppPurchases",
-          "schema" : {
-            "type" : "array",
-            "items" : {
-              "type" : "string",
-              "enum" : [ "apps", "inAppPurchaseType", "productId", "referenceName", "state" ]
-            }
-          },
-          "style" : "form",
-          "explode" : false,
-          "required" : false
-        }, {
-          "name" : "include",
-          "in" : "query",
-          "description" : "comma-separated list of relationships to include",
-          "schema" : {
-            "type" : "array",
-            "items" : {
-              "type" : "string",
-              "enum" : [ "apps" ]
-            }
-          },
-          "style" : "form",
-          "explode" : false,
-          "required" : false
-        }, {
-          "name" : "limit[apps]",
-          "in" : "query",
-          "description" : "maximum number of related apps returned (when they are included)",
-          "schema" : {
-            "type" : "integer",
-            "maximum" : 50
-          },
-          "style" : "form",
-          "required" : false
-        } ],
-        "responses" : {
-          "400" : {
-            "description" : "Parameter error(s)",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ErrorResponse"
-                }
-              }
-            }
-          },
-          "403" : {
-            "description" : "Forbidden error",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ErrorResponse"
-                }
-              }
-            }
-          },
-          "404" : {
-            "description" : "Not found error",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ErrorResponse"
-                }
-              }
-            }
-          },
-          "200" : {
-            "description" : "Single InAppPurchase",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/InAppPurchaseResponse"
-                }
-              }
-            }
-          }
-        }
-      },
-      "parameters" : [ {
-        "name" : "id",
-        "in" : "path",
-        "description" : "the id of the requested resource",
-        "schema" : {
-          "type" : "string"
-        },
-        "style" : "simple",
-        "required" : true
-      } ]
     },
     "/v2/inAppPurchases" : {
       "post" : {
@@ -42098,19 +41971,6 @@
             "items" : {
               "type" : "string",
               "enum" : [ "app", "builds", "platform", "version" ]
-            }
-          },
-          "style" : "form",
-          "explode" : false
-        }, {
-          "name" : "fields[inAppPurchases]",
-          "in" : "query",
-          "description" : "the fields to include for returned resources of type inAppPurchases",
-          "schema" : {
-            "type" : "array",
-            "items" : {
-              "type" : "string",
-              "enum" : [ "apps", "inAppPurchaseType", "productId", "referenceName", "state" ]
             }
           },
           "style" : "form",
