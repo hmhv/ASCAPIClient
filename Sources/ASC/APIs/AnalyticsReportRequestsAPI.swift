@@ -67,8 +67,7 @@ open class AnalyticsReportRequestsAPI {
      */
     open class func analyticsReportRequestsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AnalyticsReportRequestResponse> {
         let localVariableRequestBuilder: RequestBuilder<AnalyticsReportRequestResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -129,8 +128,7 @@ open class AnalyticsReportRequestsAPI {
      */
     open class func analyticsReportRequestsDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
-
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -231,8 +229,7 @@ open class AnalyticsReportRequestsAPI {
      */
     open class func analyticsReportRequestsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AnalyticsReportRequestResponse> {
         let localVariableRequestBuilder: RequestBuilder<AnalyticsReportRequestResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -327,7 +324,6 @@ open class AnalyticsReportRequestsAPI {
      */
     open class func analyticsReportRequestsReportsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AnalyticsReportsResponse> {
         let localVariableRequestBuilder: RequestBuilder<AnalyticsReportsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

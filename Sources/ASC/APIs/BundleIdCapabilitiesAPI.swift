@@ -67,8 +67,7 @@ open class BundleIdCapabilitiesAPI {
      */
     open class func bundleIdCapabilitiesCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<BundleIdCapabilityResponse> {
         let localVariableRequestBuilder: RequestBuilder<BundleIdCapabilityResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -129,8 +128,7 @@ open class BundleIdCapabilitiesAPI {
      */
     open class func bundleIdCapabilitiesDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
-
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -193,7 +191,6 @@ open class BundleIdCapabilitiesAPI {
      */
     open class func bundleIdCapabilitiesUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<BundleIdCapabilityResponse> {
         let localVariableRequestBuilder: RequestBuilder<BundleIdCapabilityResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

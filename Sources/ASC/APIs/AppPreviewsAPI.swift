@@ -67,8 +67,7 @@ open class AppPreviewsAPI {
      */
     open class func appPreviewsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppPreviewResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppPreviewResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -129,8 +128,7 @@ open class AppPreviewsAPI {
      */
     open class func appPreviewsDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
-
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -223,8 +221,7 @@ open class AppPreviewsAPI {
      */
     open class func appPreviewsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppPreviewResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppPreviewResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -287,7 +284,6 @@ open class AppPreviewsAPI {
      */
     open class func appPreviewsUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppPreviewResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppPreviewResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

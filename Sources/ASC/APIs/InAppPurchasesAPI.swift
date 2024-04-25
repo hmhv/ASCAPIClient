@@ -103,8 +103,7 @@ open class InAppPurchasesAPI {
     @available(*, deprecated, message: "This operation is deprecated.")
     open class func inAppPurchasesGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<InAppPurchaseResponse> {
         let localVariableRequestBuilder: RequestBuilder<InAppPurchaseResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -220,8 +219,7 @@ open class InAppPurchasesAPI {
      */
     open class func inAppPurchasesV2AppStoreReviewScreenshotGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<InAppPurchaseAppStoreReviewScreenshotResponse> {
         let localVariableRequestBuilder: RequestBuilder<InAppPurchaseAppStoreReviewScreenshotResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -332,8 +330,7 @@ open class InAppPurchasesAPI {
      */
     open class func inAppPurchasesV2ContentGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<InAppPurchaseContentResponse> {
         let localVariableRequestBuilder: RequestBuilder<InAppPurchaseContentResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -391,8 +388,7 @@ open class InAppPurchasesAPI {
      */
     open class func inAppPurchasesV2CreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<InAppPurchaseV2Response> {
         let localVariableRequestBuilder: RequestBuilder<InAppPurchaseV2Response>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -453,8 +449,7 @@ open class InAppPurchasesAPI {
      */
     open class func inAppPurchasesV2DeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
-
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -665,8 +660,7 @@ open class InAppPurchasesAPI {
      */
     open class func inAppPurchasesV2GetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<InAppPurchaseV2Response> {
         let localVariableRequestBuilder: RequestBuilder<InAppPurchaseV2Response>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -810,8 +804,7 @@ open class InAppPurchasesAPI {
      */
     open class func inAppPurchasesV2IapPriceScheduleGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<InAppPurchasePriceScheduleResponse> {
         let localVariableRequestBuilder: RequestBuilder<InAppPurchasePriceScheduleResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -909,8 +902,7 @@ open class InAppPurchasesAPI {
      */
     open class func inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<InAppPurchaseAvailabilityResponse> {
         let localVariableRequestBuilder: RequestBuilder<InAppPurchaseAvailabilityResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -1024,8 +1016,7 @@ open class InAppPurchasesAPI {
      */
     open class func inAppPurchasesV2InAppPurchaseLocalizationsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<InAppPurchaseLocalizationsResponse> {
         let localVariableRequestBuilder: RequestBuilder<InAppPurchaseLocalizationsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -1131,8 +1122,7 @@ open class InAppPurchasesAPI {
      */
     open class func inAppPurchasesV2PricePointsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<InAppPurchasePricePointsResponse> {
         let localVariableRequestBuilder: RequestBuilder<InAppPurchasePricePointsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -1295,8 +1285,7 @@ open class InAppPurchasesAPI {
      */
     open class func inAppPurchasesV2PromotedPurchaseGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<PromotedPurchaseResponse> {
         let localVariableRequestBuilder: RequestBuilder<PromotedPurchaseResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -1359,7 +1348,6 @@ open class InAppPurchasesAPI {
      */
     open class func inAppPurchasesV2UpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<InAppPurchaseV2Response> {
         let localVariableRequestBuilder: RequestBuilder<InAppPurchaseV2Response>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

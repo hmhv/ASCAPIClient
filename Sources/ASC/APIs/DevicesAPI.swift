@@ -67,8 +67,7 @@ open class DevicesAPI {
      */
     open class func devicesCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<DeviceResponse> {
         let localVariableRequestBuilder: RequestBuilder<DeviceResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -195,8 +194,7 @@ open class DevicesAPI {
      */
     open class func devicesGetCollectionWithRequestBuilder(urlString: String) -> RequestBuilder<DevicesResponse> {
         let localVariableRequestBuilder: RequestBuilder<DevicesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -275,8 +273,7 @@ open class DevicesAPI {
      */
     open class func devicesGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<DeviceResponse> {
         let localVariableRequestBuilder: RequestBuilder<DeviceResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -339,7 +336,6 @@ open class DevicesAPI {
      */
     open class func devicesUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<DeviceResponse> {
         let localVariableRequestBuilder: RequestBuilder<DeviceResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

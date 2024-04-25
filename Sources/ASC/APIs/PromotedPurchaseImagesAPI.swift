@@ -67,8 +67,7 @@ open class PromotedPurchaseImagesAPI {
      */
     open class func promotedPurchaseImagesCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<PromotedPurchaseImageResponse> {
         let localVariableRequestBuilder: RequestBuilder<PromotedPurchaseImageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -129,8 +128,7 @@ open class PromotedPurchaseImagesAPI {
      */
     open class func promotedPurchaseImagesDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
-
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -222,8 +220,7 @@ open class PromotedPurchaseImagesAPI {
      */
     open class func promotedPurchaseImagesGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<PromotedPurchaseImageResponse> {
         let localVariableRequestBuilder: RequestBuilder<PromotedPurchaseImageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -286,7 +283,6 @@ open class PromotedPurchaseImagesAPI {
      */
     open class func promotedPurchaseImagesUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<PromotedPurchaseImageResponse> {
         let localVariableRequestBuilder: RequestBuilder<PromotedPurchaseImageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

@@ -67,8 +67,7 @@ open class PromotedPurchasesAPI {
      */
     open class func promotedPurchasesCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<PromotedPurchaseResponse> {
         let localVariableRequestBuilder: RequestBuilder<PromotedPurchaseResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -129,8 +128,7 @@ open class PromotedPurchasesAPI {
      */
     open class func promotedPurchasesDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
-
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -243,8 +241,7 @@ open class PromotedPurchasesAPI {
      */
     open class func promotedPurchasesGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<PromotedPurchaseResponse> {
         let localVariableRequestBuilder: RequestBuilder<PromotedPurchaseResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -355,8 +352,7 @@ open class PromotedPurchasesAPI {
      */
     open class func promotedPurchasesPromotionImagesGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<PromotedPurchaseImagesResponse> {
         let localVariableRequestBuilder: RequestBuilder<PromotedPurchaseImagesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -419,7 +415,6 @@ open class PromotedPurchasesAPI {
      */
     open class func promotedPurchasesUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<PromotedPurchaseResponse> {
         let localVariableRequestBuilder: RequestBuilder<PromotedPurchaseResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

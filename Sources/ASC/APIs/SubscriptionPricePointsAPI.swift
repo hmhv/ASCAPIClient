@@ -116,8 +116,7 @@ open class SubscriptionPricePointsAPI {
      */
     open class func subscriptionPricePointsEqualizationsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<SubscriptionPricePointsResponse> {
         let localVariableRequestBuilder: RequestBuilder<SubscriptionPricePointsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -205,7 +204,6 @@ open class SubscriptionPricePointsAPI {
      */
     open class func subscriptionPricePointsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<SubscriptionPricePointResponse> {
         let localVariableRequestBuilder: RequestBuilder<SubscriptionPricePointResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

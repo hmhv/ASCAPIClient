@@ -376,8 +376,7 @@ open class GameCenterAppVersionsAPI {
      */
     open class func gameCenterAppVersionsAppStoreVersionGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppStoreVersionResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppStoreVersionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -440,8 +439,7 @@ open class GameCenterAppVersionsAPI {
      */
     open class func gameCenterAppVersionsCompatibilityVersionsCreateToManyRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -504,8 +502,7 @@ open class GameCenterAppVersionsAPI {
      */
     open class func gameCenterAppVersionsCompatibilityVersionsDeleteToManyRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
-
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -632,8 +629,7 @@ open class GameCenterAppVersionsAPI {
      */
     open class func gameCenterAppVersionsCompatibilityVersionsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterAppVersionsResponse> {
         let localVariableRequestBuilder: RequestBuilder<GameCenterAppVersionsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -699,8 +695,7 @@ open class GameCenterAppVersionsAPI {
      */
     open class func gameCenterAppVersionsCompatibilityVersionsGetToManyRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterAppVersionCompatibilityVersionsLinkagesResponse> {
         let localVariableRequestBuilder: RequestBuilder<GameCenterAppVersionCompatibilityVersionsLinkagesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -758,8 +753,7 @@ open class GameCenterAppVersionsAPI {
      */
     open class func gameCenterAppVersionsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterAppVersionResponse> {
         let localVariableRequestBuilder: RequestBuilder<GameCenterAppVersionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -880,8 +874,7 @@ open class GameCenterAppVersionsAPI {
      */
     open class func gameCenterAppVersionsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterAppVersionResponse> {
         let localVariableRequestBuilder: RequestBuilder<GameCenterAppVersionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -944,7 +937,6 @@ open class GameCenterAppVersionsAPI {
      */
     open class func gameCenterAppVersionsUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterAppVersionResponse> {
         let localVariableRequestBuilder: RequestBuilder<GameCenterAppVersionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

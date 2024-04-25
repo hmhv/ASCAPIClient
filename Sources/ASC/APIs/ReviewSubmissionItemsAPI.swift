@@ -67,8 +67,7 @@ open class ReviewSubmissionItemsAPI {
      */
     open class func reviewSubmissionItemsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<ReviewSubmissionItemResponse> {
         let localVariableRequestBuilder: RequestBuilder<ReviewSubmissionItemResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -129,8 +128,7 @@ open class ReviewSubmissionItemsAPI {
      */
     open class func reviewSubmissionItemsDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
-
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -193,7 +191,6 @@ open class ReviewSubmissionItemsAPI {
      */
     open class func reviewSubmissionItemsUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<ReviewSubmissionItemResponse> {
         let localVariableRequestBuilder: RequestBuilder<ReviewSubmissionItemResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

@@ -67,8 +67,7 @@ open class GameCenterAchievementsAPI {
      */
     open class func gameCenterAchievementsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterAchievementResponse> {
         let localVariableRequestBuilder: RequestBuilder<GameCenterAchievementResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -129,8 +128,7 @@ open class GameCenterAchievementsAPI {
      */
     open class func gameCenterAchievementsDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
-
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -260,8 +258,7 @@ open class GameCenterAchievementsAPI {
      */
     open class func gameCenterAchievementsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterAchievementResponse> {
         let localVariableRequestBuilder: RequestBuilder<GameCenterAchievementResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -427,8 +424,7 @@ open class GameCenterAchievementsAPI {
      */
     open class func gameCenterAchievementsGroupAchievementGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterAchievementResponse> {
         let localVariableRequestBuilder: RequestBuilder<GameCenterAchievementResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -489,8 +485,7 @@ open class GameCenterAchievementsAPI {
      */
     open class func gameCenterAchievementsGroupAchievementGetToOneRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterAchievementGroupAchievementLinkageResponse> {
         let localVariableRequestBuilder: RequestBuilder<GameCenterAchievementGroupAchievementLinkageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -553,8 +548,7 @@ open class GameCenterAchievementsAPI {
      */
     open class func gameCenterAchievementsGroupAchievementUpdateToOneRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
-
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -682,8 +676,7 @@ open class GameCenterAchievementsAPI {
      */
     open class func gameCenterAchievementsLocalizationsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterAchievementLocalizationsResponse> {
         let localVariableRequestBuilder: RequestBuilder<GameCenterAchievementLocalizationsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -820,8 +813,7 @@ open class GameCenterAchievementsAPI {
      */
     open class func gameCenterAchievementsReleasesGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterAchievementReleasesResponse> {
         let localVariableRequestBuilder: RequestBuilder<GameCenterAchievementReleasesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -884,7 +876,6 @@ open class GameCenterAchievementsAPI {
      */
     open class func gameCenterAchievementsUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterAchievementResponse> {
         let localVariableRequestBuilder: RequestBuilder<GameCenterAchievementResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

@@ -67,8 +67,7 @@ open class GameCenterMatchmakingTeamsAPI {
      */
     open class func gameCenterMatchmakingTeamsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterMatchmakingTeamResponse> {
         let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingTeamResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -129,8 +128,7 @@ open class GameCenterMatchmakingTeamsAPI {
      */
     open class func gameCenterMatchmakingTeamsDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
-
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -193,7 +191,6 @@ open class GameCenterMatchmakingTeamsAPI {
      */
     open class func gameCenterMatchmakingTeamsUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterMatchmakingTeamResponse> {
         let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingTeamResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

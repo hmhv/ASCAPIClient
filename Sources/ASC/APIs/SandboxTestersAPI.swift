@@ -86,8 +86,7 @@ open class SandboxTestersAPI {
      */
     open class func sandboxTestersV2GetCollectionWithRequestBuilder(urlString: String) -> RequestBuilder<SandboxTestersV2Response> {
         let localVariableRequestBuilder: RequestBuilder<SandboxTestersV2Response>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -150,7 +149,6 @@ open class SandboxTestersAPI {
      */
     open class func sandboxTestersV2UpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<SandboxTesterV2Response> {
         let localVariableRequestBuilder: RequestBuilder<SandboxTesterV2Response>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

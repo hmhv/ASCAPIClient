@@ -67,8 +67,7 @@ open class InAppPurchaseLocalizationsAPI {
      */
     open class func inAppPurchaseLocalizationsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<InAppPurchaseLocalizationResponse> {
         let localVariableRequestBuilder: RequestBuilder<InAppPurchaseLocalizationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -129,8 +128,7 @@ open class InAppPurchaseLocalizationsAPI {
      */
     open class func inAppPurchaseLocalizationsDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
-
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -217,8 +215,7 @@ open class InAppPurchaseLocalizationsAPI {
      */
     open class func inAppPurchaseLocalizationsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<InAppPurchaseLocalizationResponse> {
         let localVariableRequestBuilder: RequestBuilder<InAppPurchaseLocalizationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -281,7 +278,6 @@ open class InAppPurchaseLocalizationsAPI {
      */
     open class func inAppPurchaseLocalizationsUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<InAppPurchaseLocalizationResponse> {
         let localVariableRequestBuilder: RequestBuilder<InAppPurchaseLocalizationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

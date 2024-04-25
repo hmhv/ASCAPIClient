@@ -108,8 +108,7 @@ open class AppClipDefaultExperiencesAPI {
      */
     open class func appClipDefaultExperiencesAppClipAppStoreReviewDetailGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppClipAppStoreReviewDetailResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppClipAppStoreReviewDetailResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -234,8 +233,7 @@ open class AppClipDefaultExperiencesAPI {
      */
     open class func appClipDefaultExperiencesAppClipDefaultExperienceLocalizationsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppClipDefaultExperienceLocalizationsResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppClipDefaultExperienceLocalizationsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -293,8 +291,7 @@ open class AppClipDefaultExperiencesAPI {
      */
     open class func appClipDefaultExperiencesCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppClipDefaultExperienceResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppClipDefaultExperienceResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -355,8 +352,7 @@ open class AppClipDefaultExperiencesAPI {
      */
     open class func appClipDefaultExperiencesDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
-
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -506,8 +502,7 @@ open class AppClipDefaultExperiencesAPI {
      */
     open class func appClipDefaultExperiencesGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppClipDefaultExperienceResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppClipDefaultExperienceResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -874,8 +869,7 @@ open class AppClipDefaultExperiencesAPI {
      */
     open class func appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppStoreVersionResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppStoreVersionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -936,8 +930,7 @@ open class AppClipDefaultExperiencesAPI {
      */
     open class func appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<AppClipDefaultExperienceReleaseWithAppStoreVersionLinkageResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppClipDefaultExperienceReleaseWithAppStoreVersionLinkageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -1000,8 +993,7 @@ open class AppClipDefaultExperiencesAPI {
      */
     open class func appClipDefaultExperiencesReleaseWithAppStoreVersionUpdateToOneRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
-
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -1064,7 +1056,6 @@ open class AppClipDefaultExperiencesAPI {
      */
     open class func appClipDefaultExperiencesUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppClipDefaultExperienceResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppClipDefaultExperienceResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

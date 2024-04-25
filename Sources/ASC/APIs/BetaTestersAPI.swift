@@ -72,8 +72,7 @@ open class BetaTestersAPI {
      */
     open class func betaTestersAppsDeleteToManyRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
-
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -195,8 +194,7 @@ open class BetaTestersAPI {
      */
     open class func betaTestersAppsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppsWithoutIncludesResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppsWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -262,8 +260,7 @@ open class BetaTestersAPI {
      */
     open class func betaTestersAppsGetToManyRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<BetaTesterAppsLinkagesResponse> {
         let localVariableRequestBuilder: RequestBuilder<BetaTesterAppsLinkagesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -326,8 +323,7 @@ open class BetaTestersAPI {
      */
     open class func betaTestersBetaGroupsCreateToManyRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -390,8 +386,7 @@ open class BetaTestersAPI {
      */
     open class func betaTestersBetaGroupsDeleteToManyRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
-
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -480,8 +475,7 @@ open class BetaTestersAPI {
      */
     open class func betaTestersBetaGroupsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<BetaGroupsWithoutIncludesResponse> {
         let localVariableRequestBuilder: RequestBuilder<BetaGroupsWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -547,8 +541,7 @@ open class BetaTestersAPI {
      */
     open class func betaTestersBetaGroupsGetToManyRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<BetaTesterBetaGroupsLinkagesResponse> {
         let localVariableRequestBuilder: RequestBuilder<BetaTesterBetaGroupsLinkagesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -630,8 +623,7 @@ open class BetaTestersAPI {
      */
     open class func betaTestersBetaTesterUsagesGetMetricsWithRequestBuilder(urlString: String) -> RequestBuilder<BetaTesterUsagesV1MetricResponse> {
         let localVariableRequestBuilder: RequestBuilder<BetaTesterUsagesV1MetricResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -694,8 +686,7 @@ open class BetaTestersAPI {
      */
     open class func betaTestersBuildsCreateToManyRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -758,8 +749,7 @@ open class BetaTestersAPI {
      */
     open class func betaTestersBuildsDeleteToManyRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
-
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -858,8 +848,7 @@ open class BetaTestersAPI {
      */
     open class func betaTestersBuildsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<BuildsWithoutIncludesResponse> {
         let localVariableRequestBuilder: RequestBuilder<BuildsWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -925,8 +914,7 @@ open class BetaTestersAPI {
      */
     open class func betaTestersBuildsGetToManyRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<BetaTesterBuildsLinkagesResponse> {
         let localVariableRequestBuilder: RequestBuilder<BetaTesterBuildsLinkagesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -984,8 +972,7 @@ open class BetaTestersAPI {
      */
     open class func betaTestersCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<BetaTesterResponse> {
         let localVariableRequestBuilder: RequestBuilder<BetaTesterResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -1046,8 +1033,7 @@ open class BetaTestersAPI {
      */
     open class func betaTestersDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
-
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -1306,8 +1292,7 @@ open class BetaTestersAPI {
      */
     open class func betaTestersGetCollectionWithRequestBuilder(urlString: String) -> RequestBuilder<BetaTestersResponse> {
         let localVariableRequestBuilder: RequestBuilder<BetaTestersResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -1519,7 +1504,6 @@ open class BetaTestersAPI {
      */
     open class func betaTestersGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<BetaTesterResponse> {
         let localVariableRequestBuilder: RequestBuilder<BetaTesterResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

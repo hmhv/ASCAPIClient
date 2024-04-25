@@ -137,8 +137,7 @@ open class ScmRepositoriesAPI {
      */
     open class func scmRepositoriesGetCollectionWithRequestBuilder(urlString: String) -> RequestBuilder<ScmRepositoriesResponse> {
         let localVariableRequestBuilder: RequestBuilder<ScmRepositoriesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -265,8 +264,7 @@ open class ScmRepositoriesAPI {
      */
     open class func scmRepositoriesGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<ScmRepositoryResponse> {
         let localVariableRequestBuilder: RequestBuilder<ScmRepositoryResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -374,8 +372,7 @@ open class ScmRepositoriesAPI {
      */
     open class func scmRepositoriesGitReferencesGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<ScmGitReferencesResponse> {
         let localVariableRequestBuilder: RequestBuilder<ScmGitReferencesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -490,7 +487,6 @@ open class ScmRepositoriesAPI {
      */
     open class func scmRepositoriesPullRequestsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<ScmPullRequestsResponse> {
         let localVariableRequestBuilder: RequestBuilder<ScmPullRequestsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

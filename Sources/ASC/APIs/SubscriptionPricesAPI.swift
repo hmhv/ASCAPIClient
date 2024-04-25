@@ -67,8 +67,7 @@ open class SubscriptionPricesAPI {
      */
     open class func subscriptionPricesCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<SubscriptionPriceResponse> {
         let localVariableRequestBuilder: RequestBuilder<SubscriptionPriceResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -129,7 +128,6 @@ open class SubscriptionPricesAPI {
      */
     open class func subscriptionPricesDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
-
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

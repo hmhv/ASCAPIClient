@@ -67,8 +67,7 @@ open class GameCenterMatchmakingRulesAPI {
      */
     open class func gameCenterMatchmakingRulesCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterMatchmakingRuleResponse> {
         let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingRuleResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -129,8 +128,7 @@ open class GameCenterMatchmakingRulesAPI {
      */
     open class func gameCenterMatchmakingRulesDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
-
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -236,8 +234,7 @@ open class GameCenterMatchmakingRulesAPI {
      */
     open class func gameCenterMatchmakingRulesMatchmakingBooleanRuleResultsGetMetricsWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterMatchmakingBooleanRuleResultsV1MetricResponse> {
         let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingBooleanRuleResultsV1MetricResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -345,8 +342,7 @@ open class GameCenterMatchmakingRulesAPI {
      */
     open class func gameCenterMatchmakingRulesMatchmakingNumberRuleResultsGetMetricsWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterMatchmakingNumberRuleResultsV1MetricResponse> {
         let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingNumberRuleResultsV1MetricResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -448,8 +444,7 @@ open class GameCenterMatchmakingRulesAPI {
      */
     open class func gameCenterMatchmakingRulesMatchmakingRuleErrorsGetMetricsWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterMatchmakingRuleErrorsV1MetricResponse> {
         let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingRuleErrorsV1MetricResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -512,7 +507,6 @@ open class GameCenterMatchmakingRulesAPI {
      */
     open class func gameCenterMatchmakingRulesUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterMatchmakingRuleResponse> {
         let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingRuleResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

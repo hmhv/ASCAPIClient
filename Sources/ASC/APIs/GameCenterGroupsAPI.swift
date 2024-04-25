@@ -67,8 +67,7 @@ open class GameCenterGroupsAPI {
      */
     open class func gameCenterGroupsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterGroupResponse> {
         let localVariableRequestBuilder: RequestBuilder<GameCenterGroupResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -129,8 +128,7 @@ open class GameCenterGroupsAPI {
      */
     open class func gameCenterGroupsDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
-
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -308,8 +306,7 @@ open class GameCenterGroupsAPI {
      */
     open class func gameCenterGroupsGameCenterAchievementsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterAchievementsResponse> {
         let localVariableRequestBuilder: RequestBuilder<GameCenterAchievementsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -375,8 +372,7 @@ open class GameCenterGroupsAPI {
      */
     open class func gameCenterGroupsGameCenterAchievementsGetToManyRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterGroupGameCenterAchievementsLinkagesResponse> {
         let localVariableRequestBuilder: RequestBuilder<GameCenterGroupGameCenterAchievementsLinkagesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -439,8 +435,7 @@ open class GameCenterGroupsAPI {
      */
     open class func gameCenterGroupsGameCenterAchievementsReplaceToManyRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
-
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -753,8 +748,7 @@ open class GameCenterGroupsAPI {
      */
     open class func gameCenterGroupsGameCenterDetailsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterDetailsResponse> {
         let localVariableRequestBuilder: RequestBuilder<GameCenterDetailsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -954,8 +948,7 @@ open class GameCenterGroupsAPI {
      */
     open class func gameCenterGroupsGameCenterLeaderboardSetsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterLeaderboardSetsResponse> {
         let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardSetsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -1021,8 +1014,7 @@ open class GameCenterGroupsAPI {
      */
     open class func gameCenterGroupsGameCenterLeaderboardSetsGetToManyRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterGroupGameCenterLeaderboardSetsLinkagesResponse> {
         let localVariableRequestBuilder: RequestBuilder<GameCenterGroupGameCenterLeaderboardSetsLinkagesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -1085,8 +1077,7 @@ open class GameCenterGroupsAPI {
      */
     open class func gameCenterGroupsGameCenterLeaderboardSetsReplaceToManyRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
-
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -1292,8 +1283,7 @@ open class GameCenterGroupsAPI {
      */
     open class func gameCenterGroupsGameCenterLeaderboardsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterLeaderboardsResponse> {
         let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -1359,8 +1349,7 @@ open class GameCenterGroupsAPI {
      */
     open class func gameCenterGroupsGameCenterLeaderboardsGetToManyRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterGroupGameCenterLeaderboardsLinkagesResponse> {
         let localVariableRequestBuilder: RequestBuilder<GameCenterGroupGameCenterLeaderboardsLinkagesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -1423,8 +1412,7 @@ open class GameCenterGroupsAPI {
      */
     open class func gameCenterGroupsGameCenterLeaderboardsReplaceToManyRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
-
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -1612,8 +1600,7 @@ open class GameCenterGroupsAPI {
      */
     open class func gameCenterGroupsGetCollectionWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterGroupsResponse> {
         let localVariableRequestBuilder: RequestBuilder<GameCenterGroupsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -1800,8 +1787,7 @@ open class GameCenterGroupsAPI {
      */
     open class func gameCenterGroupsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterGroupResponse> {
         let localVariableRequestBuilder: RequestBuilder<GameCenterGroupResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -1864,7 +1850,6 @@ open class GameCenterGroupsAPI {
      */
     open class func gameCenterGroupsUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterGroupResponse> {
         let localVariableRequestBuilder: RequestBuilder<GameCenterGroupResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

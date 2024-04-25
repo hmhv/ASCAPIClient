@@ -72,7 +72,6 @@ open class TerritoryAvailabilitiesAPI {
      */
     open class func territoryAvailabilitiesUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<TerritoryAvailabilityResponse> {
         let localVariableRequestBuilder: RequestBuilder<TerritoryAvailabilityResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

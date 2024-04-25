@@ -96,7 +96,6 @@ open class ScmGitReferencesAPI {
      */
     open class func scmGitReferencesGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<ScmGitReferenceResponse> {
         let localVariableRequestBuilder: RequestBuilder<ScmGitReferenceResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

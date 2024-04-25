@@ -67,8 +67,7 @@ open class AlternativeDistributionPackagesAPI {
      */
     open class func alternativeDistributionPackagesCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AlternativeDistributionPackageResponse> {
         let localVariableRequestBuilder: RequestBuilder<AlternativeDistributionPackageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -172,8 +171,7 @@ open class AlternativeDistributionPackagesAPI {
      */
     open class func alternativeDistributionPackagesGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AlternativeDistributionPackageResponse> {
         let localVariableRequestBuilder: RequestBuilder<AlternativeDistributionPackageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -322,7 +320,6 @@ open class AlternativeDistributionPackagesAPI {
      */
     open class func alternativeDistributionPackagesVersionsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AlternativeDistributionPackageVersionsResponse> {
         let localVariableRequestBuilder: RequestBuilder<AlternativeDistributionPackageVersionsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

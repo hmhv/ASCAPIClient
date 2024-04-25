@@ -100,8 +100,7 @@ open class ScmProvidersAPI {
      */
     open class func scmProvidersGetCollectionWithRequestBuilder(urlString: String) -> RequestBuilder<ScmProvidersResponse> {
         let localVariableRequestBuilder: RequestBuilder<ScmProvidersResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -194,8 +193,7 @@ open class ScmProvidersAPI {
      */
     open class func scmProvidersGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<ScmProviderResponse> {
         let localVariableRequestBuilder: RequestBuilder<ScmProviderResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -319,7 +317,6 @@ open class ScmProvidersAPI {
      */
     open class func scmProvidersRepositoriesGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<ScmRepositoriesResponse> {
         let localVariableRequestBuilder: RequestBuilder<ScmRepositoriesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

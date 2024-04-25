@@ -103,8 +103,7 @@ open class AppStoreVersionsAPI {
     @available(*, deprecated, message: "This operation is deprecated.")
     open class func appStoreVersionsAgeRatingDeclarationGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AgeRatingDeclarationWithoutIncludesResponse> {
         let localVariableRequestBuilder: RequestBuilder<AgeRatingDeclarationWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -208,8 +207,7 @@ open class AppStoreVersionsAPI {
      */
     open class func appStoreVersionsAlternativeDistributionPackageGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AlternativeDistributionPackageResponse> {
         let localVariableRequestBuilder: RequestBuilder<AlternativeDistributionPackageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -372,8 +370,7 @@ open class AppStoreVersionsAPI {
      */
     open class func appStoreVersionsAppClipDefaultExperienceGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppClipDefaultExperienceResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppClipDefaultExperienceResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -434,8 +431,7 @@ open class AppStoreVersionsAPI {
      */
     open class func appStoreVersionsAppClipDefaultExperienceGetToOneRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<AppStoreVersionAppClipDefaultExperienceLinkageResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppStoreVersionAppClipDefaultExperienceLinkageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -498,8 +494,7 @@ open class AppStoreVersionsAPI {
      */
     open class func appStoreVersionsAppClipDefaultExperienceUpdateToOneRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
-
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -643,8 +638,7 @@ open class AppStoreVersionsAPI {
      */
     open class func appStoreVersionsAppStoreReviewDetailGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppStoreReviewDetailResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppStoreReviewDetailResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -812,8 +806,7 @@ open class AppStoreVersionsAPI {
     @available(*, deprecated, message: "This operation is deprecated.")
     open class func appStoreVersionsAppStoreVersionExperimentsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppStoreVersionExperimentsResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppStoreVersionExperimentsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -1041,8 +1034,7 @@ open class AppStoreVersionsAPI {
      */
     open class func appStoreVersionsAppStoreVersionExperimentsV2GetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppStoreVersionExperimentsV2Response> {
         let localVariableRequestBuilder: RequestBuilder<AppStoreVersionExperimentsV2Response>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -1208,8 +1200,7 @@ open class AppStoreVersionsAPI {
      */
     open class func appStoreVersionsAppStoreVersionLocalizationsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppStoreVersionLocalizationsResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppStoreVersionLocalizationsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -1286,8 +1277,7 @@ open class AppStoreVersionsAPI {
      */
     open class func appStoreVersionsAppStoreVersionPhasedReleaseGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppStoreVersionPhasedReleaseWithoutIncludesResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppStoreVersionPhasedReleaseWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -1406,8 +1396,7 @@ open class AppStoreVersionsAPI {
     @available(*, deprecated, message: "This operation is deprecated.")
     open class func appStoreVersionsAppStoreVersionSubmissionGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppStoreVersionSubmissionResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppStoreVersionSubmissionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -1503,8 +1492,7 @@ open class AppStoreVersionsAPI {
      */
     open class func appStoreVersionsBuildGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<BuildWithoutIncludesResponse> {
         let localVariableRequestBuilder: RequestBuilder<BuildWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -1565,8 +1553,7 @@ open class AppStoreVersionsAPI {
      */
     open class func appStoreVersionsBuildGetToOneRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<AppStoreVersionBuildLinkageResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppStoreVersionBuildLinkageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -1629,8 +1616,7 @@ open class AppStoreVersionsAPI {
      */
     open class func appStoreVersionsBuildUpdateToOneRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
-
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -1688,8 +1674,7 @@ open class AppStoreVersionsAPI {
      */
     open class func appStoreVersionsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppStoreVersionResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppStoreVersionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -2054,8 +2039,7 @@ open class AppStoreVersionsAPI {
      */
     open class func appStoreVersionsCustomerReviewsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<CustomerReviewsResponse> {
         let localVariableRequestBuilder: RequestBuilder<CustomerReviewsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -2116,8 +2100,7 @@ open class AppStoreVersionsAPI {
      */
     open class func appStoreVersionsDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
-
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -2444,8 +2427,7 @@ open class AppStoreVersionsAPI {
      */
     open class func appStoreVersionsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppStoreVersionResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppStoreVersionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -2524,8 +2506,7 @@ open class AppStoreVersionsAPI {
      */
     open class func appStoreVersionsRoutingAppCoverageGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<RoutingAppCoverageWithoutIncludesResponse> {
         let localVariableRequestBuilder: RequestBuilder<RoutingAppCoverageWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -2588,7 +2569,6 @@ open class AppStoreVersionsAPI {
      */
     open class func appStoreVersionsUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppStoreVersionResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppStoreVersionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

@@ -105,8 +105,7 @@ open class BuildBetaDetailsAPI {
      */
     open class func buildBetaDetailsBuildGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<BuildWithoutIncludesResponse> {
         let localVariableRequestBuilder: RequestBuilder<BuildWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -229,8 +228,7 @@ open class BuildBetaDetailsAPI {
      */
     open class func buildBetaDetailsGetCollectionWithRequestBuilder(urlString: String) -> RequestBuilder<BuildBetaDetailsResponse> {
         let localVariableRequestBuilder: RequestBuilder<BuildBetaDetailsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -349,8 +347,7 @@ open class BuildBetaDetailsAPI {
      */
     open class func buildBetaDetailsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<BuildBetaDetailResponse> {
         let localVariableRequestBuilder: RequestBuilder<BuildBetaDetailResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -413,7 +410,6 @@ open class BuildBetaDetailsAPI {
      */
     open class func buildBetaDetailsUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<BuildBetaDetailResponse> {
         let localVariableRequestBuilder: RequestBuilder<BuildBetaDetailResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

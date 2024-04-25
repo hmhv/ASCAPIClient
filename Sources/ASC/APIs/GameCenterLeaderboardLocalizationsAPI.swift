@@ -67,8 +67,7 @@ open class GameCenterLeaderboardLocalizationsAPI {
      */
     open class func gameCenterLeaderboardLocalizationsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterLeaderboardLocalizationResponse> {
         let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardLocalizationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -129,8 +128,7 @@ open class GameCenterLeaderboardLocalizationsAPI {
      */
     open class func gameCenterLeaderboardLocalizationsDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
-
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -235,8 +233,7 @@ open class GameCenterLeaderboardLocalizationsAPI {
      */
     open class func gameCenterLeaderboardLocalizationsGameCenterLeaderboardImageGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterLeaderboardImageResponse> {
         let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardImageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -342,8 +339,7 @@ open class GameCenterLeaderboardLocalizationsAPI {
      */
     open class func gameCenterLeaderboardLocalizationsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterLeaderboardLocalizationResponse> {
         let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardLocalizationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -406,7 +402,6 @@ open class GameCenterLeaderboardLocalizationsAPI {
      */
     open class func gameCenterLeaderboardLocalizationsUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterLeaderboardLocalizationResponse> {
         let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardLocalizationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

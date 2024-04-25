@@ -67,7 +67,6 @@ open class SubscriptionGroupSubmissionsAPI {
      */
     open class func subscriptionGroupSubmissionsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<SubscriptionGroupSubmissionResponse> {
         let localVariableRequestBuilder: RequestBuilder<SubscriptionGroupSubmissionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

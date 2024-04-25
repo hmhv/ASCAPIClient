@@ -88,8 +88,7 @@ open class ProfilesAPI {
      */
     open class func profilesBundleIdGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<BundleIdWithoutIncludesResponse> {
         let localVariableRequestBuilder: RequestBuilder<BundleIdWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -172,8 +171,7 @@ open class ProfilesAPI {
      */
     open class func profilesCertificatesGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<CertificatesWithoutIncludesResponse> {
         let localVariableRequestBuilder: RequestBuilder<CertificatesWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -231,8 +229,7 @@ open class ProfilesAPI {
      */
     open class func profilesCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<ProfileResponse> {
         let localVariableRequestBuilder: RequestBuilder<ProfileResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -293,8 +290,7 @@ open class ProfilesAPI {
      */
     open class func profilesDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
-
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -376,8 +372,7 @@ open class ProfilesAPI {
      */
     open class func profilesDevicesGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<DevicesWithoutIncludesResponse> {
         let localVariableRequestBuilder: RequestBuilder<DevicesWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -582,8 +577,7 @@ open class ProfilesAPI {
      */
     open class func profilesGetCollectionWithRequestBuilder(urlString: String) -> RequestBuilder<ProfilesResponse> {
         let localVariableRequestBuilder: RequestBuilder<ProfilesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -733,7 +727,6 @@ open class ProfilesAPI {
      */
     open class func profilesGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<ProfileResponse> {
         let localVariableRequestBuilder: RequestBuilder<ProfileResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

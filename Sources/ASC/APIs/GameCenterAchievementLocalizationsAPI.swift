@@ -67,8 +67,7 @@ open class GameCenterAchievementLocalizationsAPI {
      */
     open class func gameCenterAchievementLocalizationsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterAchievementLocalizationResponse> {
         let localVariableRequestBuilder: RequestBuilder<GameCenterAchievementLocalizationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -129,8 +128,7 @@ open class GameCenterAchievementLocalizationsAPI {
      */
     open class func gameCenterAchievementLocalizationsDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
-
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -296,8 +294,7 @@ open class GameCenterAchievementLocalizationsAPI {
      */
     open class func gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterAchievementResponse> {
         let localVariableRequestBuilder: RequestBuilder<GameCenterAchievementResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -401,8 +398,7 @@ open class GameCenterAchievementLocalizationsAPI {
      */
     open class func gameCenterAchievementLocalizationsGameCenterAchievementImageGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterAchievementImageResponse> {
         let localVariableRequestBuilder: RequestBuilder<GameCenterAchievementImageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -527,8 +523,7 @@ open class GameCenterAchievementLocalizationsAPI {
      */
     open class func gameCenterAchievementLocalizationsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterAchievementLocalizationResponse> {
         let localVariableRequestBuilder: RequestBuilder<GameCenterAchievementLocalizationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -591,7 +586,6 @@ open class GameCenterAchievementLocalizationsAPI {
      */
     open class func gameCenterAchievementLocalizationsUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterAchievementLocalizationResponse> {
         let localVariableRequestBuilder: RequestBuilder<GameCenterAchievementLocalizationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

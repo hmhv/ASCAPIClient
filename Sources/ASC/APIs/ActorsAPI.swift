@@ -87,8 +87,7 @@ open class ActorsAPI {
      */
     open class func actorsGetCollectionWithRequestBuilder(urlString: String) -> RequestBuilder<ActorsResponse> {
         let localVariableRequestBuilder: RequestBuilder<ActorsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -165,7 +164,6 @@ open class ActorsAPI {
      */
     open class func actorsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<ActorResponse> {
         let localVariableRequestBuilder: RequestBuilder<ActorResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

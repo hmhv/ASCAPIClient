@@ -67,8 +67,7 @@ open class AppClipAdvancedExperiencesAPI {
      */
     open class func appClipAdvancedExperiencesCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppClipAdvancedExperienceResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppClipAdvancedExperienceResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -168,8 +167,7 @@ open class AppClipAdvancedExperiencesAPI {
      */
     open class func appClipAdvancedExperiencesGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppClipAdvancedExperienceResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppClipAdvancedExperienceResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -232,7 +230,6 @@ open class AppClipAdvancedExperiencesAPI {
      */
     open class func appClipAdvancedExperiencesUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppClipAdvancedExperienceResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppClipAdvancedExperienceResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

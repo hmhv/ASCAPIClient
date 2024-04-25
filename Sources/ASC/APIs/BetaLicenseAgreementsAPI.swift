@@ -128,8 +128,7 @@ open class BetaLicenseAgreementsAPI {
      */
     open class func betaLicenseAgreementsAppGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppWithoutIncludesResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -270,8 +269,7 @@ open class BetaLicenseAgreementsAPI {
      */
     open class func betaLicenseAgreementsGetCollectionWithRequestBuilder(urlString: String) -> RequestBuilder<BetaLicenseAgreementsResponse> {
         let localVariableRequestBuilder: RequestBuilder<BetaLicenseAgreementsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -411,8 +409,7 @@ open class BetaLicenseAgreementsAPI {
      */
     open class func betaLicenseAgreementsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<BetaLicenseAgreementResponse> {
         let localVariableRequestBuilder: RequestBuilder<BetaLicenseAgreementResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -475,7 +472,6 @@ open class BetaLicenseAgreementsAPI {
      */
     open class func betaLicenseAgreementsUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<BetaLicenseAgreementResponse> {
         let localVariableRequestBuilder: RequestBuilder<BetaLicenseAgreementResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

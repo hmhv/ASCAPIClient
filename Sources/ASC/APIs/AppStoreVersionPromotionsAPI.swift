@@ -67,7 +67,6 @@ open class AppStoreVersionPromotionsAPI {
      */
     open class func appStoreVersionPromotionsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppStoreVersionPromotionResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppStoreVersionPromotionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

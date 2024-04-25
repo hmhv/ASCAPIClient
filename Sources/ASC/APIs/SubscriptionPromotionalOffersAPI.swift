@@ -67,8 +67,7 @@ open class SubscriptionPromotionalOffersAPI {
      */
     open class func subscriptionPromotionalOffersCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<SubscriptionPromotionalOfferResponse> {
         let localVariableRequestBuilder: RequestBuilder<SubscriptionPromotionalOfferResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -129,8 +128,7 @@ open class SubscriptionPromotionalOffersAPI {
      */
     open class func subscriptionPromotionalOffersDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
-
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -234,8 +232,7 @@ open class SubscriptionPromotionalOffersAPI {
      */
     open class func subscriptionPromotionalOffersGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<SubscriptionPromotionalOfferResponse> {
         let localVariableRequestBuilder: RequestBuilder<SubscriptionPromotionalOfferResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -351,8 +348,7 @@ open class SubscriptionPromotionalOffersAPI {
      */
     open class func subscriptionPromotionalOffersPricesGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<SubscriptionPromotionalOfferPricesResponse> {
         let localVariableRequestBuilder: RequestBuilder<SubscriptionPromotionalOfferPricesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -415,7 +411,6 @@ open class SubscriptionPromotionalOffersAPI {
      */
     open class func subscriptionPromotionalOffersUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<SubscriptionPromotionalOfferResponse> {
         let localVariableRequestBuilder: RequestBuilder<SubscriptionPromotionalOfferResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

@@ -67,8 +67,7 @@ open class GameCenterLeaderboardSetMemberLocalizationsAPI {
      */
     open class func gameCenterLeaderboardSetMemberLocalizationsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterLeaderboardSetMemberLocalizationResponse> {
         let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardSetMemberLocalizationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -129,8 +128,7 @@ open class GameCenterLeaderboardSetMemberLocalizationsAPI {
      */
     open class func gameCenterLeaderboardSetMemberLocalizationsDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
-
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -324,8 +322,7 @@ open class GameCenterLeaderboardSetMemberLocalizationsAPI {
      */
     open class func gameCenterLeaderboardSetMemberLocalizationsGameCenterLeaderboardGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterLeaderboardResponse> {
         let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -516,8 +513,7 @@ open class GameCenterLeaderboardSetMemberLocalizationsAPI {
      */
     open class func gameCenterLeaderboardSetMemberLocalizationsGameCenterLeaderboardSetGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterLeaderboardSetResponse> {
         let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardSetResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -651,8 +647,7 @@ open class GameCenterLeaderboardSetMemberLocalizationsAPI {
      */
     open class func gameCenterLeaderboardSetMemberLocalizationsGetCollectionWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterLeaderboardSetMemberLocalizationsResponse> {
         let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardSetMemberLocalizationsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -715,7 +710,6 @@ open class GameCenterLeaderboardSetMemberLocalizationsAPI {
      */
     open class func gameCenterLeaderboardSetMemberLocalizationsUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterLeaderboardSetMemberLocalizationResponse> {
         let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardSetMemberLocalizationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

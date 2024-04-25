@@ -96,7 +96,6 @@ open class InAppPurchaseContentsAPI {
      */
     open class func inAppPurchaseContentsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<InAppPurchaseContentResponse> {
         let localVariableRequestBuilder: RequestBuilder<InAppPurchaseContentResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

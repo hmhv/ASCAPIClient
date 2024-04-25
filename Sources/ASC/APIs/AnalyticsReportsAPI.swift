@@ -96,8 +96,7 @@ open class AnalyticsReportsAPI {
      */
     open class func analyticsReportsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AnalyticsReportResponse> {
         let localVariableRequestBuilder: RequestBuilder<AnalyticsReportResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -190,7 +189,6 @@ open class AnalyticsReportsAPI {
      */
     open class func analyticsReportsInstancesGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AnalyticsReportInstancesResponse> {
         let localVariableRequestBuilder: RequestBuilder<AnalyticsReportInstancesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

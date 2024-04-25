@@ -67,8 +67,7 @@ open class AlternativeDistributionKeysAPI {
      */
     open class func alternativeDistributionKeysCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AlternativeDistributionKeyResponse> {
         let localVariableRequestBuilder: RequestBuilder<AlternativeDistributionKeyResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -129,8 +128,7 @@ open class AlternativeDistributionKeysAPI {
      */
     open class func alternativeDistributionKeysDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
-
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -204,7 +202,6 @@ open class AlternativeDistributionKeysAPI {
      */
     open class func alternativeDistributionKeysGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AlternativeDistributionKeyResponse> {
         let localVariableRequestBuilder: RequestBuilder<AlternativeDistributionKeyResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

@@ -67,8 +67,7 @@ open class AppEventsAPI {
      */
     open class func appEventsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppEventResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppEventResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -129,8 +128,7 @@ open class AppEventsAPI {
      */
     open class func appEventsDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
-
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -243,8 +241,7 @@ open class AppEventsAPI {
      */
     open class func appEventsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppEventResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppEventResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -402,8 +399,7 @@ open class AppEventsAPI {
      */
     open class func appEventsLocalizationsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppEventLocalizationsResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppEventLocalizationsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -466,7 +462,6 @@ open class AppEventsAPI {
      */
     open class func appEventsUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppEventResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppEventResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

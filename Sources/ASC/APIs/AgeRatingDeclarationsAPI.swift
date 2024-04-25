@@ -72,7 +72,6 @@ open class AgeRatingDeclarationsAPI {
      */
     open class func ageRatingDeclarationsUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AgeRatingDeclarationResponse> {
         let localVariableRequestBuilder: RequestBuilder<AgeRatingDeclarationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

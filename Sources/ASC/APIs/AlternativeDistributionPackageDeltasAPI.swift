@@ -85,7 +85,6 @@ open class AlternativeDistributionPackageDeltasAPI {
      */
     open class func alternativeDistributionPackageDeltasGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AlternativeDistributionPackageDeltaResponse> {
         let localVariableRequestBuilder: RequestBuilder<AlternativeDistributionPackageDeltaResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

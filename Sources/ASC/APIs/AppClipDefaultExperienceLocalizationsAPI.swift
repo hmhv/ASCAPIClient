@@ -112,8 +112,7 @@ open class AppClipDefaultExperienceLocalizationsAPI {
      */
     open class func appClipDefaultExperienceLocalizationsAppClipHeaderImageGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppClipHeaderImageResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppClipHeaderImageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -171,8 +170,7 @@ open class AppClipDefaultExperienceLocalizationsAPI {
      */
     open class func appClipDefaultExperienceLocalizationsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppClipDefaultExperienceLocalizationResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppClipDefaultExperienceLocalizationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -233,8 +231,7 @@ open class AppClipDefaultExperienceLocalizationsAPI {
      */
     open class func appClipDefaultExperienceLocalizationsDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
-
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -338,8 +335,7 @@ open class AppClipDefaultExperienceLocalizationsAPI {
      */
     open class func appClipDefaultExperienceLocalizationsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppClipDefaultExperienceLocalizationResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppClipDefaultExperienceLocalizationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -402,7 +398,6 @@ open class AppClipDefaultExperienceLocalizationsAPI {
      */
     open class func appClipDefaultExperienceLocalizationsUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppClipDefaultExperienceLocalizationResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppClipDefaultExperienceLocalizationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

@@ -128,8 +128,7 @@ open class BetaAppReviewDetailsAPI {
      */
     open class func betaAppReviewDetailsAppGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppWithoutIncludesResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -277,8 +276,7 @@ open class BetaAppReviewDetailsAPI {
      */
     open class func betaAppReviewDetailsGetCollectionWithRequestBuilder(urlString: String) -> RequestBuilder<BetaAppReviewDetailsResponse> {
         let localVariableRequestBuilder: RequestBuilder<BetaAppReviewDetailsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -425,8 +423,7 @@ open class BetaAppReviewDetailsAPI {
      */
     open class func betaAppReviewDetailsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<BetaAppReviewDetailResponse> {
         let localVariableRequestBuilder: RequestBuilder<BetaAppReviewDetailResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -489,7 +486,6 @@ open class BetaAppReviewDetailsAPI {
      */
     open class func betaAppReviewDetailsUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<BetaAppReviewDetailResponse> {
         let localVariableRequestBuilder: RequestBuilder<BetaAppReviewDetailResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

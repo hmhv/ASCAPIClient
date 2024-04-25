@@ -151,8 +151,7 @@ open class AppCustomProductPageVersionsAPI {
      */
     open class func appCustomProductPageVersionsAppCustomProductPageLocalizationsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppCustomProductPageLocalizationsResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppCustomProductPageLocalizationsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -210,8 +209,7 @@ open class AppCustomProductPageVersionsAPI {
      */
     open class func appCustomProductPageVersionsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppCustomProductPageVersionResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppCustomProductPageVersionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -315,7 +313,6 @@ open class AppCustomProductPageVersionsAPI {
      */
     open class func appCustomProductPageVersionsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppCustomProductPageVersionResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppCustomProductPageVersionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

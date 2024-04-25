@@ -67,8 +67,7 @@ open class AlternativeDistributionDomainsAPI {
      */
     open class func alternativeDistributionDomainsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AlternativeDistributionDomainResponse> {
         let localVariableRequestBuilder: RequestBuilder<AlternativeDistributionDomainResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -129,8 +128,7 @@ open class AlternativeDistributionDomainsAPI {
      */
     open class func alternativeDistributionDomainsDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
-
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -203,8 +201,7 @@ open class AlternativeDistributionDomainsAPI {
      */
     open class func alternativeDistributionDomainsGetCollectionWithRequestBuilder(urlString: String) -> RequestBuilder<AlternativeDistributionDomainsResponse> {
         let localVariableRequestBuilder: RequestBuilder<AlternativeDistributionDomainsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -279,7 +276,6 @@ open class AlternativeDistributionDomainsAPI {
      */
     open class func alternativeDistributionDomainsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AlternativeDistributionDomainResponse> {
         let localVariableRequestBuilder: RequestBuilder<AlternativeDistributionDomainResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

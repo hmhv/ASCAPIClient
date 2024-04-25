@@ -103,7 +103,6 @@ open class ScmPullRequestsAPI {
      */
     open class func scmPullRequestsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<ScmPullRequestResponse> {
         let localVariableRequestBuilder: RequestBuilder<ScmPullRequestResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

@@ -189,8 +189,7 @@ open class AppClipsAPI {
      */
     open class func appClipsAppClipAdvancedExperiencesGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppClipAdvancedExperiencesResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppClipAdvancedExperiencesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -359,8 +358,7 @@ open class AppClipsAPI {
      */
     open class func appClipsAppClipDefaultExperiencesGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppClipDefaultExperiencesResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppClipDefaultExperiencesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -487,7 +485,6 @@ open class AppClipsAPI {
      */
     open class func appClipsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppClipResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppClipResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

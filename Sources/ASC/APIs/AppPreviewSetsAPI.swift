@@ -119,8 +119,7 @@ open class AppPreviewSetsAPI {
      */
     open class func appPreviewSetsAppPreviewsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppPreviewsResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppPreviewsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -186,8 +185,7 @@ open class AppPreviewSetsAPI {
      */
     open class func appPreviewSetsAppPreviewsGetToManyRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<AppPreviewSetAppPreviewsLinkagesResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppPreviewSetAppPreviewsLinkagesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -250,8 +248,7 @@ open class AppPreviewSetsAPI {
      */
     open class func appPreviewSetsAppPreviewsReplaceToManyRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
-
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -309,8 +306,7 @@ open class AppPreviewSetsAPI {
      */
     open class func appPreviewSetsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppPreviewSetResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppPreviewSetResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -371,8 +367,7 @@ open class AppPreviewSetsAPI {
      */
     open class func appPreviewSetsDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
-
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -485,7 +480,6 @@ open class AppPreviewSetsAPI {
      */
     open class func appPreviewSetsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppPreviewSetResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppPreviewSetResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

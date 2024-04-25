@@ -67,8 +67,7 @@ open class SubscriptionGroupsAPI {
      */
     open class func subscriptionGroupsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<SubscriptionGroupResponse> {
         let localVariableRequestBuilder: RequestBuilder<SubscriptionGroupResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -129,8 +128,7 @@ open class SubscriptionGroupsAPI {
      */
     open class func subscriptionGroupsDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
-
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -263,8 +261,7 @@ open class SubscriptionGroupsAPI {
      */
     open class func subscriptionGroupsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<SubscriptionGroupResponse> {
         let localVariableRequestBuilder: RequestBuilder<SubscriptionGroupResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -367,8 +364,7 @@ open class SubscriptionGroupsAPI {
      */
     open class func subscriptionGroupsSubscriptionGroupLocalizationsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<SubscriptionGroupLocalizationsResponse> {
         let localVariableRequestBuilder: RequestBuilder<SubscriptionGroupLocalizationsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -672,8 +668,7 @@ open class SubscriptionGroupsAPI {
      */
     open class func subscriptionGroupsSubscriptionsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<SubscriptionsResponse> {
         let localVariableRequestBuilder: RequestBuilder<SubscriptionsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -736,7 +731,6 @@ open class SubscriptionGroupsAPI {
      */
     open class func subscriptionGroupsUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<SubscriptionGroupResponse> {
         let localVariableRequestBuilder: RequestBuilder<SubscriptionGroupResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

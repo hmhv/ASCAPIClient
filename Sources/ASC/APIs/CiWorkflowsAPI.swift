@@ -252,8 +252,7 @@ open class CiWorkflowsAPI {
      */
     open class func ciWorkflowsBuildRunsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<CiBuildRunsResponse> {
         let localVariableRequestBuilder: RequestBuilder<CiBuildRunsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -311,8 +310,7 @@ open class CiWorkflowsAPI {
      */
     open class func ciWorkflowsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<CiWorkflowResponse> {
         let localVariableRequestBuilder: RequestBuilder<CiWorkflowResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -373,8 +371,7 @@ open class CiWorkflowsAPI {
      */
     open class func ciWorkflowsDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
-
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -527,8 +524,7 @@ open class CiWorkflowsAPI {
      */
     open class func ciWorkflowsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<CiWorkflowResponse> {
         let localVariableRequestBuilder: RequestBuilder<CiWorkflowResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -646,8 +642,7 @@ open class CiWorkflowsAPI {
      */
     open class func ciWorkflowsRepositoryGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<ScmRepositoryResponse> {
         let localVariableRequestBuilder: RequestBuilder<ScmRepositoryResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -710,7 +705,6 @@ open class CiWorkflowsAPI {
      */
     open class func ciWorkflowsUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<CiWorkflowResponse> {
         let localVariableRequestBuilder: RequestBuilder<CiWorkflowResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

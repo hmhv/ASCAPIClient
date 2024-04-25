@@ -67,7 +67,6 @@ open class InAppPurchaseSubmissionsAPI {
      */
     open class func inAppPurchaseSubmissionsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<InAppPurchaseSubmissionResponse> {
         let localVariableRequestBuilder: RequestBuilder<InAppPurchaseSubmissionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

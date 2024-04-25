@@ -108,8 +108,7 @@ open class CiXcodeVersionsAPI {
      */
     open class func ciXcodeVersionsGetCollectionWithRequestBuilder(urlString: String) -> RequestBuilder<CiXcodeVersionsResponse> {
         let localVariableRequestBuilder: RequestBuilder<CiXcodeVersionsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -210,8 +209,7 @@ open class CiXcodeVersionsAPI {
      */
     open class func ciXcodeVersionsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<CiXcodeVersionResponse> {
         let localVariableRequestBuilder: RequestBuilder<CiXcodeVersionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -315,7 +313,6 @@ open class CiXcodeVersionsAPI {
      */
     open class func ciXcodeVersionsMacOsVersionsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<CiMacOsVersionsResponse> {
         let localVariableRequestBuilder: RequestBuilder<CiMacOsVersionsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

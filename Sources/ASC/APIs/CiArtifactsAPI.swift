@@ -85,7 +85,6 @@ open class CiArtifactsAPI {
      */
     open class func ciArtifactsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<CiArtifactResponse> {
         let localVariableRequestBuilder: RequestBuilder<CiArtifactResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

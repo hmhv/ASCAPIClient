@@ -67,8 +67,7 @@ open class EndUserLicenseAgreementsAPI {
      */
     open class func endUserLicenseAgreementsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<EndUserLicenseAgreementResponse> {
         let localVariableRequestBuilder: RequestBuilder<EndUserLicenseAgreementResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -129,8 +128,7 @@ open class EndUserLicenseAgreementsAPI {
      */
     open class func endUserLicenseAgreementsDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
-
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -229,8 +227,7 @@ open class EndUserLicenseAgreementsAPI {
      */
     open class func endUserLicenseAgreementsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<EndUserLicenseAgreementResponse> {
         let localVariableRequestBuilder: RequestBuilder<EndUserLicenseAgreementResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -306,8 +303,7 @@ open class EndUserLicenseAgreementsAPI {
      */
     open class func endUserLicenseAgreementsTerritoriesGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<TerritoriesWithoutIncludesResponse> {
         let localVariableRequestBuilder: RequestBuilder<TerritoriesWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -370,7 +366,6 @@ open class EndUserLicenseAgreementsAPI {
      */
     open class func endUserLicenseAgreementsUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<EndUserLicenseAgreementResponse> {
         let localVariableRequestBuilder: RequestBuilder<EndUserLicenseAgreementResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

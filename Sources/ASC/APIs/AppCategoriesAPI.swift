@@ -112,8 +112,7 @@ open class AppCategoriesAPI {
      */
     open class func appCategoriesGetCollectionWithRequestBuilder(urlString: String) -> RequestBuilder<AppCategoriesResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppCategoriesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -202,8 +201,7 @@ open class AppCategoriesAPI {
      */
     open class func appCategoriesGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppCategoryResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppCategoryResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -278,8 +276,7 @@ open class AppCategoriesAPI {
      */
     open class func appCategoriesParentGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppCategoryWithoutIncludesResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppCategoryWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -357,7 +354,6 @@ open class AppCategoriesAPI {
      */
     open class func appCategoriesSubcategoriesGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppCategoriesWithoutIncludesResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppCategoriesWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

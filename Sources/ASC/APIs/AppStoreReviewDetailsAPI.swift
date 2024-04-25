@@ -120,8 +120,7 @@ open class AppStoreReviewDetailsAPI {
      */
     open class func appStoreReviewDetailsAppStoreReviewAttachmentsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppStoreReviewAttachmentsResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppStoreReviewAttachmentsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -179,8 +178,7 @@ open class AppStoreReviewDetailsAPI {
      */
     open class func appStoreReviewDetailsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppStoreReviewDetailResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppStoreReviewDetailResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -292,8 +290,7 @@ open class AppStoreReviewDetailsAPI {
      */
     open class func appStoreReviewDetailsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppStoreReviewDetailResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppStoreReviewDetailResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -356,7 +353,6 @@ open class AppStoreReviewDetailsAPI {
      */
     open class func appStoreReviewDetailsUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppStoreReviewDetailResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppStoreReviewDetailResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

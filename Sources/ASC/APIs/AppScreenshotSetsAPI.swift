@@ -118,8 +118,7 @@ open class AppScreenshotSetsAPI {
      */
     open class func appScreenshotSetsAppScreenshotsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppScreenshotsResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppScreenshotsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -185,8 +184,7 @@ open class AppScreenshotSetsAPI {
      */
     open class func appScreenshotSetsAppScreenshotsGetToManyRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<AppScreenshotSetAppScreenshotsLinkagesResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppScreenshotSetAppScreenshotsLinkagesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -249,8 +247,7 @@ open class AppScreenshotSetsAPI {
      */
     open class func appScreenshotSetsAppScreenshotsReplaceToManyRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
-
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -308,8 +305,7 @@ open class AppScreenshotSetsAPI {
      */
     open class func appScreenshotSetsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppScreenshotSetResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppScreenshotSetResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -370,8 +366,7 @@ open class AppScreenshotSetsAPI {
      */
     open class func appScreenshotSetsDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
-
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -483,7 +478,6 @@ open class AppScreenshotSetsAPI {
      */
     open class func appScreenshotSetsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppScreenshotSetResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppScreenshotSetResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

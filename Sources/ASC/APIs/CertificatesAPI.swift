@@ -67,8 +67,7 @@ open class CertificatesAPI {
      */
     open class func certificatesCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<CertificateResponse> {
         let localVariableRequestBuilder: RequestBuilder<CertificateResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -129,8 +128,7 @@ open class CertificatesAPI {
      */
     open class func certificatesDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
-
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -254,8 +252,7 @@ open class CertificatesAPI {
      */
     open class func certificatesGetCollectionWithRequestBuilder(urlString: String) -> RequestBuilder<CertificatesResponse> {
         let localVariableRequestBuilder: RequestBuilder<CertificatesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -335,7 +332,6 @@ open class CertificatesAPI {
      */
     open class func certificatesGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<CertificateResponse> {
         let localVariableRequestBuilder: RequestBuilder<CertificateResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

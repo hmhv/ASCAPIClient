@@ -111,8 +111,7 @@ open class CustomerReviewsAPI {
      */
     open class func customerReviewsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<CustomerReviewResponse> {
         let localVariableRequestBuilder: RequestBuilder<CustomerReviewResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -214,7 +213,6 @@ open class CustomerReviewsAPI {
      */
     open class func customerReviewsResponseGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<CustomerReviewResponseV1Response> {
         let localVariableRequestBuilder: RequestBuilder<CustomerReviewResponseV1Response>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

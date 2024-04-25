@@ -67,8 +67,7 @@ open class ReviewSubmissionsAPI {
      */
     open class func reviewSubmissionsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<ReviewSubmissionResponse> {
         let localVariableRequestBuilder: RequestBuilder<ReviewSubmissionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -215,8 +214,7 @@ open class ReviewSubmissionsAPI {
      */
     open class func reviewSubmissionsGetCollectionWithRequestBuilder(urlString: String) -> RequestBuilder<ReviewSubmissionsResponse> {
         let localVariableRequestBuilder: RequestBuilder<ReviewSubmissionsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -333,8 +331,7 @@ open class ReviewSubmissionsAPI {
      */
     open class func reviewSubmissionsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<ReviewSubmissionResponse> {
         let localVariableRequestBuilder: RequestBuilder<ReviewSubmissionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -520,8 +517,7 @@ open class ReviewSubmissionsAPI {
      */
     open class func reviewSubmissionsItemsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<ReviewSubmissionItemsResponse> {
         let localVariableRequestBuilder: RequestBuilder<ReviewSubmissionItemsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -584,7 +580,6 @@ open class ReviewSubmissionsAPI {
      */
     open class func reviewSubmissionsUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<ReviewSubmissionResponse> {
         let localVariableRequestBuilder: RequestBuilder<ReviewSubmissionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

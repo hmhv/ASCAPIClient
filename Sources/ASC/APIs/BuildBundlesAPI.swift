@@ -83,8 +83,7 @@ open class BuildBundlesAPI {
      */
     open class func buildBundlesAppClipDomainCacheStatusGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppClipDomainStatusResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppClipDomainStatusResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -158,8 +157,7 @@ open class BuildBundlesAPI {
      */
     open class func buildBundlesAppClipDomainDebugStatusGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppClipDomainStatusResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppClipDomainStatusResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -262,8 +260,7 @@ open class BuildBundlesAPI {
      */
     open class func buildBundlesBetaAppClipInvocationsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<BetaAppClipInvocationsResponse> {
         let localVariableRequestBuilder: RequestBuilder<BetaAppClipInvocationsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -342,7 +339,6 @@ open class BuildBundlesAPI {
      */
     open class func buildBundlesBuildBundleFileSizesGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<BuildBundleFileSizesResponse> {
         let localVariableRequestBuilder: RequestBuilder<BuildBundleFileSizesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

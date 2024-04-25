@@ -99,8 +99,7 @@ open class AppInfosAPI {
      */
     open class func appInfosAgeRatingDeclarationGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AgeRatingDeclarationResponse> {
         let localVariableRequestBuilder: RequestBuilder<AgeRatingDeclarationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -219,8 +218,7 @@ open class AppInfosAPI {
      */
     open class func appInfosAppInfoLocalizationsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppInfoLocalizationsResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppInfoLocalizationsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -383,8 +381,7 @@ open class AppInfosAPI {
      */
     open class func appInfosGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppInfoResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppInfoResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -473,8 +470,7 @@ open class AppInfosAPI {
      */
     open class func appInfosPrimaryCategoryGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppCategoryResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppCategoryResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -563,8 +559,7 @@ open class AppInfosAPI {
      */
     open class func appInfosPrimarySubcategoryOneGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppCategoryResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppCategoryResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -653,8 +648,7 @@ open class AppInfosAPI {
      */
     open class func appInfosPrimarySubcategoryTwoGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppCategoryResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppCategoryResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -743,8 +737,7 @@ open class AppInfosAPI {
      */
     open class func appInfosSecondaryCategoryGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppCategoryResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppCategoryResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -833,8 +826,7 @@ open class AppInfosAPI {
      */
     open class func appInfosSecondarySubcategoryOneGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppCategoryResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppCategoryResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -923,8 +915,7 @@ open class AppInfosAPI {
      */
     open class func appInfosSecondarySubcategoryTwoGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppCategoryResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppCategoryResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -987,7 +978,6 @@ open class AppInfosAPI {
      */
     open class func appInfosUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppInfoResponse> {
         let localVariableRequestBuilder: RequestBuilder<AppInfoResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

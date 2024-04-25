@@ -85,8 +85,7 @@ open class InAppPurchaseAvailabilitiesAPI {
      */
     open class func inAppPurchaseAvailabilitiesAvailableTerritoriesGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<TerritoriesResponse> {
         let localVariableRequestBuilder: RequestBuilder<TerritoriesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -144,8 +143,7 @@ open class InAppPurchaseAvailabilitiesAPI {
      */
     open class func inAppPurchaseAvailabilitiesCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<InAppPurchaseAvailabilityResponse> {
         let localVariableRequestBuilder: RequestBuilder<InAppPurchaseAvailabilityResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -243,7 +241,6 @@ open class InAppPurchaseAvailabilitiesAPI {
      */
     open class func inAppPurchaseAvailabilitiesGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<InAppPurchaseAvailabilityResponse> {
         let localVariableRequestBuilder: RequestBuilder<InAppPurchaseAvailabilityResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

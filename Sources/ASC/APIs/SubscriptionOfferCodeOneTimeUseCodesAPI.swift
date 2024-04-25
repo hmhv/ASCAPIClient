@@ -67,8 +67,7 @@ open class SubscriptionOfferCodeOneTimeUseCodesAPI {
      */
     open class func subscriptionOfferCodeOneTimeUseCodesCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<SubscriptionOfferCodeOneTimeUseCodeResponse> {
         let localVariableRequestBuilder: RequestBuilder<SubscriptionOfferCodeOneTimeUseCodeResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -156,8 +155,7 @@ open class SubscriptionOfferCodeOneTimeUseCodesAPI {
      */
     open class func subscriptionOfferCodeOneTimeUseCodesGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<SubscriptionOfferCodeOneTimeUseCodeResponse> {
         let localVariableRequestBuilder: RequestBuilder<SubscriptionOfferCodeOneTimeUseCodeResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -220,8 +218,7 @@ open class SubscriptionOfferCodeOneTimeUseCodesAPI {
      */
     open class func subscriptionOfferCodeOneTimeUseCodesUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<SubscriptionOfferCodeOneTimeUseCodeResponse> {
         let localVariableRequestBuilder: RequestBuilder<SubscriptionOfferCodeOneTimeUseCodeResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -282,7 +279,6 @@ open class SubscriptionOfferCodeOneTimeUseCodesAPI {
      */
     open class func subscriptionOfferCodeOneTimeUseCodesValuesGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<String> {
         let localVariableRequestBuilder: RequestBuilder<String>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }

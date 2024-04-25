@@ -136,8 +136,7 @@ open class CiBuildRunsAPI {
      */
     open class func ciBuildRunsActionsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<CiBuildActionsResponse> {
         let localVariableRequestBuilder: RequestBuilder<CiBuildActionsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -608,8 +607,7 @@ open class CiBuildRunsAPI {
      */
     open class func ciBuildRunsBuildsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<BuildsResponse> {
         let localVariableRequestBuilder: RequestBuilder<BuildsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -667,8 +665,7 @@ open class CiBuildRunsAPI {
      */
     open class func ciBuildRunsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<CiBuildRunResponse> {
         let localVariableRequestBuilder: RequestBuilder<CiBuildRunResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 
     /**
@@ -833,7 +830,6 @@ open class CiBuildRunsAPI {
      */
     open class func ciBuildRunsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<CiBuildRunResponse> {
         let localVariableRequestBuilder: RequestBuilder<CiBuildRunResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: nil, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
     }
 }
