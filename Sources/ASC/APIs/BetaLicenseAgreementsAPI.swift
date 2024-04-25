@@ -127,8 +127,15 @@ open class BetaLicenseAgreementsAPI {
      - returns: RequestBuilder<AppWithoutIncludesResponse> 
      */
     open class func betaLicenseAgreementsAppGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppWithoutIncludesResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<AppWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -268,8 +275,15 @@ open class BetaLicenseAgreementsAPI {
      - returns: RequestBuilder<BetaLicenseAgreementsResponse> 
      */
     open class func betaLicenseAgreementsGetCollectionWithRequestBuilder(urlString: String) -> RequestBuilder<BetaLicenseAgreementsResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<BetaLicenseAgreementsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -408,8 +422,15 @@ open class BetaLicenseAgreementsAPI {
      - returns: RequestBuilder<BetaLicenseAgreementResponse> 
      */
     open class func betaLicenseAgreementsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<BetaLicenseAgreementResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<BetaLicenseAgreementResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -471,7 +492,14 @@ open class BetaLicenseAgreementsAPI {
      - returns: RequestBuilder<BetaLicenseAgreementResponse> 
      */
     open class func betaLicenseAgreementsUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<BetaLicenseAgreementResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            "Content-Type": "application/json",
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<BetaLicenseAgreementResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 }

@@ -83,7 +83,14 @@ open class AnalyticsReportSegmentsAPI {
      - returns: RequestBuilder<AnalyticsReportSegmentResponse> 
      */
     open class func analyticsReportSegmentsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AnalyticsReportSegmentResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<AnalyticsReportSegmentResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 }

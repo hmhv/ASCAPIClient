@@ -375,8 +375,15 @@ open class GameCenterAppVersionsAPI {
      - returns: RequestBuilder<AppStoreVersionResponse> 
      */
     open class func gameCenterAppVersionsAppStoreVersionGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppStoreVersionResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<AppStoreVersionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -438,8 +445,15 @@ open class GameCenterAppVersionsAPI {
      - returns: RequestBuilder<Void> 
      */
     open class func gameCenterAppVersionsCompatibilityVersionsCreateToManyRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            "Content-Type": "application/json",
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -501,8 +515,15 @@ open class GameCenterAppVersionsAPI {
      - returns: RequestBuilder<Void> 
      */
     open class func gameCenterAppVersionsCompatibilityVersionsDeleteToManyRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            "Content-Type": "application/json",
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -628,8 +649,15 @@ open class GameCenterAppVersionsAPI {
      - returns: RequestBuilder<GameCenterAppVersionsResponse> 
      */
     open class func gameCenterAppVersionsCompatibilityVersionsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterAppVersionsResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<GameCenterAppVersionsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -694,8 +722,15 @@ open class GameCenterAppVersionsAPI {
      - returns: RequestBuilder<GameCenterAppVersionCompatibilityVersionsLinkagesResponse> 
      */
     open class func gameCenterAppVersionsCompatibilityVersionsGetToManyRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterAppVersionCompatibilityVersionsLinkagesResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<GameCenterAppVersionCompatibilityVersionsLinkagesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -752,8 +787,15 @@ open class GameCenterAppVersionsAPI {
      - returns: RequestBuilder<GameCenterAppVersionResponse> 
      */
     open class func gameCenterAppVersionsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterAppVersionResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            "Content-Type": "application/json",
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<GameCenterAppVersionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -873,8 +915,15 @@ open class GameCenterAppVersionsAPI {
      - returns: RequestBuilder<GameCenterAppVersionResponse> 
      */
     open class func gameCenterAppVersionsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterAppVersionResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<GameCenterAppVersionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -936,7 +985,14 @@ open class GameCenterAppVersionsAPI {
      - returns: RequestBuilder<GameCenterAppVersionResponse> 
      */
     open class func gameCenterAppVersionsUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterAppVersionResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            "Content-Type": "application/json",
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<GameCenterAppVersionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 }

@@ -66,8 +66,15 @@ open class EndUserLicenseAgreementsAPI {
      - returns: RequestBuilder<EndUserLicenseAgreementResponse> 
      */
     open class func endUserLicenseAgreementsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<EndUserLicenseAgreementResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            "Content-Type": "application/json",
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<EndUserLicenseAgreementResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -127,8 +134,15 @@ open class EndUserLicenseAgreementsAPI {
      - returns: RequestBuilder<Void> 
      */
     open class func endUserLicenseAgreementsDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -226,8 +240,15 @@ open class EndUserLicenseAgreementsAPI {
      - returns: RequestBuilder<EndUserLicenseAgreementResponse> 
      */
     open class func endUserLicenseAgreementsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<EndUserLicenseAgreementResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<EndUserLicenseAgreementResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -302,8 +323,15 @@ open class EndUserLicenseAgreementsAPI {
      - returns: RequestBuilder<TerritoriesWithoutIncludesResponse> 
      */
     open class func endUserLicenseAgreementsTerritoriesGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<TerritoriesWithoutIncludesResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<TerritoriesWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -365,7 +393,14 @@ open class EndUserLicenseAgreementsAPI {
      - returns: RequestBuilder<EndUserLicenseAgreementResponse> 
      */
     open class func endUserLicenseAgreementsUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<EndUserLicenseAgreementResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            "Content-Type": "application/json",
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<EndUserLicenseAgreementResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 }

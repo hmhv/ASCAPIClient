@@ -201,8 +201,15 @@ open class AppCustomProductPageLocalizationsAPI {
      - returns: RequestBuilder<AppPreviewSetsResponse> 
      */
     open class func appCustomProductPageLocalizationsAppPreviewSetsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppPreviewSetsResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<AppPreviewSetsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -409,8 +416,15 @@ open class AppCustomProductPageLocalizationsAPI {
      - returns: RequestBuilder<AppScreenshotSetsResponse> 
      */
     open class func appCustomProductPageLocalizationsAppScreenshotSetsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppScreenshotSetsResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<AppScreenshotSetsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -467,8 +481,15 @@ open class AppCustomProductPageLocalizationsAPI {
      - returns: RequestBuilder<AppCustomProductPageLocalizationResponse> 
      */
     open class func appCustomProductPageLocalizationsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppCustomProductPageLocalizationResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            "Content-Type": "application/json",
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<AppCustomProductPageLocalizationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -528,8 +549,15 @@ open class AppCustomProductPageLocalizationsAPI {
      - returns: RequestBuilder<Void> 
      */
     open class func appCustomProductPageLocalizationsDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -651,8 +679,15 @@ open class AppCustomProductPageLocalizationsAPI {
      - returns: RequestBuilder<AppCustomProductPageLocalizationResponse> 
      */
     open class func appCustomProductPageLocalizationsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppCustomProductPageLocalizationResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<AppCustomProductPageLocalizationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -714,7 +749,14 @@ open class AppCustomProductPageLocalizationsAPI {
      - returns: RequestBuilder<AppCustomProductPageLocalizationResponse> 
      */
     open class func appCustomProductPageLocalizationsUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppCustomProductPageLocalizationResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            "Content-Type": "application/json",
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<AppCustomProductPageLocalizationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 }

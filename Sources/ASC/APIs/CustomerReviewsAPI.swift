@@ -110,8 +110,15 @@ open class CustomerReviewsAPI {
      - returns: RequestBuilder<CustomerReviewResponse> 
      */
     open class func customerReviewsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<CustomerReviewResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<CustomerReviewResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -212,7 +219,14 @@ open class CustomerReviewsAPI {
      - returns: RequestBuilder<CustomerReviewResponseV1Response> 
      */
     open class func customerReviewsResponseGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<CustomerReviewResponseV1Response> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<CustomerReviewResponseV1Response>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 }

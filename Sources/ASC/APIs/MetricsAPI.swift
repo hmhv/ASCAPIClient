@@ -100,8 +100,15 @@ open class MetricsAPI {
      - returns: RequestBuilder<AppsBetaTesterUsagesV1MetricResponse> 
      */
     open class func appsBetaTesterUsagesGetMetricsWithRequestBuilder(urlString: String) -> RequestBuilder<AppsBetaTesterUsagesV1MetricResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<AppsBetaTesterUsagesV1MetricResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -192,8 +199,15 @@ open class MetricsAPI {
      - returns: RequestBuilder<AppsBetaTesterUsagesV1MetricResponse> 
      */
     open class func betaGroupsBetaTesterUsagesGetMetricsWithRequestBuilder(urlString: String) -> RequestBuilder<AppsBetaTesterUsagesV1MetricResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<AppsBetaTesterUsagesV1MetricResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -274,8 +288,15 @@ open class MetricsAPI {
      - returns: RequestBuilder<BetaTesterUsagesV1MetricResponse> 
      */
     open class func betaTestersBetaTesterUsagesGetMetricsWithRequestBuilder(urlString: String) -> RequestBuilder<BetaTesterUsagesV1MetricResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<BetaTesterUsagesV1MetricResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -340,8 +361,15 @@ open class MetricsAPI {
      - returns: RequestBuilder<BetaBuildUsagesV1MetricResponse> 
      */
     open class func buildsBetaBuildUsagesGetMetricsWithRequestBuilder(urlString: String) -> RequestBuilder<BetaBuildUsagesV1MetricResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<BetaBuildUsagesV1MetricResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -457,8 +485,15 @@ open class MetricsAPI {
      - returns: RequestBuilder<GameCenterMatchmakingAppRequestsV1MetricResponse> 
      */
     open class func gameCenterDetailsClassicMatchmakingRequestsGetMetricsWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterMatchmakingAppRequestsV1MetricResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingAppRequestsV1MetricResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -574,8 +609,15 @@ open class MetricsAPI {
      - returns: RequestBuilder<GameCenterMatchmakingAppRequestsV1MetricResponse> 
      */
     open class func gameCenterDetailsRuleBasedMatchmakingRequestsGetMetricsWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterMatchmakingAppRequestsV1MetricResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingAppRequestsV1MetricResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -669,8 +711,15 @@ open class MetricsAPI {
      - returns: RequestBuilder<GameCenterMatchmakingQueueSizesV1MetricResponse> 
      */
     open class func gameCenterMatchmakingQueuesExperimentMatchmakingQueueSizesGetMetricsWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterMatchmakingQueueSizesV1MetricResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingQueueSizesV1MetricResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -790,8 +839,15 @@ open class MetricsAPI {
      - returns: RequestBuilder<GameCenterMatchmakingQueueRequestsV1MetricResponse> 
      */
     open class func gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetricsWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterMatchmakingQueueRequestsV1MetricResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingQueueRequestsV1MetricResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -885,8 +941,15 @@ open class MetricsAPI {
      - returns: RequestBuilder<GameCenterMatchmakingQueueSizesV1MetricResponse> 
      */
     open class func gameCenterMatchmakingQueuesMatchmakingQueueSizesGetMetricsWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterMatchmakingQueueSizesV1MetricResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingQueueSizesV1MetricResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -1006,8 +1069,15 @@ open class MetricsAPI {
      - returns: RequestBuilder<GameCenterMatchmakingQueueRequestsV1MetricResponse> 
      */
     open class func gameCenterMatchmakingQueuesMatchmakingRequestsGetMetricsWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterMatchmakingQueueRequestsV1MetricResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingQueueRequestsV1MetricResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -1101,8 +1171,15 @@ open class MetricsAPI {
      - returns: RequestBuilder<GameCenterMatchmakingSessionsV1MetricResponse> 
      */
     open class func gameCenterMatchmakingQueuesMatchmakingSessionsGetMetricsWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterMatchmakingSessionsV1MetricResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingSessionsV1MetricResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -1207,8 +1284,15 @@ open class MetricsAPI {
      - returns: RequestBuilder<GameCenterMatchmakingBooleanRuleResultsV1MetricResponse> 
      */
     open class func gameCenterMatchmakingRulesMatchmakingBooleanRuleResultsGetMetricsWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterMatchmakingBooleanRuleResultsV1MetricResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingBooleanRuleResultsV1MetricResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -1315,8 +1399,15 @@ open class MetricsAPI {
      - returns: RequestBuilder<GameCenterMatchmakingNumberRuleResultsV1MetricResponse> 
      */
     open class func gameCenterMatchmakingRulesMatchmakingNumberRuleResultsGetMetricsWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterMatchmakingNumberRuleResultsV1MetricResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingNumberRuleResultsV1MetricResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -1417,7 +1508,14 @@ open class MetricsAPI {
      - returns: RequestBuilder<GameCenterMatchmakingRuleErrorsV1MetricResponse> 
      */
     open class func gameCenterMatchmakingRulesMatchmakingRuleErrorsGetMetricsWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterMatchmakingRuleErrorsV1MetricResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingRuleErrorsV1MetricResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 }

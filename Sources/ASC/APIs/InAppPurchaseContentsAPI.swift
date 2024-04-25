@@ -95,7 +95,14 @@ open class InAppPurchaseContentsAPI {
      - returns: RequestBuilder<InAppPurchaseContentResponse> 
      */
     open class func inAppPurchaseContentsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<InAppPurchaseContentResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<InAppPurchaseContentResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 }

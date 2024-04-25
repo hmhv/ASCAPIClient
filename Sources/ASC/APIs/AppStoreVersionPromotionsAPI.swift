@@ -66,7 +66,14 @@ open class AppStoreVersionPromotionsAPI {
      - returns: RequestBuilder<AppStoreVersionPromotionResponse> 
      */
     open class func appStoreVersionPromotionsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppStoreVersionPromotionResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            "Content-Type": "application/json",
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<AppStoreVersionPromotionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 }

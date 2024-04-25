@@ -66,8 +66,15 @@ open class GameCenterLeaderboardReleasesAPI {
      - returns: RequestBuilder<GameCenterLeaderboardReleaseResponse> 
      */
     open class func gameCenterLeaderboardReleasesCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterLeaderboardReleaseResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            "Content-Type": "application/json",
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardReleaseResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -127,8 +134,15 @@ open class GameCenterLeaderboardReleasesAPI {
      - returns: RequestBuilder<Void> 
      */
     open class func gameCenterLeaderboardReleasesDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -213,7 +227,14 @@ open class GameCenterLeaderboardReleasesAPI {
      - returns: RequestBuilder<GameCenterLeaderboardReleaseResponse> 
      */
     open class func gameCenterLeaderboardReleasesGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterLeaderboardReleaseResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardReleaseResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 }

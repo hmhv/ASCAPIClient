@@ -132,8 +132,15 @@ open class AppPriceSchedulesAPI {
      - returns: RequestBuilder<AppPricesV2Response> 
      */
     open class func appPriceSchedulesAutomaticPricesGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppPricesV2Response> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<AppPricesV2Response>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -205,8 +212,15 @@ open class AppPriceSchedulesAPI {
      - returns: RequestBuilder<TerritoryResponse> 
      */
     open class func appPriceSchedulesBaseTerritoryGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<TerritoryResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<TerritoryResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -263,8 +277,15 @@ open class AppPriceSchedulesAPI {
      - returns: RequestBuilder<AppPriceScheduleResponse> 
      */
     open class func appPriceSchedulesCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppPriceScheduleResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            "Content-Type": "application/json",
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<AppPriceScheduleResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -382,8 +403,15 @@ open class AppPriceSchedulesAPI {
      - returns: RequestBuilder<AppPriceScheduleResponse> 
      */
     open class func appPriceSchedulesGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppPriceScheduleResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<AppPriceScheduleResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -506,7 +534,14 @@ open class AppPriceSchedulesAPI {
      - returns: RequestBuilder<AppPricesV2Response> 
      */
     open class func appPriceSchedulesManualPricesGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppPricesV2Response> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<AppPricesV2Response>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 }

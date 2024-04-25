@@ -84,8 +84,15 @@ open class InAppPurchaseAvailabilitiesAPI {
      - returns: RequestBuilder<TerritoriesResponse> 
      */
     open class func inAppPurchaseAvailabilitiesAvailableTerritoriesGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<TerritoriesResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<TerritoriesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -142,8 +149,15 @@ open class InAppPurchaseAvailabilitiesAPI {
      - returns: RequestBuilder<InAppPurchaseAvailabilityResponse> 
      */
     open class func inAppPurchaseAvailabilitiesCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<InAppPurchaseAvailabilityResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            "Content-Type": "application/json",
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<InAppPurchaseAvailabilityResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -240,7 +254,14 @@ open class InAppPurchaseAvailabilitiesAPI {
      - returns: RequestBuilder<InAppPurchaseAvailabilityResponse> 
      */
     open class func inAppPurchaseAvailabilitiesGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<InAppPurchaseAvailabilityResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<InAppPurchaseAvailabilityResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 }

@@ -188,8 +188,15 @@ open class AppClipsAPI {
      - returns: RequestBuilder<AppClipAdvancedExperiencesResponse> 
      */
     open class func appClipsAppClipAdvancedExperiencesGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppClipAdvancedExperiencesResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<AppClipAdvancedExperiencesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -357,8 +364,15 @@ open class AppClipsAPI {
      - returns: RequestBuilder<AppClipDefaultExperiencesResponse> 
      */
     open class func appClipsAppClipDefaultExperiencesGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppClipDefaultExperiencesResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<AppClipDefaultExperiencesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -484,7 +498,14 @@ open class AppClipsAPI {
      - returns: RequestBuilder<AppClipResponse> 
      */
     open class func appClipsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppClipResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<AppClipResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 }

@@ -84,7 +84,14 @@ open class AlternativeDistributionPackageVariantsAPI {
      - returns: RequestBuilder<AlternativeDistributionPackageVariantResponse> 
      */
     open class func alternativeDistributionPackageVariantsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AlternativeDistributionPackageVariantResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<AlternativeDistributionPackageVariantResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 }

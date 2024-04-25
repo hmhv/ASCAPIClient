@@ -88,8 +88,15 @@ open class AppAvailabilitiesAPI {
      */
     @available(*, deprecated, message: "This operation is deprecated.")
     open class func appAvailabilitiesAvailableTerritoriesGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<TerritoriesResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<TerritoriesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -150,8 +157,15 @@ open class AppAvailabilitiesAPI {
      */
     @available(*, deprecated, message: "This operation is deprecated.")
     open class func appAvailabilitiesCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppAvailabilityResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            "Content-Type": "application/json",
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<AppAvailabilityResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -253,8 +267,15 @@ open class AppAvailabilitiesAPI {
      */
     @available(*, deprecated, message: "This operation is deprecated.")
     open class func appAvailabilitiesGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppAvailabilityResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<AppAvailabilityResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -311,8 +332,15 @@ open class AppAvailabilitiesAPI {
      - returns: RequestBuilder<AppAvailabilityV2Response> 
      */
     open class func appAvailabilitiesV2CreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppAvailabilityV2Response> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            "Content-Type": "application/json",
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<AppAvailabilityV2Response>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -414,8 +442,15 @@ open class AppAvailabilitiesAPI {
      - returns: RequestBuilder<AppAvailabilityV2Response> 
      */
     open class func appAvailabilitiesV2GetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppAvailabilityV2Response> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<AppAvailabilityV2Response>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -515,7 +550,14 @@ open class AppAvailabilitiesAPI {
      - returns: RequestBuilder<TerritoryAvailabilitiesResponse> 
      */
     open class func appAvailabilitiesV2TerritoryAvailabilitiesGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<TerritoryAvailabilitiesResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<TerritoryAvailabilitiesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 }

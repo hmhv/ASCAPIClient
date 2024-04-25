@@ -201,8 +201,15 @@ open class AppStoreVersionExperimentTreatmentLocalizationsAPI {
      - returns: RequestBuilder<AppPreviewSetsResponse> 
      */
     open class func appStoreVersionExperimentTreatmentLocalizationsAppPreviewSetsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppPreviewSetsResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<AppPreviewSetsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -409,8 +416,15 @@ open class AppStoreVersionExperimentTreatmentLocalizationsAPI {
      - returns: RequestBuilder<AppScreenshotSetsResponse> 
      */
     open class func appStoreVersionExperimentTreatmentLocalizationsAppScreenshotSetsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppScreenshotSetsResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<AppScreenshotSetsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -467,8 +481,15 @@ open class AppStoreVersionExperimentTreatmentLocalizationsAPI {
      - returns: RequestBuilder<AppStoreVersionExperimentTreatmentLocalizationResponse> 
      */
     open class func appStoreVersionExperimentTreatmentLocalizationsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppStoreVersionExperimentTreatmentLocalizationResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            "Content-Type": "application/json",
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<AppStoreVersionExperimentTreatmentLocalizationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -528,8 +549,15 @@ open class AppStoreVersionExperimentTreatmentLocalizationsAPI {
      - returns: RequestBuilder<Void> 
      */
     open class func appStoreVersionExperimentTreatmentLocalizationsDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -650,7 +678,14 @@ open class AppStoreVersionExperimentTreatmentLocalizationsAPI {
      - returns: RequestBuilder<AppStoreVersionExperimentTreatmentLocalizationResponse> 
      */
     open class func appStoreVersionExperimentTreatmentLocalizationsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppStoreVersionExperimentTreatmentLocalizationResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<AppStoreVersionExperimentTreatmentLocalizationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 }

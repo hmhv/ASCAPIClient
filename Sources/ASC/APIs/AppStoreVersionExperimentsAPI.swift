@@ -144,8 +144,15 @@ open class AppStoreVersionExperimentsAPI {
      */
     @available(*, deprecated, message: "This operation is deprecated.")
     open class func appStoreVersionExperimentsAppStoreVersionExperimentTreatmentsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppStoreVersionExperimentTreatmentsResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<AppStoreVersionExperimentTreatmentsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -206,8 +213,15 @@ open class AppStoreVersionExperimentsAPI {
      */
     @available(*, deprecated, message: "This operation is deprecated.")
     open class func appStoreVersionExperimentsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppStoreVersionExperimentResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            "Content-Type": "application/json",
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<AppStoreVersionExperimentResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -271,8 +285,15 @@ open class AppStoreVersionExperimentsAPI {
      */
     @available(*, deprecated, message: "This operation is deprecated.")
     open class func appStoreVersionExperimentsDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -386,8 +407,15 @@ open class AppStoreVersionExperimentsAPI {
      */
     @available(*, deprecated, message: "This operation is deprecated.")
     open class func appStoreVersionExperimentsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppStoreVersionExperimentResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<AppStoreVersionExperimentResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -453,8 +481,15 @@ open class AppStoreVersionExperimentsAPI {
      */
     @available(*, deprecated, message: "This operation is deprecated.")
     open class func appStoreVersionExperimentsUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppStoreVersionExperimentResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            "Content-Type": "application/json",
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<AppStoreVersionExperimentResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -585,8 +620,15 @@ open class AppStoreVersionExperimentsAPI {
      - returns: RequestBuilder<AppStoreVersionExperimentTreatmentsResponse> 
      */
     open class func appStoreVersionExperimentsV2AppStoreVersionExperimentTreatmentsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppStoreVersionExperimentTreatmentsResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<AppStoreVersionExperimentTreatmentsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -643,8 +685,15 @@ open class AppStoreVersionExperimentsAPI {
      - returns: RequestBuilder<AppStoreVersionExperimentV2Response> 
      */
     open class func appStoreVersionExperimentsV2CreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppStoreVersionExperimentV2Response> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            "Content-Type": "application/json",
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<AppStoreVersionExperimentV2Response>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -704,8 +753,15 @@ open class AppStoreVersionExperimentsAPI {
      - returns: RequestBuilder<Void> 
      */
     open class func appStoreVersionExperimentsV2DeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -823,8 +879,15 @@ open class AppStoreVersionExperimentsAPI {
      - returns: RequestBuilder<AppStoreVersionExperimentV2Response> 
      */
     open class func appStoreVersionExperimentsV2GetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppStoreVersionExperimentV2Response> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<AppStoreVersionExperimentV2Response>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -886,7 +949,14 @@ open class AppStoreVersionExperimentsAPI {
      - returns: RequestBuilder<AppStoreVersionExperimentV2Response> 
      */
     open class func appStoreVersionExperimentsV2UpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppStoreVersionExperimentV2Response> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            "Content-Type": "application/json",
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<AppStoreVersionExperimentV2Response>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 }

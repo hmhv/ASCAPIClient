@@ -87,8 +87,15 @@ open class CiBuildActionsAPI {
      - returns: RequestBuilder<CiArtifactsResponse> 
      */
     open class func ciBuildActionsArtifactsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<CiArtifactsResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<CiArtifactsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -313,8 +320,15 @@ open class CiBuildActionsAPI {
      - returns: RequestBuilder<CiBuildRunResponse> 
      */
     open class func ciBuildActionsBuildRunGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<CiBuildRunResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<CiBuildRunResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -478,8 +492,15 @@ open class CiBuildActionsAPI {
      - returns: RequestBuilder<CiBuildActionResponse> 
      */
     open class func ciBuildActionsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<CiBuildActionResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<CiBuildActionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -557,8 +578,15 @@ open class CiBuildActionsAPI {
      - returns: RequestBuilder<CiIssuesResponse> 
      */
     open class func ciBuildActionsIssuesGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<CiIssuesResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<CiIssuesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -638,7 +666,14 @@ open class CiBuildActionsAPI {
      - returns: RequestBuilder<CiTestResultsResponse> 
      */
     open class func ciBuildActionsTestResultsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<CiTestResultsResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<CiTestResultsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 }

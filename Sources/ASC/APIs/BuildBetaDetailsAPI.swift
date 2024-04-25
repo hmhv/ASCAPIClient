@@ -104,8 +104,15 @@ open class BuildBetaDetailsAPI {
      - returns: RequestBuilder<BuildWithoutIncludesResponse> 
      */
     open class func buildBetaDetailsBuildGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<BuildWithoutIncludesResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<BuildWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -227,8 +234,15 @@ open class BuildBetaDetailsAPI {
      - returns: RequestBuilder<BuildBetaDetailsResponse> 
      */
     open class func buildBetaDetailsGetCollectionWithRequestBuilder(urlString: String) -> RequestBuilder<BuildBetaDetailsResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<BuildBetaDetailsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -346,8 +360,15 @@ open class BuildBetaDetailsAPI {
      - returns: RequestBuilder<BuildBetaDetailResponse> 
      */
     open class func buildBetaDetailsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<BuildBetaDetailResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<BuildBetaDetailResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -409,7 +430,14 @@ open class BuildBetaDetailsAPI {
      - returns: RequestBuilder<BuildBetaDetailResponse> 
      */
     open class func buildBetaDetailsUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<BuildBetaDetailResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            "Content-Type": "application/json",
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<BuildBetaDetailResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 }

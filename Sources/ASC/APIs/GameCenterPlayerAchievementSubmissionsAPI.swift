@@ -66,7 +66,14 @@ open class GameCenterPlayerAchievementSubmissionsAPI {
      - returns: RequestBuilder<GameCenterPlayerAchievementSubmissionResponse> 
      */
     open class func gameCenterPlayerAchievementSubmissionsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterPlayerAchievementSubmissionResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            "Content-Type": "application/json",
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<GameCenterPlayerAchievementSubmissionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 }

@@ -95,8 +95,15 @@ open class AnalyticsReportsAPI {
      - returns: RequestBuilder<AnalyticsReportResponse> 
      */
     open class func analyticsReportsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AnalyticsReportResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<AnalyticsReportResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -188,7 +195,14 @@ open class AnalyticsReportsAPI {
      - returns: RequestBuilder<AnalyticsReportInstancesResponse> 
      */
     open class func analyticsReportsInstancesGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AnalyticsReportInstancesResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<AnalyticsReportInstancesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 }

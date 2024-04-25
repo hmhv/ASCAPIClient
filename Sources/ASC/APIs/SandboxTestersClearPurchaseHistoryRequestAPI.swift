@@ -66,7 +66,14 @@ open class SandboxTestersClearPurchaseHistoryRequestAPI {
      - returns: RequestBuilder<SandboxTestersClearPurchaseHistoryRequestV2Response> 
      */
     open class func sandboxTestersClearPurchaseHistoryRequestV2CreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<SandboxTestersClearPurchaseHistoryRequestV2Response> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            "Content-Type": "application/json",
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<SandboxTestersClearPurchaseHistoryRequestV2Response>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 }

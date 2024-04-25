@@ -136,8 +136,15 @@ open class ScmRepositoriesAPI {
      - returns: RequestBuilder<ScmRepositoriesResponse> 
      */
     open class func scmRepositoriesGetCollectionWithRequestBuilder(urlString: String) -> RequestBuilder<ScmRepositoriesResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<ScmRepositoriesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -263,8 +270,15 @@ open class ScmRepositoriesAPI {
      - returns: RequestBuilder<ScmRepositoryResponse> 
      */
     open class func scmRepositoriesGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<ScmRepositoryResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<ScmRepositoryResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -371,8 +385,15 @@ open class ScmRepositoriesAPI {
      - returns: RequestBuilder<ScmGitReferencesResponse> 
      */
     open class func scmRepositoriesGitReferencesGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<ScmGitReferencesResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<ScmGitReferencesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -486,7 +507,14 @@ open class ScmRepositoriesAPI {
      - returns: RequestBuilder<ScmPullRequestsResponse> 
      */
     open class func scmRepositoriesPullRequestsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<ScmPullRequestsResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<ScmPullRequestsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 }

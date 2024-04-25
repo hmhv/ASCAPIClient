@@ -66,8 +66,15 @@ open class AppEncryptionDeclarationDocumentsAPI {
      - returns: RequestBuilder<AppEncryptionDeclarationDocumentResponse> 
      */
     open class func appEncryptionDeclarationDocumentsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppEncryptionDeclarationDocumentResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            "Content-Type": "application/json",
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<AppEncryptionDeclarationDocumentResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -147,8 +154,15 @@ open class AppEncryptionDeclarationDocumentsAPI {
      - returns: RequestBuilder<AppEncryptionDeclarationDocumentResponse> 
      */
     open class func appEncryptionDeclarationDocumentsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppEncryptionDeclarationDocumentResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<AppEncryptionDeclarationDocumentResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -210,7 +224,14 @@ open class AppEncryptionDeclarationDocumentsAPI {
      - returns: RequestBuilder<AppEncryptionDeclarationDocumentResponse> 
      */
     open class func appEncryptionDeclarationDocumentsUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppEncryptionDeclarationDocumentResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            "Content-Type": "application/json",
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<AppEncryptionDeclarationDocumentResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 }

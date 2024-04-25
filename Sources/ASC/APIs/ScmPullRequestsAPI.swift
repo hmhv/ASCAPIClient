@@ -102,7 +102,14 @@ open class ScmPullRequestsAPI {
      - returns: RequestBuilder<ScmPullRequestResponse> 
      */
     open class func scmPullRequestsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<ScmPullRequestResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<ScmPullRequestResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 }

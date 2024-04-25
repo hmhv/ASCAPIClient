@@ -66,8 +66,15 @@ open class ReviewSubmissionsAPI {
      - returns: RequestBuilder<ReviewSubmissionResponse> 
      */
     open class func reviewSubmissionsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<ReviewSubmissionResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            "Content-Type": "application/json",
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<ReviewSubmissionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -213,8 +220,15 @@ open class ReviewSubmissionsAPI {
      - returns: RequestBuilder<ReviewSubmissionsResponse> 
      */
     open class func reviewSubmissionsGetCollectionWithRequestBuilder(urlString: String) -> RequestBuilder<ReviewSubmissionsResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<ReviewSubmissionsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -330,8 +344,15 @@ open class ReviewSubmissionsAPI {
      - returns: RequestBuilder<ReviewSubmissionResponse> 
      */
     open class func reviewSubmissionsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<ReviewSubmissionResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<ReviewSubmissionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -516,8 +537,15 @@ open class ReviewSubmissionsAPI {
      - returns: RequestBuilder<ReviewSubmissionItemsResponse> 
      */
     open class func reviewSubmissionsItemsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<ReviewSubmissionItemsResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<ReviewSubmissionItemsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -579,7 +607,14 @@ open class ReviewSubmissionsAPI {
      - returns: RequestBuilder<ReviewSubmissionResponse> 
      */
     open class func reviewSubmissionsUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<ReviewSubmissionResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            "Content-Type": "application/json",
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<ReviewSubmissionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 }

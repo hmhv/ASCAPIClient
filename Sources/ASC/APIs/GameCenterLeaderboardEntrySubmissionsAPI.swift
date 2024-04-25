@@ -66,7 +66,14 @@ open class GameCenterLeaderboardEntrySubmissionsAPI {
      - returns: RequestBuilder<GameCenterLeaderboardEntrySubmissionResponse> 
      */
     open class func gameCenterLeaderboardEntrySubmissionsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterLeaderboardEntrySubmissionResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            "Content-Type": "application/json",
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardEntrySubmissionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 }

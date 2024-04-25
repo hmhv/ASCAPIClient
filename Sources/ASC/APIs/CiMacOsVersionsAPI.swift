@@ -107,8 +107,15 @@ open class CiMacOsVersionsAPI {
      - returns: RequestBuilder<CiMacOsVersionsResponse> 
      */
     open class func ciMacOsVersionsGetCollectionWithRequestBuilder(urlString: String) -> RequestBuilder<CiMacOsVersionsResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<CiMacOsVersionsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -208,8 +215,15 @@ open class CiMacOsVersionsAPI {
      - returns: RequestBuilder<CiMacOsVersionResponse> 
      */
     open class func ciMacOsVersionsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<CiMacOsVersionResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<CiMacOsVersionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -312,7 +326,14 @@ open class CiMacOsVersionsAPI {
      - returns: RequestBuilder<CiXcodeVersionsResponse> 
      */
     open class func ciMacOsVersionsXcodeVersionsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<CiXcodeVersionsResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<CiXcodeVersionsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 }

@@ -85,8 +85,15 @@ open class SandboxTestersAPI {
      - returns: RequestBuilder<SandboxTestersV2Response> 
      */
     open class func sandboxTestersV2GetCollectionWithRequestBuilder(urlString: String) -> RequestBuilder<SandboxTestersV2Response> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<SandboxTestersV2Response>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -148,7 +155,14 @@ open class SandboxTestersAPI {
      - returns: RequestBuilder<SandboxTesterV2Response> 
      */
     open class func sandboxTestersV2UpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<SandboxTesterV2Response> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            "Content-Type": "application/json",
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<SandboxTesterV2Response>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 }

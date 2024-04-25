@@ -115,8 +115,15 @@ open class SubscriptionPricePointsAPI {
      - returns: RequestBuilder<SubscriptionPricePointsResponse> 
      */
     open class func subscriptionPricePointsEqualizationsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<SubscriptionPricePointsResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<SubscriptionPricePointsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -203,7 +210,14 @@ open class SubscriptionPricePointsAPI {
      - returns: RequestBuilder<SubscriptionPricePointResponse> 
      */
     open class func subscriptionPricePointsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<SubscriptionPricePointResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<SubscriptionPricePointResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 }

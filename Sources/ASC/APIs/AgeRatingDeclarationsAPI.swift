@@ -71,7 +71,14 @@ open class AgeRatingDeclarationsAPI {
      - returns: RequestBuilder<AgeRatingDeclarationResponse> 
      */
     open class func ageRatingDeclarationsUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AgeRatingDeclarationResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            "Content-Type": "application/json",
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<AgeRatingDeclarationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 }

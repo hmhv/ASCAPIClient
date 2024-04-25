@@ -150,8 +150,15 @@ open class AppCustomProductPageVersionsAPI {
      - returns: RequestBuilder<AppCustomProductPageLocalizationsResponse> 
      */
     open class func appCustomProductPageVersionsAppCustomProductPageLocalizationsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppCustomProductPageLocalizationsResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<AppCustomProductPageLocalizationsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -208,8 +215,15 @@ open class AppCustomProductPageVersionsAPI {
      - returns: RequestBuilder<AppCustomProductPageVersionResponse> 
      */
     open class func appCustomProductPageVersionsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppCustomProductPageVersionResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            "Content-Type": "application/json",
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<AppCustomProductPageVersionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -312,7 +326,14 @@ open class AppCustomProductPageVersionsAPI {
      - returns: RequestBuilder<AppCustomProductPageVersionResponse> 
      */
     open class func appCustomProductPageVersionsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppCustomProductPageVersionResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<AppCustomProductPageVersionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 }

@@ -66,7 +66,14 @@ open class SubscriptionSubmissionsAPI {
      - returns: RequestBuilder<SubscriptionSubmissionResponse> 
      */
     open class func subscriptionSubmissionsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<SubscriptionSubmissionResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            "Content-Type": "application/json",
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<SubscriptionSubmissionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 }

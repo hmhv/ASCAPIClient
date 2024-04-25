@@ -66,8 +66,15 @@ open class AppClipAdvancedExperiencesAPI {
      - returns: RequestBuilder<AppClipAdvancedExperienceResponse> 
      */
     open class func appClipAdvancedExperiencesCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppClipAdvancedExperienceResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            "Content-Type": "application/json",
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<AppClipAdvancedExperienceResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -166,8 +173,15 @@ open class AppClipAdvancedExperiencesAPI {
      - returns: RequestBuilder<AppClipAdvancedExperienceResponse> 
      */
     open class func appClipAdvancedExperiencesGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppClipAdvancedExperienceResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<AppClipAdvancedExperienceResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -229,7 +243,14 @@ open class AppClipAdvancedExperiencesAPI {
      - returns: RequestBuilder<AppClipAdvancedExperienceResponse> 
      */
     open class func appClipAdvancedExperiencesUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppClipAdvancedExperienceResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            "Content-Type": "application/json",
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<AppClipAdvancedExperienceResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 }

@@ -104,8 +104,15 @@ open class BetaAppReviewSubmissionsAPI {
      - returns: RequestBuilder<BuildWithoutIncludesResponse> 
      */
     open class func betaAppReviewSubmissionsBuildGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<BuildWithoutIncludesResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<BuildWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -162,8 +169,15 @@ open class BetaAppReviewSubmissionsAPI {
      - returns: RequestBuilder<BetaAppReviewSubmissionResponse> 
      */
     open class func betaAppReviewSubmissionsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<BetaAppReviewSubmissionResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            "Content-Type": "application/json",
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<BetaAppReviewSubmissionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -294,8 +308,15 @@ open class BetaAppReviewSubmissionsAPI {
      - returns: RequestBuilder<BetaAppReviewSubmissionsResponse> 
      */
     open class func betaAppReviewSubmissionsGetCollectionWithRequestBuilder(urlString: String) -> RequestBuilder<BetaAppReviewSubmissionsResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<BetaAppReviewSubmissionsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -412,7 +433,14 @@ open class BetaAppReviewSubmissionsAPI {
      - returns: RequestBuilder<BetaAppReviewSubmissionResponse> 
      */
     open class func betaAppReviewSubmissionsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<BetaAppReviewSubmissionResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<BetaAppReviewSubmissionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 }

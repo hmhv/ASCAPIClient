@@ -74,7 +74,14 @@ open class DiagnosticSignaturesAPI {
      - returns: RequestBuilder<DiagnosticLogs> 
      */
     open class func diagnosticSignaturesLogsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<DiagnosticLogs> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<DiagnosticLogs>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 }

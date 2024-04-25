@@ -66,8 +66,15 @@ open class AlternativeDistributionPackagesAPI {
      - returns: RequestBuilder<AlternativeDistributionPackageResponse> 
      */
     open class func alternativeDistributionPackagesCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AlternativeDistributionPackageResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            "Content-Type": "application/json",
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<AlternativeDistributionPackageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -170,8 +177,15 @@ open class AlternativeDistributionPackagesAPI {
      - returns: RequestBuilder<AlternativeDistributionPackageResponse> 
      */
     open class func alternativeDistributionPackagesGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AlternativeDistributionPackageResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<AlternativeDistributionPackageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
@@ -319,7 +333,14 @@ open class AlternativeDistributionPackagesAPI {
      - returns: RequestBuilder<AlternativeDistributionPackageVersionsResponse> 
      */
     open class func alternativeDistributionPackagesVersionsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AlternativeDistributionPackageVersionsResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<AlternativeDistributionPackageVersionsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: true)
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 }
