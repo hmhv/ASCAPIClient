@@ -491,8 +491,18 @@ extension {{projectName}}API {
     @available(*, deprecated, message: "This operation is deprecated.")
     {{/isDeprecated}}
     {{#nonPublicApi}}internal{{/nonPublicApi}}{{^nonPublicApi}}open{{/nonPublicApi}} class func {{operationId}}WithRequestBuilder(urlString: String) -> RequestBuilder<{{{returnType}}}{{#returnType}}{{#isResponseOptional}}?{{/isResponseOptional}}{{/returnType}}{{^returnType}}Void{{/returnType}}> {
+        let localVariableNillableHeaders: [String: Any?] = [{{^headerParams}}{{^hasFormParams}}{{^hasConsumes}}
+            :{{/hasConsumes}}{{/hasFormParams}}{{/headerParams}}{{#hasFormParams}}
+            "Content-Type": {{^consumes}}"multipart/form-data"{{/consumes}}{{#consumes.0}}"{{{mediaType}}}"{{/consumes.0}},{{/hasFormParams}}{{^hasFormParams}}{{#hasConsumes}}
+            "Content-Type": {{#consumes.0}}"{{{mediaType}}}"{{/consumes.0}},{{/hasConsumes}}{{/hasFormParams}}{{#headerParams}}
+            {{> _param}},{{/headerParams}}
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
         let localVariableRequestBuilder: RequestBuilder<{{{returnType}}}{{#returnType}}{{#isResponseOptional}}?{{/isResponseOptional}}{{/returnType}}{{^returnType}}Void{{/returnType}}>.Type = {{projectName}}API.requestBuilderFactory.{{#returnType}}getBuilder(){{/returnType}}{{^returnType}}getNonDecodableBuilder(){{/returnType}}
-        return localVariableRequestBuilder.init(method: "{{httpMethod}}", URLString: urlString, parameters: [:], headers: nil, requiresAuthentication: {{#hasAuthMethods}}true{{/hasAuthMethods}}{{^hasAuthMethods}}false{{/hasAuthMethods}})
+
+        return localVariableRequestBuilder.init(method: "{{httpMethod}}", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: {{#hasAuthMethods}}true{{/hasAuthMethods}}{{^hasAuthMethods}}false{{/hasAuthMethods}})
     }
 {{/useVapor}}
 {{/operation}}
