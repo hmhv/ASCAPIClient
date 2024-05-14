@@ -2,7 +2,7 @@
   "openapi" : "3.0.1",
   "info" : {
     "title" : "App Store Connect API",
-    "version" : "3.4.1",
+    "version" : "3.4.2",
     "x-platform" : "app_store_connect_api"
   },
   "servers" : [ {
@@ -548,6 +548,86 @@
       } ]
     },
     "/v1/alternativeDistributionKeys" : {
+      "get" : {
+        "tags" : [ "AlternativeDistributionKeys" ],
+        "operationId" : "alternativeDistributionKeys-get_collection",
+        "parameters" : [ {
+          "name" : "exists[app]",
+          "in" : "query",
+          "description" : "filter by existence or non-existence of related 'app'",
+          "schema" : {
+            "type" : "boolean"
+          },
+          "style" : "form",
+          "explode" : false,
+          "required" : false
+        }, {
+          "name" : "fields[alternativeDistributionKeys]",
+          "in" : "query",
+          "description" : "the fields to include for returned resources of type alternativeDistributionKeys",
+          "schema" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string",
+              "enum" : [ "app", "publicKey" ]
+            }
+          },
+          "style" : "form",
+          "explode" : false,
+          "required" : false
+        }, {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "maximum resources per page",
+          "schema" : {
+            "type" : "integer",
+            "maximum" : 200
+          },
+          "style" : "form"
+        } ],
+        "responses" : {
+          "400" : {
+            "description" : "Parameter error(s)",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized error(s)",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "Forbidden error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "200" : {
+            "description" : "List of AlternativeDistributionKeys",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AlternativeDistributionKeysResponse"
+                }
+              }
+            }
+          }
+        }
+      },
       "post" : {
         "tags" : [ "AlternativeDistributionKeys" ],
         "operationId" : "alternativeDistributionKeys-create_instance",
@@ -80427,6 +80507,25 @@
         },
         "required" : [ "id", "type" ]
       },
+      "AlternativeDistributionKeysResponse" : {
+        "type" : "object",
+        "title" : "AlternativeDistributionKeysResponse",
+        "properties" : {
+          "data" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/AlternativeDistributionKey"
+            }
+          },
+          "links" : {
+            "$ref" : "#/components/schemas/PagedDocumentLinks"
+          },
+          "meta" : {
+            "$ref" : "#/components/schemas/PagingInformation"
+          }
+        },
+        "required" : [ "data", "links" ]
+      },
       "AlternativeDistributionKeyResponse" : {
         "type" : "object",
         "title" : "AlternativeDistributionKeyResponse",
@@ -80479,14 +80578,12 @@
                         },
                         "required" : [ "id", "type" ]
                       }
-                    },
-                    "required" : [ "data" ]
+                    }
                   }
-                },
-                "required" : [ "app" ]
+                }
               }
             },
-            "required" : [ "relationships", "attributes", "type" ]
+            "required" : [ "attributes", "type" ]
           }
         },
         "required" : [ "data" ]
