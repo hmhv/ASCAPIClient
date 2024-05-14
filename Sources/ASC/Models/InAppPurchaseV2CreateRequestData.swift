@@ -18,9 +18,9 @@ public struct InAppPurchaseV2CreateRequestData: Codable, JSONEncodable, Hashable
     }
     public var type: ModelType
     public var attributes: InAppPurchaseV2CreateRequestDataAttributes
-    public var relationships: AlternativeDistributionKeyCreateRequestDataRelationships
+    public var relationships: AnalyticsReportRequestCreateRequestDataRelationships
 
-    public init(type: ModelType, attributes: InAppPurchaseV2CreateRequestDataAttributes, relationships: AlternativeDistributionKeyCreateRequestDataRelationships) {
+    public init(type: ModelType, attributes: InAppPurchaseV2CreateRequestDataAttributes, relationships: AnalyticsReportRequestCreateRequestDataRelationships) {
         self.type = type
         self.attributes = attributes
         self.relationships = relationships

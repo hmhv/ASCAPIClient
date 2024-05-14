@@ -18,9 +18,9 @@ public struct BetaAppLocalizationCreateRequestData: Codable, JSONEncodable, Hash
     }
     public var type: ModelType
     public var attributes: BetaAppLocalizationCreateRequestDataAttributes
-    public var relationships: AlternativeDistributionKeyCreateRequestDataRelationships
+    public var relationships: AnalyticsReportRequestCreateRequestDataRelationships
 
-    public init(type: ModelType, attributes: BetaAppLocalizationCreateRequestDataAttributes, relationships: AlternativeDistributionKeyCreateRequestDataRelationships) {
+    public init(type: ModelType, attributes: BetaAppLocalizationCreateRequestDataAttributes, relationships: AnalyticsReportRequestCreateRequestDataRelationships) {
         self.type = type
         self.attributes = attributes
         self.relationships = relationships

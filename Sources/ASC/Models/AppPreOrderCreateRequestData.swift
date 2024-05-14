@@ -18,9 +18,9 @@ public struct AppPreOrderCreateRequestData: Codable, JSONEncodable, Hashable {
     }
     public var type: ModelType
     public var attributes: AppPreOrderCreateRequestDataAttributes?
-    public var relationships: AlternativeDistributionKeyCreateRequestDataRelationships
+    public var relationships: AnalyticsReportRequestCreateRequestDataRelationships
 
-    public init(type: ModelType, attributes: AppPreOrderCreateRequestDataAttributes? = nil, relationships: AlternativeDistributionKeyCreateRequestDataRelationships) {
+    public init(type: ModelType, attributes: AppPreOrderCreateRequestDataAttributes? = nil, relationships: AnalyticsReportRequestCreateRequestDataRelationships) {
         self.type = type
         self.attributes = attributes
         self.relationships = relationships

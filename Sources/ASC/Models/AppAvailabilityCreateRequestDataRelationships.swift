@@ -12,10 +12,10 @@ import AnyCodable
 
 public struct AppAvailabilityCreateRequestDataRelationships: Codable, JSONEncodable, Hashable {
 
-    public var app: AlternativeDistributionKeyCreateRequestDataRelationshipsApp
+    public var app: AnalyticsReportRequestCreateRequestDataRelationshipsApp
     public var availableTerritories: AppAvailabilityCreateRequestDataRelationshipsAvailableTerritories
 
-    public init(app: AlternativeDistributionKeyCreateRequestDataRelationshipsApp, availableTerritories: AppAvailabilityCreateRequestDataRelationshipsAvailableTerritories) {
+    public init(app: AnalyticsReportRequestCreateRequestDataRelationshipsApp, availableTerritories: AppAvailabilityCreateRequestDataRelationshipsAvailableTerritories) {
         self.app = app
         self.availableTerritories = availableTerritories
     }

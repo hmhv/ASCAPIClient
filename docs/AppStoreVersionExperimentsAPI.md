@@ -344,7 +344,7 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import ASC
 
-let appStoreVersionExperimentV2CreateRequest = AppStoreVersionExperimentV2CreateRequest(data: AppStoreVersionExperimentV2CreateRequest_data(type: "type_example", attributes: AppStoreVersionExperimentV2CreateRequest_data_attributes(name: "name_example", platform: Platform(), trafficProportion: 123), relationships: AlternativeDistributionKeyCreateRequest_data_relationships(app: AlternativeDistributionKeyCreateRequest_data_relationships_app(data: AlternativeDistributionKeyCreateRequest_data_relationships_app_data(type: "type_example", id: "id_example"))))) // AppStoreVersionExperimentV2CreateRequest | AppStoreVersionExperiment representation
+let appStoreVersionExperimentV2CreateRequest = AppStoreVersionExperimentV2CreateRequest(data: AppStoreVersionExperimentV2CreateRequest_data(type: "type_example", attributes: AppStoreVersionExperimentV2CreateRequest_data_attributes(name: "name_example", platform: Platform(), trafficProportion: 123), relationships: AnalyticsReportRequestCreateRequest_data_relationships(app: AnalyticsReportRequestCreateRequest_data_relationships_app(data: AlternativeDistributionKeyCreateRequest_data_relationships_app_data(type: "type_example", id: "id_example"))))) // AppStoreVersionExperimentV2CreateRequest | AppStoreVersionExperiment representation
 
 AppStoreVersionExperimentsAPI.appStoreVersionExperimentsV2CreateInstance(appStoreVersionExperimentV2CreateRequest: appStoreVersionExperimentV2CreateRequest) { (response, error) in
     guard error == nil else {

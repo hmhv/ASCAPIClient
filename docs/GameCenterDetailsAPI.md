@@ -155,7 +155,7 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import ASC
 
-let gameCenterDetailCreateRequest = GameCenterDetailCreateRequest(data: GameCenterDetailCreateRequest_data(type: "type_example", attributes: GameCenterDetailCreateRequest_data_attributes(challengeEnabled: false), relationships: AlternativeDistributionKeyCreateRequest_data_relationships(app: AlternativeDistributionKeyCreateRequest_data_relationships_app(data: AlternativeDistributionKeyCreateRequest_data_relationships_app_data(type: "type_example", id: "id_example"))))) // GameCenterDetailCreateRequest | GameCenterDetail representation
+let gameCenterDetailCreateRequest = GameCenterDetailCreateRequest(data: GameCenterDetailCreateRequest_data(type: "type_example", attributes: GameCenterDetailCreateRequest_data_attributes(challengeEnabled: false), relationships: AnalyticsReportRequestCreateRequest_data_relationships(app: AnalyticsReportRequestCreateRequest_data_relationships_app(data: AlternativeDistributionKeyCreateRequest_data_relationships_app_data(type: "type_example", id: "id_example"))))) // GameCenterDetailCreateRequest | GameCenterDetail representation
 
 GameCenterDetailsAPI.gameCenterDetailsCreateInstance(gameCenterDetailCreateRequest: gameCenterDetailCreateRequest) { (response, error) in
     guard error == nil else {

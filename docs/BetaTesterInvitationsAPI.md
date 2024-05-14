@@ -19,7 +19,7 @@ Method | HTTP request | Description
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import ASC
 
-let betaTesterInvitationCreateRequest = BetaTesterInvitationCreateRequest(data: BetaTesterInvitationCreateRequest_data(type: "type_example", relationships: BetaTesterInvitationCreateRequest_data_relationships(betaTester: BetaTesterInvitationCreateRequest_data_relationships_betaTester(data: BetaGroup_relationships_betaTesters_data_inner(type: "type_example", id: "id_example")), app: AlternativeDistributionKeyCreateRequest_data_relationships_app(data: AlternativeDistributionKeyCreateRequest_data_relationships_app_data(type: "type_example", id: "id_example"))))) // BetaTesterInvitationCreateRequest | BetaTesterInvitation representation
+let betaTesterInvitationCreateRequest = BetaTesterInvitationCreateRequest(data: BetaTesterInvitationCreateRequest_data(type: "type_example", relationships: BetaTesterInvitationCreateRequest_data_relationships(betaTester: BetaTesterInvitationCreateRequest_data_relationships_betaTester(data: BetaGroup_relationships_betaTesters_data_inner(type: "type_example", id: "id_example")), app: AnalyticsReportRequestCreateRequest_data_relationships_app(data: AlternativeDistributionKeyCreateRequest_data_relationships_app_data(type: "type_example", id: "id_example"))))) // BetaTesterInvitationCreateRequest | BetaTesterInvitation representation
 
 BetaTesterInvitationsAPI.betaTesterInvitationsCreateInstance(betaTesterInvitationCreateRequest: betaTesterInvitationCreateRequest) { (response, error) in
     guard error == nil else {

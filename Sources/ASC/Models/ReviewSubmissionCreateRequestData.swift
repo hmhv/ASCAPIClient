@@ -18,9 +18,9 @@ public struct ReviewSubmissionCreateRequestData: Codable, JSONEncodable, Hashabl
     }
     public var type: ModelType
     public var attributes: ReviewSubmissionCreateRequestDataAttributes
-    public var relationships: AlternativeDistributionKeyCreateRequestDataRelationships
+    public var relationships: AnalyticsReportRequestCreateRequestDataRelationships
 
-    public init(type: ModelType, attributes: ReviewSubmissionCreateRequestDataAttributes, relationships: AlternativeDistributionKeyCreateRequestDataRelationships) {
+    public init(type: ModelType, attributes: ReviewSubmissionCreateRequestDataAttributes, relationships: AnalyticsReportRequestCreateRequestDataRelationships) {
         self.type = type
         self.attributes = attributes
         self.relationships = relationships

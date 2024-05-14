@@ -18,9 +18,9 @@ public struct MarketplaceSearchDetailCreateRequestData: Codable, JSONEncodable, 
     }
     public var type: ModelType
     public var attributes: MarketplaceSearchDetailCreateRequestDataAttributes
-    public var relationships: AlternativeDistributionKeyCreateRequestDataRelationships
+    public var relationships: AnalyticsReportRequestCreateRequestDataRelationships
 
-    public init(type: ModelType, attributes: MarketplaceSearchDetailCreateRequestDataAttributes, relationships: AlternativeDistributionKeyCreateRequestDataRelationships) {
+    public init(type: ModelType, attributes: MarketplaceSearchDetailCreateRequestDataAttributes, relationships: AnalyticsReportRequestCreateRequestDataRelationships) {
         self.type = type
         self.attributes = attributes
         self.relationships = relationships

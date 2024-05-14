@@ -18,9 +18,9 @@ public struct AlternativeDistributionKeyCreateRequestData: Codable, JSONEncodabl
     }
     public var type: ModelType
     public var attributes: AlternativeDistributionKeyCreateRequestDataAttributes
-    public var relationships: AlternativeDistributionKeyCreateRequestDataRelationships
+    public var relationships: AlternativeDistributionKeyCreateRequestDataRelationships?
 
-    public init(type: ModelType, attributes: AlternativeDistributionKeyCreateRequestDataAttributes, relationships: AlternativeDistributionKeyCreateRequestDataRelationships) {
+    public init(type: ModelType, attributes: AlternativeDistributionKeyCreateRequestDataAttributes, relationships: AlternativeDistributionKeyCreateRequestDataRelationships? = nil) {
         self.type = type
         self.attributes = attributes
         self.relationships = relationships
@@ -38,7 +38,7 @@ public struct AlternativeDistributionKeyCreateRequestData: Codable, JSONEncodabl
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(type, forKey: .type)
         try container.encode(attributes, forKey: .attributes)
-        try container.encode(relationships, forKey: .relationships)
+        try container.encodeIfPresent(relationships, forKey: .relationships)
     }
 }
 

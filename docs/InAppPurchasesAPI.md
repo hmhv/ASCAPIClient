@@ -189,7 +189,7 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import ASC
 
-let inAppPurchaseV2CreateRequest = InAppPurchaseV2CreateRequest(data: InAppPurchaseV2CreateRequest_data(type: "type_example", attributes: InAppPurchaseV2CreateRequest_data_attributes(name: "name_example", productId: "productId_example", inAppPurchaseType: InAppPurchaseType(), reviewNote: "reviewNote_example", familySharable: false), relationships: AlternativeDistributionKeyCreateRequest_data_relationships(app: AlternativeDistributionKeyCreateRequest_data_relationships_app(data: AlternativeDistributionKeyCreateRequest_data_relationships_app_data(type: "type_example", id: "id_example"))))) // InAppPurchaseV2CreateRequest | InAppPurchase representation
+let inAppPurchaseV2CreateRequest = InAppPurchaseV2CreateRequest(data: InAppPurchaseV2CreateRequest_data(type: "type_example", attributes: InAppPurchaseV2CreateRequest_data_attributes(name: "name_example", productId: "productId_example", inAppPurchaseType: InAppPurchaseType(), reviewNote: "reviewNote_example", familySharable: false), relationships: AnalyticsReportRequestCreateRequest_data_relationships(app: AnalyticsReportRequestCreateRequest_data_relationships_app(data: AlternativeDistributionKeyCreateRequest_data_relationships_app_data(type: "type_example", id: "id_example"))))) // InAppPurchaseV2CreateRequest | InAppPurchase representation
 
 InAppPurchasesAPI.inAppPurchasesV2CreateInstance(inAppPurchaseV2CreateRequest: inAppPurchaseV2CreateRequest) { (response, error) in
     guard error == nil else {

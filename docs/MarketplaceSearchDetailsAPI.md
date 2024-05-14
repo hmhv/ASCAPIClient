@@ -21,7 +21,7 @@ Method | HTTP request | Description
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import ASC
 
-let marketplaceSearchDetailCreateRequest = MarketplaceSearchDetailCreateRequest(data: MarketplaceSearchDetailCreateRequest_data(type: "type_example", attributes: MarketplaceSearchDetailCreateRequest_data_attributes(catalogUrl: "catalogUrl_example"), relationships: AlternativeDistributionKeyCreateRequest_data_relationships(app: AlternativeDistributionKeyCreateRequest_data_relationships_app(data: AlternativeDistributionKeyCreateRequest_data_relationships_app_data(type: "type_example", id: "id_example"))))) // MarketplaceSearchDetailCreateRequest | MarketplaceSearchDetail representation
+let marketplaceSearchDetailCreateRequest = MarketplaceSearchDetailCreateRequest(data: MarketplaceSearchDetailCreateRequest_data(type: "type_example", attributes: MarketplaceSearchDetailCreateRequest_data_attributes(catalogUrl: "catalogUrl_example"), relationships: AnalyticsReportRequestCreateRequest_data_relationships(app: AnalyticsReportRequestCreateRequest_data_relationships_app(data: AlternativeDistributionKeyCreateRequest_data_relationships_app_data(type: "type_example", id: "id_example"))))) // MarketplaceSearchDetailCreateRequest | MarketplaceSearchDetail representation
 
 MarketplaceSearchDetailsAPI.marketplaceSearchDetailsCreateInstance(marketplaceSearchDetailCreateRequest: marketplaceSearchDetailCreateRequest) { (response, error) in
     guard error == nil else {

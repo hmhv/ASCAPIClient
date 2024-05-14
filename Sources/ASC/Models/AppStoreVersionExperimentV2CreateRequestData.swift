@@ -18,9 +18,9 @@ public struct AppStoreVersionExperimentV2CreateRequestData: Codable, JSONEncodab
     }
     public var type: ModelType
     public var attributes: AppStoreVersionExperimentV2CreateRequestDataAttributes
-    public var relationships: AlternativeDistributionKeyCreateRequestDataRelationships
+    public var relationships: AnalyticsReportRequestCreateRequestDataRelationships
 
-    public init(type: ModelType, attributes: AppStoreVersionExperimentV2CreateRequestDataAttributes, relationships: AlternativeDistributionKeyCreateRequestDataRelationships) {
+    public init(type: ModelType, attributes: AppStoreVersionExperimentV2CreateRequestDataAttributes, relationships: AnalyticsReportRequestCreateRequestDataRelationships) {
         self.type = type
         self.attributes = attributes
         self.relationships = relationships

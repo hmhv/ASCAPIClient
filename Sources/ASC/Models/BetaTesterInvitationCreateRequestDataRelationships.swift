@@ -13,9 +13,9 @@ import AnyCodable
 public struct BetaTesterInvitationCreateRequestDataRelationships: Codable, JSONEncodable, Hashable {
 
     public var betaTester: BetaTesterInvitationCreateRequestDataRelationshipsBetaTester
-    public var app: AlternativeDistributionKeyCreateRequestDataRelationshipsApp
+    public var app: AnalyticsReportRequestCreateRequestDataRelationshipsApp
 
-    public init(betaTester: BetaTesterInvitationCreateRequestDataRelationshipsBetaTester, app: AlternativeDistributionKeyCreateRequestDataRelationshipsApp) {
+    public init(betaTester: BetaTesterInvitationCreateRequestDataRelationshipsBetaTester, app: AnalyticsReportRequestCreateRequestDataRelationshipsApp) {
         self.betaTester = betaTester
         self.app = app
     }

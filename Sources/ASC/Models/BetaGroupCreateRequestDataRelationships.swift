@@ -12,11 +12,11 @@ import AnyCodable
 
 public struct BetaGroupCreateRequestDataRelationships: Codable, JSONEncodable, Hashable {
 
-    public var app: AlternativeDistributionKeyCreateRequestDataRelationshipsApp
+    public var app: AnalyticsReportRequestCreateRequestDataRelationshipsApp
     public var builds: BetaGroupCreateRequestDataRelationshipsBuilds?
     public var betaTesters: BetaGroupCreateRequestDataRelationshipsBetaTesters?
 
-    public init(app: AlternativeDistributionKeyCreateRequestDataRelationshipsApp, builds: BetaGroupCreateRequestDataRelationshipsBuilds? = nil, betaTesters: BetaGroupCreateRequestDataRelationshipsBetaTesters? = nil) {
+    public init(app: AnalyticsReportRequestCreateRequestDataRelationshipsApp, builds: BetaGroupCreateRequestDataRelationshipsBuilds? = nil, betaTesters: BetaGroupCreateRequestDataRelationshipsBetaTesters? = nil) {
         self.app = app
         self.builds = builds
         self.betaTesters = betaTesters

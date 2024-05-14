@@ -18,9 +18,9 @@ public struct GameCenterDetailCreateRequestData: Codable, JSONEncodable, Hashabl
     }
     public var type: ModelType
     public var attributes: GameCenterDetailCreateRequestDataAttributes?
-    public var relationships: AlternativeDistributionKeyCreateRequestDataRelationships
+    public var relationships: AnalyticsReportRequestCreateRequestDataRelationships
 
-    public init(type: ModelType, attributes: GameCenterDetailCreateRequestDataAttributes? = nil, relationships: AlternativeDistributionKeyCreateRequestDataRelationships) {
+    public init(type: ModelType, attributes: GameCenterDetailCreateRequestDataAttributes? = nil, relationships: AnalyticsReportRequestCreateRequestDataRelationships) {
         self.type = type
         self.attributes = attributes
         self.relationships = relationships

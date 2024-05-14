@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**app** | [**AlternativeDistributionKeyCreateRequestDataRelationshipsApp**](AlternativeDistributionKeyCreateRequestDataRelationshipsApp.md) |  | 
+**app** | [**AnalyticsReportRequestCreateRequestDataRelationshipsApp**](AnalyticsReportRequestCreateRequestDataRelationshipsApp.md) |  | 
 **baseTerritory** | [**AppPriceScheduleCreateRequestDataRelationshipsBaseTerritory**](AppPriceScheduleCreateRequestDataRelationshipsBaseTerritory.md) |  | 
 **manualPrices** | [**AppPriceScheduleCreateRequestDataRelationshipsManualPrices**](AppPriceScheduleCreateRequestDataRelationshipsManualPrices.md) |  | 
 

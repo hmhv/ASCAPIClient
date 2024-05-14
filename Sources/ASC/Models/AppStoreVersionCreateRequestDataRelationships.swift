@@ -12,11 +12,11 @@ import AnyCodable
 
 public struct AppStoreVersionCreateRequestDataRelationships: Codable, JSONEncodable, Hashable {
 
-    public var app: AlternativeDistributionKeyCreateRequestDataRelationshipsApp
+    public var app: AnalyticsReportRequestCreateRequestDataRelationshipsApp
     public var appStoreVersionLocalizations: AppStoreVersionCreateRequestDataRelationshipsAppStoreVersionLocalizations?
     public var build: AppStoreVersionCreateRequestDataRelationshipsBuild?
 
-    public init(app: AlternativeDistributionKeyCreateRequestDataRelationshipsApp, appStoreVersionLocalizations: AppStoreVersionCreateRequestDataRelationshipsAppStoreVersionLocalizations? = nil, build: AppStoreVersionCreateRequestDataRelationshipsBuild? = nil) {
+    public init(app: AnalyticsReportRequestCreateRequestDataRelationshipsApp, appStoreVersionLocalizations: AppStoreVersionCreateRequestDataRelationshipsAppStoreVersionLocalizations? = nil, build: AppStoreVersionCreateRequestDataRelationshipsBuild? = nil) {
         self.app = app
         self.appStoreVersionLocalizations = appStoreVersionLocalizations
         self.build = build

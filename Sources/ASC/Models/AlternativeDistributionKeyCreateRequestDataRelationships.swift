@@ -12,9 +12,9 @@ import AnyCodable
 
 public struct AlternativeDistributionKeyCreateRequestDataRelationships: Codable, JSONEncodable, Hashable {
 
-    public var app: AlternativeDistributionKeyCreateRequestDataRelationshipsApp
+    public var app: AlternativeDistributionKeyCreateRequestDataRelationshipsApp?
 
-    public init(app: AlternativeDistributionKeyCreateRequestDataRelationshipsApp) {
+    public init(app: AlternativeDistributionKeyCreateRequestDataRelationshipsApp? = nil) {
         self.app = app
     }
 
@@ -26,7 +26,7 @@ public struct AlternativeDistributionKeyCreateRequestDataRelationships: Codable,
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(app, forKey: .app)
+        try container.encodeIfPresent(app, forKey: .app)
     }
 }
 

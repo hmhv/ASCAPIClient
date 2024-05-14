@@ -18,9 +18,9 @@ public struct SubscriptionGroupCreateRequestData: Codable, JSONEncodable, Hashab
     }
     public var type: ModelType
     public var attributes: SubscriptionGroupCreateRequestDataAttributes
-    public var relationships: AlternativeDistributionKeyCreateRequestDataRelationships
+    public var relationships: AnalyticsReportRequestCreateRequestDataRelationships
 
-    public init(type: ModelType, attributes: SubscriptionGroupCreateRequestDataAttributes, relationships: AlternativeDistributionKeyCreateRequestDataRelationships) {
+    public init(type: ModelType, attributes: SubscriptionGroupCreateRequestDataAttributes, relationships: AnalyticsReportRequestCreateRequestDataRelationships) {
         self.type = type
         self.attributes = attributes
         self.relationships = relationships

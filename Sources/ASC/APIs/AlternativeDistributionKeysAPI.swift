@@ -148,6 +148,88 @@ open class AlternativeDistributionKeysAPI {
     /**
      * enum for parameter fieldsAlternativeDistributionKeys
      */
+    public enum FieldsAlternativeDistributionKeys_alternativeDistributionKeysGetCollection: String, CaseIterable {
+        case app = "app"
+        case publickey = "publicKey"
+    }
+
+    /**
+
+     - parameter existsApp: (query) filter by existence or non-existence of related &#39;app&#39; (optional)
+     - parameter fieldsAlternativeDistributionKeys: (query) the fields to include for returned resources of type alternativeDistributionKeys (optional)
+     - parameter limit: (query) maximum resources per page (optional)
+     - returns: AlternativeDistributionKeysResponse
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func alternativeDistributionKeysGetCollection(existsApp: Bool? = nil, fieldsAlternativeDistributionKeys: [FieldsAlternativeDistributionKeys_alternativeDistributionKeysGetCollection]? = nil, limit: Int? = nil) async throws -> AlternativeDistributionKeysResponse {
+        return try await alternativeDistributionKeysGetCollectionWithRequestBuilder(existsApp: existsApp, fieldsAlternativeDistributionKeys: fieldsAlternativeDistributionKeys, limit: limit).execute().body
+    }
+
+    /**
+     - parameter urlString: next or first url from App Store Connect API
+     - returns: AlternativeDistributionKeysResponse
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func alternativeDistributionKeysGetCollection(urlString: String) async throws -> AlternativeDistributionKeysResponse {
+        return try await alternativeDistributionKeysGetCollectionWithRequestBuilder(urlString: urlString).execute().body
+    }
+
+    /**
+     - GET /v1/alternativeDistributionKeys
+     - Bearer Token:
+       - type: http
+       - name: itc-bearer-token
+     - parameter existsApp: (query) filter by existence or non-existence of related &#39;app&#39; (optional)
+     - parameter fieldsAlternativeDistributionKeys: (query) the fields to include for returned resources of type alternativeDistributionKeys (optional)
+     - parameter limit: (query) maximum resources per page (optional)
+     - returns: RequestBuilder<AlternativeDistributionKeysResponse> 
+     */
+    open class func alternativeDistributionKeysGetCollectionWithRequestBuilder(existsApp: Bool? = nil, fieldsAlternativeDistributionKeys: [FieldsAlternativeDistributionKeys_alternativeDistributionKeysGetCollection]? = nil, limit: Int? = nil) -> RequestBuilder<AlternativeDistributionKeysResponse> {
+        let localVariablePath = "/v1/alternativeDistributionKeys"
+        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+            "exists[app]": (wrappedValue: existsApp?.encodeToJSON(), isExplode: false),
+            "fields[alternativeDistributionKeys]": (wrappedValue: fieldsAlternativeDistributionKeys?.encodeToJSON(), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+        ])
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<AlternativeDistributionKeysResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+    }
+
+    /**
+     - GET /v1/alternativeDistributionKeys
+     - Bearer Token:
+       - type: http
+       - name: itc-bearer-token
+     - parameter urlString: next or first url from App Store Connect API
+     - returns: RequestBuilder<AlternativeDistributionKeysResponse> 
+     */
+    open class func alternativeDistributionKeysGetCollectionWithRequestBuilder(urlString: String) -> RequestBuilder<AlternativeDistributionKeysResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<AlternativeDistributionKeysResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+    }
+
+    /**
+     * enum for parameter fieldsAlternativeDistributionKeys
+     */
     public enum FieldsAlternativeDistributionKeys_alternativeDistributionKeysGetInstance: String, CaseIterable {
         case app = "app"
         case publickey = "publicKey"

@@ -22,7 +22,7 @@ Method | HTTP request | Description
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import ASC
 
-let appPreOrderCreateRequest = AppPreOrderCreateRequest(data: AppPreOrderCreateRequest_data(type: "type_example", attributes: AppPreOrderCreateRequest_data_attributes(appReleaseDate: Date()), relationships: AlternativeDistributionKeyCreateRequest_data_relationships(app: AlternativeDistributionKeyCreateRequest_data_relationships_app(data: AlternativeDistributionKeyCreateRequest_data_relationships_app_data(type: "type_example", id: "id_example"))))) // AppPreOrderCreateRequest | AppPreOrder representation
+let appPreOrderCreateRequest = AppPreOrderCreateRequest(data: AppPreOrderCreateRequest_data(type: "type_example", attributes: AppPreOrderCreateRequest_data_attributes(appReleaseDate: Date()), relationships: AnalyticsReportRequestCreateRequest_data_relationships(app: AnalyticsReportRequestCreateRequest_data_relationships_app(data: AlternativeDistributionKeyCreateRequest_data_relationships_app_data(type: "type_example", id: "id_example"))))) // AppPreOrderCreateRequest | AppPreOrder representation
 
 AppPreOrdersAPI.appPreOrdersCreateInstance(appPreOrderCreateRequest: appPreOrderCreateRequest) { (response, error) in
     guard error == nil else {

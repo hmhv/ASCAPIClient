@@ -24,7 +24,7 @@ Method | HTTP request | Description
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import ASC
 
-let subscriptionGroupCreateRequest = SubscriptionGroupCreateRequest(data: SubscriptionGroupCreateRequest_data(type: "type_example", attributes: SubscriptionGroupCreateRequest_data_attributes(referenceName: "referenceName_example"), relationships: AlternativeDistributionKeyCreateRequest_data_relationships(app: AlternativeDistributionKeyCreateRequest_data_relationships_app(data: AlternativeDistributionKeyCreateRequest_data_relationships_app_data(type: "type_example", id: "id_example"))))) // SubscriptionGroupCreateRequest | SubscriptionGroup representation
+let subscriptionGroupCreateRequest = SubscriptionGroupCreateRequest(data: SubscriptionGroupCreateRequest_data(type: "type_example", attributes: SubscriptionGroupCreateRequest_data_attributes(referenceName: "referenceName_example"), relationships: AnalyticsReportRequestCreateRequest_data_relationships(app: AnalyticsReportRequestCreateRequest_data_relationships_app(data: AlternativeDistributionKeyCreateRequest_data_relationships_app_data(type: "type_example", id: "id_example"))))) // SubscriptionGroupCreateRequest | SubscriptionGroup representation
 
 SubscriptionGroupsAPI.subscriptionGroupsCreateInstance(subscriptionGroupCreateRequest: subscriptionGroupCreateRequest) { (response, error) in
     guard error == nil else {

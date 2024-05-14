@@ -22,7 +22,7 @@ Method | HTTP request | Description
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import ASC
 
-let analyticsReportRequestCreateRequest = AnalyticsReportRequestCreateRequest(data: AnalyticsReportRequestCreateRequest_data(type: "type_example", attributes: AnalyticsReportRequestCreateRequest_data_attributes(accessType: "accessType_example"), relationships: AlternativeDistributionKeyCreateRequest_data_relationships(app: AlternativeDistributionKeyCreateRequest_data_relationships_app(data: AlternativeDistributionKeyCreateRequest_data_relationships_app_data(type: "type_example", id: "id_example"))))) // AnalyticsReportRequestCreateRequest | AnalyticsReportRequest representation
+let analyticsReportRequestCreateRequest = AnalyticsReportRequestCreateRequest(data: AnalyticsReportRequestCreateRequest_data(type: "type_example", attributes: AnalyticsReportRequestCreateRequest_data_attributes(accessType: "accessType_example"), relationships: AnalyticsReportRequestCreateRequest_data_relationships(app: AnalyticsReportRequestCreateRequest_data_relationships_app(data: AlternativeDistributionKeyCreateRequest_data_relationships_app_data(type: "type_example", id: "id_example"))))) // AnalyticsReportRequestCreateRequest | AnalyticsReportRequest representation
 
 AnalyticsReportRequestsAPI.analyticsReportRequestsCreateInstance(analyticsReportRequestCreateRequest: analyticsReportRequestCreateRequest) { (response, error) in
     guard error == nil else {
