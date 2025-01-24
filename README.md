@@ -41,4 +41,4 @@ openapi-generator generate -i ./raw_data/app_store_connect_api_openapi.json -t .
 
 used spec file and template files are [here](./raw_data).
 
-[Generated README.md by openapi-generator](./Docs.md)
+[Generated README.md by openapi-generator](./README_GENERATOR.md)
