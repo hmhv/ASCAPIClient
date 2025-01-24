@@ -11,7 +11,7 @@ import AnyCodable
 #endif
 
 public enum AppEventAssetType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
-    case card = "EVENT_CARD"
-    case detailsPage = "EVENT_DETAILS_PAGE"
+    case eventCard = "EVENT_CARD"
+    case eventDetailsPage = "EVENT_DETAILS_PAGE"
     case unknownDefaultOpenApi = "unknown_default_open_api"
 }
