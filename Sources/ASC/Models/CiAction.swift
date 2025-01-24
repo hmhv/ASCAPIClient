@@ -13,16 +13,16 @@ import AnyCodable
 public struct CiAction: Codable, JSONEncodable, Hashable {
 
     public enum Destination: String, Codable, CaseIterable, CaseIterableDefaultsLast {
-        case iosDevice = "ANY_IOS_DEVICE"
-        case iosSimulator = "ANY_IOS_SIMULATOR"
-        case tvosDevice = "ANY_TVOS_DEVICE"
-        case tvosSimulator = "ANY_TVOS_SIMULATOR"
-        case watchosDevice = "ANY_WATCHOS_DEVICE"
-        case watchosSimulator = "ANY_WATCHOS_SIMULATOR"
-        case mac = "ANY_MAC"
-        case macCatalyst = "ANY_MAC_CATALYST"
-        case visionosDevice = "ANY_VISIONOS_DEVICE"
-        case visionosSimulator = "ANY_VISIONOS_SIMULATOR"
+        case anyIosDevice = "ANY_IOS_DEVICE"
+        case anyIosSimulator = "ANY_IOS_SIMULATOR"
+        case anyTvosDevice = "ANY_TVOS_DEVICE"
+        case anyTvosSimulator = "ANY_TVOS_SIMULATOR"
+        case anyWatchosDevice = "ANY_WATCHOS_DEVICE"
+        case anyWatchosSimulator = "ANY_WATCHOS_SIMULATOR"
+        case anyMac = "ANY_MAC"
+        case anyMacCatalyst = "ANY_MAC_CATALYST"
+        case anyVisionosDevice = "ANY_VISIONOS_DEVICE"
+        case anyVisionosSimulator = "ANY_VISIONOS_SIMULATOR"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     public enum Platform: String, Codable, CaseIterable, CaseIterableDefaultsLast {

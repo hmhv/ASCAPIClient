@@ -12,7 +12,7 @@ import AnyCodable
 
 public struct CustomerReviewAttributes: Codable, JSONEncodable, Hashable {
 
-    static let ratingRule = NumericRule<Int>(minimum: 1, exclusiveMinimum: false, maximum: 5, exclusiveMaximum: false, multipleOf: nil)
+    public static let ratingRule = NumericRule<Int>(minimum: 1, exclusiveMinimum: false, maximum: 5, exclusiveMaximum: false, multipleOf: nil)
     public var rating: Int?
     public var title: String?
     public var body: String?

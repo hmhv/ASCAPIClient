@@ -13,11 +13,11 @@ import AnyCodable
 public struct SandboxTesterV2Attributes: Codable, JSONEncodable, Hashable {
 
     public enum SubscriptionRenewalRate: String, Codable, CaseIterable, CaseIterableDefaultsLast {
-        case oneHour = "MONTHLY_RENEWAL_EVERY_ONE_HOUR"
-        case thirtyMinutes = "MONTHLY_RENEWAL_EVERY_THIRTY_MINUTES"
-        case fifteenMinutes = "MONTHLY_RENEWAL_EVERY_FIFTEEN_MINUTES"
-        case fiveMinutes = "MONTHLY_RENEWAL_EVERY_FIVE_MINUTES"
-        case threeMinutes = "MONTHLY_RENEWAL_EVERY_THREE_MINUTES"
+        case monthlyRenewalEveryOneHour = "MONTHLY_RENEWAL_EVERY_ONE_HOUR"
+        case monthlyRenewalEveryThirtyMinutes = "MONTHLY_RENEWAL_EVERY_THIRTY_MINUTES"
+        case monthlyRenewalEveryFifteenMinutes = "MONTHLY_RENEWAL_EVERY_FIFTEEN_MINUTES"
+        case monthlyRenewalEveryFiveMinutes = "MONTHLY_RENEWAL_EVERY_FIVE_MINUTES"
+        case monthlyRenewalEveryThreeMinutes = "MONTHLY_RENEWAL_EVERY_THREE_MINUTES"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     public var firstName: String?
