@@ -13,9 +13,9 @@ import AnyCodable
 public struct GameCenterEnabledVersionRelationships: Codable, JSONEncodable, Hashable {
 
     public var compatibleVersions: AppRelationshipsGameCenterEnabledVersions?
-    public var app: AppAvailabilityRelationshipsApp?
+    public var app: AlternativeDistributionKeyCreateRequestDataRelationshipsApp?
 
-    public init(compatibleVersions: AppRelationshipsGameCenterEnabledVersions? = nil, app: AppAvailabilityRelationshipsApp? = nil) {
+    public init(compatibleVersions: AppRelationshipsGameCenterEnabledVersions? = nil, app: AlternativeDistributionKeyCreateRequestDataRelationshipsApp? = nil) {
         self.compatibleVersions = compatibleVersions
         self.app = app
     }

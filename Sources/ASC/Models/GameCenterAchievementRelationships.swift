@@ -12,13 +12,14 @@ import AnyCodable
 
 public struct GameCenterAchievementRelationships: Codable, JSONEncodable, Hashable {
 
-    public var gameCenterDetail: AppRelationshipsGameCenterDetail?
+    public var gameCenterDetail: GameCenterAchievementReleaseRelationshipsGameCenterDetail?
     public var gameCenterGroup: GameCenterAchievementRelationshipsGameCenterGroup?
-    public var groupAchievement: GameCenterAchievementLocalizationRelationshipsGameCenterAchievement?
+    @available(*, deprecated, message: "This property is deprecated.")
+    public var groupAchievement: GameCenterAchievementRelationshipsGroupAchievement?
     public var localizations: GameCenterAchievementRelationshipsLocalizations?
     public var releases: GameCenterAchievementRelationshipsReleases?
 
-    public init(gameCenterDetail: AppRelationshipsGameCenterDetail? = nil, gameCenterGroup: GameCenterAchievementRelationshipsGameCenterGroup? = nil, groupAchievement: GameCenterAchievementLocalizationRelationshipsGameCenterAchievement? = nil, localizations: GameCenterAchievementRelationshipsLocalizations? = nil, releases: GameCenterAchievementRelationshipsReleases? = nil) {
+    public init(gameCenterDetail: GameCenterAchievementReleaseRelationshipsGameCenterDetail? = nil, gameCenterGroup: GameCenterAchievementRelationshipsGameCenterGroup? = nil, groupAchievement: GameCenterAchievementRelationshipsGroupAchievement? = nil, localizations: GameCenterAchievementRelationshipsLocalizations? = nil, releases: GameCenterAchievementRelationshipsReleases? = nil) {
         self.gameCenterDetail = gameCenterDetail
         self.gameCenterGroup = gameCenterGroup
         self.groupAchievement = groupAchievement

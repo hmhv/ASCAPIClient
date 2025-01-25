@@ -5,7 +5,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **type** | **String** |  | 
 **id** | **String** |  | 
-**attributes** | [**AppPricePointV2Attributes**](AppPricePointV2Attributes.md) |  | [optional] 
+**attributes** | [**AppPricePointV3Attributes**](AppPricePointV3Attributes.md) |  | [optional] 
 **relationships** | [**AppPricePointV3Relationships**](AppPricePointV3Relationships.md) |  | [optional] 
 **links** | [**ResourceLinks**](ResourceLinks.md) |  | [optional] 
 

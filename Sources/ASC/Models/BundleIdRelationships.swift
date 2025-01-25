@@ -14,9 +14,9 @@ public struct BundleIdRelationships: Codable, JSONEncodable, Hashable {
 
     public var profiles: BundleIdRelationshipsProfiles?
     public var bundleIdCapabilities: BundleIdRelationshipsBundleIdCapabilities?
-    public var app: AppAvailabilityRelationshipsApp?
+    public var app: BetaAppLocalizationRelationshipsApp?
 
-    public init(profiles: BundleIdRelationshipsProfiles? = nil, bundleIdCapabilities: BundleIdRelationshipsBundleIdCapabilities? = nil, app: AppAvailabilityRelationshipsApp? = nil) {
+    public init(profiles: BundleIdRelationshipsProfiles? = nil, bundleIdCapabilities: BundleIdRelationshipsBundleIdCapabilities? = nil, app: BetaAppLocalizationRelationshipsApp? = nil) {
         self.profiles = profiles
         self.bundleIdCapabilities = bundleIdCapabilities
         self.app = app

@@ -12,7 +12,7 @@ import AnyCodable
 
 public struct AppInfoRelationships: Codable, JSONEncodable, Hashable {
 
-    public var app: AppAvailabilityRelationshipsApp?
+    public var app: AlternativeDistributionKeyCreateRequestDataRelationshipsApp?
     public var ageRatingDeclaration: AppInfoRelationshipsAgeRatingDeclaration?
     public var appInfoLocalizations: AppInfoRelationshipsAppInfoLocalizations?
     public var primaryCategory: AppCategoryRelationshipsParent?
@@ -22,7 +22,7 @@ public struct AppInfoRelationships: Codable, JSONEncodable, Hashable {
     public var secondarySubcategoryOne: AppCategoryRelationshipsParent?
     public var secondarySubcategoryTwo: AppCategoryRelationshipsParent?
 
-    public init(app: AppAvailabilityRelationshipsApp? = nil, ageRatingDeclaration: AppInfoRelationshipsAgeRatingDeclaration? = nil, appInfoLocalizations: AppInfoRelationshipsAppInfoLocalizations? = nil, primaryCategory: AppCategoryRelationshipsParent? = nil, primarySubcategoryOne: AppCategoryRelationshipsParent? = nil, primarySubcategoryTwo: AppCategoryRelationshipsParent? = nil, secondaryCategory: AppCategoryRelationshipsParent? = nil, secondarySubcategoryOne: AppCategoryRelationshipsParent? = nil, secondarySubcategoryTwo: AppCategoryRelationshipsParent? = nil) {
+    public init(app: AlternativeDistributionKeyCreateRequestDataRelationshipsApp? = nil, ageRatingDeclaration: AppInfoRelationshipsAgeRatingDeclaration? = nil, appInfoLocalizations: AppInfoRelationshipsAppInfoLocalizations? = nil, primaryCategory: AppCategoryRelationshipsParent? = nil, primarySubcategoryOne: AppCategoryRelationshipsParent? = nil, primarySubcategoryTwo: AppCategoryRelationshipsParent? = nil, secondaryCategory: AppCategoryRelationshipsParent? = nil, secondarySubcategoryOne: AppCategoryRelationshipsParent? = nil, secondarySubcategoryTwo: AppCategoryRelationshipsParent? = nil) {
         self.app = app
         self.ageRatingDeclaration = ageRatingDeclaration
         self.appInfoLocalizations = appInfoLocalizations

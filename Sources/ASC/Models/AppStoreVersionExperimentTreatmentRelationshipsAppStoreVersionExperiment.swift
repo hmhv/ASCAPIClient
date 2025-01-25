@@ -12,16 +12,13 @@ import AnyCodable
 
 public struct AppStoreVersionExperimentTreatmentRelationshipsAppStoreVersionExperiment: Codable, JSONEncodable, Hashable {
 
-    public var links: AlternativeDistributionPackageVersionRelationshipsVariantsLinks?
     public var data: AppStoreVersionExperimentTreatmentRelationshipsAppStoreVersionExperimentData?
 
-    public init(links: AlternativeDistributionPackageVersionRelationshipsVariantsLinks? = nil, data: AppStoreVersionExperimentTreatmentRelationshipsAppStoreVersionExperimentData? = nil) {
-        self.links = links
+    public init(data: AppStoreVersionExperimentTreatmentRelationshipsAppStoreVersionExperimentData? = nil) {
         self.data = data
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
-        case links
         case data
     }
 
@@ -29,7 +26,6 @@ public struct AppStoreVersionExperimentTreatmentRelationshipsAppStoreVersionExpe
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(links, forKey: .links)
         try container.encodeIfPresent(data, forKey: .data)
     }
 }

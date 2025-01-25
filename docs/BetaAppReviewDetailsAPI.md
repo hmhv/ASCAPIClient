@@ -61,7 +61,7 @@ Name | Type | Description  | Notes
 
 # **betaAppReviewDetailsGetCollection**
 ```swift
-    open class func betaAppReviewDetailsGetCollection(filterApp: [String], fieldsBetaAppReviewDetails: [FieldsBetaAppReviewDetails_betaAppReviewDetailsGetCollection]? = nil, limit: Int? = nil, include: [Include_betaAppReviewDetailsGetCollection]? = nil, fieldsApps: [FieldsApps_betaAppReviewDetailsGetCollection]? = nil, completion: @escaping (_ data: BetaAppReviewDetailsResponse?, _ error: Error?) -> Void)
+    open class func betaAppReviewDetailsGetCollection(filterApp: [String], fieldsBetaAppReviewDetails: [FieldsBetaAppReviewDetails_betaAppReviewDetailsGetCollection]? = nil, fieldsApps: [FieldsApps_betaAppReviewDetailsGetCollection]? = nil, limit: Int? = nil, include: [Include_betaAppReviewDetailsGetCollection]? = nil, completion: @escaping (_ data: BetaAppReviewDetailsResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -73,11 +73,11 @@ import ASC
 
 let filterApp = ["inner_example"] // [String] | filter by id(s) of related 'app'
 let fieldsBetaAppReviewDetails = ["fieldsBetaAppReviewDetails_example"] // [String] | the fields to include for returned resources of type betaAppReviewDetails (optional)
+let fieldsApps = ["fieldsApps_example"] // [String] | the fields to include for returned resources of type apps (optional)
 let limit = 987 // Int | maximum resources per page (optional)
 let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
-let fieldsApps = ["fieldsApps_example"] // [String] | the fields to include for returned resources of type apps (optional)
 
-BetaAppReviewDetailsAPI.betaAppReviewDetailsGetCollection(filterApp: filterApp, fieldsBetaAppReviewDetails: fieldsBetaAppReviewDetails, limit: limit, include: include, fieldsApps: fieldsApps) { (response, error) in
+BetaAppReviewDetailsAPI.betaAppReviewDetailsGetCollection(filterApp: filterApp, fieldsBetaAppReviewDetails: fieldsBetaAppReviewDetails, fieldsApps: fieldsApps, limit: limit, include: include) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -95,9 +95,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **filterApp** | [**[String]**](String.md) | filter by id(s) of related &#39;app&#39; | 
  **fieldsBetaAppReviewDetails** | [**[String]**](String.md) | the fields to include for returned resources of type betaAppReviewDetails | [optional] 
+ **fieldsApps** | [**[String]**](String.md) | the fields to include for returned resources of type apps | [optional] 
  **limit** | **Int** | maximum resources per page | [optional] 
  **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
- **fieldsApps** | [**[String]**](String.md) | the fields to include for returned resources of type apps | [optional] 
 
 ### Return type
 
@@ -116,7 +116,7 @@ Name | Type | Description  | Notes
 
 # **betaAppReviewDetailsGetInstance**
 ```swift
-    open class func betaAppReviewDetailsGetInstance(id: String, fieldsBetaAppReviewDetails: [FieldsBetaAppReviewDetails_betaAppReviewDetailsGetInstance]? = nil, include: [Include_betaAppReviewDetailsGetInstance]? = nil, fieldsApps: [FieldsApps_betaAppReviewDetailsGetInstance]? = nil, completion: @escaping (_ data: BetaAppReviewDetailResponse?, _ error: Error?) -> Void)
+    open class func betaAppReviewDetailsGetInstance(id: String, fieldsBetaAppReviewDetails: [FieldsBetaAppReviewDetails_betaAppReviewDetailsGetInstance]? = nil, fieldsApps: [FieldsApps_betaAppReviewDetailsGetInstance]? = nil, include: [Include_betaAppReviewDetailsGetInstance]? = nil, completion: @escaping (_ data: BetaAppReviewDetailResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -128,10 +128,10 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let fieldsBetaAppReviewDetails = ["fieldsBetaAppReviewDetails_example"] // [String] | the fields to include for returned resources of type betaAppReviewDetails (optional)
-let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let fieldsApps = ["fieldsApps_example"] // [String] | the fields to include for returned resources of type apps (optional)
+let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 
-BetaAppReviewDetailsAPI.betaAppReviewDetailsGetInstance(id: id, fieldsBetaAppReviewDetails: fieldsBetaAppReviewDetails, include: include, fieldsApps: fieldsApps) { (response, error) in
+BetaAppReviewDetailsAPI.betaAppReviewDetailsGetInstance(id: id, fieldsBetaAppReviewDetails: fieldsBetaAppReviewDetails, fieldsApps: fieldsApps, include: include) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -149,8 +149,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **fieldsBetaAppReviewDetails** | [**[String]**](String.md) | the fields to include for returned resources of type betaAppReviewDetails | [optional] 
- **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **fieldsApps** | [**[String]**](String.md) | the fields to include for returned resources of type apps | [optional] 
+ **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
 
 ### Return type
 

@@ -160,7 +160,7 @@ Void (empty response body)
 
 # **appClipDefaultExperienceLocalizationsGetInstance**
 ```swift
-    open class func appClipDefaultExperienceLocalizationsGetInstance(id: String, fieldsAppClipDefaultExperienceLocalizations: [FieldsAppClipDefaultExperienceLocalizations_appClipDefaultExperienceLocalizationsGetInstance]? = nil, include: [Include_appClipDefaultExperienceLocalizationsGetInstance]? = nil, fieldsAppClipHeaderImages: [FieldsAppClipHeaderImages_appClipDefaultExperienceLocalizationsGetInstance]? = nil, completion: @escaping (_ data: AppClipDefaultExperienceLocalizationResponse?, _ error: Error?) -> Void)
+    open class func appClipDefaultExperienceLocalizationsGetInstance(id: String, fieldsAppClipDefaultExperienceLocalizations: [FieldsAppClipDefaultExperienceLocalizations_appClipDefaultExperienceLocalizationsGetInstance]? = nil, fieldsAppClipHeaderImages: [FieldsAppClipHeaderImages_appClipDefaultExperienceLocalizationsGetInstance]? = nil, include: [Include_appClipDefaultExperienceLocalizationsGetInstance]? = nil, completion: @escaping (_ data: AppClipDefaultExperienceLocalizationResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -172,10 +172,10 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let fieldsAppClipDefaultExperienceLocalizations = ["fieldsAppClipDefaultExperienceLocalizations_example"] // [String] | the fields to include for returned resources of type appClipDefaultExperienceLocalizations (optional)
-let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let fieldsAppClipHeaderImages = ["fieldsAppClipHeaderImages_example"] // [String] | the fields to include for returned resources of type appClipHeaderImages (optional)
+let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 
-AppClipDefaultExperienceLocalizationsAPI.appClipDefaultExperienceLocalizationsGetInstance(id: id, fieldsAppClipDefaultExperienceLocalizations: fieldsAppClipDefaultExperienceLocalizations, include: include, fieldsAppClipHeaderImages: fieldsAppClipHeaderImages) { (response, error) in
+AppClipDefaultExperienceLocalizationsAPI.appClipDefaultExperienceLocalizationsGetInstance(id: id, fieldsAppClipDefaultExperienceLocalizations: fieldsAppClipDefaultExperienceLocalizations, fieldsAppClipHeaderImages: fieldsAppClipHeaderImages, include: include) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -193,8 +193,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **fieldsAppClipDefaultExperienceLocalizations** | [**[String]**](String.md) | the fields to include for returned resources of type appClipDefaultExperienceLocalizations | [optional] 
- **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **fieldsAppClipHeaderImages** | [**[String]**](String.md) | the fields to include for returned resources of type appClipHeaderImages | [optional] 
+ **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
 
 ### Return type
 

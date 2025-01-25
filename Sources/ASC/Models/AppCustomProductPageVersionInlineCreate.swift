@@ -18,17 +18,20 @@ public struct AppCustomProductPageVersionInlineCreate: Codable, JSONEncodable, H
     }
     public var type: ModelType
     public var id: String?
+    public var attributes: AppCustomProductPageVersionInlineCreateAttributes?
     public var relationships: AppCustomProductPageVersionInlineCreateRelationships?
 
-    public init(type: ModelType, id: String? = nil, relationships: AppCustomProductPageVersionInlineCreateRelationships? = nil) {
+    public init(type: ModelType, id: String? = nil, attributes: AppCustomProductPageVersionInlineCreateAttributes? = nil, relationships: AppCustomProductPageVersionInlineCreateRelationships? = nil) {
         self.type = type
         self.id = id
+        self.attributes = attributes
         self.relationships = relationships
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case type
         case id
+        case attributes
         case relationships
     }
 
@@ -38,6 +41,7 @@ public struct AppCustomProductPageVersionInlineCreate: Codable, JSONEncodable, H
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(type, forKey: .type)
         try container.encodeIfPresent(id, forKey: .id)
+        try container.encodeIfPresent(attributes, forKey: .attributes)
         try container.encodeIfPresent(relationships, forKey: .relationships)
     }
 }

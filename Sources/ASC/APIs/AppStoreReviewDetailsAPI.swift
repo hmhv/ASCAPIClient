@@ -13,32 +13,31 @@ import AnyCodable
 open class AppStoreReviewDetailsAPI {
 
     /**
+     * enum for parameter fieldsAppStoreReviewAttachments
+     */
+    public enum FieldsAppStoreReviewAttachments_appStoreReviewDetailsAppStoreReviewAttachmentsGetToManyRelated: String, CaseIterable {
+        case filesize = "fileSize"
+        case filename = "fileName"
+        case sourcefilechecksum = "sourceFileChecksum"
+        case uploadoperations = "uploadOperations"
+        case assetdeliverystate = "assetDeliveryState"
+        case appstorereviewdetail = "appStoreReviewDetail"
+    }
+
+    /**
      * enum for parameter fieldsAppStoreReviewDetails
      */
     public enum FieldsAppStoreReviewDetails_appStoreReviewDetailsAppStoreReviewAttachmentsGetToManyRelated: String, CaseIterable {
-        case appstorereviewattachments = "appStoreReviewAttachments"
-        case appstoreversion = "appStoreVersion"
-        case contactemail = "contactEmail"
         case contactfirstname = "contactFirstName"
         case contactlastname = "contactLastName"
         case contactphone = "contactPhone"
+        case contactemail = "contactEmail"
         case demoaccountname = "demoAccountName"
         case demoaccountpassword = "demoAccountPassword"
         case demoaccountrequired = "demoAccountRequired"
         case notes = "notes"
-    }
-
-    /**
-     * enum for parameter fieldsAppStoreReviewAttachments
-     */
-    public enum FieldsAppStoreReviewAttachments_appStoreReviewDetailsAppStoreReviewAttachmentsGetToManyRelated: String, CaseIterable {
-        case appstorereviewdetail = "appStoreReviewDetail"
-        case assetdeliverystate = "assetDeliveryState"
-        case filename = "fileName"
-        case filesize = "fileSize"
-        case sourcefilechecksum = "sourceFileChecksum"
-        case uploadoperations = "uploadOperations"
-        case uploaded = "uploaded"
+        case appstoreversion = "appStoreVersion"
+        case appstorereviewattachments = "appStoreReviewAttachments"
     }
 
     /**
@@ -51,15 +50,15 @@ open class AppStoreReviewDetailsAPI {
     /**
 
      - parameter id: (path) the id of the requested resource 
-     - parameter fieldsAppStoreReviewDetails: (query) the fields to include for returned resources of type appStoreReviewDetails (optional)
      - parameter fieldsAppStoreReviewAttachments: (query) the fields to include for returned resources of type appStoreReviewAttachments (optional)
+     - parameter fieldsAppStoreReviewDetails: (query) the fields to include for returned resources of type appStoreReviewDetails (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: AppStoreReviewAttachmentsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreReviewDetailsAppStoreReviewAttachmentsGetToManyRelated(id: String, fieldsAppStoreReviewDetails: [FieldsAppStoreReviewDetails_appStoreReviewDetailsAppStoreReviewAttachmentsGetToManyRelated]? = nil, fieldsAppStoreReviewAttachments: [FieldsAppStoreReviewAttachments_appStoreReviewDetailsAppStoreReviewAttachmentsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appStoreReviewDetailsAppStoreReviewAttachmentsGetToManyRelated]? = nil) async throws -> AppStoreReviewAttachmentsResponse {
-        return try await appStoreReviewDetailsAppStoreReviewAttachmentsGetToManyRelatedWithRequestBuilder(id: id, fieldsAppStoreReviewDetails: fieldsAppStoreReviewDetails, fieldsAppStoreReviewAttachments: fieldsAppStoreReviewAttachments, limit: limit, include: include).execute().body
+    open class func appStoreReviewDetailsAppStoreReviewAttachmentsGetToManyRelated(id: String, fieldsAppStoreReviewAttachments: [FieldsAppStoreReviewAttachments_appStoreReviewDetailsAppStoreReviewAttachmentsGetToManyRelated]? = nil, fieldsAppStoreReviewDetails: [FieldsAppStoreReviewDetails_appStoreReviewDetailsAppStoreReviewAttachmentsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appStoreReviewDetailsAppStoreReviewAttachmentsGetToManyRelated]? = nil) async throws -> AppStoreReviewAttachmentsResponse {
+        return try await appStoreReviewDetailsAppStoreReviewAttachmentsGetToManyRelatedWithRequestBuilder(id: id, fieldsAppStoreReviewAttachments: fieldsAppStoreReviewAttachments, fieldsAppStoreReviewDetails: fieldsAppStoreReviewDetails, limit: limit, include: include).execute().body
     }
 
     /**
@@ -77,13 +76,13 @@ open class AppStoreReviewDetailsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
-     - parameter fieldsAppStoreReviewDetails: (query) the fields to include for returned resources of type appStoreReviewDetails (optional)
      - parameter fieldsAppStoreReviewAttachments: (query) the fields to include for returned resources of type appStoreReviewAttachments (optional)
+     - parameter fieldsAppStoreReviewDetails: (query) the fields to include for returned resources of type appStoreReviewDetails (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: RequestBuilder<AppStoreReviewAttachmentsResponse> 
      */
-    open class func appStoreReviewDetailsAppStoreReviewAttachmentsGetToManyRelatedWithRequestBuilder(id: String, fieldsAppStoreReviewDetails: [FieldsAppStoreReviewDetails_appStoreReviewDetailsAppStoreReviewAttachmentsGetToManyRelated]? = nil, fieldsAppStoreReviewAttachments: [FieldsAppStoreReviewAttachments_appStoreReviewDetailsAppStoreReviewAttachmentsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appStoreReviewDetailsAppStoreReviewAttachmentsGetToManyRelated]? = nil) -> RequestBuilder<AppStoreReviewAttachmentsResponse> {
+    open class func appStoreReviewDetailsAppStoreReviewAttachmentsGetToManyRelatedWithRequestBuilder(id: String, fieldsAppStoreReviewAttachments: [FieldsAppStoreReviewAttachments_appStoreReviewDetailsAppStoreReviewAttachmentsGetToManyRelated]? = nil, fieldsAppStoreReviewDetails: [FieldsAppStoreReviewDetails_appStoreReviewDetailsAppStoreReviewAttachmentsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appStoreReviewDetailsAppStoreReviewAttachmentsGetToManyRelated]? = nil) -> RequestBuilder<AppStoreReviewAttachmentsResponse> {
         var localVariablePath = "/v1/appStoreReviewDetails/{id}/appStoreReviewAttachments"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -93,8 +92,8 @@ open class AppStoreReviewDetailsAPI {
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[appStoreReviewDetails]": (wrappedValue: fieldsAppStoreReviewDetails?.encodeToJSON(), isExplode: false),
             "fields[appStoreReviewAttachments]": (wrappedValue: fieldsAppStoreReviewAttachments?.encodeToJSON(), isExplode: false),
+            "fields[appStoreReviewDetails]": (wrappedValue: fieldsAppStoreReviewDetails?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
         ])
@@ -199,51 +198,50 @@ open class AppStoreReviewDetailsAPI {
      * enum for parameter fieldsAppStoreReviewDetails
      */
     public enum FieldsAppStoreReviewDetails_appStoreReviewDetailsGetInstance: String, CaseIterable {
-        case appstorereviewattachments = "appStoreReviewAttachments"
-        case appstoreversion = "appStoreVersion"
-        case contactemail = "contactEmail"
         case contactfirstname = "contactFirstName"
         case contactlastname = "contactLastName"
         case contactphone = "contactPhone"
+        case contactemail = "contactEmail"
         case demoaccountname = "demoAccountName"
         case demoaccountpassword = "demoAccountPassword"
         case demoaccountrequired = "demoAccountRequired"
         case notes = "notes"
-    }
-
-    /**
-     * enum for parameter include
-     */
-    public enum Include_appStoreReviewDetailsGetInstance: String, CaseIterable {
-        case appstorereviewattachments = "appStoreReviewAttachments"
         case appstoreversion = "appStoreVersion"
+        case appstorereviewattachments = "appStoreReviewAttachments"
     }
 
     /**
      * enum for parameter fieldsAppStoreReviewAttachments
      */
     public enum FieldsAppStoreReviewAttachments_appStoreReviewDetailsGetInstance: String, CaseIterable {
-        case appstorereviewdetail = "appStoreReviewDetail"
-        case assetdeliverystate = "assetDeliveryState"
-        case filename = "fileName"
         case filesize = "fileSize"
+        case filename = "fileName"
         case sourcefilechecksum = "sourceFileChecksum"
         case uploadoperations = "uploadOperations"
-        case uploaded = "uploaded"
+        case assetdeliverystate = "assetDeliveryState"
+        case appstorereviewdetail = "appStoreReviewDetail"
+    }
+
+    /**
+     * enum for parameter include
+     */
+    public enum Include_appStoreReviewDetailsGetInstance: String, CaseIterable {
+        case appstoreversion = "appStoreVersion"
+        case appstorereviewattachments = "appStoreReviewAttachments"
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAppStoreReviewDetails: (query) the fields to include for returned resources of type appStoreReviewDetails (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter fieldsAppStoreReviewAttachments: (query) the fields to include for returned resources of type appStoreReviewAttachments (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAppStoreReviewAttachments: (query) maximum number of related appStoreReviewAttachments returned (when they are included) (optional)
      - returns: AppStoreReviewDetailResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreReviewDetailsGetInstance(id: String, fieldsAppStoreReviewDetails: [FieldsAppStoreReviewDetails_appStoreReviewDetailsGetInstance]? = nil, include: [Include_appStoreReviewDetailsGetInstance]? = nil, fieldsAppStoreReviewAttachments: [FieldsAppStoreReviewAttachments_appStoreReviewDetailsGetInstance]? = nil, limitAppStoreReviewAttachments: Int? = nil) async throws -> AppStoreReviewDetailResponse {
-        return try await appStoreReviewDetailsGetInstanceWithRequestBuilder(id: id, fieldsAppStoreReviewDetails: fieldsAppStoreReviewDetails, include: include, fieldsAppStoreReviewAttachments: fieldsAppStoreReviewAttachments, limitAppStoreReviewAttachments: limitAppStoreReviewAttachments).execute().body
+    open class func appStoreReviewDetailsGetInstance(id: String, fieldsAppStoreReviewDetails: [FieldsAppStoreReviewDetails_appStoreReviewDetailsGetInstance]? = nil, fieldsAppStoreReviewAttachments: [FieldsAppStoreReviewAttachments_appStoreReviewDetailsGetInstance]? = nil, include: [Include_appStoreReviewDetailsGetInstance]? = nil, limitAppStoreReviewAttachments: Int? = nil) async throws -> AppStoreReviewDetailResponse {
+        return try await appStoreReviewDetailsGetInstanceWithRequestBuilder(id: id, fieldsAppStoreReviewDetails: fieldsAppStoreReviewDetails, fieldsAppStoreReviewAttachments: fieldsAppStoreReviewAttachments, include: include, limitAppStoreReviewAttachments: limitAppStoreReviewAttachments).execute().body
     }
 
     /**
@@ -262,12 +260,12 @@ open class AppStoreReviewDetailsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAppStoreReviewDetails: (query) the fields to include for returned resources of type appStoreReviewDetails (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter fieldsAppStoreReviewAttachments: (query) the fields to include for returned resources of type appStoreReviewAttachments (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAppStoreReviewAttachments: (query) maximum number of related appStoreReviewAttachments returned (when they are included) (optional)
      - returns: RequestBuilder<AppStoreReviewDetailResponse> 
      */
-    open class func appStoreReviewDetailsGetInstanceWithRequestBuilder(id: String, fieldsAppStoreReviewDetails: [FieldsAppStoreReviewDetails_appStoreReviewDetailsGetInstance]? = nil, include: [Include_appStoreReviewDetailsGetInstance]? = nil, fieldsAppStoreReviewAttachments: [FieldsAppStoreReviewAttachments_appStoreReviewDetailsGetInstance]? = nil, limitAppStoreReviewAttachments: Int? = nil) -> RequestBuilder<AppStoreReviewDetailResponse> {
+    open class func appStoreReviewDetailsGetInstanceWithRequestBuilder(id: String, fieldsAppStoreReviewDetails: [FieldsAppStoreReviewDetails_appStoreReviewDetailsGetInstance]? = nil, fieldsAppStoreReviewAttachments: [FieldsAppStoreReviewAttachments_appStoreReviewDetailsGetInstance]? = nil, include: [Include_appStoreReviewDetailsGetInstance]? = nil, limitAppStoreReviewAttachments: Int? = nil) -> RequestBuilder<AppStoreReviewDetailResponse> {
         var localVariablePath = "/v1/appStoreReviewDetails/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -278,8 +276,8 @@ open class AppStoreReviewDetailsAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[appStoreReviewDetails]": (wrappedValue: fieldsAppStoreReviewDetails?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "fields[appStoreReviewAttachments]": (wrappedValue: fieldsAppStoreReviewAttachments?.encodeToJSON(), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "limit[appStoreReviewAttachments]": (wrappedValue: limitAppStoreReviewAttachments?.encodeToJSON(), isExplode: true),
         ])
 

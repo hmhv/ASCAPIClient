@@ -104,16 +104,26 @@ open class ReviewSubmissionsAPI {
      * enum for parameter fieldsReviewSubmissions
      */
     public enum FieldsReviewSubmissions_reviewSubmissionsGetCollection: String, CaseIterable {
-        case app = "app"
-        case appstoreversionforreview = "appStoreVersionForReview"
-        case canceled = "canceled"
-        case items = "items"
-        case lastupdatedbyactor = "lastUpdatedByActor"
         case platform = "platform"
-        case state = "state"
-        case submitted = "submitted"
-        case submittedbyactor = "submittedByActor"
         case submitteddate = "submittedDate"
+        case state = "state"
+        case app = "app"
+        case items = "items"
+        case appstoreversionforreview = "appStoreVersionForReview"
+        case submittedbyactor = "submittedByActor"
+        case lastupdatedbyactor = "lastUpdatedByActor"
+    }
+
+    /**
+     * enum for parameter fieldsReviewSubmissionItems
+     */
+    public enum FieldsReviewSubmissionItems_reviewSubmissionsGetCollection: String, CaseIterable {
+        case state = "state"
+        case appstoreversion = "appStoreVersion"
+        case appcustomproductpageversion = "appCustomProductPageVersion"
+        case appstoreversionexperiment = "appStoreVersionExperiment"
+        case appstoreversionexperimentv2 = "appStoreVersionExperimentV2"
+        case appevent = "appEvent"
     }
 
     /**
@@ -121,25 +131,10 @@ open class ReviewSubmissionsAPI {
      */
     public enum Include_reviewSubmissionsGetCollection: String, CaseIterable {
         case app = "app"
-        case appstoreversionforreview = "appStoreVersionForReview"
         case items = "items"
-        case lastupdatedbyactor = "lastUpdatedByActor"
+        case appstoreversionforreview = "appStoreVersionForReview"
         case submittedbyactor = "submittedByActor"
-    }
-
-    /**
-     * enum for parameter fieldsReviewSubmissionItems
-     */
-    public enum FieldsReviewSubmissionItems_reviewSubmissionsGetCollection: String, CaseIterable {
-        case appcustomproductpageversion = "appCustomProductPageVersion"
-        case appevent = "appEvent"
-        case appstoreversion = "appStoreVersion"
-        case appstoreversionexperiment = "appStoreVersionExperiment"
-        case appstoreversionexperimentv2 = "appStoreVersionExperimentV2"
-        case removed = "removed"
-        case resolved = "resolved"
-        case reviewsubmission = "reviewSubmission"
-        case state = "state"
+        case lastupdatedbyactor = "lastUpdatedByActor"
     }
 
     /**
@@ -148,15 +143,15 @@ open class ReviewSubmissionsAPI {
      - parameter filterPlatform: (query) filter by attribute &#39;platform&#39; (optional)
      - parameter filterState: (query) filter by attribute &#39;state&#39; (optional)
      - parameter fieldsReviewSubmissions: (query) the fields to include for returned resources of type reviewSubmissions (optional)
+     - parameter fieldsReviewSubmissionItems: (query) the fields to include for returned resources of type reviewSubmissionItems (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
-     - parameter fieldsReviewSubmissionItems: (query) the fields to include for returned resources of type reviewSubmissionItems (optional)
      - parameter limitItems: (query) maximum number of related items returned (when they are included) (optional)
      - returns: ReviewSubmissionsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func reviewSubmissionsGetCollection(filterApp: [String], filterPlatform: [FilterPlatform_reviewSubmissionsGetCollection]? = nil, filterState: [FilterState_reviewSubmissionsGetCollection]? = nil, fieldsReviewSubmissions: [FieldsReviewSubmissions_reviewSubmissionsGetCollection]? = nil, limit: Int? = nil, include: [Include_reviewSubmissionsGetCollection]? = nil, fieldsReviewSubmissionItems: [FieldsReviewSubmissionItems_reviewSubmissionsGetCollection]? = nil, limitItems: Int? = nil) async throws -> ReviewSubmissionsResponse {
-        return try await reviewSubmissionsGetCollectionWithRequestBuilder(filterApp: filterApp, filterPlatform: filterPlatform, filterState: filterState, fieldsReviewSubmissions: fieldsReviewSubmissions, limit: limit, include: include, fieldsReviewSubmissionItems: fieldsReviewSubmissionItems, limitItems: limitItems).execute().body
+    open class func reviewSubmissionsGetCollection(filterApp: [String], filterPlatform: [FilterPlatform_reviewSubmissionsGetCollection]? = nil, filterState: [FilterState_reviewSubmissionsGetCollection]? = nil, fieldsReviewSubmissions: [FieldsReviewSubmissions_reviewSubmissionsGetCollection]? = nil, fieldsReviewSubmissionItems: [FieldsReviewSubmissionItems_reviewSubmissionsGetCollection]? = nil, limit: Int? = nil, include: [Include_reviewSubmissionsGetCollection]? = nil, limitItems: Int? = nil) async throws -> ReviewSubmissionsResponse {
+        return try await reviewSubmissionsGetCollectionWithRequestBuilder(filterApp: filterApp, filterPlatform: filterPlatform, filterState: filterState, fieldsReviewSubmissions: fieldsReviewSubmissions, fieldsReviewSubmissionItems: fieldsReviewSubmissionItems, limit: limit, include: include, limitItems: limitItems).execute().body
     }
 
     /**
@@ -177,13 +172,13 @@ open class ReviewSubmissionsAPI {
      - parameter filterPlatform: (query) filter by attribute &#39;platform&#39; (optional)
      - parameter filterState: (query) filter by attribute &#39;state&#39; (optional)
      - parameter fieldsReviewSubmissions: (query) the fields to include for returned resources of type reviewSubmissions (optional)
+     - parameter fieldsReviewSubmissionItems: (query) the fields to include for returned resources of type reviewSubmissionItems (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
-     - parameter fieldsReviewSubmissionItems: (query) the fields to include for returned resources of type reviewSubmissionItems (optional)
      - parameter limitItems: (query) maximum number of related items returned (when they are included) (optional)
      - returns: RequestBuilder<ReviewSubmissionsResponse> 
      */
-    open class func reviewSubmissionsGetCollectionWithRequestBuilder(filterApp: [String], filterPlatform: [FilterPlatform_reviewSubmissionsGetCollection]? = nil, filterState: [FilterState_reviewSubmissionsGetCollection]? = nil, fieldsReviewSubmissions: [FieldsReviewSubmissions_reviewSubmissionsGetCollection]? = nil, limit: Int? = nil, include: [Include_reviewSubmissionsGetCollection]? = nil, fieldsReviewSubmissionItems: [FieldsReviewSubmissionItems_reviewSubmissionsGetCollection]? = nil, limitItems: Int? = nil) -> RequestBuilder<ReviewSubmissionsResponse> {
+    open class func reviewSubmissionsGetCollectionWithRequestBuilder(filterApp: [String], filterPlatform: [FilterPlatform_reviewSubmissionsGetCollection]? = nil, filterState: [FilterState_reviewSubmissionsGetCollection]? = nil, fieldsReviewSubmissions: [FieldsReviewSubmissions_reviewSubmissionsGetCollection]? = nil, fieldsReviewSubmissionItems: [FieldsReviewSubmissionItems_reviewSubmissionsGetCollection]? = nil, limit: Int? = nil, include: [Include_reviewSubmissionsGetCollection]? = nil, limitItems: Int? = nil) -> RequestBuilder<ReviewSubmissionsResponse> {
         let localVariablePath = "/v1/reviewSubmissions"
         let localVariableURLString = ASCAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -194,9 +189,9 @@ open class ReviewSubmissionsAPI {
             "filter[state]": (wrappedValue: filterState?.encodeToJSON(), isExplode: false),
             "filter[app]": (wrappedValue: filterApp.encodeToJSON(), isExplode: false),
             "fields[reviewSubmissions]": (wrappedValue: fieldsReviewSubmissions?.encodeToJSON(), isExplode: false),
+            "fields[reviewSubmissionItems]": (wrappedValue: fieldsReviewSubmissionItems?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "fields[reviewSubmissionItems]": (wrappedValue: fieldsReviewSubmissionItems?.encodeToJSON(), isExplode: false),
             "limit[items]": (wrappedValue: limitItems?.encodeToJSON(), isExplode: true),
         ])
 
@@ -235,16 +230,26 @@ open class ReviewSubmissionsAPI {
      * enum for parameter fieldsReviewSubmissions
      */
     public enum FieldsReviewSubmissions_reviewSubmissionsGetInstance: String, CaseIterable {
-        case app = "app"
-        case appstoreversionforreview = "appStoreVersionForReview"
-        case canceled = "canceled"
-        case items = "items"
-        case lastupdatedbyactor = "lastUpdatedByActor"
         case platform = "platform"
-        case state = "state"
-        case submitted = "submitted"
-        case submittedbyactor = "submittedByActor"
         case submitteddate = "submittedDate"
+        case state = "state"
+        case app = "app"
+        case items = "items"
+        case appstoreversionforreview = "appStoreVersionForReview"
+        case submittedbyactor = "submittedByActor"
+        case lastupdatedbyactor = "lastUpdatedByActor"
+    }
+
+    /**
+     * enum for parameter fieldsReviewSubmissionItems
+     */
+    public enum FieldsReviewSubmissionItems_reviewSubmissionsGetInstance: String, CaseIterable {
+        case state = "state"
+        case appstoreversion = "appStoreVersion"
+        case appcustomproductpageversion = "appCustomProductPageVersion"
+        case appstoreversionexperiment = "appStoreVersionExperiment"
+        case appstoreversionexperimentv2 = "appStoreVersionExperimentV2"
+        case appevent = "appEvent"
     }
 
     /**
@@ -252,39 +257,24 @@ open class ReviewSubmissionsAPI {
      */
     public enum Include_reviewSubmissionsGetInstance: String, CaseIterable {
         case app = "app"
-        case appstoreversionforreview = "appStoreVersionForReview"
         case items = "items"
-        case lastupdatedbyactor = "lastUpdatedByActor"
+        case appstoreversionforreview = "appStoreVersionForReview"
         case submittedbyactor = "submittedByActor"
-    }
-
-    /**
-     * enum for parameter fieldsReviewSubmissionItems
-     */
-    public enum FieldsReviewSubmissionItems_reviewSubmissionsGetInstance: String, CaseIterable {
-        case appcustomproductpageversion = "appCustomProductPageVersion"
-        case appevent = "appEvent"
-        case appstoreversion = "appStoreVersion"
-        case appstoreversionexperiment = "appStoreVersionExperiment"
-        case appstoreversionexperimentv2 = "appStoreVersionExperimentV2"
-        case removed = "removed"
-        case resolved = "resolved"
-        case reviewsubmission = "reviewSubmission"
-        case state = "state"
+        case lastupdatedbyactor = "lastUpdatedByActor"
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsReviewSubmissions: (query) the fields to include for returned resources of type reviewSubmissions (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter fieldsReviewSubmissionItems: (query) the fields to include for returned resources of type reviewSubmissionItems (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitItems: (query) maximum number of related items returned (when they are included) (optional)
      - returns: ReviewSubmissionResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func reviewSubmissionsGetInstance(id: String, fieldsReviewSubmissions: [FieldsReviewSubmissions_reviewSubmissionsGetInstance]? = nil, include: [Include_reviewSubmissionsGetInstance]? = nil, fieldsReviewSubmissionItems: [FieldsReviewSubmissionItems_reviewSubmissionsGetInstance]? = nil, limitItems: Int? = nil) async throws -> ReviewSubmissionResponse {
-        return try await reviewSubmissionsGetInstanceWithRequestBuilder(id: id, fieldsReviewSubmissions: fieldsReviewSubmissions, include: include, fieldsReviewSubmissionItems: fieldsReviewSubmissionItems, limitItems: limitItems).execute().body
+    open class func reviewSubmissionsGetInstance(id: String, fieldsReviewSubmissions: [FieldsReviewSubmissions_reviewSubmissionsGetInstance]? = nil, fieldsReviewSubmissionItems: [FieldsReviewSubmissionItems_reviewSubmissionsGetInstance]? = nil, include: [Include_reviewSubmissionsGetInstance]? = nil, limitItems: Int? = nil) async throws -> ReviewSubmissionResponse {
+        return try await reviewSubmissionsGetInstanceWithRequestBuilder(id: id, fieldsReviewSubmissions: fieldsReviewSubmissions, fieldsReviewSubmissionItems: fieldsReviewSubmissionItems, include: include, limitItems: limitItems).execute().body
     }
 
     /**
@@ -303,12 +293,12 @@ open class ReviewSubmissionsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsReviewSubmissions: (query) the fields to include for returned resources of type reviewSubmissions (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter fieldsReviewSubmissionItems: (query) the fields to include for returned resources of type reviewSubmissionItems (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitItems: (query) maximum number of related items returned (when they are included) (optional)
      - returns: RequestBuilder<ReviewSubmissionResponse> 
      */
-    open class func reviewSubmissionsGetInstanceWithRequestBuilder(id: String, fieldsReviewSubmissions: [FieldsReviewSubmissions_reviewSubmissionsGetInstance]? = nil, include: [Include_reviewSubmissionsGetInstance]? = nil, fieldsReviewSubmissionItems: [FieldsReviewSubmissionItems_reviewSubmissionsGetInstance]? = nil, limitItems: Int? = nil) -> RequestBuilder<ReviewSubmissionResponse> {
+    open class func reviewSubmissionsGetInstanceWithRequestBuilder(id: String, fieldsReviewSubmissions: [FieldsReviewSubmissions_reviewSubmissionsGetInstance]? = nil, fieldsReviewSubmissionItems: [FieldsReviewSubmissionItems_reviewSubmissionsGetInstance]? = nil, include: [Include_reviewSubmissionsGetInstance]? = nil, limitItems: Int? = nil) -> RequestBuilder<ReviewSubmissionResponse> {
         var localVariablePath = "/v1/reviewSubmissions/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -319,8 +309,8 @@ open class ReviewSubmissionsAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[reviewSubmissions]": (wrappedValue: fieldsReviewSubmissions?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "fields[reviewSubmissionItems]": (wrappedValue: fieldsReviewSubmissionItems?.encodeToJSON(), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "limit[items]": (wrappedValue: limitItems?.encodeToJSON(), isExplode: true),
         ])
 
@@ -356,122 +346,119 @@ open class ReviewSubmissionsAPI {
     }
 
     /**
-     * enum for parameter fieldsAppStoreVersionExperiments
-     */
-    public enum FieldsAppStoreVersionExperiments_reviewSubmissionsItemsGetToManyRelated: String, CaseIterable {
-        case app = "app"
-        case appstoreversion = "appStoreVersion"
-        case appstoreversionexperimenttreatments = "appStoreVersionExperimentTreatments"
-        case controlversions = "controlVersions"
-        case enddate = "endDate"
-        case latestcontrolversion = "latestControlVersion"
-        case name = "name"
-        case platform = "platform"
-        case reviewrequired = "reviewRequired"
-        case startdate = "startDate"
-        case started = "started"
-        case state = "state"
-        case trafficproportion = "trafficProportion"
-    }
-
-    /**
      * enum for parameter fieldsReviewSubmissionItems
      */
     public enum FieldsReviewSubmissionItems_reviewSubmissionsItemsGetToManyRelated: String, CaseIterable {
-        case appcustomproductpageversion = "appCustomProductPageVersion"
-        case appevent = "appEvent"
+        case state = "state"
         case appstoreversion = "appStoreVersion"
+        case appcustomproductpageversion = "appCustomProductPageVersion"
         case appstoreversionexperiment = "appStoreVersionExperiment"
         case appstoreversionexperimentv2 = "appStoreVersionExperimentV2"
-        case removed = "removed"
-        case resolved = "resolved"
-        case reviewsubmission = "reviewSubmission"
-        case state = "state"
+        case appevent = "appEvent"
     }
 
     /**
      * enum for parameter fieldsAppStoreVersions
      */
     public enum FieldsAppStoreVersions_reviewSubmissionsItemsGetToManyRelated: String, CaseIterable {
-        case ageratingdeclaration = "ageRatingDeclaration"
-        case alternativedistributionpackage = "alternativeDistributionPackage"
-        case app = "app"
-        case appclipdefaultexperience = "appClipDefaultExperience"
-        case appstorereviewdetail = "appStoreReviewDetail"
+        case platform = "platform"
+        case versionstring = "versionString"
         case appstorestate = "appStoreState"
+        case appversionstate = "appVersionState"
+        case copyright = "copyright"
+        case reviewtype = "reviewType"
+        case releasetype = "releaseType"
+        case earliestreleasedate = "earliestReleaseDate"
+        case downloadable = "downloadable"
+        case createddate = "createdDate"
+        case app = "app"
+        case ageratingdeclaration = "ageRatingDeclaration"
+        case appstoreversionlocalizations = "appStoreVersionLocalizations"
+        case build = "build"
+        case appstoreversionphasedrelease = "appStoreVersionPhasedRelease"
+        case gamecenterappversion = "gameCenterAppVersion"
+        case routingappcoverage = "routingAppCoverage"
+        case appstorereviewdetail = "appStoreReviewDetail"
+        case appstoreversionsubmission = "appStoreVersionSubmission"
+        case appclipdefaultexperience = "appClipDefaultExperience"
         case appstoreversionexperiments = "appStoreVersionExperiments"
         case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
-        case appstoreversionlocalizations = "appStoreVersionLocalizations"
-        case appstoreversionphasedrelease = "appStoreVersionPhasedRelease"
-        case appstoreversionsubmission = "appStoreVersionSubmission"
-        case appversionstate = "appVersionState"
-        case build = "build"
-        case copyright = "copyright"
-        case createddate = "createdDate"
         case customerreviews = "customerReviews"
-        case downloadable = "downloadable"
-        case earliestreleasedate = "earliestReleaseDate"
-        case platform = "platform"
-        case releasetype = "releaseType"
-        case reviewtype = "reviewType"
-        case routingappcoverage = "routingAppCoverage"
-        case versionstring = "versionString"
+        case alternativedistributionpackage = "alternativeDistributionPackage"
     }
 
     /**
      * enum for parameter fieldsAppCustomProductPageVersions
      */
     public enum FieldsAppCustomProductPageVersions_reviewSubmissionsItemsGetToManyRelated: String, CaseIterable {
+        case version = "version"
+        case state = "state"
+        case deeplink = "deepLink"
         case appcustomproductpage = "appCustomProductPage"
         case appcustomproductpagelocalizations = "appCustomProductPageLocalizations"
+    }
+
+    /**
+     * enum for parameter fieldsAppStoreVersionExperiments
+     */
+    public enum FieldsAppStoreVersionExperiments_reviewSubmissionsItemsGetToManyRelated: String, CaseIterable {
+        case name = "name"
+        case trafficproportion = "trafficProportion"
         case state = "state"
-        case version = "version"
+        case reviewrequired = "reviewRequired"
+        case startdate = "startDate"
+        case enddate = "endDate"
+        case appstoreversion = "appStoreVersion"
+        case appstoreversionexperimenttreatments = "appStoreVersionExperimentTreatments"
+        case platform = "platform"
+        case app = "app"
+        case latestcontrolversion = "latestControlVersion"
+        case controlversions = "controlVersions"
     }
 
     /**
      * enum for parameter fieldsAppEvents
      */
     public enum FieldsAppEvents_reviewSubmissionsItemsGetToManyRelated: String, CaseIterable {
-        case app = "app"
-        case archivedterritoryschedules = "archivedTerritorySchedules"
+        case referencename = "referenceName"
         case badge = "badge"
-        case deeplink = "deepLink"
         case eventstate = "eventState"
-        case localizations = "localizations"
+        case deeplink = "deepLink"
+        case purchaserequirement = "purchaseRequirement"
         case primarylocale = "primaryLocale"
         case priority = "priority"
-        case purchaserequirement = "purchaseRequirement"
         case purpose = "purpose"
-        case referencename = "referenceName"
         case territoryschedules = "territorySchedules"
+        case archivedterritoryschedules = "archivedTerritorySchedules"
+        case localizations = "localizations"
     }
 
     /**
      * enum for parameter include
      */
     public enum Include_reviewSubmissionsItemsGetToManyRelated: String, CaseIterable {
-        case appcustomproductpageversion = "appCustomProductPageVersion"
-        case appevent = "appEvent"
         case appstoreversion = "appStoreVersion"
+        case appcustomproductpageversion = "appCustomProductPageVersion"
         case appstoreversionexperiment = "appStoreVersionExperiment"
         case appstoreversionexperimentv2 = "appStoreVersionExperimentV2"
+        case appevent = "appEvent"
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
-     - parameter fieldsAppStoreVersionExperiments: (query) the fields to include for returned resources of type appStoreVersionExperiments (optional)
      - parameter fieldsReviewSubmissionItems: (query) the fields to include for returned resources of type reviewSubmissionItems (optional)
      - parameter fieldsAppStoreVersions: (query) the fields to include for returned resources of type appStoreVersions (optional)
      - parameter fieldsAppCustomProductPageVersions: (query) the fields to include for returned resources of type appCustomProductPageVersions (optional)
+     - parameter fieldsAppStoreVersionExperiments: (query) the fields to include for returned resources of type appStoreVersionExperiments (optional)
      - parameter fieldsAppEvents: (query) the fields to include for returned resources of type appEvents (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: ReviewSubmissionItemsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func reviewSubmissionsItemsGetToManyRelated(id: String, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_reviewSubmissionsItemsGetToManyRelated]? = nil, fieldsReviewSubmissionItems: [FieldsReviewSubmissionItems_reviewSubmissionsItemsGetToManyRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_reviewSubmissionsItemsGetToManyRelated]? = nil, fieldsAppCustomProductPageVersions: [FieldsAppCustomProductPageVersions_reviewSubmissionsItemsGetToManyRelated]? = nil, fieldsAppEvents: [FieldsAppEvents_reviewSubmissionsItemsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_reviewSubmissionsItemsGetToManyRelated]? = nil) async throws -> ReviewSubmissionItemsResponse {
-        return try await reviewSubmissionsItemsGetToManyRelatedWithRequestBuilder(id: id, fieldsAppStoreVersionExperiments: fieldsAppStoreVersionExperiments, fieldsReviewSubmissionItems: fieldsReviewSubmissionItems, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsAppCustomProductPageVersions: fieldsAppCustomProductPageVersions, fieldsAppEvents: fieldsAppEvents, limit: limit, include: include).execute().body
+    open class func reviewSubmissionsItemsGetToManyRelated(id: String, fieldsReviewSubmissionItems: [FieldsReviewSubmissionItems_reviewSubmissionsItemsGetToManyRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_reviewSubmissionsItemsGetToManyRelated]? = nil, fieldsAppCustomProductPageVersions: [FieldsAppCustomProductPageVersions_reviewSubmissionsItemsGetToManyRelated]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_reviewSubmissionsItemsGetToManyRelated]? = nil, fieldsAppEvents: [FieldsAppEvents_reviewSubmissionsItemsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_reviewSubmissionsItemsGetToManyRelated]? = nil) async throws -> ReviewSubmissionItemsResponse {
+        return try await reviewSubmissionsItemsGetToManyRelatedWithRequestBuilder(id: id, fieldsReviewSubmissionItems: fieldsReviewSubmissionItems, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsAppCustomProductPageVersions: fieldsAppCustomProductPageVersions, fieldsAppStoreVersionExperiments: fieldsAppStoreVersionExperiments, fieldsAppEvents: fieldsAppEvents, limit: limit, include: include).execute().body
     }
 
     /**
@@ -489,16 +476,16 @@ open class ReviewSubmissionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
-     - parameter fieldsAppStoreVersionExperiments: (query) the fields to include for returned resources of type appStoreVersionExperiments (optional)
      - parameter fieldsReviewSubmissionItems: (query) the fields to include for returned resources of type reviewSubmissionItems (optional)
      - parameter fieldsAppStoreVersions: (query) the fields to include for returned resources of type appStoreVersions (optional)
      - parameter fieldsAppCustomProductPageVersions: (query) the fields to include for returned resources of type appCustomProductPageVersions (optional)
+     - parameter fieldsAppStoreVersionExperiments: (query) the fields to include for returned resources of type appStoreVersionExperiments (optional)
      - parameter fieldsAppEvents: (query) the fields to include for returned resources of type appEvents (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: RequestBuilder<ReviewSubmissionItemsResponse> 
      */
-    open class func reviewSubmissionsItemsGetToManyRelatedWithRequestBuilder(id: String, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_reviewSubmissionsItemsGetToManyRelated]? = nil, fieldsReviewSubmissionItems: [FieldsReviewSubmissionItems_reviewSubmissionsItemsGetToManyRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_reviewSubmissionsItemsGetToManyRelated]? = nil, fieldsAppCustomProductPageVersions: [FieldsAppCustomProductPageVersions_reviewSubmissionsItemsGetToManyRelated]? = nil, fieldsAppEvents: [FieldsAppEvents_reviewSubmissionsItemsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_reviewSubmissionsItemsGetToManyRelated]? = nil) -> RequestBuilder<ReviewSubmissionItemsResponse> {
+    open class func reviewSubmissionsItemsGetToManyRelatedWithRequestBuilder(id: String, fieldsReviewSubmissionItems: [FieldsReviewSubmissionItems_reviewSubmissionsItemsGetToManyRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_reviewSubmissionsItemsGetToManyRelated]? = nil, fieldsAppCustomProductPageVersions: [FieldsAppCustomProductPageVersions_reviewSubmissionsItemsGetToManyRelated]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_reviewSubmissionsItemsGetToManyRelated]? = nil, fieldsAppEvents: [FieldsAppEvents_reviewSubmissionsItemsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_reviewSubmissionsItemsGetToManyRelated]? = nil) -> RequestBuilder<ReviewSubmissionItemsResponse> {
         var localVariablePath = "/v1/reviewSubmissions/{id}/items"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -508,10 +495,10 @@ open class ReviewSubmissionsAPI {
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[appStoreVersionExperiments]": (wrappedValue: fieldsAppStoreVersionExperiments?.encodeToJSON(), isExplode: false),
             "fields[reviewSubmissionItems]": (wrappedValue: fieldsReviewSubmissionItems?.encodeToJSON(), isExplode: false),
             "fields[appStoreVersions]": (wrappedValue: fieldsAppStoreVersions?.encodeToJSON(), isExplode: false),
             "fields[appCustomProductPageVersions]": (wrappedValue: fieldsAppCustomProductPageVersions?.encodeToJSON(), isExplode: false),
+            "fields[appStoreVersionExperiments]": (wrappedValue: fieldsAppStoreVersionExperiments?.encodeToJSON(), isExplode: false),
             "fields[appEvents]": (wrappedValue: fieldsAppEvents?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),

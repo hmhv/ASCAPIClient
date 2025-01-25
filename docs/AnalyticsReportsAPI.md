@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 # **analyticsReportsGetInstance**
 ```swift
-    open class func analyticsReportsGetInstance(id: String, fieldsAnalyticsReports: [FieldsAnalyticsReports_analyticsReportsGetInstance]? = nil, fieldsAnalyticsReportInstances: [FieldsAnalyticsReportInstances_analyticsReportsGetInstance]? = nil, completion: @escaping (_ data: AnalyticsReportResponse?, _ error: Error?) -> Void)
+    open class func analyticsReportsGetInstance(id: String, fieldsAnalyticsReports: [FieldsAnalyticsReports_analyticsReportsGetInstance]? = nil, completion: @escaping (_ data: AnalyticsReportResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -22,9 +22,8 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let fieldsAnalyticsReports = ["fieldsAnalyticsReports_example"] // [String] | the fields to include for returned resources of type analyticsReports (optional)
-let fieldsAnalyticsReportInstances = ["fieldsAnalyticsReportInstances_example"] // [String] | the fields to include for returned resources of type analyticsReportInstances (optional)
 
-AnalyticsReportsAPI.analyticsReportsGetInstance(id: id, fieldsAnalyticsReports: fieldsAnalyticsReports, fieldsAnalyticsReportInstances: fieldsAnalyticsReportInstances) { (response, error) in
+AnalyticsReportsAPI.analyticsReportsGetInstance(id: id, fieldsAnalyticsReports: fieldsAnalyticsReports) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -42,7 +41,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **fieldsAnalyticsReports** | [**[String]**](String.md) | the fields to include for returned resources of type analyticsReports | [optional] 
- **fieldsAnalyticsReportInstances** | [**[String]**](String.md) | the fields to include for returned resources of type analyticsReportInstances | [optional] 
 
 ### Return type
 

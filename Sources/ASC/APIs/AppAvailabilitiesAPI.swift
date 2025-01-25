@@ -13,272 +13,6 @@ import AnyCodable
 open class AppAvailabilitiesAPI {
 
     /**
-     * enum for parameter fieldsTerritories
-     */
-    public enum FieldsTerritories_appAvailabilitiesAvailableTerritoriesGetToManyRelated: String, CaseIterable {
-        case currency = "currency"
-    }
-
-    /**
-
-     - parameter id: (path) the id of the requested resource 
-     - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
-     - parameter limit: (query) maximum resources per page (optional)
-     - returns: TerritoriesResponse
-     */
-    @available(*, deprecated, message: "This operation is deprecated.")
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appAvailabilitiesAvailableTerritoriesGetToManyRelated(id: String, fieldsTerritories: [FieldsTerritories_appAvailabilitiesAvailableTerritoriesGetToManyRelated]? = nil, limit: Int? = nil) async throws -> TerritoriesResponse {
-        return try await appAvailabilitiesAvailableTerritoriesGetToManyRelatedWithRequestBuilder(id: id, fieldsTerritories: fieldsTerritories, limit: limit).execute().body
-    }
-
-    /**
-     - parameter urlString: next or first url from App Store Connect API
-     - returns: TerritoriesResponse
-     */
-    @available(*, deprecated, message: "This operation is deprecated.")
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appAvailabilitiesAvailableTerritoriesGetToManyRelated(urlString: String) async throws -> TerritoriesResponse {
-        return try await appAvailabilitiesAvailableTerritoriesGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
-    }
-
-    /**
-     - GET /v1/appAvailabilities/{id}/availableTerritories
-     - Bearer Token:
-       - type: http
-       - name: itc-bearer-token
-     - parameter id: (path) the id of the requested resource 
-     - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
-     - parameter limit: (query) maximum resources per page (optional)
-     - returns: RequestBuilder<TerritoriesResponse> 
-     */
-    @available(*, deprecated, message: "This operation is deprecated.")
-    open class func appAvailabilitiesAvailableTerritoriesGetToManyRelatedWithRequestBuilder(id: String, fieldsTerritories: [FieldsTerritories_appAvailabilitiesAvailableTerritoriesGetToManyRelated]? = nil, limit: Int? = nil) -> RequestBuilder<TerritoriesResponse> {
-        var localVariablePath = "/v1/appAvailabilities/{id}/availableTerritories"
-        let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
-        let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters: [String: Any]? = nil
-
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-        ])
-
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
-
-        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
-
-        let localVariableRequestBuilder: RequestBuilder<TerritoriesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
-    }
-
-    /**
-     - GET /v1/appAvailabilities/{id}/availableTerritories
-     - Bearer Token:
-       - type: http
-       - name: itc-bearer-token
-     - parameter urlString: next or first url from App Store Connect API
-     - returns: RequestBuilder<TerritoriesResponse> 
-     */
-    @available(*, deprecated, message: "This operation is deprecated.")
-    open class func appAvailabilitiesAvailableTerritoriesGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<TerritoriesResponse> {
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
-
-        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
-
-        let localVariableRequestBuilder: RequestBuilder<TerritoriesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
-    }
-
-    /**
-
-     - parameter appAvailabilityCreateRequest: (body) AppAvailability representation 
-     - returns: AppAvailabilityResponse
-     */
-    @available(*, deprecated, message: "This operation is deprecated.")
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appAvailabilitiesCreateInstance(appAvailabilityCreateRequest: AppAvailabilityCreateRequest) async throws -> AppAvailabilityResponse {
-        return try await appAvailabilitiesCreateInstanceWithRequestBuilder(appAvailabilityCreateRequest: appAvailabilityCreateRequest).execute().body
-    }
-
-    /**
-     - parameter urlString: next or first url from App Store Connect API
-     - returns: AppAvailabilityResponse
-     */
-    @available(*, deprecated, message: "This operation is deprecated.")
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appAvailabilitiesCreateInstance(urlString: String) async throws -> AppAvailabilityResponse {
-        return try await appAvailabilitiesCreateInstanceWithRequestBuilder(urlString: urlString).execute().body
-    }
-
-    /**
-     - POST /v1/appAvailabilities
-     - Bearer Token:
-       - type: http
-       - name: itc-bearer-token
-     - parameter appAvailabilityCreateRequest: (body) AppAvailability representation 
-     - returns: RequestBuilder<AppAvailabilityResponse> 
-     */
-    @available(*, deprecated, message: "This operation is deprecated.")
-    open class func appAvailabilitiesCreateInstanceWithRequestBuilder(appAvailabilityCreateRequest: AppAvailabilityCreateRequest) -> RequestBuilder<AppAvailabilityResponse> {
-        let localVariablePath = "/v1/appAvailabilities"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: appAvailabilityCreateRequest)
-
-        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
-
-        let localVariableNillableHeaders: [String: Any?] = [
-            "Content-Type": "application/json",
-        ]
-
-        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
-
-        let localVariableRequestBuilder: RequestBuilder<AppAvailabilityResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
-    }
-
-    /**
-     - POST /v1/appAvailabilities
-     - Bearer Token:
-       - type: http
-       - name: itc-bearer-token
-     - parameter urlString: next or first url from App Store Connect API
-     - returns: RequestBuilder<AppAvailabilityResponse> 
-     */
-    @available(*, deprecated, message: "This operation is deprecated.")
-    open class func appAvailabilitiesCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppAvailabilityResponse> {
-        let localVariableNillableHeaders: [String: Any?] = [
-            "Content-Type": "application/json",
-        ]
-
-        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
-
-        let localVariableRequestBuilder: RequestBuilder<AppAvailabilityResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
-    }
-
-    /**
-     * enum for parameter fieldsAppAvailabilities
-     */
-    public enum FieldsAppAvailabilities_appAvailabilitiesGetInstance: String, CaseIterable {
-        case app = "app"
-        case availableinnewterritories = "availableInNewTerritories"
-        case availableterritories = "availableTerritories"
-    }
-
-    /**
-     * enum for parameter include
-     */
-    public enum Include_appAvailabilitiesGetInstance: String, CaseIterable {
-        case app = "app"
-        case availableterritories = "availableTerritories"
-    }
-
-    /**
-     * enum for parameter fieldsTerritories
-     */
-    public enum FieldsTerritories_appAvailabilitiesGetInstance: String, CaseIterable {
-        case currency = "currency"
-    }
-
-    /**
-
-     - parameter id: (path) the id of the requested resource 
-     - parameter fieldsAppAvailabilities: (query) the fields to include for returned resources of type appAvailabilities (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
-     - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
-     - parameter limitAvailableTerritories: (query) maximum number of related availableTerritories returned (when they are included) (optional)
-     - returns: AppAvailabilityResponse
-     */
-    @available(*, deprecated, message: "This operation is deprecated.")
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appAvailabilitiesGetInstance(id: String, fieldsAppAvailabilities: [FieldsAppAvailabilities_appAvailabilitiesGetInstance]? = nil, include: [Include_appAvailabilitiesGetInstance]? = nil, fieldsTerritories: [FieldsTerritories_appAvailabilitiesGetInstance]? = nil, limitAvailableTerritories: Int? = nil) async throws -> AppAvailabilityResponse {
-        return try await appAvailabilitiesGetInstanceWithRequestBuilder(id: id, fieldsAppAvailabilities: fieldsAppAvailabilities, include: include, fieldsTerritories: fieldsTerritories, limitAvailableTerritories: limitAvailableTerritories).execute().body
-    }
-
-    /**
-     - parameter urlString: next or first url from App Store Connect API
-     - returns: AppAvailabilityResponse
-     */
-    @available(*, deprecated, message: "This operation is deprecated.")
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appAvailabilitiesGetInstance(urlString: String) async throws -> AppAvailabilityResponse {
-        return try await appAvailabilitiesGetInstanceWithRequestBuilder(urlString: urlString).execute().body
-    }
-
-    /**
-     - GET /v1/appAvailabilities/{id}
-     - Bearer Token:
-       - type: http
-       - name: itc-bearer-token
-     - parameter id: (path) the id of the requested resource 
-     - parameter fieldsAppAvailabilities: (query) the fields to include for returned resources of type appAvailabilities (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
-     - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
-     - parameter limitAvailableTerritories: (query) maximum number of related availableTerritories returned (when they are included) (optional)
-     - returns: RequestBuilder<AppAvailabilityResponse> 
-     */
-    @available(*, deprecated, message: "This operation is deprecated.")
-    open class func appAvailabilitiesGetInstanceWithRequestBuilder(id: String, fieldsAppAvailabilities: [FieldsAppAvailabilities_appAvailabilitiesGetInstance]? = nil, include: [Include_appAvailabilitiesGetInstance]? = nil, fieldsTerritories: [FieldsTerritories_appAvailabilitiesGetInstance]? = nil, limitAvailableTerritories: Int? = nil) -> RequestBuilder<AppAvailabilityResponse> {
-        var localVariablePath = "/v1/appAvailabilities/{id}"
-        let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
-        let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters: [String: Any]? = nil
-
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[appAvailabilities]": (wrappedValue: fieldsAppAvailabilities?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(), isExplode: false),
-            "limit[availableTerritories]": (wrappedValue: limitAvailableTerritories?.encodeToJSON(), isExplode: true),
-        ])
-
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
-
-        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
-
-        let localVariableRequestBuilder: RequestBuilder<AppAvailabilityResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
-    }
-
-    /**
-     - GET /v1/appAvailabilities/{id}
-     - Bearer Token:
-       - type: http
-       - name: itc-bearer-token
-     - parameter urlString: next or first url from App Store Connect API
-     - returns: RequestBuilder<AppAvailabilityResponse> 
-     */
-    @available(*, deprecated, message: "This operation is deprecated.")
-    open class func appAvailabilitiesGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppAvailabilityResponse> {
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
-
-        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
-
-        let localVariableRequestBuilder: RequestBuilder<AppAvailabilityResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
-    }
-
-    /**
 
      - parameter appAvailabilityV2CreateRequest: (body) AppAvailability representation 
      - returns: AppAvailabilityV2Response
@@ -347,9 +81,20 @@ open class AppAvailabilitiesAPI {
      * enum for parameter fieldsAppAvailabilities
      */
     public enum FieldsAppAvailabilities_appAvailabilitiesV2GetInstance: String, CaseIterable {
-        case app = "app"
         case availableinnewterritories = "availableInNewTerritories"
         case territoryavailabilities = "territoryAvailabilities"
+    }
+
+    /**
+     * enum for parameter fieldsTerritoryAvailabilities
+     */
+    public enum FieldsTerritoryAvailabilities_appAvailabilitiesV2GetInstance: String, CaseIterable {
+        case available = "available"
+        case releasedate = "releaseDate"
+        case preorderenabled = "preOrderEnabled"
+        case preorderpublishdate = "preOrderPublishDate"
+        case contentstatuses = "contentStatuses"
+        case territory = "territory"
     }
 
     /**
@@ -360,29 +105,17 @@ open class AppAvailabilitiesAPI {
     }
 
     /**
-     * enum for parameter fieldsTerritoryAvailabilities
-     */
-    public enum FieldsTerritoryAvailabilities_appAvailabilitiesV2GetInstance: String, CaseIterable {
-        case available = "available"
-        case contentstatuses = "contentStatuses"
-        case preorderenabled = "preOrderEnabled"
-        case preorderpublishdate = "preOrderPublishDate"
-        case releasedate = "releaseDate"
-        case territory = "territory"
-    }
-
-    /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAppAvailabilities: (query) the fields to include for returned resources of type appAvailabilities (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter fieldsTerritoryAvailabilities: (query) the fields to include for returned resources of type territoryAvailabilities (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitTerritoryAvailabilities: (query) maximum number of related territoryAvailabilities returned (when they are included) (optional)
      - returns: AppAvailabilityV2Response
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appAvailabilitiesV2GetInstance(id: String, fieldsAppAvailabilities: [FieldsAppAvailabilities_appAvailabilitiesV2GetInstance]? = nil, include: [Include_appAvailabilitiesV2GetInstance]? = nil, fieldsTerritoryAvailabilities: [FieldsTerritoryAvailabilities_appAvailabilitiesV2GetInstance]? = nil, limitTerritoryAvailabilities: Int? = nil) async throws -> AppAvailabilityV2Response {
-        return try await appAvailabilitiesV2GetInstanceWithRequestBuilder(id: id, fieldsAppAvailabilities: fieldsAppAvailabilities, include: include, fieldsTerritoryAvailabilities: fieldsTerritoryAvailabilities, limitTerritoryAvailabilities: limitTerritoryAvailabilities).execute().body
+    open class func appAvailabilitiesV2GetInstance(id: String, fieldsAppAvailabilities: [FieldsAppAvailabilities_appAvailabilitiesV2GetInstance]? = nil, fieldsTerritoryAvailabilities: [FieldsTerritoryAvailabilities_appAvailabilitiesV2GetInstance]? = nil, include: [Include_appAvailabilitiesV2GetInstance]? = nil, limitTerritoryAvailabilities: Int? = nil) async throws -> AppAvailabilityV2Response {
+        return try await appAvailabilitiesV2GetInstanceWithRequestBuilder(id: id, fieldsAppAvailabilities: fieldsAppAvailabilities, fieldsTerritoryAvailabilities: fieldsTerritoryAvailabilities, include: include, limitTerritoryAvailabilities: limitTerritoryAvailabilities).execute().body
     }
 
     /**
@@ -401,12 +134,12 @@ open class AppAvailabilitiesAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAppAvailabilities: (query) the fields to include for returned resources of type appAvailabilities (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter fieldsTerritoryAvailabilities: (query) the fields to include for returned resources of type territoryAvailabilities (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitTerritoryAvailabilities: (query) maximum number of related territoryAvailabilities returned (when they are included) (optional)
      - returns: RequestBuilder<AppAvailabilityV2Response> 
      */
-    open class func appAvailabilitiesV2GetInstanceWithRequestBuilder(id: String, fieldsAppAvailabilities: [FieldsAppAvailabilities_appAvailabilitiesV2GetInstance]? = nil, include: [Include_appAvailabilitiesV2GetInstance]? = nil, fieldsTerritoryAvailabilities: [FieldsTerritoryAvailabilities_appAvailabilitiesV2GetInstance]? = nil, limitTerritoryAvailabilities: Int? = nil) -> RequestBuilder<AppAvailabilityV2Response> {
+    open class func appAvailabilitiesV2GetInstanceWithRequestBuilder(id: String, fieldsAppAvailabilities: [FieldsAppAvailabilities_appAvailabilitiesV2GetInstance]? = nil, fieldsTerritoryAvailabilities: [FieldsTerritoryAvailabilities_appAvailabilitiesV2GetInstance]? = nil, include: [Include_appAvailabilitiesV2GetInstance]? = nil, limitTerritoryAvailabilities: Int? = nil) -> RequestBuilder<AppAvailabilityV2Response> {
         var localVariablePath = "/v2/appAvailabilities/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -417,8 +150,8 @@ open class AppAvailabilitiesAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[appAvailabilities]": (wrappedValue: fieldsAppAvailabilities?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "fields[territoryAvailabilities]": (wrappedValue: fieldsTerritoryAvailabilities?.encodeToJSON(), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "limit[territoryAvailabilities]": (wrappedValue: limitTerritoryAvailabilities?.encodeToJSON(), isExplode: true),
         ])
 
@@ -458,10 +191,10 @@ open class AppAvailabilitiesAPI {
      */
     public enum FieldsTerritoryAvailabilities_appAvailabilitiesV2TerritoryAvailabilitiesGetToManyRelated: String, CaseIterable {
         case available = "available"
-        case contentstatuses = "contentStatuses"
+        case releasedate = "releaseDate"
         case preorderenabled = "preOrderEnabled"
         case preorderpublishdate = "preOrderPublishDate"
-        case releasedate = "releaseDate"
+        case contentstatuses = "contentStatuses"
         case territory = "territory"
     }
 

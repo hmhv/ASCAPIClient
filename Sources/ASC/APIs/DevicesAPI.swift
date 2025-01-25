@@ -83,6 +83,7 @@ open class DevicesAPI {
     public enum FilterPlatform_devicesGetCollection: String, CaseIterable {
         case ios = "IOS"
         case macOs = "MAC_OS"
+        case universal = "UNIVERSAL"
     }
 
     /**
@@ -97,37 +98,37 @@ open class DevicesAPI {
      * enum for parameter sort
      */
     public enum Sort_devicesGetCollection: String, CaseIterable {
-        case id = "id"
-        case id2 = "-id"
         case name = "name"
         case name2 = "-name"
         case platform = "platform"
         case platform2 = "-platform"
-        case status = "status"
-        case status2 = "-status"
         case udid = "udid"
         case udid2 = "-udid"
+        case status = "status"
+        case status2 = "-status"
+        case id = "id"
+        case id2 = "-id"
     }
 
     /**
      * enum for parameter fieldsDevices
      */
     public enum FieldsDevices_devicesGetCollection: String, CaseIterable {
-        case addeddate = "addedDate"
-        case deviceclass = "deviceClass"
-        case model = "model"
         case name = "name"
         case platform = "platform"
-        case status = "status"
         case udid = "udid"
+        case deviceclass = "deviceClass"
+        case status = "status"
+        case model = "model"
+        case addeddate = "addedDate"
     }
 
     /**
 
      - parameter filterName: (query) filter by attribute &#39;name&#39; (optional)
      - parameter filterPlatform: (query) filter by attribute &#39;platform&#39; (optional)
-     - parameter filterStatus: (query) filter by attribute &#39;status&#39; (optional)
      - parameter filterUdid: (query) filter by attribute &#39;udid&#39; (optional)
+     - parameter filterStatus: (query) filter by attribute &#39;status&#39; (optional)
      - parameter filterId: (query) filter by id(s) (optional)
      - parameter sort: (query) comma-separated list of sort expressions; resources will be sorted as specified (optional)
      - parameter fieldsDevices: (query) the fields to include for returned resources of type devices (optional)
@@ -135,8 +136,8 @@ open class DevicesAPI {
      - returns: DevicesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func devicesGetCollection(filterName: [String]? = nil, filterPlatform: [FilterPlatform_devicesGetCollection]? = nil, filterStatus: [FilterStatus_devicesGetCollection]? = nil, filterUdid: [String]? = nil, filterId: [String]? = nil, sort: [Sort_devicesGetCollection]? = nil, fieldsDevices: [FieldsDevices_devicesGetCollection]? = nil, limit: Int? = nil) async throws -> DevicesResponse {
-        return try await devicesGetCollectionWithRequestBuilder(filterName: filterName, filterPlatform: filterPlatform, filterStatus: filterStatus, filterUdid: filterUdid, filterId: filterId, sort: sort, fieldsDevices: fieldsDevices, limit: limit).execute().body
+    open class func devicesGetCollection(filterName: [String]? = nil, filterPlatform: [FilterPlatform_devicesGetCollection]? = nil, filterUdid: [String]? = nil, filterStatus: [FilterStatus_devicesGetCollection]? = nil, filterId: [String]? = nil, sort: [Sort_devicesGetCollection]? = nil, fieldsDevices: [FieldsDevices_devicesGetCollection]? = nil, limit: Int? = nil) async throws -> DevicesResponse {
+        return try await devicesGetCollectionWithRequestBuilder(filterName: filterName, filterPlatform: filterPlatform, filterUdid: filterUdid, filterStatus: filterStatus, filterId: filterId, sort: sort, fieldsDevices: fieldsDevices, limit: limit).execute().body
     }
 
     /**
@@ -155,15 +156,15 @@ open class DevicesAPI {
        - name: itc-bearer-token
      - parameter filterName: (query) filter by attribute &#39;name&#39; (optional)
      - parameter filterPlatform: (query) filter by attribute &#39;platform&#39; (optional)
-     - parameter filterStatus: (query) filter by attribute &#39;status&#39; (optional)
      - parameter filterUdid: (query) filter by attribute &#39;udid&#39; (optional)
+     - parameter filterStatus: (query) filter by attribute &#39;status&#39; (optional)
      - parameter filterId: (query) filter by id(s) (optional)
      - parameter sort: (query) comma-separated list of sort expressions; resources will be sorted as specified (optional)
      - parameter fieldsDevices: (query) the fields to include for returned resources of type devices (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - returns: RequestBuilder<DevicesResponse> 
      */
-    open class func devicesGetCollectionWithRequestBuilder(filterName: [String]? = nil, filterPlatform: [FilterPlatform_devicesGetCollection]? = nil, filterStatus: [FilterStatus_devicesGetCollection]? = nil, filterUdid: [String]? = nil, filterId: [String]? = nil, sort: [Sort_devicesGetCollection]? = nil, fieldsDevices: [FieldsDevices_devicesGetCollection]? = nil, limit: Int? = nil) -> RequestBuilder<DevicesResponse> {
+    open class func devicesGetCollectionWithRequestBuilder(filterName: [String]? = nil, filterPlatform: [FilterPlatform_devicesGetCollection]? = nil, filterUdid: [String]? = nil, filterStatus: [FilterStatus_devicesGetCollection]? = nil, filterId: [String]? = nil, sort: [Sort_devicesGetCollection]? = nil, fieldsDevices: [FieldsDevices_devicesGetCollection]? = nil, limit: Int? = nil) -> RequestBuilder<DevicesResponse> {
         let localVariablePath = "/v1/devices"
         let localVariableURLString = ASCAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -172,8 +173,8 @@ open class DevicesAPI {
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "filter[name]": (wrappedValue: filterName?.encodeToJSON(), isExplode: false),
             "filter[platform]": (wrappedValue: filterPlatform?.encodeToJSON(), isExplode: false),
-            "filter[status]": (wrappedValue: filterStatus?.encodeToJSON(), isExplode: false),
             "filter[udid]": (wrappedValue: filterUdid?.encodeToJSON(), isExplode: false),
+            "filter[status]": (wrappedValue: filterStatus?.encodeToJSON(), isExplode: false),
             "filter[id]": (wrappedValue: filterId?.encodeToJSON(), isExplode: false),
             "sort": (wrappedValue: sort?.encodeToJSON(), isExplode: false),
             "fields[devices]": (wrappedValue: fieldsDevices?.encodeToJSON(), isExplode: false),
@@ -215,13 +216,13 @@ open class DevicesAPI {
      * enum for parameter fieldsDevices
      */
     public enum FieldsDevices_devicesGetInstance: String, CaseIterable {
-        case addeddate = "addedDate"
-        case deviceclass = "deviceClass"
-        case model = "model"
         case name = "name"
         case platform = "platform"
-        case status = "status"
         case udid = "udid"
+        case deviceclass = "deviceClass"
+        case status = "status"
+        case model = "model"
+        case addeddate = "addedDate"
     }
 
     /**

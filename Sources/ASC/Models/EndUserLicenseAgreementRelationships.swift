@@ -12,10 +12,10 @@ import AnyCodable
 
 public struct EndUserLicenseAgreementRelationships: Codable, JSONEncodable, Hashable {
 
-    public var app: AppAvailabilityRelationshipsApp?
-    public var territories: AppAvailabilityRelationshipsAvailableTerritories?
+    public var app: AlternativeDistributionKeyCreateRequestDataRelationshipsApp?
+    public var territories: EndUserLicenseAgreementRelationshipsTerritories?
 
-    public init(app: AppAvailabilityRelationshipsApp? = nil, territories: AppAvailabilityRelationshipsAvailableTerritories? = nil) {
+    public init(app: AlternativeDistributionKeyCreateRequestDataRelationshipsApp? = nil, territories: EndUserLicenseAgreementRelationshipsTerritories? = nil) {
         self.app = app
         self.territories = territories
     }

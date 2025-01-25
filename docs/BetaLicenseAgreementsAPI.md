@@ -61,7 +61,7 @@ Name | Type | Description  | Notes
 
 # **betaLicenseAgreementsGetCollection**
 ```swift
-    open class func betaLicenseAgreementsGetCollection(filterApp: [String]? = nil, fieldsBetaLicenseAgreements: [FieldsBetaLicenseAgreements_betaLicenseAgreementsGetCollection]? = nil, limit: Int? = nil, include: [Include_betaLicenseAgreementsGetCollection]? = nil, fieldsApps: [FieldsApps_betaLicenseAgreementsGetCollection]? = nil, completion: @escaping (_ data: BetaLicenseAgreementsResponse?, _ error: Error?) -> Void)
+    open class func betaLicenseAgreementsGetCollection(filterApp: [String]? = nil, fieldsBetaLicenseAgreements: [FieldsBetaLicenseAgreements_betaLicenseAgreementsGetCollection]? = nil, fieldsApps: [FieldsApps_betaLicenseAgreementsGetCollection]? = nil, limit: Int? = nil, include: [Include_betaLicenseAgreementsGetCollection]? = nil, completion: @escaping (_ data: BetaLicenseAgreementsResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -73,11 +73,11 @@ import ASC
 
 let filterApp = ["inner_example"] // [String] | filter by id(s) of related 'app' (optional)
 let fieldsBetaLicenseAgreements = ["fieldsBetaLicenseAgreements_example"] // [String] | the fields to include for returned resources of type betaLicenseAgreements (optional)
+let fieldsApps = ["fieldsApps_example"] // [String] | the fields to include for returned resources of type apps (optional)
 let limit = 987 // Int | maximum resources per page (optional)
 let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
-let fieldsApps = ["fieldsApps_example"] // [String] | the fields to include for returned resources of type apps (optional)
 
-BetaLicenseAgreementsAPI.betaLicenseAgreementsGetCollection(filterApp: filterApp, fieldsBetaLicenseAgreements: fieldsBetaLicenseAgreements, limit: limit, include: include, fieldsApps: fieldsApps) { (response, error) in
+BetaLicenseAgreementsAPI.betaLicenseAgreementsGetCollection(filterApp: filterApp, fieldsBetaLicenseAgreements: fieldsBetaLicenseAgreements, fieldsApps: fieldsApps, limit: limit, include: include) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -95,9 +95,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **filterApp** | [**[String]**](String.md) | filter by id(s) of related &#39;app&#39; | [optional] 
  **fieldsBetaLicenseAgreements** | [**[String]**](String.md) | the fields to include for returned resources of type betaLicenseAgreements | [optional] 
+ **fieldsApps** | [**[String]**](String.md) | the fields to include for returned resources of type apps | [optional] 
  **limit** | **Int** | maximum resources per page | [optional] 
  **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
- **fieldsApps** | [**[String]**](String.md) | the fields to include for returned resources of type apps | [optional] 
 
 ### Return type
 
@@ -116,7 +116,7 @@ Name | Type | Description  | Notes
 
 # **betaLicenseAgreementsGetInstance**
 ```swift
-    open class func betaLicenseAgreementsGetInstance(id: String, fieldsBetaLicenseAgreements: [FieldsBetaLicenseAgreements_betaLicenseAgreementsGetInstance]? = nil, include: [Include_betaLicenseAgreementsGetInstance]? = nil, fieldsApps: [FieldsApps_betaLicenseAgreementsGetInstance]? = nil, completion: @escaping (_ data: BetaLicenseAgreementResponse?, _ error: Error?) -> Void)
+    open class func betaLicenseAgreementsGetInstance(id: String, fieldsBetaLicenseAgreements: [FieldsBetaLicenseAgreements_betaLicenseAgreementsGetInstance]? = nil, fieldsApps: [FieldsApps_betaLicenseAgreementsGetInstance]? = nil, include: [Include_betaLicenseAgreementsGetInstance]? = nil, completion: @escaping (_ data: BetaLicenseAgreementResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -128,10 +128,10 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let fieldsBetaLicenseAgreements = ["fieldsBetaLicenseAgreements_example"] // [String] | the fields to include for returned resources of type betaLicenseAgreements (optional)
-let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let fieldsApps = ["fieldsApps_example"] // [String] | the fields to include for returned resources of type apps (optional)
+let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 
-BetaLicenseAgreementsAPI.betaLicenseAgreementsGetInstance(id: id, fieldsBetaLicenseAgreements: fieldsBetaLicenseAgreements, include: include, fieldsApps: fieldsApps) { (response, error) in
+BetaLicenseAgreementsAPI.betaLicenseAgreementsGetInstance(id: id, fieldsBetaLicenseAgreements: fieldsBetaLicenseAgreements, fieldsApps: fieldsApps, include: include) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -149,8 +149,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **fieldsBetaLicenseAgreements** | [**[String]**](String.md) | the fields to include for returned resources of type betaLicenseAgreements | [optional] 
- **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **fieldsApps** | [**[String]**](String.md) | the fields to include for returned resources of type apps | [optional] 
+ **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
 
 ### Return type
 

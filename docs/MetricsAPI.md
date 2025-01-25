@@ -22,7 +22,7 @@ Method | HTTP request | Description
 
 # **appsBetaTesterUsagesGetMetrics**
 ```swift
-    open class func appsBetaTesterUsagesGetMetrics(id: String, limit: Int? = nil, groupBy: [GroupBy_appsBetaTesterUsagesGetMetrics]? = nil, filterBetaTesters: String? = nil, period: Period_appsBetaTesterUsagesGetMetrics? = nil, completion: @escaping (_ data: AppsBetaTesterUsagesV1MetricResponse?, _ error: Error?) -> Void)
+    open class func appsBetaTesterUsagesGetMetrics(id: String, period: Period_appsBetaTesterUsagesGetMetrics? = nil, groupBy: [GroupBy_appsBetaTesterUsagesGetMetrics]? = nil, filterBetaTesters: String? = nil, limit: Int? = nil, completion: @escaping (_ data: AppsBetaTesterUsagesV1MetricResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -33,12 +33,12 @@ Method | HTTP request | Description
 import ASC
 
 let id = "id_example" // String | the id of the requested resource
-let limit = 987 // Int | maximum number of groups to return per page (optional)
+let period = "period_example" // String | the duration of the reporting period (optional)
 let groupBy = ["groupBy_example"] // [String] | the dimension by which to group the results (optional)
 let filterBetaTesters = "filterBetaTesters_example" // String | filter by 'betaTesters' relationship dimension (optional)
-let period = "period_example" // String | the duration of the reporting period (optional)
+let limit = 987 // Int | maximum number of groups to return per page (optional)
 
-MetricsAPI.appsBetaTesterUsagesGetMetrics(id: id, limit: limit, groupBy: groupBy, filterBetaTesters: filterBetaTesters, period: period) { (response, error) in
+MetricsAPI.appsBetaTesterUsagesGetMetrics(id: id, period: period, groupBy: groupBy, filterBetaTesters: filterBetaTesters, limit: limit) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -55,10 +55,10 @@ MetricsAPI.appsBetaTesterUsagesGetMetrics(id: id, limit: limit, groupBy: groupBy
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
- **limit** | **Int** | maximum number of groups to return per page | [optional] 
+ **period** | **String** | the duration of the reporting period | [optional] 
  **groupBy** | [**[String]**](String.md) | the dimension by which to group the results | [optional] 
  **filterBetaTesters** | **String** | filter by &#39;betaTesters&#39; relationship dimension | [optional] 
- **period** | **String** | the duration of the reporting period | [optional] 
+ **limit** | **Int** | maximum number of groups to return per page | [optional] 
 
 ### Return type
 
@@ -77,7 +77,7 @@ Name | Type | Description  | Notes
 
 # **betaGroupsBetaTesterUsagesGetMetrics**
 ```swift
-    open class func betaGroupsBetaTesterUsagesGetMetrics(id: String, limit: Int? = nil, groupBy: [GroupBy_betaGroupsBetaTesterUsagesGetMetrics]? = nil, filterBetaTesters: String? = nil, period: Period_betaGroupsBetaTesterUsagesGetMetrics? = nil, completion: @escaping (_ data: AppsBetaTesterUsagesV1MetricResponse?, _ error: Error?) -> Void)
+    open class func betaGroupsBetaTesterUsagesGetMetrics(id: String, period: Period_betaGroupsBetaTesterUsagesGetMetrics? = nil, groupBy: [GroupBy_betaGroupsBetaTesterUsagesGetMetrics]? = nil, filterBetaTesters: String? = nil, limit: Int? = nil, completion: @escaping (_ data: AppsBetaTesterUsagesV1MetricResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -88,12 +88,12 @@ Name | Type | Description  | Notes
 import ASC
 
 let id = "id_example" // String | the id of the requested resource
-let limit = 987 // Int | maximum number of groups to return per page (optional)
+let period = "period_example" // String | the duration of the reporting period (optional)
 let groupBy = ["groupBy_example"] // [String] | the dimension by which to group the results (optional)
 let filterBetaTesters = "filterBetaTesters_example" // String | filter by 'betaTesters' relationship dimension (optional)
-let period = "period_example" // String | the duration of the reporting period (optional)
+let limit = 987 // Int | maximum number of groups to return per page (optional)
 
-MetricsAPI.betaGroupsBetaTesterUsagesGetMetrics(id: id, limit: limit, groupBy: groupBy, filterBetaTesters: filterBetaTesters, period: period) { (response, error) in
+MetricsAPI.betaGroupsBetaTesterUsagesGetMetrics(id: id, period: period, groupBy: groupBy, filterBetaTesters: filterBetaTesters, limit: limit) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -110,10 +110,10 @@ MetricsAPI.betaGroupsBetaTesterUsagesGetMetrics(id: id, limit: limit, groupBy: g
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
- **limit** | **Int** | maximum number of groups to return per page | [optional] 
+ **period** | **String** | the duration of the reporting period | [optional] 
  **groupBy** | [**[String]**](String.md) | the dimension by which to group the results | [optional] 
  **filterBetaTesters** | **String** | filter by &#39;betaTesters&#39; relationship dimension | [optional] 
- **period** | **String** | the duration of the reporting period | [optional] 
+ **limit** | **Int** | maximum number of groups to return per page | [optional] 
 
 ### Return type
 
@@ -132,7 +132,7 @@ Name | Type | Description  | Notes
 
 # **betaTestersBetaTesterUsagesGetMetrics**
 ```swift
-    open class func betaTestersBetaTesterUsagesGetMetrics(id: String, filterApps: String, limit: Int? = nil, period: Period_betaTestersBetaTesterUsagesGetMetrics? = nil, completion: @escaping (_ data: BetaTesterUsagesV1MetricResponse?, _ error: Error?) -> Void)
+    open class func betaTestersBetaTesterUsagesGetMetrics(id: String, filterApps: String, period: Period_betaTestersBetaTesterUsagesGetMetrics? = nil, limit: Int? = nil, completion: @escaping (_ data: BetaTesterUsagesV1MetricResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -144,10 +144,10 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let filterApps = "filterApps_example" // String | filter by 'apps' relationship dimension
-let limit = 987 // Int | maximum number of groups to return per page (optional)
 let period = "period_example" // String | the duration of the reporting period (optional)
+let limit = 987 // Int | maximum number of groups to return per page (optional)
 
-MetricsAPI.betaTestersBetaTesterUsagesGetMetrics(id: id, filterApps: filterApps, limit: limit, period: period) { (response, error) in
+MetricsAPI.betaTestersBetaTesterUsagesGetMetrics(id: id, filterApps: filterApps, period: period, limit: limit) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -165,8 +165,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **filterApps** | **String** | filter by &#39;apps&#39; relationship dimension | 
- **limit** | **Int** | maximum number of groups to return per page | [optional] 
  **period** | **String** | the duration of the reporting period | [optional] 
+ **limit** | **Int** | maximum number of groups to return per page | [optional] 
 
 ### Return type
 
@@ -234,7 +234,7 @@ Name | Type | Description  | Notes
 
 # **gameCenterDetailsClassicMatchmakingRequestsGetMetrics**
 ```swift
-    open class func gameCenterDetailsClassicMatchmakingRequestsGetMetrics(id: String, granularity: Granularity_gameCenterDetailsClassicMatchmakingRequestsGetMetrics, limit: Int? = nil, groupBy: [GroupBy_gameCenterDetailsClassicMatchmakingRequestsGetMetrics]? = nil, filterResult: FilterResult_gameCenterDetailsClassicMatchmakingRequestsGetMetrics? = nil, sort: [Sort_gameCenterDetailsClassicMatchmakingRequestsGetMetrics]? = nil, completion: @escaping (_ data: GameCenterMatchmakingAppRequestsV1MetricResponse?, _ error: Error?) -> Void)
+    open class func gameCenterDetailsClassicMatchmakingRequestsGetMetrics(id: String, granularity: Granularity_gameCenterDetailsClassicMatchmakingRequestsGetMetrics, groupBy: [GroupBy_gameCenterDetailsClassicMatchmakingRequestsGetMetrics]? = nil, filterResult: FilterResult_gameCenterDetailsClassicMatchmakingRequestsGetMetrics? = nil, sort: [Sort_gameCenterDetailsClassicMatchmakingRequestsGetMetrics]? = nil, limit: Int? = nil, completion: @escaping (_ data: GameCenterMatchmakingAppRequestsV1MetricResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -246,12 +246,12 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let granularity = "granularity_example" // String | the granularity of the per-group dataset
-let limit = 987 // Int | maximum number of groups to return per page (optional)
 let groupBy = ["groupBy_example"] // [String] | the dimension by which to group the results (optional)
 let filterResult = "filterResult_example" // String | filter by 'result' attribute dimension (optional)
 let sort = ["sort_example"] // [String] | comma-separated list of sort expressions; metrics will be sorted as specified (optional)
+let limit = 987 // Int | maximum number of groups to return per page (optional)
 
-MetricsAPI.gameCenterDetailsClassicMatchmakingRequestsGetMetrics(id: id, granularity: granularity, limit: limit, groupBy: groupBy, filterResult: filterResult, sort: sort) { (response, error) in
+MetricsAPI.gameCenterDetailsClassicMatchmakingRequestsGetMetrics(id: id, granularity: granularity, groupBy: groupBy, filterResult: filterResult, sort: sort, limit: limit) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -269,10 +269,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **granularity** | **String** | the granularity of the per-group dataset | 
- **limit** | **Int** | maximum number of groups to return per page | [optional] 
  **groupBy** | [**[String]**](String.md) | the dimension by which to group the results | [optional] 
  **filterResult** | **String** | filter by &#39;result&#39; attribute dimension | [optional] 
  **sort** | [**[String]**](String.md) | comma-separated list of sort expressions; metrics will be sorted as specified | [optional] 
+ **limit** | **Int** | maximum number of groups to return per page | [optional] 
 
 ### Return type
 
@@ -291,7 +291,7 @@ Name | Type | Description  | Notes
 
 # **gameCenterDetailsRuleBasedMatchmakingRequestsGetMetrics**
 ```swift
-    open class func gameCenterDetailsRuleBasedMatchmakingRequestsGetMetrics(id: String, granularity: Granularity_gameCenterDetailsRuleBasedMatchmakingRequestsGetMetrics, limit: Int? = nil, groupBy: [GroupBy_gameCenterDetailsRuleBasedMatchmakingRequestsGetMetrics]? = nil, filterResult: FilterResult_gameCenterDetailsRuleBasedMatchmakingRequestsGetMetrics? = nil, sort: [Sort_gameCenterDetailsRuleBasedMatchmakingRequestsGetMetrics]? = nil, completion: @escaping (_ data: GameCenterMatchmakingAppRequestsV1MetricResponse?, _ error: Error?) -> Void)
+    open class func gameCenterDetailsRuleBasedMatchmakingRequestsGetMetrics(id: String, granularity: Granularity_gameCenterDetailsRuleBasedMatchmakingRequestsGetMetrics, groupBy: [GroupBy_gameCenterDetailsRuleBasedMatchmakingRequestsGetMetrics]? = nil, filterResult: FilterResult_gameCenterDetailsRuleBasedMatchmakingRequestsGetMetrics? = nil, sort: [Sort_gameCenterDetailsRuleBasedMatchmakingRequestsGetMetrics]? = nil, limit: Int? = nil, completion: @escaping (_ data: GameCenterMatchmakingAppRequestsV1MetricResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -303,12 +303,12 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let granularity = "granularity_example" // String | the granularity of the per-group dataset
-let limit = 987 // Int | maximum number of groups to return per page (optional)
 let groupBy = ["groupBy_example"] // [String] | the dimension by which to group the results (optional)
 let filterResult = "filterResult_example" // String | filter by 'result' attribute dimension (optional)
 let sort = ["sort_example"] // [String] | comma-separated list of sort expressions; metrics will be sorted as specified (optional)
+let limit = 987 // Int | maximum number of groups to return per page (optional)
 
-MetricsAPI.gameCenterDetailsRuleBasedMatchmakingRequestsGetMetrics(id: id, granularity: granularity, limit: limit, groupBy: groupBy, filterResult: filterResult, sort: sort) { (response, error) in
+MetricsAPI.gameCenterDetailsRuleBasedMatchmakingRequestsGetMetrics(id: id, granularity: granularity, groupBy: groupBy, filterResult: filterResult, sort: sort, limit: limit) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -326,10 +326,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **granularity** | **String** | the granularity of the per-group dataset | 
- **limit** | **Int** | maximum number of groups to return per page | [optional] 
  **groupBy** | [**[String]**](String.md) | the dimension by which to group the results | [optional] 
  **filterResult** | **String** | filter by &#39;result&#39; attribute dimension | [optional] 
  **sort** | [**[String]**](String.md) | comma-separated list of sort expressions; metrics will be sorted as specified | [optional] 
+ **limit** | **Int** | maximum number of groups to return per page | [optional] 
 
 ### Return type
 
@@ -348,7 +348,7 @@ Name | Type | Description  | Notes
 
 # **gameCenterMatchmakingQueuesExperimentMatchmakingQueueSizesGetMetrics**
 ```swift
-    open class func gameCenterMatchmakingQueuesExperimentMatchmakingQueueSizesGetMetrics(id: String, granularity: Granularity_gameCenterMatchmakingQueuesExperimentMatchmakingQueueSizesGetMetrics, limit: Int? = nil, sort: [Sort_gameCenterMatchmakingQueuesExperimentMatchmakingQueueSizesGetMetrics]? = nil, completion: @escaping (_ data: GameCenterMatchmakingQueueSizesV1MetricResponse?, _ error: Error?) -> Void)
+    open class func gameCenterMatchmakingQueuesExperimentMatchmakingQueueSizesGetMetrics(id: String, granularity: Granularity_gameCenterMatchmakingQueuesExperimentMatchmakingQueueSizesGetMetrics, sort: [Sort_gameCenterMatchmakingQueuesExperimentMatchmakingQueueSizesGetMetrics]? = nil, limit: Int? = nil, completion: @escaping (_ data: GameCenterMatchmakingQueueSizesV1MetricResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -360,10 +360,10 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let granularity = "granularity_example" // String | the granularity of the per-group dataset
-let limit = 987 // Int | maximum number of groups to return per page (optional)
 let sort = ["sort_example"] // [String] | comma-separated list of sort expressions; metrics will be sorted as specified (optional)
+let limit = 987 // Int | maximum number of groups to return per page (optional)
 
-MetricsAPI.gameCenterMatchmakingQueuesExperimentMatchmakingQueueSizesGetMetrics(id: id, granularity: granularity, limit: limit, sort: sort) { (response, error) in
+MetricsAPI.gameCenterMatchmakingQueuesExperimentMatchmakingQueueSizesGetMetrics(id: id, granularity: granularity, sort: sort, limit: limit) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -381,8 +381,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **granularity** | **String** | the granularity of the per-group dataset | 
- **limit** | **Int** | maximum number of groups to return per page | [optional] 
  **sort** | [**[String]**](String.md) | comma-separated list of sort expressions; metrics will be sorted as specified | [optional] 
+ **limit** | **Int** | maximum number of groups to return per page | [optional] 
 
 ### Return type
 
@@ -401,7 +401,7 @@ Name | Type | Description  | Notes
 
 # **gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics**
 ```swift
-    open class func gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics(id: String, granularity: Granularity_gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics, limit: Int? = nil, groupBy: [GroupBy_gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics]? = nil, filterResult: FilterResult_gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics? = nil, filterGameCenterDetail: String? = nil, sort: [Sort_gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics]? = nil, completion: @escaping (_ data: GameCenterMatchmakingQueueRequestsV1MetricResponse?, _ error: Error?) -> Void)
+    open class func gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics(id: String, granularity: Granularity_gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics, groupBy: [GroupBy_gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics]? = nil, filterResult: FilterResult_gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics? = nil, filterGameCenterDetail: String? = nil, sort: [Sort_gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics]? = nil, limit: Int? = nil, completion: @escaping (_ data: GameCenterMatchmakingQueueRequestsV1MetricResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -413,13 +413,13 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let granularity = "granularity_example" // String | the granularity of the per-group dataset
-let limit = 987 // Int | maximum number of groups to return per page (optional)
 let groupBy = ["groupBy_example"] // [String] | the dimension by which to group the results (optional)
 let filterResult = "filterResult_example" // String | filter by 'result' attribute dimension (optional)
 let filterGameCenterDetail = "filterGameCenterDetail_example" // String | filter by 'gameCenterDetail' relationship dimension (optional)
 let sort = ["sort_example"] // [String] | comma-separated list of sort expressions; metrics will be sorted as specified (optional)
+let limit = 987 // Int | maximum number of groups to return per page (optional)
 
-MetricsAPI.gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics(id: id, granularity: granularity, limit: limit, groupBy: groupBy, filterResult: filterResult, filterGameCenterDetail: filterGameCenterDetail, sort: sort) { (response, error) in
+MetricsAPI.gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics(id: id, granularity: granularity, groupBy: groupBy, filterResult: filterResult, filterGameCenterDetail: filterGameCenterDetail, sort: sort, limit: limit) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -437,11 +437,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **granularity** | **String** | the granularity of the per-group dataset | 
- **limit** | **Int** | maximum number of groups to return per page | [optional] 
  **groupBy** | [**[String]**](String.md) | the dimension by which to group the results | [optional] 
  **filterResult** | **String** | filter by &#39;result&#39; attribute dimension | [optional] 
  **filterGameCenterDetail** | **String** | filter by &#39;gameCenterDetail&#39; relationship dimension | [optional] 
  **sort** | [**[String]**](String.md) | comma-separated list of sort expressions; metrics will be sorted as specified | [optional] 
+ **limit** | **Int** | maximum number of groups to return per page | [optional] 
 
 ### Return type
 
@@ -460,7 +460,7 @@ Name | Type | Description  | Notes
 
 # **gameCenterMatchmakingQueuesMatchmakingQueueSizesGetMetrics**
 ```swift
-    open class func gameCenterMatchmakingQueuesMatchmakingQueueSizesGetMetrics(id: String, granularity: Granularity_gameCenterMatchmakingQueuesMatchmakingQueueSizesGetMetrics, limit: Int? = nil, sort: [Sort_gameCenterMatchmakingQueuesMatchmakingQueueSizesGetMetrics]? = nil, completion: @escaping (_ data: GameCenterMatchmakingQueueSizesV1MetricResponse?, _ error: Error?) -> Void)
+    open class func gameCenterMatchmakingQueuesMatchmakingQueueSizesGetMetrics(id: String, granularity: Granularity_gameCenterMatchmakingQueuesMatchmakingQueueSizesGetMetrics, sort: [Sort_gameCenterMatchmakingQueuesMatchmakingQueueSizesGetMetrics]? = nil, limit: Int? = nil, completion: @escaping (_ data: GameCenterMatchmakingQueueSizesV1MetricResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -472,10 +472,10 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let granularity = "granularity_example" // String | the granularity of the per-group dataset
-let limit = 987 // Int | maximum number of groups to return per page (optional)
 let sort = ["sort_example"] // [String] | comma-separated list of sort expressions; metrics will be sorted as specified (optional)
+let limit = 987 // Int | maximum number of groups to return per page (optional)
 
-MetricsAPI.gameCenterMatchmakingQueuesMatchmakingQueueSizesGetMetrics(id: id, granularity: granularity, limit: limit, sort: sort) { (response, error) in
+MetricsAPI.gameCenterMatchmakingQueuesMatchmakingQueueSizesGetMetrics(id: id, granularity: granularity, sort: sort, limit: limit) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -493,8 +493,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **granularity** | **String** | the granularity of the per-group dataset | 
- **limit** | **Int** | maximum number of groups to return per page | [optional] 
  **sort** | [**[String]**](String.md) | comma-separated list of sort expressions; metrics will be sorted as specified | [optional] 
+ **limit** | **Int** | maximum number of groups to return per page | [optional] 
 
 ### Return type
 
@@ -513,7 +513,7 @@ Name | Type | Description  | Notes
 
 # **gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics**
 ```swift
-    open class func gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics(id: String, granularity: Granularity_gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics, limit: Int? = nil, groupBy: [GroupBy_gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics]? = nil, filterResult: FilterResult_gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics? = nil, filterGameCenterDetail: String? = nil, sort: [Sort_gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics]? = nil, completion: @escaping (_ data: GameCenterMatchmakingQueueRequestsV1MetricResponse?, _ error: Error?) -> Void)
+    open class func gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics(id: String, granularity: Granularity_gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics, groupBy: [GroupBy_gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics]? = nil, filterResult: FilterResult_gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics? = nil, filterGameCenterDetail: String? = nil, sort: [Sort_gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics]? = nil, limit: Int? = nil, completion: @escaping (_ data: GameCenterMatchmakingQueueRequestsV1MetricResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -525,13 +525,13 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let granularity = "granularity_example" // String | the granularity of the per-group dataset
-let limit = 987 // Int | maximum number of groups to return per page (optional)
 let groupBy = ["groupBy_example"] // [String] | the dimension by which to group the results (optional)
 let filterResult = "filterResult_example" // String | filter by 'result' attribute dimension (optional)
 let filterGameCenterDetail = "filterGameCenterDetail_example" // String | filter by 'gameCenterDetail' relationship dimension (optional)
 let sort = ["sort_example"] // [String] | comma-separated list of sort expressions; metrics will be sorted as specified (optional)
+let limit = 987 // Int | maximum number of groups to return per page (optional)
 
-MetricsAPI.gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics(id: id, granularity: granularity, limit: limit, groupBy: groupBy, filterResult: filterResult, filterGameCenterDetail: filterGameCenterDetail, sort: sort) { (response, error) in
+MetricsAPI.gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics(id: id, granularity: granularity, groupBy: groupBy, filterResult: filterResult, filterGameCenterDetail: filterGameCenterDetail, sort: sort, limit: limit) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -549,11 +549,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **granularity** | **String** | the granularity of the per-group dataset | 
- **limit** | **Int** | maximum number of groups to return per page | [optional] 
  **groupBy** | [**[String]**](String.md) | the dimension by which to group the results | [optional] 
  **filterResult** | **String** | filter by &#39;result&#39; attribute dimension | [optional] 
  **filterGameCenterDetail** | **String** | filter by &#39;gameCenterDetail&#39; relationship dimension | [optional] 
  **sort** | [**[String]**](String.md) | comma-separated list of sort expressions; metrics will be sorted as specified | [optional] 
+ **limit** | **Int** | maximum number of groups to return per page | [optional] 
 
 ### Return type
 
@@ -572,7 +572,7 @@ Name | Type | Description  | Notes
 
 # **gameCenterMatchmakingQueuesMatchmakingSessionsGetMetrics**
 ```swift
-    open class func gameCenterMatchmakingQueuesMatchmakingSessionsGetMetrics(id: String, granularity: Granularity_gameCenterMatchmakingQueuesMatchmakingSessionsGetMetrics, limit: Int? = nil, sort: [Sort_gameCenterMatchmakingQueuesMatchmakingSessionsGetMetrics]? = nil, completion: @escaping (_ data: GameCenterMatchmakingSessionsV1MetricResponse?, _ error: Error?) -> Void)
+    open class func gameCenterMatchmakingQueuesMatchmakingSessionsGetMetrics(id: String, granularity: Granularity_gameCenterMatchmakingQueuesMatchmakingSessionsGetMetrics, sort: [Sort_gameCenterMatchmakingQueuesMatchmakingSessionsGetMetrics]? = nil, limit: Int? = nil, completion: @escaping (_ data: GameCenterMatchmakingSessionsV1MetricResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -584,10 +584,10 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let granularity = "granularity_example" // String | the granularity of the per-group dataset
-let limit = 987 // Int | maximum number of groups to return per page (optional)
 let sort = ["sort_example"] // [String] | comma-separated list of sort expressions; metrics will be sorted as specified (optional)
+let limit = 987 // Int | maximum number of groups to return per page (optional)
 
-MetricsAPI.gameCenterMatchmakingQueuesMatchmakingSessionsGetMetrics(id: id, granularity: granularity, limit: limit, sort: sort) { (response, error) in
+MetricsAPI.gameCenterMatchmakingQueuesMatchmakingSessionsGetMetrics(id: id, granularity: granularity, sort: sort, limit: limit) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -605,8 +605,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **granularity** | **String** | the granularity of the per-group dataset | 
- **limit** | **Int** | maximum number of groups to return per page | [optional] 
  **sort** | [**[String]**](String.md) | comma-separated list of sort expressions; metrics will be sorted as specified | [optional] 
+ **limit** | **Int** | maximum number of groups to return per page | [optional] 
 
 ### Return type
 
@@ -625,7 +625,7 @@ Name | Type | Description  | Notes
 
 # **gameCenterMatchmakingRulesMatchmakingBooleanRuleResultsGetMetrics**
 ```swift
-    open class func gameCenterMatchmakingRulesMatchmakingBooleanRuleResultsGetMetrics(id: String, granularity: Granularity_gameCenterMatchmakingRulesMatchmakingBooleanRuleResultsGetMetrics, limit: Int? = nil, groupBy: [GroupBy_gameCenterMatchmakingRulesMatchmakingBooleanRuleResultsGetMetrics]? = nil, filterResult: String? = nil, filterGameCenterMatchmakingQueue: String? = nil, sort: [Sort_gameCenterMatchmakingRulesMatchmakingBooleanRuleResultsGetMetrics]? = nil, completion: @escaping (_ data: GameCenterMatchmakingBooleanRuleResultsV1MetricResponse?, _ error: Error?) -> Void)
+    open class func gameCenterMatchmakingRulesMatchmakingBooleanRuleResultsGetMetrics(id: String, granularity: Granularity_gameCenterMatchmakingRulesMatchmakingBooleanRuleResultsGetMetrics, groupBy: [GroupBy_gameCenterMatchmakingRulesMatchmakingBooleanRuleResultsGetMetrics]? = nil, filterResult: String? = nil, filterGameCenterMatchmakingQueue: String? = nil, sort: [Sort_gameCenterMatchmakingRulesMatchmakingBooleanRuleResultsGetMetrics]? = nil, limit: Int? = nil, completion: @escaping (_ data: GameCenterMatchmakingBooleanRuleResultsV1MetricResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -637,13 +637,13 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let granularity = "granularity_example" // String | the granularity of the per-group dataset
-let limit = 987 // Int | maximum number of groups to return per page (optional)
 let groupBy = ["groupBy_example"] // [String] | the dimension by which to group the results (optional)
 let filterResult = "filterResult_example" // String | filter by 'result' attribute dimension (optional)
 let filterGameCenterMatchmakingQueue = "filterGameCenterMatchmakingQueue_example" // String | filter by 'gameCenterMatchmakingQueue' relationship dimension (optional)
 let sort = ["sort_example"] // [String] | comma-separated list of sort expressions; metrics will be sorted as specified (optional)
+let limit = 987 // Int | maximum number of groups to return per page (optional)
 
-MetricsAPI.gameCenterMatchmakingRulesMatchmakingBooleanRuleResultsGetMetrics(id: id, granularity: granularity, limit: limit, groupBy: groupBy, filterResult: filterResult, filterGameCenterMatchmakingQueue: filterGameCenterMatchmakingQueue, sort: sort) { (response, error) in
+MetricsAPI.gameCenterMatchmakingRulesMatchmakingBooleanRuleResultsGetMetrics(id: id, granularity: granularity, groupBy: groupBy, filterResult: filterResult, filterGameCenterMatchmakingQueue: filterGameCenterMatchmakingQueue, sort: sort, limit: limit) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -661,11 +661,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **granularity** | **String** | the granularity of the per-group dataset | 
- **limit** | **Int** | maximum number of groups to return per page | [optional] 
  **groupBy** | [**[String]**](String.md) | the dimension by which to group the results | [optional] 
  **filterResult** | **String** | filter by &#39;result&#39; attribute dimension | [optional] 
  **filterGameCenterMatchmakingQueue** | **String** | filter by &#39;gameCenterMatchmakingQueue&#39; relationship dimension | [optional] 
  **sort** | [**[String]**](String.md) | comma-separated list of sort expressions; metrics will be sorted as specified | [optional] 
+ **limit** | **Int** | maximum number of groups to return per page | [optional] 
 
 ### Return type
 
@@ -684,7 +684,7 @@ Name | Type | Description  | Notes
 
 # **gameCenterMatchmakingRulesMatchmakingNumberRuleResultsGetMetrics**
 ```swift
-    open class func gameCenterMatchmakingRulesMatchmakingNumberRuleResultsGetMetrics(id: String, granularity: Granularity_gameCenterMatchmakingRulesMatchmakingNumberRuleResultsGetMetrics, limit: Int? = nil, groupBy: [GroupBy_gameCenterMatchmakingRulesMatchmakingNumberRuleResultsGetMetrics]? = nil, filterGameCenterMatchmakingQueue: String? = nil, sort: [Sort_gameCenterMatchmakingRulesMatchmakingNumberRuleResultsGetMetrics]? = nil, completion: @escaping (_ data: GameCenterMatchmakingNumberRuleResultsV1MetricResponse?, _ error: Error?) -> Void)
+    open class func gameCenterMatchmakingRulesMatchmakingNumberRuleResultsGetMetrics(id: String, granularity: Granularity_gameCenterMatchmakingRulesMatchmakingNumberRuleResultsGetMetrics, groupBy: [GroupBy_gameCenterMatchmakingRulesMatchmakingNumberRuleResultsGetMetrics]? = nil, filterGameCenterMatchmakingQueue: String? = nil, sort: [Sort_gameCenterMatchmakingRulesMatchmakingNumberRuleResultsGetMetrics]? = nil, limit: Int? = nil, completion: @escaping (_ data: GameCenterMatchmakingNumberRuleResultsV1MetricResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -696,12 +696,12 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let granularity = "granularity_example" // String | the granularity of the per-group dataset
-let limit = 987 // Int | maximum number of groups to return per page (optional)
 let groupBy = ["groupBy_example"] // [String] | the dimension by which to group the results (optional)
 let filterGameCenterMatchmakingQueue = "filterGameCenterMatchmakingQueue_example" // String | filter by 'gameCenterMatchmakingQueue' relationship dimension (optional)
 let sort = ["sort_example"] // [String] | comma-separated list of sort expressions; metrics will be sorted as specified (optional)
+let limit = 987 // Int | maximum number of groups to return per page (optional)
 
-MetricsAPI.gameCenterMatchmakingRulesMatchmakingNumberRuleResultsGetMetrics(id: id, granularity: granularity, limit: limit, groupBy: groupBy, filterGameCenterMatchmakingQueue: filterGameCenterMatchmakingQueue, sort: sort) { (response, error) in
+MetricsAPI.gameCenterMatchmakingRulesMatchmakingNumberRuleResultsGetMetrics(id: id, granularity: granularity, groupBy: groupBy, filterGameCenterMatchmakingQueue: filterGameCenterMatchmakingQueue, sort: sort, limit: limit) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -719,10 +719,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **granularity** | **String** | the granularity of the per-group dataset | 
- **limit** | **Int** | maximum number of groups to return per page | [optional] 
  **groupBy** | [**[String]**](String.md) | the dimension by which to group the results | [optional] 
  **filterGameCenterMatchmakingQueue** | **String** | filter by &#39;gameCenterMatchmakingQueue&#39; relationship dimension | [optional] 
  **sort** | [**[String]**](String.md) | comma-separated list of sort expressions; metrics will be sorted as specified | [optional] 
+ **limit** | **Int** | maximum number of groups to return per page | [optional] 
 
 ### Return type
 
@@ -741,7 +741,7 @@ Name | Type | Description  | Notes
 
 # **gameCenterMatchmakingRulesMatchmakingRuleErrorsGetMetrics**
 ```swift
-    open class func gameCenterMatchmakingRulesMatchmakingRuleErrorsGetMetrics(id: String, granularity: Granularity_gameCenterMatchmakingRulesMatchmakingRuleErrorsGetMetrics, limit: Int? = nil, groupBy: [GroupBy_gameCenterMatchmakingRulesMatchmakingRuleErrorsGetMetrics]? = nil, filterGameCenterMatchmakingQueue: String? = nil, sort: [Sort_gameCenterMatchmakingRulesMatchmakingRuleErrorsGetMetrics]? = nil, completion: @escaping (_ data: GameCenterMatchmakingRuleErrorsV1MetricResponse?, _ error: Error?) -> Void)
+    open class func gameCenterMatchmakingRulesMatchmakingRuleErrorsGetMetrics(id: String, granularity: Granularity_gameCenterMatchmakingRulesMatchmakingRuleErrorsGetMetrics, groupBy: [GroupBy_gameCenterMatchmakingRulesMatchmakingRuleErrorsGetMetrics]? = nil, filterGameCenterMatchmakingQueue: String? = nil, sort: [Sort_gameCenterMatchmakingRulesMatchmakingRuleErrorsGetMetrics]? = nil, limit: Int? = nil, completion: @escaping (_ data: GameCenterMatchmakingRuleErrorsV1MetricResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -753,12 +753,12 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let granularity = "granularity_example" // String | the granularity of the per-group dataset
-let limit = 987 // Int | maximum number of groups to return per page (optional)
 let groupBy = ["groupBy_example"] // [String] | the dimension by which to group the results (optional)
 let filterGameCenterMatchmakingQueue = "filterGameCenterMatchmakingQueue_example" // String | filter by 'gameCenterMatchmakingQueue' relationship dimension (optional)
 let sort = ["sort_example"] // [String] | comma-separated list of sort expressions; metrics will be sorted as specified (optional)
+let limit = 987 // Int | maximum number of groups to return per page (optional)
 
-MetricsAPI.gameCenterMatchmakingRulesMatchmakingRuleErrorsGetMetrics(id: id, granularity: granularity, limit: limit, groupBy: groupBy, filterGameCenterMatchmakingQueue: filterGameCenterMatchmakingQueue, sort: sort) { (response, error) in
+MetricsAPI.gameCenterMatchmakingRulesMatchmakingRuleErrorsGetMetrics(id: id, granularity: granularity, groupBy: groupBy, filterGameCenterMatchmakingQueue: filterGameCenterMatchmakingQueue, sort: sort, limit: limit) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -776,10 +776,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **granularity** | **String** | the granularity of the per-group dataset | 
- **limit** | **Int** | maximum number of groups to return per page | [optional] 
  **groupBy** | [**[String]**](String.md) | the dimension by which to group the results | [optional] 
  **filterGameCenterMatchmakingQueue** | **String** | filter by &#39;gameCenterMatchmakingQueue&#39; relationship dimension | [optional] 
  **sort** | [**[String]**](String.md) | comma-separated list of sort expressions; metrics will be sorted as specified | [optional] 
+ **limit** | **Int** | maximum number of groups to return per page | [optional] 
 
 ### Return type
 

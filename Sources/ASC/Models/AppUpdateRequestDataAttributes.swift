@@ -23,19 +23,18 @@ public struct AppUpdateRequestDataAttributes: Codable, JSONEncodable, Hashable {
     public var subscriptionStatusUrlVersion: SubscriptionStatusUrlVersion?
     public var subscriptionStatusUrlForSandbox: String?
     public var subscriptionStatusUrlVersionForSandbox: SubscriptionStatusUrlVersion?
-    @available(*, deprecated, message: "This property is deprecated.")
-    public var availableInNewTerritories: Bool?
     public var contentRightsDeclaration: ContentRightsDeclaration?
+    public var streamlinedPurchasingEnabled: Bool?
 
-    public init(bundleId: String? = nil, primaryLocale: String? = nil, subscriptionStatusUrl: String? = nil, subscriptionStatusUrlVersion: SubscriptionStatusUrlVersion? = nil, subscriptionStatusUrlForSandbox: String? = nil, subscriptionStatusUrlVersionForSandbox: SubscriptionStatusUrlVersion? = nil, availableInNewTerritories: Bool? = nil, contentRightsDeclaration: ContentRightsDeclaration? = nil) {
+    public init(bundleId: String? = nil, primaryLocale: String? = nil, subscriptionStatusUrl: String? = nil, subscriptionStatusUrlVersion: SubscriptionStatusUrlVersion? = nil, subscriptionStatusUrlForSandbox: String? = nil, subscriptionStatusUrlVersionForSandbox: SubscriptionStatusUrlVersion? = nil, contentRightsDeclaration: ContentRightsDeclaration? = nil, streamlinedPurchasingEnabled: Bool? = nil) {
         self.bundleId = bundleId
         self.primaryLocale = primaryLocale
         self.subscriptionStatusUrl = subscriptionStatusUrl
         self.subscriptionStatusUrlVersion = subscriptionStatusUrlVersion
         self.subscriptionStatusUrlForSandbox = subscriptionStatusUrlForSandbox
         self.subscriptionStatusUrlVersionForSandbox = subscriptionStatusUrlVersionForSandbox
-        self.availableInNewTerritories = availableInNewTerritories
         self.contentRightsDeclaration = contentRightsDeclaration
+        self.streamlinedPurchasingEnabled = streamlinedPurchasingEnabled
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -45,8 +44,8 @@ public struct AppUpdateRequestDataAttributes: Codable, JSONEncodable, Hashable {
         case subscriptionStatusUrlVersion
         case subscriptionStatusUrlForSandbox
         case subscriptionStatusUrlVersionForSandbox
-        case availableInNewTerritories
         case contentRightsDeclaration
+        case streamlinedPurchasingEnabled
     }
 
     // Encodable protocol methods
@@ -59,8 +58,8 @@ public struct AppUpdateRequestDataAttributes: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(subscriptionStatusUrlVersion, forKey: .subscriptionStatusUrlVersion)
         try container.encodeIfPresent(subscriptionStatusUrlForSandbox, forKey: .subscriptionStatusUrlForSandbox)
         try container.encodeIfPresent(subscriptionStatusUrlVersionForSandbox, forKey: .subscriptionStatusUrlVersionForSandbox)
-        try container.encodeIfPresent(availableInNewTerritories, forKey: .availableInNewTerritories)
         try container.encodeIfPresent(contentRightsDeclaration, forKey: .contentRightsDeclaration)
+        try container.encodeIfPresent(streamlinedPurchasingEnabled, forKey: .streamlinedPurchasingEnabled)
     }
 }
 

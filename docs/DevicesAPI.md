@@ -59,7 +59,7 @@ Name | Type | Description  | Notes
 
 # **devicesGetCollection**
 ```swift
-    open class func devicesGetCollection(filterName: [String]? = nil, filterPlatform: [FilterPlatform_devicesGetCollection]? = nil, filterStatus: [FilterStatus_devicesGetCollection]? = nil, filterUdid: [String]? = nil, filterId: [String]? = nil, sort: [Sort_devicesGetCollection]? = nil, fieldsDevices: [FieldsDevices_devicesGetCollection]? = nil, limit: Int? = nil, completion: @escaping (_ data: DevicesResponse?, _ error: Error?) -> Void)
+    open class func devicesGetCollection(filterName: [String]? = nil, filterPlatform: [FilterPlatform_devicesGetCollection]? = nil, filterUdid: [String]? = nil, filterStatus: [FilterStatus_devicesGetCollection]? = nil, filterId: [String]? = nil, sort: [Sort_devicesGetCollection]? = nil, fieldsDevices: [FieldsDevices_devicesGetCollection]? = nil, limit: Int? = nil, completion: @escaping (_ data: DevicesResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -71,14 +71,14 @@ import ASC
 
 let filterName = ["inner_example"] // [String] | filter by attribute 'name' (optional)
 let filterPlatform = ["filterPlatform_example"] // [String] | filter by attribute 'platform' (optional)
-let filterStatus = ["filterStatus_example"] // [String] | filter by attribute 'status' (optional)
 let filterUdid = ["inner_example"] // [String] | filter by attribute 'udid' (optional)
+let filterStatus = ["filterStatus_example"] // [String] | filter by attribute 'status' (optional)
 let filterId = ["inner_example"] // [String] | filter by id(s) (optional)
 let sort = ["sort_example"] // [String] | comma-separated list of sort expressions; resources will be sorted as specified (optional)
 let fieldsDevices = ["fieldsDevices_example"] // [String] | the fields to include for returned resources of type devices (optional)
 let limit = 987 // Int | maximum resources per page (optional)
 
-DevicesAPI.devicesGetCollection(filterName: filterName, filterPlatform: filterPlatform, filterStatus: filterStatus, filterUdid: filterUdid, filterId: filterId, sort: sort, fieldsDevices: fieldsDevices, limit: limit) { (response, error) in
+DevicesAPI.devicesGetCollection(filterName: filterName, filterPlatform: filterPlatform, filterUdid: filterUdid, filterStatus: filterStatus, filterId: filterId, sort: sort, fieldsDevices: fieldsDevices, limit: limit) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -96,8 +96,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **filterName** | [**[String]**](String.md) | filter by attribute &#39;name&#39; | [optional] 
  **filterPlatform** | [**[String]**](String.md) | filter by attribute &#39;platform&#39; | [optional] 
- **filterStatus** | [**[String]**](String.md) | filter by attribute &#39;status&#39; | [optional] 
  **filterUdid** | [**[String]**](String.md) | filter by attribute &#39;udid&#39; | [optional] 
+ **filterStatus** | [**[String]**](String.md) | filter by attribute &#39;status&#39; | [optional] 
  **filterId** | [**[String]**](String.md) | filter by id(s) | [optional] 
  **sort** | [**[String]**](String.md) | comma-separated list of sort expressions; resources will be sorted as specified | [optional] 
  **fieldsDevices** | [**[String]**](String.md) | the fields to include for returned resources of type devices | [optional] 

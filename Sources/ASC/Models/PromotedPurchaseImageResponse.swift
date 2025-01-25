@@ -10,8 +10,10 @@ import Foundation
 import AnyCodable
 #endif
 
+@available(*, deprecated, message: "This schema is deprecated.")
 public struct PromotedPurchaseImageResponse: Codable, JSONEncodable, Hashable {
 
+    @available(*, deprecated, message: "This property is deprecated.")
     public var data: PromotedPurchaseImage
     public var included: [PromotedPurchase]?
     public var links: DocumentLinks

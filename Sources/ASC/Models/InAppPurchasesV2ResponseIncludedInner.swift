@@ -14,6 +14,7 @@ public enum InAppPurchasesV2ResponseIncludedInner: Codable, JSONEncodable, Hasha
     case typeInAppPurchaseAppStoreReviewScreenshot(InAppPurchaseAppStoreReviewScreenshot)
     case typeInAppPurchaseAvailability(InAppPurchaseAvailability)
     case typeInAppPurchaseContent(InAppPurchaseContent)
+    case typeInAppPurchaseImage(InAppPurchaseImage)
     case typeInAppPurchaseLocalization(InAppPurchaseLocalization)
     case typeInAppPurchasePricePoint(InAppPurchasePricePoint)
     case typeInAppPurchasePriceSchedule(InAppPurchasePriceSchedule)
@@ -27,6 +28,8 @@ public enum InAppPurchasesV2ResponseIncludedInner: Codable, JSONEncodable, Hasha
         case .typeInAppPurchaseAvailability(let value):
             try container.encode(value)
         case .typeInAppPurchaseContent(let value):
+            try container.encode(value)
+        case .typeInAppPurchaseImage(let value):
             try container.encode(value)
         case .typeInAppPurchaseLocalization(let value):
             try container.encode(value)
@@ -47,6 +50,8 @@ public enum InAppPurchasesV2ResponseIncludedInner: Codable, JSONEncodable, Hasha
             self = .typeInAppPurchaseAvailability(value)
         } else if let value = try? container.decode(InAppPurchaseContent.self) {
             self = .typeInAppPurchaseContent(value)
+        } else if let value = try? container.decode(InAppPurchaseImage.self) {
+            self = .typeInAppPurchaseImage(value)
         } else if let value = try? container.decode(InAppPurchaseLocalization.self) {
             self = .typeInAppPurchaseLocalization(value)
         } else if let value = try? container.decode(InAppPurchasePricePoint.self) {

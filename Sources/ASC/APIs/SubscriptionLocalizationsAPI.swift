@@ -149,9 +149,9 @@ open class SubscriptionLocalizationsAPI {
      * enum for parameter fieldsSubscriptionLocalizations
      */
     public enum FieldsSubscriptionLocalizations_subscriptionLocalizationsGetInstance: String, CaseIterable {
-        case description = "description"
-        case locale = "locale"
         case name = "name"
+        case locale = "locale"
+        case description = "description"
         case state = "state"
         case subscription = "subscription"
     }

@@ -12,11 +12,11 @@ import AnyCodable
 
 public struct InAppPurchaseV2RelationshipsPricePoints: Codable, JSONEncodable, Hashable {
 
-    public var links: AlternativeDistributionPackageVersionRelationshipsVariantsLinks?
+    public var links: RelationshipLinks?
     public var meta: PagingInformation?
     public var data: [InAppPurchasePriceRelationshipsInAppPurchasePricePointData]?
 
-    public init(links: AlternativeDistributionPackageVersionRelationshipsVariantsLinks? = nil, meta: PagingInformation? = nil, data: [InAppPurchasePriceRelationshipsInAppPurchasePricePointData]? = nil) {
+    public init(links: RelationshipLinks? = nil, meta: PagingInformation? = nil, data: [InAppPurchasePriceRelationshipsInAppPurchasePricePointData]? = nil) {
         self.links = links
         self.meta = meta
         self.data = data

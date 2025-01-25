@@ -16,8 +16,6 @@ public enum AppsResponseIncludedInner: Codable, JSONEncodable, Hashable {
     case typeAppEncryptionDeclaration(AppEncryptionDeclaration)
     case typeAppEvent(AppEvent)
     case typeAppInfo(AppInfo)
-    case typeAppPreOrder(AppPreOrder)
-    case typeAppPrice(AppPrice)
     case typeAppStoreVersion(AppStoreVersion)
     case typeAppStoreVersionExperimentV2(AppStoreVersionExperimentV2)
     case typeBetaAppLocalization(BetaAppLocalization)
@@ -36,7 +34,6 @@ public enum AppsResponseIncludedInner: Codable, JSONEncodable, Hashable {
     case typeReviewSubmission(ReviewSubmission)
     case typeSubscriptionGracePeriod(SubscriptionGracePeriod)
     case typeSubscriptionGroup(SubscriptionGroup)
-    case typeTerritory(Territory)
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
@@ -50,10 +47,6 @@ public enum AppsResponseIncludedInner: Codable, JSONEncodable, Hashable {
         case .typeAppEvent(let value):
             try container.encode(value)
         case .typeAppInfo(let value):
-            try container.encode(value)
-        case .typeAppPreOrder(let value):
-            try container.encode(value)
-        case .typeAppPrice(let value):
             try container.encode(value)
         case .typeAppStoreVersion(let value):
             try container.encode(value)
@@ -91,8 +84,6 @@ public enum AppsResponseIncludedInner: Codable, JSONEncodable, Hashable {
             try container.encode(value)
         case .typeSubscriptionGroup(let value):
             try container.encode(value)
-        case .typeTerritory(let value):
-            try container.encode(value)
         }
     }
 
@@ -108,10 +99,6 @@ public enum AppsResponseIncludedInner: Codable, JSONEncodable, Hashable {
             self = .typeAppEvent(value)
         } else if let value = try? container.decode(AppInfo.self) {
             self = .typeAppInfo(value)
-        } else if let value = try? container.decode(AppPreOrder.self) {
-            self = .typeAppPreOrder(value)
-        } else if let value = try? container.decode(AppPrice.self) {
-            self = .typeAppPrice(value)
         } else if let value = try? container.decode(AppStoreVersion.self) {
             self = .typeAppStoreVersion(value)
         } else if let value = try? container.decode(AppStoreVersionExperimentV2.self) {
@@ -148,8 +135,6 @@ public enum AppsResponseIncludedInner: Codable, JSONEncodable, Hashable {
             self = .typeSubscriptionGracePeriod(value)
         } else if let value = try? container.decode(SubscriptionGroup.self) {
             self = .typeSubscriptionGroup(value)
-        } else if let value = try? container.decode(Territory.self) {
-            self = .typeTerritory(value)
         } else {
             throw DecodingError.typeMismatch(Self.Type.self, .init(codingPath: decoder.codingPath, debugDescription: "Unable to decode instance of AppsResponseIncludedInner"))
         }

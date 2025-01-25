@@ -3,9 +3,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**appStoreVersionLocalization** | [**AppPreviewSetCreateRequestDataRelationshipsAppStoreVersionLocalization**](AppPreviewSetCreateRequestDataRelationshipsAppStoreVersionLocalization.md) |  | [optional] 
-**appCustomProductPageLocalization** | [**AppPreviewSetCreateRequestDataRelationshipsAppCustomProductPageLocalization**](AppPreviewSetCreateRequestDataRelationshipsAppCustomProductPageLocalization.md) |  | [optional] 
-**appStoreVersionExperimentTreatmentLocalization** | [**AppPreviewSetCreateRequestDataRelationshipsAppStoreVersionExperimentTreatmentLocalization**](AppPreviewSetCreateRequestDataRelationshipsAppStoreVersionExperimentTreatmentLocalization.md) |  | [optional] 
+**appStoreVersionLocalization** | [**AppPreviewSetRelationshipsAppStoreVersionLocalization**](AppPreviewSetRelationshipsAppStoreVersionLocalization.md) |  | [optional] 
+**appCustomProductPageLocalization** | [**AppPreviewSetRelationshipsAppCustomProductPageLocalization**](AppPreviewSetRelationshipsAppCustomProductPageLocalization.md) |  | [optional] 
+**appStoreVersionExperimentTreatmentLocalization** | [**AppPreviewSetRelationshipsAppStoreVersionExperimentTreatmentLocalization**](AppPreviewSetRelationshipsAppStoreVersionExperimentTreatmentLocalization.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

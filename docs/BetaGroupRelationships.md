@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**app** | [**AppAvailabilityRelationshipsApp**](AppAvailabilityRelationshipsApp.md) |  | [optional] 
+**app** | [**BetaAppLocalizationRelationshipsApp**](BetaAppLocalizationRelationshipsApp.md) |  | [optional] 
 **builds** | [**AppRelationshipsBuilds**](AppRelationshipsBuilds.md) |  | [optional] 
 **betaTesters** | [**BetaGroupRelationshipsBetaTesters**](BetaGroupRelationshipsBetaTesters.md) |  | [optional] 
 

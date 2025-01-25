@@ -13,26 +13,24 @@ import AnyCodable
 open class InAppPurchasePriceSchedulesAPI {
 
     /**
-     * enum for parameter fieldsInAppPurchasePricePoints
+     * enum for parameter fieldsInAppPurchasePrices
      */
-    public enum FieldsInAppPurchasePricePoints_inAppPurchasePriceSchedulesAutomaticPricesGetToManyRelated: String, CaseIterable {
-        case customerprice = "customerPrice"
-        case inapppurchasev2 = "inAppPurchaseV2"
-        case pricetier = "priceTier"
-        case proceeds = "proceeds"
+    public enum FieldsInAppPurchasePrices_inAppPurchasePriceSchedulesAutomaticPricesGetToManyRelated: String, CaseIterable {
+        case startdate = "startDate"
+        case enddate = "endDate"
+        case manual = "manual"
+        case inapppurchasepricepoint = "inAppPurchasePricePoint"
         case territory = "territory"
     }
 
     /**
-     * enum for parameter fieldsInAppPurchasePrices
+     * enum for parameter fieldsInAppPurchasePricePoints
      */
-    public enum FieldsInAppPurchasePrices_inAppPurchasePriceSchedulesAutomaticPricesGetToManyRelated: String, CaseIterable {
-        case enddate = "endDate"
-        case inapppurchasepricepoint = "inAppPurchasePricePoint"
-        case inapppurchasev2 = "inAppPurchaseV2"
-        case manual = "manual"
-        case startdate = "startDate"
+    public enum FieldsInAppPurchasePricePoints_inAppPurchasePriceSchedulesAutomaticPricesGetToManyRelated: String, CaseIterable {
+        case customerprice = "customerPrice"
+        case proceeds = "proceeds"
         case territory = "territory"
+        case equalizations = "equalizations"
     }
 
     /**
@@ -54,16 +52,16 @@ open class InAppPurchasePriceSchedulesAPI {
 
      - parameter id: (path) the id of the requested resource 
      - parameter filterTerritory: (query) filter by id(s) of related &#39;territory&#39; (optional)
-     - parameter fieldsInAppPurchasePricePoints: (query) the fields to include for returned resources of type inAppPurchasePricePoints (optional)
      - parameter fieldsInAppPurchasePrices: (query) the fields to include for returned resources of type inAppPurchasePrices (optional)
+     - parameter fieldsInAppPurchasePricePoints: (query) the fields to include for returned resources of type inAppPurchasePricePoints (optional)
      - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: InAppPurchasePricesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchasePriceSchedulesAutomaticPricesGetToManyRelated(id: String, filterTerritory: [String]? = nil, fieldsInAppPurchasePricePoints: [FieldsInAppPurchasePricePoints_inAppPurchasePriceSchedulesAutomaticPricesGetToManyRelated]? = nil, fieldsInAppPurchasePrices: [FieldsInAppPurchasePrices_inAppPurchasePriceSchedulesAutomaticPricesGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_inAppPurchasePriceSchedulesAutomaticPricesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_inAppPurchasePriceSchedulesAutomaticPricesGetToManyRelated]? = nil) async throws -> InAppPurchasePricesResponse {
-        return try await inAppPurchasePriceSchedulesAutomaticPricesGetToManyRelatedWithRequestBuilder(id: id, filterTerritory: filterTerritory, fieldsInAppPurchasePricePoints: fieldsInAppPurchasePricePoints, fieldsInAppPurchasePrices: fieldsInAppPurchasePrices, fieldsTerritories: fieldsTerritories, limit: limit, include: include).execute().body
+    open class func inAppPurchasePriceSchedulesAutomaticPricesGetToManyRelated(id: String, filterTerritory: [String]? = nil, fieldsInAppPurchasePrices: [FieldsInAppPurchasePrices_inAppPurchasePriceSchedulesAutomaticPricesGetToManyRelated]? = nil, fieldsInAppPurchasePricePoints: [FieldsInAppPurchasePricePoints_inAppPurchasePriceSchedulesAutomaticPricesGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_inAppPurchasePriceSchedulesAutomaticPricesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_inAppPurchasePriceSchedulesAutomaticPricesGetToManyRelated]? = nil) async throws -> InAppPurchasePricesResponse {
+        return try await inAppPurchasePriceSchedulesAutomaticPricesGetToManyRelatedWithRequestBuilder(id: id, filterTerritory: filterTerritory, fieldsInAppPurchasePrices: fieldsInAppPurchasePrices, fieldsInAppPurchasePricePoints: fieldsInAppPurchasePricePoints, fieldsTerritories: fieldsTerritories, limit: limit, include: include).execute().body
     }
 
     /**
@@ -82,14 +80,14 @@ open class InAppPurchasePriceSchedulesAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter filterTerritory: (query) filter by id(s) of related &#39;territory&#39; (optional)
-     - parameter fieldsInAppPurchasePricePoints: (query) the fields to include for returned resources of type inAppPurchasePricePoints (optional)
      - parameter fieldsInAppPurchasePrices: (query) the fields to include for returned resources of type inAppPurchasePrices (optional)
+     - parameter fieldsInAppPurchasePricePoints: (query) the fields to include for returned resources of type inAppPurchasePricePoints (optional)
      - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: RequestBuilder<InAppPurchasePricesResponse> 
      */
-    open class func inAppPurchasePriceSchedulesAutomaticPricesGetToManyRelatedWithRequestBuilder(id: String, filterTerritory: [String]? = nil, fieldsInAppPurchasePricePoints: [FieldsInAppPurchasePricePoints_inAppPurchasePriceSchedulesAutomaticPricesGetToManyRelated]? = nil, fieldsInAppPurchasePrices: [FieldsInAppPurchasePrices_inAppPurchasePriceSchedulesAutomaticPricesGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_inAppPurchasePriceSchedulesAutomaticPricesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_inAppPurchasePriceSchedulesAutomaticPricesGetToManyRelated]? = nil) -> RequestBuilder<InAppPurchasePricesResponse> {
+    open class func inAppPurchasePriceSchedulesAutomaticPricesGetToManyRelatedWithRequestBuilder(id: String, filterTerritory: [String]? = nil, fieldsInAppPurchasePrices: [FieldsInAppPurchasePrices_inAppPurchasePriceSchedulesAutomaticPricesGetToManyRelated]? = nil, fieldsInAppPurchasePricePoints: [FieldsInAppPurchasePricePoints_inAppPurchasePriceSchedulesAutomaticPricesGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_inAppPurchasePriceSchedulesAutomaticPricesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_inAppPurchasePriceSchedulesAutomaticPricesGetToManyRelated]? = nil) -> RequestBuilder<InAppPurchasePricesResponse> {
         var localVariablePath = "/v1/inAppPurchasePriceSchedules/{id}/automaticPrices"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -100,8 +98,8 @@ open class InAppPurchasePriceSchedulesAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "filter[territory]": (wrappedValue: filterTerritory?.encodeToJSON(), isExplode: false),
-            "fields[inAppPurchasePricePoints]": (wrappedValue: fieldsInAppPurchasePricePoints?.encodeToJSON(), isExplode: false),
             "fields[inAppPurchasePrices]": (wrappedValue: fieldsInAppPurchasePrices?.encodeToJSON(), isExplode: false),
+            "fields[inAppPurchasePricePoints]": (wrappedValue: fieldsInAppPurchasePricePoints?.encodeToJSON(), isExplode: false),
             "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
@@ -287,32 +285,9 @@ open class InAppPurchasePriceSchedulesAPI {
      * enum for parameter fieldsInAppPurchasePriceSchedules
      */
     public enum FieldsInAppPurchasePriceSchedules_inAppPurchasePriceSchedulesGetInstance: String, CaseIterable {
-        case automaticprices = "automaticPrices"
         case baseterritory = "baseTerritory"
-        case inapppurchase = "inAppPurchase"
         case manualprices = "manualPrices"
-    }
-
-    /**
-     * enum for parameter include
-     */
-    public enum Include_inAppPurchasePriceSchedulesGetInstance: String, CaseIterable {
         case automaticprices = "automaticPrices"
-        case baseterritory = "baseTerritory"
-        case inapppurchase = "inAppPurchase"
-        case manualprices = "manualPrices"
-    }
-
-    /**
-     * enum for parameter fieldsInAppPurchasePrices
-     */
-    public enum FieldsInAppPurchasePrices_inAppPurchasePriceSchedulesGetInstance: String, CaseIterable {
-        case enddate = "endDate"
-        case inapppurchasepricepoint = "inAppPurchasePricePoint"
-        case inapppurchasev2 = "inAppPurchaseV2"
-        case manual = "manual"
-        case startdate = "startDate"
-        case territory = "territory"
     }
 
     /**
@@ -323,19 +298,39 @@ open class InAppPurchasePriceSchedulesAPI {
     }
 
     /**
+     * enum for parameter fieldsInAppPurchasePrices
+     */
+    public enum FieldsInAppPurchasePrices_inAppPurchasePriceSchedulesGetInstance: String, CaseIterable {
+        case startdate = "startDate"
+        case enddate = "endDate"
+        case manual = "manual"
+        case inapppurchasepricepoint = "inAppPurchasePricePoint"
+        case territory = "territory"
+    }
+
+    /**
+     * enum for parameter include
+     */
+    public enum Include_inAppPurchasePriceSchedulesGetInstance: String, CaseIterable {
+        case baseterritory = "baseTerritory"
+        case manualprices = "manualPrices"
+        case automaticprices = "automaticPrices"
+    }
+
+    /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsInAppPurchasePriceSchedules: (query) the fields to include for returned resources of type inAppPurchasePriceSchedules (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
-     - parameter fieldsInAppPurchasePrices: (query) the fields to include for returned resources of type inAppPurchasePrices (optional)
      - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
+     - parameter fieldsInAppPurchasePrices: (query) the fields to include for returned resources of type inAppPurchasePrices (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAutomaticPrices: (query) maximum number of related automaticPrices returned (when they are included) (optional)
      - parameter limitManualPrices: (query) maximum number of related manualPrices returned (when they are included) (optional)
      - returns: InAppPurchasePriceScheduleResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchasePriceSchedulesGetInstance(id: String, fieldsInAppPurchasePriceSchedules: [FieldsInAppPurchasePriceSchedules_inAppPurchasePriceSchedulesGetInstance]? = nil, include: [Include_inAppPurchasePriceSchedulesGetInstance]? = nil, fieldsInAppPurchasePrices: [FieldsInAppPurchasePrices_inAppPurchasePriceSchedulesGetInstance]? = nil, fieldsTerritories: [FieldsTerritories_inAppPurchasePriceSchedulesGetInstance]? = nil, limitAutomaticPrices: Int? = nil, limitManualPrices: Int? = nil) async throws -> InAppPurchasePriceScheduleResponse {
-        return try await inAppPurchasePriceSchedulesGetInstanceWithRequestBuilder(id: id, fieldsInAppPurchasePriceSchedules: fieldsInAppPurchasePriceSchedules, include: include, fieldsInAppPurchasePrices: fieldsInAppPurchasePrices, fieldsTerritories: fieldsTerritories, limitAutomaticPrices: limitAutomaticPrices, limitManualPrices: limitManualPrices).execute().body
+    open class func inAppPurchasePriceSchedulesGetInstance(id: String, fieldsInAppPurchasePriceSchedules: [FieldsInAppPurchasePriceSchedules_inAppPurchasePriceSchedulesGetInstance]? = nil, fieldsTerritories: [FieldsTerritories_inAppPurchasePriceSchedulesGetInstance]? = nil, fieldsInAppPurchasePrices: [FieldsInAppPurchasePrices_inAppPurchasePriceSchedulesGetInstance]? = nil, include: [Include_inAppPurchasePriceSchedulesGetInstance]? = nil, limitAutomaticPrices: Int? = nil, limitManualPrices: Int? = nil) async throws -> InAppPurchasePriceScheduleResponse {
+        return try await inAppPurchasePriceSchedulesGetInstanceWithRequestBuilder(id: id, fieldsInAppPurchasePriceSchedules: fieldsInAppPurchasePriceSchedules, fieldsTerritories: fieldsTerritories, fieldsInAppPurchasePrices: fieldsInAppPurchasePrices, include: include, limitAutomaticPrices: limitAutomaticPrices, limitManualPrices: limitManualPrices).execute().body
     }
 
     /**
@@ -354,14 +349,14 @@ open class InAppPurchasePriceSchedulesAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsInAppPurchasePriceSchedules: (query) the fields to include for returned resources of type inAppPurchasePriceSchedules (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
-     - parameter fieldsInAppPurchasePrices: (query) the fields to include for returned resources of type inAppPurchasePrices (optional)
      - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
+     - parameter fieldsInAppPurchasePrices: (query) the fields to include for returned resources of type inAppPurchasePrices (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAutomaticPrices: (query) maximum number of related automaticPrices returned (when they are included) (optional)
      - parameter limitManualPrices: (query) maximum number of related manualPrices returned (when they are included) (optional)
      - returns: RequestBuilder<InAppPurchasePriceScheduleResponse> 
      */
-    open class func inAppPurchasePriceSchedulesGetInstanceWithRequestBuilder(id: String, fieldsInAppPurchasePriceSchedules: [FieldsInAppPurchasePriceSchedules_inAppPurchasePriceSchedulesGetInstance]? = nil, include: [Include_inAppPurchasePriceSchedulesGetInstance]? = nil, fieldsInAppPurchasePrices: [FieldsInAppPurchasePrices_inAppPurchasePriceSchedulesGetInstance]? = nil, fieldsTerritories: [FieldsTerritories_inAppPurchasePriceSchedulesGetInstance]? = nil, limitAutomaticPrices: Int? = nil, limitManualPrices: Int? = nil) -> RequestBuilder<InAppPurchasePriceScheduleResponse> {
+    open class func inAppPurchasePriceSchedulesGetInstanceWithRequestBuilder(id: String, fieldsInAppPurchasePriceSchedules: [FieldsInAppPurchasePriceSchedules_inAppPurchasePriceSchedulesGetInstance]? = nil, fieldsTerritories: [FieldsTerritories_inAppPurchasePriceSchedulesGetInstance]? = nil, fieldsInAppPurchasePrices: [FieldsInAppPurchasePrices_inAppPurchasePriceSchedulesGetInstance]? = nil, include: [Include_inAppPurchasePriceSchedulesGetInstance]? = nil, limitAutomaticPrices: Int? = nil, limitManualPrices: Int? = nil) -> RequestBuilder<InAppPurchasePriceScheduleResponse> {
         var localVariablePath = "/v1/inAppPurchasePriceSchedules/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -372,9 +367,9 @@ open class InAppPurchasePriceSchedulesAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[inAppPurchasePriceSchedules]": (wrappedValue: fieldsInAppPurchasePriceSchedules?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "fields[inAppPurchasePrices]": (wrappedValue: fieldsInAppPurchasePrices?.encodeToJSON(), isExplode: false),
             "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(), isExplode: false),
+            "fields[inAppPurchasePrices]": (wrappedValue: fieldsInAppPurchasePrices?.encodeToJSON(), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "limit[automaticPrices]": (wrappedValue: limitAutomaticPrices?.encodeToJSON(), isExplode: true),
             "limit[manualPrices]": (wrappedValue: limitManualPrices?.encodeToJSON(), isExplode: true),
         ])
@@ -411,26 +406,24 @@ open class InAppPurchasePriceSchedulesAPI {
     }
 
     /**
-     * enum for parameter fieldsInAppPurchasePricePoints
+     * enum for parameter fieldsInAppPurchasePrices
      */
-    public enum FieldsInAppPurchasePricePoints_inAppPurchasePriceSchedulesManualPricesGetToManyRelated: String, CaseIterable {
-        case customerprice = "customerPrice"
-        case inapppurchasev2 = "inAppPurchaseV2"
-        case pricetier = "priceTier"
-        case proceeds = "proceeds"
+    public enum FieldsInAppPurchasePrices_inAppPurchasePriceSchedulesManualPricesGetToManyRelated: String, CaseIterable {
+        case startdate = "startDate"
+        case enddate = "endDate"
+        case manual = "manual"
+        case inapppurchasepricepoint = "inAppPurchasePricePoint"
         case territory = "territory"
     }
 
     /**
-     * enum for parameter fieldsInAppPurchasePrices
+     * enum for parameter fieldsInAppPurchasePricePoints
      */
-    public enum FieldsInAppPurchasePrices_inAppPurchasePriceSchedulesManualPricesGetToManyRelated: String, CaseIterable {
-        case enddate = "endDate"
-        case inapppurchasepricepoint = "inAppPurchasePricePoint"
-        case inapppurchasev2 = "inAppPurchaseV2"
-        case manual = "manual"
-        case startdate = "startDate"
+    public enum FieldsInAppPurchasePricePoints_inAppPurchasePriceSchedulesManualPricesGetToManyRelated: String, CaseIterable {
+        case customerprice = "customerPrice"
+        case proceeds = "proceeds"
         case territory = "territory"
+        case equalizations = "equalizations"
     }
 
     /**
@@ -452,16 +445,16 @@ open class InAppPurchasePriceSchedulesAPI {
 
      - parameter id: (path) the id of the requested resource 
      - parameter filterTerritory: (query) filter by id(s) of related &#39;territory&#39; (optional)
-     - parameter fieldsInAppPurchasePricePoints: (query) the fields to include for returned resources of type inAppPurchasePricePoints (optional)
      - parameter fieldsInAppPurchasePrices: (query) the fields to include for returned resources of type inAppPurchasePrices (optional)
+     - parameter fieldsInAppPurchasePricePoints: (query) the fields to include for returned resources of type inAppPurchasePricePoints (optional)
      - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: InAppPurchasePricesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchasePriceSchedulesManualPricesGetToManyRelated(id: String, filterTerritory: [String]? = nil, fieldsInAppPurchasePricePoints: [FieldsInAppPurchasePricePoints_inAppPurchasePriceSchedulesManualPricesGetToManyRelated]? = nil, fieldsInAppPurchasePrices: [FieldsInAppPurchasePrices_inAppPurchasePriceSchedulesManualPricesGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_inAppPurchasePriceSchedulesManualPricesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_inAppPurchasePriceSchedulesManualPricesGetToManyRelated]? = nil) async throws -> InAppPurchasePricesResponse {
-        return try await inAppPurchasePriceSchedulesManualPricesGetToManyRelatedWithRequestBuilder(id: id, filterTerritory: filterTerritory, fieldsInAppPurchasePricePoints: fieldsInAppPurchasePricePoints, fieldsInAppPurchasePrices: fieldsInAppPurchasePrices, fieldsTerritories: fieldsTerritories, limit: limit, include: include).execute().body
+    open class func inAppPurchasePriceSchedulesManualPricesGetToManyRelated(id: String, filterTerritory: [String]? = nil, fieldsInAppPurchasePrices: [FieldsInAppPurchasePrices_inAppPurchasePriceSchedulesManualPricesGetToManyRelated]? = nil, fieldsInAppPurchasePricePoints: [FieldsInAppPurchasePricePoints_inAppPurchasePriceSchedulesManualPricesGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_inAppPurchasePriceSchedulesManualPricesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_inAppPurchasePriceSchedulesManualPricesGetToManyRelated]? = nil) async throws -> InAppPurchasePricesResponse {
+        return try await inAppPurchasePriceSchedulesManualPricesGetToManyRelatedWithRequestBuilder(id: id, filterTerritory: filterTerritory, fieldsInAppPurchasePrices: fieldsInAppPurchasePrices, fieldsInAppPurchasePricePoints: fieldsInAppPurchasePricePoints, fieldsTerritories: fieldsTerritories, limit: limit, include: include).execute().body
     }
 
     /**
@@ -480,14 +473,14 @@ open class InAppPurchasePriceSchedulesAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter filterTerritory: (query) filter by id(s) of related &#39;territory&#39; (optional)
-     - parameter fieldsInAppPurchasePricePoints: (query) the fields to include for returned resources of type inAppPurchasePricePoints (optional)
      - parameter fieldsInAppPurchasePrices: (query) the fields to include for returned resources of type inAppPurchasePrices (optional)
+     - parameter fieldsInAppPurchasePricePoints: (query) the fields to include for returned resources of type inAppPurchasePricePoints (optional)
      - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: RequestBuilder<InAppPurchasePricesResponse> 
      */
-    open class func inAppPurchasePriceSchedulesManualPricesGetToManyRelatedWithRequestBuilder(id: String, filterTerritory: [String]? = nil, fieldsInAppPurchasePricePoints: [FieldsInAppPurchasePricePoints_inAppPurchasePriceSchedulesManualPricesGetToManyRelated]? = nil, fieldsInAppPurchasePrices: [FieldsInAppPurchasePrices_inAppPurchasePriceSchedulesManualPricesGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_inAppPurchasePriceSchedulesManualPricesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_inAppPurchasePriceSchedulesManualPricesGetToManyRelated]? = nil) -> RequestBuilder<InAppPurchasePricesResponse> {
+    open class func inAppPurchasePriceSchedulesManualPricesGetToManyRelatedWithRequestBuilder(id: String, filterTerritory: [String]? = nil, fieldsInAppPurchasePrices: [FieldsInAppPurchasePrices_inAppPurchasePriceSchedulesManualPricesGetToManyRelated]? = nil, fieldsInAppPurchasePricePoints: [FieldsInAppPurchasePricePoints_inAppPurchasePriceSchedulesManualPricesGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_inAppPurchasePriceSchedulesManualPricesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_inAppPurchasePriceSchedulesManualPricesGetToManyRelated]? = nil) -> RequestBuilder<InAppPurchasePricesResponse> {
         var localVariablePath = "/v1/inAppPurchasePriceSchedules/{id}/manualPrices"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -498,8 +491,8 @@ open class InAppPurchasePriceSchedulesAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "filter[territory]": (wrappedValue: filterTerritory?.encodeToJSON(), isExplode: false),
-            "fields[inAppPurchasePricePoints]": (wrappedValue: fieldsInAppPurchasePricePoints?.encodeToJSON(), isExplode: false),
             "fields[inAppPurchasePrices]": (wrappedValue: fieldsInAppPurchasePrices?.encodeToJSON(), isExplode: false),
+            "fields[inAppPurchasePricePoints]": (wrappedValue: fieldsInAppPurchasePricePoints?.encodeToJSON(), isExplode: false),
             "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),

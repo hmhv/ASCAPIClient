@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 # **appStoreVersionExperimentTreatmentsAppStoreVersionExperimentTreatmentLocalizationsGetToManyRelated**
 ```swift
-    open class func appStoreVersionExperimentTreatmentsAppStoreVersionExperimentTreatmentLocalizationsGetToManyRelated(id: String, filterLocale: [String]? = nil, fieldsAppScreenshotSets: [FieldsAppScreenshotSets_appStoreVersionExperimentTreatmentsAppStoreVersionExperimentTreatmentLocalizationsGetToManyRelated]? = nil, fieldsAppStoreVersionExperimentTreatments: [FieldsAppStoreVersionExperimentTreatments_appStoreVersionExperimentTreatmentsAppStoreVersionExperimentTreatmentLocalizationsGetToManyRelated]? = nil, fieldsAppStoreVersionExperimentTreatmentLocalizations: [FieldsAppStoreVersionExperimentTreatmentLocalizations_appStoreVersionExperimentTreatmentsAppStoreVersionExperimentTreatmentLocalizationsGetToManyRelated]? = nil, fieldsAppPreviewSets: [FieldsAppPreviewSets_appStoreVersionExperimentTreatmentsAppStoreVersionExperimentTreatmentLocalizationsGetToManyRelated]? = nil, limit: Int? = nil, limitAppScreenshotSets: Int? = nil, limitAppPreviewSets: Int? = nil, include: [Include_appStoreVersionExperimentTreatmentsAppStoreVersionExperimentTreatmentLocalizationsGetToManyRelated]? = nil, completion: @escaping (_ data: AppStoreVersionExperimentTreatmentLocalizationsResponse?, _ error: Error?) -> Void)
+    open class func appStoreVersionExperimentTreatmentsAppStoreVersionExperimentTreatmentLocalizationsGetToManyRelated(id: String, filterLocale: [String]? = nil, fieldsAppStoreVersionExperimentTreatmentLocalizations: [FieldsAppStoreVersionExperimentTreatmentLocalizations_appStoreVersionExperimentTreatmentsAppStoreVersionExperimentTreatmentLocalizationsGetToManyRelated]? = nil, fieldsAppStoreVersionExperimentTreatments: [FieldsAppStoreVersionExperimentTreatments_appStoreVersionExperimentTreatmentsAppStoreVersionExperimentTreatmentLocalizationsGetToManyRelated]? = nil, fieldsAppScreenshotSets: [FieldsAppScreenshotSets_appStoreVersionExperimentTreatmentsAppStoreVersionExperimentTreatmentLocalizationsGetToManyRelated]? = nil, fieldsAppPreviewSets: [FieldsAppPreviewSets_appStoreVersionExperimentTreatmentsAppStoreVersionExperimentTreatmentLocalizationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appStoreVersionExperimentTreatmentsAppStoreVersionExperimentTreatmentLocalizationsGetToManyRelated]? = nil, limitAppScreenshotSets: Int? = nil, limitAppPreviewSets: Int? = nil, completion: @escaping (_ data: AppStoreVersionExperimentTreatmentLocalizationsResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -25,16 +25,16 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let filterLocale = ["inner_example"] // [String] | filter by attribute 'locale' (optional)
-let fieldsAppScreenshotSets = ["fieldsAppScreenshotSets_example"] // [String] | the fields to include for returned resources of type appScreenshotSets (optional)
-let fieldsAppStoreVersionExperimentTreatments = ["fieldsAppStoreVersionExperimentTreatments_example"] // [String] | the fields to include for returned resources of type appStoreVersionExperimentTreatments (optional)
 let fieldsAppStoreVersionExperimentTreatmentLocalizations = ["fieldsAppStoreVersionExperimentTreatmentLocalizations_example"] // [String] | the fields to include for returned resources of type appStoreVersionExperimentTreatmentLocalizations (optional)
+let fieldsAppStoreVersionExperimentTreatments = ["fieldsAppStoreVersionExperimentTreatments_example"] // [String] | the fields to include for returned resources of type appStoreVersionExperimentTreatments (optional)
+let fieldsAppScreenshotSets = ["fieldsAppScreenshotSets_example"] // [String] | the fields to include for returned resources of type appScreenshotSets (optional)
 let fieldsAppPreviewSets = ["fieldsAppPreviewSets_example"] // [String] | the fields to include for returned resources of type appPreviewSets (optional)
 let limit = 987 // Int | maximum resources per page (optional)
+let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let limitAppScreenshotSets = 987 // Int | maximum number of related appScreenshotSets returned (when they are included) (optional)
 let limitAppPreviewSets = 987 // Int | maximum number of related appPreviewSets returned (when they are included) (optional)
-let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 
-AppStoreVersionExperimentTreatmentsAPI.appStoreVersionExperimentTreatmentsAppStoreVersionExperimentTreatmentLocalizationsGetToManyRelated(id: id, filterLocale: filterLocale, fieldsAppScreenshotSets: fieldsAppScreenshotSets, fieldsAppStoreVersionExperimentTreatments: fieldsAppStoreVersionExperimentTreatments, fieldsAppStoreVersionExperimentTreatmentLocalizations: fieldsAppStoreVersionExperimentTreatmentLocalizations, fieldsAppPreviewSets: fieldsAppPreviewSets, limit: limit, limitAppScreenshotSets: limitAppScreenshotSets, limitAppPreviewSets: limitAppPreviewSets, include: include) { (response, error) in
+AppStoreVersionExperimentTreatmentsAPI.appStoreVersionExperimentTreatmentsAppStoreVersionExperimentTreatmentLocalizationsGetToManyRelated(id: id, filterLocale: filterLocale, fieldsAppStoreVersionExperimentTreatmentLocalizations: fieldsAppStoreVersionExperimentTreatmentLocalizations, fieldsAppStoreVersionExperimentTreatments: fieldsAppStoreVersionExperimentTreatments, fieldsAppScreenshotSets: fieldsAppScreenshotSets, fieldsAppPreviewSets: fieldsAppPreviewSets, limit: limit, include: include, limitAppScreenshotSets: limitAppScreenshotSets, limitAppPreviewSets: limitAppPreviewSets) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -52,14 +52,14 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **filterLocale** | [**[String]**](String.md) | filter by attribute &#39;locale&#39; | [optional] 
- **fieldsAppScreenshotSets** | [**[String]**](String.md) | the fields to include for returned resources of type appScreenshotSets | [optional] 
- **fieldsAppStoreVersionExperimentTreatments** | [**[String]**](String.md) | the fields to include for returned resources of type appStoreVersionExperimentTreatments | [optional] 
  **fieldsAppStoreVersionExperimentTreatmentLocalizations** | [**[String]**](String.md) | the fields to include for returned resources of type appStoreVersionExperimentTreatmentLocalizations | [optional] 
+ **fieldsAppStoreVersionExperimentTreatments** | [**[String]**](String.md) | the fields to include for returned resources of type appStoreVersionExperimentTreatments | [optional] 
+ **fieldsAppScreenshotSets** | [**[String]**](String.md) | the fields to include for returned resources of type appScreenshotSets | [optional] 
  **fieldsAppPreviewSets** | [**[String]**](String.md) | the fields to include for returned resources of type appPreviewSets | [optional] 
  **limit** | **Int** | maximum resources per page | [optional] 
+ **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **limitAppScreenshotSets** | **Int** | maximum number of related appScreenshotSets returned (when they are included) | [optional] 
  **limitAppPreviewSets** | **Int** | maximum number of related appPreviewSets returned (when they are included) | [optional] 
- **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
 
 ### Return type
 
@@ -88,7 +88,7 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import ASC
 
-let appStoreVersionExperimentTreatmentCreateRequest = AppStoreVersionExperimentTreatmentCreateRequest(data: AppStoreVersionExperimentTreatmentCreateRequest_data(type: "type_example", attributes: AppStoreVersionExperimentTreatmentCreateRequest_data_attributes(name: "name_example", appIconName: "appIconName_example"), relationships: AppStoreVersionExperimentTreatmentCreateRequest_data_relationships(appStoreVersionExperiment: AppStoreVersionExperimentTreatmentCreateRequest_data_relationships_appStoreVersionExperiment(data: AppStoreVersionExperimentTreatment_relationships_appStoreVersionExperiment_data(type: "type_example", id: "id_example")), appStoreVersionExperimentV2: AppStoreVersionExperimentTreatmentCreateRequest_data_relationships_appStoreVersionExperimentV2(data: nil)))) // AppStoreVersionExperimentTreatmentCreateRequest | AppStoreVersionExperimentTreatment representation
+let appStoreVersionExperimentTreatmentCreateRequest = AppStoreVersionExperimentTreatmentCreateRequest(data: AppStoreVersionExperimentTreatmentCreateRequest_data(type: "type_example", attributes: AppStoreVersionExperimentTreatmentCreateRequest_data_attributes(name: "name_example", appIconName: "appIconName_example"), relationships: AppStoreVersionExperimentTreatmentCreateRequest_data_relationships(appStoreVersionExperiment: AppStoreVersionExperimentTreatment_relationships_appStoreVersionExperiment(data: AppStoreVersionExperimentTreatment_relationships_appStoreVersionExperiment_data(type: "type_example", id: "id_example")), appStoreVersionExperimentV2: nil))) // AppStoreVersionExperimentTreatmentCreateRequest | AppStoreVersionExperimentTreatment representation
 
 AppStoreVersionExperimentTreatmentsAPI.appStoreVersionExperimentTreatmentsCreateInstance(appStoreVersionExperimentTreatmentCreateRequest: appStoreVersionExperimentTreatmentCreateRequest) { (response, error) in
     guard error == nil else {
@@ -172,7 +172,7 @@ Void (empty response body)
 
 # **appStoreVersionExperimentTreatmentsGetInstance**
 ```swift
-    open class func appStoreVersionExperimentTreatmentsGetInstance(id: String, fieldsAppStoreVersionExperimentTreatments: [FieldsAppStoreVersionExperimentTreatments_appStoreVersionExperimentTreatmentsGetInstance]? = nil, include: [Include_appStoreVersionExperimentTreatmentsGetInstance]? = nil, fieldsAppStoreVersionExperimentTreatmentLocalizations: [FieldsAppStoreVersionExperimentTreatmentLocalizations_appStoreVersionExperimentTreatmentsGetInstance]? = nil, limitAppStoreVersionExperimentTreatmentLocalizations: Int? = nil, completion: @escaping (_ data: AppStoreVersionExperimentTreatmentResponse?, _ error: Error?) -> Void)
+    open class func appStoreVersionExperimentTreatmentsGetInstance(id: String, fieldsAppStoreVersionExperimentTreatments: [FieldsAppStoreVersionExperimentTreatments_appStoreVersionExperimentTreatmentsGetInstance]? = nil, fieldsAppStoreVersionExperimentTreatmentLocalizations: [FieldsAppStoreVersionExperimentTreatmentLocalizations_appStoreVersionExperimentTreatmentsGetInstance]? = nil, include: [Include_appStoreVersionExperimentTreatmentsGetInstance]? = nil, limitAppStoreVersionExperimentTreatmentLocalizations: Int? = nil, completion: @escaping (_ data: AppStoreVersionExperimentTreatmentResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -184,11 +184,11 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let fieldsAppStoreVersionExperimentTreatments = ["fieldsAppStoreVersionExperimentTreatments_example"] // [String] | the fields to include for returned resources of type appStoreVersionExperimentTreatments (optional)
-let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let fieldsAppStoreVersionExperimentTreatmentLocalizations = ["fieldsAppStoreVersionExperimentTreatmentLocalizations_example"] // [String] | the fields to include for returned resources of type appStoreVersionExperimentTreatmentLocalizations (optional)
+let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let limitAppStoreVersionExperimentTreatmentLocalizations = 987 // Int | maximum number of related appStoreVersionExperimentTreatmentLocalizations returned (when they are included) (optional)
 
-AppStoreVersionExperimentTreatmentsAPI.appStoreVersionExperimentTreatmentsGetInstance(id: id, fieldsAppStoreVersionExperimentTreatments: fieldsAppStoreVersionExperimentTreatments, include: include, fieldsAppStoreVersionExperimentTreatmentLocalizations: fieldsAppStoreVersionExperimentTreatmentLocalizations, limitAppStoreVersionExperimentTreatmentLocalizations: limitAppStoreVersionExperimentTreatmentLocalizations) { (response, error) in
+AppStoreVersionExperimentTreatmentsAPI.appStoreVersionExperimentTreatmentsGetInstance(id: id, fieldsAppStoreVersionExperimentTreatments: fieldsAppStoreVersionExperimentTreatments, fieldsAppStoreVersionExperimentTreatmentLocalizations: fieldsAppStoreVersionExperimentTreatmentLocalizations, include: include, limitAppStoreVersionExperimentTreatmentLocalizations: limitAppStoreVersionExperimentTreatmentLocalizations) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -206,8 +206,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **fieldsAppStoreVersionExperimentTreatments** | [**[String]**](String.md) | the fields to include for returned resources of type appStoreVersionExperimentTreatments | [optional] 
- **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **fieldsAppStoreVersionExperimentTreatmentLocalizations** | [**[String]**](String.md) | the fields to include for returned resources of type appStoreVersionExperimentTreatmentLocalizations | [optional] 
+ **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **limitAppStoreVersionExperimentTreatmentLocalizations** | **Int** | maximum number of related appStoreVersionExperimentTreatmentLocalizations returned (when they are included) | [optional] 
 
 ### Return type

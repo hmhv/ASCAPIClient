@@ -16,18 +16,18 @@ open class ScmPullRequestsAPI {
      * enum for parameter fieldsScmPullRequests
      */
     public enum FieldsScmPullRequests_scmPullRequestsGetInstance: String, CaseIterable {
-        case destinationbranchname = "destinationBranchName"
-        case destinationrepositoryname = "destinationRepositoryName"
+        case title = "title"
+        case number = "number"
+        case weburl = "webUrl"
+        case sourcerepositoryowner = "sourceRepositoryOwner"
+        case sourcerepositoryname = "sourceRepositoryName"
+        case sourcebranchname = "sourceBranchName"
         case destinationrepositoryowner = "destinationRepositoryOwner"
+        case destinationrepositoryname = "destinationRepositoryName"
+        case destinationbranchname = "destinationBranchName"
         case isclosed = "isClosed"
         case iscrossrepository = "isCrossRepository"
-        case number = "number"
         case repository = "repository"
-        case sourcebranchname = "sourceBranchName"
-        case sourcerepositoryname = "sourceRepositoryName"
-        case sourcerepositoryowner = "sourceRepositoryOwner"
-        case title = "title"
-        case weburl = "webUrl"
     }
 
     /**

@@ -18,9 +18,9 @@ open class InAppPurchaseContentsAPI {
     public enum FieldsInAppPurchaseContents_inAppPurchaseContentsGetInstance: String, CaseIterable {
         case filename = "fileName"
         case filesize = "fileSize"
-        case inapppurchasev2 = "inAppPurchaseV2"
-        case lastmodifieddate = "lastModifiedDate"
         case url = "url"
+        case lastmodifieddate = "lastModifiedDate"
+        case inapppurchasev2 = "inAppPurchaseV2"
     }
 
     /**

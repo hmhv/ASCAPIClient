@@ -12,9 +12,9 @@ import AnyCodable
 
 public struct InAppPurchaseAvailabilityRelationships: Codable, JSONEncodable, Hashable {
 
-    public var availableTerritories: AppAvailabilityRelationshipsAvailableTerritories?
+    public var availableTerritories: EndUserLicenseAgreementRelationshipsTerritories?
 
-    public init(availableTerritories: AppAvailabilityRelationshipsAvailableTerritories? = nil) {
+    public init(availableTerritories: EndUserLicenseAgreementRelationshipsTerritories? = nil) {
         self.availableTerritories = availableTerritories
     }
 

@@ -12,11 +12,11 @@ import AnyCodable
 
 public struct DevicesWithoutIncludesResponse: Codable, JSONEncodable, Hashable {
 
-    public var data: [Profile]
+    public var data: [Device]
     public var links: PagedDocumentLinks
     public var meta: PagingInformation?
 
-    public init(data: [Profile], links: PagedDocumentLinks, meta: PagingInformation? = nil) {
+    public init(data: [Device], links: PagedDocumentLinks, meta: PagingInformation? = nil) {
         self.data = data
         self.links = links
         self.meta = meta

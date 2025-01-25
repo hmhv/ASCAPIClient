@@ -16,10 +16,10 @@ open class AlternativeDistributionPackageDeltasAPI {
      * enum for parameter fieldsAlternativeDistributionPackageDeltas
      */
     public enum FieldsAlternativeDistributionPackageDeltas_alternativeDistributionPackageDeltasGetInstance: String, CaseIterable {
-        case alternativedistributionkeyblob = "alternativeDistributionKeyBlob"
-        case filechecksum = "fileChecksum"
         case url = "url"
         case urlexpirationdate = "urlExpirationDate"
+        case alternativedistributionkeyblob = "alternativeDistributionKeyBlob"
+        case filechecksum = "fileChecksum"
     }
 
     /**

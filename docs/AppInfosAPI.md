@@ -67,7 +67,7 @@ Name | Type | Description  | Notes
 
 # **appInfosAppInfoLocalizationsGetToManyRelated**
 ```swift
-    open class func appInfosAppInfoLocalizationsGetToManyRelated(id: String, filterLocale: [String]? = nil, fieldsAppInfos: [FieldsAppInfos_appInfosAppInfoLocalizationsGetToManyRelated]? = nil, fieldsAppInfoLocalizations: [FieldsAppInfoLocalizations_appInfosAppInfoLocalizationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appInfosAppInfoLocalizationsGetToManyRelated]? = nil, completion: @escaping (_ data: AppInfoLocalizationsResponse?, _ error: Error?) -> Void)
+    open class func appInfosAppInfoLocalizationsGetToManyRelated(id: String, filterLocale: [String]? = nil, fieldsAppInfoLocalizations: [FieldsAppInfoLocalizations_appInfosAppInfoLocalizationsGetToManyRelated]? = nil, fieldsAppInfos: [FieldsAppInfos_appInfosAppInfoLocalizationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appInfosAppInfoLocalizationsGetToManyRelated]? = nil, completion: @escaping (_ data: AppInfoLocalizationsResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -79,12 +79,12 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let filterLocale = ["inner_example"] // [String] | filter by attribute 'locale' (optional)
-let fieldsAppInfos = ["fieldsAppInfos_example"] // [String] | the fields to include for returned resources of type appInfos (optional)
 let fieldsAppInfoLocalizations = ["fieldsAppInfoLocalizations_example"] // [String] | the fields to include for returned resources of type appInfoLocalizations (optional)
+let fieldsAppInfos = ["fieldsAppInfos_example"] // [String] | the fields to include for returned resources of type appInfos (optional)
 let limit = 987 // Int | maximum resources per page (optional)
 let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 
-AppInfosAPI.appInfosAppInfoLocalizationsGetToManyRelated(id: id, filterLocale: filterLocale, fieldsAppInfos: fieldsAppInfos, fieldsAppInfoLocalizations: fieldsAppInfoLocalizations, limit: limit, include: include) { (response, error) in
+AppInfosAPI.appInfosAppInfoLocalizationsGetToManyRelated(id: id, filterLocale: filterLocale, fieldsAppInfoLocalizations: fieldsAppInfoLocalizations, fieldsAppInfos: fieldsAppInfos, limit: limit, include: include) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -102,8 +102,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **filterLocale** | [**[String]**](String.md) | filter by attribute &#39;locale&#39; | [optional] 
- **fieldsAppInfos** | [**[String]**](String.md) | the fields to include for returned resources of type appInfos | [optional] 
  **fieldsAppInfoLocalizations** | [**[String]**](String.md) | the fields to include for returned resources of type appInfoLocalizations | [optional] 
+ **fieldsAppInfos** | [**[String]**](String.md) | the fields to include for returned resources of type appInfos | [optional] 
  **limit** | **Int** | maximum resources per page | [optional] 
  **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
 
@@ -124,7 +124,7 @@ Name | Type | Description  | Notes
 
 # **appInfosGetInstance**
 ```swift
-    open class func appInfosGetInstance(id: String, fieldsAppInfos: [FieldsAppInfos_appInfosGetInstance]? = nil, include: [Include_appInfosGetInstance]? = nil, fieldsAgeRatingDeclarations: [FieldsAgeRatingDeclarations_appInfosGetInstance]? = nil, fieldsAppInfoLocalizations: [FieldsAppInfoLocalizations_appInfosGetInstance]? = nil, fieldsAppCategories: [FieldsAppCategories_appInfosGetInstance]? = nil, limitAppInfoLocalizations: Int? = nil, completion: @escaping (_ data: AppInfoResponse?, _ error: Error?) -> Void)
+    open class func appInfosGetInstance(id: String, fieldsAppInfos: [FieldsAppInfos_appInfosGetInstance]? = nil, fieldsAgeRatingDeclarations: [FieldsAgeRatingDeclarations_appInfosGetInstance]? = nil, fieldsAppInfoLocalizations: [FieldsAppInfoLocalizations_appInfosGetInstance]? = nil, fieldsAppCategories: [FieldsAppCategories_appInfosGetInstance]? = nil, include: [Include_appInfosGetInstance]? = nil, limitAppInfoLocalizations: Int? = nil, completion: @escaping (_ data: AppInfoResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -136,13 +136,13 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let fieldsAppInfos = ["fieldsAppInfos_example"] // [String] | the fields to include for returned resources of type appInfos (optional)
-let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let fieldsAgeRatingDeclarations = ["fieldsAgeRatingDeclarations_example"] // [String] | the fields to include for returned resources of type ageRatingDeclarations (optional)
 let fieldsAppInfoLocalizations = ["fieldsAppInfoLocalizations_example"] // [String] | the fields to include for returned resources of type appInfoLocalizations (optional)
 let fieldsAppCategories = ["fieldsAppCategories_example"] // [String] | the fields to include for returned resources of type appCategories (optional)
+let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let limitAppInfoLocalizations = 987 // Int | maximum number of related appInfoLocalizations returned (when they are included) (optional)
 
-AppInfosAPI.appInfosGetInstance(id: id, fieldsAppInfos: fieldsAppInfos, include: include, fieldsAgeRatingDeclarations: fieldsAgeRatingDeclarations, fieldsAppInfoLocalizations: fieldsAppInfoLocalizations, fieldsAppCategories: fieldsAppCategories, limitAppInfoLocalizations: limitAppInfoLocalizations) { (response, error) in
+AppInfosAPI.appInfosGetInstance(id: id, fieldsAppInfos: fieldsAppInfos, fieldsAgeRatingDeclarations: fieldsAgeRatingDeclarations, fieldsAppInfoLocalizations: fieldsAppInfoLocalizations, fieldsAppCategories: fieldsAppCategories, include: include, limitAppInfoLocalizations: limitAppInfoLocalizations) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -160,10 +160,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **fieldsAppInfos** | [**[String]**](String.md) | the fields to include for returned resources of type appInfos | [optional] 
- **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **fieldsAgeRatingDeclarations** | [**[String]**](String.md) | the fields to include for returned resources of type ageRatingDeclarations | [optional] 
  **fieldsAppInfoLocalizations** | [**[String]**](String.md) | the fields to include for returned resources of type appInfoLocalizations | [optional] 
  **fieldsAppCategories** | [**[String]**](String.md) | the fields to include for returned resources of type appCategories | [optional] 
+ **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **limitAppInfoLocalizations** | **Int** | maximum number of related appInfoLocalizations returned (when they are included) | [optional] 
 
 ### Return type
@@ -183,7 +183,7 @@ Name | Type | Description  | Notes
 
 # **appInfosPrimaryCategoryGetToOneRelated**
 ```swift
-    open class func appInfosPrimaryCategoryGetToOneRelated(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosPrimaryCategoryGetToOneRelated]? = nil, limitSubcategories: Int? = nil, include: [Include_appInfosPrimaryCategoryGetToOneRelated]? = nil, completion: @escaping (_ data: AppCategoryResponse?, _ error: Error?) -> Void)
+    open class func appInfosPrimaryCategoryGetToOneRelated(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosPrimaryCategoryGetToOneRelated]? = nil, include: [Include_appInfosPrimaryCategoryGetToOneRelated]? = nil, limitSubcategories: Int? = nil, completion: @escaping (_ data: AppCategoryResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -195,10 +195,10 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let fieldsAppCategories = ["fieldsAppCategories_example"] // [String] | the fields to include for returned resources of type appCategories (optional)
-let limitSubcategories = 987 // Int | maximum number of related subcategories returned (when they are included) (optional)
 let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
+let limitSubcategories = 987 // Int | maximum number of related subcategories returned (when they are included) (optional)
 
-AppInfosAPI.appInfosPrimaryCategoryGetToOneRelated(id: id, fieldsAppCategories: fieldsAppCategories, limitSubcategories: limitSubcategories, include: include) { (response, error) in
+AppInfosAPI.appInfosPrimaryCategoryGetToOneRelated(id: id, fieldsAppCategories: fieldsAppCategories, include: include, limitSubcategories: limitSubcategories) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -216,8 +216,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **fieldsAppCategories** | [**[String]**](String.md) | the fields to include for returned resources of type appCategories | [optional] 
- **limitSubcategories** | **Int** | maximum number of related subcategories returned (when they are included) | [optional] 
  **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
+ **limitSubcategories** | **Int** | maximum number of related subcategories returned (when they are included) | [optional] 
 
 ### Return type
 
@@ -236,7 +236,7 @@ Name | Type | Description  | Notes
 
 # **appInfosPrimarySubcategoryOneGetToOneRelated**
 ```swift
-    open class func appInfosPrimarySubcategoryOneGetToOneRelated(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosPrimarySubcategoryOneGetToOneRelated]? = nil, limitSubcategories: Int? = nil, include: [Include_appInfosPrimarySubcategoryOneGetToOneRelated]? = nil, completion: @escaping (_ data: AppCategoryResponse?, _ error: Error?) -> Void)
+    open class func appInfosPrimarySubcategoryOneGetToOneRelated(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosPrimarySubcategoryOneGetToOneRelated]? = nil, include: [Include_appInfosPrimarySubcategoryOneGetToOneRelated]? = nil, limitSubcategories: Int? = nil, completion: @escaping (_ data: AppCategoryResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -248,10 +248,10 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let fieldsAppCategories = ["fieldsAppCategories_example"] // [String] | the fields to include for returned resources of type appCategories (optional)
-let limitSubcategories = 987 // Int | maximum number of related subcategories returned (when they are included) (optional)
 let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
+let limitSubcategories = 987 // Int | maximum number of related subcategories returned (when they are included) (optional)
 
-AppInfosAPI.appInfosPrimarySubcategoryOneGetToOneRelated(id: id, fieldsAppCategories: fieldsAppCategories, limitSubcategories: limitSubcategories, include: include) { (response, error) in
+AppInfosAPI.appInfosPrimarySubcategoryOneGetToOneRelated(id: id, fieldsAppCategories: fieldsAppCategories, include: include, limitSubcategories: limitSubcategories) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -269,8 +269,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **fieldsAppCategories** | [**[String]**](String.md) | the fields to include for returned resources of type appCategories | [optional] 
- **limitSubcategories** | **Int** | maximum number of related subcategories returned (when they are included) | [optional] 
  **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
+ **limitSubcategories** | **Int** | maximum number of related subcategories returned (when they are included) | [optional] 
 
 ### Return type
 
@@ -289,7 +289,7 @@ Name | Type | Description  | Notes
 
 # **appInfosPrimarySubcategoryTwoGetToOneRelated**
 ```swift
-    open class func appInfosPrimarySubcategoryTwoGetToOneRelated(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosPrimarySubcategoryTwoGetToOneRelated]? = nil, limitSubcategories: Int? = nil, include: [Include_appInfosPrimarySubcategoryTwoGetToOneRelated]? = nil, completion: @escaping (_ data: AppCategoryResponse?, _ error: Error?) -> Void)
+    open class func appInfosPrimarySubcategoryTwoGetToOneRelated(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosPrimarySubcategoryTwoGetToOneRelated]? = nil, include: [Include_appInfosPrimarySubcategoryTwoGetToOneRelated]? = nil, limitSubcategories: Int? = nil, completion: @escaping (_ data: AppCategoryResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -301,10 +301,10 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let fieldsAppCategories = ["fieldsAppCategories_example"] // [String] | the fields to include for returned resources of type appCategories (optional)
-let limitSubcategories = 987 // Int | maximum number of related subcategories returned (when they are included) (optional)
 let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
+let limitSubcategories = 987 // Int | maximum number of related subcategories returned (when they are included) (optional)
 
-AppInfosAPI.appInfosPrimarySubcategoryTwoGetToOneRelated(id: id, fieldsAppCategories: fieldsAppCategories, limitSubcategories: limitSubcategories, include: include) { (response, error) in
+AppInfosAPI.appInfosPrimarySubcategoryTwoGetToOneRelated(id: id, fieldsAppCategories: fieldsAppCategories, include: include, limitSubcategories: limitSubcategories) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -322,8 +322,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **fieldsAppCategories** | [**[String]**](String.md) | the fields to include for returned resources of type appCategories | [optional] 
- **limitSubcategories** | **Int** | maximum number of related subcategories returned (when they are included) | [optional] 
  **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
+ **limitSubcategories** | **Int** | maximum number of related subcategories returned (when they are included) | [optional] 
 
 ### Return type
 
@@ -342,7 +342,7 @@ Name | Type | Description  | Notes
 
 # **appInfosSecondaryCategoryGetToOneRelated**
 ```swift
-    open class func appInfosSecondaryCategoryGetToOneRelated(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosSecondaryCategoryGetToOneRelated]? = nil, limitSubcategories: Int? = nil, include: [Include_appInfosSecondaryCategoryGetToOneRelated]? = nil, completion: @escaping (_ data: AppCategoryResponse?, _ error: Error?) -> Void)
+    open class func appInfosSecondaryCategoryGetToOneRelated(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosSecondaryCategoryGetToOneRelated]? = nil, include: [Include_appInfosSecondaryCategoryGetToOneRelated]? = nil, limitSubcategories: Int? = nil, completion: @escaping (_ data: AppCategoryResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -354,10 +354,10 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let fieldsAppCategories = ["fieldsAppCategories_example"] // [String] | the fields to include for returned resources of type appCategories (optional)
-let limitSubcategories = 987 // Int | maximum number of related subcategories returned (when they are included) (optional)
 let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
+let limitSubcategories = 987 // Int | maximum number of related subcategories returned (when they are included) (optional)
 
-AppInfosAPI.appInfosSecondaryCategoryGetToOneRelated(id: id, fieldsAppCategories: fieldsAppCategories, limitSubcategories: limitSubcategories, include: include) { (response, error) in
+AppInfosAPI.appInfosSecondaryCategoryGetToOneRelated(id: id, fieldsAppCategories: fieldsAppCategories, include: include, limitSubcategories: limitSubcategories) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -375,8 +375,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **fieldsAppCategories** | [**[String]**](String.md) | the fields to include for returned resources of type appCategories | [optional] 
- **limitSubcategories** | **Int** | maximum number of related subcategories returned (when they are included) | [optional] 
  **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
+ **limitSubcategories** | **Int** | maximum number of related subcategories returned (when they are included) | [optional] 
 
 ### Return type
 
@@ -395,7 +395,7 @@ Name | Type | Description  | Notes
 
 # **appInfosSecondarySubcategoryOneGetToOneRelated**
 ```swift
-    open class func appInfosSecondarySubcategoryOneGetToOneRelated(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosSecondarySubcategoryOneGetToOneRelated]? = nil, limitSubcategories: Int? = nil, include: [Include_appInfosSecondarySubcategoryOneGetToOneRelated]? = nil, completion: @escaping (_ data: AppCategoryResponse?, _ error: Error?) -> Void)
+    open class func appInfosSecondarySubcategoryOneGetToOneRelated(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosSecondarySubcategoryOneGetToOneRelated]? = nil, include: [Include_appInfosSecondarySubcategoryOneGetToOneRelated]? = nil, limitSubcategories: Int? = nil, completion: @escaping (_ data: AppCategoryResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -407,10 +407,10 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let fieldsAppCategories = ["fieldsAppCategories_example"] // [String] | the fields to include for returned resources of type appCategories (optional)
-let limitSubcategories = 987 // Int | maximum number of related subcategories returned (when they are included) (optional)
 let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
+let limitSubcategories = 987 // Int | maximum number of related subcategories returned (when they are included) (optional)
 
-AppInfosAPI.appInfosSecondarySubcategoryOneGetToOneRelated(id: id, fieldsAppCategories: fieldsAppCategories, limitSubcategories: limitSubcategories, include: include) { (response, error) in
+AppInfosAPI.appInfosSecondarySubcategoryOneGetToOneRelated(id: id, fieldsAppCategories: fieldsAppCategories, include: include, limitSubcategories: limitSubcategories) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -428,8 +428,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **fieldsAppCategories** | [**[String]**](String.md) | the fields to include for returned resources of type appCategories | [optional] 
- **limitSubcategories** | **Int** | maximum number of related subcategories returned (when they are included) | [optional] 
  **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
+ **limitSubcategories** | **Int** | maximum number of related subcategories returned (when they are included) | [optional] 
 
 ### Return type
 
@@ -448,7 +448,7 @@ Name | Type | Description  | Notes
 
 # **appInfosSecondarySubcategoryTwoGetToOneRelated**
 ```swift
-    open class func appInfosSecondarySubcategoryTwoGetToOneRelated(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosSecondarySubcategoryTwoGetToOneRelated]? = nil, limitSubcategories: Int? = nil, include: [Include_appInfosSecondarySubcategoryTwoGetToOneRelated]? = nil, completion: @escaping (_ data: AppCategoryResponse?, _ error: Error?) -> Void)
+    open class func appInfosSecondarySubcategoryTwoGetToOneRelated(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosSecondarySubcategoryTwoGetToOneRelated]? = nil, include: [Include_appInfosSecondarySubcategoryTwoGetToOneRelated]? = nil, limitSubcategories: Int? = nil, completion: @escaping (_ data: AppCategoryResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -460,10 +460,10 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let fieldsAppCategories = ["fieldsAppCategories_example"] // [String] | the fields to include for returned resources of type appCategories (optional)
-let limitSubcategories = 987 // Int | maximum number of related subcategories returned (when they are included) (optional)
 let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
+let limitSubcategories = 987 // Int | maximum number of related subcategories returned (when they are included) (optional)
 
-AppInfosAPI.appInfosSecondarySubcategoryTwoGetToOneRelated(id: id, fieldsAppCategories: fieldsAppCategories, limitSubcategories: limitSubcategories, include: include) { (response, error) in
+AppInfosAPI.appInfosSecondarySubcategoryTwoGetToOneRelated(id: id, fieldsAppCategories: fieldsAppCategories, include: include, limitSubcategories: limitSubcategories) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -481,8 +481,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **fieldsAppCategories** | [**[String]**](String.md) | the fields to include for returned resources of type appCategories | [optional] 
- **limitSubcategories** | **Int** | maximum number of related subcategories returned (when they are included) | [optional] 
  **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
+ **limitSubcategories** | **Int** | maximum number of related subcategories returned (when they are included) | [optional] 
 
 ### Return type
 

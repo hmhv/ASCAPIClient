@@ -107,7 +107,7 @@ Void (empty response body)
 
 # **gameCenterLeaderboardSetLocalizationsGameCenterLeaderboardSetImageGetToOneRelated**
 ```swift
-    open class func gameCenterLeaderboardSetLocalizationsGameCenterLeaderboardSetImageGetToOneRelated(id: String, fieldsGameCenterLeaderboardSetLocalizations: [FieldsGameCenterLeaderboardSetLocalizations_gameCenterLeaderboardSetLocalizationsGameCenterLeaderboardSetImageGetToOneRelated]? = nil, fieldsGameCenterLeaderboardSetImages: [FieldsGameCenterLeaderboardSetImages_gameCenterLeaderboardSetLocalizationsGameCenterLeaderboardSetImageGetToOneRelated]? = nil, include: [Include_gameCenterLeaderboardSetLocalizationsGameCenterLeaderboardSetImageGetToOneRelated]? = nil, completion: @escaping (_ data: GameCenterLeaderboardSetImageResponse?, _ error: Error?) -> Void)
+    open class func gameCenterLeaderboardSetLocalizationsGameCenterLeaderboardSetImageGetToOneRelated(id: String, fieldsGameCenterLeaderboardSetImages: [FieldsGameCenterLeaderboardSetImages_gameCenterLeaderboardSetLocalizationsGameCenterLeaderboardSetImageGetToOneRelated]? = nil, fieldsGameCenterLeaderboardSetLocalizations: [FieldsGameCenterLeaderboardSetLocalizations_gameCenterLeaderboardSetLocalizationsGameCenterLeaderboardSetImageGetToOneRelated]? = nil, include: [Include_gameCenterLeaderboardSetLocalizationsGameCenterLeaderboardSetImageGetToOneRelated]? = nil, completion: @escaping (_ data: GameCenterLeaderboardSetImageResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -118,11 +118,11 @@ Void (empty response body)
 import ASC
 
 let id = "id_example" // String | the id of the requested resource
-let fieldsGameCenterLeaderboardSetLocalizations = ["fieldsGameCenterLeaderboardSetLocalizations_example"] // [String] | the fields to include for returned resources of type gameCenterLeaderboardSetLocalizations (optional)
 let fieldsGameCenterLeaderboardSetImages = ["fieldsGameCenterLeaderboardSetImages_example"] // [String] | the fields to include for returned resources of type gameCenterLeaderboardSetImages (optional)
+let fieldsGameCenterLeaderboardSetLocalizations = ["fieldsGameCenterLeaderboardSetLocalizations_example"] // [String] | the fields to include for returned resources of type gameCenterLeaderboardSetLocalizations (optional)
 let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 
-GameCenterLeaderboardSetLocalizationsAPI.gameCenterLeaderboardSetLocalizationsGameCenterLeaderboardSetImageGetToOneRelated(id: id, fieldsGameCenterLeaderboardSetLocalizations: fieldsGameCenterLeaderboardSetLocalizations, fieldsGameCenterLeaderboardSetImages: fieldsGameCenterLeaderboardSetImages, include: include) { (response, error) in
+GameCenterLeaderboardSetLocalizationsAPI.gameCenterLeaderboardSetLocalizationsGameCenterLeaderboardSetImageGetToOneRelated(id: id, fieldsGameCenterLeaderboardSetImages: fieldsGameCenterLeaderboardSetImages, fieldsGameCenterLeaderboardSetLocalizations: fieldsGameCenterLeaderboardSetLocalizations, include: include) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -139,8 +139,8 @@ GameCenterLeaderboardSetLocalizationsAPI.gameCenterLeaderboardSetLocalizationsGa
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
- **fieldsGameCenterLeaderboardSetLocalizations** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterLeaderboardSetLocalizations | [optional] 
  **fieldsGameCenterLeaderboardSetImages** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterLeaderboardSetImages | [optional] 
+ **fieldsGameCenterLeaderboardSetLocalizations** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterLeaderboardSetLocalizations | [optional] 
  **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
 
 ### Return type
@@ -160,7 +160,7 @@ Name | Type | Description  | Notes
 
 # **gameCenterLeaderboardSetLocalizationsGetInstance**
 ```swift
-    open class func gameCenterLeaderboardSetLocalizationsGetInstance(id: String, fieldsGameCenterLeaderboardSetLocalizations: [FieldsGameCenterLeaderboardSetLocalizations_gameCenterLeaderboardSetLocalizationsGetInstance]? = nil, include: [Include_gameCenterLeaderboardSetLocalizationsGetInstance]? = nil, fieldsGameCenterLeaderboardSetImages: [FieldsGameCenterLeaderboardSetImages_gameCenterLeaderboardSetLocalizationsGetInstance]? = nil, completion: @escaping (_ data: GameCenterLeaderboardSetLocalizationResponse?, _ error: Error?) -> Void)
+    open class func gameCenterLeaderboardSetLocalizationsGetInstance(id: String, fieldsGameCenterLeaderboardSetLocalizations: [FieldsGameCenterLeaderboardSetLocalizations_gameCenterLeaderboardSetLocalizationsGetInstance]? = nil, fieldsGameCenterLeaderboardSetImages: [FieldsGameCenterLeaderboardSetImages_gameCenterLeaderboardSetLocalizationsGetInstance]? = nil, include: [Include_gameCenterLeaderboardSetLocalizationsGetInstance]? = nil, completion: @escaping (_ data: GameCenterLeaderboardSetLocalizationResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -172,10 +172,10 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let fieldsGameCenterLeaderboardSetLocalizations = ["fieldsGameCenterLeaderboardSetLocalizations_example"] // [String] | the fields to include for returned resources of type gameCenterLeaderboardSetLocalizations (optional)
-let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let fieldsGameCenterLeaderboardSetImages = ["fieldsGameCenterLeaderboardSetImages_example"] // [String] | the fields to include for returned resources of type gameCenterLeaderboardSetImages (optional)
+let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 
-GameCenterLeaderboardSetLocalizationsAPI.gameCenterLeaderboardSetLocalizationsGetInstance(id: id, fieldsGameCenterLeaderboardSetLocalizations: fieldsGameCenterLeaderboardSetLocalizations, include: include, fieldsGameCenterLeaderboardSetImages: fieldsGameCenterLeaderboardSetImages) { (response, error) in
+GameCenterLeaderboardSetLocalizationsAPI.gameCenterLeaderboardSetLocalizationsGetInstance(id: id, fieldsGameCenterLeaderboardSetLocalizations: fieldsGameCenterLeaderboardSetLocalizations, fieldsGameCenterLeaderboardSetImages: fieldsGameCenterLeaderboardSetImages, include: include) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -193,8 +193,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **fieldsGameCenterLeaderboardSetLocalizations** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterLeaderboardSetLocalizations | [optional] 
- **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **fieldsGameCenterLeaderboardSetImages** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterLeaderboardSetImages | [optional] 
+ **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
 
 ### Return type
 

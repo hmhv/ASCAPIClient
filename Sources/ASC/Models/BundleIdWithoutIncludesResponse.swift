@@ -12,10 +12,10 @@ import AnyCodable
 
 public struct BundleIdWithoutIncludesResponse: Codable, JSONEncodable, Hashable {
 
-    public var data: Profile
+    public var data: BundleId
     public var links: DocumentLinks
 
-    public init(data: Profile, links: DocumentLinks) {
+    public init(data: BundleId, links: DocumentLinks) {
         self.data = data
         self.links = links
     }

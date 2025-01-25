@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 # **customerReviewsGetInstance**
 ```swift
-    open class func customerReviewsGetInstance(id: String, fieldsCustomerReviews: [FieldsCustomerReviews_customerReviewsGetInstance]? = nil, include: [Include_customerReviewsGetInstance]? = nil, fieldsCustomerReviewResponses: [FieldsCustomerReviewResponses_customerReviewsGetInstance]? = nil, completion: @escaping (_ data: CustomerReviewResponse?, _ error: Error?) -> Void)
+    open class func customerReviewsGetInstance(id: String, fieldsCustomerReviews: [FieldsCustomerReviews_customerReviewsGetInstance]? = nil, fieldsCustomerReviewResponses: [FieldsCustomerReviewResponses_customerReviewsGetInstance]? = nil, include: [Include_customerReviewsGetInstance]? = nil, completion: @escaping (_ data: CustomerReviewResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -22,10 +22,10 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let fieldsCustomerReviews = ["fieldsCustomerReviews_example"] // [String] | the fields to include for returned resources of type customerReviews (optional)
-let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let fieldsCustomerReviewResponses = ["fieldsCustomerReviewResponses_example"] // [String] | the fields to include for returned resources of type customerReviewResponses (optional)
+let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 
-CustomerReviewsAPI.customerReviewsGetInstance(id: id, fieldsCustomerReviews: fieldsCustomerReviews, include: include, fieldsCustomerReviewResponses: fieldsCustomerReviewResponses) { (response, error) in
+CustomerReviewsAPI.customerReviewsGetInstance(id: id, fieldsCustomerReviews: fieldsCustomerReviews, fieldsCustomerReviewResponses: fieldsCustomerReviewResponses, include: include) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -43,8 +43,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **fieldsCustomerReviews** | [**[String]**](String.md) | the fields to include for returned resources of type customerReviews | [optional] 
- **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **fieldsCustomerReviewResponses** | [**[String]**](String.md) | the fields to include for returned resources of type customerReviewResponses | [optional] 
+ **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
 
 ### Return type
 
@@ -63,7 +63,7 @@ Name | Type | Description  | Notes
 
 # **customerReviewsResponseGetToOneRelated**
 ```swift
-    open class func customerReviewsResponseGetToOneRelated(id: String, fieldsCustomerReviews: [FieldsCustomerReviews_customerReviewsResponseGetToOneRelated]? = nil, fieldsCustomerReviewResponses: [FieldsCustomerReviewResponses_customerReviewsResponseGetToOneRelated]? = nil, include: [Include_customerReviewsResponseGetToOneRelated]? = nil, completion: @escaping (_ data: CustomerReviewResponseV1Response?, _ error: Error?) -> Void)
+    open class func customerReviewsResponseGetToOneRelated(id: String, fieldsCustomerReviewResponses: [FieldsCustomerReviewResponses_customerReviewsResponseGetToOneRelated]? = nil, fieldsCustomerReviews: [FieldsCustomerReviews_customerReviewsResponseGetToOneRelated]? = nil, include: [Include_customerReviewsResponseGetToOneRelated]? = nil, completion: @escaping (_ data: CustomerReviewResponseV1Response?, _ error: Error?) -> Void)
 ```
 
 
@@ -74,11 +74,11 @@ Name | Type | Description  | Notes
 import ASC
 
 let id = "id_example" // String | the id of the requested resource
-let fieldsCustomerReviews = ["fieldsCustomerReviews_example"] // [String] | the fields to include for returned resources of type customerReviews (optional)
 let fieldsCustomerReviewResponses = ["fieldsCustomerReviewResponses_example"] // [String] | the fields to include for returned resources of type customerReviewResponses (optional)
+let fieldsCustomerReviews = ["fieldsCustomerReviews_example"] // [String] | the fields to include for returned resources of type customerReviews (optional)
 let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 
-CustomerReviewsAPI.customerReviewsResponseGetToOneRelated(id: id, fieldsCustomerReviews: fieldsCustomerReviews, fieldsCustomerReviewResponses: fieldsCustomerReviewResponses, include: include) { (response, error) in
+CustomerReviewsAPI.customerReviewsResponseGetToOneRelated(id: id, fieldsCustomerReviewResponses: fieldsCustomerReviewResponses, fieldsCustomerReviews: fieldsCustomerReviews, include: include) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -95,8 +95,8 @@ CustomerReviewsAPI.customerReviewsResponseGetToOneRelated(id: id, fieldsCustomer
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
- **fieldsCustomerReviews** | [**[String]**](String.md) | the fields to include for returned resources of type customerReviews | [optional] 
  **fieldsCustomerReviewResponses** | [**[String]**](String.md) | the fields to include for returned resources of type customerReviewResponses | [optional] 
+ **fieldsCustomerReviews** | [**[String]**](String.md) | the fields to include for returned resources of type customerReviews | [optional] 
  **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
 
 ### Return type

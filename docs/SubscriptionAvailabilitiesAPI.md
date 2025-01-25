@@ -72,7 +72,7 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import ASC
 
-let subscriptionAvailabilityCreateRequest = SubscriptionAvailabilityCreateRequest(data: SubscriptionAvailabilityCreateRequest_data(type: "type_example", attributes: AppAvailabilityV2CreateRequest_data_attributes(availableInNewTerritories: false), relationships: SubscriptionAvailabilityCreateRequest_data_relationships(subscription: SubscriptionAppStoreReviewScreenshotCreateRequest_data_relationships_subscription(data: PromotedPurchase_relationships_subscription_data(type: "type_example", id: "id_example")), availableTerritories: AppAvailabilityCreateRequest_data_relationships_availableTerritories(data: [AppAvailability_relationships_availableTerritories_data_inner(type: "type_example", id: "id_example")])))) // SubscriptionAvailabilityCreateRequest | SubscriptionAvailability representation
+let subscriptionAvailabilityCreateRequest = SubscriptionAvailabilityCreateRequest(data: SubscriptionAvailabilityCreateRequest_data(type: "type_example", attributes: AppAvailabilityV2CreateRequest_data_attributes(availableInNewTerritories: false), relationships: SubscriptionAvailabilityCreateRequest_data_relationships(subscription: SubscriptionAppStoreReviewScreenshotCreateRequest_data_relationships_subscription(data: PromotedPurchase_relationships_subscription_data(type: "type_example", id: "id_example")), availableTerritories: EndUserLicenseAgreementCreateRequest_data_relationships_territories(data: [AppPricePointV3_relationships_territory_data(type: "type_example", id: "id_example")])))) // SubscriptionAvailabilityCreateRequest | SubscriptionAvailability representation
 
 SubscriptionAvailabilitiesAPI.subscriptionAvailabilitiesCreateInstance(subscriptionAvailabilityCreateRequest: subscriptionAvailabilityCreateRequest) { (response, error) in
     guard error == nil else {
@@ -109,7 +109,7 @@ Name | Type | Description  | Notes
 
 # **subscriptionAvailabilitiesGetInstance**
 ```swift
-    open class func subscriptionAvailabilitiesGetInstance(id: String, fieldsSubscriptionAvailabilities: [FieldsSubscriptionAvailabilities_subscriptionAvailabilitiesGetInstance]? = nil, include: [Include_subscriptionAvailabilitiesGetInstance]? = nil, fieldsTerritories: [FieldsTerritories_subscriptionAvailabilitiesGetInstance]? = nil, limitAvailableTerritories: Int? = nil, completion: @escaping (_ data: SubscriptionAvailabilityResponse?, _ error: Error?) -> Void)
+    open class func subscriptionAvailabilitiesGetInstance(id: String, fieldsSubscriptionAvailabilities: [FieldsSubscriptionAvailabilities_subscriptionAvailabilitiesGetInstance]? = nil, fieldsTerritories: [FieldsTerritories_subscriptionAvailabilitiesGetInstance]? = nil, include: [Include_subscriptionAvailabilitiesGetInstance]? = nil, limitAvailableTerritories: Int? = nil, completion: @escaping (_ data: SubscriptionAvailabilityResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -121,11 +121,11 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let fieldsSubscriptionAvailabilities = ["fieldsSubscriptionAvailabilities_example"] // [String] | the fields to include for returned resources of type subscriptionAvailabilities (optional)
-let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let fieldsTerritories = ["fieldsTerritories_example"] // [String] | the fields to include for returned resources of type territories (optional)
+let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let limitAvailableTerritories = 987 // Int | maximum number of related availableTerritories returned (when they are included) (optional)
 
-SubscriptionAvailabilitiesAPI.subscriptionAvailabilitiesGetInstance(id: id, fieldsSubscriptionAvailabilities: fieldsSubscriptionAvailabilities, include: include, fieldsTerritories: fieldsTerritories, limitAvailableTerritories: limitAvailableTerritories) { (response, error) in
+SubscriptionAvailabilitiesAPI.subscriptionAvailabilitiesGetInstance(id: id, fieldsSubscriptionAvailabilities: fieldsSubscriptionAvailabilities, fieldsTerritories: fieldsTerritories, include: include, limitAvailableTerritories: limitAvailableTerritories) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -143,8 +143,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **fieldsSubscriptionAvailabilities** | [**[String]**](String.md) | the fields to include for returned resources of type subscriptionAvailabilities | [optional] 
- **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **fieldsTerritories** | [**[String]**](String.md) | the fields to include for returned resources of type territories | [optional] 
+ **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **limitAvailableTerritories** | **Int** | maximum number of related availableTerritories returned (when they are included) | [optional] 
 
 ### Return type

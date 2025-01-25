@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [Build] |  | 
+**data** | [BetaTester] |  | 
 **links** | [**PagedDocumentLinks**](PagedDocumentLinks.md) |  | 
 **meta** | [**PagingInformation**](PagingInformation.md) |  | [optional] 
 

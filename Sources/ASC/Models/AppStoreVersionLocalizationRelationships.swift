@@ -12,11 +12,11 @@ import AnyCodable
 
 public struct AppStoreVersionLocalizationRelationships: Codable, JSONEncodable, Hashable {
 
-    public var appStoreVersion: AppClipDefaultExperienceRelationshipsReleaseWithAppStoreVersion?
+    public var appStoreVersion: AppClipDefaultExperienceCreateRequestDataRelationshipsReleaseWithAppStoreVersion?
     public var appScreenshotSets: AppCustomProductPageLocalizationRelationshipsAppScreenshotSets?
     public var appPreviewSets: AppCustomProductPageLocalizationRelationshipsAppPreviewSets?
 
-    public init(appStoreVersion: AppClipDefaultExperienceRelationshipsReleaseWithAppStoreVersion? = nil, appScreenshotSets: AppCustomProductPageLocalizationRelationshipsAppScreenshotSets? = nil, appPreviewSets: AppCustomProductPageLocalizationRelationshipsAppPreviewSets? = nil) {
+    public init(appStoreVersion: AppClipDefaultExperienceCreateRequestDataRelationshipsReleaseWithAppStoreVersion? = nil, appScreenshotSets: AppCustomProductPageLocalizationRelationshipsAppScreenshotSets? = nil, appPreviewSets: AppCustomProductPageLocalizationRelationshipsAppPreviewSets? = nil) {
         self.appStoreVersion = appStoreVersion
         self.appScreenshotSets = appScreenshotSets
         self.appPreviewSets = appPreviewSets

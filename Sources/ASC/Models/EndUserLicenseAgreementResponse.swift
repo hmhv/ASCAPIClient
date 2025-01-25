@@ -13,10 +13,10 @@ import AnyCodable
 public struct EndUserLicenseAgreementResponse: Codable, JSONEncodable, Hashable {
 
     public var data: EndUserLicenseAgreement
-    public var included: [AppAvailabilityResponseIncludedInner]?
+    public var included: [AppPricePointsV3ResponseIncludedInner]?
     public var links: DocumentLinks
 
-    public init(data: EndUserLicenseAgreement, included: [AppAvailabilityResponseIncludedInner]? = nil, links: DocumentLinks) {
+    public init(data: EndUserLicenseAgreement, included: [AppPricePointsV3ResponseIncludedInner]? = nil, links: DocumentLinks) {
         self.data = data
         self.included = included
         self.links = links

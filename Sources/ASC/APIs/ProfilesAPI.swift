@@ -16,13 +16,13 @@ open class ProfilesAPI {
      * enum for parameter fieldsBundleIds
      */
     public enum FieldsBundleIds_profilesBundleIdGetToOneRelated: String, CaseIterable {
-        case app = "app"
-        case bundleidcapabilities = "bundleIdCapabilities"
-        case identifier = "identifier"
         case name = "name"
         case platform = "platform"
-        case profiles = "profiles"
+        case identifier = "identifier"
         case seedid = "seedId"
+        case profiles = "profiles"
+        case bundleidcapabilities = "bundleIdCapabilities"
+        case app = "app"
     }
 
     /**
@@ -102,14 +102,13 @@ open class ProfilesAPI {
      * enum for parameter fieldsCertificates
      */
     public enum FieldsCertificates_profilesCertificatesGetToManyRelated: String, CaseIterable {
-        case certificatecontent = "certificateContent"
-        case certificatetype = "certificateType"
-        case csrcontent = "csrContent"
-        case displayname = "displayName"
-        case expirationdate = "expirationDate"
         case name = "name"
-        case platform = "platform"
+        case certificatetype = "certificateType"
+        case displayname = "displayName"
         case serialnumber = "serialNumber"
+        case platform = "platform"
+        case expirationdate = "expirationDate"
+        case certificatecontent = "certificateContent"
     }
 
     /**
@@ -325,13 +324,13 @@ open class ProfilesAPI {
      * enum for parameter fieldsDevices
      */
     public enum FieldsDevices_profilesDevicesGetToManyRelated: String, CaseIterable {
-        case addeddate = "addedDate"
-        case deviceclass = "deviceClass"
-        case model = "model"
         case name = "name"
         case platform = "platform"
-        case status = "status"
         case udid = "udid"
+        case deviceclass = "deviceClass"
+        case status = "status"
+        case model = "model"
+        case addeddate = "addedDate"
     }
 
     /**
@@ -411,14 +410,6 @@ open class ProfilesAPI {
     }
 
     /**
-     * enum for parameter filterProfileState
-     */
-    public enum FilterProfileState_profilesGetCollection: String, CaseIterable {
-        case active = "ACTIVE"
-        case invalid = "INVALID"
-    }
-
-    /**
      * enum for parameter filterProfileType
      */
     public enum FilterProfileType_profilesGetCollection: String, CaseIterable {
@@ -439,34 +430,81 @@ open class ProfilesAPI {
     }
 
     /**
+     * enum for parameter filterProfileState
+     */
+    public enum FilterProfileState_profilesGetCollection: String, CaseIterable {
+        case active = "ACTIVE"
+        case invalid = "INVALID"
+    }
+
+    /**
      * enum for parameter sort
      */
     public enum Sort_profilesGetCollection: String, CaseIterable {
-        case id = "id"
-        case id2 = "-id"
         case name = "name"
         case name2 = "-name"
-        case profilestate = "profileState"
-        case profilestate2 = "-profileState"
         case profiletype = "profileType"
         case profiletype2 = "-profileType"
+        case profilestate = "profileState"
+        case profilestate2 = "-profileState"
+        case id = "id"
+        case id2 = "-id"
     }
 
     /**
      * enum for parameter fieldsProfiles
      */
     public enum FieldsProfiles_profilesGetCollection: String, CaseIterable {
-        case bundleid = "bundleId"
-        case certificates = "certificates"
-        case createddate = "createdDate"
-        case devices = "devices"
-        case expirationdate = "expirationDate"
         case name = "name"
         case platform = "platform"
-        case profilecontent = "profileContent"
-        case profilestate = "profileState"
         case profiletype = "profileType"
+        case profilestate = "profileState"
+        case profilecontent = "profileContent"
         case uuid = "uuid"
+        case createddate = "createdDate"
+        case expirationdate = "expirationDate"
+        case bundleid = "bundleId"
+        case devices = "devices"
+        case certificates = "certificates"
+    }
+
+    /**
+     * enum for parameter fieldsBundleIds
+     */
+    public enum FieldsBundleIds_profilesGetCollection: String, CaseIterable {
+        case name = "name"
+        case platform = "platform"
+        case identifier = "identifier"
+        case seedid = "seedId"
+        case profiles = "profiles"
+        case bundleidcapabilities = "bundleIdCapabilities"
+        case app = "app"
+    }
+
+    /**
+     * enum for parameter fieldsDevices
+     */
+    public enum FieldsDevices_profilesGetCollection: String, CaseIterable {
+        case name = "name"
+        case platform = "platform"
+        case udid = "udid"
+        case deviceclass = "deviceClass"
+        case status = "status"
+        case model = "model"
+        case addeddate = "addedDate"
+    }
+
+    /**
+     * enum for parameter fieldsCertificates
+     */
+    public enum FieldsCertificates_profilesGetCollection: String, CaseIterable {
+        case name = "name"
+        case certificatetype = "certificateType"
+        case displayname = "displayName"
+        case serialnumber = "serialNumber"
+        case platform = "platform"
+        case expirationdate = "expirationDate"
+        case certificatecontent = "certificateContent"
     }
 
     /**
@@ -474,70 +512,30 @@ open class ProfilesAPI {
      */
     public enum Include_profilesGetCollection: String, CaseIterable {
         case bundleid = "bundleId"
-        case certificates = "certificates"
         case devices = "devices"
-    }
-
-    /**
-     * enum for parameter fieldsCertificates
-     */
-    public enum FieldsCertificates_profilesGetCollection: String, CaseIterable {
-        case certificatecontent = "certificateContent"
-        case certificatetype = "certificateType"
-        case csrcontent = "csrContent"
-        case displayname = "displayName"
-        case expirationdate = "expirationDate"
-        case name = "name"
-        case platform = "platform"
-        case serialnumber = "serialNumber"
-    }
-
-    /**
-     * enum for parameter fieldsDevices
-     */
-    public enum FieldsDevices_profilesGetCollection: String, CaseIterable {
-        case addeddate = "addedDate"
-        case deviceclass = "deviceClass"
-        case model = "model"
-        case name = "name"
-        case platform = "platform"
-        case status = "status"
-        case udid = "udid"
-    }
-
-    /**
-     * enum for parameter fieldsBundleIds
-     */
-    public enum FieldsBundleIds_profilesGetCollection: String, CaseIterable {
-        case app = "app"
-        case bundleidcapabilities = "bundleIdCapabilities"
-        case identifier = "identifier"
-        case name = "name"
-        case platform = "platform"
-        case profiles = "profiles"
-        case seedid = "seedId"
+        case certificates = "certificates"
     }
 
     /**
 
      - parameter filterName: (query) filter by attribute &#39;name&#39; (optional)
-     - parameter filterProfileState: (query) filter by attribute &#39;profileState&#39; (optional)
      - parameter filterProfileType: (query) filter by attribute &#39;profileType&#39; (optional)
+     - parameter filterProfileState: (query) filter by attribute &#39;profileState&#39; (optional)
      - parameter filterId: (query) filter by id(s) (optional)
      - parameter sort: (query) comma-separated list of sort expressions; resources will be sorted as specified (optional)
      - parameter fieldsProfiles: (query) the fields to include for returned resources of type profiles (optional)
+     - parameter fieldsBundleIds: (query) the fields to include for returned resources of type bundleIds (optional)
+     - parameter fieldsDevices: (query) the fields to include for returned resources of type devices (optional)
+     - parameter fieldsCertificates: (query) the fields to include for returned resources of type certificates (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
-     - parameter fieldsCertificates: (query) the fields to include for returned resources of type certificates (optional)
-     - parameter fieldsDevices: (query) the fields to include for returned resources of type devices (optional)
-     - parameter fieldsBundleIds: (query) the fields to include for returned resources of type bundleIds (optional)
      - parameter limitCertificates: (query) maximum number of related certificates returned (when they are included) (optional)
      - parameter limitDevices: (query) maximum number of related devices returned (when they are included) (optional)
      - returns: ProfilesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func profilesGetCollection(filterName: [String]? = nil, filterProfileState: [FilterProfileState_profilesGetCollection]? = nil, filterProfileType: [FilterProfileType_profilesGetCollection]? = nil, filterId: [String]? = nil, sort: [Sort_profilesGetCollection]? = nil, fieldsProfiles: [FieldsProfiles_profilesGetCollection]? = nil, limit: Int? = nil, include: [Include_profilesGetCollection]? = nil, fieldsCertificates: [FieldsCertificates_profilesGetCollection]? = nil, fieldsDevices: [FieldsDevices_profilesGetCollection]? = nil, fieldsBundleIds: [FieldsBundleIds_profilesGetCollection]? = nil, limitCertificates: Int? = nil, limitDevices: Int? = nil) async throws -> ProfilesResponse {
-        return try await profilesGetCollectionWithRequestBuilder(filterName: filterName, filterProfileState: filterProfileState, filterProfileType: filterProfileType, filterId: filterId, sort: sort, fieldsProfiles: fieldsProfiles, limit: limit, include: include, fieldsCertificates: fieldsCertificates, fieldsDevices: fieldsDevices, fieldsBundleIds: fieldsBundleIds, limitCertificates: limitCertificates, limitDevices: limitDevices).execute().body
+    open class func profilesGetCollection(filterName: [String]? = nil, filterProfileType: [FilterProfileType_profilesGetCollection]? = nil, filterProfileState: [FilterProfileState_profilesGetCollection]? = nil, filterId: [String]? = nil, sort: [Sort_profilesGetCollection]? = nil, fieldsProfiles: [FieldsProfiles_profilesGetCollection]? = nil, fieldsBundleIds: [FieldsBundleIds_profilesGetCollection]? = nil, fieldsDevices: [FieldsDevices_profilesGetCollection]? = nil, fieldsCertificates: [FieldsCertificates_profilesGetCollection]? = nil, limit: Int? = nil, include: [Include_profilesGetCollection]? = nil, limitCertificates: Int? = nil, limitDevices: Int? = nil) async throws -> ProfilesResponse {
+        return try await profilesGetCollectionWithRequestBuilder(filterName: filterName, filterProfileType: filterProfileType, filterProfileState: filterProfileState, filterId: filterId, sort: sort, fieldsProfiles: fieldsProfiles, fieldsBundleIds: fieldsBundleIds, fieldsDevices: fieldsDevices, fieldsCertificates: fieldsCertificates, limit: limit, include: include, limitCertificates: limitCertificates, limitDevices: limitDevices).execute().body
     }
 
     /**
@@ -555,21 +553,21 @@ open class ProfilesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter filterName: (query) filter by attribute &#39;name&#39; (optional)
-     - parameter filterProfileState: (query) filter by attribute &#39;profileState&#39; (optional)
      - parameter filterProfileType: (query) filter by attribute &#39;profileType&#39; (optional)
+     - parameter filterProfileState: (query) filter by attribute &#39;profileState&#39; (optional)
      - parameter filterId: (query) filter by id(s) (optional)
      - parameter sort: (query) comma-separated list of sort expressions; resources will be sorted as specified (optional)
      - parameter fieldsProfiles: (query) the fields to include for returned resources of type profiles (optional)
+     - parameter fieldsBundleIds: (query) the fields to include for returned resources of type bundleIds (optional)
+     - parameter fieldsDevices: (query) the fields to include for returned resources of type devices (optional)
+     - parameter fieldsCertificates: (query) the fields to include for returned resources of type certificates (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
-     - parameter fieldsCertificates: (query) the fields to include for returned resources of type certificates (optional)
-     - parameter fieldsDevices: (query) the fields to include for returned resources of type devices (optional)
-     - parameter fieldsBundleIds: (query) the fields to include for returned resources of type bundleIds (optional)
      - parameter limitCertificates: (query) maximum number of related certificates returned (when they are included) (optional)
      - parameter limitDevices: (query) maximum number of related devices returned (when they are included) (optional)
      - returns: RequestBuilder<ProfilesResponse> 
      */
-    open class func profilesGetCollectionWithRequestBuilder(filterName: [String]? = nil, filterProfileState: [FilterProfileState_profilesGetCollection]? = nil, filterProfileType: [FilterProfileType_profilesGetCollection]? = nil, filterId: [String]? = nil, sort: [Sort_profilesGetCollection]? = nil, fieldsProfiles: [FieldsProfiles_profilesGetCollection]? = nil, limit: Int? = nil, include: [Include_profilesGetCollection]? = nil, fieldsCertificates: [FieldsCertificates_profilesGetCollection]? = nil, fieldsDevices: [FieldsDevices_profilesGetCollection]? = nil, fieldsBundleIds: [FieldsBundleIds_profilesGetCollection]? = nil, limitCertificates: Int? = nil, limitDevices: Int? = nil) -> RequestBuilder<ProfilesResponse> {
+    open class func profilesGetCollectionWithRequestBuilder(filterName: [String]? = nil, filterProfileType: [FilterProfileType_profilesGetCollection]? = nil, filterProfileState: [FilterProfileState_profilesGetCollection]? = nil, filterId: [String]? = nil, sort: [Sort_profilesGetCollection]? = nil, fieldsProfiles: [FieldsProfiles_profilesGetCollection]? = nil, fieldsBundleIds: [FieldsBundleIds_profilesGetCollection]? = nil, fieldsDevices: [FieldsDevices_profilesGetCollection]? = nil, fieldsCertificates: [FieldsCertificates_profilesGetCollection]? = nil, limit: Int? = nil, include: [Include_profilesGetCollection]? = nil, limitCertificates: Int? = nil, limitDevices: Int? = nil) -> RequestBuilder<ProfilesResponse> {
         let localVariablePath = "/v1/profiles"
         let localVariableURLString = ASCAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -577,16 +575,16 @@ open class ProfilesAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "filter[name]": (wrappedValue: filterName?.encodeToJSON(), isExplode: false),
-            "filter[profileState]": (wrappedValue: filterProfileState?.encodeToJSON(), isExplode: false),
             "filter[profileType]": (wrappedValue: filterProfileType?.encodeToJSON(), isExplode: false),
+            "filter[profileState]": (wrappedValue: filterProfileState?.encodeToJSON(), isExplode: false),
             "filter[id]": (wrappedValue: filterId?.encodeToJSON(), isExplode: false),
             "sort": (wrappedValue: sort?.encodeToJSON(), isExplode: false),
             "fields[profiles]": (wrappedValue: fieldsProfiles?.encodeToJSON(), isExplode: false),
+            "fields[bundleIds]": (wrappedValue: fieldsBundleIds?.encodeToJSON(), isExplode: false),
+            "fields[devices]": (wrappedValue: fieldsDevices?.encodeToJSON(), isExplode: false),
+            "fields[certificates]": (wrappedValue: fieldsCertificates?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "fields[certificates]": (wrappedValue: fieldsCertificates?.encodeToJSON(), isExplode: false),
-            "fields[devices]": (wrappedValue: fieldsDevices?.encodeToJSON(), isExplode: false),
-            "fields[bundleIds]": (wrappedValue: fieldsBundleIds?.encodeToJSON(), isExplode: false),
             "limit[certificates]": (wrappedValue: limitCertificates?.encodeToJSON(), isExplode: true),
             "limit[devices]": (wrappedValue: limitDevices?.encodeToJSON(), isExplode: true),
         ])
@@ -626,17 +624,56 @@ open class ProfilesAPI {
      * enum for parameter fieldsProfiles
      */
     public enum FieldsProfiles_profilesGetInstance: String, CaseIterable {
-        case bundleid = "bundleId"
-        case certificates = "certificates"
-        case createddate = "createdDate"
-        case devices = "devices"
-        case expirationdate = "expirationDate"
         case name = "name"
         case platform = "platform"
-        case profilecontent = "profileContent"
-        case profilestate = "profileState"
         case profiletype = "profileType"
+        case profilestate = "profileState"
+        case profilecontent = "profileContent"
         case uuid = "uuid"
+        case createddate = "createdDate"
+        case expirationdate = "expirationDate"
+        case bundleid = "bundleId"
+        case devices = "devices"
+        case certificates = "certificates"
+    }
+
+    /**
+     * enum for parameter fieldsBundleIds
+     */
+    public enum FieldsBundleIds_profilesGetInstance: String, CaseIterable {
+        case name = "name"
+        case platform = "platform"
+        case identifier = "identifier"
+        case seedid = "seedId"
+        case profiles = "profiles"
+        case bundleidcapabilities = "bundleIdCapabilities"
+        case app = "app"
+    }
+
+    /**
+     * enum for parameter fieldsDevices
+     */
+    public enum FieldsDevices_profilesGetInstance: String, CaseIterable {
+        case name = "name"
+        case platform = "platform"
+        case udid = "udid"
+        case deviceclass = "deviceClass"
+        case status = "status"
+        case model = "model"
+        case addeddate = "addedDate"
+    }
+
+    /**
+     * enum for parameter fieldsCertificates
+     */
+    public enum FieldsCertificates_profilesGetInstance: String, CaseIterable {
+        case name = "name"
+        case certificatetype = "certificateType"
+        case displayname = "displayName"
+        case serialnumber = "serialNumber"
+        case platform = "platform"
+        case expirationdate = "expirationDate"
+        case certificatecontent = "certificateContent"
     }
 
     /**
@@ -644,65 +681,25 @@ open class ProfilesAPI {
      */
     public enum Include_profilesGetInstance: String, CaseIterable {
         case bundleid = "bundleId"
-        case certificates = "certificates"
         case devices = "devices"
-    }
-
-    /**
-     * enum for parameter fieldsCertificates
-     */
-    public enum FieldsCertificates_profilesGetInstance: String, CaseIterable {
-        case certificatecontent = "certificateContent"
-        case certificatetype = "certificateType"
-        case csrcontent = "csrContent"
-        case displayname = "displayName"
-        case expirationdate = "expirationDate"
-        case name = "name"
-        case platform = "platform"
-        case serialnumber = "serialNumber"
-    }
-
-    /**
-     * enum for parameter fieldsDevices
-     */
-    public enum FieldsDevices_profilesGetInstance: String, CaseIterable {
-        case addeddate = "addedDate"
-        case deviceclass = "deviceClass"
-        case model = "model"
-        case name = "name"
-        case platform = "platform"
-        case status = "status"
-        case udid = "udid"
-    }
-
-    /**
-     * enum for parameter fieldsBundleIds
-     */
-    public enum FieldsBundleIds_profilesGetInstance: String, CaseIterable {
-        case app = "app"
-        case bundleidcapabilities = "bundleIdCapabilities"
-        case identifier = "identifier"
-        case name = "name"
-        case platform = "platform"
-        case profiles = "profiles"
-        case seedid = "seedId"
+        case certificates = "certificates"
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsProfiles: (query) the fields to include for returned resources of type profiles (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
-     - parameter fieldsCertificates: (query) the fields to include for returned resources of type certificates (optional)
-     - parameter fieldsDevices: (query) the fields to include for returned resources of type devices (optional)
      - parameter fieldsBundleIds: (query) the fields to include for returned resources of type bundleIds (optional)
+     - parameter fieldsDevices: (query) the fields to include for returned resources of type devices (optional)
+     - parameter fieldsCertificates: (query) the fields to include for returned resources of type certificates (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitCertificates: (query) maximum number of related certificates returned (when they are included) (optional)
      - parameter limitDevices: (query) maximum number of related devices returned (when they are included) (optional)
      - returns: ProfileResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func profilesGetInstance(id: String, fieldsProfiles: [FieldsProfiles_profilesGetInstance]? = nil, include: [Include_profilesGetInstance]? = nil, fieldsCertificates: [FieldsCertificates_profilesGetInstance]? = nil, fieldsDevices: [FieldsDevices_profilesGetInstance]? = nil, fieldsBundleIds: [FieldsBundleIds_profilesGetInstance]? = nil, limitCertificates: Int? = nil, limitDevices: Int? = nil) async throws -> ProfileResponse {
-        return try await profilesGetInstanceWithRequestBuilder(id: id, fieldsProfiles: fieldsProfiles, include: include, fieldsCertificates: fieldsCertificates, fieldsDevices: fieldsDevices, fieldsBundleIds: fieldsBundleIds, limitCertificates: limitCertificates, limitDevices: limitDevices).execute().body
+    open class func profilesGetInstance(id: String, fieldsProfiles: [FieldsProfiles_profilesGetInstance]? = nil, fieldsBundleIds: [FieldsBundleIds_profilesGetInstance]? = nil, fieldsDevices: [FieldsDevices_profilesGetInstance]? = nil, fieldsCertificates: [FieldsCertificates_profilesGetInstance]? = nil, include: [Include_profilesGetInstance]? = nil, limitCertificates: Int? = nil, limitDevices: Int? = nil) async throws -> ProfileResponse {
+        return try await profilesGetInstanceWithRequestBuilder(id: id, fieldsProfiles: fieldsProfiles, fieldsBundleIds: fieldsBundleIds, fieldsDevices: fieldsDevices, fieldsCertificates: fieldsCertificates, include: include, limitCertificates: limitCertificates, limitDevices: limitDevices).execute().body
     }
 
     /**
@@ -721,15 +718,15 @@ open class ProfilesAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsProfiles: (query) the fields to include for returned resources of type profiles (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
-     - parameter fieldsCertificates: (query) the fields to include for returned resources of type certificates (optional)
-     - parameter fieldsDevices: (query) the fields to include for returned resources of type devices (optional)
      - parameter fieldsBundleIds: (query) the fields to include for returned resources of type bundleIds (optional)
+     - parameter fieldsDevices: (query) the fields to include for returned resources of type devices (optional)
+     - parameter fieldsCertificates: (query) the fields to include for returned resources of type certificates (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitCertificates: (query) maximum number of related certificates returned (when they are included) (optional)
      - parameter limitDevices: (query) maximum number of related devices returned (when they are included) (optional)
      - returns: RequestBuilder<ProfileResponse> 
      */
-    open class func profilesGetInstanceWithRequestBuilder(id: String, fieldsProfiles: [FieldsProfiles_profilesGetInstance]? = nil, include: [Include_profilesGetInstance]? = nil, fieldsCertificates: [FieldsCertificates_profilesGetInstance]? = nil, fieldsDevices: [FieldsDevices_profilesGetInstance]? = nil, fieldsBundleIds: [FieldsBundleIds_profilesGetInstance]? = nil, limitCertificates: Int? = nil, limitDevices: Int? = nil) -> RequestBuilder<ProfileResponse> {
+    open class func profilesGetInstanceWithRequestBuilder(id: String, fieldsProfiles: [FieldsProfiles_profilesGetInstance]? = nil, fieldsBundleIds: [FieldsBundleIds_profilesGetInstance]? = nil, fieldsDevices: [FieldsDevices_profilesGetInstance]? = nil, fieldsCertificates: [FieldsCertificates_profilesGetInstance]? = nil, include: [Include_profilesGetInstance]? = nil, limitCertificates: Int? = nil, limitDevices: Int? = nil) -> RequestBuilder<ProfileResponse> {
         var localVariablePath = "/v1/profiles/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -740,10 +737,10 @@ open class ProfilesAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[profiles]": (wrappedValue: fieldsProfiles?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "fields[certificates]": (wrappedValue: fieldsCertificates?.encodeToJSON(), isExplode: false),
-            "fields[devices]": (wrappedValue: fieldsDevices?.encodeToJSON(), isExplode: false),
             "fields[bundleIds]": (wrappedValue: fieldsBundleIds?.encodeToJSON(), isExplode: false),
+            "fields[devices]": (wrappedValue: fieldsDevices?.encodeToJSON(), isExplode: false),
+            "fields[certificates]": (wrappedValue: fieldsCertificates?.encodeToJSON(), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "limit[certificates]": (wrappedValue: limitCertificates?.encodeToJSON(), isExplode: true),
             "limit[devices]": (wrappedValue: limitDevices?.encodeToJSON(), isExplode: true),
         ])

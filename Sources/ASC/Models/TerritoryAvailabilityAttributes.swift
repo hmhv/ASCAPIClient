@@ -26,6 +26,8 @@ public struct TerritoryAvailabilityAttributes: Codable, JSONEncodable, Hashable 
         case brazilRequiredTaxId = "BRAZIL_REQUIRED_TAX_ID"
         case missingGrn = "MISSING_GRN"
         case unverifiedGrn = "UNVERIFIED_GRN"
+        case icpNumberInvalid = "ICP_NUMBER_INVALID"
+        case icpNumberMissing = "ICP_NUMBER_MISSING"
         case cannotSellSeventeenPlusApps = "CANNOT_SELL_SEVENTEEN_PLUS_APPS"
         case cannotSellSexuallyExplicit = "CANNOT_SELL_SEXUALLY_EXPLICIT"
         case cannotSellNonIosGames = "CANNOT_SELL_NON_IOS_GAMES"

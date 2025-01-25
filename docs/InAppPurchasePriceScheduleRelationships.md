@@ -3,8 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**inAppPurchase** | [**InAppPurchaseAppStoreReviewScreenshotRelationshipsInAppPurchaseV2**](InAppPurchaseAppStoreReviewScreenshotRelationshipsInAppPurchaseV2.md) |  | [optional] 
-**baseTerritory** | [**AppPricePointV2RelationshipsTerritory**](AppPricePointV2RelationshipsTerritory.md) |  | [optional] 
+**baseTerritory** | [**AppPriceScheduleRelationshipsBaseTerritory**](AppPriceScheduleRelationshipsBaseTerritory.md) |  | [optional] 
 **manualPrices** | [**InAppPurchasePriceScheduleRelationshipsManualPrices**](InAppPurchasePriceScheduleRelationshipsManualPrices.md) |  | [optional] 
 **automaticPrices** | [**InAppPurchasePriceScheduleRelationshipsManualPrices**](InAppPurchasePriceScheduleRelationshipsManualPrices.md) |  | [optional] 
 

@@ -13,9 +13,9 @@ import AnyCodable
 public struct GameCenterMatchmakingQueueCreateRequestDataRelationships: Codable, JSONEncodable, Hashable {
 
     public var ruleSet: GameCenterMatchmakingQueueCreateRequestDataRelationshipsRuleSet
-    public var experimentRuleSet: GameCenterMatchmakingQueueCreateRequestDataRelationshipsExperimentRuleSet?
+    public var experimentRuleSet: GameCenterMatchmakingQueueRelationshipsRuleSet?
 
-    public init(ruleSet: GameCenterMatchmakingQueueCreateRequestDataRelationshipsRuleSet, experimentRuleSet: GameCenterMatchmakingQueueCreateRequestDataRelationshipsExperimentRuleSet? = nil) {
+    public init(ruleSet: GameCenterMatchmakingQueueCreateRequestDataRelationshipsRuleSet, experimentRuleSet: GameCenterMatchmakingQueueRelationshipsRuleSet? = nil) {
         self.ruleSet = ruleSet
         self.experimentRuleSet = experimentRuleSet
     }

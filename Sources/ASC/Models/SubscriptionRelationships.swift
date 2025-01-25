@@ -19,10 +19,13 @@ public struct SubscriptionRelationships: Codable, JSONEncodable, Hashable {
     public var promotionalOffers: SubscriptionRelationshipsPromotionalOffers?
     public var offerCodes: SubscriptionRelationshipsOfferCodes?
     public var prices: SubscriptionRelationshipsPrices?
+    public var pricePoints: AnalyticsReportInstanceRelationshipsSegments?
     public var promotedPurchase: InAppPurchaseV2RelationshipsPromotedPurchase?
     public var subscriptionAvailability: SubscriptionRelationshipsSubscriptionAvailability?
+    public var winBackOffers: SubscriptionRelationshipsWinBackOffers?
+    public var images: SubscriptionRelationshipsImages?
 
-    public init(subscriptionLocalizations: SubscriptionRelationshipsSubscriptionLocalizations? = nil, appStoreReviewScreenshot: SubscriptionRelationshipsAppStoreReviewScreenshot? = nil, group: SubscriptionGroupLocalizationRelationshipsSubscriptionGroup? = nil, introductoryOffers: SubscriptionRelationshipsIntroductoryOffers? = nil, promotionalOffers: SubscriptionRelationshipsPromotionalOffers? = nil, offerCodes: SubscriptionRelationshipsOfferCodes? = nil, prices: SubscriptionRelationshipsPrices? = nil, promotedPurchase: InAppPurchaseV2RelationshipsPromotedPurchase? = nil, subscriptionAvailability: SubscriptionRelationshipsSubscriptionAvailability? = nil) {
+    public init(subscriptionLocalizations: SubscriptionRelationshipsSubscriptionLocalizations? = nil, appStoreReviewScreenshot: SubscriptionRelationshipsAppStoreReviewScreenshot? = nil, group: SubscriptionGroupLocalizationRelationshipsSubscriptionGroup? = nil, introductoryOffers: SubscriptionRelationshipsIntroductoryOffers? = nil, promotionalOffers: SubscriptionRelationshipsPromotionalOffers? = nil, offerCodes: SubscriptionRelationshipsOfferCodes? = nil, prices: SubscriptionRelationshipsPrices? = nil, pricePoints: AnalyticsReportInstanceRelationshipsSegments? = nil, promotedPurchase: InAppPurchaseV2RelationshipsPromotedPurchase? = nil, subscriptionAvailability: SubscriptionRelationshipsSubscriptionAvailability? = nil, winBackOffers: SubscriptionRelationshipsWinBackOffers? = nil, images: SubscriptionRelationshipsImages? = nil) {
         self.subscriptionLocalizations = subscriptionLocalizations
         self.appStoreReviewScreenshot = appStoreReviewScreenshot
         self.group = group
@@ -30,8 +33,11 @@ public struct SubscriptionRelationships: Codable, JSONEncodable, Hashable {
         self.promotionalOffers = promotionalOffers
         self.offerCodes = offerCodes
         self.prices = prices
+        self.pricePoints = pricePoints
         self.promotedPurchase = promotedPurchase
         self.subscriptionAvailability = subscriptionAvailability
+        self.winBackOffers = winBackOffers
+        self.images = images
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -42,8 +48,11 @@ public struct SubscriptionRelationships: Codable, JSONEncodable, Hashable {
         case promotionalOffers
         case offerCodes
         case prices
+        case pricePoints
         case promotedPurchase
         case subscriptionAvailability
+        case winBackOffers
+        case images
     }
 
     // Encodable protocol methods
@@ -57,8 +66,11 @@ public struct SubscriptionRelationships: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(promotionalOffers, forKey: .promotionalOffers)
         try container.encodeIfPresent(offerCodes, forKey: .offerCodes)
         try container.encodeIfPresent(prices, forKey: .prices)
+        try container.encodeIfPresent(pricePoints, forKey: .pricePoints)
         try container.encodeIfPresent(promotedPurchase, forKey: .promotedPurchase)
         try container.encodeIfPresent(subscriptionAvailability, forKey: .subscriptionAvailability)
+        try container.encodeIfPresent(winBackOffers, forKey: .winBackOffers)
+        try container.encodeIfPresent(images, forKey: .images)
     }
 }
 

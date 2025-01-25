@@ -210,7 +210,7 @@ Void (empty response body)
 
 # **bundleIdsGetCollection**
 ```swift
-    open class func bundleIdsGetCollection(filterIdentifier: [String]? = nil, filterName: [String]? = nil, filterPlatform: [FilterPlatform_bundleIdsGetCollection]? = nil, filterSeedId: [String]? = nil, filterId: [String]? = nil, sort: [Sort_bundleIdsGetCollection]? = nil, fieldsBundleIds: [FieldsBundleIds_bundleIdsGetCollection]? = nil, limit: Int? = nil, include: [Include_bundleIdsGetCollection]? = nil, fieldsBundleIdCapabilities: [FieldsBundleIdCapabilities_bundleIdsGetCollection]? = nil, fieldsProfiles: [FieldsProfiles_bundleIdsGetCollection]? = nil, fieldsApps: [FieldsApps_bundleIdsGetCollection]? = nil, limitBundleIdCapabilities: Int? = nil, limitProfiles: Int? = nil, completion: @escaping (_ data: BundleIdsResponse?, _ error: Error?) -> Void)
+    open class func bundleIdsGetCollection(filterName: [String]? = nil, filterPlatform: [FilterPlatform_bundleIdsGetCollection]? = nil, filterIdentifier: [String]? = nil, filterSeedId: [String]? = nil, filterId: [String]? = nil, sort: [Sort_bundleIdsGetCollection]? = nil, fieldsBundleIds: [FieldsBundleIds_bundleIdsGetCollection]? = nil, fieldsProfiles: [FieldsProfiles_bundleIdsGetCollection]? = nil, fieldsBundleIdCapabilities: [FieldsBundleIdCapabilities_bundleIdsGetCollection]? = nil, fieldsApps: [FieldsApps_bundleIdsGetCollection]? = nil, limit: Int? = nil, include: [Include_bundleIdsGetCollection]? = nil, limitBundleIdCapabilities: Int? = nil, limitProfiles: Int? = nil, completion: @escaping (_ data: BundleIdsResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -220,22 +220,22 @@ Void (empty response body)
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import ASC
 
-let filterIdentifier = ["inner_example"] // [String] | filter by attribute 'identifier' (optional)
 let filterName = ["inner_example"] // [String] | filter by attribute 'name' (optional)
 let filterPlatform = ["filterPlatform_example"] // [String] | filter by attribute 'platform' (optional)
+let filterIdentifier = ["inner_example"] // [String] | filter by attribute 'identifier' (optional)
 let filterSeedId = ["inner_example"] // [String] | filter by attribute 'seedId' (optional)
 let filterId = ["inner_example"] // [String] | filter by id(s) (optional)
 let sort = ["sort_example"] // [String] | comma-separated list of sort expressions; resources will be sorted as specified (optional)
 let fieldsBundleIds = ["fieldsBundleIds_example"] // [String] | the fields to include for returned resources of type bundleIds (optional)
+let fieldsProfiles = ["fieldsProfiles_example"] // [String] | the fields to include for returned resources of type profiles (optional)
+let fieldsBundleIdCapabilities = ["fieldsBundleIdCapabilities_example"] // [String] | the fields to include for returned resources of type bundleIdCapabilities (optional)
+let fieldsApps = ["fieldsApps_example"] // [String] | the fields to include for returned resources of type apps (optional)
 let limit = 987 // Int | maximum resources per page (optional)
 let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
-let fieldsBundleIdCapabilities = ["fieldsBundleIdCapabilities_example"] // [String] | the fields to include for returned resources of type bundleIdCapabilities (optional)
-let fieldsProfiles = ["fieldsProfiles_example"] // [String] | the fields to include for returned resources of type profiles (optional)
-let fieldsApps = ["fieldsApps_example"] // [String] | the fields to include for returned resources of type apps (optional)
 let limitBundleIdCapabilities = 987 // Int | maximum number of related bundleIdCapabilities returned (when they are included) (optional)
 let limitProfiles = 987 // Int | maximum number of related profiles returned (when they are included) (optional)
 
-BundleIdsAPI.bundleIdsGetCollection(filterIdentifier: filterIdentifier, filterName: filterName, filterPlatform: filterPlatform, filterSeedId: filterSeedId, filterId: filterId, sort: sort, fieldsBundleIds: fieldsBundleIds, limit: limit, include: include, fieldsBundleIdCapabilities: fieldsBundleIdCapabilities, fieldsProfiles: fieldsProfiles, fieldsApps: fieldsApps, limitBundleIdCapabilities: limitBundleIdCapabilities, limitProfiles: limitProfiles) { (response, error) in
+BundleIdsAPI.bundleIdsGetCollection(filterName: filterName, filterPlatform: filterPlatform, filterIdentifier: filterIdentifier, filterSeedId: filterSeedId, filterId: filterId, sort: sort, fieldsBundleIds: fieldsBundleIds, fieldsProfiles: fieldsProfiles, fieldsBundleIdCapabilities: fieldsBundleIdCapabilities, fieldsApps: fieldsApps, limit: limit, include: include, limitBundleIdCapabilities: limitBundleIdCapabilities, limitProfiles: limitProfiles) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -251,18 +251,18 @@ BundleIdsAPI.bundleIdsGetCollection(filterIdentifier: filterIdentifier, filterNa
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **filterIdentifier** | [**[String]**](String.md) | filter by attribute &#39;identifier&#39; | [optional] 
  **filterName** | [**[String]**](String.md) | filter by attribute &#39;name&#39; | [optional] 
  **filterPlatform** | [**[String]**](String.md) | filter by attribute &#39;platform&#39; | [optional] 
+ **filterIdentifier** | [**[String]**](String.md) | filter by attribute &#39;identifier&#39; | [optional] 
  **filterSeedId** | [**[String]**](String.md) | filter by attribute &#39;seedId&#39; | [optional] 
  **filterId** | [**[String]**](String.md) | filter by id(s) | [optional] 
  **sort** | [**[String]**](String.md) | comma-separated list of sort expressions; resources will be sorted as specified | [optional] 
  **fieldsBundleIds** | [**[String]**](String.md) | the fields to include for returned resources of type bundleIds | [optional] 
+ **fieldsProfiles** | [**[String]**](String.md) | the fields to include for returned resources of type profiles | [optional] 
+ **fieldsBundleIdCapabilities** | [**[String]**](String.md) | the fields to include for returned resources of type bundleIdCapabilities | [optional] 
+ **fieldsApps** | [**[String]**](String.md) | the fields to include for returned resources of type apps | [optional] 
  **limit** | **Int** | maximum resources per page | [optional] 
  **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
- **fieldsBundleIdCapabilities** | [**[String]**](String.md) | the fields to include for returned resources of type bundleIdCapabilities | [optional] 
- **fieldsProfiles** | [**[String]**](String.md) | the fields to include for returned resources of type profiles | [optional] 
- **fieldsApps** | [**[String]**](String.md) | the fields to include for returned resources of type apps | [optional] 
  **limitBundleIdCapabilities** | **Int** | maximum number of related bundleIdCapabilities returned (when they are included) | [optional] 
  **limitProfiles** | **Int** | maximum number of related profiles returned (when they are included) | [optional] 
 
@@ -283,7 +283,7 @@ Name | Type | Description  | Notes
 
 # **bundleIdsGetInstance**
 ```swift
-    open class func bundleIdsGetInstance(id: String, fieldsBundleIds: [FieldsBundleIds_bundleIdsGetInstance]? = nil, include: [Include_bundleIdsGetInstance]? = nil, fieldsBundleIdCapabilities: [FieldsBundleIdCapabilities_bundleIdsGetInstance]? = nil, fieldsProfiles: [FieldsProfiles_bundleIdsGetInstance]? = nil, fieldsApps: [FieldsApps_bundleIdsGetInstance]? = nil, limitBundleIdCapabilities: Int? = nil, limitProfiles: Int? = nil, completion: @escaping (_ data: BundleIdResponse?, _ error: Error?) -> Void)
+    open class func bundleIdsGetInstance(id: String, fieldsBundleIds: [FieldsBundleIds_bundleIdsGetInstance]? = nil, fieldsProfiles: [FieldsProfiles_bundleIdsGetInstance]? = nil, fieldsBundleIdCapabilities: [FieldsBundleIdCapabilities_bundleIdsGetInstance]? = nil, fieldsApps: [FieldsApps_bundleIdsGetInstance]? = nil, include: [Include_bundleIdsGetInstance]? = nil, limitBundleIdCapabilities: Int? = nil, limitProfiles: Int? = nil, completion: @escaping (_ data: BundleIdResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -295,14 +295,14 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let fieldsBundleIds = ["fieldsBundleIds_example"] // [String] | the fields to include for returned resources of type bundleIds (optional)
-let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
-let fieldsBundleIdCapabilities = ["fieldsBundleIdCapabilities_example"] // [String] | the fields to include for returned resources of type bundleIdCapabilities (optional)
 let fieldsProfiles = ["fieldsProfiles_example"] // [String] | the fields to include for returned resources of type profiles (optional)
+let fieldsBundleIdCapabilities = ["fieldsBundleIdCapabilities_example"] // [String] | the fields to include for returned resources of type bundleIdCapabilities (optional)
 let fieldsApps = ["fieldsApps_example"] // [String] | the fields to include for returned resources of type apps (optional)
+let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let limitBundleIdCapabilities = 987 // Int | maximum number of related bundleIdCapabilities returned (when they are included) (optional)
 let limitProfiles = 987 // Int | maximum number of related profiles returned (when they are included) (optional)
 
-BundleIdsAPI.bundleIdsGetInstance(id: id, fieldsBundleIds: fieldsBundleIds, include: include, fieldsBundleIdCapabilities: fieldsBundleIdCapabilities, fieldsProfiles: fieldsProfiles, fieldsApps: fieldsApps, limitBundleIdCapabilities: limitBundleIdCapabilities, limitProfiles: limitProfiles) { (response, error) in
+BundleIdsAPI.bundleIdsGetInstance(id: id, fieldsBundleIds: fieldsBundleIds, fieldsProfiles: fieldsProfiles, fieldsBundleIdCapabilities: fieldsBundleIdCapabilities, fieldsApps: fieldsApps, include: include, limitBundleIdCapabilities: limitBundleIdCapabilities, limitProfiles: limitProfiles) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -320,10 +320,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **fieldsBundleIds** | [**[String]**](String.md) | the fields to include for returned resources of type bundleIds | [optional] 
- **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
- **fieldsBundleIdCapabilities** | [**[String]**](String.md) | the fields to include for returned resources of type bundleIdCapabilities | [optional] 
  **fieldsProfiles** | [**[String]**](String.md) | the fields to include for returned resources of type profiles | [optional] 
+ **fieldsBundleIdCapabilities** | [**[String]**](String.md) | the fields to include for returned resources of type bundleIdCapabilities | [optional] 
  **fieldsApps** | [**[String]**](String.md) | the fields to include for returned resources of type apps | [optional] 
+ **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **limitBundleIdCapabilities** | **Int** | maximum number of related bundleIdCapabilities returned (when they are included) | [optional] 
  **limitProfiles** | **Int** | maximum number of related profiles returned (when they are included) | [optional] 
 

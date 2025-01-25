@@ -16,30 +16,30 @@ open class BetaAppReviewSubmissionsAPI {
      * enum for parameter fieldsBuilds
      */
     public enum FieldsBuilds_betaAppReviewSubmissionsBuildGetToOneRelated: String, CaseIterable {
-        case app = "app"
-        case appencryptiondeclaration = "appEncryptionDeclaration"
-        case appstoreversion = "appStoreVersion"
-        case betaappreviewsubmission = "betaAppReviewSubmission"
-        case betabuildlocalizations = "betaBuildLocalizations"
-        case betagroups = "betaGroups"
-        case buildaudiencetype = "buildAudienceType"
-        case buildbetadetail = "buildBetaDetail"
-        case buildbundles = "buildBundles"
-        case computedminmacosversion = "computedMinMacOsVersion"
-        case diagnosticsignatures = "diagnosticSignatures"
+        case version = "version"
+        case uploadeddate = "uploadedDate"
         case expirationdate = "expirationDate"
         case expired = "expired"
-        case iconassettoken = "iconAssetToken"
-        case icons = "icons"
-        case individualtesters = "individualTesters"
-        case lsminimumsystemversion = "lsMinimumSystemVersion"
         case minosversion = "minOsVersion"
-        case perfpowermetrics = "perfPowerMetrics"
-        case prereleaseversion = "preReleaseVersion"
+        case lsminimumsystemversion = "lsMinimumSystemVersion"
+        case computedminmacosversion = "computedMinMacOsVersion"
+        case iconassettoken = "iconAssetToken"
         case processingstate = "processingState"
-        case uploadeddate = "uploadedDate"
+        case buildaudiencetype = "buildAudienceType"
         case usesnonexemptencryption = "usesNonExemptEncryption"
-        case version = "version"
+        case prereleaseversion = "preReleaseVersion"
+        case individualtesters = "individualTesters"
+        case betagroups = "betaGroups"
+        case betabuildlocalizations = "betaBuildLocalizations"
+        case appencryptiondeclaration = "appEncryptionDeclaration"
+        case betaappreviewsubmission = "betaAppReviewSubmission"
+        case app = "app"
+        case buildbetadetail = "buildBetaDetail"
+        case appstoreversion = "appStoreVersion"
+        case icons = "icons"
+        case buildbundles = "buildBundles"
+        case perfpowermetrics = "perfPowerMetrics"
+        case diagnosticsignatures = "diagnosticSignatures"
     }
 
     /**
@@ -195,8 +195,38 @@ open class BetaAppReviewSubmissionsAPI {
      */
     public enum FieldsBetaAppReviewSubmissions_betaAppReviewSubmissionsGetCollection: String, CaseIterable {
         case betareviewstate = "betaReviewState"
-        case build = "build"
         case submitteddate = "submittedDate"
+        case build = "build"
+    }
+
+    /**
+     * enum for parameter fieldsBuilds
+     */
+    public enum FieldsBuilds_betaAppReviewSubmissionsGetCollection: String, CaseIterable {
+        case version = "version"
+        case uploadeddate = "uploadedDate"
+        case expirationdate = "expirationDate"
+        case expired = "expired"
+        case minosversion = "minOsVersion"
+        case lsminimumsystemversion = "lsMinimumSystemVersion"
+        case computedminmacosversion = "computedMinMacOsVersion"
+        case iconassettoken = "iconAssetToken"
+        case processingstate = "processingState"
+        case buildaudiencetype = "buildAudienceType"
+        case usesnonexemptencryption = "usesNonExemptEncryption"
+        case prereleaseversion = "preReleaseVersion"
+        case individualtesters = "individualTesters"
+        case betagroups = "betaGroups"
+        case betabuildlocalizations = "betaBuildLocalizations"
+        case appencryptiondeclaration = "appEncryptionDeclaration"
+        case betaappreviewsubmission = "betaAppReviewSubmission"
+        case app = "app"
+        case buildbetadetail = "buildBetaDetail"
+        case appstoreversion = "appStoreVersion"
+        case icons = "icons"
+        case buildbundles = "buildBundles"
+        case perfpowermetrics = "perfPowerMetrics"
+        case diagnosticsignatures = "diagnosticSignatures"
     }
 
     /**
@@ -207,48 +237,18 @@ open class BetaAppReviewSubmissionsAPI {
     }
 
     /**
-     * enum for parameter fieldsBuilds
-     */
-    public enum FieldsBuilds_betaAppReviewSubmissionsGetCollection: String, CaseIterable {
-        case app = "app"
-        case appencryptiondeclaration = "appEncryptionDeclaration"
-        case appstoreversion = "appStoreVersion"
-        case betaappreviewsubmission = "betaAppReviewSubmission"
-        case betabuildlocalizations = "betaBuildLocalizations"
-        case betagroups = "betaGroups"
-        case buildaudiencetype = "buildAudienceType"
-        case buildbetadetail = "buildBetaDetail"
-        case buildbundles = "buildBundles"
-        case computedminmacosversion = "computedMinMacOsVersion"
-        case diagnosticsignatures = "diagnosticSignatures"
-        case expirationdate = "expirationDate"
-        case expired = "expired"
-        case iconassettoken = "iconAssetToken"
-        case icons = "icons"
-        case individualtesters = "individualTesters"
-        case lsminimumsystemversion = "lsMinimumSystemVersion"
-        case minosversion = "minOsVersion"
-        case perfpowermetrics = "perfPowerMetrics"
-        case prereleaseversion = "preReleaseVersion"
-        case processingstate = "processingState"
-        case uploadeddate = "uploadedDate"
-        case usesnonexemptencryption = "usesNonExemptEncryption"
-        case version = "version"
-    }
-
-    /**
 
      - parameter filterBuild: (query) filter by id(s) of related &#39;build&#39; 
      - parameter filterBetaReviewState: (query) filter by attribute &#39;betaReviewState&#39; (optional)
      - parameter fieldsBetaAppReviewSubmissions: (query) the fields to include for returned resources of type betaAppReviewSubmissions (optional)
+     - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
-     - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
      - returns: BetaAppReviewSubmissionsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaAppReviewSubmissionsGetCollection(filterBuild: [String], filterBetaReviewState: [FilterBetaReviewState_betaAppReviewSubmissionsGetCollection]? = nil, fieldsBetaAppReviewSubmissions: [FieldsBetaAppReviewSubmissions_betaAppReviewSubmissionsGetCollection]? = nil, limit: Int? = nil, include: [Include_betaAppReviewSubmissionsGetCollection]? = nil, fieldsBuilds: [FieldsBuilds_betaAppReviewSubmissionsGetCollection]? = nil) async throws -> BetaAppReviewSubmissionsResponse {
-        return try await betaAppReviewSubmissionsGetCollectionWithRequestBuilder(filterBuild: filterBuild, filterBetaReviewState: filterBetaReviewState, fieldsBetaAppReviewSubmissions: fieldsBetaAppReviewSubmissions, limit: limit, include: include, fieldsBuilds: fieldsBuilds).execute().body
+    open class func betaAppReviewSubmissionsGetCollection(filterBuild: [String], filterBetaReviewState: [FilterBetaReviewState_betaAppReviewSubmissionsGetCollection]? = nil, fieldsBetaAppReviewSubmissions: [FieldsBetaAppReviewSubmissions_betaAppReviewSubmissionsGetCollection]? = nil, fieldsBuilds: [FieldsBuilds_betaAppReviewSubmissionsGetCollection]? = nil, limit: Int? = nil, include: [Include_betaAppReviewSubmissionsGetCollection]? = nil) async throws -> BetaAppReviewSubmissionsResponse {
+        return try await betaAppReviewSubmissionsGetCollectionWithRequestBuilder(filterBuild: filterBuild, filterBetaReviewState: filterBetaReviewState, fieldsBetaAppReviewSubmissions: fieldsBetaAppReviewSubmissions, fieldsBuilds: fieldsBuilds, limit: limit, include: include).execute().body
     }
 
     /**
@@ -268,12 +268,12 @@ open class BetaAppReviewSubmissionsAPI {
      - parameter filterBuild: (query) filter by id(s) of related &#39;build&#39; 
      - parameter filterBetaReviewState: (query) filter by attribute &#39;betaReviewState&#39; (optional)
      - parameter fieldsBetaAppReviewSubmissions: (query) the fields to include for returned resources of type betaAppReviewSubmissions (optional)
+     - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
-     - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
      - returns: RequestBuilder<BetaAppReviewSubmissionsResponse> 
      */
-    open class func betaAppReviewSubmissionsGetCollectionWithRequestBuilder(filterBuild: [String], filterBetaReviewState: [FilterBetaReviewState_betaAppReviewSubmissionsGetCollection]? = nil, fieldsBetaAppReviewSubmissions: [FieldsBetaAppReviewSubmissions_betaAppReviewSubmissionsGetCollection]? = nil, limit: Int? = nil, include: [Include_betaAppReviewSubmissionsGetCollection]? = nil, fieldsBuilds: [FieldsBuilds_betaAppReviewSubmissionsGetCollection]? = nil) -> RequestBuilder<BetaAppReviewSubmissionsResponse> {
+    open class func betaAppReviewSubmissionsGetCollectionWithRequestBuilder(filterBuild: [String], filterBetaReviewState: [FilterBetaReviewState_betaAppReviewSubmissionsGetCollection]? = nil, fieldsBetaAppReviewSubmissions: [FieldsBetaAppReviewSubmissions_betaAppReviewSubmissionsGetCollection]? = nil, fieldsBuilds: [FieldsBuilds_betaAppReviewSubmissionsGetCollection]? = nil, limit: Int? = nil, include: [Include_betaAppReviewSubmissionsGetCollection]? = nil) -> RequestBuilder<BetaAppReviewSubmissionsResponse> {
         let localVariablePath = "/v1/betaAppReviewSubmissions"
         let localVariableURLString = ASCAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -283,9 +283,9 @@ open class BetaAppReviewSubmissionsAPI {
             "filter[betaReviewState]": (wrappedValue: filterBetaReviewState?.encodeToJSON(), isExplode: false),
             "filter[build]": (wrappedValue: filterBuild.encodeToJSON(), isExplode: false),
             "fields[betaAppReviewSubmissions]": (wrappedValue: fieldsBetaAppReviewSubmissions?.encodeToJSON(), isExplode: false),
+            "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -324,8 +324,38 @@ open class BetaAppReviewSubmissionsAPI {
      */
     public enum FieldsBetaAppReviewSubmissions_betaAppReviewSubmissionsGetInstance: String, CaseIterable {
         case betareviewstate = "betaReviewState"
-        case build = "build"
         case submitteddate = "submittedDate"
+        case build = "build"
+    }
+
+    /**
+     * enum for parameter fieldsBuilds
+     */
+    public enum FieldsBuilds_betaAppReviewSubmissionsGetInstance: String, CaseIterable {
+        case version = "version"
+        case uploadeddate = "uploadedDate"
+        case expirationdate = "expirationDate"
+        case expired = "expired"
+        case minosversion = "minOsVersion"
+        case lsminimumsystemversion = "lsMinimumSystemVersion"
+        case computedminmacosversion = "computedMinMacOsVersion"
+        case iconassettoken = "iconAssetToken"
+        case processingstate = "processingState"
+        case buildaudiencetype = "buildAudienceType"
+        case usesnonexemptencryption = "usesNonExemptEncryption"
+        case prereleaseversion = "preReleaseVersion"
+        case individualtesters = "individualTesters"
+        case betagroups = "betaGroups"
+        case betabuildlocalizations = "betaBuildLocalizations"
+        case appencryptiondeclaration = "appEncryptionDeclaration"
+        case betaappreviewsubmission = "betaAppReviewSubmission"
+        case app = "app"
+        case buildbetadetail = "buildBetaDetail"
+        case appstoreversion = "appStoreVersion"
+        case icons = "icons"
+        case buildbundles = "buildBundles"
+        case perfpowermetrics = "perfPowerMetrics"
+        case diagnosticsignatures = "diagnosticSignatures"
     }
 
     /**
@@ -336,46 +366,16 @@ open class BetaAppReviewSubmissionsAPI {
     }
 
     /**
-     * enum for parameter fieldsBuilds
-     */
-    public enum FieldsBuilds_betaAppReviewSubmissionsGetInstance: String, CaseIterable {
-        case app = "app"
-        case appencryptiondeclaration = "appEncryptionDeclaration"
-        case appstoreversion = "appStoreVersion"
-        case betaappreviewsubmission = "betaAppReviewSubmission"
-        case betabuildlocalizations = "betaBuildLocalizations"
-        case betagroups = "betaGroups"
-        case buildaudiencetype = "buildAudienceType"
-        case buildbetadetail = "buildBetaDetail"
-        case buildbundles = "buildBundles"
-        case computedminmacosversion = "computedMinMacOsVersion"
-        case diagnosticsignatures = "diagnosticSignatures"
-        case expirationdate = "expirationDate"
-        case expired = "expired"
-        case iconassettoken = "iconAssetToken"
-        case icons = "icons"
-        case individualtesters = "individualTesters"
-        case lsminimumsystemversion = "lsMinimumSystemVersion"
-        case minosversion = "minOsVersion"
-        case perfpowermetrics = "perfPowerMetrics"
-        case prereleaseversion = "preReleaseVersion"
-        case processingstate = "processingState"
-        case uploadeddate = "uploadedDate"
-        case usesnonexemptencryption = "usesNonExemptEncryption"
-        case version = "version"
-    }
-
-    /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsBetaAppReviewSubmissions: (query) the fields to include for returned resources of type betaAppReviewSubmissions (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: BetaAppReviewSubmissionResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaAppReviewSubmissionsGetInstance(id: String, fieldsBetaAppReviewSubmissions: [FieldsBetaAppReviewSubmissions_betaAppReviewSubmissionsGetInstance]? = nil, include: [Include_betaAppReviewSubmissionsGetInstance]? = nil, fieldsBuilds: [FieldsBuilds_betaAppReviewSubmissionsGetInstance]? = nil) async throws -> BetaAppReviewSubmissionResponse {
-        return try await betaAppReviewSubmissionsGetInstanceWithRequestBuilder(id: id, fieldsBetaAppReviewSubmissions: fieldsBetaAppReviewSubmissions, include: include, fieldsBuilds: fieldsBuilds).execute().body
+    open class func betaAppReviewSubmissionsGetInstance(id: String, fieldsBetaAppReviewSubmissions: [FieldsBetaAppReviewSubmissions_betaAppReviewSubmissionsGetInstance]? = nil, fieldsBuilds: [FieldsBuilds_betaAppReviewSubmissionsGetInstance]? = nil, include: [Include_betaAppReviewSubmissionsGetInstance]? = nil) async throws -> BetaAppReviewSubmissionResponse {
+        return try await betaAppReviewSubmissionsGetInstanceWithRequestBuilder(id: id, fieldsBetaAppReviewSubmissions: fieldsBetaAppReviewSubmissions, fieldsBuilds: fieldsBuilds, include: include).execute().body
     }
 
     /**
@@ -394,11 +394,11 @@ open class BetaAppReviewSubmissionsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsBetaAppReviewSubmissions: (query) the fields to include for returned resources of type betaAppReviewSubmissions (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: RequestBuilder<BetaAppReviewSubmissionResponse> 
      */
-    open class func betaAppReviewSubmissionsGetInstanceWithRequestBuilder(id: String, fieldsBetaAppReviewSubmissions: [FieldsBetaAppReviewSubmissions_betaAppReviewSubmissionsGetInstance]? = nil, include: [Include_betaAppReviewSubmissionsGetInstance]? = nil, fieldsBuilds: [FieldsBuilds_betaAppReviewSubmissionsGetInstance]? = nil) -> RequestBuilder<BetaAppReviewSubmissionResponse> {
+    open class func betaAppReviewSubmissionsGetInstanceWithRequestBuilder(id: String, fieldsBetaAppReviewSubmissions: [FieldsBetaAppReviewSubmissions_betaAppReviewSubmissionsGetInstance]? = nil, fieldsBuilds: [FieldsBuilds_betaAppReviewSubmissionsGetInstance]? = nil, include: [Include_betaAppReviewSubmissionsGetInstance]? = nil) -> RequestBuilder<BetaAppReviewSubmissionResponse> {
         var localVariablePath = "/v1/betaAppReviewSubmissions/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -409,8 +409,8 @@ open class BetaAppReviewSubmissionsAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[betaAppReviewSubmissions]": (wrappedValue: fieldsBetaAppReviewSubmissions?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [

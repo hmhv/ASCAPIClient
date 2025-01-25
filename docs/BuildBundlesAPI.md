@@ -110,7 +110,7 @@ Name | Type | Description  | Notes
 
 # **buildBundlesBetaAppClipInvocationsGetToManyRelated**
 ```swift
-    open class func buildBundlesBetaAppClipInvocationsGetToManyRelated(id: String, fieldsBetaAppClipInvocations: [FieldsBetaAppClipInvocations_buildBundlesBetaAppClipInvocationsGetToManyRelated]? = nil, fieldsBetaAppClipInvocationLocalizations: [FieldsBetaAppClipInvocationLocalizations_buildBundlesBetaAppClipInvocationsGetToManyRelated]? = nil, limit: Int? = nil, limitBetaAppClipInvocationLocalizations: Int? = nil, include: [Include_buildBundlesBetaAppClipInvocationsGetToManyRelated]? = nil, completion: @escaping (_ data: BetaAppClipInvocationsResponse?, _ error: Error?) -> Void)
+    open class func buildBundlesBetaAppClipInvocationsGetToManyRelated(id: String, fieldsBetaAppClipInvocations: [FieldsBetaAppClipInvocations_buildBundlesBetaAppClipInvocationsGetToManyRelated]? = nil, fieldsBetaAppClipInvocationLocalizations: [FieldsBetaAppClipInvocationLocalizations_buildBundlesBetaAppClipInvocationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_buildBundlesBetaAppClipInvocationsGetToManyRelated]? = nil, limitBetaAppClipInvocationLocalizations: Int? = nil, completion: @escaping (_ data: BetaAppClipInvocationsResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -124,10 +124,10 @@ let id = "id_example" // String | the id of the requested resource
 let fieldsBetaAppClipInvocations = ["fieldsBetaAppClipInvocations_example"] // [String] | the fields to include for returned resources of type betaAppClipInvocations (optional)
 let fieldsBetaAppClipInvocationLocalizations = ["fieldsBetaAppClipInvocationLocalizations_example"] // [String] | the fields to include for returned resources of type betaAppClipInvocationLocalizations (optional)
 let limit = 987 // Int | maximum resources per page (optional)
-let limitBetaAppClipInvocationLocalizations = 987 // Int | maximum number of related betaAppClipInvocationLocalizations returned (when they are included) (optional)
 let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
+let limitBetaAppClipInvocationLocalizations = 987 // Int | maximum number of related betaAppClipInvocationLocalizations returned (when they are included) (optional)
 
-BuildBundlesAPI.buildBundlesBetaAppClipInvocationsGetToManyRelated(id: id, fieldsBetaAppClipInvocations: fieldsBetaAppClipInvocations, fieldsBetaAppClipInvocationLocalizations: fieldsBetaAppClipInvocationLocalizations, limit: limit, limitBetaAppClipInvocationLocalizations: limitBetaAppClipInvocationLocalizations, include: include) { (response, error) in
+BuildBundlesAPI.buildBundlesBetaAppClipInvocationsGetToManyRelated(id: id, fieldsBetaAppClipInvocations: fieldsBetaAppClipInvocations, fieldsBetaAppClipInvocationLocalizations: fieldsBetaAppClipInvocationLocalizations, limit: limit, include: include, limitBetaAppClipInvocationLocalizations: limitBetaAppClipInvocationLocalizations) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -147,8 +147,8 @@ Name | Type | Description  | Notes
  **fieldsBetaAppClipInvocations** | [**[String]**](String.md) | the fields to include for returned resources of type betaAppClipInvocations | [optional] 
  **fieldsBetaAppClipInvocationLocalizations** | [**[String]**](String.md) | the fields to include for returned resources of type betaAppClipInvocationLocalizations | [optional] 
  **limit** | **Int** | maximum resources per page | [optional] 
- **limitBetaAppClipInvocationLocalizations** | **Int** | maximum number of related betaAppClipInvocationLocalizations returned (when they are included) | [optional] 
  **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
+ **limitBetaAppClipInvocationLocalizations** | **Int** | maximum number of related betaAppClipInvocationLocalizations returned (when they are included) | [optional] 
 
 ### Return type
 

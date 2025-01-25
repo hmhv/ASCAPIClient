@@ -12,10 +12,10 @@ import AnyCodable
 
 public struct AppEncryptionDeclarationWithoutIncludesResponse: Codable, JSONEncodable, Hashable {
 
-    public var data: Build
+    public var data: AppEncryptionDeclaration
     public var links: DocumentLinks
 
-    public init(data: Build, links: DocumentLinks) {
+    public init(data: AppEncryptionDeclaration, links: DocumentLinks) {
         self.data = data
         self.links = links
     }

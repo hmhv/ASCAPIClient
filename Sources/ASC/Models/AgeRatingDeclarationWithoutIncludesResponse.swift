@@ -12,10 +12,10 @@ import AnyCodable
 
 public struct AgeRatingDeclarationWithoutIncludesResponse: Codable, JSONEncodable, Hashable {
 
-    public var data: AppStoreVersion
+    public var data: AgeRatingDeclaration
     public var links: DocumentLinks
 
-    public init(data: AppStoreVersion, links: DocumentLinks) {
+    public init(data: AgeRatingDeclaration, links: DocumentLinks) {
         self.data = data
         self.links = links
     }

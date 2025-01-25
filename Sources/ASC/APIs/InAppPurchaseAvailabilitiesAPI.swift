@@ -166,14 +166,6 @@ open class InAppPurchaseAvailabilitiesAPI {
     public enum FieldsInAppPurchaseAvailabilities_inAppPurchaseAvailabilitiesGetInstance: String, CaseIterable {
         case availableinnewterritories = "availableInNewTerritories"
         case availableterritories = "availableTerritories"
-        case inapppurchase = "inAppPurchase"
-    }
-
-    /**
-     * enum for parameter include
-     */
-    public enum Include_inAppPurchaseAvailabilitiesGetInstance: String, CaseIterable {
-        case availableterritories = "availableTerritories"
     }
 
     /**
@@ -184,17 +176,24 @@ open class InAppPurchaseAvailabilitiesAPI {
     }
 
     /**
+     * enum for parameter include
+     */
+    public enum Include_inAppPurchaseAvailabilitiesGetInstance: String, CaseIterable {
+        case availableterritories = "availableTerritories"
+    }
+
+    /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsInAppPurchaseAvailabilities: (query) the fields to include for returned resources of type inAppPurchaseAvailabilities (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAvailableTerritories: (query) maximum number of related availableTerritories returned (when they are included) (optional)
      - returns: InAppPurchaseAvailabilityResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchaseAvailabilitiesGetInstance(id: String, fieldsInAppPurchaseAvailabilities: [FieldsInAppPurchaseAvailabilities_inAppPurchaseAvailabilitiesGetInstance]? = nil, include: [Include_inAppPurchaseAvailabilitiesGetInstance]? = nil, fieldsTerritories: [FieldsTerritories_inAppPurchaseAvailabilitiesGetInstance]? = nil, limitAvailableTerritories: Int? = nil) async throws -> InAppPurchaseAvailabilityResponse {
-        return try await inAppPurchaseAvailabilitiesGetInstanceWithRequestBuilder(id: id, fieldsInAppPurchaseAvailabilities: fieldsInAppPurchaseAvailabilities, include: include, fieldsTerritories: fieldsTerritories, limitAvailableTerritories: limitAvailableTerritories).execute().body
+    open class func inAppPurchaseAvailabilitiesGetInstance(id: String, fieldsInAppPurchaseAvailabilities: [FieldsInAppPurchaseAvailabilities_inAppPurchaseAvailabilitiesGetInstance]? = nil, fieldsTerritories: [FieldsTerritories_inAppPurchaseAvailabilitiesGetInstance]? = nil, include: [Include_inAppPurchaseAvailabilitiesGetInstance]? = nil, limitAvailableTerritories: Int? = nil) async throws -> InAppPurchaseAvailabilityResponse {
+        return try await inAppPurchaseAvailabilitiesGetInstanceWithRequestBuilder(id: id, fieldsInAppPurchaseAvailabilities: fieldsInAppPurchaseAvailabilities, fieldsTerritories: fieldsTerritories, include: include, limitAvailableTerritories: limitAvailableTerritories).execute().body
     }
 
     /**
@@ -213,12 +212,12 @@ open class InAppPurchaseAvailabilitiesAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsInAppPurchaseAvailabilities: (query) the fields to include for returned resources of type inAppPurchaseAvailabilities (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAvailableTerritories: (query) maximum number of related availableTerritories returned (when they are included) (optional)
      - returns: RequestBuilder<InAppPurchaseAvailabilityResponse> 
      */
-    open class func inAppPurchaseAvailabilitiesGetInstanceWithRequestBuilder(id: String, fieldsInAppPurchaseAvailabilities: [FieldsInAppPurchaseAvailabilities_inAppPurchaseAvailabilitiesGetInstance]? = nil, include: [Include_inAppPurchaseAvailabilitiesGetInstance]? = nil, fieldsTerritories: [FieldsTerritories_inAppPurchaseAvailabilitiesGetInstance]? = nil, limitAvailableTerritories: Int? = nil) -> RequestBuilder<InAppPurchaseAvailabilityResponse> {
+    open class func inAppPurchaseAvailabilitiesGetInstanceWithRequestBuilder(id: String, fieldsInAppPurchaseAvailabilities: [FieldsInAppPurchaseAvailabilities_inAppPurchaseAvailabilitiesGetInstance]? = nil, fieldsTerritories: [FieldsTerritories_inAppPurchaseAvailabilitiesGetInstance]? = nil, include: [Include_inAppPurchaseAvailabilitiesGetInstance]? = nil, limitAvailableTerritories: Int? = nil) -> RequestBuilder<InAppPurchaseAvailabilityResponse> {
         var localVariablePath = "/v1/inAppPurchaseAvailabilities/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -229,8 +228,8 @@ open class InAppPurchaseAvailabilitiesAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[inAppPurchaseAvailabilities]": (wrappedValue: fieldsInAppPurchaseAvailabilities?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "limit[availableTerritories]": (wrappedValue: limitAvailableTerritories?.encodeToJSON(), isExplode: true),
         ])
 

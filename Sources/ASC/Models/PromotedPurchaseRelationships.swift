@@ -14,6 +14,7 @@ public struct PromotedPurchaseRelationships: Codable, JSONEncodable, Hashable {
 
     public var inAppPurchaseV2: InAppPurchaseAppStoreReviewScreenshotRelationshipsInAppPurchaseV2?
     public var subscription: PromotedPurchaseRelationshipsSubscription?
+    @available(*, deprecated, message: "This property is deprecated.")
     public var promotionImages: PromotedPurchaseRelationshipsPromotionImages?
 
     public init(inAppPurchaseV2: InAppPurchaseAppStoreReviewScreenshotRelationshipsInAppPurchaseV2? = nil, subscription: PromotedPurchaseRelationshipsSubscription? = nil, promotionImages: PromotedPurchaseRelationshipsPromotionImages? = nil) {

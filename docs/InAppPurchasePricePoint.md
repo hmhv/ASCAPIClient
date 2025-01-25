@@ -5,7 +5,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **type** | **String** |  | 
 **id** | **String** |  | 
-**attributes** | [**InAppPurchasePricePointAttributes**](InAppPurchasePricePointAttributes.md) |  | [optional] 
+**attributes** | [**AppPricePointV3Attributes**](AppPricePointV3Attributes.md) |  | [optional] 
 **relationships** | [**InAppPurchasePricePointRelationships**](InAppPurchasePricePointRelationships.md) |  | [optional] 
 **links** | [**ResourceLinks**](ResourceLinks.md) |  | [optional] 
 

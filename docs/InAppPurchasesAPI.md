@@ -11,6 +11,7 @@ Method | HTTP request | Description
 [**inAppPurchasesV2DeleteInstance**](InAppPurchasesAPI.md#inapppurchasesv2deleteinstance) | **DELETE** /v2/inAppPurchases/{id} | 
 [**inAppPurchasesV2GetInstance**](InAppPurchasesAPI.md#inapppurchasesv2getinstance) | **GET** /v2/inAppPurchases/{id} | 
 [**inAppPurchasesV2IapPriceScheduleGetToOneRelated**](InAppPurchasesAPI.md#inapppurchasesv2iappriceschedulegettoonerelated) | **GET** /v2/inAppPurchases/{id}/iapPriceSchedule | 
+[**inAppPurchasesV2ImagesGetToManyRelated**](InAppPurchasesAPI.md#inapppurchasesv2imagesgettomanyrelated) | **GET** /v2/inAppPurchases/{id}/images | 
 [**inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelated**](InAppPurchasesAPI.md#inapppurchasesv2inapppurchaseavailabilitygettoonerelated) | **GET** /v2/inAppPurchases/{id}/inAppPurchaseAvailability | 
 [**inAppPurchasesV2InAppPurchaseLocalizationsGetToManyRelated**](InAppPurchasesAPI.md#inapppurchasesv2inapppurchaselocalizationsgettomanyrelated) | **GET** /v2/inAppPurchases/{id}/inAppPurchaseLocalizations | 
 [**inAppPurchasesV2PricePointsGetToManyRelated**](InAppPurchasesAPI.md#inapppurchasesv2pricepointsgettomanyrelated) | **GET** /v2/inAppPurchases/{id}/pricePoints | 
@@ -126,7 +127,7 @@ Name | Type | Description  | Notes
 
 # **inAppPurchasesV2ContentGetToOneRelated**
 ```swift
-    open class func inAppPurchasesV2ContentGetToOneRelated(id: String, fieldsInAppPurchases: [FieldsInAppPurchases_inAppPurchasesV2ContentGetToOneRelated]? = nil, fieldsInAppPurchaseContents: [FieldsInAppPurchaseContents_inAppPurchasesV2ContentGetToOneRelated]? = nil, include: [Include_inAppPurchasesV2ContentGetToOneRelated]? = nil, completion: @escaping (_ data: InAppPurchaseContentResponse?, _ error: Error?) -> Void)
+    open class func inAppPurchasesV2ContentGetToOneRelated(id: String, fieldsInAppPurchaseContents: [FieldsInAppPurchaseContents_inAppPurchasesV2ContentGetToOneRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_inAppPurchasesV2ContentGetToOneRelated]? = nil, include: [Include_inAppPurchasesV2ContentGetToOneRelated]? = nil, completion: @escaping (_ data: InAppPurchaseContentResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -137,11 +138,11 @@ Name | Type | Description  | Notes
 import ASC
 
 let id = "id_example" // String | the id of the requested resource
-let fieldsInAppPurchases = ["fieldsInAppPurchases_example"] // [String] | the fields to include for returned resources of type inAppPurchases (optional)
 let fieldsInAppPurchaseContents = ["fieldsInAppPurchaseContents_example"] // [String] | the fields to include for returned resources of type inAppPurchaseContents (optional)
+let fieldsInAppPurchases = ["fieldsInAppPurchases_example"] // [String] | the fields to include for returned resources of type inAppPurchases (optional)
 let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 
-InAppPurchasesAPI.inAppPurchasesV2ContentGetToOneRelated(id: id, fieldsInAppPurchases: fieldsInAppPurchases, fieldsInAppPurchaseContents: fieldsInAppPurchaseContents, include: include) { (response, error) in
+InAppPurchasesAPI.inAppPurchasesV2ContentGetToOneRelated(id: id, fieldsInAppPurchaseContents: fieldsInAppPurchaseContents, fieldsInAppPurchases: fieldsInAppPurchases, include: include) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -158,8 +159,8 @@ InAppPurchasesAPI.inAppPurchasesV2ContentGetToOneRelated(id: id, fieldsInAppPurc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
- **fieldsInAppPurchases** | [**[String]**](String.md) | the fields to include for returned resources of type inAppPurchases | [optional] 
  **fieldsInAppPurchaseContents** | [**[String]**](String.md) | the fields to include for returned resources of type inAppPurchaseContents | [optional] 
+ **fieldsInAppPurchases** | [**[String]**](String.md) | the fields to include for returned resources of type inAppPurchases | [optional] 
  **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
 
 ### Return type
@@ -273,7 +274,7 @@ Void (empty response body)
 
 # **inAppPurchasesV2GetInstance**
 ```swift
-    open class func inAppPurchasesV2GetInstance(id: String, fieldsInAppPurchases: [FieldsInAppPurchases_inAppPurchasesV2GetInstance]? = nil, include: [Include_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchaseAvailabilities: [FieldsInAppPurchaseAvailabilities_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchaseAppStoreReviewScreenshots: [FieldsInAppPurchaseAppStoreReviewScreenshots_inAppPurchasesV2GetInstance]? = nil, fieldsPromotedPurchases: [FieldsPromotedPurchases_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchasePricePoints: [FieldsInAppPurchasePricePoints_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchaseLocalizations: [FieldsInAppPurchaseLocalizations_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchasePriceSchedules: [FieldsInAppPurchasePriceSchedules_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchaseContents: [FieldsInAppPurchaseContents_inAppPurchasesV2GetInstance]? = nil, limitInAppPurchaseLocalizations: Int? = nil, limitPricePoints: Int? = nil, completion: @escaping (_ data: InAppPurchaseV2Response?, _ error: Error?) -> Void)
+    open class func inAppPurchasesV2GetInstance(id: String, fieldsInAppPurchases: [FieldsInAppPurchases_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchaseLocalizations: [FieldsInAppPurchaseLocalizations_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchasePricePoints: [FieldsInAppPurchasePricePoints_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchaseContents: [FieldsInAppPurchaseContents_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchaseAppStoreReviewScreenshots: [FieldsInAppPurchaseAppStoreReviewScreenshots_inAppPurchasesV2GetInstance]? = nil, fieldsPromotedPurchases: [FieldsPromotedPurchases_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchasePriceSchedules: [FieldsInAppPurchasePriceSchedules_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchaseAvailabilities: [FieldsInAppPurchaseAvailabilities_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchaseImages: [FieldsInAppPurchaseImages_inAppPurchasesV2GetInstance]? = nil, include: [Include_inAppPurchasesV2GetInstance]? = nil, limitImages: Int? = nil, limitInAppPurchaseLocalizations: Int? = nil, limitPricePoints: Int? = nil, completion: @escaping (_ data: InAppPurchaseV2Response?, _ error: Error?) -> Void)
 ```
 
 
@@ -285,18 +286,20 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let fieldsInAppPurchases = ["fieldsInAppPurchases_example"] // [String] | the fields to include for returned resources of type inAppPurchases (optional)
-let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
-let fieldsInAppPurchaseAvailabilities = ["fieldsInAppPurchaseAvailabilities_example"] // [String] | the fields to include for returned resources of type inAppPurchaseAvailabilities (optional)
+let fieldsInAppPurchaseLocalizations = ["fieldsInAppPurchaseLocalizations_example"] // [String] | the fields to include for returned resources of type inAppPurchaseLocalizations (optional)
+let fieldsInAppPurchasePricePoints = ["fieldsInAppPurchasePricePoints_example"] // [String] | the fields to include for returned resources of type inAppPurchasePricePoints (optional)
+let fieldsInAppPurchaseContents = ["fieldsInAppPurchaseContents_example"] // [String] | the fields to include for returned resources of type inAppPurchaseContents (optional)
 let fieldsInAppPurchaseAppStoreReviewScreenshots = ["fieldsInAppPurchaseAppStoreReviewScreenshots_example"] // [String] | the fields to include for returned resources of type inAppPurchaseAppStoreReviewScreenshots (optional)
 let fieldsPromotedPurchases = ["fieldsPromotedPurchases_example"] // [String] | the fields to include for returned resources of type promotedPurchases (optional)
-let fieldsInAppPurchasePricePoints = ["fieldsInAppPurchasePricePoints_example"] // [String] | the fields to include for returned resources of type inAppPurchasePricePoints (optional)
-let fieldsInAppPurchaseLocalizations = ["fieldsInAppPurchaseLocalizations_example"] // [String] | the fields to include for returned resources of type inAppPurchaseLocalizations (optional)
 let fieldsInAppPurchasePriceSchedules = ["fieldsInAppPurchasePriceSchedules_example"] // [String] | the fields to include for returned resources of type inAppPurchasePriceSchedules (optional)
-let fieldsInAppPurchaseContents = ["fieldsInAppPurchaseContents_example"] // [String] | the fields to include for returned resources of type inAppPurchaseContents (optional)
+let fieldsInAppPurchaseAvailabilities = ["fieldsInAppPurchaseAvailabilities_example"] // [String] | the fields to include for returned resources of type inAppPurchaseAvailabilities (optional)
+let fieldsInAppPurchaseImages = ["fieldsInAppPurchaseImages_example"] // [String] | the fields to include for returned resources of type inAppPurchaseImages (optional)
+let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
+let limitImages = 987 // Int | maximum number of related images returned (when they are included) (optional)
 let limitInAppPurchaseLocalizations = 987 // Int | maximum number of related inAppPurchaseLocalizations returned (when they are included) (optional)
 let limitPricePoints = 987 // Int | maximum number of related pricePoints returned (when they are included) (optional)
 
-InAppPurchasesAPI.inAppPurchasesV2GetInstance(id: id, fieldsInAppPurchases: fieldsInAppPurchases, include: include, fieldsInAppPurchaseAvailabilities: fieldsInAppPurchaseAvailabilities, fieldsInAppPurchaseAppStoreReviewScreenshots: fieldsInAppPurchaseAppStoreReviewScreenshots, fieldsPromotedPurchases: fieldsPromotedPurchases, fieldsInAppPurchasePricePoints: fieldsInAppPurchasePricePoints, fieldsInAppPurchaseLocalizations: fieldsInAppPurchaseLocalizations, fieldsInAppPurchasePriceSchedules: fieldsInAppPurchasePriceSchedules, fieldsInAppPurchaseContents: fieldsInAppPurchaseContents, limitInAppPurchaseLocalizations: limitInAppPurchaseLocalizations, limitPricePoints: limitPricePoints) { (response, error) in
+InAppPurchasesAPI.inAppPurchasesV2GetInstance(id: id, fieldsInAppPurchases: fieldsInAppPurchases, fieldsInAppPurchaseLocalizations: fieldsInAppPurchaseLocalizations, fieldsInAppPurchasePricePoints: fieldsInAppPurchasePricePoints, fieldsInAppPurchaseContents: fieldsInAppPurchaseContents, fieldsInAppPurchaseAppStoreReviewScreenshots: fieldsInAppPurchaseAppStoreReviewScreenshots, fieldsPromotedPurchases: fieldsPromotedPurchases, fieldsInAppPurchasePriceSchedules: fieldsInAppPurchasePriceSchedules, fieldsInAppPurchaseAvailabilities: fieldsInAppPurchaseAvailabilities, fieldsInAppPurchaseImages: fieldsInAppPurchaseImages, include: include, limitImages: limitImages, limitInAppPurchaseLocalizations: limitInAppPurchaseLocalizations, limitPricePoints: limitPricePoints) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -314,14 +317,16 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **fieldsInAppPurchases** | [**[String]**](String.md) | the fields to include for returned resources of type inAppPurchases | [optional] 
- **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
- **fieldsInAppPurchaseAvailabilities** | [**[String]**](String.md) | the fields to include for returned resources of type inAppPurchaseAvailabilities | [optional] 
+ **fieldsInAppPurchaseLocalizations** | [**[String]**](String.md) | the fields to include for returned resources of type inAppPurchaseLocalizations | [optional] 
+ **fieldsInAppPurchasePricePoints** | [**[String]**](String.md) | the fields to include for returned resources of type inAppPurchasePricePoints | [optional] 
+ **fieldsInAppPurchaseContents** | [**[String]**](String.md) | the fields to include for returned resources of type inAppPurchaseContents | [optional] 
  **fieldsInAppPurchaseAppStoreReviewScreenshots** | [**[String]**](String.md) | the fields to include for returned resources of type inAppPurchaseAppStoreReviewScreenshots | [optional] 
  **fieldsPromotedPurchases** | [**[String]**](String.md) | the fields to include for returned resources of type promotedPurchases | [optional] 
- **fieldsInAppPurchasePricePoints** | [**[String]**](String.md) | the fields to include for returned resources of type inAppPurchasePricePoints | [optional] 
- **fieldsInAppPurchaseLocalizations** | [**[String]**](String.md) | the fields to include for returned resources of type inAppPurchaseLocalizations | [optional] 
  **fieldsInAppPurchasePriceSchedules** | [**[String]**](String.md) | the fields to include for returned resources of type inAppPurchasePriceSchedules | [optional] 
- **fieldsInAppPurchaseContents** | [**[String]**](String.md) | the fields to include for returned resources of type inAppPurchaseContents | [optional] 
+ **fieldsInAppPurchaseAvailabilities** | [**[String]**](String.md) | the fields to include for returned resources of type inAppPurchaseAvailabilities | [optional] 
+ **fieldsInAppPurchaseImages** | [**[String]**](String.md) | the fields to include for returned resources of type inAppPurchaseImages | [optional] 
+ **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
+ **limitImages** | **Int** | maximum number of related images returned (when they are included) | [optional] 
  **limitInAppPurchaseLocalizations** | **Int** | maximum number of related inAppPurchaseLocalizations returned (when they are included) | [optional] 
  **limitPricePoints** | **Int** | maximum number of related pricePoints returned (when they are included) | [optional] 
 
@@ -342,7 +347,7 @@ Name | Type | Description  | Notes
 
 # **inAppPurchasesV2IapPriceScheduleGetToOneRelated**
 ```swift
-    open class func inAppPurchasesV2IapPriceScheduleGetToOneRelated(id: String, fieldsInAppPurchasePrices: [FieldsInAppPurchasePrices_inAppPurchasesV2IapPriceScheduleGetToOneRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_inAppPurchasesV2IapPriceScheduleGetToOneRelated]? = nil, fieldsInAppPurchasePriceSchedules: [FieldsInAppPurchasePriceSchedules_inAppPurchasesV2IapPriceScheduleGetToOneRelated]? = nil, fieldsTerritories: [FieldsTerritories_inAppPurchasesV2IapPriceScheduleGetToOneRelated]? = nil, limitManualPrices: Int? = nil, limitAutomaticPrices: Int? = nil, include: [Include_inAppPurchasesV2IapPriceScheduleGetToOneRelated]? = nil, completion: @escaping (_ data: InAppPurchasePriceScheduleResponse?, _ error: Error?) -> Void)
+    open class func inAppPurchasesV2IapPriceScheduleGetToOneRelated(id: String, fieldsInAppPurchasePriceSchedules: [FieldsInAppPurchasePriceSchedules_inAppPurchasesV2IapPriceScheduleGetToOneRelated]? = nil, fieldsTerritories: [FieldsTerritories_inAppPurchasesV2IapPriceScheduleGetToOneRelated]? = nil, fieldsInAppPurchasePrices: [FieldsInAppPurchasePrices_inAppPurchasesV2IapPriceScheduleGetToOneRelated]? = nil, include: [Include_inAppPurchasesV2IapPriceScheduleGetToOneRelated]? = nil, limitManualPrices: Int? = nil, limitAutomaticPrices: Int? = nil, completion: @escaping (_ data: InAppPurchasePriceScheduleResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -353,15 +358,14 @@ Name | Type | Description  | Notes
 import ASC
 
 let id = "id_example" // String | the id of the requested resource
-let fieldsInAppPurchasePrices = ["fieldsInAppPurchasePrices_example"] // [String] | the fields to include for returned resources of type inAppPurchasePrices (optional)
-let fieldsInAppPurchases = ["fieldsInAppPurchases_example"] // [String] | the fields to include for returned resources of type inAppPurchases (optional)
 let fieldsInAppPurchasePriceSchedules = ["fieldsInAppPurchasePriceSchedules_example"] // [String] | the fields to include for returned resources of type inAppPurchasePriceSchedules (optional)
 let fieldsTerritories = ["fieldsTerritories_example"] // [String] | the fields to include for returned resources of type territories (optional)
+let fieldsInAppPurchasePrices = ["fieldsInAppPurchasePrices_example"] // [String] | the fields to include for returned resources of type inAppPurchasePrices (optional)
+let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let limitManualPrices = 987 // Int | maximum number of related manualPrices returned (when they are included) (optional)
 let limitAutomaticPrices = 987 // Int | maximum number of related automaticPrices returned (when they are included) (optional)
-let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 
-InAppPurchasesAPI.inAppPurchasesV2IapPriceScheduleGetToOneRelated(id: id, fieldsInAppPurchasePrices: fieldsInAppPurchasePrices, fieldsInAppPurchases: fieldsInAppPurchases, fieldsInAppPurchasePriceSchedules: fieldsInAppPurchasePriceSchedules, fieldsTerritories: fieldsTerritories, limitManualPrices: limitManualPrices, limitAutomaticPrices: limitAutomaticPrices, include: include) { (response, error) in
+InAppPurchasesAPI.inAppPurchasesV2IapPriceScheduleGetToOneRelated(id: id, fieldsInAppPurchasePriceSchedules: fieldsInAppPurchasePriceSchedules, fieldsTerritories: fieldsTerritories, fieldsInAppPurchasePrices: fieldsInAppPurchasePrices, include: include, limitManualPrices: limitManualPrices, limitAutomaticPrices: limitAutomaticPrices) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -378,13 +382,12 @@ InAppPurchasesAPI.inAppPurchasesV2IapPriceScheduleGetToOneRelated(id: id, fields
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
- **fieldsInAppPurchasePrices** | [**[String]**](String.md) | the fields to include for returned resources of type inAppPurchasePrices | [optional] 
- **fieldsInAppPurchases** | [**[String]**](String.md) | the fields to include for returned resources of type inAppPurchases | [optional] 
  **fieldsInAppPurchasePriceSchedules** | [**[String]**](String.md) | the fields to include for returned resources of type inAppPurchasePriceSchedules | [optional] 
  **fieldsTerritories** | [**[String]**](String.md) | the fields to include for returned resources of type territories | [optional] 
+ **fieldsInAppPurchasePrices** | [**[String]**](String.md) | the fields to include for returned resources of type inAppPurchasePrices | [optional] 
+ **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **limitManualPrices** | **Int** | maximum number of related manualPrices returned (when they are included) | [optional] 
  **limitAutomaticPrices** | **Int** | maximum number of related automaticPrices returned (when they are included) | [optional] 
- **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
 
 ### Return type
 
@@ -401,9 +404,64 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **inAppPurchasesV2ImagesGetToManyRelated**
+```swift
+    open class func inAppPurchasesV2ImagesGetToManyRelated(id: String, fieldsInAppPurchaseImages: [FieldsInAppPurchaseImages_inAppPurchasesV2ImagesGetToManyRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_inAppPurchasesV2ImagesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_inAppPurchasesV2ImagesGetToManyRelated]? = nil, completion: @escaping (_ data: InAppPurchaseImagesResponse?, _ error: Error?) -> Void)
+```
+
+
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import ASC
+
+let id = "id_example" // String | the id of the requested resource
+let fieldsInAppPurchaseImages = ["fieldsInAppPurchaseImages_example"] // [String] | the fields to include for returned resources of type inAppPurchaseImages (optional)
+let fieldsInAppPurchases = ["fieldsInAppPurchases_example"] // [String] | the fields to include for returned resources of type inAppPurchases (optional)
+let limit = 987 // Int | maximum resources per page (optional)
+let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
+
+InAppPurchasesAPI.inAppPurchasesV2ImagesGetToManyRelated(id: id, fieldsInAppPurchaseImages: fieldsInAppPurchaseImages, fieldsInAppPurchases: fieldsInAppPurchases, limit: limit, include: include) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String** | the id of the requested resource | 
+ **fieldsInAppPurchaseImages** | [**[String]**](String.md) | the fields to include for returned resources of type inAppPurchaseImages | [optional] 
+ **fieldsInAppPurchases** | [**[String]**](String.md) | the fields to include for returned resources of type inAppPurchases | [optional] 
+ **limit** | **Int** | maximum resources per page | [optional] 
+ **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
+
+### Return type
+
+[**InAppPurchaseImagesResponse**](InAppPurchaseImagesResponse.md)
+
+### Authorization
+
+[itc-bearer-token](../README.md#itc-bearer-token)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelated**
 ```swift
-    open class func inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelated(id: String, fieldsInAppPurchaseAvailabilities: [FieldsInAppPurchaseAvailabilities_inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelated]? = nil, fieldsTerritories: [FieldsTerritories_inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelated]? = nil, limitAvailableTerritories: Int? = nil, include: [Include_inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelated]? = nil, completion: @escaping (_ data: InAppPurchaseAvailabilityResponse?, _ error: Error?) -> Void)
+    open class func inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelated(id: String, fieldsInAppPurchaseAvailabilities: [FieldsInAppPurchaseAvailabilities_inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelated]? = nil, fieldsTerritories: [FieldsTerritories_inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelated]? = nil, include: [Include_inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelated]? = nil, limitAvailableTerritories: Int? = nil, completion: @escaping (_ data: InAppPurchaseAvailabilityResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -416,10 +474,10 @@ import ASC
 let id = "id_example" // String | the id of the requested resource
 let fieldsInAppPurchaseAvailabilities = ["fieldsInAppPurchaseAvailabilities_example"] // [String] | the fields to include for returned resources of type inAppPurchaseAvailabilities (optional)
 let fieldsTerritories = ["fieldsTerritories_example"] // [String] | the fields to include for returned resources of type territories (optional)
-let limitAvailableTerritories = 987 // Int | maximum number of related availableTerritories returned (when they are included) (optional)
 let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
+let limitAvailableTerritories = 987 // Int | maximum number of related availableTerritories returned (when they are included) (optional)
 
-InAppPurchasesAPI.inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelated(id: id, fieldsInAppPurchaseAvailabilities: fieldsInAppPurchaseAvailabilities, fieldsTerritories: fieldsTerritories, limitAvailableTerritories: limitAvailableTerritories, include: include) { (response, error) in
+InAppPurchasesAPI.inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelated(id: id, fieldsInAppPurchaseAvailabilities: fieldsInAppPurchaseAvailabilities, fieldsTerritories: fieldsTerritories, include: include, limitAvailableTerritories: limitAvailableTerritories) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -438,8 +496,8 @@ Name | Type | Description  | Notes
  **id** | **String** | the id of the requested resource | 
  **fieldsInAppPurchaseAvailabilities** | [**[String]**](String.md) | the fields to include for returned resources of type inAppPurchaseAvailabilities | [optional] 
  **fieldsTerritories** | [**[String]**](String.md) | the fields to include for returned resources of type territories | [optional] 
- **limitAvailableTerritories** | **Int** | maximum number of related availableTerritories returned (when they are included) | [optional] 
  **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
+ **limitAvailableTerritories** | **Int** | maximum number of related availableTerritories returned (when they are included) | [optional] 
 
 ### Return type
 
@@ -513,7 +571,7 @@ Name | Type | Description  | Notes
 
 # **inAppPurchasesV2PricePointsGetToManyRelated**
 ```swift
-    open class func inAppPurchasesV2PricePointsGetToManyRelated(id: String, filterPriceTier: [String]? = nil, filterTerritory: [String]? = nil, fieldsInAppPurchasePricePoints: [FieldsInAppPurchasePricePoints_inAppPurchasesV2PricePointsGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_inAppPurchasesV2PricePointsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_inAppPurchasesV2PricePointsGetToManyRelated]? = nil, completion: @escaping (_ data: InAppPurchasePricePointsResponse?, _ error: Error?) -> Void)
+    open class func inAppPurchasesV2PricePointsGetToManyRelated(id: String, filterTerritory: [String]? = nil, fieldsInAppPurchasePricePoints: [FieldsInAppPurchasePricePoints_inAppPurchasesV2PricePointsGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_inAppPurchasesV2PricePointsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_inAppPurchasesV2PricePointsGetToManyRelated]? = nil, completion: @escaping (_ data: InAppPurchasePricePointsResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -524,14 +582,13 @@ Name | Type | Description  | Notes
 import ASC
 
 let id = "id_example" // String | the id of the requested resource
-let filterPriceTier = ["inner_example"] // [String] | filter by attribute 'priceTier' (optional)
 let filterTerritory = ["inner_example"] // [String] | filter by id(s) of related 'territory' (optional)
 let fieldsInAppPurchasePricePoints = ["fieldsInAppPurchasePricePoints_example"] // [String] | the fields to include for returned resources of type inAppPurchasePricePoints (optional)
 let fieldsTerritories = ["fieldsTerritories_example"] // [String] | the fields to include for returned resources of type territories (optional)
 let limit = 987 // Int | maximum resources per page (optional)
 let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 
-InAppPurchasesAPI.inAppPurchasesV2PricePointsGetToManyRelated(id: id, filterPriceTier: filterPriceTier, filterTerritory: filterTerritory, fieldsInAppPurchasePricePoints: fieldsInAppPurchasePricePoints, fieldsTerritories: fieldsTerritories, limit: limit, include: include) { (response, error) in
+InAppPurchasesAPI.inAppPurchasesV2PricePointsGetToManyRelated(id: id, filterTerritory: filterTerritory, fieldsInAppPurchasePricePoints: fieldsInAppPurchasePricePoints, fieldsTerritories: fieldsTerritories, limit: limit, include: include) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -548,7 +605,6 @@ InAppPurchasesAPI.inAppPurchasesV2PricePointsGetToManyRelated(id: id, filterPric
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
- **filterPriceTier** | [**[String]**](String.md) | filter by attribute &#39;priceTier&#39; | [optional] 
  **filterTerritory** | [**[String]**](String.md) | filter by id(s) of related &#39;territory&#39; | [optional] 
  **fieldsInAppPurchasePricePoints** | [**[String]**](String.md) | the fields to include for returned resources of type inAppPurchasePricePoints | [optional] 
  **fieldsTerritories** | [**[String]**](String.md) | the fields to include for returned resources of type territories | [optional] 
@@ -572,7 +628,7 @@ Name | Type | Description  | Notes
 
 # **inAppPurchasesV2PromotedPurchaseGetToOneRelated**
 ```swift
-    open class func inAppPurchasesV2PromotedPurchaseGetToOneRelated(id: String, fieldsPromotedPurchases: [FieldsPromotedPurchases_inAppPurchasesV2PromotedPurchaseGetToOneRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_inAppPurchasesV2PromotedPurchaseGetToOneRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_inAppPurchasesV2PromotedPurchaseGetToOneRelated]? = nil, fieldsPromotedPurchaseImages: [FieldsPromotedPurchaseImages_inAppPurchasesV2PromotedPurchaseGetToOneRelated]? = nil, limitPromotionImages: Int? = nil, include: [Include_inAppPurchasesV2PromotedPurchaseGetToOneRelated]? = nil, completion: @escaping (_ data: PromotedPurchaseResponse?, _ error: Error?) -> Void)
+    open class func inAppPurchasesV2PromotedPurchaseGetToOneRelated(id: String, fieldsPromotedPurchases: [FieldsPromotedPurchases_inAppPurchasesV2PromotedPurchaseGetToOneRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_inAppPurchasesV2PromotedPurchaseGetToOneRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_inAppPurchasesV2PromotedPurchaseGetToOneRelated]? = nil, fieldsPromotedPurchaseImages: [FieldsPromotedPurchaseImages_inAppPurchasesV2PromotedPurchaseGetToOneRelated]? = nil, include: [Include_inAppPurchasesV2PromotedPurchaseGetToOneRelated]? = nil, limitPromotionImages: Int? = nil, completion: @escaping (_ data: PromotedPurchaseResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -584,13 +640,13 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let fieldsPromotedPurchases = ["fieldsPromotedPurchases_example"] // [String] | the fields to include for returned resources of type promotedPurchases (optional)
-let fieldsSubscriptions = ["fieldsSubscriptions_example"] // [String] | the fields to include for returned resources of type subscriptions (optional)
 let fieldsInAppPurchases = ["fieldsInAppPurchases_example"] // [String] | the fields to include for returned resources of type inAppPurchases (optional)
+let fieldsSubscriptions = ["fieldsSubscriptions_example"] // [String] | the fields to include for returned resources of type subscriptions (optional)
 let fieldsPromotedPurchaseImages = ["fieldsPromotedPurchaseImages_example"] // [String] | the fields to include for returned resources of type promotedPurchaseImages (optional)
-let limitPromotionImages = 987 // Int | maximum number of related promotionImages returned (when they are included) (optional)
 let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
+let limitPromotionImages = 987 // Int | maximum number of related promotionImages returned (when they are included) (optional)
 
-InAppPurchasesAPI.inAppPurchasesV2PromotedPurchaseGetToOneRelated(id: id, fieldsPromotedPurchases: fieldsPromotedPurchases, fieldsSubscriptions: fieldsSubscriptions, fieldsInAppPurchases: fieldsInAppPurchases, fieldsPromotedPurchaseImages: fieldsPromotedPurchaseImages, limitPromotionImages: limitPromotionImages, include: include) { (response, error) in
+InAppPurchasesAPI.inAppPurchasesV2PromotedPurchaseGetToOneRelated(id: id, fieldsPromotedPurchases: fieldsPromotedPurchases, fieldsInAppPurchases: fieldsInAppPurchases, fieldsSubscriptions: fieldsSubscriptions, fieldsPromotedPurchaseImages: fieldsPromotedPurchaseImages, include: include, limitPromotionImages: limitPromotionImages) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -608,11 +664,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **fieldsPromotedPurchases** | [**[String]**](String.md) | the fields to include for returned resources of type promotedPurchases | [optional] 
- **fieldsSubscriptions** | [**[String]**](String.md) | the fields to include for returned resources of type subscriptions | [optional] 
  **fieldsInAppPurchases** | [**[String]**](String.md) | the fields to include for returned resources of type inAppPurchases | [optional] 
+ **fieldsSubscriptions** | [**[String]**](String.md) | the fields to include for returned resources of type subscriptions | [optional] 
  **fieldsPromotedPurchaseImages** | [**[String]**](String.md) | the fields to include for returned resources of type promotedPurchaseImages | [optional] 
- **limitPromotionImages** | **Int** | maximum number of related promotionImages returned (when they are included) | [optional] 
  **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
+ **limitPromotionImages** | **Int** | maximum number of related promotionImages returned (when they are included) | [optional] 
 
 ### Return type
 

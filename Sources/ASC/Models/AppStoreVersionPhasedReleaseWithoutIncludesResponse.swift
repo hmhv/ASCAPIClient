@@ -12,10 +12,10 @@ import AnyCodable
 
 public struct AppStoreVersionPhasedReleaseWithoutIncludesResponse: Codable, JSONEncodable, Hashable {
 
-    public var data: AppStoreVersion
+    public var data: AppStoreVersionPhasedRelease
     public var links: DocumentLinks
 
-    public init(data: AppStoreVersion, links: DocumentLinks) {
+    public init(data: AppStoreVersionPhasedRelease, links: DocumentLinks) {
         self.data = data
         self.links = links
     }

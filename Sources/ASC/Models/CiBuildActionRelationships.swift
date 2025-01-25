@@ -13,13 +13,22 @@ import AnyCodable
 public struct CiBuildActionRelationships: Codable, JSONEncodable, Hashable {
 
     public var buildRun: CiBuildActionRelationshipsBuildRun?
+    public var artifacts: AnalyticsReportInstanceRelationshipsSegments?
+    public var issues: AnalyticsReportInstanceRelationshipsSegments?
+    public var testResults: AnalyticsReportInstanceRelationshipsSegments?
 
-    public init(buildRun: CiBuildActionRelationshipsBuildRun? = nil) {
+    public init(buildRun: CiBuildActionRelationshipsBuildRun? = nil, artifacts: AnalyticsReportInstanceRelationshipsSegments? = nil, issues: AnalyticsReportInstanceRelationshipsSegments? = nil, testResults: AnalyticsReportInstanceRelationshipsSegments? = nil) {
         self.buildRun = buildRun
+        self.artifacts = artifacts
+        self.issues = issues
+        self.testResults = testResults
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case buildRun
+        case artifacts
+        case issues
+        case testResults
     }
 
     // Encodable protocol methods
@@ -27,6 +36,9 @@ public struct CiBuildActionRelationships: Codable, JSONEncodable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(buildRun, forKey: .buildRun)
+        try container.encodeIfPresent(artifacts, forKey: .artifacts)
+        try container.encodeIfPresent(issues, forKey: .issues)
+        try container.encodeIfPresent(testResults, forKey: .testResults)
     }
 }
 

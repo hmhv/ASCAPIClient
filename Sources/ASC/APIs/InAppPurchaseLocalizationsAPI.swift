@@ -149,11 +149,11 @@ open class InAppPurchaseLocalizationsAPI {
      * enum for parameter fieldsInAppPurchaseLocalizations
      */
     public enum FieldsInAppPurchaseLocalizations_inAppPurchaseLocalizationsGetInstance: String, CaseIterable {
-        case description = "description"
-        case inapppurchasev2 = "inAppPurchaseV2"
-        case locale = "locale"
         case name = "name"
+        case locale = "locale"
+        case description = "description"
         case state = "state"
+        case inapppurchasev2 = "inAppPurchaseV2"
     }
 
     /**

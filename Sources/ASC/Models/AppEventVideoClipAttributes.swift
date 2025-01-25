@@ -16,19 +16,23 @@ public struct AppEventVideoClipAttributes: Codable, JSONEncodable, Hashable {
     public var fileName: String?
     public var previewFrameTimeCode: String?
     public var videoUrl: String?
+    public var previewFrameImage: PreviewFrameImage?
     public var previewImage: ImageAsset?
     public var uploadOperations: [UploadOperation]?
     public var assetDeliveryState: AppMediaAssetState?
+    public var videoDeliveryState: AppMediaVideoState?
     public var appEventAssetType: AppEventAssetType?
 
-    public init(fileSize: Int? = nil, fileName: String? = nil, previewFrameTimeCode: String? = nil, videoUrl: String? = nil, previewImage: ImageAsset? = nil, uploadOperations: [UploadOperation]? = nil, assetDeliveryState: AppMediaAssetState? = nil, appEventAssetType: AppEventAssetType? = nil) {
+    public init(fileSize: Int? = nil, fileName: String? = nil, previewFrameTimeCode: String? = nil, videoUrl: String? = nil, previewFrameImage: PreviewFrameImage? = nil, previewImage: ImageAsset? = nil, uploadOperations: [UploadOperation]? = nil, assetDeliveryState: AppMediaAssetState? = nil, videoDeliveryState: AppMediaVideoState? = nil, appEventAssetType: AppEventAssetType? = nil) {
         self.fileSize = fileSize
         self.fileName = fileName
         self.previewFrameTimeCode = previewFrameTimeCode
         self.videoUrl = videoUrl
+        self.previewFrameImage = previewFrameImage
         self.previewImage = previewImage
         self.uploadOperations = uploadOperations
         self.assetDeliveryState = assetDeliveryState
+        self.videoDeliveryState = videoDeliveryState
         self.appEventAssetType = appEventAssetType
     }
 
@@ -37,9 +41,11 @@ public struct AppEventVideoClipAttributes: Codable, JSONEncodable, Hashable {
         case fileName
         case previewFrameTimeCode
         case videoUrl
+        case previewFrameImage
         case previewImage
         case uploadOperations
         case assetDeliveryState
+        case videoDeliveryState
         case appEventAssetType
     }
 
@@ -51,9 +57,11 @@ public struct AppEventVideoClipAttributes: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(fileName, forKey: .fileName)
         try container.encodeIfPresent(previewFrameTimeCode, forKey: .previewFrameTimeCode)
         try container.encodeIfPresent(videoUrl, forKey: .videoUrl)
+        try container.encodeIfPresent(previewFrameImage, forKey: .previewFrameImage)
         try container.encodeIfPresent(previewImage, forKey: .previewImage)
         try container.encodeIfPresent(uploadOperations, forKey: .uploadOperations)
         try container.encodeIfPresent(assetDeliveryState, forKey: .assetDeliveryState)
+        try container.encodeIfPresent(videoDeliveryState, forKey: .videoDeliveryState)
         try container.encodeIfPresent(appEventAssetType, forKey: .appEventAssetType)
     }
 }

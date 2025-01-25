@@ -13,10 +13,10 @@ import AnyCodable
 public struct SubscriptionAvailabilityResponse: Codable, JSONEncodable, Hashable {
 
     public var data: SubscriptionAvailability
-    public var included: [SubscriptionAvailabilityResponseIncludedInner]?
+    public var included: [Territory]?
     public var links: DocumentLinks
 
-    public init(data: SubscriptionAvailability, included: [SubscriptionAvailabilityResponseIncludedInner]? = nil, links: DocumentLinks) {
+    public init(data: SubscriptionAvailability, included: [Territory]? = nil, links: DocumentLinks) {
         self.data = data
         self.included = included
         self.links = links

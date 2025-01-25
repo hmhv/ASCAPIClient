@@ -15,11 +15,13 @@ public enum SubscriptionsResponseIncludedInner: Codable, JSONEncodable, Hashable
     case typeSubscriptionAppStoreReviewScreenshot(SubscriptionAppStoreReviewScreenshot)
     case typeSubscriptionAvailability(SubscriptionAvailability)
     case typeSubscriptionGroup(SubscriptionGroup)
+    case typeSubscriptionImage(SubscriptionImage)
     case typeSubscriptionIntroductoryOffer(SubscriptionIntroductoryOffer)
     case typeSubscriptionLocalization(SubscriptionLocalization)
     case typeSubscriptionOfferCode(SubscriptionOfferCode)
     case typeSubscriptionPrice(SubscriptionPrice)
     case typeSubscriptionPromotionalOffer(SubscriptionPromotionalOffer)
+    case typeWinBackOffer(WinBackOffer)
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
@@ -32,6 +34,8 @@ public enum SubscriptionsResponseIncludedInner: Codable, JSONEncodable, Hashable
             try container.encode(value)
         case .typeSubscriptionGroup(let value):
             try container.encode(value)
+        case .typeSubscriptionImage(let value):
+            try container.encode(value)
         case .typeSubscriptionIntroductoryOffer(let value):
             try container.encode(value)
         case .typeSubscriptionLocalization(let value):
@@ -41,6 +45,8 @@ public enum SubscriptionsResponseIncludedInner: Codable, JSONEncodable, Hashable
         case .typeSubscriptionPrice(let value):
             try container.encode(value)
         case .typeSubscriptionPromotionalOffer(let value):
+            try container.encode(value)
+        case .typeWinBackOffer(let value):
             try container.encode(value)
         }
     }
@@ -55,6 +61,8 @@ public enum SubscriptionsResponseIncludedInner: Codable, JSONEncodable, Hashable
             self = .typeSubscriptionAvailability(value)
         } else if let value = try? container.decode(SubscriptionGroup.self) {
             self = .typeSubscriptionGroup(value)
+        } else if let value = try? container.decode(SubscriptionImage.self) {
+            self = .typeSubscriptionImage(value)
         } else if let value = try? container.decode(SubscriptionIntroductoryOffer.self) {
             self = .typeSubscriptionIntroductoryOffer(value)
         } else if let value = try? container.decode(SubscriptionLocalization.self) {
@@ -65,6 +73,8 @@ public enum SubscriptionsResponseIncludedInner: Codable, JSONEncodable, Hashable
             self = .typeSubscriptionPrice(value)
         } else if let value = try? container.decode(SubscriptionPromotionalOffer.self) {
             self = .typeSubscriptionPromotionalOffer(value)
+        } else if let value = try? container.decode(WinBackOffer.self) {
+            self = .typeWinBackOffer(value)
         } else {
             throw DecodingError.typeMismatch(Self.Type.self, .init(codingPath: decoder.codingPath, debugDescription: "Unable to decode instance of SubscriptionsResponseIncludedInner"))
         }

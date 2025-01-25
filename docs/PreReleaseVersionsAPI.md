@@ -112,7 +112,7 @@ Name | Type | Description  | Notes
 
 # **preReleaseVersionsGetCollection**
 ```swift
-    open class func preReleaseVersionsGetCollection(filterBuildsExpired: [String]? = nil, filterBuildsProcessingState: [FilterBuildsProcessingState_preReleaseVersionsGetCollection]? = nil, filterBuildsVersion: [String]? = nil, filterPlatform: [FilterPlatform_preReleaseVersionsGetCollection]? = nil, filterVersion: [String]? = nil, filterApp: [String]? = nil, filterBuilds: [String]? = nil, sort: [Sort_preReleaseVersionsGetCollection]? = nil, fieldsPreReleaseVersions: [FieldsPreReleaseVersions_preReleaseVersionsGetCollection]? = nil, limit: Int? = nil, include: [Include_preReleaseVersionsGetCollection]? = nil, fieldsApps: [FieldsApps_preReleaseVersionsGetCollection]? = nil, fieldsBuilds: [FieldsBuilds_preReleaseVersionsGetCollection]? = nil, limitBuilds: Int? = nil, completion: @escaping (_ data: PreReleaseVersionsResponse?, _ error: Error?) -> Void)
+    open class func preReleaseVersionsGetCollection(filterBuildsExpired: [String]? = nil, filterBuildsProcessingState: [FilterBuildsProcessingState_preReleaseVersionsGetCollection]? = nil, filterBuildsVersion: [String]? = nil, filterPlatform: [FilterPlatform_preReleaseVersionsGetCollection]? = nil, filterVersion: [String]? = nil, filterApp: [String]? = nil, filterBuilds: [String]? = nil, sort: [Sort_preReleaseVersionsGetCollection]? = nil, fieldsPreReleaseVersions: [FieldsPreReleaseVersions_preReleaseVersionsGetCollection]? = nil, fieldsBuilds: [FieldsBuilds_preReleaseVersionsGetCollection]? = nil, fieldsApps: [FieldsApps_preReleaseVersionsGetCollection]? = nil, limit: Int? = nil, include: [Include_preReleaseVersionsGetCollection]? = nil, limitBuilds: Int? = nil, completion: @escaping (_ data: PreReleaseVersionsResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -131,13 +131,13 @@ let filterApp = ["inner_example"] // [String] | filter by id(s) of related 'app'
 let filterBuilds = ["inner_example"] // [String] | filter by id(s) of related 'builds' (optional)
 let sort = ["sort_example"] // [String] | comma-separated list of sort expressions; resources will be sorted as specified (optional)
 let fieldsPreReleaseVersions = ["fieldsPreReleaseVersions_example"] // [String] | the fields to include for returned resources of type preReleaseVersions (optional)
+let fieldsBuilds = ["fieldsBuilds_example"] // [String] | the fields to include for returned resources of type builds (optional)
+let fieldsApps = ["fieldsApps_example"] // [String] | the fields to include for returned resources of type apps (optional)
 let limit = 987 // Int | maximum resources per page (optional)
 let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
-let fieldsApps = ["fieldsApps_example"] // [String] | the fields to include for returned resources of type apps (optional)
-let fieldsBuilds = ["fieldsBuilds_example"] // [String] | the fields to include for returned resources of type builds (optional)
 let limitBuilds = 987 // Int | maximum number of related builds returned (when they are included) (optional)
 
-PreReleaseVersionsAPI.preReleaseVersionsGetCollection(filterBuildsExpired: filterBuildsExpired, filterBuildsProcessingState: filterBuildsProcessingState, filterBuildsVersion: filterBuildsVersion, filterPlatform: filterPlatform, filterVersion: filterVersion, filterApp: filterApp, filterBuilds: filterBuilds, sort: sort, fieldsPreReleaseVersions: fieldsPreReleaseVersions, limit: limit, include: include, fieldsApps: fieldsApps, fieldsBuilds: fieldsBuilds, limitBuilds: limitBuilds) { (response, error) in
+PreReleaseVersionsAPI.preReleaseVersionsGetCollection(filterBuildsExpired: filterBuildsExpired, filterBuildsProcessingState: filterBuildsProcessingState, filterBuildsVersion: filterBuildsVersion, filterPlatform: filterPlatform, filterVersion: filterVersion, filterApp: filterApp, filterBuilds: filterBuilds, sort: sort, fieldsPreReleaseVersions: fieldsPreReleaseVersions, fieldsBuilds: fieldsBuilds, fieldsApps: fieldsApps, limit: limit, include: include, limitBuilds: limitBuilds) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -162,10 +162,10 @@ Name | Type | Description  | Notes
  **filterBuilds** | [**[String]**](String.md) | filter by id(s) of related &#39;builds&#39; | [optional] 
  **sort** | [**[String]**](String.md) | comma-separated list of sort expressions; resources will be sorted as specified | [optional] 
  **fieldsPreReleaseVersions** | [**[String]**](String.md) | the fields to include for returned resources of type preReleaseVersions | [optional] 
+ **fieldsBuilds** | [**[String]**](String.md) | the fields to include for returned resources of type builds | [optional] 
+ **fieldsApps** | [**[String]**](String.md) | the fields to include for returned resources of type apps | [optional] 
  **limit** | **Int** | maximum resources per page | [optional] 
  **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
- **fieldsApps** | [**[String]**](String.md) | the fields to include for returned resources of type apps | [optional] 
- **fieldsBuilds** | [**[String]**](String.md) | the fields to include for returned resources of type builds | [optional] 
  **limitBuilds** | **Int** | maximum number of related builds returned (when they are included) | [optional] 
 
 ### Return type
@@ -185,7 +185,7 @@ Name | Type | Description  | Notes
 
 # **preReleaseVersionsGetInstance**
 ```swift
-    open class func preReleaseVersionsGetInstance(id: String, fieldsPreReleaseVersions: [FieldsPreReleaseVersions_preReleaseVersionsGetInstance]? = nil, include: [Include_preReleaseVersionsGetInstance]? = nil, fieldsApps: [FieldsApps_preReleaseVersionsGetInstance]? = nil, fieldsBuilds: [FieldsBuilds_preReleaseVersionsGetInstance]? = nil, limitBuilds: Int? = nil, completion: @escaping (_ data: PrereleaseVersionResponse?, _ error: Error?) -> Void)
+    open class func preReleaseVersionsGetInstance(id: String, fieldsPreReleaseVersions: [FieldsPreReleaseVersions_preReleaseVersionsGetInstance]? = nil, fieldsBuilds: [FieldsBuilds_preReleaseVersionsGetInstance]? = nil, fieldsApps: [FieldsApps_preReleaseVersionsGetInstance]? = nil, include: [Include_preReleaseVersionsGetInstance]? = nil, limitBuilds: Int? = nil, completion: @escaping (_ data: PrereleaseVersionResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -197,12 +197,12 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let fieldsPreReleaseVersions = ["fieldsPreReleaseVersions_example"] // [String] | the fields to include for returned resources of type preReleaseVersions (optional)
-let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
-let fieldsApps = ["fieldsApps_example"] // [String] | the fields to include for returned resources of type apps (optional)
 let fieldsBuilds = ["fieldsBuilds_example"] // [String] | the fields to include for returned resources of type builds (optional)
+let fieldsApps = ["fieldsApps_example"] // [String] | the fields to include for returned resources of type apps (optional)
+let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let limitBuilds = 987 // Int | maximum number of related builds returned (when they are included) (optional)
 
-PreReleaseVersionsAPI.preReleaseVersionsGetInstance(id: id, fieldsPreReleaseVersions: fieldsPreReleaseVersions, include: include, fieldsApps: fieldsApps, fieldsBuilds: fieldsBuilds, limitBuilds: limitBuilds) { (response, error) in
+PreReleaseVersionsAPI.preReleaseVersionsGetInstance(id: id, fieldsPreReleaseVersions: fieldsPreReleaseVersions, fieldsBuilds: fieldsBuilds, fieldsApps: fieldsApps, include: include, limitBuilds: limitBuilds) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -220,9 +220,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **fieldsPreReleaseVersions** | [**[String]**](String.md) | the fields to include for returned resources of type preReleaseVersions | [optional] 
- **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
- **fieldsApps** | [**[String]**](String.md) | the fields to include for returned resources of type apps | [optional] 
  **fieldsBuilds** | [**[String]**](String.md) | the fields to include for returned resources of type builds | [optional] 
+ **fieldsApps** | [**[String]**](String.md) | the fields to include for returned resources of type apps | [optional] 
+ **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **limitBuilds** | **Int** | maximum number of related builds returned (when they are included) | [optional] 
 
 ### Return type

@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 # **ciMacOsVersionsGetCollection**
 ```swift
-    open class func ciMacOsVersionsGetCollection(fieldsCiMacOsVersions: [FieldsCiMacOsVersions_ciMacOsVersionsGetCollection]? = nil, limit: Int? = nil, include: [Include_ciMacOsVersionsGetCollection]? = nil, fieldsCiXcodeVersions: [FieldsCiXcodeVersions_ciMacOsVersionsGetCollection]? = nil, limitXcodeVersions: Int? = nil, completion: @escaping (_ data: CiMacOsVersionsResponse?, _ error: Error?) -> Void)
+    open class func ciMacOsVersionsGetCollection(fieldsCiMacOsVersions: [FieldsCiMacOsVersions_ciMacOsVersionsGetCollection]? = nil, fieldsCiXcodeVersions: [FieldsCiXcodeVersions_ciMacOsVersionsGetCollection]? = nil, limit: Int? = nil, include: [Include_ciMacOsVersionsGetCollection]? = nil, limitXcodeVersions: Int? = nil, completion: @escaping (_ data: CiMacOsVersionsResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -22,12 +22,12 @@ Method | HTTP request | Description
 import ASC
 
 let fieldsCiMacOsVersions = ["fieldsCiMacOsVersions_example"] // [String] | the fields to include for returned resources of type ciMacOsVersions (optional)
+let fieldsCiXcodeVersions = ["fieldsCiXcodeVersions_example"] // [String] | the fields to include for returned resources of type ciXcodeVersions (optional)
 let limit = 987 // Int | maximum resources per page (optional)
 let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
-let fieldsCiXcodeVersions = ["fieldsCiXcodeVersions_example"] // [String] | the fields to include for returned resources of type ciXcodeVersions (optional)
 let limitXcodeVersions = 987 // Int | maximum number of related xcodeVersions returned (when they are included) (optional)
 
-CiMacOsVersionsAPI.ciMacOsVersionsGetCollection(fieldsCiMacOsVersions: fieldsCiMacOsVersions, limit: limit, include: include, fieldsCiXcodeVersions: fieldsCiXcodeVersions, limitXcodeVersions: limitXcodeVersions) { (response, error) in
+CiMacOsVersionsAPI.ciMacOsVersionsGetCollection(fieldsCiMacOsVersions: fieldsCiMacOsVersions, fieldsCiXcodeVersions: fieldsCiXcodeVersions, limit: limit, include: include, limitXcodeVersions: limitXcodeVersions) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -44,9 +44,9 @@ CiMacOsVersionsAPI.ciMacOsVersionsGetCollection(fieldsCiMacOsVersions: fieldsCiM
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **fieldsCiMacOsVersions** | [**[String]**](String.md) | the fields to include for returned resources of type ciMacOsVersions | [optional] 
+ **fieldsCiXcodeVersions** | [**[String]**](String.md) | the fields to include for returned resources of type ciXcodeVersions | [optional] 
  **limit** | **Int** | maximum resources per page | [optional] 
  **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
- **fieldsCiXcodeVersions** | [**[String]**](String.md) | the fields to include for returned resources of type ciXcodeVersions | [optional] 
  **limitXcodeVersions** | **Int** | maximum number of related xcodeVersions returned (when they are included) | [optional] 
 
 ### Return type
@@ -66,7 +66,7 @@ Name | Type | Description  | Notes
 
 # **ciMacOsVersionsGetInstance**
 ```swift
-    open class func ciMacOsVersionsGetInstance(id: String, fieldsCiMacOsVersions: [FieldsCiMacOsVersions_ciMacOsVersionsGetInstance]? = nil, include: [Include_ciMacOsVersionsGetInstance]? = nil, fieldsCiXcodeVersions: [FieldsCiXcodeVersions_ciMacOsVersionsGetInstance]? = nil, limitXcodeVersions: Int? = nil, completion: @escaping (_ data: CiMacOsVersionResponse?, _ error: Error?) -> Void)
+    open class func ciMacOsVersionsGetInstance(id: String, fieldsCiMacOsVersions: [FieldsCiMacOsVersions_ciMacOsVersionsGetInstance]? = nil, fieldsCiXcodeVersions: [FieldsCiXcodeVersions_ciMacOsVersionsGetInstance]? = nil, include: [Include_ciMacOsVersionsGetInstance]? = nil, limitXcodeVersions: Int? = nil, completion: @escaping (_ data: CiMacOsVersionResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -78,11 +78,11 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let fieldsCiMacOsVersions = ["fieldsCiMacOsVersions_example"] // [String] | the fields to include for returned resources of type ciMacOsVersions (optional)
-let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let fieldsCiXcodeVersions = ["fieldsCiXcodeVersions_example"] // [String] | the fields to include for returned resources of type ciXcodeVersions (optional)
+let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let limitXcodeVersions = 987 // Int | maximum number of related xcodeVersions returned (when they are included) (optional)
 
-CiMacOsVersionsAPI.ciMacOsVersionsGetInstance(id: id, fieldsCiMacOsVersions: fieldsCiMacOsVersions, include: include, fieldsCiXcodeVersions: fieldsCiXcodeVersions, limitXcodeVersions: limitXcodeVersions) { (response, error) in
+CiMacOsVersionsAPI.ciMacOsVersionsGetInstance(id: id, fieldsCiMacOsVersions: fieldsCiMacOsVersions, fieldsCiXcodeVersions: fieldsCiXcodeVersions, include: include, limitXcodeVersions: limitXcodeVersions) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -100,8 +100,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **fieldsCiMacOsVersions** | [**[String]**](String.md) | the fields to include for returned resources of type ciMacOsVersions | [optional] 
- **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **fieldsCiXcodeVersions** | [**[String]**](String.md) | the fields to include for returned resources of type ciXcodeVersions | [optional] 
+ **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **limitXcodeVersions** | **Int** | maximum number of related xcodeVersions returned (when they are included) | [optional] 
 
 ### Return type
@@ -121,7 +121,7 @@ Name | Type | Description  | Notes
 
 # **ciMacOsVersionsXcodeVersionsGetToManyRelated**
 ```swift
-    open class func ciMacOsVersionsXcodeVersionsGetToManyRelated(id: String, fieldsCiXcodeVersions: [FieldsCiXcodeVersions_ciMacOsVersionsXcodeVersionsGetToManyRelated]? = nil, fieldsCiMacOsVersions: [FieldsCiMacOsVersions_ciMacOsVersionsXcodeVersionsGetToManyRelated]? = nil, limit: Int? = nil, limitMacOsVersions: Int? = nil, include: [Include_ciMacOsVersionsXcodeVersionsGetToManyRelated]? = nil, completion: @escaping (_ data: CiXcodeVersionsResponse?, _ error: Error?) -> Void)
+    open class func ciMacOsVersionsXcodeVersionsGetToManyRelated(id: String, fieldsCiXcodeVersions: [FieldsCiXcodeVersions_ciMacOsVersionsXcodeVersionsGetToManyRelated]? = nil, fieldsCiMacOsVersions: [FieldsCiMacOsVersions_ciMacOsVersionsXcodeVersionsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_ciMacOsVersionsXcodeVersionsGetToManyRelated]? = nil, limitMacOsVersions: Int? = nil, completion: @escaping (_ data: CiXcodeVersionsResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -135,10 +135,10 @@ let id = "id_example" // String | the id of the requested resource
 let fieldsCiXcodeVersions = ["fieldsCiXcodeVersions_example"] // [String] | the fields to include for returned resources of type ciXcodeVersions (optional)
 let fieldsCiMacOsVersions = ["fieldsCiMacOsVersions_example"] // [String] | the fields to include for returned resources of type ciMacOsVersions (optional)
 let limit = 987 // Int | maximum resources per page (optional)
-let limitMacOsVersions = 987 // Int | maximum number of related macOsVersions returned (when they are included) (optional)
 let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
+let limitMacOsVersions = 987 // Int | maximum number of related macOsVersions returned (when they are included) (optional)
 
-CiMacOsVersionsAPI.ciMacOsVersionsXcodeVersionsGetToManyRelated(id: id, fieldsCiXcodeVersions: fieldsCiXcodeVersions, fieldsCiMacOsVersions: fieldsCiMacOsVersions, limit: limit, limitMacOsVersions: limitMacOsVersions, include: include) { (response, error) in
+CiMacOsVersionsAPI.ciMacOsVersionsXcodeVersionsGetToManyRelated(id: id, fieldsCiXcodeVersions: fieldsCiXcodeVersions, fieldsCiMacOsVersions: fieldsCiMacOsVersions, limit: limit, include: include, limitMacOsVersions: limitMacOsVersions) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -158,8 +158,8 @@ Name | Type | Description  | Notes
  **fieldsCiXcodeVersions** | [**[String]**](String.md) | the fields to include for returned resources of type ciXcodeVersions | [optional] 
  **fieldsCiMacOsVersions** | [**[String]**](String.md) | the fields to include for returned resources of type ciMacOsVersions | [optional] 
  **limit** | **Int** | maximum resources per page | [optional] 
- **limitMacOsVersions** | **Int** | maximum number of related macOsVersions returned (when they are included) | [optional] 
  **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
+ **limitMacOsVersions** | **Int** | maximum number of related macOsVersions returned (when they are included) | [optional] 
 
 ### Return type
 

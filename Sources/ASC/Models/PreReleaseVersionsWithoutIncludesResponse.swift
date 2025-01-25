@@ -12,11 +12,11 @@ import AnyCodable
 
 public struct PreReleaseVersionsWithoutIncludesResponse: Codable, JSONEncodable, Hashable {
 
-    public var data: [App]
+    public var data: [PrereleaseVersion]
     public var links: PagedDocumentLinks
     public var meta: PagingInformation?
 
-    public init(data: [App], links: PagedDocumentLinks, meta: PagingInformation? = nil) {
+    public init(data: [PrereleaseVersion], links: PagedDocumentLinks, meta: PagingInformation? = nil) {
         self.data = data
         self.links = links
         self.meta = meta

@@ -149,13 +149,27 @@ open class PromotedPurchasesAPI {
      * enum for parameter fieldsPromotedPurchases
      */
     public enum FieldsPromotedPurchases_promotedPurchasesGetInstance: String, CaseIterable {
-        case app = "app"
-        case enabled = "enabled"
-        case inapppurchasev2 = "inAppPurchaseV2"
-        case promotionimages = "promotionImages"
-        case state = "state"
-        case subscription = "subscription"
         case visibleforallusers = "visibleForAllUsers"
+        case enabled = "enabled"
+        case state = "state"
+        case inapppurchasev2 = "inAppPurchaseV2"
+        case subscription = "subscription"
+        case promotionimages = "promotionImages"
+    }
+
+    /**
+     * enum for parameter fieldsPromotedPurchaseImages
+     */
+    public enum FieldsPromotedPurchaseImages_promotedPurchasesGetInstance: String, CaseIterable {
+        case filesize = "fileSize"
+        case filename = "fileName"
+        case sourcefilechecksum = "sourceFileChecksum"
+        case assettoken = "assetToken"
+        case imageasset = "imageAsset"
+        case assettype = "assetType"
+        case uploadoperations = "uploadOperations"
+        case state = "state"
+        case promotedpurchase = "promotedPurchase"
     }
 
     /**
@@ -163,38 +177,22 @@ open class PromotedPurchasesAPI {
      */
     public enum Include_promotedPurchasesGetInstance: String, CaseIterable {
         case inapppurchasev2 = "inAppPurchaseV2"
-        case promotionimages = "promotionImages"
         case subscription = "subscription"
-    }
-
-    /**
-     * enum for parameter fieldsPromotedPurchaseImages
-     */
-    public enum FieldsPromotedPurchaseImages_promotedPurchasesGetInstance: String, CaseIterable {
-        case assettoken = "assetToken"
-        case assettype = "assetType"
-        case filename = "fileName"
-        case filesize = "fileSize"
-        case imageasset = "imageAsset"
-        case promotedpurchase = "promotedPurchase"
-        case sourcefilechecksum = "sourceFileChecksum"
-        case state = "state"
-        case uploadoperations = "uploadOperations"
-        case uploaded = "uploaded"
+        case promotionimages = "promotionImages"
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsPromotedPurchases: (query) the fields to include for returned resources of type promotedPurchases (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter fieldsPromotedPurchaseImages: (query) the fields to include for returned resources of type promotedPurchaseImages (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitPromotionImages: (query) maximum number of related promotionImages returned (when they are included) (optional)
      - returns: PromotedPurchaseResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func promotedPurchasesGetInstance(id: String, fieldsPromotedPurchases: [FieldsPromotedPurchases_promotedPurchasesGetInstance]? = nil, include: [Include_promotedPurchasesGetInstance]? = nil, fieldsPromotedPurchaseImages: [FieldsPromotedPurchaseImages_promotedPurchasesGetInstance]? = nil, limitPromotionImages: Int? = nil) async throws -> PromotedPurchaseResponse {
-        return try await promotedPurchasesGetInstanceWithRequestBuilder(id: id, fieldsPromotedPurchases: fieldsPromotedPurchases, include: include, fieldsPromotedPurchaseImages: fieldsPromotedPurchaseImages, limitPromotionImages: limitPromotionImages).execute().body
+    open class func promotedPurchasesGetInstance(id: String, fieldsPromotedPurchases: [FieldsPromotedPurchases_promotedPurchasesGetInstance]? = nil, fieldsPromotedPurchaseImages: [FieldsPromotedPurchaseImages_promotedPurchasesGetInstance]? = nil, include: [Include_promotedPurchasesGetInstance]? = nil, limitPromotionImages: Int? = nil) async throws -> PromotedPurchaseResponse {
+        return try await promotedPurchasesGetInstanceWithRequestBuilder(id: id, fieldsPromotedPurchases: fieldsPromotedPurchases, fieldsPromotedPurchaseImages: fieldsPromotedPurchaseImages, include: include, limitPromotionImages: limitPromotionImages).execute().body
     }
 
     /**
@@ -213,12 +211,12 @@ open class PromotedPurchasesAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsPromotedPurchases: (query) the fields to include for returned resources of type promotedPurchases (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter fieldsPromotedPurchaseImages: (query) the fields to include for returned resources of type promotedPurchaseImages (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitPromotionImages: (query) maximum number of related promotionImages returned (when they are included) (optional)
      - returns: RequestBuilder<PromotedPurchaseResponse> 
      */
-    open class func promotedPurchasesGetInstanceWithRequestBuilder(id: String, fieldsPromotedPurchases: [FieldsPromotedPurchases_promotedPurchasesGetInstance]? = nil, include: [Include_promotedPurchasesGetInstance]? = nil, fieldsPromotedPurchaseImages: [FieldsPromotedPurchaseImages_promotedPurchasesGetInstance]? = nil, limitPromotionImages: Int? = nil) -> RequestBuilder<PromotedPurchaseResponse> {
+    open class func promotedPurchasesGetInstanceWithRequestBuilder(id: String, fieldsPromotedPurchases: [FieldsPromotedPurchases_promotedPurchasesGetInstance]? = nil, fieldsPromotedPurchaseImages: [FieldsPromotedPurchaseImages_promotedPurchasesGetInstance]? = nil, include: [Include_promotedPurchasesGetInstance]? = nil, limitPromotionImages: Int? = nil) -> RequestBuilder<PromotedPurchaseResponse> {
         var localVariablePath = "/v1/promotedPurchases/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -229,8 +227,8 @@ open class PromotedPurchasesAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[promotedPurchases]": (wrappedValue: fieldsPromotedPurchases?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "fields[promotedPurchaseImages]": (wrappedValue: fieldsPromotedPurchaseImages?.encodeToJSON(), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "limit[promotionImages]": (wrappedValue: limitPromotionImages?.encodeToJSON(), isExplode: true),
         ])
 
@@ -266,32 +264,30 @@ open class PromotedPurchasesAPI {
     }
 
     /**
-     * enum for parameter fieldsPromotedPurchases
-     */
-    public enum FieldsPromotedPurchases_promotedPurchasesPromotionImagesGetToManyRelated: String, CaseIterable {
-        case app = "app"
-        case enabled = "enabled"
-        case inapppurchasev2 = "inAppPurchaseV2"
-        case promotionimages = "promotionImages"
-        case state = "state"
-        case subscription = "subscription"
-        case visibleforallusers = "visibleForAllUsers"
-    }
-
-    /**
      * enum for parameter fieldsPromotedPurchaseImages
      */
     public enum FieldsPromotedPurchaseImages_promotedPurchasesPromotionImagesGetToManyRelated: String, CaseIterable {
-        case assettoken = "assetToken"
-        case assettype = "assetType"
-        case filename = "fileName"
         case filesize = "fileSize"
-        case imageasset = "imageAsset"
-        case promotedpurchase = "promotedPurchase"
+        case filename = "fileName"
         case sourcefilechecksum = "sourceFileChecksum"
-        case state = "state"
+        case assettoken = "assetToken"
+        case imageasset = "imageAsset"
+        case assettype = "assetType"
         case uploadoperations = "uploadOperations"
-        case uploaded = "uploaded"
+        case state = "state"
+        case promotedpurchase = "promotedPurchase"
+    }
+
+    /**
+     * enum for parameter fieldsPromotedPurchases
+     */
+    public enum FieldsPromotedPurchases_promotedPurchasesPromotionImagesGetToManyRelated: String, CaseIterable {
+        case visibleforallusers = "visibleForAllUsers"
+        case enabled = "enabled"
+        case state = "state"
+        case inapppurchasev2 = "inAppPurchaseV2"
+        case subscription = "subscription"
+        case promotionimages = "promotionImages"
     }
 
     /**
@@ -304,21 +300,23 @@ open class PromotedPurchasesAPI {
     /**
 
      - parameter id: (path) the id of the requested resource 
-     - parameter fieldsPromotedPurchases: (query) the fields to include for returned resources of type promotedPurchases (optional)
      - parameter fieldsPromotedPurchaseImages: (query) the fields to include for returned resources of type promotedPurchaseImages (optional)
+     - parameter fieldsPromotedPurchases: (query) the fields to include for returned resources of type promotedPurchases (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: PromotedPurchaseImagesResponse
      */
+    @available(*, deprecated, message: "This operation is deprecated.")
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func promotedPurchasesPromotionImagesGetToManyRelated(id: String, fieldsPromotedPurchases: [FieldsPromotedPurchases_promotedPurchasesPromotionImagesGetToManyRelated]? = nil, fieldsPromotedPurchaseImages: [FieldsPromotedPurchaseImages_promotedPurchasesPromotionImagesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_promotedPurchasesPromotionImagesGetToManyRelated]? = nil) async throws -> PromotedPurchaseImagesResponse {
-        return try await promotedPurchasesPromotionImagesGetToManyRelatedWithRequestBuilder(id: id, fieldsPromotedPurchases: fieldsPromotedPurchases, fieldsPromotedPurchaseImages: fieldsPromotedPurchaseImages, limit: limit, include: include).execute().body
+    open class func promotedPurchasesPromotionImagesGetToManyRelated(id: String, fieldsPromotedPurchaseImages: [FieldsPromotedPurchaseImages_promotedPurchasesPromotionImagesGetToManyRelated]? = nil, fieldsPromotedPurchases: [FieldsPromotedPurchases_promotedPurchasesPromotionImagesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_promotedPurchasesPromotionImagesGetToManyRelated]? = nil) async throws -> PromotedPurchaseImagesResponse {
+        return try await promotedPurchasesPromotionImagesGetToManyRelatedWithRequestBuilder(id: id, fieldsPromotedPurchaseImages: fieldsPromotedPurchaseImages, fieldsPromotedPurchases: fieldsPromotedPurchases, limit: limit, include: include).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
      - returns: PromotedPurchaseImagesResponse
      */
+    @available(*, deprecated, message: "This operation is deprecated.")
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     open class func promotedPurchasesPromotionImagesGetToManyRelated(urlString: String) async throws -> PromotedPurchaseImagesResponse {
         return try await promotedPurchasesPromotionImagesGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
@@ -330,13 +328,14 @@ open class PromotedPurchasesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
-     - parameter fieldsPromotedPurchases: (query) the fields to include for returned resources of type promotedPurchases (optional)
      - parameter fieldsPromotedPurchaseImages: (query) the fields to include for returned resources of type promotedPurchaseImages (optional)
+     - parameter fieldsPromotedPurchases: (query) the fields to include for returned resources of type promotedPurchases (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: RequestBuilder<PromotedPurchaseImagesResponse> 
      */
-    open class func promotedPurchasesPromotionImagesGetToManyRelatedWithRequestBuilder(id: String, fieldsPromotedPurchases: [FieldsPromotedPurchases_promotedPurchasesPromotionImagesGetToManyRelated]? = nil, fieldsPromotedPurchaseImages: [FieldsPromotedPurchaseImages_promotedPurchasesPromotionImagesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_promotedPurchasesPromotionImagesGetToManyRelated]? = nil) -> RequestBuilder<PromotedPurchaseImagesResponse> {
+    @available(*, deprecated, message: "This operation is deprecated.")
+    open class func promotedPurchasesPromotionImagesGetToManyRelatedWithRequestBuilder(id: String, fieldsPromotedPurchaseImages: [FieldsPromotedPurchaseImages_promotedPurchasesPromotionImagesGetToManyRelated]? = nil, fieldsPromotedPurchases: [FieldsPromotedPurchases_promotedPurchasesPromotionImagesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_promotedPurchasesPromotionImagesGetToManyRelated]? = nil) -> RequestBuilder<PromotedPurchaseImagesResponse> {
         var localVariablePath = "/v1/promotedPurchases/{id}/promotionImages"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -346,8 +345,8 @@ open class PromotedPurchasesAPI {
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[promotedPurchases]": (wrappedValue: fieldsPromotedPurchases?.encodeToJSON(), isExplode: false),
             "fields[promotedPurchaseImages]": (wrappedValue: fieldsPromotedPurchaseImages?.encodeToJSON(), isExplode: false),
+            "fields[promotedPurchases]": (wrappedValue: fieldsPromotedPurchases?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
         ])
@@ -371,6 +370,7 @@ open class PromotedPurchasesAPI {
      - parameter urlString: next or first url from App Store Connect API
      - returns: RequestBuilder<PromotedPurchaseImagesResponse> 
      */
+    @available(*, deprecated, message: "This operation is deprecated.")
     open class func promotedPurchasesPromotionImagesGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<PromotedPurchaseImagesResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :

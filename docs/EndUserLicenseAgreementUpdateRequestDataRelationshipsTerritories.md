@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [AppAvailabilityRelationshipsAvailableTerritoriesDataInner] |  | [optional] 
+**data** | [AppPricePointV3RelationshipsTerritoryData] |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

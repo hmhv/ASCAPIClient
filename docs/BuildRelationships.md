@@ -9,11 +9,13 @@ Name | Type | Description | Notes
 **betaBuildLocalizations** | [**BuildRelationshipsBetaBuildLocalizations**](BuildRelationshipsBetaBuildLocalizations.md) |  | [optional] 
 **appEncryptionDeclaration** | [**BuildRelationshipsAppEncryptionDeclaration**](BuildRelationshipsAppEncryptionDeclaration.md) |  | [optional] 
 **betaAppReviewSubmission** | [**BuildRelationshipsBetaAppReviewSubmission**](BuildRelationshipsBetaAppReviewSubmission.md) |  | [optional] 
-**app** | [**AppAvailabilityRelationshipsApp**](AppAvailabilityRelationshipsApp.md) |  | [optional] 
+**app** | [**BetaAppLocalizationRelationshipsApp**](BetaAppLocalizationRelationshipsApp.md) |  | [optional] 
 **buildBetaDetail** | [**BuildRelationshipsBuildBetaDetail**](BuildRelationshipsBuildBetaDetail.md) |  | [optional] 
 **appStoreVersion** | [**AppClipDefaultExperienceRelationshipsReleaseWithAppStoreVersion**](AppClipDefaultExperienceRelationshipsReleaseWithAppStoreVersion.md) |  | [optional] 
 **icons** | [**BuildRelationshipsIcons**](BuildRelationshipsIcons.md) |  | [optional] 
 **buildBundles** | [**BuildRelationshipsBuildBundles**](BuildRelationshipsBuildBundles.md) |  | [optional] 
+**perfPowerMetrics** | [**AnalyticsReportInstanceRelationshipsSegments**](AnalyticsReportInstanceRelationshipsSegments.md) |  | [optional] 
+**diagnosticSignatures** | [**AnalyticsReportInstanceRelationshipsSegments**](AnalyticsReportInstanceRelationshipsSegments.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

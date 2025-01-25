@@ -12,10 +12,10 @@ import AnyCodable
 
 public struct AppStoreReviewDetailRelationships: Codable, JSONEncodable, Hashable {
 
-    public var appStoreVersion: AppClipDefaultExperienceRelationshipsReleaseWithAppStoreVersion?
+    public var appStoreVersion: AppClipDefaultExperienceCreateRequestDataRelationshipsReleaseWithAppStoreVersion?
     public var appStoreReviewAttachments: AppStoreReviewDetailRelationshipsAppStoreReviewAttachments?
 
-    public init(appStoreVersion: AppClipDefaultExperienceRelationshipsReleaseWithAppStoreVersion? = nil, appStoreReviewAttachments: AppStoreReviewDetailRelationshipsAppStoreReviewAttachments? = nil) {
+    public init(appStoreVersion: AppClipDefaultExperienceCreateRequestDataRelationshipsReleaseWithAppStoreVersion? = nil, appStoreReviewAttachments: AppStoreReviewDetailRelationshipsAppStoreReviewAttachments? = nil) {
         self.appStoreVersion = appStoreVersion
         self.appStoreReviewAttachments = appStoreReviewAttachments
     }

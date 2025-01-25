@@ -108,7 +108,7 @@ Void (empty response body)
 
 # **gameCenterLeaderboardSetMemberLocalizationsGameCenterLeaderboardGetToOneRelated**
 ```swift
-    open class func gameCenterLeaderboardSetMemberLocalizationsGameCenterLeaderboardGetToOneRelated(id: String, fieldsGameCenterLeaderboardLocalizations: [FieldsGameCenterLeaderboardLocalizations_gameCenterLeaderboardSetMemberLocalizationsGameCenterLeaderboardGetToOneRelated]? = nil, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_gameCenterLeaderboardSetMemberLocalizationsGameCenterLeaderboardGetToOneRelated]? = nil, fieldsGameCenterGroups: [FieldsGameCenterGroups_gameCenterLeaderboardSetMemberLocalizationsGameCenterLeaderboardGetToOneRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterLeaderboardSetMemberLocalizationsGameCenterLeaderboardGetToOneRelated]? = nil, fieldsGameCenterLeaderboards: [FieldsGameCenterLeaderboards_gameCenterLeaderboardSetMemberLocalizationsGameCenterLeaderboardGetToOneRelated]? = nil, fieldsGameCenterLeaderboardReleases: [FieldsGameCenterLeaderboardReleases_gameCenterLeaderboardSetMemberLocalizationsGameCenterLeaderboardGetToOneRelated]? = nil, limitGameCenterLeaderboardSets: Int? = nil, limitLocalizations: Int? = nil, limitReleases: Int? = nil, include: [Include_gameCenterLeaderboardSetMemberLocalizationsGameCenterLeaderboardGetToOneRelated]? = nil, completion: @escaping (_ data: GameCenterLeaderboardResponse?, _ error: Error?) -> Void)
+    open class func gameCenterLeaderboardSetMemberLocalizationsGameCenterLeaderboardGetToOneRelated(id: String, fieldsGameCenterLeaderboards: [FieldsGameCenterLeaderboards_gameCenterLeaderboardSetMemberLocalizationsGameCenterLeaderboardGetToOneRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterLeaderboardSetMemberLocalizationsGameCenterLeaderboardGetToOneRelated]? = nil, fieldsGameCenterGroups: [FieldsGameCenterGroups_gameCenterLeaderboardSetMemberLocalizationsGameCenterLeaderboardGetToOneRelated]? = nil, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_gameCenterLeaderboardSetMemberLocalizationsGameCenterLeaderboardGetToOneRelated]? = nil, fieldsGameCenterLeaderboardLocalizations: [FieldsGameCenterLeaderboardLocalizations_gameCenterLeaderboardSetMemberLocalizationsGameCenterLeaderboardGetToOneRelated]? = nil, fieldsGameCenterLeaderboardReleases: [FieldsGameCenterLeaderboardReleases_gameCenterLeaderboardSetMemberLocalizationsGameCenterLeaderboardGetToOneRelated]? = nil, include: [Include_gameCenterLeaderboardSetMemberLocalizationsGameCenterLeaderboardGetToOneRelated]? = nil, limitGameCenterLeaderboardSets: Int? = nil, limitLocalizations: Int? = nil, limitReleases: Int? = nil, completion: @escaping (_ data: GameCenterLeaderboardResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -119,18 +119,18 @@ Void (empty response body)
 import ASC
 
 let id = "id_example" // String | the id of the requested resource
-let fieldsGameCenterLeaderboardLocalizations = ["fieldsGameCenterLeaderboardLocalizations_example"] // [String] | the fields to include for returned resources of type gameCenterLeaderboardLocalizations (optional)
-let fieldsGameCenterLeaderboardSets = ["fieldsGameCenterLeaderboardSets_example"] // [String] | the fields to include for returned resources of type gameCenterLeaderboardSets (optional)
-let fieldsGameCenterGroups = ["fieldsGameCenterGroups_example"] // [String] | the fields to include for returned resources of type gameCenterGroups (optional)
-let fieldsGameCenterDetails = ["fieldsGameCenterDetails_example"] // [String] | the fields to include for returned resources of type gameCenterDetails (optional)
 let fieldsGameCenterLeaderboards = ["fieldsGameCenterLeaderboards_example"] // [String] | the fields to include for returned resources of type gameCenterLeaderboards (optional)
+let fieldsGameCenterDetails = ["fieldsGameCenterDetails_example"] // [String] | the fields to include for returned resources of type gameCenterDetails (optional)
+let fieldsGameCenterGroups = ["fieldsGameCenterGroups_example"] // [String] | the fields to include for returned resources of type gameCenterGroups (optional)
+let fieldsGameCenterLeaderboardSets = ["fieldsGameCenterLeaderboardSets_example"] // [String] | the fields to include for returned resources of type gameCenterLeaderboardSets (optional)
+let fieldsGameCenterLeaderboardLocalizations = ["fieldsGameCenterLeaderboardLocalizations_example"] // [String] | the fields to include for returned resources of type gameCenterLeaderboardLocalizations (optional)
 let fieldsGameCenterLeaderboardReleases = ["fieldsGameCenterLeaderboardReleases_example"] // [String] | the fields to include for returned resources of type gameCenterLeaderboardReleases (optional)
+let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let limitGameCenterLeaderboardSets = 987 // Int | maximum number of related gameCenterLeaderboardSets returned (when they are included) (optional)
 let limitLocalizations = 987 // Int | maximum number of related localizations returned (when they are included) (optional)
 let limitReleases = 987 // Int | maximum number of related releases returned (when they are included) (optional)
-let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 
-GameCenterLeaderboardSetMemberLocalizationsAPI.gameCenterLeaderboardSetMemberLocalizationsGameCenterLeaderboardGetToOneRelated(id: id, fieldsGameCenterLeaderboardLocalizations: fieldsGameCenterLeaderboardLocalizations, fieldsGameCenterLeaderboardSets: fieldsGameCenterLeaderboardSets, fieldsGameCenterGroups: fieldsGameCenterGroups, fieldsGameCenterDetails: fieldsGameCenterDetails, fieldsGameCenterLeaderboards: fieldsGameCenterLeaderboards, fieldsGameCenterLeaderboardReleases: fieldsGameCenterLeaderboardReleases, limitGameCenterLeaderboardSets: limitGameCenterLeaderboardSets, limitLocalizations: limitLocalizations, limitReleases: limitReleases, include: include) { (response, error) in
+GameCenterLeaderboardSetMemberLocalizationsAPI.gameCenterLeaderboardSetMemberLocalizationsGameCenterLeaderboardGetToOneRelated(id: id, fieldsGameCenterLeaderboards: fieldsGameCenterLeaderboards, fieldsGameCenterDetails: fieldsGameCenterDetails, fieldsGameCenterGroups: fieldsGameCenterGroups, fieldsGameCenterLeaderboardSets: fieldsGameCenterLeaderboardSets, fieldsGameCenterLeaderboardLocalizations: fieldsGameCenterLeaderboardLocalizations, fieldsGameCenterLeaderboardReleases: fieldsGameCenterLeaderboardReleases, include: include, limitGameCenterLeaderboardSets: limitGameCenterLeaderboardSets, limitLocalizations: limitLocalizations, limitReleases: limitReleases) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -147,16 +147,16 @@ GameCenterLeaderboardSetMemberLocalizationsAPI.gameCenterLeaderboardSetMemberLoc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
- **fieldsGameCenterLeaderboardLocalizations** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterLeaderboardLocalizations | [optional] 
- **fieldsGameCenterLeaderboardSets** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterLeaderboardSets | [optional] 
- **fieldsGameCenterGroups** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterGroups | [optional] 
- **fieldsGameCenterDetails** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterDetails | [optional] 
  **fieldsGameCenterLeaderboards** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterLeaderboards | [optional] 
+ **fieldsGameCenterDetails** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterDetails | [optional] 
+ **fieldsGameCenterGroups** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterGroups | [optional] 
+ **fieldsGameCenterLeaderboardSets** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterLeaderboardSets | [optional] 
+ **fieldsGameCenterLeaderboardLocalizations** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterLeaderboardLocalizations | [optional] 
  **fieldsGameCenterLeaderboardReleases** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterLeaderboardReleases | [optional] 
+ **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **limitGameCenterLeaderboardSets** | **Int** | maximum number of related gameCenterLeaderboardSets returned (when they are included) | [optional] 
  **limitLocalizations** | **Int** | maximum number of related localizations returned (when they are included) | [optional] 
  **limitReleases** | **Int** | maximum number of related releases returned (when they are included) | [optional] 
- **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
 
 ### Return type
 
@@ -175,7 +175,7 @@ Name | Type | Description  | Notes
 
 # **gameCenterLeaderboardSetMemberLocalizationsGameCenterLeaderboardSetGetToOneRelated**
 ```swift
-    open class func gameCenterLeaderboardSetMemberLocalizationsGameCenterLeaderboardSetGetToOneRelated(id: String, fieldsGameCenterLeaderboardSetLocalizations: [FieldsGameCenterLeaderboardSetLocalizations_gameCenterLeaderboardSetMemberLocalizationsGameCenterLeaderboardSetGetToOneRelated]? = nil, fieldsGameCenterLeaderboardSetReleases: [FieldsGameCenterLeaderboardSetReleases_gameCenterLeaderboardSetMemberLocalizationsGameCenterLeaderboardSetGetToOneRelated]? = nil, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_gameCenterLeaderboardSetMemberLocalizationsGameCenterLeaderboardSetGetToOneRelated]? = nil, fieldsGameCenterGroups: [FieldsGameCenterGroups_gameCenterLeaderboardSetMemberLocalizationsGameCenterLeaderboardSetGetToOneRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterLeaderboardSetMemberLocalizationsGameCenterLeaderboardSetGetToOneRelated]? = nil, fieldsGameCenterLeaderboards: [FieldsGameCenterLeaderboards_gameCenterLeaderboardSetMemberLocalizationsGameCenterLeaderboardSetGetToOneRelated]? = nil, limitLocalizations: Int? = nil, limitGameCenterLeaderboards: Int? = nil, limitReleases: Int? = nil, include: [Include_gameCenterLeaderboardSetMemberLocalizationsGameCenterLeaderboardSetGetToOneRelated]? = nil, completion: @escaping (_ data: GameCenterLeaderboardSetResponse?, _ error: Error?) -> Void)
+    open class func gameCenterLeaderboardSetMemberLocalizationsGameCenterLeaderboardSetGetToOneRelated(id: String, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_gameCenterLeaderboardSetMemberLocalizationsGameCenterLeaderboardSetGetToOneRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterLeaderboardSetMemberLocalizationsGameCenterLeaderboardSetGetToOneRelated]? = nil, fieldsGameCenterGroups: [FieldsGameCenterGroups_gameCenterLeaderboardSetMemberLocalizationsGameCenterLeaderboardSetGetToOneRelated]? = nil, fieldsGameCenterLeaderboardSetLocalizations: [FieldsGameCenterLeaderboardSetLocalizations_gameCenterLeaderboardSetMemberLocalizationsGameCenterLeaderboardSetGetToOneRelated]? = nil, fieldsGameCenterLeaderboards: [FieldsGameCenterLeaderboards_gameCenterLeaderboardSetMemberLocalizationsGameCenterLeaderboardSetGetToOneRelated]? = nil, fieldsGameCenterLeaderboardSetReleases: [FieldsGameCenterLeaderboardSetReleases_gameCenterLeaderboardSetMemberLocalizationsGameCenterLeaderboardSetGetToOneRelated]? = nil, include: [Include_gameCenterLeaderboardSetMemberLocalizationsGameCenterLeaderboardSetGetToOneRelated]? = nil, limitLocalizations: Int? = nil, limitGameCenterLeaderboards: Int? = nil, limitReleases: Int? = nil, completion: @escaping (_ data: GameCenterLeaderboardSetResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -186,18 +186,18 @@ Name | Type | Description  | Notes
 import ASC
 
 let id = "id_example" // String | the id of the requested resource
-let fieldsGameCenterLeaderboardSetLocalizations = ["fieldsGameCenterLeaderboardSetLocalizations_example"] // [String] | the fields to include for returned resources of type gameCenterLeaderboardSetLocalizations (optional)
-let fieldsGameCenterLeaderboardSetReleases = ["fieldsGameCenterLeaderboardSetReleases_example"] // [String] | the fields to include for returned resources of type gameCenterLeaderboardSetReleases (optional)
 let fieldsGameCenterLeaderboardSets = ["fieldsGameCenterLeaderboardSets_example"] // [String] | the fields to include for returned resources of type gameCenterLeaderboardSets (optional)
-let fieldsGameCenterGroups = ["fieldsGameCenterGroups_example"] // [String] | the fields to include for returned resources of type gameCenterGroups (optional)
 let fieldsGameCenterDetails = ["fieldsGameCenterDetails_example"] // [String] | the fields to include for returned resources of type gameCenterDetails (optional)
+let fieldsGameCenterGroups = ["fieldsGameCenterGroups_example"] // [String] | the fields to include for returned resources of type gameCenterGroups (optional)
+let fieldsGameCenterLeaderboardSetLocalizations = ["fieldsGameCenterLeaderboardSetLocalizations_example"] // [String] | the fields to include for returned resources of type gameCenterLeaderboardSetLocalizations (optional)
 let fieldsGameCenterLeaderboards = ["fieldsGameCenterLeaderboards_example"] // [String] | the fields to include for returned resources of type gameCenterLeaderboards (optional)
+let fieldsGameCenterLeaderboardSetReleases = ["fieldsGameCenterLeaderboardSetReleases_example"] // [String] | the fields to include for returned resources of type gameCenterLeaderboardSetReleases (optional)
+let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let limitLocalizations = 987 // Int | maximum number of related localizations returned (when they are included) (optional)
 let limitGameCenterLeaderboards = 987 // Int | maximum number of related gameCenterLeaderboards returned (when they are included) (optional)
 let limitReleases = 987 // Int | maximum number of related releases returned (when they are included) (optional)
-let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 
-GameCenterLeaderboardSetMemberLocalizationsAPI.gameCenterLeaderboardSetMemberLocalizationsGameCenterLeaderboardSetGetToOneRelated(id: id, fieldsGameCenterLeaderboardSetLocalizations: fieldsGameCenterLeaderboardSetLocalizations, fieldsGameCenterLeaderboardSetReleases: fieldsGameCenterLeaderboardSetReleases, fieldsGameCenterLeaderboardSets: fieldsGameCenterLeaderboardSets, fieldsGameCenterGroups: fieldsGameCenterGroups, fieldsGameCenterDetails: fieldsGameCenterDetails, fieldsGameCenterLeaderboards: fieldsGameCenterLeaderboards, limitLocalizations: limitLocalizations, limitGameCenterLeaderboards: limitGameCenterLeaderboards, limitReleases: limitReleases, include: include) { (response, error) in
+GameCenterLeaderboardSetMemberLocalizationsAPI.gameCenterLeaderboardSetMemberLocalizationsGameCenterLeaderboardSetGetToOneRelated(id: id, fieldsGameCenterLeaderboardSets: fieldsGameCenterLeaderboardSets, fieldsGameCenterDetails: fieldsGameCenterDetails, fieldsGameCenterGroups: fieldsGameCenterGroups, fieldsGameCenterLeaderboardSetLocalizations: fieldsGameCenterLeaderboardSetLocalizations, fieldsGameCenterLeaderboards: fieldsGameCenterLeaderboards, fieldsGameCenterLeaderboardSetReleases: fieldsGameCenterLeaderboardSetReleases, include: include, limitLocalizations: limitLocalizations, limitGameCenterLeaderboards: limitGameCenterLeaderboards, limitReleases: limitReleases) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -214,16 +214,16 @@ GameCenterLeaderboardSetMemberLocalizationsAPI.gameCenterLeaderboardSetMemberLoc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
- **fieldsGameCenterLeaderboardSetLocalizations** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterLeaderboardSetLocalizations | [optional] 
- **fieldsGameCenterLeaderboardSetReleases** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterLeaderboardSetReleases | [optional] 
  **fieldsGameCenterLeaderboardSets** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterLeaderboardSets | [optional] 
- **fieldsGameCenterGroups** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterGroups | [optional] 
  **fieldsGameCenterDetails** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterDetails | [optional] 
+ **fieldsGameCenterGroups** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterGroups | [optional] 
+ **fieldsGameCenterLeaderboardSetLocalizations** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterLeaderboardSetLocalizations | [optional] 
  **fieldsGameCenterLeaderboards** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterLeaderboards | [optional] 
+ **fieldsGameCenterLeaderboardSetReleases** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterLeaderboardSetReleases | [optional] 
+ **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **limitLocalizations** | **Int** | maximum number of related localizations returned (when they are included) | [optional] 
  **limitGameCenterLeaderboards** | **Int** | maximum number of related gameCenterLeaderboards returned (when they are included) | [optional] 
  **limitReleases** | **Int** | maximum number of related releases returned (when they are included) | [optional] 
- **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
 
 ### Return type
 
@@ -242,7 +242,7 @@ Name | Type | Description  | Notes
 
 # **gameCenterLeaderboardSetMemberLocalizationsGetCollection**
 ```swift
-    open class func gameCenterLeaderboardSetMemberLocalizationsGetCollection(filterGameCenterLeaderboard: [String], filterGameCenterLeaderboardSet: [String], fieldsGameCenterLeaderboardSetMemberLocalizations: [FieldsGameCenterLeaderboardSetMemberLocalizations_gameCenterLeaderboardSetMemberLocalizationsGetCollection]? = nil, limit: Int? = nil, include: [Include_gameCenterLeaderboardSetMemberLocalizationsGetCollection]? = nil, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_gameCenterLeaderboardSetMemberLocalizationsGetCollection]? = nil, fieldsGameCenterLeaderboards: [FieldsGameCenterLeaderboards_gameCenterLeaderboardSetMemberLocalizationsGetCollection]? = nil, completion: @escaping (_ data: GameCenterLeaderboardSetMemberLocalizationsResponse?, _ error: Error?) -> Void)
+    open class func gameCenterLeaderboardSetMemberLocalizationsGetCollection(filterGameCenterLeaderboardSet: [String], filterGameCenterLeaderboard: [String], fieldsGameCenterLeaderboardSetMemberLocalizations: [FieldsGameCenterLeaderboardSetMemberLocalizations_gameCenterLeaderboardSetMemberLocalizationsGetCollection]? = nil, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_gameCenterLeaderboardSetMemberLocalizationsGetCollection]? = nil, fieldsGameCenterLeaderboards: [FieldsGameCenterLeaderboards_gameCenterLeaderboardSetMemberLocalizationsGetCollection]? = nil, limit: Int? = nil, include: [Include_gameCenterLeaderboardSetMemberLocalizationsGetCollection]? = nil, completion: @escaping (_ data: GameCenterLeaderboardSetMemberLocalizationsResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -252,15 +252,15 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import ASC
 
-let filterGameCenterLeaderboard = ["inner_example"] // [String] | filter by id(s) of related 'gameCenterLeaderboard'
 let filterGameCenterLeaderboardSet = ["inner_example"] // [String] | filter by id(s) of related 'gameCenterLeaderboardSet'
+let filterGameCenterLeaderboard = ["inner_example"] // [String] | filter by id(s) of related 'gameCenterLeaderboard'
 let fieldsGameCenterLeaderboardSetMemberLocalizations = ["fieldsGameCenterLeaderboardSetMemberLocalizations_example"] // [String] | the fields to include for returned resources of type gameCenterLeaderboardSetMemberLocalizations (optional)
-let limit = 987 // Int | maximum resources per page (optional)
-let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let fieldsGameCenterLeaderboardSets = ["fieldsGameCenterLeaderboardSets_example"] // [String] | the fields to include for returned resources of type gameCenterLeaderboardSets (optional)
 let fieldsGameCenterLeaderboards = ["fieldsGameCenterLeaderboards_example"] // [String] | the fields to include for returned resources of type gameCenterLeaderboards (optional)
+let limit = 987 // Int | maximum resources per page (optional)
+let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 
-GameCenterLeaderboardSetMemberLocalizationsAPI.gameCenterLeaderboardSetMemberLocalizationsGetCollection(filterGameCenterLeaderboard: filterGameCenterLeaderboard, filterGameCenterLeaderboardSet: filterGameCenterLeaderboardSet, fieldsGameCenterLeaderboardSetMemberLocalizations: fieldsGameCenterLeaderboardSetMemberLocalizations, limit: limit, include: include, fieldsGameCenterLeaderboardSets: fieldsGameCenterLeaderboardSets, fieldsGameCenterLeaderboards: fieldsGameCenterLeaderboards) { (response, error) in
+GameCenterLeaderboardSetMemberLocalizationsAPI.gameCenterLeaderboardSetMemberLocalizationsGetCollection(filterGameCenterLeaderboardSet: filterGameCenterLeaderboardSet, filterGameCenterLeaderboard: filterGameCenterLeaderboard, fieldsGameCenterLeaderboardSetMemberLocalizations: fieldsGameCenterLeaderboardSetMemberLocalizations, fieldsGameCenterLeaderboardSets: fieldsGameCenterLeaderboardSets, fieldsGameCenterLeaderboards: fieldsGameCenterLeaderboards, limit: limit, include: include) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -276,13 +276,13 @@ GameCenterLeaderboardSetMemberLocalizationsAPI.gameCenterLeaderboardSetMemberLoc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **filterGameCenterLeaderboard** | [**[String]**](String.md) | filter by id(s) of related &#39;gameCenterLeaderboard&#39; | 
  **filterGameCenterLeaderboardSet** | [**[String]**](String.md) | filter by id(s) of related &#39;gameCenterLeaderboardSet&#39; | 
+ **filterGameCenterLeaderboard** | [**[String]**](String.md) | filter by id(s) of related &#39;gameCenterLeaderboard&#39; | 
  **fieldsGameCenterLeaderboardSetMemberLocalizations** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterLeaderboardSetMemberLocalizations | [optional] 
- **limit** | **Int** | maximum resources per page | [optional] 
- **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **fieldsGameCenterLeaderboardSets** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterLeaderboardSets | [optional] 
  **fieldsGameCenterLeaderboards** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterLeaderboards | [optional] 
+ **limit** | **Int** | maximum resources per page | [optional] 
+ **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
 
 ### Return type
 

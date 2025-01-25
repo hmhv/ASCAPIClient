@@ -15,315 +15,11 @@ open class AppPricePointsAPI {
     /**
      * enum for parameter fieldsAppPricePoints
      */
-    public enum FieldsAppPricePoints_appPricePointsGetCollection: String, CaseIterable {
-        case customerprice = "customerPrice"
-        case pricetier = "priceTier"
-        case proceeds = "proceeds"
-        case territory = "territory"
-    }
-
-    /**
-     * enum for parameter include
-     */
-    public enum Include_appPricePointsGetCollection: String, CaseIterable {
-        case pricetier = "priceTier"
-        case territory = "territory"
-    }
-
-    /**
-     * enum for parameter fieldsTerritories
-     */
-    public enum FieldsTerritories_appPricePointsGetCollection: String, CaseIterable {
-        case currency = "currency"
-    }
-
-    /**
-
-     - parameter filterPriceTier: (query) filter by id(s) of related &#39;priceTier&#39; (optional)
-     - parameter filterTerritory: (query) filter by id(s) of related &#39;territory&#39; (optional)
-     - parameter fieldsAppPricePoints: (query) the fields to include for returned resources of type appPricePoints (optional)
-     - parameter limit: (query) maximum resources per page (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
-     - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
-     - returns: AppPricePointsResponse
-     */
-    @available(*, deprecated, message: "This operation is deprecated.")
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appPricePointsGetCollection(filterPriceTier: [String]? = nil, filterTerritory: [String]? = nil, fieldsAppPricePoints: [FieldsAppPricePoints_appPricePointsGetCollection]? = nil, limit: Int? = nil, include: [Include_appPricePointsGetCollection]? = nil, fieldsTerritories: [FieldsTerritories_appPricePointsGetCollection]? = nil) async throws -> AppPricePointsResponse {
-        return try await appPricePointsGetCollectionWithRequestBuilder(filterPriceTier: filterPriceTier, filterTerritory: filterTerritory, fieldsAppPricePoints: fieldsAppPricePoints, limit: limit, include: include, fieldsTerritories: fieldsTerritories).execute().body
-    }
-
-    /**
-     - parameter urlString: next or first url from App Store Connect API
-     - returns: AppPricePointsResponse
-     */
-    @available(*, deprecated, message: "This operation is deprecated.")
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appPricePointsGetCollection(urlString: String) async throws -> AppPricePointsResponse {
-        return try await appPricePointsGetCollectionWithRequestBuilder(urlString: urlString).execute().body
-    }
-
-    /**
-     - GET /v1/appPricePoints
-     - Bearer Token:
-       - type: http
-       - name: itc-bearer-token
-     - parameter filterPriceTier: (query) filter by id(s) of related &#39;priceTier&#39; (optional)
-     - parameter filterTerritory: (query) filter by id(s) of related &#39;territory&#39; (optional)
-     - parameter fieldsAppPricePoints: (query) the fields to include for returned resources of type appPricePoints (optional)
-     - parameter limit: (query) maximum resources per page (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
-     - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
-     - returns: RequestBuilder<AppPricePointsResponse> 
-     */
-    @available(*, deprecated, message: "This operation is deprecated.")
-    open class func appPricePointsGetCollectionWithRequestBuilder(filterPriceTier: [String]? = nil, filterTerritory: [String]? = nil, fieldsAppPricePoints: [FieldsAppPricePoints_appPricePointsGetCollection]? = nil, limit: Int? = nil, include: [Include_appPricePointsGetCollection]? = nil, fieldsTerritories: [FieldsTerritories_appPricePointsGetCollection]? = nil) -> RequestBuilder<AppPricePointsResponse> {
-        let localVariablePath = "/v1/appPricePoints"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters: [String: Any]? = nil
-
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[priceTier]": (wrappedValue: filterPriceTier?.encodeToJSON(), isExplode: false),
-            "filter[territory]": (wrappedValue: filterTerritory?.encodeToJSON(), isExplode: false),
-            "fields[appPricePoints]": (wrappedValue: fieldsAppPricePoints?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(), isExplode: false),
-        ])
-
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
-
-        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
-
-        let localVariableRequestBuilder: RequestBuilder<AppPricePointsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
-    }
-
-    /**
-     - GET /v1/appPricePoints
-     - Bearer Token:
-       - type: http
-       - name: itc-bearer-token
-     - parameter urlString: next or first url from App Store Connect API
-     - returns: RequestBuilder<AppPricePointsResponse> 
-     */
-    @available(*, deprecated, message: "This operation is deprecated.")
-    open class func appPricePointsGetCollectionWithRequestBuilder(urlString: String) -> RequestBuilder<AppPricePointsResponse> {
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
-
-        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
-
-        let localVariableRequestBuilder: RequestBuilder<AppPricePointsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
-    }
-
-    /**
-     * enum for parameter fieldsAppPricePoints
-     */
-    public enum FieldsAppPricePoints_appPricePointsGetInstance: String, CaseIterable {
-        case customerprice = "customerPrice"
-        case pricetier = "priceTier"
-        case proceeds = "proceeds"
-        case territory = "territory"
-    }
-
-    /**
-     * enum for parameter include
-     */
-    public enum Include_appPricePointsGetInstance: String, CaseIterable {
-        case pricetier = "priceTier"
-        case territory = "territory"
-    }
-
-    /**
-     * enum for parameter fieldsTerritories
-     */
-    public enum FieldsTerritories_appPricePointsGetInstance: String, CaseIterable {
-        case currency = "currency"
-    }
-
-    /**
-
-     - parameter id: (path) the id of the requested resource 
-     - parameter fieldsAppPricePoints: (query) the fields to include for returned resources of type appPricePoints (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
-     - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
-     - returns: AppPricePointResponse
-     */
-    @available(*, deprecated, message: "This operation is deprecated.")
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appPricePointsGetInstance(id: String, fieldsAppPricePoints: [FieldsAppPricePoints_appPricePointsGetInstance]? = nil, include: [Include_appPricePointsGetInstance]? = nil, fieldsTerritories: [FieldsTerritories_appPricePointsGetInstance]? = nil) async throws -> AppPricePointResponse {
-        return try await appPricePointsGetInstanceWithRequestBuilder(id: id, fieldsAppPricePoints: fieldsAppPricePoints, include: include, fieldsTerritories: fieldsTerritories).execute().body
-    }
-
-    /**
-     - parameter urlString: next or first url from App Store Connect API
-     - returns: AppPricePointResponse
-     */
-    @available(*, deprecated, message: "This operation is deprecated.")
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appPricePointsGetInstance(urlString: String) async throws -> AppPricePointResponse {
-        return try await appPricePointsGetInstanceWithRequestBuilder(urlString: urlString).execute().body
-    }
-
-    /**
-     - GET /v1/appPricePoints/{id}
-     - Bearer Token:
-       - type: http
-       - name: itc-bearer-token
-     - parameter id: (path) the id of the requested resource 
-     - parameter fieldsAppPricePoints: (query) the fields to include for returned resources of type appPricePoints (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
-     - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
-     - returns: RequestBuilder<AppPricePointResponse> 
-     */
-    @available(*, deprecated, message: "This operation is deprecated.")
-    open class func appPricePointsGetInstanceWithRequestBuilder(id: String, fieldsAppPricePoints: [FieldsAppPricePoints_appPricePointsGetInstance]? = nil, include: [Include_appPricePointsGetInstance]? = nil, fieldsTerritories: [FieldsTerritories_appPricePointsGetInstance]? = nil) -> RequestBuilder<AppPricePointResponse> {
-        var localVariablePath = "/v1/appPricePoints/{id}"
-        let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
-        let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters: [String: Any]? = nil
-
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[appPricePoints]": (wrappedValue: fieldsAppPricePoints?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(), isExplode: false),
-        ])
-
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
-
-        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
-
-        let localVariableRequestBuilder: RequestBuilder<AppPricePointResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
-    }
-
-    /**
-     - GET /v1/appPricePoints/{id}
-     - Bearer Token:
-       - type: http
-       - name: itc-bearer-token
-     - parameter urlString: next or first url from App Store Connect API
-     - returns: RequestBuilder<AppPricePointResponse> 
-     */
-    @available(*, deprecated, message: "This operation is deprecated.")
-    open class func appPricePointsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppPricePointResponse> {
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
-
-        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
-
-        let localVariableRequestBuilder: RequestBuilder<AppPricePointResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
-    }
-
-    /**
-     * enum for parameter fieldsTerritories
-     */
-    public enum FieldsTerritories_appPricePointsTerritoryGetToOneRelated: String, CaseIterable {
-        case currency = "currency"
-    }
-
-    /**
-
-     - parameter id: (path) the id of the requested resource 
-     - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
-     - returns: TerritoryResponse
-     */
-    @available(*, deprecated, message: "This operation is deprecated.")
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appPricePointsTerritoryGetToOneRelated(id: String, fieldsTerritories: [FieldsTerritories_appPricePointsTerritoryGetToOneRelated]? = nil) async throws -> TerritoryResponse {
-        return try await appPricePointsTerritoryGetToOneRelatedWithRequestBuilder(id: id, fieldsTerritories: fieldsTerritories).execute().body
-    }
-
-    /**
-     - parameter urlString: next or first url from App Store Connect API
-     - returns: TerritoryResponse
-     */
-    @available(*, deprecated, message: "This operation is deprecated.")
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appPricePointsTerritoryGetToOneRelated(urlString: String) async throws -> TerritoryResponse {
-        return try await appPricePointsTerritoryGetToOneRelatedWithRequestBuilder(urlString: urlString).execute().body
-    }
-
-    /**
-     - GET /v1/appPricePoints/{id}/territory
-     - Bearer Token:
-       - type: http
-       - name: itc-bearer-token
-     - parameter id: (path) the id of the requested resource 
-     - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
-     - returns: RequestBuilder<TerritoryResponse> 
-     */
-    @available(*, deprecated, message: "This operation is deprecated.")
-    open class func appPricePointsTerritoryGetToOneRelatedWithRequestBuilder(id: String, fieldsTerritories: [FieldsTerritories_appPricePointsTerritoryGetToOneRelated]? = nil) -> RequestBuilder<TerritoryResponse> {
-        var localVariablePath = "/v1/appPricePoints/{id}/territory"
-        let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
-        let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters: [String: Any]? = nil
-
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(), isExplode: false),
-        ])
-
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
-
-        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
-
-        let localVariableRequestBuilder: RequestBuilder<TerritoryResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
-    }
-
-    /**
-     - GET /v1/appPricePoints/{id}/territory
-     - Bearer Token:
-       - type: http
-       - name: itc-bearer-token
-     - parameter urlString: next or first url from App Store Connect API
-     - returns: RequestBuilder<TerritoryResponse> 
-     */
-    @available(*, deprecated, message: "This operation is deprecated.")
-    open class func appPricePointsTerritoryGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<TerritoryResponse> {
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
-
-        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
-
-        let localVariableRequestBuilder: RequestBuilder<TerritoryResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
-    }
-
-    /**
-     * enum for parameter fieldsAppPricePoints
-     */
     public enum FieldsAppPricePoints_appPricePointsV3EqualizationsGetToManyRelated: String, CaseIterable {
-        case app = "app"
         case customerprice = "customerPrice"
-        case equalizations = "equalizations"
         case proceeds = "proceeds"
+        case app = "app"
+        case equalizations = "equalizations"
         case territory = "territory"
     }
 
@@ -331,53 +27,49 @@ open class AppPricePointsAPI {
      * enum for parameter fieldsApps
      */
     public enum FieldsApps_appPricePointsV3EqualizationsGetToManyRelated: String, CaseIterable {
+        case name = "name"
+        case bundleid = "bundleId"
+        case sku = "sku"
+        case primarylocale = "primaryLocale"
+        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
+        case subscriptionstatusurl = "subscriptionStatusUrl"
+        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
+        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
+        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
+        case contentrightsdeclaration = "contentRightsDeclaration"
+        case streamlinedpurchasingenabled = "streamlinedPurchasingEnabled"
+        case appencryptiondeclarations = "appEncryptionDeclarations"
+        case ciproduct = "ciProduct"
+        case betatesters = "betaTesters"
+        case betagroups = "betaGroups"
+        case appstoreversions = "appStoreVersions"
+        case prereleaseversions = "preReleaseVersions"
+        case betaapplocalizations = "betaAppLocalizations"
+        case builds = "builds"
+        case betalicenseagreement = "betaLicenseAgreement"
+        case betaappreviewdetail = "betaAppReviewDetail"
+        case appinfos = "appInfos"
+        case appclips = "appClips"
+        case apppricepoints = "appPricePoints"
+        case enduserlicenseagreement = "endUserLicenseAgreement"
+        case apppriceschedule = "appPriceSchedule"
+        case appavailabilityv2 = "appAvailabilityV2"
+        case inapppurchases = "inAppPurchases"
+        case subscriptiongroups = "subscriptionGroups"
+        case gamecenterenabledversions = "gameCenterEnabledVersions"
+        case perfpowermetrics = "perfPowerMetrics"
+        case appcustomproductpages = "appCustomProductPages"
+        case inapppurchasesv2 = "inAppPurchasesV2"
+        case promotedpurchases = "promotedPurchases"
+        case appevents = "appEvents"
+        case reviewsubmissions = "reviewSubmissions"
+        case subscriptiongraceperiod = "subscriptionGracePeriod"
+        case customerreviews = "customerReviews"
+        case gamecenterdetail = "gameCenterDetail"
+        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
         case alternativedistributionkey = "alternativeDistributionKey"
         case analyticsreportrequests = "analyticsReportRequests"
-        case appavailability = "appAvailability"
-        case appclips = "appClips"
-        case appcustomproductpages = "appCustomProductPages"
-        case appencryptiondeclarations = "appEncryptionDeclarations"
-        case appevents = "appEvents"
-        case appinfos = "appInfos"
-        case apppricepoints = "appPricePoints"
-        case apppriceschedule = "appPriceSchedule"
-        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
-        case appstoreversions = "appStoreVersions"
-        case availableinnewterritories = "availableInNewTerritories"
-        case availableterritories = "availableTerritories"
-        case betaapplocalizations = "betaAppLocalizations"
-        case betaappreviewdetail = "betaAppReviewDetail"
-        case betagroups = "betaGroups"
-        case betalicenseagreement = "betaLicenseAgreement"
-        case betatesters = "betaTesters"
-        case builds = "builds"
-        case bundleid = "bundleId"
-        case ciproduct = "ciProduct"
-        case contentrightsdeclaration = "contentRightsDeclaration"
-        case customerreviews = "customerReviews"
-        case enduserlicenseagreement = "endUserLicenseAgreement"
-        case gamecenterdetail = "gameCenterDetail"
-        case gamecenterenabledversions = "gameCenterEnabledVersions"
-        case inapppurchases = "inAppPurchases"
-        case inapppurchasesv2 = "inAppPurchasesV2"
-        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
         case marketplacesearchdetail = "marketplaceSearchDetail"
-        case name = "name"
-        case perfpowermetrics = "perfPowerMetrics"
-        case preorder = "preOrder"
-        case prereleaseversions = "preReleaseVersions"
-        case pricepoints = "pricePoints"
-        case prices = "prices"
-        case primarylocale = "primaryLocale"
-        case promotedpurchases = "promotedPurchases"
-        case reviewsubmissions = "reviewSubmissions"
-        case sku = "sku"
-        case subscriptiongraceperiod = "subscriptionGracePeriod"
-        case subscriptiongroups = "subscriptionGroups"
-        case subscriptionstatusurl = "subscriptionStatusUrl"
-        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
-        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
-        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
     }
 
     /**
@@ -487,10 +179,10 @@ open class AppPricePointsAPI {
      * enum for parameter fieldsAppPricePoints
      */
     public enum FieldsAppPricePoints_appPricePointsV3GetInstance: String, CaseIterable {
-        case app = "app"
         case customerprice = "customerPrice"
-        case equalizations = "equalizations"
         case proceeds = "proceeds"
+        case app = "app"
+        case equalizations = "equalizations"
         case territory = "territory"
     }
 

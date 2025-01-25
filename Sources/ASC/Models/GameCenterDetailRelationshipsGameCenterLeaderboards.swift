@@ -12,11 +12,11 @@ import AnyCodable
 
 public struct GameCenterDetailRelationshipsGameCenterLeaderboards: Codable, JSONEncodable, Hashable {
 
-    public var links: AlternativeDistributionPackageVersionRelationshipsVariantsLinks?
+    public var links: RelationshipLinks?
     public var meta: PagingInformation?
     public var data: [GameCenterDetailRelationshipsGameCenterLeaderboardsDataInner]?
 
-    public init(links: AlternativeDistributionPackageVersionRelationshipsVariantsLinks? = nil, meta: PagingInformation? = nil, data: [GameCenterDetailRelationshipsGameCenterLeaderboardsDataInner]? = nil) {
+    public init(links: RelationshipLinks? = nil, meta: PagingInformation? = nil, data: [GameCenterDetailRelationshipsGameCenterLeaderboardsDataInner]? = nil) {
         self.links = links
         self.meta = meta
         self.data = data

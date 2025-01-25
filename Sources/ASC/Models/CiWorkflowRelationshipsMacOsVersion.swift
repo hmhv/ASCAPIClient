@@ -12,16 +12,13 @@ import AnyCodable
 
 public struct CiWorkflowRelationshipsMacOsVersion: Codable, JSONEncodable, Hashable {
 
-    public var links: AlternativeDistributionPackageVersionRelationshipsVariantsLinks?
     public var data: CiWorkflowRelationshipsMacOsVersionData?
 
-    public init(links: AlternativeDistributionPackageVersionRelationshipsVariantsLinks? = nil, data: CiWorkflowRelationshipsMacOsVersionData? = nil) {
-        self.links = links
+    public init(data: CiWorkflowRelationshipsMacOsVersionData? = nil) {
         self.data = data
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
-        case links
         case data
     }
 
@@ -29,7 +26,6 @@ public struct CiWorkflowRelationshipsMacOsVersion: Codable, JSONEncodable, Hasha
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(links, forKey: .links)
         try container.encodeIfPresent(data, forKey: .data)
     }
 }

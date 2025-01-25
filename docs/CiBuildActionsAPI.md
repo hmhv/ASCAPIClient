@@ -64,7 +64,7 @@ Name | Type | Description  | Notes
 
 # **ciBuildActionsBuildRunGetToOneRelated**
 ```swift
-    open class func ciBuildActionsBuildRunGetToOneRelated(id: String, fieldsScmGitReferences: [FieldsScmGitReferences_ciBuildActionsBuildRunGetToOneRelated]? = nil, fieldsCiBuildRuns: [FieldsCiBuildRuns_ciBuildActionsBuildRunGetToOneRelated]? = nil, fieldsCiWorkflows: [FieldsCiWorkflows_ciBuildActionsBuildRunGetToOneRelated]? = nil, fieldsScmPullRequests: [FieldsScmPullRequests_ciBuildActionsBuildRunGetToOneRelated]? = nil, fieldsCiProducts: [FieldsCiProducts_ciBuildActionsBuildRunGetToOneRelated]? = nil, fieldsBuilds: [FieldsBuilds_ciBuildActionsBuildRunGetToOneRelated]? = nil, limitBuilds: Int? = nil, include: [Include_ciBuildActionsBuildRunGetToOneRelated]? = nil, completion: @escaping (_ data: CiBuildRunResponse?, _ error: Error?) -> Void)
+    open class func ciBuildActionsBuildRunGetToOneRelated(id: String, fieldsCiBuildRuns: [FieldsCiBuildRuns_ciBuildActionsBuildRunGetToOneRelated]? = nil, fieldsBuilds: [FieldsBuilds_ciBuildActionsBuildRunGetToOneRelated]? = nil, fieldsCiWorkflows: [FieldsCiWorkflows_ciBuildActionsBuildRunGetToOneRelated]? = nil, fieldsCiProducts: [FieldsCiProducts_ciBuildActionsBuildRunGetToOneRelated]? = nil, fieldsScmGitReferences: [FieldsScmGitReferences_ciBuildActionsBuildRunGetToOneRelated]? = nil, fieldsScmPullRequests: [FieldsScmPullRequests_ciBuildActionsBuildRunGetToOneRelated]? = nil, include: [Include_ciBuildActionsBuildRunGetToOneRelated]? = nil, limitBuilds: Int? = nil, completion: @escaping (_ data: CiBuildRunResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -75,16 +75,16 @@ Name | Type | Description  | Notes
 import ASC
 
 let id = "id_example" // String | the id of the requested resource
-let fieldsScmGitReferences = ["fieldsScmGitReferences_example"] // [String] | the fields to include for returned resources of type scmGitReferences (optional)
 let fieldsCiBuildRuns = ["fieldsCiBuildRuns_example"] // [String] | the fields to include for returned resources of type ciBuildRuns (optional)
-let fieldsCiWorkflows = ["fieldsCiWorkflows_example"] // [String] | the fields to include for returned resources of type ciWorkflows (optional)
-let fieldsScmPullRequests = ["fieldsScmPullRequests_example"] // [String] | the fields to include for returned resources of type scmPullRequests (optional)
-let fieldsCiProducts = ["fieldsCiProducts_example"] // [String] | the fields to include for returned resources of type ciProducts (optional)
 let fieldsBuilds = ["fieldsBuilds_example"] // [String] | the fields to include for returned resources of type builds (optional)
-let limitBuilds = 987 // Int | maximum number of related builds returned (when they are included) (optional)
+let fieldsCiWorkflows = ["fieldsCiWorkflows_example"] // [String] | the fields to include for returned resources of type ciWorkflows (optional)
+let fieldsCiProducts = ["fieldsCiProducts_example"] // [String] | the fields to include for returned resources of type ciProducts (optional)
+let fieldsScmGitReferences = ["fieldsScmGitReferences_example"] // [String] | the fields to include for returned resources of type scmGitReferences (optional)
+let fieldsScmPullRequests = ["fieldsScmPullRequests_example"] // [String] | the fields to include for returned resources of type scmPullRequests (optional)
 let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
+let limitBuilds = 987 // Int | maximum number of related builds returned (when they are included) (optional)
 
-CiBuildActionsAPI.ciBuildActionsBuildRunGetToOneRelated(id: id, fieldsScmGitReferences: fieldsScmGitReferences, fieldsCiBuildRuns: fieldsCiBuildRuns, fieldsCiWorkflows: fieldsCiWorkflows, fieldsScmPullRequests: fieldsScmPullRequests, fieldsCiProducts: fieldsCiProducts, fieldsBuilds: fieldsBuilds, limitBuilds: limitBuilds, include: include) { (response, error) in
+CiBuildActionsAPI.ciBuildActionsBuildRunGetToOneRelated(id: id, fieldsCiBuildRuns: fieldsCiBuildRuns, fieldsBuilds: fieldsBuilds, fieldsCiWorkflows: fieldsCiWorkflows, fieldsCiProducts: fieldsCiProducts, fieldsScmGitReferences: fieldsScmGitReferences, fieldsScmPullRequests: fieldsScmPullRequests, include: include, limitBuilds: limitBuilds) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -101,14 +101,14 @@ CiBuildActionsAPI.ciBuildActionsBuildRunGetToOneRelated(id: id, fieldsScmGitRefe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
- **fieldsScmGitReferences** | [**[String]**](String.md) | the fields to include for returned resources of type scmGitReferences | [optional] 
  **fieldsCiBuildRuns** | [**[String]**](String.md) | the fields to include for returned resources of type ciBuildRuns | [optional] 
- **fieldsCiWorkflows** | [**[String]**](String.md) | the fields to include for returned resources of type ciWorkflows | [optional] 
- **fieldsScmPullRequests** | [**[String]**](String.md) | the fields to include for returned resources of type scmPullRequests | [optional] 
- **fieldsCiProducts** | [**[String]**](String.md) | the fields to include for returned resources of type ciProducts | [optional] 
  **fieldsBuilds** | [**[String]**](String.md) | the fields to include for returned resources of type builds | [optional] 
- **limitBuilds** | **Int** | maximum number of related builds returned (when they are included) | [optional] 
+ **fieldsCiWorkflows** | [**[String]**](String.md) | the fields to include for returned resources of type ciWorkflows | [optional] 
+ **fieldsCiProducts** | [**[String]**](String.md) | the fields to include for returned resources of type ciProducts | [optional] 
+ **fieldsScmGitReferences** | [**[String]**](String.md) | the fields to include for returned resources of type scmGitReferences | [optional] 
+ **fieldsScmPullRequests** | [**[String]**](String.md) | the fields to include for returned resources of type scmPullRequests | [optional] 
  **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
+ **limitBuilds** | **Int** | maximum number of related builds returned (when they are included) | [optional] 
 
 ### Return type
 
@@ -127,7 +127,7 @@ Name | Type | Description  | Notes
 
 # **ciBuildActionsGetInstance**
 ```swift
-    open class func ciBuildActionsGetInstance(id: String, fieldsCiBuildActions: [FieldsCiBuildActions_ciBuildActionsGetInstance]? = nil, include: [Include_ciBuildActionsGetInstance]? = nil, fieldsCiIssues: [FieldsCiIssues_ciBuildActionsGetInstance]? = nil, fieldsCiBuildRuns: [FieldsCiBuildRuns_ciBuildActionsGetInstance]? = nil, fieldsCiTestResults: [FieldsCiTestResults_ciBuildActionsGetInstance]? = nil, fieldsCiArtifacts: [FieldsCiArtifacts_ciBuildActionsGetInstance]? = nil, completion: @escaping (_ data: CiBuildActionResponse?, _ error: Error?) -> Void)
+    open class func ciBuildActionsGetInstance(id: String, fieldsCiBuildActions: [FieldsCiBuildActions_ciBuildActionsGetInstance]? = nil, fieldsCiBuildRuns: [FieldsCiBuildRuns_ciBuildActionsGetInstance]? = nil, include: [Include_ciBuildActionsGetInstance]? = nil, completion: @escaping (_ data: CiBuildActionResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -139,13 +139,10 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let fieldsCiBuildActions = ["fieldsCiBuildActions_example"] // [String] | the fields to include for returned resources of type ciBuildActions (optional)
-let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
-let fieldsCiIssues = ["fieldsCiIssues_example"] // [String] | the fields to include for returned resources of type ciIssues (optional)
 let fieldsCiBuildRuns = ["fieldsCiBuildRuns_example"] // [String] | the fields to include for returned resources of type ciBuildRuns (optional)
-let fieldsCiTestResults = ["fieldsCiTestResults_example"] // [String] | the fields to include for returned resources of type ciTestResults (optional)
-let fieldsCiArtifacts = ["fieldsCiArtifacts_example"] // [String] | the fields to include for returned resources of type ciArtifacts (optional)
+let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 
-CiBuildActionsAPI.ciBuildActionsGetInstance(id: id, fieldsCiBuildActions: fieldsCiBuildActions, include: include, fieldsCiIssues: fieldsCiIssues, fieldsCiBuildRuns: fieldsCiBuildRuns, fieldsCiTestResults: fieldsCiTestResults, fieldsCiArtifacts: fieldsCiArtifacts) { (response, error) in
+CiBuildActionsAPI.ciBuildActionsGetInstance(id: id, fieldsCiBuildActions: fieldsCiBuildActions, fieldsCiBuildRuns: fieldsCiBuildRuns, include: include) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -163,11 +160,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **fieldsCiBuildActions** | [**[String]**](String.md) | the fields to include for returned resources of type ciBuildActions | [optional] 
- **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
- **fieldsCiIssues** | [**[String]**](String.md) | the fields to include for returned resources of type ciIssues | [optional] 
  **fieldsCiBuildRuns** | [**[String]**](String.md) | the fields to include for returned resources of type ciBuildRuns | [optional] 
- **fieldsCiTestResults** | [**[String]**](String.md) | the fields to include for returned resources of type ciTestResults | [optional] 
- **fieldsCiArtifacts** | [**[String]**](String.md) | the fields to include for returned resources of type ciArtifacts | [optional] 
+ **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
 
 ### Return type
 

@@ -12,10 +12,10 @@ import AnyCodable
 
 public struct AppStoreVersionExperimentRelationships: Codable, JSONEncodable, Hashable {
 
-    public var appStoreVersion: AppClipDefaultExperienceRelationshipsReleaseWithAppStoreVersion?
+    public var appStoreVersion: AppClipDefaultExperienceCreateRequestDataRelationshipsReleaseWithAppStoreVersion?
     public var appStoreVersionExperimentTreatments: AppStoreVersionExperimentV2RelationshipsAppStoreVersionExperimentTreatments?
 
-    public init(appStoreVersion: AppClipDefaultExperienceRelationshipsReleaseWithAppStoreVersion? = nil, appStoreVersionExperimentTreatments: AppStoreVersionExperimentV2RelationshipsAppStoreVersionExperimentTreatments? = nil) {
+    public init(appStoreVersion: AppClipDefaultExperienceCreateRequestDataRelationshipsReleaseWithAppStoreVersion? = nil, appStoreVersionExperimentTreatments: AppStoreVersionExperimentV2RelationshipsAppStoreVersionExperimentTreatments? = nil) {
         self.appStoreVersion = appStoreVersion
         self.appStoreVersionExperimentTreatments = appStoreVersionExperimentTreatments
     }

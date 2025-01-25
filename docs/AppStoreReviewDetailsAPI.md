@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 # **appStoreReviewDetailsAppStoreReviewAttachmentsGetToManyRelated**
 ```swift
-    open class func appStoreReviewDetailsAppStoreReviewAttachmentsGetToManyRelated(id: String, fieldsAppStoreReviewDetails: [FieldsAppStoreReviewDetails_appStoreReviewDetailsAppStoreReviewAttachmentsGetToManyRelated]? = nil, fieldsAppStoreReviewAttachments: [FieldsAppStoreReviewAttachments_appStoreReviewDetailsAppStoreReviewAttachmentsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appStoreReviewDetailsAppStoreReviewAttachmentsGetToManyRelated]? = nil, completion: @escaping (_ data: AppStoreReviewAttachmentsResponse?, _ error: Error?) -> Void)
+    open class func appStoreReviewDetailsAppStoreReviewAttachmentsGetToManyRelated(id: String, fieldsAppStoreReviewAttachments: [FieldsAppStoreReviewAttachments_appStoreReviewDetailsAppStoreReviewAttachmentsGetToManyRelated]? = nil, fieldsAppStoreReviewDetails: [FieldsAppStoreReviewDetails_appStoreReviewDetailsAppStoreReviewAttachmentsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appStoreReviewDetailsAppStoreReviewAttachmentsGetToManyRelated]? = nil, completion: @escaping (_ data: AppStoreReviewAttachmentsResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -23,12 +23,12 @@ Method | HTTP request | Description
 import ASC
 
 let id = "id_example" // String | the id of the requested resource
-let fieldsAppStoreReviewDetails = ["fieldsAppStoreReviewDetails_example"] // [String] | the fields to include for returned resources of type appStoreReviewDetails (optional)
 let fieldsAppStoreReviewAttachments = ["fieldsAppStoreReviewAttachments_example"] // [String] | the fields to include for returned resources of type appStoreReviewAttachments (optional)
+let fieldsAppStoreReviewDetails = ["fieldsAppStoreReviewDetails_example"] // [String] | the fields to include for returned resources of type appStoreReviewDetails (optional)
 let limit = 987 // Int | maximum resources per page (optional)
 let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 
-AppStoreReviewDetailsAPI.appStoreReviewDetailsAppStoreReviewAttachmentsGetToManyRelated(id: id, fieldsAppStoreReviewDetails: fieldsAppStoreReviewDetails, fieldsAppStoreReviewAttachments: fieldsAppStoreReviewAttachments, limit: limit, include: include) { (response, error) in
+AppStoreReviewDetailsAPI.appStoreReviewDetailsAppStoreReviewAttachmentsGetToManyRelated(id: id, fieldsAppStoreReviewAttachments: fieldsAppStoreReviewAttachments, fieldsAppStoreReviewDetails: fieldsAppStoreReviewDetails, limit: limit, include: include) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -45,8 +45,8 @@ AppStoreReviewDetailsAPI.appStoreReviewDetailsAppStoreReviewAttachmentsGetToMany
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
- **fieldsAppStoreReviewDetails** | [**[String]**](String.md) | the fields to include for returned resources of type appStoreReviewDetails | [optional] 
  **fieldsAppStoreReviewAttachments** | [**[String]**](String.md) | the fields to include for returned resources of type appStoreReviewAttachments | [optional] 
+ **fieldsAppStoreReviewDetails** | [**[String]**](String.md) | the fields to include for returned resources of type appStoreReviewDetails | [optional] 
  **limit** | **Int** | maximum resources per page | [optional] 
  **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
 
@@ -114,7 +114,7 @@ Name | Type | Description  | Notes
 
 # **appStoreReviewDetailsGetInstance**
 ```swift
-    open class func appStoreReviewDetailsGetInstance(id: String, fieldsAppStoreReviewDetails: [FieldsAppStoreReviewDetails_appStoreReviewDetailsGetInstance]? = nil, include: [Include_appStoreReviewDetailsGetInstance]? = nil, fieldsAppStoreReviewAttachments: [FieldsAppStoreReviewAttachments_appStoreReviewDetailsGetInstance]? = nil, limitAppStoreReviewAttachments: Int? = nil, completion: @escaping (_ data: AppStoreReviewDetailResponse?, _ error: Error?) -> Void)
+    open class func appStoreReviewDetailsGetInstance(id: String, fieldsAppStoreReviewDetails: [FieldsAppStoreReviewDetails_appStoreReviewDetailsGetInstance]? = nil, fieldsAppStoreReviewAttachments: [FieldsAppStoreReviewAttachments_appStoreReviewDetailsGetInstance]? = nil, include: [Include_appStoreReviewDetailsGetInstance]? = nil, limitAppStoreReviewAttachments: Int? = nil, completion: @escaping (_ data: AppStoreReviewDetailResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -126,11 +126,11 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let fieldsAppStoreReviewDetails = ["fieldsAppStoreReviewDetails_example"] // [String] | the fields to include for returned resources of type appStoreReviewDetails (optional)
-let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let fieldsAppStoreReviewAttachments = ["fieldsAppStoreReviewAttachments_example"] // [String] | the fields to include for returned resources of type appStoreReviewAttachments (optional)
+let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let limitAppStoreReviewAttachments = 987 // Int | maximum number of related appStoreReviewAttachments returned (when they are included) (optional)
 
-AppStoreReviewDetailsAPI.appStoreReviewDetailsGetInstance(id: id, fieldsAppStoreReviewDetails: fieldsAppStoreReviewDetails, include: include, fieldsAppStoreReviewAttachments: fieldsAppStoreReviewAttachments, limitAppStoreReviewAttachments: limitAppStoreReviewAttachments) { (response, error) in
+AppStoreReviewDetailsAPI.appStoreReviewDetailsGetInstance(id: id, fieldsAppStoreReviewDetails: fieldsAppStoreReviewDetails, fieldsAppStoreReviewAttachments: fieldsAppStoreReviewAttachments, include: include, limitAppStoreReviewAttachments: limitAppStoreReviewAttachments) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -148,8 +148,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **fieldsAppStoreReviewDetails** | [**[String]**](String.md) | the fields to include for returned resources of type appStoreReviewDetails | [optional] 
- **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **fieldsAppStoreReviewAttachments** | [**[String]**](String.md) | the fields to include for returned resources of type appStoreReviewAttachments | [optional] 
+ **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **limitAppStoreReviewAttachments** | **Int** | maximum number of related appStoreReviewAttachments returned (when they are included) | [optional] 
 
 ### Return type

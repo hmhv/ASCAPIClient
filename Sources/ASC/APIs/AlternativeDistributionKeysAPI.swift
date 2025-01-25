@@ -149,7 +149,6 @@ open class AlternativeDistributionKeysAPI {
      * enum for parameter fieldsAlternativeDistributionKeys
      */
     public enum FieldsAlternativeDistributionKeys_alternativeDistributionKeysGetCollection: String, CaseIterable {
-        case app = "app"
         case publickey = "publicKey"
     }
 
@@ -231,7 +230,6 @@ open class AlternativeDistributionKeysAPI {
      * enum for parameter fieldsAlternativeDistributionKeys
      */
     public enum FieldsAlternativeDistributionKeys_alternativeDistributionKeysGetInstance: String, CaseIterable {
-        case app = "app"
         case publickey = "publicKey"
     }
 

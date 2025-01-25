@@ -12,10 +12,10 @@ import AnyCodable
 
 public struct BuildRelationshipsAppEncryptionDeclaration: Codable, JSONEncodable, Hashable {
 
-    public var links: AlternativeDistributionPackageVersionRelationshipsVariantsLinks?
+    public var links: RelationshipLinks?
     public var data: AppEncryptionDeclarationDocumentCreateRequestDataRelationshipsAppEncryptionDeclarationData?
 
-    public init(links: AlternativeDistributionPackageVersionRelationshipsVariantsLinks? = nil, data: AppEncryptionDeclarationDocumentCreateRequestDataRelationshipsAppEncryptionDeclarationData? = nil) {
+    public init(links: RelationshipLinks? = nil, data: AppEncryptionDeclarationDocumentCreateRequestDataRelationshipsAppEncryptionDeclarationData? = nil) {
         self.links = links
         self.data = data
     }

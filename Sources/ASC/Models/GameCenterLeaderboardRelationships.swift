@@ -12,14 +12,15 @@ import AnyCodable
 
 public struct GameCenterLeaderboardRelationships: Codable, JSONEncodable, Hashable {
 
-    public var gameCenterDetail: AppRelationshipsGameCenterDetail?
+    public var gameCenterDetail: GameCenterAchievementReleaseRelationshipsGameCenterDetail?
     public var gameCenterGroup: GameCenterAchievementRelationshipsGameCenterGroup?
-    public var groupLeaderboard: GameCenterDetailRelationshipsDefaultLeaderboard?
-    public var gameCenterLeaderboardSets: GameCenterDetailRelationshipsGameCenterLeaderboardSets?
+    @available(*, deprecated, message: "This property is deprecated.")
+    public var groupLeaderboard: GameCenterLeaderboardRelationshipsGroupLeaderboard?
+    public var gameCenterLeaderboardSets: GameCenterLeaderboardRelationshipsGameCenterLeaderboardSets?
     public var localizations: GameCenterLeaderboardRelationshipsLocalizations?
     public var releases: GameCenterDetailRelationshipsLeaderboardReleases?
 
-    public init(gameCenterDetail: AppRelationshipsGameCenterDetail? = nil, gameCenterGroup: GameCenterAchievementRelationshipsGameCenterGroup? = nil, groupLeaderboard: GameCenterDetailRelationshipsDefaultLeaderboard? = nil, gameCenterLeaderboardSets: GameCenterDetailRelationshipsGameCenterLeaderboardSets? = nil, localizations: GameCenterLeaderboardRelationshipsLocalizations? = nil, releases: GameCenterDetailRelationshipsLeaderboardReleases? = nil) {
+    public init(gameCenterDetail: GameCenterAchievementReleaseRelationshipsGameCenterDetail? = nil, gameCenterGroup: GameCenterAchievementRelationshipsGameCenterGroup? = nil, groupLeaderboard: GameCenterLeaderboardRelationshipsGroupLeaderboard? = nil, gameCenterLeaderboardSets: GameCenterLeaderboardRelationshipsGameCenterLeaderboardSets? = nil, localizations: GameCenterLeaderboardRelationshipsLocalizations? = nil, releases: GameCenterDetailRelationshipsLeaderboardReleases? = nil) {
         self.gameCenterDetail = gameCenterDetail
         self.gameCenterGroup = gameCenterGroup
         self.groupLeaderboard = groupLeaderboard

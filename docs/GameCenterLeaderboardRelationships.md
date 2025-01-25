@@ -3,10 +3,10 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**gameCenterDetail** | [**AppRelationshipsGameCenterDetail**](AppRelationshipsGameCenterDetail.md) |  | [optional] 
+**gameCenterDetail** | [**GameCenterAchievementReleaseRelationshipsGameCenterDetail**](GameCenterAchievementReleaseRelationshipsGameCenterDetail.md) |  | [optional] 
 **gameCenterGroup** | [**GameCenterAchievementRelationshipsGameCenterGroup**](GameCenterAchievementRelationshipsGameCenterGroup.md) |  | [optional] 
-**groupLeaderboard** | [**GameCenterDetailRelationshipsDefaultLeaderboard**](GameCenterDetailRelationshipsDefaultLeaderboard.md) |  | [optional] 
-**gameCenterLeaderboardSets** | [**GameCenterDetailRelationshipsGameCenterLeaderboardSets**](GameCenterDetailRelationshipsGameCenterLeaderboardSets.md) |  | [optional] 
+**groupLeaderboard** | [**GameCenterLeaderboardRelationshipsGroupLeaderboard**](GameCenterLeaderboardRelationshipsGroupLeaderboard.md) |  | [optional] 
+**gameCenterLeaderboardSets** | [**GameCenterLeaderboardRelationshipsGameCenterLeaderboardSets**](GameCenterLeaderboardRelationshipsGameCenterLeaderboardSets.md) |  | [optional] 
 **localizations** | [**GameCenterLeaderboardRelationshipsLocalizations**](GameCenterLeaderboardRelationshipsLocalizations.md) |  | [optional] 
 **releases** | [**GameCenterDetailRelationshipsLeaderboardReleases**](GameCenterDetailRelationshipsLeaderboardReleases.md) |  | [optional] 
 

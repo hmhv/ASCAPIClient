@@ -16,28 +16,29 @@ open class AppPreviewSetsAPI {
      * enum for parameter fieldsAppPreviews
      */
     public enum FieldsAppPreviews_appPreviewSetsAppPreviewsGetToManyRelated: String, CaseIterable {
-        case apppreviewset = "appPreviewSet"
-        case assetdeliverystate = "assetDeliveryState"
-        case filename = "fileName"
         case filesize = "fileSize"
-        case mimetype = "mimeType"
-        case previewframetimecode = "previewFrameTimeCode"
-        case previewimage = "previewImage"
+        case filename = "fileName"
         case sourcefilechecksum = "sourceFileChecksum"
-        case uploadoperations = "uploadOperations"
-        case uploaded = "uploaded"
+        case previewframetimecode = "previewFrameTimeCode"
+        case mimetype = "mimeType"
         case videourl = "videoUrl"
+        case previewframeimage = "previewFrameImage"
+        case previewimage = "previewImage"
+        case uploadoperations = "uploadOperations"
+        case assetdeliverystate = "assetDeliveryState"
+        case videodeliverystate = "videoDeliveryState"
+        case apppreviewset = "appPreviewSet"
     }
 
     /**
      * enum for parameter fieldsAppPreviewSets
      */
     public enum FieldsAppPreviewSets_appPreviewSetsAppPreviewsGetToManyRelated: String, CaseIterable {
-        case appcustomproductpagelocalization = "appCustomProductPageLocalization"
-        case apppreviews = "appPreviews"
-        case appstoreversionexperimenttreatmentlocalization = "appStoreVersionExperimentTreatmentLocalization"
-        case appstoreversionlocalization = "appStoreVersionLocalization"
         case previewtype = "previewType"
+        case appstoreversionlocalization = "appStoreVersionLocalization"
+        case appcustomproductpagelocalization = "appCustomProductPageLocalization"
+        case appstoreversionexperimenttreatmentlocalization = "appStoreVersionExperimentTreatmentLocalization"
+        case apppreviews = "appPreviews"
     }
 
     /**
@@ -409,52 +410,53 @@ open class AppPreviewSetsAPI {
      * enum for parameter fieldsAppPreviewSets
      */
     public enum FieldsAppPreviewSets_appPreviewSetsGetInstance: String, CaseIterable {
-        case appcustomproductpagelocalization = "appCustomProductPageLocalization"
-        case apppreviews = "appPreviews"
-        case appstoreversionexperimenttreatmentlocalization = "appStoreVersionExperimentTreatmentLocalization"
-        case appstoreversionlocalization = "appStoreVersionLocalization"
         case previewtype = "previewType"
-    }
-
-    /**
-     * enum for parameter include
-     */
-    public enum Include_appPreviewSetsGetInstance: String, CaseIterable {
-        case appcustomproductpagelocalization = "appCustomProductPageLocalization"
-        case apppreviews = "appPreviews"
-        case appstoreversionexperimenttreatmentlocalization = "appStoreVersionExperimentTreatmentLocalization"
         case appstoreversionlocalization = "appStoreVersionLocalization"
+        case appcustomproductpagelocalization = "appCustomProductPageLocalization"
+        case appstoreversionexperimenttreatmentlocalization = "appStoreVersionExperimentTreatmentLocalization"
+        case apppreviews = "appPreviews"
     }
 
     /**
      * enum for parameter fieldsAppPreviews
      */
     public enum FieldsAppPreviews_appPreviewSetsGetInstance: String, CaseIterable {
-        case apppreviewset = "appPreviewSet"
-        case assetdeliverystate = "assetDeliveryState"
-        case filename = "fileName"
         case filesize = "fileSize"
-        case mimetype = "mimeType"
-        case previewframetimecode = "previewFrameTimeCode"
-        case previewimage = "previewImage"
+        case filename = "fileName"
         case sourcefilechecksum = "sourceFileChecksum"
-        case uploadoperations = "uploadOperations"
-        case uploaded = "uploaded"
+        case previewframetimecode = "previewFrameTimeCode"
+        case mimetype = "mimeType"
         case videourl = "videoUrl"
+        case previewframeimage = "previewFrameImage"
+        case previewimage = "previewImage"
+        case uploadoperations = "uploadOperations"
+        case assetdeliverystate = "assetDeliveryState"
+        case videodeliverystate = "videoDeliveryState"
+        case apppreviewset = "appPreviewSet"
+    }
+
+    /**
+     * enum for parameter include
+     */
+    public enum Include_appPreviewSetsGetInstance: String, CaseIterable {
+        case appstoreversionlocalization = "appStoreVersionLocalization"
+        case appcustomproductpagelocalization = "appCustomProductPageLocalization"
+        case appstoreversionexperimenttreatmentlocalization = "appStoreVersionExperimentTreatmentLocalization"
+        case apppreviews = "appPreviews"
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAppPreviewSets: (query) the fields to include for returned resources of type appPreviewSets (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter fieldsAppPreviews: (query) the fields to include for returned resources of type appPreviews (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAppPreviews: (query) maximum number of related appPreviews returned (when they are included) (optional)
      - returns: AppPreviewSetResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appPreviewSetsGetInstance(id: String, fieldsAppPreviewSets: [FieldsAppPreviewSets_appPreviewSetsGetInstance]? = nil, include: [Include_appPreviewSetsGetInstance]? = nil, fieldsAppPreviews: [FieldsAppPreviews_appPreviewSetsGetInstance]? = nil, limitAppPreviews: Int? = nil) async throws -> AppPreviewSetResponse {
-        return try await appPreviewSetsGetInstanceWithRequestBuilder(id: id, fieldsAppPreviewSets: fieldsAppPreviewSets, include: include, fieldsAppPreviews: fieldsAppPreviews, limitAppPreviews: limitAppPreviews).execute().body
+    open class func appPreviewSetsGetInstance(id: String, fieldsAppPreviewSets: [FieldsAppPreviewSets_appPreviewSetsGetInstance]? = nil, fieldsAppPreviews: [FieldsAppPreviews_appPreviewSetsGetInstance]? = nil, include: [Include_appPreviewSetsGetInstance]? = nil, limitAppPreviews: Int? = nil) async throws -> AppPreviewSetResponse {
+        return try await appPreviewSetsGetInstanceWithRequestBuilder(id: id, fieldsAppPreviewSets: fieldsAppPreviewSets, fieldsAppPreviews: fieldsAppPreviews, include: include, limitAppPreviews: limitAppPreviews).execute().body
     }
 
     /**
@@ -473,12 +475,12 @@ open class AppPreviewSetsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAppPreviewSets: (query) the fields to include for returned resources of type appPreviewSets (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter fieldsAppPreviews: (query) the fields to include for returned resources of type appPreviews (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAppPreviews: (query) maximum number of related appPreviews returned (when they are included) (optional)
      - returns: RequestBuilder<AppPreviewSetResponse> 
      */
-    open class func appPreviewSetsGetInstanceWithRequestBuilder(id: String, fieldsAppPreviewSets: [FieldsAppPreviewSets_appPreviewSetsGetInstance]? = nil, include: [Include_appPreviewSetsGetInstance]? = nil, fieldsAppPreviews: [FieldsAppPreviews_appPreviewSetsGetInstance]? = nil, limitAppPreviews: Int? = nil) -> RequestBuilder<AppPreviewSetResponse> {
+    open class func appPreviewSetsGetInstanceWithRequestBuilder(id: String, fieldsAppPreviewSets: [FieldsAppPreviewSets_appPreviewSetsGetInstance]? = nil, fieldsAppPreviews: [FieldsAppPreviews_appPreviewSetsGetInstance]? = nil, include: [Include_appPreviewSetsGetInstance]? = nil, limitAppPreviews: Int? = nil) -> RequestBuilder<AppPreviewSetResponse> {
         var localVariablePath = "/v1/appPreviewSets/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -489,8 +491,8 @@ open class AppPreviewSetsAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[appPreviewSets]": (wrappedValue: fieldsAppPreviewSets?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "fields[appPreviews]": (wrappedValue: fieldsAppPreviews?.encodeToJSON(), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "limit[appPreviews]": (wrappedValue: limitAppPreviews?.encodeToJSON(), isExplode: true),
         ])
 

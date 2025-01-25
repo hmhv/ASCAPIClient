@@ -12,9 +12,9 @@ import AnyCodable
 
 public struct AppCustomProductPageLocalizationInlineCreateRelationships: Codable, JSONEncodable, Hashable {
 
-    public var appCustomProductPageVersion: AppCustomProductPageLocalizationInlineCreateRelationshipsAppCustomProductPageVersion?
+    public var appCustomProductPageVersion: AppCustomProductPageLocalizationRelationshipsAppCustomProductPageVersion?
 
-    public init(appCustomProductPageVersion: AppCustomProductPageLocalizationInlineCreateRelationshipsAppCustomProductPageVersion? = nil) {
+    public init(appCustomProductPageVersion: AppCustomProductPageLocalizationRelationshipsAppCustomProductPageVersion? = nil) {
         self.appCustomProductPageVersion = appCustomProductPageVersion
     }
 

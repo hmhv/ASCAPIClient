@@ -106,7 +106,7 @@ Void (empty response body)
 
 # **certificatesGetCollection**
 ```swift
-    open class func certificatesGetCollection(filterCertificateType: [FilterCertificateType_certificatesGetCollection]? = nil, filterDisplayName: [String]? = nil, filterSerialNumber: [String]? = nil, filterId: [String]? = nil, sort: [Sort_certificatesGetCollection]? = nil, fieldsCertificates: [FieldsCertificates_certificatesGetCollection]? = nil, limit: Int? = nil, completion: @escaping (_ data: CertificatesResponse?, _ error: Error?) -> Void)
+    open class func certificatesGetCollection(filterDisplayName: [String]? = nil, filterCertificateType: [FilterCertificateType_certificatesGetCollection]? = nil, filterSerialNumber: [String]? = nil, filterId: [String]? = nil, sort: [Sort_certificatesGetCollection]? = nil, fieldsCertificates: [FieldsCertificates_certificatesGetCollection]? = nil, limit: Int? = nil, completion: @escaping (_ data: CertificatesResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -116,15 +116,15 @@ Void (empty response body)
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import ASC
 
-let filterCertificateType = ["filterCertificateType_example"] // [String] | filter by attribute 'certificateType' (optional)
 let filterDisplayName = ["inner_example"] // [String] | filter by attribute 'displayName' (optional)
+let filterCertificateType = ["filterCertificateType_example"] // [String] | filter by attribute 'certificateType' (optional)
 let filterSerialNumber = ["inner_example"] // [String] | filter by attribute 'serialNumber' (optional)
 let filterId = ["inner_example"] // [String] | filter by id(s) (optional)
 let sort = ["sort_example"] // [String] | comma-separated list of sort expressions; resources will be sorted as specified (optional)
 let fieldsCertificates = ["fieldsCertificates_example"] // [String] | the fields to include for returned resources of type certificates (optional)
 let limit = 987 // Int | maximum resources per page (optional)
 
-CertificatesAPI.certificatesGetCollection(filterCertificateType: filterCertificateType, filterDisplayName: filterDisplayName, filterSerialNumber: filterSerialNumber, filterId: filterId, sort: sort, fieldsCertificates: fieldsCertificates, limit: limit) { (response, error) in
+CertificatesAPI.certificatesGetCollection(filterDisplayName: filterDisplayName, filterCertificateType: filterCertificateType, filterSerialNumber: filterSerialNumber, filterId: filterId, sort: sort, fieldsCertificates: fieldsCertificates, limit: limit) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -140,8 +140,8 @@ CertificatesAPI.certificatesGetCollection(filterCertificateType: filterCertifica
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **filterCertificateType** | [**[String]**](String.md) | filter by attribute &#39;certificateType&#39; | [optional] 
  **filterDisplayName** | [**[String]**](String.md) | filter by attribute &#39;displayName&#39; | [optional] 
+ **filterCertificateType** | [**[String]**](String.md) | filter by attribute &#39;certificateType&#39; | [optional] 
  **filterSerialNumber** | [**[String]**](String.md) | filter by attribute &#39;serialNumber&#39; | [optional] 
  **filterId** | [**[String]**](String.md) | filter by id(s) | [optional] 
  **sort** | [**[String]**](String.md) | comma-separated list of sort expressions; resources will be sorted as specified | [optional] 

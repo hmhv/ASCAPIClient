@@ -12,15 +12,12 @@ import AnyCodable
 
 public enum InAppPurchasePriceScheduleResponseIncludedInner: Codable, JSONEncodable, Hashable {
     case typeInAppPurchasePrice(InAppPurchasePrice)
-    case typeInAppPurchaseV2(InAppPurchaseV2)
     case typeTerritory(Territory)
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .typeInAppPurchasePrice(let value):
-            try container.encode(value)
-        case .typeInAppPurchaseV2(let value):
             try container.encode(value)
         case .typeTerritory(let value):
             try container.encode(value)
@@ -31,8 +28,6 @@ public enum InAppPurchasePriceScheduleResponseIncludedInner: Codable, JSONEncoda
         let container = try decoder.singleValueContainer()
         if let value = try? container.decode(InAppPurchasePrice.self) {
             self = .typeInAppPurchasePrice(value)
-        } else if let value = try? container.decode(InAppPurchaseV2.self) {
-            self = .typeInAppPurchaseV2(value)
         } else if let value = try? container.decode(Territory.self) {
             self = .typeTerritory(value)
         } else {

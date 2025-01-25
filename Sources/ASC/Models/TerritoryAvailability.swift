@@ -19,10 +19,10 @@ public struct TerritoryAvailability: Codable, JSONEncodable, Hashable {
     public var type: ModelType
     public var id: String
     public var attributes: TerritoryAvailabilityAttributes?
-    public var relationships: InAppPurchasePricePointRelationships?
+    public var relationships: TerritoryAvailabilityRelationships?
     public var links: ResourceLinks?
 
-    public init(type: ModelType, id: String, attributes: TerritoryAvailabilityAttributes? = nil, relationships: InAppPurchasePricePointRelationships? = nil, links: ResourceLinks? = nil) {
+    public init(type: ModelType, id: String, attributes: TerritoryAvailabilityAttributes? = nil, relationships: TerritoryAvailabilityRelationships? = nil, links: ResourceLinks? = nil) {
         self.type = type
         self.id = id
         self.attributes = attributes

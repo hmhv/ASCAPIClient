@@ -157,9 +157,9 @@ open class MarketplaceDomainsAPI {
      * enum for parameter fieldsMarketplaceDomains
      */
     public enum FieldsMarketplaceDomains_marketplaceDomainsGetCollection: String, CaseIterable {
-        case createddate = "createdDate"
         case domain = "domain"
         case referencename = "referenceName"
+        case createddate = "createdDate"
     }
 
     /**
@@ -241,9 +241,9 @@ open class MarketplaceDomainsAPI {
      * enum for parameter fieldsMarketplaceDomains
      */
     public enum FieldsMarketplaceDomains_marketplaceDomainsGetInstance: String, CaseIterable {
-        case createddate = "createdDate"
         case domain = "domain"
         case referencename = "referenceName"
+        case createddate = "createdDate"
     }
 
     /**

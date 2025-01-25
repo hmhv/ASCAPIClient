@@ -12,9 +12,9 @@ import AnyCodable
 
 public struct AppPriceScheduleCreateRequestDataRelationshipsBaseTerritory: Codable, JSONEncodable, Hashable {
 
-    public var data: AppAvailabilityRelationshipsAvailableTerritoriesDataInner
+    public var data: AppPricePointV3RelationshipsTerritoryData
 
-    public init(data: AppAvailabilityRelationshipsAvailableTerritoriesDataInner) {
+    public init(data: AppPricePointV3RelationshipsTerritoryData) {
         self.data = data
     }
 

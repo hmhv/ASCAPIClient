@@ -12,9 +12,9 @@ import AnyCodable
 
 public struct PromotedPurchaseImageRelationships: Codable, JSONEncodable, Hashable {
 
-    public var promotedPurchase: InAppPurchaseV2RelationshipsPromotedPurchase?
+    public var promotedPurchase: PromotedPurchaseImageRelationshipsPromotedPurchase?
 
-    public init(promotedPurchase: InAppPurchaseV2RelationshipsPromotedPurchase? = nil) {
+    public init(promotedPurchase: PromotedPurchaseImageRelationshipsPromotedPurchase? = nil) {
         self.promotedPurchase = promotedPurchase
     }
 

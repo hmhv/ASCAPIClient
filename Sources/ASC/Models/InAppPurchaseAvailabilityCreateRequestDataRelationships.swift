@@ -13,9 +13,9 @@ import AnyCodable
 public struct InAppPurchaseAvailabilityCreateRequestDataRelationships: Codable, JSONEncodable, Hashable {
 
     public var inAppPurchase: InAppPurchaseAppStoreReviewScreenshotCreateRequestDataRelationshipsInAppPurchaseV2
-    public var availableTerritories: AppAvailabilityCreateRequestDataRelationshipsAvailableTerritories
+    public var availableTerritories: EndUserLicenseAgreementCreateRequestDataRelationshipsTerritories
 
-    public init(inAppPurchase: InAppPurchaseAppStoreReviewScreenshotCreateRequestDataRelationshipsInAppPurchaseV2, availableTerritories: AppAvailabilityCreateRequestDataRelationshipsAvailableTerritories) {
+    public init(inAppPurchase: InAppPurchaseAppStoreReviewScreenshotCreateRequestDataRelationshipsInAppPurchaseV2, availableTerritories: EndUserLicenseAgreementCreateRequestDataRelationshipsTerritories) {
         self.inAppPurchase = inAppPurchase
         self.availableTerritories = availableTerritories
     }

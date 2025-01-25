@@ -19,12 +19,14 @@ public struct DiagnosticSignature: Codable, JSONEncodable, Hashable {
     public var type: ModelType
     public var id: String
     public var attributes: DiagnosticSignatureAttributes?
+    public var relationships: DiagnosticSignatureRelationships?
     public var links: ResourceLinks?
 
-    public init(type: ModelType, id: String, attributes: DiagnosticSignatureAttributes? = nil, links: ResourceLinks? = nil) {
+    public init(type: ModelType, id: String, attributes: DiagnosticSignatureAttributes? = nil, relationships: DiagnosticSignatureRelationships? = nil, links: ResourceLinks? = nil) {
         self.type = type
         self.id = id
         self.attributes = attributes
+        self.relationships = relationships
         self.links = links
     }
 
@@ -32,6 +34,7 @@ public struct DiagnosticSignature: Codable, JSONEncodable, Hashable {
         case type
         case id
         case attributes
+        case relationships
         case links
     }
 
@@ -42,6 +45,7 @@ public struct DiagnosticSignature: Codable, JSONEncodable, Hashable {
         try container.encode(type, forKey: .type)
         try container.encode(id, forKey: .id)
         try container.encodeIfPresent(attributes, forKey: .attributes)
+        try container.encodeIfPresent(relationships, forKey: .relationships)
         try container.encodeIfPresent(links, forKey: .links)
     }
 }

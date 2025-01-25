@@ -12,10 +12,10 @@ import AnyCodable
 
 public struct SubscriptionOfferCodePriceRelationships: Codable, JSONEncodable, Hashable {
 
-    public var territory: AppPricePointV2RelationshipsTerritory?
+    public var territory: AppPricePointV3RelationshipsTerritory?
     public var subscriptionPricePoint: SubscriptionIntroductoryOfferRelationshipsSubscriptionPricePoint?
 
-    public init(territory: AppPricePointV2RelationshipsTerritory? = nil, subscriptionPricePoint: SubscriptionIntroductoryOfferRelationshipsSubscriptionPricePoint? = nil) {
+    public init(territory: AppPricePointV3RelationshipsTerritory? = nil, subscriptionPricePoint: SubscriptionIntroductoryOfferRelationshipsSubscriptionPricePoint? = nil) {
         self.territory = territory
         self.subscriptionPricePoint = subscriptionPricePoint
     }

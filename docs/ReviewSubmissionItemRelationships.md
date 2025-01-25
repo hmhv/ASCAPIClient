@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**appStoreVersion** | [**AppClipDefaultExperienceRelationshipsReleaseWithAppStoreVersion**](AppClipDefaultExperienceRelationshipsReleaseWithAppStoreVersion.md) |  | [optional] 
+**appStoreVersion** | [**AppClipDefaultExperienceCreateRequestDataRelationshipsReleaseWithAppStoreVersion**](AppClipDefaultExperienceCreateRequestDataRelationshipsReleaseWithAppStoreVersion.md) |  | [optional] 
 **appCustomProductPageVersion** | [**AppCustomProductPageLocalizationRelationshipsAppCustomProductPageVersion**](AppCustomProductPageLocalizationRelationshipsAppCustomProductPageVersion.md) |  | [optional] 
 **appStoreVersionExperiment** | [**AppStoreVersionExperimentTreatmentRelationshipsAppStoreVersionExperiment**](AppStoreVersionExperimentTreatmentRelationshipsAppStoreVersionExperiment.md) |  | [optional] 
 **appStoreVersionExperimentV2** | [**AppStoreVersionExperimentTreatmentRelationshipsAppStoreVersionExperiment**](AppStoreVersionExperimentTreatmentRelationshipsAppStoreVersionExperiment.md) |  | [optional] 

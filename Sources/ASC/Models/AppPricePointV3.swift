@@ -18,11 +18,11 @@ public struct AppPricePointV3: Codable, JSONEncodable, Hashable {
     }
     public var type: ModelType
     public var id: String
-    public var attributes: AppPricePointV2Attributes?
+    public var attributes: AppPricePointV3Attributes?
     public var relationships: AppPricePointV3Relationships?
     public var links: ResourceLinks?
 
-    public init(type: ModelType, id: String, attributes: AppPricePointV2Attributes? = nil, relationships: AppPricePointV3Relationships? = nil, links: ResourceLinks? = nil) {
+    public init(type: ModelType, id: String, attributes: AppPricePointV3Attributes? = nil, relationships: AppPricePointV3Relationships? = nil, links: ResourceLinks? = nil) {
         self.type = type
         self.id = id
         self.attributes = attributes

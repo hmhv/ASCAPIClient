@@ -166,15 +166,6 @@ open class SubscriptionAvailabilitiesAPI {
     public enum FieldsSubscriptionAvailabilities_subscriptionAvailabilitiesGetInstance: String, CaseIterable {
         case availableinnewterritories = "availableInNewTerritories"
         case availableterritories = "availableTerritories"
-        case subscription = "subscription"
-    }
-
-    /**
-     * enum for parameter include
-     */
-    public enum Include_subscriptionAvailabilitiesGetInstance: String, CaseIterable {
-        case availableterritories = "availableTerritories"
-        case subscription = "subscription"
     }
 
     /**
@@ -185,17 +176,24 @@ open class SubscriptionAvailabilitiesAPI {
     }
 
     /**
+     * enum for parameter include
+     */
+    public enum Include_subscriptionAvailabilitiesGetInstance: String, CaseIterable {
+        case availableterritories = "availableTerritories"
+    }
+
+    /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsSubscriptionAvailabilities: (query) the fields to include for returned resources of type subscriptionAvailabilities (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAvailableTerritories: (query) maximum number of related availableTerritories returned (when they are included) (optional)
      - returns: SubscriptionAvailabilityResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionAvailabilitiesGetInstance(id: String, fieldsSubscriptionAvailabilities: [FieldsSubscriptionAvailabilities_subscriptionAvailabilitiesGetInstance]? = nil, include: [Include_subscriptionAvailabilitiesGetInstance]? = nil, fieldsTerritories: [FieldsTerritories_subscriptionAvailabilitiesGetInstance]? = nil, limitAvailableTerritories: Int? = nil) async throws -> SubscriptionAvailabilityResponse {
-        return try await subscriptionAvailabilitiesGetInstanceWithRequestBuilder(id: id, fieldsSubscriptionAvailabilities: fieldsSubscriptionAvailabilities, include: include, fieldsTerritories: fieldsTerritories, limitAvailableTerritories: limitAvailableTerritories).execute().body
+    open class func subscriptionAvailabilitiesGetInstance(id: String, fieldsSubscriptionAvailabilities: [FieldsSubscriptionAvailabilities_subscriptionAvailabilitiesGetInstance]? = nil, fieldsTerritories: [FieldsTerritories_subscriptionAvailabilitiesGetInstance]? = nil, include: [Include_subscriptionAvailabilitiesGetInstance]? = nil, limitAvailableTerritories: Int? = nil) async throws -> SubscriptionAvailabilityResponse {
+        return try await subscriptionAvailabilitiesGetInstanceWithRequestBuilder(id: id, fieldsSubscriptionAvailabilities: fieldsSubscriptionAvailabilities, fieldsTerritories: fieldsTerritories, include: include, limitAvailableTerritories: limitAvailableTerritories).execute().body
     }
 
     /**
@@ -214,12 +212,12 @@ open class SubscriptionAvailabilitiesAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsSubscriptionAvailabilities: (query) the fields to include for returned resources of type subscriptionAvailabilities (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAvailableTerritories: (query) maximum number of related availableTerritories returned (when they are included) (optional)
      - returns: RequestBuilder<SubscriptionAvailabilityResponse> 
      */
-    open class func subscriptionAvailabilitiesGetInstanceWithRequestBuilder(id: String, fieldsSubscriptionAvailabilities: [FieldsSubscriptionAvailabilities_subscriptionAvailabilitiesGetInstance]? = nil, include: [Include_subscriptionAvailabilitiesGetInstance]? = nil, fieldsTerritories: [FieldsTerritories_subscriptionAvailabilitiesGetInstance]? = nil, limitAvailableTerritories: Int? = nil) -> RequestBuilder<SubscriptionAvailabilityResponse> {
+    open class func subscriptionAvailabilitiesGetInstanceWithRequestBuilder(id: String, fieldsSubscriptionAvailabilities: [FieldsSubscriptionAvailabilities_subscriptionAvailabilitiesGetInstance]? = nil, fieldsTerritories: [FieldsTerritories_subscriptionAvailabilitiesGetInstance]? = nil, include: [Include_subscriptionAvailabilitiesGetInstance]? = nil, limitAvailableTerritories: Int? = nil) -> RequestBuilder<SubscriptionAvailabilityResponse> {
         var localVariablePath = "/v1/subscriptionAvailabilities/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -230,8 +228,8 @@ open class SubscriptionAvailabilitiesAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[subscriptionAvailabilities]": (wrappedValue: fieldsSubscriptionAvailabilities?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "limit[availableTerritories]": (wrappedValue: limitAvailableTerritories?.encodeToJSON(), isExplode: true),
         ])
 

@@ -13,16 +13,13 @@ import AnyCodable
 public struct AppUpdateRequest: Codable, JSONEncodable, Hashable {
 
     public var data: AppUpdateRequestData
-    public var included: [AppPriceInlineCreate]?
 
-    public init(data: AppUpdateRequestData, included: [AppPriceInlineCreate]? = nil) {
+    public init(data: AppUpdateRequestData) {
         self.data = data
-        self.included = included
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case data
-        case included
     }
 
     // Encodable protocol methods
@@ -30,7 +27,6 @@ public struct AppUpdateRequest: Codable, JSONEncodable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(data, forKey: .data)
-        try container.encodeIfPresent(included, forKey: .included)
     }
 }
 

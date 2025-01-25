@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [BundleId] |  | 
+**data** | [Profile] |  | 
 **links** | [**PagedDocumentLinks**](PagedDocumentLinks.md) |  | 
 **meta** | [**PagingInformation**](PagingInformation.md) |  | [optional] 
 

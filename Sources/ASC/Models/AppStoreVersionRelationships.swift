@@ -12,32 +12,36 @@ import AnyCodable
 
 public struct AppStoreVersionRelationships: Codable, JSONEncodable, Hashable {
 
-    public var app: AppAvailabilityRelationshipsApp?
+    public var app: AlternativeDistributionKeyCreateRequestDataRelationshipsApp?
     @available(*, deprecated, message: "This property is deprecated.")
     public var ageRatingDeclaration: AppStoreVersionRelationshipsAgeRatingDeclaration?
     public var appStoreVersionLocalizations: AppStoreVersionRelationshipsAppStoreVersionLocalizations?
     public var build: AppStoreVersionRelationshipsBuild?
     public var appStoreVersionPhasedRelease: AppStoreVersionRelationshipsAppStoreVersionPhasedRelease?
+    public var gameCenterAppVersion: AppStoreVersionRelationshipsGameCenterAppVersion?
     public var routingAppCoverage: AppStoreVersionRelationshipsRoutingAppCoverage?
-    public var appStoreReviewDetail: AppStoreReviewAttachmentRelationshipsAppStoreReviewDetail?
+    public var appStoreReviewDetail: AppStoreVersionRelationshipsAppStoreReviewDetail?
     public var appStoreVersionSubmission: AppStoreVersionRelationshipsAppStoreVersionSubmission?
-    public var appClipDefaultExperience: AppClipAppStoreReviewDetailRelationshipsAppClipDefaultExperience?
+    public var appClipDefaultExperience: AppStoreVersionRelationshipsAppClipDefaultExperience?
     public var appStoreVersionExperiments: AppStoreVersionRelationshipsAppStoreVersionExperiments?
     public var appStoreVersionExperimentsV2: AppStoreVersionRelationshipsAppStoreVersionExperiments?
-    public var alternativeDistributionPackage: AlternativeDistributionPackageVersionRelationshipsAlternativeDistributionPackage?
+    public var customerReviews: AnalyticsReportInstanceRelationshipsSegments?
+    public var alternativeDistributionPackage: AppStoreVersionRelationshipsAlternativeDistributionPackage?
 
-    public init(app: AppAvailabilityRelationshipsApp? = nil, ageRatingDeclaration: AppStoreVersionRelationshipsAgeRatingDeclaration? = nil, appStoreVersionLocalizations: AppStoreVersionRelationshipsAppStoreVersionLocalizations? = nil, build: AppStoreVersionRelationshipsBuild? = nil, appStoreVersionPhasedRelease: AppStoreVersionRelationshipsAppStoreVersionPhasedRelease? = nil, routingAppCoverage: AppStoreVersionRelationshipsRoutingAppCoverage? = nil, appStoreReviewDetail: AppStoreReviewAttachmentRelationshipsAppStoreReviewDetail? = nil, appStoreVersionSubmission: AppStoreVersionRelationshipsAppStoreVersionSubmission? = nil, appClipDefaultExperience: AppClipAppStoreReviewDetailRelationshipsAppClipDefaultExperience? = nil, appStoreVersionExperiments: AppStoreVersionRelationshipsAppStoreVersionExperiments? = nil, appStoreVersionExperimentsV2: AppStoreVersionRelationshipsAppStoreVersionExperiments? = nil, alternativeDistributionPackage: AlternativeDistributionPackageVersionRelationshipsAlternativeDistributionPackage? = nil) {
+    public init(app: AlternativeDistributionKeyCreateRequestDataRelationshipsApp? = nil, ageRatingDeclaration: AppStoreVersionRelationshipsAgeRatingDeclaration? = nil, appStoreVersionLocalizations: AppStoreVersionRelationshipsAppStoreVersionLocalizations? = nil, build: AppStoreVersionRelationshipsBuild? = nil, appStoreVersionPhasedRelease: AppStoreVersionRelationshipsAppStoreVersionPhasedRelease? = nil, gameCenterAppVersion: AppStoreVersionRelationshipsGameCenterAppVersion? = nil, routingAppCoverage: AppStoreVersionRelationshipsRoutingAppCoverage? = nil, appStoreReviewDetail: AppStoreVersionRelationshipsAppStoreReviewDetail? = nil, appStoreVersionSubmission: AppStoreVersionRelationshipsAppStoreVersionSubmission? = nil, appClipDefaultExperience: AppStoreVersionRelationshipsAppClipDefaultExperience? = nil, appStoreVersionExperiments: AppStoreVersionRelationshipsAppStoreVersionExperiments? = nil, appStoreVersionExperimentsV2: AppStoreVersionRelationshipsAppStoreVersionExperiments? = nil, customerReviews: AnalyticsReportInstanceRelationshipsSegments? = nil, alternativeDistributionPackage: AppStoreVersionRelationshipsAlternativeDistributionPackage? = nil) {
         self.app = app
         self.ageRatingDeclaration = ageRatingDeclaration
         self.appStoreVersionLocalizations = appStoreVersionLocalizations
         self.build = build
         self.appStoreVersionPhasedRelease = appStoreVersionPhasedRelease
+        self.gameCenterAppVersion = gameCenterAppVersion
         self.routingAppCoverage = routingAppCoverage
         self.appStoreReviewDetail = appStoreReviewDetail
         self.appStoreVersionSubmission = appStoreVersionSubmission
         self.appClipDefaultExperience = appClipDefaultExperience
         self.appStoreVersionExperiments = appStoreVersionExperiments
         self.appStoreVersionExperimentsV2 = appStoreVersionExperimentsV2
+        self.customerReviews = customerReviews
         self.alternativeDistributionPackage = alternativeDistributionPackage
     }
 
@@ -47,12 +51,14 @@ public struct AppStoreVersionRelationships: Codable, JSONEncodable, Hashable {
         case appStoreVersionLocalizations
         case build
         case appStoreVersionPhasedRelease
+        case gameCenterAppVersion
         case routingAppCoverage
         case appStoreReviewDetail
         case appStoreVersionSubmission
         case appClipDefaultExperience
         case appStoreVersionExperiments
         case appStoreVersionExperimentsV2
+        case customerReviews
         case alternativeDistributionPackage
     }
 
@@ -65,12 +71,14 @@ public struct AppStoreVersionRelationships: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(appStoreVersionLocalizations, forKey: .appStoreVersionLocalizations)
         try container.encodeIfPresent(build, forKey: .build)
         try container.encodeIfPresent(appStoreVersionPhasedRelease, forKey: .appStoreVersionPhasedRelease)
+        try container.encodeIfPresent(gameCenterAppVersion, forKey: .gameCenterAppVersion)
         try container.encodeIfPresent(routingAppCoverage, forKey: .routingAppCoverage)
         try container.encodeIfPresent(appStoreReviewDetail, forKey: .appStoreReviewDetail)
         try container.encodeIfPresent(appStoreVersionSubmission, forKey: .appStoreVersionSubmission)
         try container.encodeIfPresent(appClipDefaultExperience, forKey: .appClipDefaultExperience)
         try container.encodeIfPresent(appStoreVersionExperiments, forKey: .appStoreVersionExperiments)
         try container.encodeIfPresent(appStoreVersionExperimentsV2, forKey: .appStoreVersionExperimentsV2)
+        try container.encodeIfPresent(customerReviews, forKey: .customerReviews)
         try container.encodeIfPresent(alternativeDistributionPackage, forKey: .alternativeDistributionPackage)
     }
 }

@@ -11,7 +11,6 @@ import AnyCodable
 #endif
 
 public enum SubscriptionOfferDuration: String, Codable, CaseIterable, CaseIterableDefaultsLast {
-    case oneDay = "ONE_DAY"
     case threeDays = "THREE_DAYS"
     case oneWeek = "ONE_WEEK"
     case twoWeeks = "TWO_WEEKS"

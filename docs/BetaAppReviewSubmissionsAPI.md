@@ -108,7 +108,7 @@ Name | Type | Description  | Notes
 
 # **betaAppReviewSubmissionsGetCollection**
 ```swift
-    open class func betaAppReviewSubmissionsGetCollection(filterBuild: [String], filterBetaReviewState: [FilterBetaReviewState_betaAppReviewSubmissionsGetCollection]? = nil, fieldsBetaAppReviewSubmissions: [FieldsBetaAppReviewSubmissions_betaAppReviewSubmissionsGetCollection]? = nil, limit: Int? = nil, include: [Include_betaAppReviewSubmissionsGetCollection]? = nil, fieldsBuilds: [FieldsBuilds_betaAppReviewSubmissionsGetCollection]? = nil, completion: @escaping (_ data: BetaAppReviewSubmissionsResponse?, _ error: Error?) -> Void)
+    open class func betaAppReviewSubmissionsGetCollection(filterBuild: [String], filterBetaReviewState: [FilterBetaReviewState_betaAppReviewSubmissionsGetCollection]? = nil, fieldsBetaAppReviewSubmissions: [FieldsBetaAppReviewSubmissions_betaAppReviewSubmissionsGetCollection]? = nil, fieldsBuilds: [FieldsBuilds_betaAppReviewSubmissionsGetCollection]? = nil, limit: Int? = nil, include: [Include_betaAppReviewSubmissionsGetCollection]? = nil, completion: @escaping (_ data: BetaAppReviewSubmissionsResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -121,11 +121,11 @@ import ASC
 let filterBuild = ["inner_example"] // [String] | filter by id(s) of related 'build'
 let filterBetaReviewState = ["filterBetaReviewState_example"] // [String] | filter by attribute 'betaReviewState' (optional)
 let fieldsBetaAppReviewSubmissions = ["fieldsBetaAppReviewSubmissions_example"] // [String] | the fields to include for returned resources of type betaAppReviewSubmissions (optional)
+let fieldsBuilds = ["fieldsBuilds_example"] // [String] | the fields to include for returned resources of type builds (optional)
 let limit = 987 // Int | maximum resources per page (optional)
 let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
-let fieldsBuilds = ["fieldsBuilds_example"] // [String] | the fields to include for returned resources of type builds (optional)
 
-BetaAppReviewSubmissionsAPI.betaAppReviewSubmissionsGetCollection(filterBuild: filterBuild, filterBetaReviewState: filterBetaReviewState, fieldsBetaAppReviewSubmissions: fieldsBetaAppReviewSubmissions, limit: limit, include: include, fieldsBuilds: fieldsBuilds) { (response, error) in
+BetaAppReviewSubmissionsAPI.betaAppReviewSubmissionsGetCollection(filterBuild: filterBuild, filterBetaReviewState: filterBetaReviewState, fieldsBetaAppReviewSubmissions: fieldsBetaAppReviewSubmissions, fieldsBuilds: fieldsBuilds, limit: limit, include: include) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -144,9 +144,9 @@ Name | Type | Description  | Notes
  **filterBuild** | [**[String]**](String.md) | filter by id(s) of related &#39;build&#39; | 
  **filterBetaReviewState** | [**[String]**](String.md) | filter by attribute &#39;betaReviewState&#39; | [optional] 
  **fieldsBetaAppReviewSubmissions** | [**[String]**](String.md) | the fields to include for returned resources of type betaAppReviewSubmissions | [optional] 
+ **fieldsBuilds** | [**[String]**](String.md) | the fields to include for returned resources of type builds | [optional] 
  **limit** | **Int** | maximum resources per page | [optional] 
  **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
- **fieldsBuilds** | [**[String]**](String.md) | the fields to include for returned resources of type builds | [optional] 
 
 ### Return type
 
@@ -165,7 +165,7 @@ Name | Type | Description  | Notes
 
 # **betaAppReviewSubmissionsGetInstance**
 ```swift
-    open class func betaAppReviewSubmissionsGetInstance(id: String, fieldsBetaAppReviewSubmissions: [FieldsBetaAppReviewSubmissions_betaAppReviewSubmissionsGetInstance]? = nil, include: [Include_betaAppReviewSubmissionsGetInstance]? = nil, fieldsBuilds: [FieldsBuilds_betaAppReviewSubmissionsGetInstance]? = nil, completion: @escaping (_ data: BetaAppReviewSubmissionResponse?, _ error: Error?) -> Void)
+    open class func betaAppReviewSubmissionsGetInstance(id: String, fieldsBetaAppReviewSubmissions: [FieldsBetaAppReviewSubmissions_betaAppReviewSubmissionsGetInstance]? = nil, fieldsBuilds: [FieldsBuilds_betaAppReviewSubmissionsGetInstance]? = nil, include: [Include_betaAppReviewSubmissionsGetInstance]? = nil, completion: @escaping (_ data: BetaAppReviewSubmissionResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -177,10 +177,10 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let fieldsBetaAppReviewSubmissions = ["fieldsBetaAppReviewSubmissions_example"] // [String] | the fields to include for returned resources of type betaAppReviewSubmissions (optional)
-let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let fieldsBuilds = ["fieldsBuilds_example"] // [String] | the fields to include for returned resources of type builds (optional)
+let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 
-BetaAppReviewSubmissionsAPI.betaAppReviewSubmissionsGetInstance(id: id, fieldsBetaAppReviewSubmissions: fieldsBetaAppReviewSubmissions, include: include, fieldsBuilds: fieldsBuilds) { (response, error) in
+BetaAppReviewSubmissionsAPI.betaAppReviewSubmissionsGetInstance(id: id, fieldsBetaAppReviewSubmissions: fieldsBetaAppReviewSubmissions, fieldsBuilds: fieldsBuilds, include: include) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -198,8 +198,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **fieldsBetaAppReviewSubmissions** | [**[String]**](String.md) | the fields to include for returned resources of type betaAppReviewSubmissions | [optional] 
- **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **fieldsBuilds** | [**[String]**](String.md) | the fields to include for returned resources of type builds | [optional] 
+ **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
 
 ### Return type
 

@@ -16,52 +16,23 @@ open class ScmRepositoriesAPI {
      * enum for parameter fieldsScmRepositories
      */
     public enum FieldsScmRepositories_scmRepositoriesGetCollection: String, CaseIterable {
-        case defaultbranch = "defaultBranch"
-        case gitreferences = "gitReferences"
-        case httpcloneurl = "httpCloneUrl"
         case lastaccesseddate = "lastAccessedDate"
+        case httpcloneurl = "httpCloneUrl"
+        case sshcloneurl = "sshCloneUrl"
         case ownername = "ownerName"
-        case pullrequests = "pullRequests"
         case repositoryname = "repositoryName"
         case scmprovider = "scmProvider"
-        case sshcloneurl = "sshCloneUrl"
+        case defaultbranch = "defaultBranch"
+        case gitreferences = "gitReferences"
+        case pullrequests = "pullRequests"
     }
 
     /**
      * enum for parameter include
      */
     public enum Include_scmRepositoriesGetCollection: String, CaseIterable {
-        case defaultbranch = "defaultBranch"
         case scmprovider = "scmProvider"
-    }
-
-    /**
-     * enum for parameter fieldsScmGitReferences
-     */
-    public enum FieldsScmGitReferences_scmRepositoriesGetCollection: String, CaseIterable {
-        case canonicalname = "canonicalName"
-        case isdeleted = "isDeleted"
-        case kind = "kind"
-        case name = "name"
-        case repository = "repository"
-    }
-
-    /**
-     * enum for parameter fieldsScmPullRequests
-     */
-    public enum FieldsScmPullRequests_scmRepositoriesGetCollection: String, CaseIterable {
-        case destinationbranchname = "destinationBranchName"
-        case destinationrepositoryname = "destinationRepositoryName"
-        case destinationrepositoryowner = "destinationRepositoryOwner"
-        case isclosed = "isClosed"
-        case iscrossrepository = "isCrossRepository"
-        case number = "number"
-        case repository = "repository"
-        case sourcebranchname = "sourceBranchName"
-        case sourcerepositoryname = "sourceRepositoryName"
-        case sourcerepositoryowner = "sourceRepositoryOwner"
-        case title = "title"
-        case weburl = "webUrl"
+        case defaultbranch = "defaultBranch"
     }
 
     /**
@@ -70,13 +41,11 @@ open class ScmRepositoriesAPI {
      - parameter fieldsScmRepositories: (query) the fields to include for returned resources of type scmRepositories (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
-     - parameter fieldsScmGitReferences: (query) the fields to include for returned resources of type scmGitReferences (optional)
-     - parameter fieldsScmPullRequests: (query) the fields to include for returned resources of type scmPullRequests (optional)
      - returns: ScmRepositoriesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func scmRepositoriesGetCollection(filterId: [String]? = nil, fieldsScmRepositories: [FieldsScmRepositories_scmRepositoriesGetCollection]? = nil, limit: Int? = nil, include: [Include_scmRepositoriesGetCollection]? = nil, fieldsScmGitReferences: [FieldsScmGitReferences_scmRepositoriesGetCollection]? = nil, fieldsScmPullRequests: [FieldsScmPullRequests_scmRepositoriesGetCollection]? = nil) async throws -> ScmRepositoriesResponse {
-        return try await scmRepositoriesGetCollectionWithRequestBuilder(filterId: filterId, fieldsScmRepositories: fieldsScmRepositories, limit: limit, include: include, fieldsScmGitReferences: fieldsScmGitReferences, fieldsScmPullRequests: fieldsScmPullRequests).execute().body
+    open class func scmRepositoriesGetCollection(filterId: [String]? = nil, fieldsScmRepositories: [FieldsScmRepositories_scmRepositoriesGetCollection]? = nil, limit: Int? = nil, include: [Include_scmRepositoriesGetCollection]? = nil) async throws -> ScmRepositoriesResponse {
+        return try await scmRepositoriesGetCollectionWithRequestBuilder(filterId: filterId, fieldsScmRepositories: fieldsScmRepositories, limit: limit, include: include).execute().body
     }
 
     /**
@@ -97,11 +66,9 @@ open class ScmRepositoriesAPI {
      - parameter fieldsScmRepositories: (query) the fields to include for returned resources of type scmRepositories (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
-     - parameter fieldsScmGitReferences: (query) the fields to include for returned resources of type scmGitReferences (optional)
-     - parameter fieldsScmPullRequests: (query) the fields to include for returned resources of type scmPullRequests (optional)
      - returns: RequestBuilder<ScmRepositoriesResponse> 
      */
-    open class func scmRepositoriesGetCollectionWithRequestBuilder(filterId: [String]? = nil, fieldsScmRepositories: [FieldsScmRepositories_scmRepositoriesGetCollection]? = nil, limit: Int? = nil, include: [Include_scmRepositoriesGetCollection]? = nil, fieldsScmGitReferences: [FieldsScmGitReferences_scmRepositoriesGetCollection]? = nil, fieldsScmPullRequests: [FieldsScmPullRequests_scmRepositoriesGetCollection]? = nil) -> RequestBuilder<ScmRepositoriesResponse> {
+    open class func scmRepositoriesGetCollectionWithRequestBuilder(filterId: [String]? = nil, fieldsScmRepositories: [FieldsScmRepositories_scmRepositoriesGetCollection]? = nil, limit: Int? = nil, include: [Include_scmRepositoriesGetCollection]? = nil) -> RequestBuilder<ScmRepositoriesResponse> {
         let localVariablePath = "/v1/scmRepositories"
         let localVariableURLString = ASCAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -112,8 +79,6 @@ open class ScmRepositoriesAPI {
             "fields[scmRepositories]": (wrappedValue: fieldsScmRepositories?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "fields[scmGitReferences]": (wrappedValue: fieldsScmGitReferences?.encodeToJSON(), isExplode: false),
-            "fields[scmPullRequests]": (wrappedValue: fieldsScmPullRequests?.encodeToJSON(), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -151,52 +116,23 @@ open class ScmRepositoriesAPI {
      * enum for parameter fieldsScmRepositories
      */
     public enum FieldsScmRepositories_scmRepositoriesGetInstance: String, CaseIterable {
-        case defaultbranch = "defaultBranch"
-        case gitreferences = "gitReferences"
-        case httpcloneurl = "httpCloneUrl"
         case lastaccesseddate = "lastAccessedDate"
+        case httpcloneurl = "httpCloneUrl"
+        case sshcloneurl = "sshCloneUrl"
         case ownername = "ownerName"
-        case pullrequests = "pullRequests"
         case repositoryname = "repositoryName"
         case scmprovider = "scmProvider"
-        case sshcloneurl = "sshCloneUrl"
+        case defaultbranch = "defaultBranch"
+        case gitreferences = "gitReferences"
+        case pullrequests = "pullRequests"
     }
 
     /**
      * enum for parameter include
      */
     public enum Include_scmRepositoriesGetInstance: String, CaseIterable {
-        case defaultbranch = "defaultBranch"
         case scmprovider = "scmProvider"
-    }
-
-    /**
-     * enum for parameter fieldsScmGitReferences
-     */
-    public enum FieldsScmGitReferences_scmRepositoriesGetInstance: String, CaseIterable {
-        case canonicalname = "canonicalName"
-        case isdeleted = "isDeleted"
-        case kind = "kind"
-        case name = "name"
-        case repository = "repository"
-    }
-
-    /**
-     * enum for parameter fieldsScmPullRequests
-     */
-    public enum FieldsScmPullRequests_scmRepositoriesGetInstance: String, CaseIterable {
-        case destinationbranchname = "destinationBranchName"
-        case destinationrepositoryname = "destinationRepositoryName"
-        case destinationrepositoryowner = "destinationRepositoryOwner"
-        case isclosed = "isClosed"
-        case iscrossrepository = "isCrossRepository"
-        case number = "number"
-        case repository = "repository"
-        case sourcebranchname = "sourceBranchName"
-        case sourcerepositoryname = "sourceRepositoryName"
-        case sourcerepositoryowner = "sourceRepositoryOwner"
-        case title = "title"
-        case weburl = "webUrl"
+        case defaultbranch = "defaultBranch"
     }
 
     /**
@@ -204,13 +140,11 @@ open class ScmRepositoriesAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsScmRepositories: (query) the fields to include for returned resources of type scmRepositories (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
-     - parameter fieldsScmGitReferences: (query) the fields to include for returned resources of type scmGitReferences (optional)
-     - parameter fieldsScmPullRequests: (query) the fields to include for returned resources of type scmPullRequests (optional)
      - returns: ScmRepositoryResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func scmRepositoriesGetInstance(id: String, fieldsScmRepositories: [FieldsScmRepositories_scmRepositoriesGetInstance]? = nil, include: [Include_scmRepositoriesGetInstance]? = nil, fieldsScmGitReferences: [FieldsScmGitReferences_scmRepositoriesGetInstance]? = nil, fieldsScmPullRequests: [FieldsScmPullRequests_scmRepositoriesGetInstance]? = nil) async throws -> ScmRepositoryResponse {
-        return try await scmRepositoriesGetInstanceWithRequestBuilder(id: id, fieldsScmRepositories: fieldsScmRepositories, include: include, fieldsScmGitReferences: fieldsScmGitReferences, fieldsScmPullRequests: fieldsScmPullRequests).execute().body
+    open class func scmRepositoriesGetInstance(id: String, fieldsScmRepositories: [FieldsScmRepositories_scmRepositoriesGetInstance]? = nil, include: [Include_scmRepositoriesGetInstance]? = nil) async throws -> ScmRepositoryResponse {
+        return try await scmRepositoriesGetInstanceWithRequestBuilder(id: id, fieldsScmRepositories: fieldsScmRepositories, include: include).execute().body
     }
 
     /**
@@ -230,11 +164,9 @@ open class ScmRepositoriesAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsScmRepositories: (query) the fields to include for returned resources of type scmRepositories (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
-     - parameter fieldsScmGitReferences: (query) the fields to include for returned resources of type scmGitReferences (optional)
-     - parameter fieldsScmPullRequests: (query) the fields to include for returned resources of type scmPullRequests (optional)
      - returns: RequestBuilder<ScmRepositoryResponse> 
      */
-    open class func scmRepositoriesGetInstanceWithRequestBuilder(id: String, fieldsScmRepositories: [FieldsScmRepositories_scmRepositoriesGetInstance]? = nil, include: [Include_scmRepositoriesGetInstance]? = nil, fieldsScmGitReferences: [FieldsScmGitReferences_scmRepositoriesGetInstance]? = nil, fieldsScmPullRequests: [FieldsScmPullRequests_scmRepositoriesGetInstance]? = nil) -> RequestBuilder<ScmRepositoryResponse> {
+    open class func scmRepositoriesGetInstanceWithRequestBuilder(id: String, fieldsScmRepositories: [FieldsScmRepositories_scmRepositoriesGetInstance]? = nil, include: [Include_scmRepositoriesGetInstance]? = nil) -> RequestBuilder<ScmRepositoryResponse> {
         var localVariablePath = "/v1/scmRepositories/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -246,8 +178,6 @@ open class ScmRepositoriesAPI {
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[scmRepositories]": (wrappedValue: fieldsScmRepositories?.encodeToJSON(), isExplode: false),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "fields[scmGitReferences]": (wrappedValue: fieldsScmGitReferences?.encodeToJSON(), isExplode: false),
-            "fields[scmPullRequests]": (wrappedValue: fieldsScmPullRequests?.encodeToJSON(), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -285,10 +215,10 @@ open class ScmRepositoriesAPI {
      * enum for parameter fieldsScmGitReferences
      */
     public enum FieldsScmGitReferences_scmRepositoriesGitReferencesGetToManyRelated: String, CaseIterable {
+        case name = "name"
         case canonicalname = "canonicalName"
         case isdeleted = "isDeleted"
         case kind = "kind"
-        case name = "name"
         case repository = "repository"
     }
 
@@ -296,15 +226,15 @@ open class ScmRepositoriesAPI {
      * enum for parameter fieldsScmRepositories
      */
     public enum FieldsScmRepositories_scmRepositoriesGitReferencesGetToManyRelated: String, CaseIterable {
-        case defaultbranch = "defaultBranch"
-        case gitreferences = "gitReferences"
-        case httpcloneurl = "httpCloneUrl"
         case lastaccesseddate = "lastAccessedDate"
+        case httpcloneurl = "httpCloneUrl"
+        case sshcloneurl = "sshCloneUrl"
         case ownername = "ownerName"
-        case pullrequests = "pullRequests"
         case repositoryname = "repositoryName"
         case scmprovider = "scmProvider"
-        case sshcloneurl = "sshCloneUrl"
+        case defaultbranch = "defaultBranch"
+        case gitreferences = "gitReferences"
+        case pullrequests = "pullRequests"
     }
 
     /**
@@ -400,33 +330,33 @@ open class ScmRepositoriesAPI {
      * enum for parameter fieldsScmPullRequests
      */
     public enum FieldsScmPullRequests_scmRepositoriesPullRequestsGetToManyRelated: String, CaseIterable {
-        case destinationbranchname = "destinationBranchName"
-        case destinationrepositoryname = "destinationRepositoryName"
+        case title = "title"
+        case number = "number"
+        case weburl = "webUrl"
+        case sourcerepositoryowner = "sourceRepositoryOwner"
+        case sourcerepositoryname = "sourceRepositoryName"
+        case sourcebranchname = "sourceBranchName"
         case destinationrepositoryowner = "destinationRepositoryOwner"
+        case destinationrepositoryname = "destinationRepositoryName"
+        case destinationbranchname = "destinationBranchName"
         case isclosed = "isClosed"
         case iscrossrepository = "isCrossRepository"
-        case number = "number"
         case repository = "repository"
-        case sourcebranchname = "sourceBranchName"
-        case sourcerepositoryname = "sourceRepositoryName"
-        case sourcerepositoryowner = "sourceRepositoryOwner"
-        case title = "title"
-        case weburl = "webUrl"
     }
 
     /**
      * enum for parameter fieldsScmRepositories
      */
     public enum FieldsScmRepositories_scmRepositoriesPullRequestsGetToManyRelated: String, CaseIterable {
-        case defaultbranch = "defaultBranch"
-        case gitreferences = "gitReferences"
-        case httpcloneurl = "httpCloneUrl"
         case lastaccesseddate = "lastAccessedDate"
+        case httpcloneurl = "httpCloneUrl"
+        case sshcloneurl = "sshCloneUrl"
         case ownername = "ownerName"
-        case pullrequests = "pullRequests"
         case repositoryname = "repositoryName"
         case scmprovider = "scmProvider"
-        case sshcloneurl = "sshCloneUrl"
+        case defaultbranch = "defaultBranch"
+        case gitreferences = "gitReferences"
+        case pullrequests = "pullRequests"
     }
 
     /**

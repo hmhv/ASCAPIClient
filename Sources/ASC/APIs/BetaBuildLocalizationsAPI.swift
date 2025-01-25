@@ -16,30 +16,30 @@ open class BetaBuildLocalizationsAPI {
      * enum for parameter fieldsBuilds
      */
     public enum FieldsBuilds_betaBuildLocalizationsBuildGetToOneRelated: String, CaseIterable {
-        case app = "app"
-        case appencryptiondeclaration = "appEncryptionDeclaration"
-        case appstoreversion = "appStoreVersion"
-        case betaappreviewsubmission = "betaAppReviewSubmission"
-        case betabuildlocalizations = "betaBuildLocalizations"
-        case betagroups = "betaGroups"
-        case buildaudiencetype = "buildAudienceType"
-        case buildbetadetail = "buildBetaDetail"
-        case buildbundles = "buildBundles"
-        case computedminmacosversion = "computedMinMacOsVersion"
-        case diagnosticsignatures = "diagnosticSignatures"
+        case version = "version"
+        case uploadeddate = "uploadedDate"
         case expirationdate = "expirationDate"
         case expired = "expired"
-        case iconassettoken = "iconAssetToken"
-        case icons = "icons"
-        case individualtesters = "individualTesters"
-        case lsminimumsystemversion = "lsMinimumSystemVersion"
         case minosversion = "minOsVersion"
-        case perfpowermetrics = "perfPowerMetrics"
-        case prereleaseversion = "preReleaseVersion"
+        case lsminimumsystemversion = "lsMinimumSystemVersion"
+        case computedminmacosversion = "computedMinMacOsVersion"
+        case iconassettoken = "iconAssetToken"
         case processingstate = "processingState"
-        case uploadeddate = "uploadedDate"
+        case buildaudiencetype = "buildAudienceType"
         case usesnonexemptencryption = "usesNonExemptEncryption"
-        case version = "version"
+        case prereleaseversion = "preReleaseVersion"
+        case individualtesters = "individualTesters"
+        case betagroups = "betaGroups"
+        case betabuildlocalizations = "betaBuildLocalizations"
+        case appencryptiondeclaration = "appEncryptionDeclaration"
+        case betaappreviewsubmission = "betaAppReviewSubmission"
+        case app = "app"
+        case buildbetadetail = "buildBetaDetail"
+        case appstoreversion = "appStoreVersion"
+        case icons = "icons"
+        case buildbundles = "buildBundles"
+        case perfpowermetrics = "perfPowerMetrics"
+        case diagnosticsignatures = "diagnosticSignatures"
     }
 
     /**
@@ -252,9 +252,39 @@ open class BetaBuildLocalizationsAPI {
      * enum for parameter fieldsBetaBuildLocalizations
      */
     public enum FieldsBetaBuildLocalizations_betaBuildLocalizationsGetCollection: String, CaseIterable {
-        case build = "build"
-        case locale = "locale"
         case whatsnew = "whatsNew"
+        case locale = "locale"
+        case build = "build"
+    }
+
+    /**
+     * enum for parameter fieldsBuilds
+     */
+    public enum FieldsBuilds_betaBuildLocalizationsGetCollection: String, CaseIterable {
+        case version = "version"
+        case uploadeddate = "uploadedDate"
+        case expirationdate = "expirationDate"
+        case expired = "expired"
+        case minosversion = "minOsVersion"
+        case lsminimumsystemversion = "lsMinimumSystemVersion"
+        case computedminmacosversion = "computedMinMacOsVersion"
+        case iconassettoken = "iconAssetToken"
+        case processingstate = "processingState"
+        case buildaudiencetype = "buildAudienceType"
+        case usesnonexemptencryption = "usesNonExemptEncryption"
+        case prereleaseversion = "preReleaseVersion"
+        case individualtesters = "individualTesters"
+        case betagroups = "betaGroups"
+        case betabuildlocalizations = "betaBuildLocalizations"
+        case appencryptiondeclaration = "appEncryptionDeclaration"
+        case betaappreviewsubmission = "betaAppReviewSubmission"
+        case app = "app"
+        case buildbetadetail = "buildBetaDetail"
+        case appstoreversion = "appStoreVersion"
+        case icons = "icons"
+        case buildbundles = "buildBundles"
+        case perfpowermetrics = "perfPowerMetrics"
+        case diagnosticsignatures = "diagnosticSignatures"
     }
 
     /**
@@ -265,48 +295,18 @@ open class BetaBuildLocalizationsAPI {
     }
 
     /**
-     * enum for parameter fieldsBuilds
-     */
-    public enum FieldsBuilds_betaBuildLocalizationsGetCollection: String, CaseIterable {
-        case app = "app"
-        case appencryptiondeclaration = "appEncryptionDeclaration"
-        case appstoreversion = "appStoreVersion"
-        case betaappreviewsubmission = "betaAppReviewSubmission"
-        case betabuildlocalizations = "betaBuildLocalizations"
-        case betagroups = "betaGroups"
-        case buildaudiencetype = "buildAudienceType"
-        case buildbetadetail = "buildBetaDetail"
-        case buildbundles = "buildBundles"
-        case computedminmacosversion = "computedMinMacOsVersion"
-        case diagnosticsignatures = "diagnosticSignatures"
-        case expirationdate = "expirationDate"
-        case expired = "expired"
-        case iconassettoken = "iconAssetToken"
-        case icons = "icons"
-        case individualtesters = "individualTesters"
-        case lsminimumsystemversion = "lsMinimumSystemVersion"
-        case minosversion = "minOsVersion"
-        case perfpowermetrics = "perfPowerMetrics"
-        case prereleaseversion = "preReleaseVersion"
-        case processingstate = "processingState"
-        case uploadeddate = "uploadedDate"
-        case usesnonexemptencryption = "usesNonExemptEncryption"
-        case version = "version"
-    }
-
-    /**
 
      - parameter filterLocale: (query) filter by attribute &#39;locale&#39; (optional)
      - parameter filterBuild: (query) filter by id(s) of related &#39;build&#39; (optional)
      - parameter fieldsBetaBuildLocalizations: (query) the fields to include for returned resources of type betaBuildLocalizations (optional)
+     - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
-     - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
      - returns: BetaBuildLocalizationsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaBuildLocalizationsGetCollection(filterLocale: [String]? = nil, filterBuild: [String]? = nil, fieldsBetaBuildLocalizations: [FieldsBetaBuildLocalizations_betaBuildLocalizationsGetCollection]? = nil, limit: Int? = nil, include: [Include_betaBuildLocalizationsGetCollection]? = nil, fieldsBuilds: [FieldsBuilds_betaBuildLocalizationsGetCollection]? = nil) async throws -> BetaBuildLocalizationsResponse {
-        return try await betaBuildLocalizationsGetCollectionWithRequestBuilder(filterLocale: filterLocale, filterBuild: filterBuild, fieldsBetaBuildLocalizations: fieldsBetaBuildLocalizations, limit: limit, include: include, fieldsBuilds: fieldsBuilds).execute().body
+    open class func betaBuildLocalizationsGetCollection(filterLocale: [String]? = nil, filterBuild: [String]? = nil, fieldsBetaBuildLocalizations: [FieldsBetaBuildLocalizations_betaBuildLocalizationsGetCollection]? = nil, fieldsBuilds: [FieldsBuilds_betaBuildLocalizationsGetCollection]? = nil, limit: Int? = nil, include: [Include_betaBuildLocalizationsGetCollection]? = nil) async throws -> BetaBuildLocalizationsResponse {
+        return try await betaBuildLocalizationsGetCollectionWithRequestBuilder(filterLocale: filterLocale, filterBuild: filterBuild, fieldsBetaBuildLocalizations: fieldsBetaBuildLocalizations, fieldsBuilds: fieldsBuilds, limit: limit, include: include).execute().body
     }
 
     /**
@@ -326,12 +326,12 @@ open class BetaBuildLocalizationsAPI {
      - parameter filterLocale: (query) filter by attribute &#39;locale&#39; (optional)
      - parameter filterBuild: (query) filter by id(s) of related &#39;build&#39; (optional)
      - parameter fieldsBetaBuildLocalizations: (query) the fields to include for returned resources of type betaBuildLocalizations (optional)
+     - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
-     - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
      - returns: RequestBuilder<BetaBuildLocalizationsResponse> 
      */
-    open class func betaBuildLocalizationsGetCollectionWithRequestBuilder(filterLocale: [String]? = nil, filterBuild: [String]? = nil, fieldsBetaBuildLocalizations: [FieldsBetaBuildLocalizations_betaBuildLocalizationsGetCollection]? = nil, limit: Int? = nil, include: [Include_betaBuildLocalizationsGetCollection]? = nil, fieldsBuilds: [FieldsBuilds_betaBuildLocalizationsGetCollection]? = nil) -> RequestBuilder<BetaBuildLocalizationsResponse> {
+    open class func betaBuildLocalizationsGetCollectionWithRequestBuilder(filterLocale: [String]? = nil, filterBuild: [String]? = nil, fieldsBetaBuildLocalizations: [FieldsBetaBuildLocalizations_betaBuildLocalizationsGetCollection]? = nil, fieldsBuilds: [FieldsBuilds_betaBuildLocalizationsGetCollection]? = nil, limit: Int? = nil, include: [Include_betaBuildLocalizationsGetCollection]? = nil) -> RequestBuilder<BetaBuildLocalizationsResponse> {
         let localVariablePath = "/v1/betaBuildLocalizations"
         let localVariableURLString = ASCAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -341,9 +341,9 @@ open class BetaBuildLocalizationsAPI {
             "filter[locale]": (wrappedValue: filterLocale?.encodeToJSON(), isExplode: false),
             "filter[build]": (wrappedValue: filterBuild?.encodeToJSON(), isExplode: false),
             "fields[betaBuildLocalizations]": (wrappedValue: fieldsBetaBuildLocalizations?.encodeToJSON(), isExplode: false),
+            "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -381,9 +381,39 @@ open class BetaBuildLocalizationsAPI {
      * enum for parameter fieldsBetaBuildLocalizations
      */
     public enum FieldsBetaBuildLocalizations_betaBuildLocalizationsGetInstance: String, CaseIterable {
-        case build = "build"
-        case locale = "locale"
         case whatsnew = "whatsNew"
+        case locale = "locale"
+        case build = "build"
+    }
+
+    /**
+     * enum for parameter fieldsBuilds
+     */
+    public enum FieldsBuilds_betaBuildLocalizationsGetInstance: String, CaseIterable {
+        case version = "version"
+        case uploadeddate = "uploadedDate"
+        case expirationdate = "expirationDate"
+        case expired = "expired"
+        case minosversion = "minOsVersion"
+        case lsminimumsystemversion = "lsMinimumSystemVersion"
+        case computedminmacosversion = "computedMinMacOsVersion"
+        case iconassettoken = "iconAssetToken"
+        case processingstate = "processingState"
+        case buildaudiencetype = "buildAudienceType"
+        case usesnonexemptencryption = "usesNonExemptEncryption"
+        case prereleaseversion = "preReleaseVersion"
+        case individualtesters = "individualTesters"
+        case betagroups = "betaGroups"
+        case betabuildlocalizations = "betaBuildLocalizations"
+        case appencryptiondeclaration = "appEncryptionDeclaration"
+        case betaappreviewsubmission = "betaAppReviewSubmission"
+        case app = "app"
+        case buildbetadetail = "buildBetaDetail"
+        case appstoreversion = "appStoreVersion"
+        case icons = "icons"
+        case buildbundles = "buildBundles"
+        case perfpowermetrics = "perfPowerMetrics"
+        case diagnosticsignatures = "diagnosticSignatures"
     }
 
     /**
@@ -394,46 +424,16 @@ open class BetaBuildLocalizationsAPI {
     }
 
     /**
-     * enum for parameter fieldsBuilds
-     */
-    public enum FieldsBuilds_betaBuildLocalizationsGetInstance: String, CaseIterable {
-        case app = "app"
-        case appencryptiondeclaration = "appEncryptionDeclaration"
-        case appstoreversion = "appStoreVersion"
-        case betaappreviewsubmission = "betaAppReviewSubmission"
-        case betabuildlocalizations = "betaBuildLocalizations"
-        case betagroups = "betaGroups"
-        case buildaudiencetype = "buildAudienceType"
-        case buildbetadetail = "buildBetaDetail"
-        case buildbundles = "buildBundles"
-        case computedminmacosversion = "computedMinMacOsVersion"
-        case diagnosticsignatures = "diagnosticSignatures"
-        case expirationdate = "expirationDate"
-        case expired = "expired"
-        case iconassettoken = "iconAssetToken"
-        case icons = "icons"
-        case individualtesters = "individualTesters"
-        case lsminimumsystemversion = "lsMinimumSystemVersion"
-        case minosversion = "minOsVersion"
-        case perfpowermetrics = "perfPowerMetrics"
-        case prereleaseversion = "preReleaseVersion"
-        case processingstate = "processingState"
-        case uploadeddate = "uploadedDate"
-        case usesnonexemptencryption = "usesNonExemptEncryption"
-        case version = "version"
-    }
-
-    /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsBetaBuildLocalizations: (query) the fields to include for returned resources of type betaBuildLocalizations (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: BetaBuildLocalizationResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaBuildLocalizationsGetInstance(id: String, fieldsBetaBuildLocalizations: [FieldsBetaBuildLocalizations_betaBuildLocalizationsGetInstance]? = nil, include: [Include_betaBuildLocalizationsGetInstance]? = nil, fieldsBuilds: [FieldsBuilds_betaBuildLocalizationsGetInstance]? = nil) async throws -> BetaBuildLocalizationResponse {
-        return try await betaBuildLocalizationsGetInstanceWithRequestBuilder(id: id, fieldsBetaBuildLocalizations: fieldsBetaBuildLocalizations, include: include, fieldsBuilds: fieldsBuilds).execute().body
+    open class func betaBuildLocalizationsGetInstance(id: String, fieldsBetaBuildLocalizations: [FieldsBetaBuildLocalizations_betaBuildLocalizationsGetInstance]? = nil, fieldsBuilds: [FieldsBuilds_betaBuildLocalizationsGetInstance]? = nil, include: [Include_betaBuildLocalizationsGetInstance]? = nil) async throws -> BetaBuildLocalizationResponse {
+        return try await betaBuildLocalizationsGetInstanceWithRequestBuilder(id: id, fieldsBetaBuildLocalizations: fieldsBetaBuildLocalizations, fieldsBuilds: fieldsBuilds, include: include).execute().body
     }
 
     /**
@@ -452,11 +452,11 @@ open class BetaBuildLocalizationsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsBetaBuildLocalizations: (query) the fields to include for returned resources of type betaBuildLocalizations (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: RequestBuilder<BetaBuildLocalizationResponse> 
      */
-    open class func betaBuildLocalizationsGetInstanceWithRequestBuilder(id: String, fieldsBetaBuildLocalizations: [FieldsBetaBuildLocalizations_betaBuildLocalizationsGetInstance]? = nil, include: [Include_betaBuildLocalizationsGetInstance]? = nil, fieldsBuilds: [FieldsBuilds_betaBuildLocalizationsGetInstance]? = nil) -> RequestBuilder<BetaBuildLocalizationResponse> {
+    open class func betaBuildLocalizationsGetInstanceWithRequestBuilder(id: String, fieldsBetaBuildLocalizations: [FieldsBetaBuildLocalizations_betaBuildLocalizationsGetInstance]? = nil, fieldsBuilds: [FieldsBuilds_betaBuildLocalizationsGetInstance]? = nil, include: [Include_betaBuildLocalizationsGetInstance]? = nil) -> RequestBuilder<BetaBuildLocalizationResponse> {
         var localVariablePath = "/v1/betaBuildLocalizations/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -467,8 +467,8 @@ open class BetaBuildLocalizationsAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[betaBuildLocalizations]": (wrappedValue: fieldsBetaBuildLocalizations?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [

@@ -81,19 +81,18 @@ open class AppClipAdvancedExperiencesAPI {
      * enum for parameter fieldsAppClipAdvancedExperiences
      */
     public enum FieldsAppClipAdvancedExperiences_appClipAdvancedExperiencesGetInstance: String, CaseIterable {
-        case action = "action"
-        case appclip = "appClip"
-        case businesscategory = "businessCategory"
-        case defaultlanguage = "defaultLanguage"
-        case headerimage = "headerImage"
-        case ispoweredby = "isPoweredBy"
         case link = "link"
-        case localizations = "localizations"
+        case version = "version"
+        case status = "status"
+        case action = "action"
+        case ispoweredby = "isPoweredBy"
         case place = "place"
         case placestatus = "placeStatus"
-        case removed = "removed"
-        case status = "status"
-        case version = "version"
+        case businesscategory = "businessCategory"
+        case defaultlanguage = "defaultLanguage"
+        case appclip = "appClip"
+        case headerimage = "headerImage"
+        case localizations = "localizations"
     }
 
     /**

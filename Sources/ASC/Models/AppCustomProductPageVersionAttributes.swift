@@ -25,15 +25,18 @@ public struct AppCustomProductPageVersionAttributes: Codable, JSONEncodable, Has
     }
     public var version: String?
     public var state: State?
+    public var deepLink: String?
 
-    public init(version: String? = nil, state: State? = nil) {
+    public init(version: String? = nil, state: State? = nil, deepLink: String? = nil) {
         self.version = version
         self.state = state
+        self.deepLink = deepLink
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case version
         case state
+        case deepLink
     }
 
     // Encodable protocol methods
@@ -42,6 +45,7 @@ public struct AppCustomProductPageVersionAttributes: Codable, JSONEncodable, Has
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(version, forKey: .version)
         try container.encodeIfPresent(state, forKey: .state)
+        try container.encodeIfPresent(deepLink, forKey: .deepLink)
     }
 }
 

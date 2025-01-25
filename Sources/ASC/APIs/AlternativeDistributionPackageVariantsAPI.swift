@@ -16,10 +16,10 @@ open class AlternativeDistributionPackageVariantsAPI {
      * enum for parameter fieldsAlternativeDistributionPackageVariants
      */
     public enum FieldsAlternativeDistributionPackageVariants_alternativeDistributionPackageVariantsGetInstance: String, CaseIterable {
-        case alternativedistributionkeyblob = "alternativeDistributionKeyBlob"
-        case filechecksum = "fileChecksum"
         case url = "url"
         case urlexpirationdate = "urlExpirationDate"
+        case alternativedistributionkeyblob = "alternativeDistributionKeyBlob"
+        case filechecksum = "fileChecksum"
     }
 
     /**

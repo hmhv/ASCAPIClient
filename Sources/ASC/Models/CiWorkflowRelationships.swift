@@ -12,16 +12,18 @@ import AnyCodable
 
 public struct CiWorkflowRelationships: Codable, JSONEncodable, Hashable {
 
-    public var product: AppRelationshipsCiProduct?
+    public var product: CiBuildRunRelationshipsProduct?
     public var repository: CiWorkflowRelationshipsRepository?
     public var xcodeVersion: CiWorkflowRelationshipsXcodeVersion?
     public var macOsVersion: CiWorkflowRelationshipsMacOsVersion?
+    public var buildRuns: AnalyticsReportInstanceRelationshipsSegments?
 
-    public init(product: AppRelationshipsCiProduct? = nil, repository: CiWorkflowRelationshipsRepository? = nil, xcodeVersion: CiWorkflowRelationshipsXcodeVersion? = nil, macOsVersion: CiWorkflowRelationshipsMacOsVersion? = nil) {
+    public init(product: CiBuildRunRelationshipsProduct? = nil, repository: CiWorkflowRelationshipsRepository? = nil, xcodeVersion: CiWorkflowRelationshipsXcodeVersion? = nil, macOsVersion: CiWorkflowRelationshipsMacOsVersion? = nil, buildRuns: AnalyticsReportInstanceRelationshipsSegments? = nil) {
         self.product = product
         self.repository = repository
         self.xcodeVersion = xcodeVersion
         self.macOsVersion = macOsVersion
+        self.buildRuns = buildRuns
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -29,6 +31,7 @@ public struct CiWorkflowRelationships: Codable, JSONEncodable, Hashable {
         case repository
         case xcodeVersion
         case macOsVersion
+        case buildRuns
     }
 
     // Encodable protocol methods
@@ -39,6 +42,7 @@ public struct CiWorkflowRelationships: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(repository, forKey: .repository)
         try container.encodeIfPresent(xcodeVersion, forKey: .xcodeVersion)
         try container.encodeIfPresent(macOsVersion, forKey: .macOsVersion)
+        try container.encodeIfPresent(buildRuns, forKey: .buildRuns)
     }
 }
 

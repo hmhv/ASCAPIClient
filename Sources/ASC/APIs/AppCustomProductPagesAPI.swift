@@ -27,37 +27,36 @@ open class AppCustomProductPagesAPI {
     }
 
     /**
-     * enum for parameter fieldsAppCustomProductPageLocalizations
-     */
-    public enum FieldsAppCustomProductPageLocalizations_appCustomProductPagesAppCustomProductPageVersionsGetToManyRelated: String, CaseIterable {
-        case appcustomproductpageversion = "appCustomProductPageVersion"
-        case apppreviewsets = "appPreviewSets"
-        case appscreenshotsets = "appScreenshotSets"
-        case locale = "locale"
-        case promotionaltext = "promotionalText"
-    }
-
-    /**
      * enum for parameter fieldsAppCustomProductPageVersions
      */
     public enum FieldsAppCustomProductPageVersions_appCustomProductPagesAppCustomProductPageVersionsGetToManyRelated: String, CaseIterable {
+        case version = "version"
+        case state = "state"
+        case deeplink = "deepLink"
         case appcustomproductpage = "appCustomProductPage"
         case appcustomproductpagelocalizations = "appCustomProductPageLocalizations"
-        case state = "state"
-        case version = "version"
     }
 
     /**
      * enum for parameter fieldsAppCustomProductPages
      */
     public enum FieldsAppCustomProductPages_appCustomProductPagesAppCustomProductPageVersionsGetToManyRelated: String, CaseIterable {
-        case app = "app"
-        case appcustomproductpageversions = "appCustomProductPageVersions"
-        case appstoreversiontemplate = "appStoreVersionTemplate"
-        case customproductpagetemplate = "customProductPageTemplate"
         case name = "name"
         case url = "url"
         case visible = "visible"
+        case app = "app"
+        case appcustomproductpageversions = "appCustomProductPageVersions"
+    }
+
+    /**
+     * enum for parameter fieldsAppCustomProductPageLocalizations
+     */
+    public enum FieldsAppCustomProductPageLocalizations_appCustomProductPagesAppCustomProductPageVersionsGetToManyRelated: String, CaseIterable {
+        case locale = "locale"
+        case promotionaltext = "promotionalText"
+        case appcustomproductpageversion = "appCustomProductPageVersion"
+        case appscreenshotsets = "appScreenshotSets"
+        case apppreviewsets = "appPreviewSets"
     }
 
     /**
@@ -72,17 +71,17 @@ open class AppCustomProductPagesAPI {
 
      - parameter id: (path) the id of the requested resource 
      - parameter filterState: (query) filter by attribute &#39;state&#39; (optional)
-     - parameter fieldsAppCustomProductPageLocalizations: (query) the fields to include for returned resources of type appCustomProductPageLocalizations (optional)
      - parameter fieldsAppCustomProductPageVersions: (query) the fields to include for returned resources of type appCustomProductPageVersions (optional)
      - parameter fieldsAppCustomProductPages: (query) the fields to include for returned resources of type appCustomProductPages (optional)
+     - parameter fieldsAppCustomProductPageLocalizations: (query) the fields to include for returned resources of type appCustomProductPageLocalizations (optional)
      - parameter limit: (query) maximum resources per page (optional)
-     - parameter limitAppCustomProductPageLocalizations: (query) maximum number of related appCustomProductPageLocalizations returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitAppCustomProductPageLocalizations: (query) maximum number of related appCustomProductPageLocalizations returned (when they are included) (optional)
      - returns: AppCustomProductPageVersionsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appCustomProductPagesAppCustomProductPageVersionsGetToManyRelated(id: String, filterState: [FilterState_appCustomProductPagesAppCustomProductPageVersionsGetToManyRelated]? = nil, fieldsAppCustomProductPageLocalizations: [FieldsAppCustomProductPageLocalizations_appCustomProductPagesAppCustomProductPageVersionsGetToManyRelated]? = nil, fieldsAppCustomProductPageVersions: [FieldsAppCustomProductPageVersions_appCustomProductPagesAppCustomProductPageVersionsGetToManyRelated]? = nil, fieldsAppCustomProductPages: [FieldsAppCustomProductPages_appCustomProductPagesAppCustomProductPageVersionsGetToManyRelated]? = nil, limit: Int? = nil, limitAppCustomProductPageLocalizations: Int? = nil, include: [Include_appCustomProductPagesAppCustomProductPageVersionsGetToManyRelated]? = nil) async throws -> AppCustomProductPageVersionsResponse {
-        return try await appCustomProductPagesAppCustomProductPageVersionsGetToManyRelatedWithRequestBuilder(id: id, filterState: filterState, fieldsAppCustomProductPageLocalizations: fieldsAppCustomProductPageLocalizations, fieldsAppCustomProductPageVersions: fieldsAppCustomProductPageVersions, fieldsAppCustomProductPages: fieldsAppCustomProductPages, limit: limit, limitAppCustomProductPageLocalizations: limitAppCustomProductPageLocalizations, include: include).execute().body
+    open class func appCustomProductPagesAppCustomProductPageVersionsGetToManyRelated(id: String, filterState: [FilterState_appCustomProductPagesAppCustomProductPageVersionsGetToManyRelated]? = nil, fieldsAppCustomProductPageVersions: [FieldsAppCustomProductPageVersions_appCustomProductPagesAppCustomProductPageVersionsGetToManyRelated]? = nil, fieldsAppCustomProductPages: [FieldsAppCustomProductPages_appCustomProductPagesAppCustomProductPageVersionsGetToManyRelated]? = nil, fieldsAppCustomProductPageLocalizations: [FieldsAppCustomProductPageLocalizations_appCustomProductPagesAppCustomProductPageVersionsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appCustomProductPagesAppCustomProductPageVersionsGetToManyRelated]? = nil, limitAppCustomProductPageLocalizations: Int? = nil) async throws -> AppCustomProductPageVersionsResponse {
+        return try await appCustomProductPagesAppCustomProductPageVersionsGetToManyRelatedWithRequestBuilder(id: id, filterState: filterState, fieldsAppCustomProductPageVersions: fieldsAppCustomProductPageVersions, fieldsAppCustomProductPages: fieldsAppCustomProductPages, fieldsAppCustomProductPageLocalizations: fieldsAppCustomProductPageLocalizations, limit: limit, include: include, limitAppCustomProductPageLocalizations: limitAppCustomProductPageLocalizations).execute().body
     }
 
     /**
@@ -101,15 +100,15 @@ open class AppCustomProductPagesAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter filterState: (query) filter by attribute &#39;state&#39; (optional)
-     - parameter fieldsAppCustomProductPageLocalizations: (query) the fields to include for returned resources of type appCustomProductPageLocalizations (optional)
      - parameter fieldsAppCustomProductPageVersions: (query) the fields to include for returned resources of type appCustomProductPageVersions (optional)
      - parameter fieldsAppCustomProductPages: (query) the fields to include for returned resources of type appCustomProductPages (optional)
+     - parameter fieldsAppCustomProductPageLocalizations: (query) the fields to include for returned resources of type appCustomProductPageLocalizations (optional)
      - parameter limit: (query) maximum resources per page (optional)
-     - parameter limitAppCustomProductPageLocalizations: (query) maximum number of related appCustomProductPageLocalizations returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitAppCustomProductPageLocalizations: (query) maximum number of related appCustomProductPageLocalizations returned (when they are included) (optional)
      - returns: RequestBuilder<AppCustomProductPageVersionsResponse> 
      */
-    open class func appCustomProductPagesAppCustomProductPageVersionsGetToManyRelatedWithRequestBuilder(id: String, filterState: [FilterState_appCustomProductPagesAppCustomProductPageVersionsGetToManyRelated]? = nil, fieldsAppCustomProductPageLocalizations: [FieldsAppCustomProductPageLocalizations_appCustomProductPagesAppCustomProductPageVersionsGetToManyRelated]? = nil, fieldsAppCustomProductPageVersions: [FieldsAppCustomProductPageVersions_appCustomProductPagesAppCustomProductPageVersionsGetToManyRelated]? = nil, fieldsAppCustomProductPages: [FieldsAppCustomProductPages_appCustomProductPagesAppCustomProductPageVersionsGetToManyRelated]? = nil, limit: Int? = nil, limitAppCustomProductPageLocalizations: Int? = nil, include: [Include_appCustomProductPagesAppCustomProductPageVersionsGetToManyRelated]? = nil) -> RequestBuilder<AppCustomProductPageVersionsResponse> {
+    open class func appCustomProductPagesAppCustomProductPageVersionsGetToManyRelatedWithRequestBuilder(id: String, filterState: [FilterState_appCustomProductPagesAppCustomProductPageVersionsGetToManyRelated]? = nil, fieldsAppCustomProductPageVersions: [FieldsAppCustomProductPageVersions_appCustomProductPagesAppCustomProductPageVersionsGetToManyRelated]? = nil, fieldsAppCustomProductPages: [FieldsAppCustomProductPages_appCustomProductPagesAppCustomProductPageVersionsGetToManyRelated]? = nil, fieldsAppCustomProductPageLocalizations: [FieldsAppCustomProductPageLocalizations_appCustomProductPagesAppCustomProductPageVersionsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appCustomProductPagesAppCustomProductPageVersionsGetToManyRelated]? = nil, limitAppCustomProductPageLocalizations: Int? = nil) -> RequestBuilder<AppCustomProductPageVersionsResponse> {
         var localVariablePath = "/v1/appCustomProductPages/{id}/appCustomProductPageVersions"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -120,12 +119,12 @@ open class AppCustomProductPagesAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "filter[state]": (wrappedValue: filterState?.encodeToJSON(), isExplode: false),
-            "fields[appCustomProductPageLocalizations]": (wrappedValue: fieldsAppCustomProductPageLocalizations?.encodeToJSON(), isExplode: false),
             "fields[appCustomProductPageVersions]": (wrappedValue: fieldsAppCustomProductPageVersions?.encodeToJSON(), isExplode: false),
             "fields[appCustomProductPages]": (wrappedValue: fieldsAppCustomProductPages?.encodeToJSON(), isExplode: false),
+            "fields[appCustomProductPageLocalizations]": (wrappedValue: fieldsAppCustomProductPageLocalizations?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "limit[appCustomProductPageLocalizations]": (wrappedValue: limitAppCustomProductPageLocalizations?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "limit[appCustomProductPageLocalizations]": (wrappedValue: limitAppCustomProductPageLocalizations?.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -296,13 +295,22 @@ open class AppCustomProductPagesAPI {
      * enum for parameter fieldsAppCustomProductPages
      */
     public enum FieldsAppCustomProductPages_appCustomProductPagesGetInstance: String, CaseIterable {
-        case app = "app"
-        case appcustomproductpageversions = "appCustomProductPageVersions"
-        case appstoreversiontemplate = "appStoreVersionTemplate"
-        case customproductpagetemplate = "customProductPageTemplate"
         case name = "name"
         case url = "url"
         case visible = "visible"
+        case app = "app"
+        case appcustomproductpageversions = "appCustomProductPageVersions"
+    }
+
+    /**
+     * enum for parameter fieldsAppCustomProductPageVersions
+     */
+    public enum FieldsAppCustomProductPageVersions_appCustomProductPagesGetInstance: String, CaseIterable {
+        case version = "version"
+        case state = "state"
+        case deeplink = "deepLink"
+        case appcustomproductpage = "appCustomProductPage"
+        case appcustomproductpagelocalizations = "appCustomProductPageLocalizations"
     }
 
     /**
@@ -314,27 +322,17 @@ open class AppCustomProductPagesAPI {
     }
 
     /**
-     * enum for parameter fieldsAppCustomProductPageVersions
-     */
-    public enum FieldsAppCustomProductPageVersions_appCustomProductPagesGetInstance: String, CaseIterable {
-        case appcustomproductpage = "appCustomProductPage"
-        case appcustomproductpagelocalizations = "appCustomProductPageLocalizations"
-        case state = "state"
-        case version = "version"
-    }
-
-    /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAppCustomProductPages: (query) the fields to include for returned resources of type appCustomProductPages (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter fieldsAppCustomProductPageVersions: (query) the fields to include for returned resources of type appCustomProductPageVersions (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAppCustomProductPageVersions: (query) maximum number of related appCustomProductPageVersions returned (when they are included) (optional)
      - returns: AppCustomProductPageResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appCustomProductPagesGetInstance(id: String, fieldsAppCustomProductPages: [FieldsAppCustomProductPages_appCustomProductPagesGetInstance]? = nil, include: [Include_appCustomProductPagesGetInstance]? = nil, fieldsAppCustomProductPageVersions: [FieldsAppCustomProductPageVersions_appCustomProductPagesGetInstance]? = nil, limitAppCustomProductPageVersions: Int? = nil) async throws -> AppCustomProductPageResponse {
-        return try await appCustomProductPagesGetInstanceWithRequestBuilder(id: id, fieldsAppCustomProductPages: fieldsAppCustomProductPages, include: include, fieldsAppCustomProductPageVersions: fieldsAppCustomProductPageVersions, limitAppCustomProductPageVersions: limitAppCustomProductPageVersions).execute().body
+    open class func appCustomProductPagesGetInstance(id: String, fieldsAppCustomProductPages: [FieldsAppCustomProductPages_appCustomProductPagesGetInstance]? = nil, fieldsAppCustomProductPageVersions: [FieldsAppCustomProductPageVersions_appCustomProductPagesGetInstance]? = nil, include: [Include_appCustomProductPagesGetInstance]? = nil, limitAppCustomProductPageVersions: Int? = nil) async throws -> AppCustomProductPageResponse {
+        return try await appCustomProductPagesGetInstanceWithRequestBuilder(id: id, fieldsAppCustomProductPages: fieldsAppCustomProductPages, fieldsAppCustomProductPageVersions: fieldsAppCustomProductPageVersions, include: include, limitAppCustomProductPageVersions: limitAppCustomProductPageVersions).execute().body
     }
 
     /**
@@ -353,12 +351,12 @@ open class AppCustomProductPagesAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAppCustomProductPages: (query) the fields to include for returned resources of type appCustomProductPages (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter fieldsAppCustomProductPageVersions: (query) the fields to include for returned resources of type appCustomProductPageVersions (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAppCustomProductPageVersions: (query) maximum number of related appCustomProductPageVersions returned (when they are included) (optional)
      - returns: RequestBuilder<AppCustomProductPageResponse> 
      */
-    open class func appCustomProductPagesGetInstanceWithRequestBuilder(id: String, fieldsAppCustomProductPages: [FieldsAppCustomProductPages_appCustomProductPagesGetInstance]? = nil, include: [Include_appCustomProductPagesGetInstance]? = nil, fieldsAppCustomProductPageVersions: [FieldsAppCustomProductPageVersions_appCustomProductPagesGetInstance]? = nil, limitAppCustomProductPageVersions: Int? = nil) -> RequestBuilder<AppCustomProductPageResponse> {
+    open class func appCustomProductPagesGetInstanceWithRequestBuilder(id: String, fieldsAppCustomProductPages: [FieldsAppCustomProductPages_appCustomProductPagesGetInstance]? = nil, fieldsAppCustomProductPageVersions: [FieldsAppCustomProductPageVersions_appCustomProductPagesGetInstance]? = nil, include: [Include_appCustomProductPagesGetInstance]? = nil, limitAppCustomProductPageVersions: Int? = nil) -> RequestBuilder<AppCustomProductPageResponse> {
         var localVariablePath = "/v1/appCustomProductPages/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -369,8 +367,8 @@ open class AppCustomProductPagesAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[appCustomProductPages]": (wrappedValue: fieldsAppCustomProductPages?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "fields[appCustomProductPageVersions]": (wrappedValue: fieldsAppCustomProductPageVersions?.encodeToJSON(), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "limit[appCustomProductPageVersions]": (wrappedValue: limitAppCustomProductPageVersions?.encodeToJSON(), isExplode: true),
         ])
 

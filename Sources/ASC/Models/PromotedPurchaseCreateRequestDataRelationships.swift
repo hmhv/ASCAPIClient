@@ -13,10 +13,10 @@ import AnyCodable
 public struct PromotedPurchaseCreateRequestDataRelationships: Codable, JSONEncodable, Hashable {
 
     public var app: AnalyticsReportRequestCreateRequestDataRelationshipsApp
-    public var inAppPurchaseV2: InAppPurchasePriceInlineCreateRelationshipsInAppPurchaseV2?
-    public var subscription: PromotedPurchaseCreateRequestDataRelationshipsSubscription?
+    public var inAppPurchaseV2: InAppPurchaseAppStoreReviewScreenshotRelationshipsInAppPurchaseV2?
+    public var subscription: PromotedPurchaseRelationshipsSubscription?
 
-    public init(app: AnalyticsReportRequestCreateRequestDataRelationshipsApp, inAppPurchaseV2: InAppPurchasePriceInlineCreateRelationshipsInAppPurchaseV2? = nil, subscription: PromotedPurchaseCreateRequestDataRelationshipsSubscription? = nil) {
+    public init(app: AnalyticsReportRequestCreateRequestDataRelationshipsApp, inAppPurchaseV2: InAppPurchaseAppStoreReviewScreenshotRelationshipsInAppPurchaseV2? = nil, subscription: PromotedPurchaseRelationshipsSubscription? = nil) {
         self.app = app
         self.inAppPurchaseV2 = inAppPurchaseV2
         self.subscription = subscription

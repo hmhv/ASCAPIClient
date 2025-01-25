@@ -149,16 +149,17 @@ open class AppEventVideoClipsAPI {
      * enum for parameter fieldsAppEventVideoClips
      */
     public enum FieldsAppEventVideoClips_appEventVideoClipsGetInstance: String, CaseIterable {
-        case appeventassettype = "appEventAssetType"
-        case appeventlocalization = "appEventLocalization"
-        case assetdeliverystate = "assetDeliveryState"
-        case filename = "fileName"
         case filesize = "fileSize"
+        case filename = "fileName"
         case previewframetimecode = "previewFrameTimeCode"
+        case videourl = "videoUrl"
+        case previewframeimage = "previewFrameImage"
         case previewimage = "previewImage"
         case uploadoperations = "uploadOperations"
-        case uploaded = "uploaded"
-        case videourl = "videoUrl"
+        case assetdeliverystate = "assetDeliveryState"
+        case videodeliverystate = "videoDeliveryState"
+        case appeventassettype = "appEventAssetType"
+        case appeventlocalization = "appEventLocalization"
     }
 
     /**

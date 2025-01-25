@@ -15,22 +15,26 @@ public struct DiagnosticSignatureAttributes: Codable, JSONEncodable, Hashable {
     public enum DiagnosticType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case diskWrites = "DISK_WRITES"
         case hangs = "HANGS"
+        case launches = "LAUNCHES"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     public var diagnosticType: DiagnosticType?
     public var signature: String?
     public var weight: Double?
+    public var insight: DiagnosticInsight?
 
-    public init(diagnosticType: DiagnosticType? = nil, signature: String? = nil, weight: Double? = nil) {
+    public init(diagnosticType: DiagnosticType? = nil, signature: String? = nil, weight: Double? = nil, insight: DiagnosticInsight? = nil) {
         self.diagnosticType = diagnosticType
         self.signature = signature
         self.weight = weight
+        self.insight = insight
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case diagnosticType
         case signature
         case weight
+        case insight
     }
 
     // Encodable protocol methods
@@ -40,6 +44,7 @@ public struct DiagnosticSignatureAttributes: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(diagnosticType, forKey: .diagnosticType)
         try container.encodeIfPresent(signature, forKey: .signature)
         try container.encodeIfPresent(weight, forKey: .weight)
+        try container.encodeIfPresent(insight, forKey: .insight)
     }
 }
 

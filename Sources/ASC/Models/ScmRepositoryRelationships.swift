@@ -14,15 +14,21 @@ public struct ScmRepositoryRelationships: Codable, JSONEncodable, Hashable {
 
     public var scmProvider: ScmRepositoryRelationshipsScmProvider?
     public var defaultBranch: CiBuildRunRelationshipsSourceBranchOrTag?
+    public var gitReferences: AnalyticsReportInstanceRelationshipsSegments?
+    public var pullRequests: AnalyticsReportInstanceRelationshipsSegments?
 
-    public init(scmProvider: ScmRepositoryRelationshipsScmProvider? = nil, defaultBranch: CiBuildRunRelationshipsSourceBranchOrTag? = nil) {
+    public init(scmProvider: ScmRepositoryRelationshipsScmProvider? = nil, defaultBranch: CiBuildRunRelationshipsSourceBranchOrTag? = nil, gitReferences: AnalyticsReportInstanceRelationshipsSegments? = nil, pullRequests: AnalyticsReportInstanceRelationshipsSegments? = nil) {
         self.scmProvider = scmProvider
         self.defaultBranch = defaultBranch
+        self.gitReferences = gitReferences
+        self.pullRequests = pullRequests
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case scmProvider
         case defaultBranch
+        case gitReferences
+        case pullRequests
     }
 
     // Encodable protocol methods
@@ -31,6 +37,8 @@ public struct ScmRepositoryRelationships: Codable, JSONEncodable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(scmProvider, forKey: .scmProvider)
         try container.encodeIfPresent(defaultBranch, forKey: .defaultBranch)
+        try container.encodeIfPresent(gitReferences, forKey: .gitReferences)
+        try container.encodeIfPresent(pullRequests, forKey: .pullRequests)
     }
 }
 

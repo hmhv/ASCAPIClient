@@ -18,13 +18,15 @@ public struct BuildRelationships: Codable, JSONEncodable, Hashable {
     public var betaBuildLocalizations: BuildRelationshipsBetaBuildLocalizations?
     public var appEncryptionDeclaration: BuildRelationshipsAppEncryptionDeclaration?
     public var betaAppReviewSubmission: BuildRelationshipsBetaAppReviewSubmission?
-    public var app: AppAvailabilityRelationshipsApp?
+    public var app: BetaAppLocalizationRelationshipsApp?
     public var buildBetaDetail: BuildRelationshipsBuildBetaDetail?
     public var appStoreVersion: AppClipDefaultExperienceRelationshipsReleaseWithAppStoreVersion?
     public var icons: BuildRelationshipsIcons?
     public var buildBundles: BuildRelationshipsBuildBundles?
+    public var perfPowerMetrics: AnalyticsReportInstanceRelationshipsSegments?
+    public var diagnosticSignatures: AnalyticsReportInstanceRelationshipsSegments?
 
-    public init(preReleaseVersion: BuildRelationshipsPreReleaseVersion? = nil, individualTesters: BetaGroupRelationshipsBetaTesters? = nil, betaGroups: AppRelationshipsBetaGroups? = nil, betaBuildLocalizations: BuildRelationshipsBetaBuildLocalizations? = nil, appEncryptionDeclaration: BuildRelationshipsAppEncryptionDeclaration? = nil, betaAppReviewSubmission: BuildRelationshipsBetaAppReviewSubmission? = nil, app: AppAvailabilityRelationshipsApp? = nil, buildBetaDetail: BuildRelationshipsBuildBetaDetail? = nil, appStoreVersion: AppClipDefaultExperienceRelationshipsReleaseWithAppStoreVersion? = nil, icons: BuildRelationshipsIcons? = nil, buildBundles: BuildRelationshipsBuildBundles? = nil) {
+    public init(preReleaseVersion: BuildRelationshipsPreReleaseVersion? = nil, individualTesters: BetaGroupRelationshipsBetaTesters? = nil, betaGroups: AppRelationshipsBetaGroups? = nil, betaBuildLocalizations: BuildRelationshipsBetaBuildLocalizations? = nil, appEncryptionDeclaration: BuildRelationshipsAppEncryptionDeclaration? = nil, betaAppReviewSubmission: BuildRelationshipsBetaAppReviewSubmission? = nil, app: BetaAppLocalizationRelationshipsApp? = nil, buildBetaDetail: BuildRelationshipsBuildBetaDetail? = nil, appStoreVersion: AppClipDefaultExperienceRelationshipsReleaseWithAppStoreVersion? = nil, icons: BuildRelationshipsIcons? = nil, buildBundles: BuildRelationshipsBuildBundles? = nil, perfPowerMetrics: AnalyticsReportInstanceRelationshipsSegments? = nil, diagnosticSignatures: AnalyticsReportInstanceRelationshipsSegments? = nil) {
         self.preReleaseVersion = preReleaseVersion
         self.individualTesters = individualTesters
         self.betaGroups = betaGroups
@@ -36,6 +38,8 @@ public struct BuildRelationships: Codable, JSONEncodable, Hashable {
         self.appStoreVersion = appStoreVersion
         self.icons = icons
         self.buildBundles = buildBundles
+        self.perfPowerMetrics = perfPowerMetrics
+        self.diagnosticSignatures = diagnosticSignatures
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -50,6 +54,8 @@ public struct BuildRelationships: Codable, JSONEncodable, Hashable {
         case appStoreVersion
         case icons
         case buildBundles
+        case perfPowerMetrics
+        case diagnosticSignatures
     }
 
     // Encodable protocol methods
@@ -67,6 +73,8 @@ public struct BuildRelationships: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(appStoreVersion, forKey: .appStoreVersion)
         try container.encodeIfPresent(icons, forKey: .icons)
         try container.encodeIfPresent(buildBundles, forKey: .buildBundles)
+        try container.encodeIfPresent(perfPowerMetrics, forKey: .perfPowerMetrics)
+        try container.encodeIfPresent(diagnosticSignatures, forKey: .diagnosticSignatures)
     }
 }
 

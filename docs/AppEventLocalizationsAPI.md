@@ -218,7 +218,7 @@ Void (empty response body)
 
 # **appEventLocalizationsGetInstance**
 ```swift
-    open class func appEventLocalizationsGetInstance(id: String, fieldsAppEventLocalizations: [FieldsAppEventLocalizations_appEventLocalizationsGetInstance]? = nil, include: [Include_appEventLocalizationsGetInstance]? = nil, fieldsAppEventScreenshots: [FieldsAppEventScreenshots_appEventLocalizationsGetInstance]? = nil, fieldsAppEventVideoClips: [FieldsAppEventVideoClips_appEventLocalizationsGetInstance]? = nil, limitAppEventScreenshots: Int? = nil, limitAppEventVideoClips: Int? = nil, completion: @escaping (_ data: AppEventLocalizationResponse?, _ error: Error?) -> Void)
+    open class func appEventLocalizationsGetInstance(id: String, fieldsAppEventLocalizations: [FieldsAppEventLocalizations_appEventLocalizationsGetInstance]? = nil, fieldsAppEventScreenshots: [FieldsAppEventScreenshots_appEventLocalizationsGetInstance]? = nil, fieldsAppEventVideoClips: [FieldsAppEventVideoClips_appEventLocalizationsGetInstance]? = nil, include: [Include_appEventLocalizationsGetInstance]? = nil, limitAppEventScreenshots: Int? = nil, limitAppEventVideoClips: Int? = nil, completion: @escaping (_ data: AppEventLocalizationResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -230,13 +230,13 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let fieldsAppEventLocalizations = ["fieldsAppEventLocalizations_example"] // [String] | the fields to include for returned resources of type appEventLocalizations (optional)
-let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let fieldsAppEventScreenshots = ["fieldsAppEventScreenshots_example"] // [String] | the fields to include for returned resources of type appEventScreenshots (optional)
 let fieldsAppEventVideoClips = ["fieldsAppEventVideoClips_example"] // [String] | the fields to include for returned resources of type appEventVideoClips (optional)
+let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let limitAppEventScreenshots = 987 // Int | maximum number of related appEventScreenshots returned (when they are included) (optional)
 let limitAppEventVideoClips = 987 // Int | maximum number of related appEventVideoClips returned (when they are included) (optional)
 
-AppEventLocalizationsAPI.appEventLocalizationsGetInstance(id: id, fieldsAppEventLocalizations: fieldsAppEventLocalizations, include: include, fieldsAppEventScreenshots: fieldsAppEventScreenshots, fieldsAppEventVideoClips: fieldsAppEventVideoClips, limitAppEventScreenshots: limitAppEventScreenshots, limitAppEventVideoClips: limitAppEventVideoClips) { (response, error) in
+AppEventLocalizationsAPI.appEventLocalizationsGetInstance(id: id, fieldsAppEventLocalizations: fieldsAppEventLocalizations, fieldsAppEventScreenshots: fieldsAppEventScreenshots, fieldsAppEventVideoClips: fieldsAppEventVideoClips, include: include, limitAppEventScreenshots: limitAppEventScreenshots, limitAppEventVideoClips: limitAppEventVideoClips) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -254,9 +254,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **fieldsAppEventLocalizations** | [**[String]**](String.md) | the fields to include for returned resources of type appEventLocalizations | [optional] 
- **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **fieldsAppEventScreenshots** | [**[String]**](String.md) | the fields to include for returned resources of type appEventScreenshots | [optional] 
  **fieldsAppEventVideoClips** | [**[String]**](String.md) | the fields to include for returned resources of type appEventVideoClips | [optional] 
+ **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **limitAppEventScreenshots** | **Int** | maximum number of related appEventScreenshots returned (when they are included) | [optional] 
  **limitAppEventVideoClips** | **Int** | maximum number of related appEventVideoClips returned (when they are included) | [optional] 
 

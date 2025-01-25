@@ -54,12 +54,6 @@ public struct AgeRatingDeclarationAttributes: Codable, JSONEncodable, Hashable {
         case frequentOrIntense = "FREQUENT_OR_INTENSE"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
-    public enum AgeRatingOverride: String, Codable, CaseIterable, CaseIterableDefaultsLast {
-        case _none = "NONE"
-        case seventeenPlus = "SEVENTEEN_PLUS"
-        case unrated = "UNRATED"
-        case unknownDefaultOpenApi = "unknown_default_open_api"
-    }
     public enum HorrorOrFearThemes: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case _none = "NONE"
         case infrequentOrMild = "INFREQUENT_OR_MILD"
@@ -90,6 +84,18 @@ public struct AgeRatingDeclarationAttributes: Codable, JSONEncodable, Hashable {
         case frequentOrIntense = "FREQUENT_OR_INTENSE"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
+    public enum AgeRatingOverride: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+        case _none = "NONE"
+        case seventeenPlus = "SEVENTEEN_PLUS"
+        case unrated = "UNRATED"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
+    }
+    public enum KoreaAgeRatingOverride: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+        case _none = "NONE"
+        case fifteenPlus = "FIFTEEN_PLUS"
+        case nineteenPlus = "NINETEEN_PLUS"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
+    }
     public var alcoholTobaccoOrDrugUseOrReferences: AlcoholTobaccoOrDrugUseOrReferences?
     public var contests: Contests?
     @available(*, deprecated, message: "This property is deprecated.")
@@ -97,39 +103,43 @@ public struct AgeRatingDeclarationAttributes: Codable, JSONEncodable, Hashable {
     public var gambling: Bool?
     public var gamblingSimulated: GamblingSimulated?
     public var kidsAgeBand: KidsAgeBand?
+    public var lootBox: Bool?
     public var medicalOrTreatmentInformation: MedicalOrTreatmentInformation?
     public var profanityOrCrudeHumor: ProfanityOrCrudeHumor?
     public var sexualContentGraphicAndNudity: SexualContentGraphicAndNudity?
     public var sexualContentOrNudity: SexualContentOrNudity?
-    @available(*, deprecated, message: "This property is deprecated.")
-    public var seventeenPlus: Bool?
-    public var ageRatingOverride: AgeRatingOverride?
     public var horrorOrFearThemes: HorrorOrFearThemes?
     public var matureOrSuggestiveThemes: MatureOrSuggestiveThemes?
     public var unrestrictedWebAccess: Bool?
     public var violenceCartoonOrFantasy: ViolenceCartoonOrFantasy?
     public var violenceRealisticProlongedGraphicOrSadistic: ViolenceRealisticProlongedGraphicOrSadistic?
     public var violenceRealistic: ViolenceRealistic?
+    public var ageRatingOverride: AgeRatingOverride?
+    public var koreaAgeRatingOverride: KoreaAgeRatingOverride?
+    @available(*, deprecated, message: "This property is deprecated.")
+    public var seventeenPlus: Bool?
 
-    public init(alcoholTobaccoOrDrugUseOrReferences: AlcoholTobaccoOrDrugUseOrReferences? = nil, contests: Contests? = nil, gamblingAndContests: Bool? = nil, gambling: Bool? = nil, gamblingSimulated: GamblingSimulated? = nil, kidsAgeBand: KidsAgeBand? = nil, medicalOrTreatmentInformation: MedicalOrTreatmentInformation? = nil, profanityOrCrudeHumor: ProfanityOrCrudeHumor? = nil, sexualContentGraphicAndNudity: SexualContentGraphicAndNudity? = nil, sexualContentOrNudity: SexualContentOrNudity? = nil, seventeenPlus: Bool? = nil, ageRatingOverride: AgeRatingOverride? = nil, horrorOrFearThemes: HorrorOrFearThemes? = nil, matureOrSuggestiveThemes: MatureOrSuggestiveThemes? = nil, unrestrictedWebAccess: Bool? = nil, violenceCartoonOrFantasy: ViolenceCartoonOrFantasy? = nil, violenceRealisticProlongedGraphicOrSadistic: ViolenceRealisticProlongedGraphicOrSadistic? = nil, violenceRealistic: ViolenceRealistic? = nil) {
+    public init(alcoholTobaccoOrDrugUseOrReferences: AlcoholTobaccoOrDrugUseOrReferences? = nil, contests: Contests? = nil, gamblingAndContests: Bool? = nil, gambling: Bool? = nil, gamblingSimulated: GamblingSimulated? = nil, kidsAgeBand: KidsAgeBand? = nil, lootBox: Bool? = nil, medicalOrTreatmentInformation: MedicalOrTreatmentInformation? = nil, profanityOrCrudeHumor: ProfanityOrCrudeHumor? = nil, sexualContentGraphicAndNudity: SexualContentGraphicAndNudity? = nil, sexualContentOrNudity: SexualContentOrNudity? = nil, horrorOrFearThemes: HorrorOrFearThemes? = nil, matureOrSuggestiveThemes: MatureOrSuggestiveThemes? = nil, unrestrictedWebAccess: Bool? = nil, violenceCartoonOrFantasy: ViolenceCartoonOrFantasy? = nil, violenceRealisticProlongedGraphicOrSadistic: ViolenceRealisticProlongedGraphicOrSadistic? = nil, violenceRealistic: ViolenceRealistic? = nil, ageRatingOverride: AgeRatingOverride? = nil, koreaAgeRatingOverride: KoreaAgeRatingOverride? = nil, seventeenPlus: Bool? = nil) {
         self.alcoholTobaccoOrDrugUseOrReferences = alcoholTobaccoOrDrugUseOrReferences
         self.contests = contests
         self.gamblingAndContests = gamblingAndContests
         self.gambling = gambling
         self.gamblingSimulated = gamblingSimulated
         self.kidsAgeBand = kidsAgeBand
+        self.lootBox = lootBox
         self.medicalOrTreatmentInformation = medicalOrTreatmentInformation
         self.profanityOrCrudeHumor = profanityOrCrudeHumor
         self.sexualContentGraphicAndNudity = sexualContentGraphicAndNudity
         self.sexualContentOrNudity = sexualContentOrNudity
-        self.seventeenPlus = seventeenPlus
-        self.ageRatingOverride = ageRatingOverride
         self.horrorOrFearThemes = horrorOrFearThemes
         self.matureOrSuggestiveThemes = matureOrSuggestiveThemes
         self.unrestrictedWebAccess = unrestrictedWebAccess
         self.violenceCartoonOrFantasy = violenceCartoonOrFantasy
         self.violenceRealisticProlongedGraphicOrSadistic = violenceRealisticProlongedGraphicOrSadistic
         self.violenceRealistic = violenceRealistic
+        self.ageRatingOverride = ageRatingOverride
+        self.koreaAgeRatingOverride = koreaAgeRatingOverride
+        self.seventeenPlus = seventeenPlus
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -139,18 +149,20 @@ public struct AgeRatingDeclarationAttributes: Codable, JSONEncodable, Hashable {
         case gambling
         case gamblingSimulated
         case kidsAgeBand
+        case lootBox
         case medicalOrTreatmentInformation
         case profanityOrCrudeHumor
         case sexualContentGraphicAndNudity
         case sexualContentOrNudity
-        case seventeenPlus
-        case ageRatingOverride
         case horrorOrFearThemes
         case matureOrSuggestiveThemes
         case unrestrictedWebAccess
         case violenceCartoonOrFantasy
         case violenceRealisticProlongedGraphicOrSadistic
         case violenceRealistic
+        case ageRatingOverride
+        case koreaAgeRatingOverride
+        case seventeenPlus
     }
 
     // Encodable protocol methods
@@ -163,18 +175,20 @@ public struct AgeRatingDeclarationAttributes: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(gambling, forKey: .gambling)
         try container.encodeIfPresent(gamblingSimulated, forKey: .gamblingSimulated)
         try container.encodeIfPresent(kidsAgeBand, forKey: .kidsAgeBand)
+        try container.encodeIfPresent(lootBox, forKey: .lootBox)
         try container.encodeIfPresent(medicalOrTreatmentInformation, forKey: .medicalOrTreatmentInformation)
         try container.encodeIfPresent(profanityOrCrudeHumor, forKey: .profanityOrCrudeHumor)
         try container.encodeIfPresent(sexualContentGraphicAndNudity, forKey: .sexualContentGraphicAndNudity)
         try container.encodeIfPresent(sexualContentOrNudity, forKey: .sexualContentOrNudity)
-        try container.encodeIfPresent(seventeenPlus, forKey: .seventeenPlus)
-        try container.encodeIfPresent(ageRatingOverride, forKey: .ageRatingOverride)
         try container.encodeIfPresent(horrorOrFearThemes, forKey: .horrorOrFearThemes)
         try container.encodeIfPresent(matureOrSuggestiveThemes, forKey: .matureOrSuggestiveThemes)
         try container.encodeIfPresent(unrestrictedWebAccess, forKey: .unrestrictedWebAccess)
         try container.encodeIfPresent(violenceCartoonOrFantasy, forKey: .violenceCartoonOrFantasy)
         try container.encodeIfPresent(violenceRealisticProlongedGraphicOrSadistic, forKey: .violenceRealisticProlongedGraphicOrSadistic)
         try container.encodeIfPresent(violenceRealistic, forKey: .violenceRealistic)
+        try container.encodeIfPresent(ageRatingOverride, forKey: .ageRatingOverride)
+        try container.encodeIfPresent(koreaAgeRatingOverride, forKey: .koreaAgeRatingOverride)
+        try container.encodeIfPresent(seventeenPlus, forKey: .seventeenPlus)
     }
 }
 

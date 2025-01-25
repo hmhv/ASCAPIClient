@@ -12,11 +12,11 @@ import AnyCodable
 
 public struct CiXcodeVersionRelationshipsMacOsVersions: Codable, JSONEncodable, Hashable {
 
-    public var links: AlternativeDistributionPackageVersionRelationshipsVariantsLinks?
+    public var links: RelationshipLinks?
     public var meta: PagingInformation?
     public var data: [CiWorkflowRelationshipsMacOsVersionData]?
 
-    public init(links: AlternativeDistributionPackageVersionRelationshipsVariantsLinks? = nil, meta: PagingInformation? = nil, data: [CiWorkflowRelationshipsMacOsVersionData]? = nil) {
+    public init(links: RelationshipLinks? = nil, meta: PagingInformation? = nil, data: [CiWorkflowRelationshipsMacOsVersionData]? = nil) {
         self.links = links
         self.meta = meta
         self.data = data

@@ -12,9 +12,9 @@ import AnyCodable
 
 public struct EndUserLicenseAgreementUpdateRequestDataRelationshipsTerritories: Codable, JSONEncodable, Hashable {
 
-    public var data: [AppAvailabilityRelationshipsAvailableTerritoriesDataInner]?
+    public var data: [AppPricePointV3RelationshipsTerritoryData]?
 
-    public init(data: [AppAvailabilityRelationshipsAvailableTerritoriesDataInner]? = nil) {
+    public init(data: [AppPricePointV3RelationshipsTerritoryData]? = nil) {
         self.data = data
     }
 

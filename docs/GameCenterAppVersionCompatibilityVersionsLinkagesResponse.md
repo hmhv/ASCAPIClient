@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [GameCenterAppVersionRelationshipsCompatibilityVersionsDataInner] |  | 
+**data** | [AppStoreVersionRelationshipsGameCenterAppVersionData] |  | 
 **links** | [**PagedDocumentLinks**](PagedDocumentLinks.md) |  | 
 **meta** | [**PagingInformation**](PagingInformation.md) |  | [optional] 
 

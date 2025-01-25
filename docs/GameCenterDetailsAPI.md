@@ -88,7 +88,7 @@ Name | Type | Description  | Notes
 
 # **gameCenterDetailsClassicMatchmakingRequestsGetMetrics**
 ```swift
-    open class func gameCenterDetailsClassicMatchmakingRequestsGetMetrics(id: String, granularity: Granularity_gameCenterDetailsClassicMatchmakingRequestsGetMetrics, limit: Int? = nil, groupBy: [GroupBy_gameCenterDetailsClassicMatchmakingRequestsGetMetrics]? = nil, filterResult: FilterResult_gameCenterDetailsClassicMatchmakingRequestsGetMetrics? = nil, sort: [Sort_gameCenterDetailsClassicMatchmakingRequestsGetMetrics]? = nil, completion: @escaping (_ data: GameCenterMatchmakingAppRequestsV1MetricResponse?, _ error: Error?) -> Void)
+    open class func gameCenterDetailsClassicMatchmakingRequestsGetMetrics(id: String, granularity: Granularity_gameCenterDetailsClassicMatchmakingRequestsGetMetrics, groupBy: [GroupBy_gameCenterDetailsClassicMatchmakingRequestsGetMetrics]? = nil, filterResult: FilterResult_gameCenterDetailsClassicMatchmakingRequestsGetMetrics? = nil, sort: [Sort_gameCenterDetailsClassicMatchmakingRequestsGetMetrics]? = nil, limit: Int? = nil, completion: @escaping (_ data: GameCenterMatchmakingAppRequestsV1MetricResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -100,12 +100,12 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let granularity = "granularity_example" // String | the granularity of the per-group dataset
-let limit = 987 // Int | maximum number of groups to return per page (optional)
 let groupBy = ["groupBy_example"] // [String] | the dimension by which to group the results (optional)
 let filterResult = "filterResult_example" // String | filter by 'result' attribute dimension (optional)
 let sort = ["sort_example"] // [String] | comma-separated list of sort expressions; metrics will be sorted as specified (optional)
+let limit = 987 // Int | maximum number of groups to return per page (optional)
 
-GameCenterDetailsAPI.gameCenterDetailsClassicMatchmakingRequestsGetMetrics(id: id, granularity: granularity, limit: limit, groupBy: groupBy, filterResult: filterResult, sort: sort) { (response, error) in
+GameCenterDetailsAPI.gameCenterDetailsClassicMatchmakingRequestsGetMetrics(id: id, granularity: granularity, groupBy: groupBy, filterResult: filterResult, sort: sort, limit: limit) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -123,10 +123,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **granularity** | **String** | the granularity of the per-group dataset | 
- **limit** | **Int** | maximum number of groups to return per page | [optional] 
  **groupBy** | [**[String]**](String.md) | the dimension by which to group the results | [optional] 
  **filterResult** | **String** | filter by &#39;result&#39; attribute dimension | [optional] 
  **sort** | [**[String]**](String.md) | comma-separated list of sort expressions; metrics will be sorted as specified | [optional] 
+ **limit** | **Int** | maximum number of groups to return per page | [optional] 
 
 ### Return type
 
@@ -192,7 +192,7 @@ Name | Type | Description  | Notes
 
 # **gameCenterDetailsGameCenterAchievementsGetToManyRelated**
 ```swift
-    open class func gameCenterDetailsGameCenterAchievementsGetToManyRelated(id: String, filterArchived: [String]? = nil, filterReferenceName: [String]? = nil, filterId: [String]? = nil, fieldsGameCenterAchievementReleases: [FieldsGameCenterAchievementReleases_gameCenterDetailsGameCenterAchievementsGetToManyRelated]? = nil, fieldsGameCenterGroups: [FieldsGameCenterGroups_gameCenterDetailsGameCenterAchievementsGetToManyRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterDetailsGameCenterAchievementsGetToManyRelated]? = nil, fieldsGameCenterAchievementLocalizations: [FieldsGameCenterAchievementLocalizations_gameCenterDetailsGameCenterAchievementsGetToManyRelated]? = nil, fieldsGameCenterAchievements: [FieldsGameCenterAchievements_gameCenterDetailsGameCenterAchievementsGetToManyRelated]? = nil, limit: Int? = nil, limitLocalizations: Int? = nil, limitReleases: Int? = nil, include: [Include_gameCenterDetailsGameCenterAchievementsGetToManyRelated]? = nil, completion: @escaping (_ data: GameCenterAchievementsResponse?, _ error: Error?) -> Void)
+    open class func gameCenterDetailsGameCenterAchievementsGetToManyRelated(id: String, filterReferenceName: [String]? = nil, filterArchived: [String]? = nil, filterId: [String]? = nil, fieldsGameCenterAchievements: [FieldsGameCenterAchievements_gameCenterDetailsGameCenterAchievementsGetToManyRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterDetailsGameCenterAchievementsGetToManyRelated]? = nil, fieldsGameCenterGroups: [FieldsGameCenterGroups_gameCenterDetailsGameCenterAchievementsGetToManyRelated]? = nil, fieldsGameCenterAchievementLocalizations: [FieldsGameCenterAchievementLocalizations_gameCenterDetailsGameCenterAchievementsGetToManyRelated]? = nil, fieldsGameCenterAchievementReleases: [FieldsGameCenterAchievementReleases_gameCenterDetailsGameCenterAchievementsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_gameCenterDetailsGameCenterAchievementsGetToManyRelated]? = nil, limitLocalizations: Int? = nil, limitReleases: Int? = nil, completion: @escaping (_ data: GameCenterAchievementsResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -203,20 +203,20 @@ Name | Type | Description  | Notes
 import ASC
 
 let id = "id_example" // String | the id of the requested resource
-let filterArchived = ["inner_example"] // [String] | filter by attribute 'archived' (optional)
 let filterReferenceName = ["inner_example"] // [String] | filter by attribute 'referenceName' (optional)
+let filterArchived = ["inner_example"] // [String] | filter by attribute 'archived' (optional)
 let filterId = ["inner_example"] // [String] | filter by id(s) (optional)
-let fieldsGameCenterAchievementReleases = ["fieldsGameCenterAchievementReleases_example"] // [String] | the fields to include for returned resources of type gameCenterAchievementReleases (optional)
-let fieldsGameCenterGroups = ["fieldsGameCenterGroups_example"] // [String] | the fields to include for returned resources of type gameCenterGroups (optional)
-let fieldsGameCenterDetails = ["fieldsGameCenterDetails_example"] // [String] | the fields to include for returned resources of type gameCenterDetails (optional)
-let fieldsGameCenterAchievementLocalizations = ["fieldsGameCenterAchievementLocalizations_example"] // [String] | the fields to include for returned resources of type gameCenterAchievementLocalizations (optional)
 let fieldsGameCenterAchievements = ["fieldsGameCenterAchievements_example"] // [String] | the fields to include for returned resources of type gameCenterAchievements (optional)
+let fieldsGameCenterDetails = ["fieldsGameCenterDetails_example"] // [String] | the fields to include for returned resources of type gameCenterDetails (optional)
+let fieldsGameCenterGroups = ["fieldsGameCenterGroups_example"] // [String] | the fields to include for returned resources of type gameCenterGroups (optional)
+let fieldsGameCenterAchievementLocalizations = ["fieldsGameCenterAchievementLocalizations_example"] // [String] | the fields to include for returned resources of type gameCenterAchievementLocalizations (optional)
+let fieldsGameCenterAchievementReleases = ["fieldsGameCenterAchievementReleases_example"] // [String] | the fields to include for returned resources of type gameCenterAchievementReleases (optional)
 let limit = 987 // Int | maximum resources per page (optional)
+let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let limitLocalizations = 987 // Int | maximum number of related localizations returned (when they are included) (optional)
 let limitReleases = 987 // Int | maximum number of related releases returned (when they are included) (optional)
-let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 
-GameCenterDetailsAPI.gameCenterDetailsGameCenterAchievementsGetToManyRelated(id: id, filterArchived: filterArchived, filterReferenceName: filterReferenceName, filterId: filterId, fieldsGameCenterAchievementReleases: fieldsGameCenterAchievementReleases, fieldsGameCenterGroups: fieldsGameCenterGroups, fieldsGameCenterDetails: fieldsGameCenterDetails, fieldsGameCenterAchievementLocalizations: fieldsGameCenterAchievementLocalizations, fieldsGameCenterAchievements: fieldsGameCenterAchievements, limit: limit, limitLocalizations: limitLocalizations, limitReleases: limitReleases, include: include) { (response, error) in
+GameCenterDetailsAPI.gameCenterDetailsGameCenterAchievementsGetToManyRelated(id: id, filterReferenceName: filterReferenceName, filterArchived: filterArchived, filterId: filterId, fieldsGameCenterAchievements: fieldsGameCenterAchievements, fieldsGameCenterDetails: fieldsGameCenterDetails, fieldsGameCenterGroups: fieldsGameCenterGroups, fieldsGameCenterAchievementLocalizations: fieldsGameCenterAchievementLocalizations, fieldsGameCenterAchievementReleases: fieldsGameCenterAchievementReleases, limit: limit, include: include, limitLocalizations: limitLocalizations, limitReleases: limitReleases) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -233,18 +233,18 @@ GameCenterDetailsAPI.gameCenterDetailsGameCenterAchievementsGetToManyRelated(id:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
- **filterArchived** | [**[String]**](String.md) | filter by attribute &#39;archived&#39; | [optional] 
  **filterReferenceName** | [**[String]**](String.md) | filter by attribute &#39;referenceName&#39; | [optional] 
+ **filterArchived** | [**[String]**](String.md) | filter by attribute &#39;archived&#39; | [optional] 
  **filterId** | [**[String]**](String.md) | filter by id(s) | [optional] 
- **fieldsGameCenterAchievementReleases** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterAchievementReleases | [optional] 
- **fieldsGameCenterGroups** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterGroups | [optional] 
- **fieldsGameCenterDetails** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterDetails | [optional] 
- **fieldsGameCenterAchievementLocalizations** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterAchievementLocalizations | [optional] 
  **fieldsGameCenterAchievements** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterAchievements | [optional] 
+ **fieldsGameCenterDetails** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterDetails | [optional] 
+ **fieldsGameCenterGroups** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterGroups | [optional] 
+ **fieldsGameCenterAchievementLocalizations** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterAchievementLocalizations | [optional] 
+ **fieldsGameCenterAchievementReleases** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterAchievementReleases | [optional] 
  **limit** | **Int** | maximum resources per page | [optional] 
+ **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **limitLocalizations** | **Int** | maximum number of related localizations returned (when they are included) | [optional] 
  **limitReleases** | **Int** | maximum number of related releases returned (when they are included) | [optional] 
- **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
 
 ### Return type
 
@@ -361,7 +361,7 @@ Void (empty response body)
 
 # **gameCenterDetailsGameCenterAppVersionsGetToManyRelated**
 ```swift
-    open class func gameCenterDetailsGameCenterAppVersionsGetToManyRelated(id: String, filterEnabled: [String]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_gameCenterDetailsGameCenterAppVersionsGetToManyRelated]? = nil, fieldsGameCenterAppVersions: [FieldsGameCenterAppVersions_gameCenterDetailsGameCenterAppVersionsGetToManyRelated]? = nil, limit: Int? = nil, limitCompatibilityVersions: Int? = nil, include: [Include_gameCenterDetailsGameCenterAppVersionsGetToManyRelated]? = nil, completion: @escaping (_ data: GameCenterAppVersionsResponse?, _ error: Error?) -> Void)
+    open class func gameCenterDetailsGameCenterAppVersionsGetToManyRelated(id: String, filterEnabled: [String]? = nil, fieldsGameCenterAppVersions: [FieldsGameCenterAppVersions_gameCenterDetailsGameCenterAppVersionsGetToManyRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_gameCenterDetailsGameCenterAppVersionsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_gameCenterDetailsGameCenterAppVersionsGetToManyRelated]? = nil, limitCompatibilityVersions: Int? = nil, completion: @escaping (_ data: GameCenterAppVersionsResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -373,13 +373,13 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let filterEnabled = ["inner_example"] // [String] | filter by attribute 'enabled' (optional)
-let fieldsAppStoreVersions = ["fieldsAppStoreVersions_example"] // [String] | the fields to include for returned resources of type appStoreVersions (optional)
 let fieldsGameCenterAppVersions = ["fieldsGameCenterAppVersions_example"] // [String] | the fields to include for returned resources of type gameCenterAppVersions (optional)
+let fieldsAppStoreVersions = ["fieldsAppStoreVersions_example"] // [String] | the fields to include for returned resources of type appStoreVersions (optional)
 let limit = 987 // Int | maximum resources per page (optional)
-let limitCompatibilityVersions = 987 // Int | maximum number of related compatibilityVersions returned (when they are included) (optional)
 let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
+let limitCompatibilityVersions = 987 // Int | maximum number of related compatibilityVersions returned (when they are included) (optional)
 
-GameCenterDetailsAPI.gameCenterDetailsGameCenterAppVersionsGetToManyRelated(id: id, filterEnabled: filterEnabled, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsGameCenterAppVersions: fieldsGameCenterAppVersions, limit: limit, limitCompatibilityVersions: limitCompatibilityVersions, include: include) { (response, error) in
+GameCenterDetailsAPI.gameCenterDetailsGameCenterAppVersionsGetToManyRelated(id: id, filterEnabled: filterEnabled, fieldsGameCenterAppVersions: fieldsGameCenterAppVersions, fieldsAppStoreVersions: fieldsAppStoreVersions, limit: limit, include: include, limitCompatibilityVersions: limitCompatibilityVersions) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -397,11 +397,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **filterEnabled** | [**[String]**](String.md) | filter by attribute &#39;enabled&#39; | [optional] 
- **fieldsAppStoreVersions** | [**[String]**](String.md) | the fields to include for returned resources of type appStoreVersions | [optional] 
  **fieldsGameCenterAppVersions** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterAppVersions | [optional] 
+ **fieldsAppStoreVersions** | [**[String]**](String.md) | the fields to include for returned resources of type appStoreVersions | [optional] 
  **limit** | **Int** | maximum resources per page | [optional] 
- **limitCompatibilityVersions** | **Int** | maximum number of related compatibilityVersions returned (when they are included) | [optional] 
  **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
+ **limitCompatibilityVersions** | **Int** | maximum number of related compatibilityVersions returned (when they are included) | [optional] 
 
 ### Return type
 
@@ -420,7 +420,7 @@ Name | Type | Description  | Notes
 
 # **gameCenterDetailsGameCenterGroupGetToOneRelated**
 ```swift
-    open class func gameCenterDetailsGameCenterGroupGetToOneRelated(id: String, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_gameCenterDetailsGameCenterGroupGetToOneRelated]? = nil, fieldsGameCenterGroups: [FieldsGameCenterGroups_gameCenterDetailsGameCenterGroupGetToOneRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterDetailsGameCenterGroupGetToOneRelated]? = nil, fieldsGameCenterLeaderboards: [FieldsGameCenterLeaderboards_gameCenterDetailsGameCenterGroupGetToOneRelated]? = nil, fieldsGameCenterAchievements: [FieldsGameCenterAchievements_gameCenterDetailsGameCenterGroupGetToOneRelated]? = nil, limitGameCenterDetails: Int? = nil, limitGameCenterLeaderboards: Int? = nil, limitGameCenterLeaderboardSets: Int? = nil, limitGameCenterAchievements: Int? = nil, include: [Include_gameCenterDetailsGameCenterGroupGetToOneRelated]? = nil, completion: @escaping (_ data: GameCenterGroupResponse?, _ error: Error?) -> Void)
+    open class func gameCenterDetailsGameCenterGroupGetToOneRelated(id: String, fieldsGameCenterGroups: [FieldsGameCenterGroups_gameCenterDetailsGameCenterGroupGetToOneRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterDetailsGameCenterGroupGetToOneRelated]? = nil, fieldsGameCenterLeaderboards: [FieldsGameCenterLeaderboards_gameCenterDetailsGameCenterGroupGetToOneRelated]? = nil, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_gameCenterDetailsGameCenterGroupGetToOneRelated]? = nil, fieldsGameCenterAchievements: [FieldsGameCenterAchievements_gameCenterDetailsGameCenterGroupGetToOneRelated]? = nil, include: [Include_gameCenterDetailsGameCenterGroupGetToOneRelated]? = nil, limitGameCenterDetails: Int? = nil, limitGameCenterLeaderboards: Int? = nil, limitGameCenterLeaderboardSets: Int? = nil, limitGameCenterAchievements: Int? = nil, completion: @escaping (_ data: GameCenterGroupResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -431,18 +431,18 @@ Name | Type | Description  | Notes
 import ASC
 
 let id = "id_example" // String | the id of the requested resource
-let fieldsGameCenterLeaderboardSets = ["fieldsGameCenterLeaderboardSets_example"] // [String] | the fields to include for returned resources of type gameCenterLeaderboardSets (optional)
 let fieldsGameCenterGroups = ["fieldsGameCenterGroups_example"] // [String] | the fields to include for returned resources of type gameCenterGroups (optional)
 let fieldsGameCenterDetails = ["fieldsGameCenterDetails_example"] // [String] | the fields to include for returned resources of type gameCenterDetails (optional)
 let fieldsGameCenterLeaderboards = ["fieldsGameCenterLeaderboards_example"] // [String] | the fields to include for returned resources of type gameCenterLeaderboards (optional)
+let fieldsGameCenterLeaderboardSets = ["fieldsGameCenterLeaderboardSets_example"] // [String] | the fields to include for returned resources of type gameCenterLeaderboardSets (optional)
 let fieldsGameCenterAchievements = ["fieldsGameCenterAchievements_example"] // [String] | the fields to include for returned resources of type gameCenterAchievements (optional)
+let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let limitGameCenterDetails = 987 // Int | maximum number of related gameCenterDetails returned (when they are included) (optional)
 let limitGameCenterLeaderboards = 987 // Int | maximum number of related gameCenterLeaderboards returned (when they are included) (optional)
 let limitGameCenterLeaderboardSets = 987 // Int | maximum number of related gameCenterLeaderboardSets returned (when they are included) (optional)
 let limitGameCenterAchievements = 987 // Int | maximum number of related gameCenterAchievements returned (when they are included) (optional)
-let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 
-GameCenterDetailsAPI.gameCenterDetailsGameCenterGroupGetToOneRelated(id: id, fieldsGameCenterLeaderboardSets: fieldsGameCenterLeaderboardSets, fieldsGameCenterGroups: fieldsGameCenterGroups, fieldsGameCenterDetails: fieldsGameCenterDetails, fieldsGameCenterLeaderboards: fieldsGameCenterLeaderboards, fieldsGameCenterAchievements: fieldsGameCenterAchievements, limitGameCenterDetails: limitGameCenterDetails, limitGameCenterLeaderboards: limitGameCenterLeaderboards, limitGameCenterLeaderboardSets: limitGameCenterLeaderboardSets, limitGameCenterAchievements: limitGameCenterAchievements, include: include) { (response, error) in
+GameCenterDetailsAPI.gameCenterDetailsGameCenterGroupGetToOneRelated(id: id, fieldsGameCenterGroups: fieldsGameCenterGroups, fieldsGameCenterDetails: fieldsGameCenterDetails, fieldsGameCenterLeaderboards: fieldsGameCenterLeaderboards, fieldsGameCenterLeaderboardSets: fieldsGameCenterLeaderboardSets, fieldsGameCenterAchievements: fieldsGameCenterAchievements, include: include, limitGameCenterDetails: limitGameCenterDetails, limitGameCenterLeaderboards: limitGameCenterLeaderboards, limitGameCenterLeaderboardSets: limitGameCenterLeaderboardSets, limitGameCenterAchievements: limitGameCenterAchievements) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -459,16 +459,16 @@ GameCenterDetailsAPI.gameCenterDetailsGameCenterGroupGetToOneRelated(id: id, fie
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
- **fieldsGameCenterLeaderboardSets** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterLeaderboardSets | [optional] 
  **fieldsGameCenterGroups** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterGroups | [optional] 
  **fieldsGameCenterDetails** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterDetails | [optional] 
  **fieldsGameCenterLeaderboards** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterLeaderboards | [optional] 
+ **fieldsGameCenterLeaderboardSets** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterLeaderboardSets | [optional] 
  **fieldsGameCenterAchievements** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterAchievements | [optional] 
+ **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **limitGameCenterDetails** | **Int** | maximum number of related gameCenterDetails returned (when they are included) | [optional] 
  **limitGameCenterLeaderboards** | **Int** | maximum number of related gameCenterLeaderboards returned (when they are included) | [optional] 
  **limitGameCenterLeaderboardSets** | **Int** | maximum number of related gameCenterLeaderboardSets returned (when they are included) | [optional] 
  **limitGameCenterAchievements** | **Int** | maximum number of related gameCenterAchievements returned (when they are included) | [optional] 
- **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
 
 ### Return type
 
@@ -487,7 +487,7 @@ Name | Type | Description  | Notes
 
 # **gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelated**
 ```swift
-    open class func gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelated(id: String, filterReferenceName: [String]? = nil, filterId: [String]? = nil, fieldsGameCenterLeaderboardSetLocalizations: [FieldsGameCenterLeaderboardSetLocalizations_gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelated]? = nil, fieldsGameCenterLeaderboardSetReleases: [FieldsGameCenterLeaderboardSetReleases_gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelated]? = nil, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelated]? = nil, fieldsGameCenterGroups: [FieldsGameCenterGroups_gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelated]? = nil, fieldsGameCenterLeaderboards: [FieldsGameCenterLeaderboards_gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelated]? = nil, limit: Int? = nil, limitLocalizations: Int? = nil, limitGameCenterLeaderboards: Int? = nil, limitReleases: Int? = nil, include: [Include_gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelated]? = nil, completion: @escaping (_ data: GameCenterLeaderboardSetsResponse?, _ error: Error?) -> Void)
+    open class func gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelated(id: String, filterReferenceName: [String]? = nil, filterId: [String]? = nil, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelated]? = nil, fieldsGameCenterGroups: [FieldsGameCenterGroups_gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelated]? = nil, fieldsGameCenterLeaderboardSetLocalizations: [FieldsGameCenterLeaderboardSetLocalizations_gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelated]? = nil, fieldsGameCenterLeaderboards: [FieldsGameCenterLeaderboards_gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelated]? = nil, fieldsGameCenterLeaderboardSetReleases: [FieldsGameCenterLeaderboardSetReleases_gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelated]? = nil, limitLocalizations: Int? = nil, limitGameCenterLeaderboards: Int? = nil, limitReleases: Int? = nil, completion: @escaping (_ data: GameCenterLeaderboardSetsResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -500,19 +500,19 @@ import ASC
 let id = "id_example" // String | the id of the requested resource
 let filterReferenceName = ["inner_example"] // [String] | filter by attribute 'referenceName' (optional)
 let filterId = ["inner_example"] // [String] | filter by id(s) (optional)
-let fieldsGameCenterLeaderboardSetLocalizations = ["fieldsGameCenterLeaderboardSetLocalizations_example"] // [String] | the fields to include for returned resources of type gameCenterLeaderboardSetLocalizations (optional)
-let fieldsGameCenterLeaderboardSetReleases = ["fieldsGameCenterLeaderboardSetReleases_example"] // [String] | the fields to include for returned resources of type gameCenterLeaderboardSetReleases (optional)
 let fieldsGameCenterLeaderboardSets = ["fieldsGameCenterLeaderboardSets_example"] // [String] | the fields to include for returned resources of type gameCenterLeaderboardSets (optional)
-let fieldsGameCenterGroups = ["fieldsGameCenterGroups_example"] // [String] | the fields to include for returned resources of type gameCenterGroups (optional)
 let fieldsGameCenterDetails = ["fieldsGameCenterDetails_example"] // [String] | the fields to include for returned resources of type gameCenterDetails (optional)
+let fieldsGameCenterGroups = ["fieldsGameCenterGroups_example"] // [String] | the fields to include for returned resources of type gameCenterGroups (optional)
+let fieldsGameCenterLeaderboardSetLocalizations = ["fieldsGameCenterLeaderboardSetLocalizations_example"] // [String] | the fields to include for returned resources of type gameCenterLeaderboardSetLocalizations (optional)
 let fieldsGameCenterLeaderboards = ["fieldsGameCenterLeaderboards_example"] // [String] | the fields to include for returned resources of type gameCenterLeaderboards (optional)
+let fieldsGameCenterLeaderboardSetReleases = ["fieldsGameCenterLeaderboardSetReleases_example"] // [String] | the fields to include for returned resources of type gameCenterLeaderboardSetReleases (optional)
 let limit = 987 // Int | maximum resources per page (optional)
+let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let limitLocalizations = 987 // Int | maximum number of related localizations returned (when they are included) (optional)
 let limitGameCenterLeaderboards = 987 // Int | maximum number of related gameCenterLeaderboards returned (when they are included) (optional)
 let limitReleases = 987 // Int | maximum number of related releases returned (when they are included) (optional)
-let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 
-GameCenterDetailsAPI.gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelated(id: id, filterReferenceName: filterReferenceName, filterId: filterId, fieldsGameCenterLeaderboardSetLocalizations: fieldsGameCenterLeaderboardSetLocalizations, fieldsGameCenterLeaderboardSetReleases: fieldsGameCenterLeaderboardSetReleases, fieldsGameCenterLeaderboardSets: fieldsGameCenterLeaderboardSets, fieldsGameCenterGroups: fieldsGameCenterGroups, fieldsGameCenterDetails: fieldsGameCenterDetails, fieldsGameCenterLeaderboards: fieldsGameCenterLeaderboards, limit: limit, limitLocalizations: limitLocalizations, limitGameCenterLeaderboards: limitGameCenterLeaderboards, limitReleases: limitReleases, include: include) { (response, error) in
+GameCenterDetailsAPI.gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelated(id: id, filterReferenceName: filterReferenceName, filterId: filterId, fieldsGameCenterLeaderboardSets: fieldsGameCenterLeaderboardSets, fieldsGameCenterDetails: fieldsGameCenterDetails, fieldsGameCenterGroups: fieldsGameCenterGroups, fieldsGameCenterLeaderboardSetLocalizations: fieldsGameCenterLeaderboardSetLocalizations, fieldsGameCenterLeaderboards: fieldsGameCenterLeaderboards, fieldsGameCenterLeaderboardSetReleases: fieldsGameCenterLeaderboardSetReleases, limit: limit, include: include, limitLocalizations: limitLocalizations, limitGameCenterLeaderboards: limitGameCenterLeaderboards, limitReleases: limitReleases) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -531,17 +531,17 @@ Name | Type | Description  | Notes
  **id** | **String** | the id of the requested resource | 
  **filterReferenceName** | [**[String]**](String.md) | filter by attribute &#39;referenceName&#39; | [optional] 
  **filterId** | [**[String]**](String.md) | filter by id(s) | [optional] 
- **fieldsGameCenterLeaderboardSetLocalizations** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterLeaderboardSetLocalizations | [optional] 
- **fieldsGameCenterLeaderboardSetReleases** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterLeaderboardSetReleases | [optional] 
  **fieldsGameCenterLeaderboardSets** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterLeaderboardSets | [optional] 
- **fieldsGameCenterGroups** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterGroups | [optional] 
  **fieldsGameCenterDetails** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterDetails | [optional] 
+ **fieldsGameCenterGroups** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterGroups | [optional] 
+ **fieldsGameCenterLeaderboardSetLocalizations** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterLeaderboardSetLocalizations | [optional] 
  **fieldsGameCenterLeaderboards** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterLeaderboards | [optional] 
+ **fieldsGameCenterLeaderboardSetReleases** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterLeaderboardSetReleases | [optional] 
  **limit** | **Int** | maximum resources per page | [optional] 
+ **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **limitLocalizations** | **Int** | maximum number of related localizations returned (when they are included) | [optional] 
  **limitGameCenterLeaderboards** | **Int** | maximum number of related gameCenterLeaderboards returned (when they are included) | [optional] 
  **limitReleases** | **Int** | maximum number of related releases returned (when they are included) | [optional] 
- **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
 
 ### Return type
 
@@ -658,7 +658,7 @@ Void (empty response body)
 
 # **gameCenterDetailsGameCenterLeaderboardsGetToManyRelated**
 ```swift
-    open class func gameCenterDetailsGameCenterLeaderboardsGetToManyRelated(id: String, filterArchived: [String]? = nil, filterReferenceName: [String]? = nil, filterId: [String]? = nil, fieldsGameCenterLeaderboardLocalizations: [FieldsGameCenterLeaderboardLocalizations_gameCenterDetailsGameCenterLeaderboardsGetToManyRelated]? = nil, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_gameCenterDetailsGameCenterLeaderboardsGetToManyRelated]? = nil, fieldsGameCenterGroups: [FieldsGameCenterGroups_gameCenterDetailsGameCenterLeaderboardsGetToManyRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterDetailsGameCenterLeaderboardsGetToManyRelated]? = nil, fieldsGameCenterLeaderboards: [FieldsGameCenterLeaderboards_gameCenterDetailsGameCenterLeaderboardsGetToManyRelated]? = nil, fieldsGameCenterLeaderboardReleases: [FieldsGameCenterLeaderboardReleases_gameCenterDetailsGameCenterLeaderboardsGetToManyRelated]? = nil, limit: Int? = nil, limitGameCenterLeaderboardSets: Int? = nil, limitLocalizations: Int? = nil, limitReleases: Int? = nil, include: [Include_gameCenterDetailsGameCenterLeaderboardsGetToManyRelated]? = nil, completion: @escaping (_ data: GameCenterLeaderboardsResponse?, _ error: Error?) -> Void)
+    open class func gameCenterDetailsGameCenterLeaderboardsGetToManyRelated(id: String, filterReferenceName: [String]? = nil, filterArchived: [String]? = nil, filterId: [String]? = nil, fieldsGameCenterLeaderboards: [FieldsGameCenterLeaderboards_gameCenterDetailsGameCenterLeaderboardsGetToManyRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterDetailsGameCenterLeaderboardsGetToManyRelated]? = nil, fieldsGameCenterGroups: [FieldsGameCenterGroups_gameCenterDetailsGameCenterLeaderboardsGetToManyRelated]? = nil, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_gameCenterDetailsGameCenterLeaderboardsGetToManyRelated]? = nil, fieldsGameCenterLeaderboardLocalizations: [FieldsGameCenterLeaderboardLocalizations_gameCenterDetailsGameCenterLeaderboardsGetToManyRelated]? = nil, fieldsGameCenterLeaderboardReleases: [FieldsGameCenterLeaderboardReleases_gameCenterDetailsGameCenterLeaderboardsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_gameCenterDetailsGameCenterLeaderboardsGetToManyRelated]? = nil, limitGameCenterLeaderboardSets: Int? = nil, limitLocalizations: Int? = nil, limitReleases: Int? = nil, completion: @escaping (_ data: GameCenterLeaderboardsResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -669,22 +669,22 @@ Void (empty response body)
 import ASC
 
 let id = "id_example" // String | the id of the requested resource
-let filterArchived = ["inner_example"] // [String] | filter by attribute 'archived' (optional)
 let filterReferenceName = ["inner_example"] // [String] | filter by attribute 'referenceName' (optional)
+let filterArchived = ["inner_example"] // [String] | filter by attribute 'archived' (optional)
 let filterId = ["inner_example"] // [String] | filter by id(s) (optional)
-let fieldsGameCenterLeaderboardLocalizations = ["fieldsGameCenterLeaderboardLocalizations_example"] // [String] | the fields to include for returned resources of type gameCenterLeaderboardLocalizations (optional)
-let fieldsGameCenterLeaderboardSets = ["fieldsGameCenterLeaderboardSets_example"] // [String] | the fields to include for returned resources of type gameCenterLeaderboardSets (optional)
-let fieldsGameCenterGroups = ["fieldsGameCenterGroups_example"] // [String] | the fields to include for returned resources of type gameCenterGroups (optional)
-let fieldsGameCenterDetails = ["fieldsGameCenterDetails_example"] // [String] | the fields to include for returned resources of type gameCenterDetails (optional)
 let fieldsGameCenterLeaderboards = ["fieldsGameCenterLeaderboards_example"] // [String] | the fields to include for returned resources of type gameCenterLeaderboards (optional)
+let fieldsGameCenterDetails = ["fieldsGameCenterDetails_example"] // [String] | the fields to include for returned resources of type gameCenterDetails (optional)
+let fieldsGameCenterGroups = ["fieldsGameCenterGroups_example"] // [String] | the fields to include for returned resources of type gameCenterGroups (optional)
+let fieldsGameCenterLeaderboardSets = ["fieldsGameCenterLeaderboardSets_example"] // [String] | the fields to include for returned resources of type gameCenterLeaderboardSets (optional)
+let fieldsGameCenterLeaderboardLocalizations = ["fieldsGameCenterLeaderboardLocalizations_example"] // [String] | the fields to include for returned resources of type gameCenterLeaderboardLocalizations (optional)
 let fieldsGameCenterLeaderboardReleases = ["fieldsGameCenterLeaderboardReleases_example"] // [String] | the fields to include for returned resources of type gameCenterLeaderboardReleases (optional)
 let limit = 987 // Int | maximum resources per page (optional)
+let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let limitGameCenterLeaderboardSets = 987 // Int | maximum number of related gameCenterLeaderboardSets returned (when they are included) (optional)
 let limitLocalizations = 987 // Int | maximum number of related localizations returned (when they are included) (optional)
 let limitReleases = 987 // Int | maximum number of related releases returned (when they are included) (optional)
-let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 
-GameCenterDetailsAPI.gameCenterDetailsGameCenterLeaderboardsGetToManyRelated(id: id, filterArchived: filterArchived, filterReferenceName: filterReferenceName, filterId: filterId, fieldsGameCenterLeaderboardLocalizations: fieldsGameCenterLeaderboardLocalizations, fieldsGameCenterLeaderboardSets: fieldsGameCenterLeaderboardSets, fieldsGameCenterGroups: fieldsGameCenterGroups, fieldsGameCenterDetails: fieldsGameCenterDetails, fieldsGameCenterLeaderboards: fieldsGameCenterLeaderboards, fieldsGameCenterLeaderboardReleases: fieldsGameCenterLeaderboardReleases, limit: limit, limitGameCenterLeaderboardSets: limitGameCenterLeaderboardSets, limitLocalizations: limitLocalizations, limitReleases: limitReleases, include: include) { (response, error) in
+GameCenterDetailsAPI.gameCenterDetailsGameCenterLeaderboardsGetToManyRelated(id: id, filterReferenceName: filterReferenceName, filterArchived: filterArchived, filterId: filterId, fieldsGameCenterLeaderboards: fieldsGameCenterLeaderboards, fieldsGameCenterDetails: fieldsGameCenterDetails, fieldsGameCenterGroups: fieldsGameCenterGroups, fieldsGameCenterLeaderboardSets: fieldsGameCenterLeaderboardSets, fieldsGameCenterLeaderboardLocalizations: fieldsGameCenterLeaderboardLocalizations, fieldsGameCenterLeaderboardReleases: fieldsGameCenterLeaderboardReleases, limit: limit, include: include, limitGameCenterLeaderboardSets: limitGameCenterLeaderboardSets, limitLocalizations: limitLocalizations, limitReleases: limitReleases) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -701,20 +701,20 @@ GameCenterDetailsAPI.gameCenterDetailsGameCenterLeaderboardsGetToManyRelated(id:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
- **filterArchived** | [**[String]**](String.md) | filter by attribute &#39;archived&#39; | [optional] 
  **filterReferenceName** | [**[String]**](String.md) | filter by attribute &#39;referenceName&#39; | [optional] 
+ **filterArchived** | [**[String]**](String.md) | filter by attribute &#39;archived&#39; | [optional] 
  **filterId** | [**[String]**](String.md) | filter by id(s) | [optional] 
- **fieldsGameCenterLeaderboardLocalizations** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterLeaderboardLocalizations | [optional] 
- **fieldsGameCenterLeaderboardSets** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterLeaderboardSets | [optional] 
- **fieldsGameCenterGroups** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterGroups | [optional] 
- **fieldsGameCenterDetails** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterDetails | [optional] 
  **fieldsGameCenterLeaderboards** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterLeaderboards | [optional] 
+ **fieldsGameCenterDetails** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterDetails | [optional] 
+ **fieldsGameCenterGroups** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterGroups | [optional] 
+ **fieldsGameCenterLeaderboardSets** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterLeaderboardSets | [optional] 
+ **fieldsGameCenterLeaderboardLocalizations** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterLeaderboardLocalizations | [optional] 
  **fieldsGameCenterLeaderboardReleases** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterLeaderboardReleases | [optional] 
  **limit** | **Int** | maximum resources per page | [optional] 
+ **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **limitGameCenterLeaderboardSets** | **Int** | maximum number of related gameCenterLeaderboardSets returned (when they are included) | [optional] 
  **limitLocalizations** | **Int** | maximum number of related localizations returned (when they are included) | [optional] 
  **limitReleases** | **Int** | maximum number of related releases returned (when they are included) | [optional] 
- **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
 
 ### Return type
 
@@ -831,7 +831,7 @@ Void (empty response body)
 
 # **gameCenterDetailsGetInstance**
 ```swift
-    open class func gameCenterDetailsGetInstance(id: String, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterDetailsGetInstance]? = nil, include: [Include_gameCenterDetailsGetInstance]? = nil, fieldsGameCenterAchievementReleases: [FieldsGameCenterAchievementReleases_gameCenterDetailsGetInstance]? = nil, fieldsGameCenterLeaderboardSetReleases: [FieldsGameCenterLeaderboardSetReleases_gameCenterDetailsGetInstance]? = nil, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_gameCenterDetailsGetInstance]? = nil, fieldsGameCenterGroups: [FieldsGameCenterGroups_gameCenterDetailsGetInstance]? = nil, fieldsGameCenterLeaderboards: [FieldsGameCenterLeaderboards_gameCenterDetailsGetInstance]? = nil, fieldsGameCenterAchievements: [FieldsGameCenterAchievements_gameCenterDetailsGetInstance]? = nil, fieldsGameCenterAppVersions: [FieldsGameCenterAppVersions_gameCenterDetailsGetInstance]? = nil, fieldsGameCenterLeaderboardReleases: [FieldsGameCenterLeaderboardReleases_gameCenterDetailsGetInstance]? = nil, limitAchievementReleases: Int? = nil, limitGameCenterAchievements: Int? = nil, limitGameCenterAppVersions: Int? = nil, limitGameCenterLeaderboardSets: Int? = nil, limitGameCenterLeaderboards: Int? = nil, limitLeaderboardReleases: Int? = nil, limitLeaderboardSetReleases: Int? = nil, completion: @escaping (_ data: GameCenterDetailResponse?, _ error: Error?) -> Void)
+    open class func gameCenterDetailsGetInstance(id: String, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterDetailsGetInstance]? = nil, fieldsGameCenterAppVersions: [FieldsGameCenterAppVersions_gameCenterDetailsGetInstance]? = nil, fieldsGameCenterGroups: [FieldsGameCenterGroups_gameCenterDetailsGetInstance]? = nil, fieldsGameCenterLeaderboards: [FieldsGameCenterLeaderboards_gameCenterDetailsGetInstance]? = nil, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_gameCenterDetailsGetInstance]? = nil, fieldsGameCenterAchievements: [FieldsGameCenterAchievements_gameCenterDetailsGetInstance]? = nil, fieldsGameCenterAchievementReleases: [FieldsGameCenterAchievementReleases_gameCenterDetailsGetInstance]? = nil, fieldsGameCenterLeaderboardReleases: [FieldsGameCenterLeaderboardReleases_gameCenterDetailsGetInstance]? = nil, fieldsGameCenterLeaderboardSetReleases: [FieldsGameCenterLeaderboardSetReleases_gameCenterDetailsGetInstance]? = nil, include: [Include_gameCenterDetailsGetInstance]? = nil, limitAchievementReleases: Int? = nil, limitGameCenterAchievements: Int? = nil, limitGameCenterAppVersions: Int? = nil, limitGameCenterLeaderboardSets: Int? = nil, limitGameCenterLeaderboards: Int? = nil, limitLeaderboardReleases: Int? = nil, limitLeaderboardSetReleases: Int? = nil, completion: @escaping (_ data: GameCenterDetailResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -843,15 +843,15 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let fieldsGameCenterDetails = ["fieldsGameCenterDetails_example"] // [String] | the fields to include for returned resources of type gameCenterDetails (optional)
-let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
-let fieldsGameCenterAchievementReleases = ["fieldsGameCenterAchievementReleases_example"] // [String] | the fields to include for returned resources of type gameCenterAchievementReleases (optional)
-let fieldsGameCenterLeaderboardSetReleases = ["fieldsGameCenterLeaderboardSetReleases_example"] // [String] | the fields to include for returned resources of type gameCenterLeaderboardSetReleases (optional)
-let fieldsGameCenterLeaderboardSets = ["fieldsGameCenterLeaderboardSets_example"] // [String] | the fields to include for returned resources of type gameCenterLeaderboardSets (optional)
+let fieldsGameCenterAppVersions = ["fieldsGameCenterAppVersions_example"] // [String] | the fields to include for returned resources of type gameCenterAppVersions (optional)
 let fieldsGameCenterGroups = ["fieldsGameCenterGroups_example"] // [String] | the fields to include for returned resources of type gameCenterGroups (optional)
 let fieldsGameCenterLeaderboards = ["fieldsGameCenterLeaderboards_example"] // [String] | the fields to include for returned resources of type gameCenterLeaderboards (optional)
+let fieldsGameCenterLeaderboardSets = ["fieldsGameCenterLeaderboardSets_example"] // [String] | the fields to include for returned resources of type gameCenterLeaderboardSets (optional)
 let fieldsGameCenterAchievements = ["fieldsGameCenterAchievements_example"] // [String] | the fields to include for returned resources of type gameCenterAchievements (optional)
-let fieldsGameCenterAppVersions = ["fieldsGameCenterAppVersions_example"] // [String] | the fields to include for returned resources of type gameCenterAppVersions (optional)
+let fieldsGameCenterAchievementReleases = ["fieldsGameCenterAchievementReleases_example"] // [String] | the fields to include for returned resources of type gameCenterAchievementReleases (optional)
 let fieldsGameCenterLeaderboardReleases = ["fieldsGameCenterLeaderboardReleases_example"] // [String] | the fields to include for returned resources of type gameCenterLeaderboardReleases (optional)
+let fieldsGameCenterLeaderboardSetReleases = ["fieldsGameCenterLeaderboardSetReleases_example"] // [String] | the fields to include for returned resources of type gameCenterLeaderboardSetReleases (optional)
+let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let limitAchievementReleases = 987 // Int | maximum number of related achievementReleases returned (when they are included) (optional)
 let limitGameCenterAchievements = 987 // Int | maximum number of related gameCenterAchievements returned (when they are included) (optional)
 let limitGameCenterAppVersions = 987 // Int | maximum number of related gameCenterAppVersions returned (when they are included) (optional)
@@ -860,7 +860,7 @@ let limitGameCenterLeaderboards = 987 // Int | maximum number of related gameCen
 let limitLeaderboardReleases = 987 // Int | maximum number of related leaderboardReleases returned (when they are included) (optional)
 let limitLeaderboardSetReleases = 987 // Int | maximum number of related leaderboardSetReleases returned (when they are included) (optional)
 
-GameCenterDetailsAPI.gameCenterDetailsGetInstance(id: id, fieldsGameCenterDetails: fieldsGameCenterDetails, include: include, fieldsGameCenterAchievementReleases: fieldsGameCenterAchievementReleases, fieldsGameCenterLeaderboardSetReleases: fieldsGameCenterLeaderboardSetReleases, fieldsGameCenterLeaderboardSets: fieldsGameCenterLeaderboardSets, fieldsGameCenterGroups: fieldsGameCenterGroups, fieldsGameCenterLeaderboards: fieldsGameCenterLeaderboards, fieldsGameCenterAchievements: fieldsGameCenterAchievements, fieldsGameCenterAppVersions: fieldsGameCenterAppVersions, fieldsGameCenterLeaderboardReleases: fieldsGameCenterLeaderboardReleases, limitAchievementReleases: limitAchievementReleases, limitGameCenterAchievements: limitGameCenterAchievements, limitGameCenterAppVersions: limitGameCenterAppVersions, limitGameCenterLeaderboardSets: limitGameCenterLeaderboardSets, limitGameCenterLeaderboards: limitGameCenterLeaderboards, limitLeaderboardReleases: limitLeaderboardReleases, limitLeaderboardSetReleases: limitLeaderboardSetReleases) { (response, error) in
+GameCenterDetailsAPI.gameCenterDetailsGetInstance(id: id, fieldsGameCenterDetails: fieldsGameCenterDetails, fieldsGameCenterAppVersions: fieldsGameCenterAppVersions, fieldsGameCenterGroups: fieldsGameCenterGroups, fieldsGameCenterLeaderboards: fieldsGameCenterLeaderboards, fieldsGameCenterLeaderboardSets: fieldsGameCenterLeaderboardSets, fieldsGameCenterAchievements: fieldsGameCenterAchievements, fieldsGameCenterAchievementReleases: fieldsGameCenterAchievementReleases, fieldsGameCenterLeaderboardReleases: fieldsGameCenterLeaderboardReleases, fieldsGameCenterLeaderboardSetReleases: fieldsGameCenterLeaderboardSetReleases, include: include, limitAchievementReleases: limitAchievementReleases, limitGameCenterAchievements: limitGameCenterAchievements, limitGameCenterAppVersions: limitGameCenterAppVersions, limitGameCenterLeaderboardSets: limitGameCenterLeaderboardSets, limitGameCenterLeaderboards: limitGameCenterLeaderboards, limitLeaderboardReleases: limitLeaderboardReleases, limitLeaderboardSetReleases: limitLeaderboardSetReleases) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -878,15 +878,15 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **fieldsGameCenterDetails** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterDetails | [optional] 
- **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
- **fieldsGameCenterAchievementReleases** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterAchievementReleases | [optional] 
- **fieldsGameCenterLeaderboardSetReleases** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterLeaderboardSetReleases | [optional] 
- **fieldsGameCenterLeaderboardSets** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterLeaderboardSets | [optional] 
+ **fieldsGameCenterAppVersions** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterAppVersions | [optional] 
  **fieldsGameCenterGroups** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterGroups | [optional] 
  **fieldsGameCenterLeaderboards** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterLeaderboards | [optional] 
+ **fieldsGameCenterLeaderboardSets** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterLeaderboardSets | [optional] 
  **fieldsGameCenterAchievements** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterAchievements | [optional] 
- **fieldsGameCenterAppVersions** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterAppVersions | [optional] 
+ **fieldsGameCenterAchievementReleases** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterAchievementReleases | [optional] 
  **fieldsGameCenterLeaderboardReleases** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterLeaderboardReleases | [optional] 
+ **fieldsGameCenterLeaderboardSetReleases** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterLeaderboardSetReleases | [optional] 
+ **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **limitAchievementReleases** | **Int** | maximum number of related achievementReleases returned (when they are included) | [optional] 
  **limitGameCenterAchievements** | **Int** | maximum number of related gameCenterAchievements returned (when they are included) | [optional] 
  **limitGameCenterAppVersions** | **Int** | maximum number of related gameCenterAppVersions returned (when they are included) | [optional] 
@@ -912,7 +912,7 @@ Name | Type | Description  | Notes
 
 # **gameCenterDetailsLeaderboardReleasesGetToManyRelated**
 ```swift
-    open class func gameCenterDetailsLeaderboardReleasesGetToManyRelated(id: String, filterLive: [String]? = nil, filterGameCenterLeaderboard: [String]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterDetailsLeaderboardReleasesGetToManyRelated]? = nil, fieldsGameCenterLeaderboards: [FieldsGameCenterLeaderboards_gameCenterDetailsLeaderboardReleasesGetToManyRelated]? = nil, fieldsGameCenterLeaderboardReleases: [FieldsGameCenterLeaderboardReleases_gameCenterDetailsLeaderboardReleasesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_gameCenterDetailsLeaderboardReleasesGetToManyRelated]? = nil, completion: @escaping (_ data: GameCenterLeaderboardReleasesResponse?, _ error: Error?) -> Void)
+    open class func gameCenterDetailsLeaderboardReleasesGetToManyRelated(id: String, filterLive: [String]? = nil, filterGameCenterLeaderboard: [String]? = nil, fieldsGameCenterLeaderboardReleases: [FieldsGameCenterLeaderboardReleases_gameCenterDetailsLeaderboardReleasesGetToManyRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterDetailsLeaderboardReleasesGetToManyRelated]? = nil, fieldsGameCenterLeaderboards: [FieldsGameCenterLeaderboards_gameCenterDetailsLeaderboardReleasesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_gameCenterDetailsLeaderboardReleasesGetToManyRelated]? = nil, completion: @escaping (_ data: GameCenterLeaderboardReleasesResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -925,13 +925,13 @@ import ASC
 let id = "id_example" // String | the id of the requested resource
 let filterLive = ["inner_example"] // [String] | filter by attribute 'live' (optional)
 let filterGameCenterLeaderboard = ["inner_example"] // [String] | filter by id(s) of related 'gameCenterLeaderboard' (optional)
+let fieldsGameCenterLeaderboardReleases = ["fieldsGameCenterLeaderboardReleases_example"] // [String] | the fields to include for returned resources of type gameCenterLeaderboardReleases (optional)
 let fieldsGameCenterDetails = ["fieldsGameCenterDetails_example"] // [String] | the fields to include for returned resources of type gameCenterDetails (optional)
 let fieldsGameCenterLeaderboards = ["fieldsGameCenterLeaderboards_example"] // [String] | the fields to include for returned resources of type gameCenterLeaderboards (optional)
-let fieldsGameCenterLeaderboardReleases = ["fieldsGameCenterLeaderboardReleases_example"] // [String] | the fields to include for returned resources of type gameCenterLeaderboardReleases (optional)
 let limit = 987 // Int | maximum resources per page (optional)
 let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 
-GameCenterDetailsAPI.gameCenterDetailsLeaderboardReleasesGetToManyRelated(id: id, filterLive: filterLive, filterGameCenterLeaderboard: filterGameCenterLeaderboard, fieldsGameCenterDetails: fieldsGameCenterDetails, fieldsGameCenterLeaderboards: fieldsGameCenterLeaderboards, fieldsGameCenterLeaderboardReleases: fieldsGameCenterLeaderboardReleases, limit: limit, include: include) { (response, error) in
+GameCenterDetailsAPI.gameCenterDetailsLeaderboardReleasesGetToManyRelated(id: id, filterLive: filterLive, filterGameCenterLeaderboard: filterGameCenterLeaderboard, fieldsGameCenterLeaderboardReleases: fieldsGameCenterLeaderboardReleases, fieldsGameCenterDetails: fieldsGameCenterDetails, fieldsGameCenterLeaderboards: fieldsGameCenterLeaderboards, limit: limit, include: include) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -950,9 +950,9 @@ Name | Type | Description  | Notes
  **id** | **String** | the id of the requested resource | 
  **filterLive** | [**[String]**](String.md) | filter by attribute &#39;live&#39; | [optional] 
  **filterGameCenterLeaderboard** | [**[String]**](String.md) | filter by id(s) of related &#39;gameCenterLeaderboard&#39; | [optional] 
+ **fieldsGameCenterLeaderboardReleases** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterLeaderboardReleases | [optional] 
  **fieldsGameCenterDetails** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterDetails | [optional] 
  **fieldsGameCenterLeaderboards** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterLeaderboards | [optional] 
- **fieldsGameCenterLeaderboardReleases** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterLeaderboardReleases | [optional] 
  **limit** | **Int** | maximum resources per page | [optional] 
  **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
 
@@ -973,7 +973,7 @@ Name | Type | Description  | Notes
 
 # **gameCenterDetailsLeaderboardSetReleasesGetToManyRelated**
 ```swift
-    open class func gameCenterDetailsLeaderboardSetReleasesGetToManyRelated(id: String, filterLive: [String]? = nil, filterGameCenterLeaderboardSet: [String]? = nil, fieldsGameCenterLeaderboardSetReleases: [FieldsGameCenterLeaderboardSetReleases_gameCenterDetailsLeaderboardSetReleasesGetToManyRelated]? = nil, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_gameCenterDetailsLeaderboardSetReleasesGetToManyRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterDetailsLeaderboardSetReleasesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_gameCenterDetailsLeaderboardSetReleasesGetToManyRelated]? = nil, completion: @escaping (_ data: GameCenterLeaderboardSetReleasesResponse?, _ error: Error?) -> Void)
+    open class func gameCenterDetailsLeaderboardSetReleasesGetToManyRelated(id: String, filterLive: [String]? = nil, filterGameCenterLeaderboardSet: [String]? = nil, fieldsGameCenterLeaderboardSetReleases: [FieldsGameCenterLeaderboardSetReleases_gameCenterDetailsLeaderboardSetReleasesGetToManyRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterDetailsLeaderboardSetReleasesGetToManyRelated]? = nil, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_gameCenterDetailsLeaderboardSetReleasesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_gameCenterDetailsLeaderboardSetReleasesGetToManyRelated]? = nil, completion: @escaping (_ data: GameCenterLeaderboardSetReleasesResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -987,12 +987,12 @@ let id = "id_example" // String | the id of the requested resource
 let filterLive = ["inner_example"] // [String] | filter by attribute 'live' (optional)
 let filterGameCenterLeaderboardSet = ["inner_example"] // [String] | filter by id(s) of related 'gameCenterLeaderboardSet' (optional)
 let fieldsGameCenterLeaderboardSetReleases = ["fieldsGameCenterLeaderboardSetReleases_example"] // [String] | the fields to include for returned resources of type gameCenterLeaderboardSetReleases (optional)
-let fieldsGameCenterLeaderboardSets = ["fieldsGameCenterLeaderboardSets_example"] // [String] | the fields to include for returned resources of type gameCenterLeaderboardSets (optional)
 let fieldsGameCenterDetails = ["fieldsGameCenterDetails_example"] // [String] | the fields to include for returned resources of type gameCenterDetails (optional)
+let fieldsGameCenterLeaderboardSets = ["fieldsGameCenterLeaderboardSets_example"] // [String] | the fields to include for returned resources of type gameCenterLeaderboardSets (optional)
 let limit = 987 // Int | maximum resources per page (optional)
 let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 
-GameCenterDetailsAPI.gameCenterDetailsLeaderboardSetReleasesGetToManyRelated(id: id, filterLive: filterLive, filterGameCenterLeaderboardSet: filterGameCenterLeaderboardSet, fieldsGameCenterLeaderboardSetReleases: fieldsGameCenterLeaderboardSetReleases, fieldsGameCenterLeaderboardSets: fieldsGameCenterLeaderboardSets, fieldsGameCenterDetails: fieldsGameCenterDetails, limit: limit, include: include) { (response, error) in
+GameCenterDetailsAPI.gameCenterDetailsLeaderboardSetReleasesGetToManyRelated(id: id, filterLive: filterLive, filterGameCenterLeaderboardSet: filterGameCenterLeaderboardSet, fieldsGameCenterLeaderboardSetReleases: fieldsGameCenterLeaderboardSetReleases, fieldsGameCenterDetails: fieldsGameCenterDetails, fieldsGameCenterLeaderboardSets: fieldsGameCenterLeaderboardSets, limit: limit, include: include) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -1012,8 +1012,8 @@ Name | Type | Description  | Notes
  **filterLive** | [**[String]**](String.md) | filter by attribute &#39;live&#39; | [optional] 
  **filterGameCenterLeaderboardSet** | [**[String]**](String.md) | filter by id(s) of related &#39;gameCenterLeaderboardSet&#39; | [optional] 
  **fieldsGameCenterLeaderboardSetReleases** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterLeaderboardSetReleases | [optional] 
- **fieldsGameCenterLeaderboardSets** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterLeaderboardSets | [optional] 
  **fieldsGameCenterDetails** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterDetails | [optional] 
+ **fieldsGameCenterLeaderboardSets** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterLeaderboardSets | [optional] 
  **limit** | **Int** | maximum resources per page | [optional] 
  **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
 
@@ -1034,7 +1034,7 @@ Name | Type | Description  | Notes
 
 # **gameCenterDetailsRuleBasedMatchmakingRequestsGetMetrics**
 ```swift
-    open class func gameCenterDetailsRuleBasedMatchmakingRequestsGetMetrics(id: String, granularity: Granularity_gameCenterDetailsRuleBasedMatchmakingRequestsGetMetrics, limit: Int? = nil, groupBy: [GroupBy_gameCenterDetailsRuleBasedMatchmakingRequestsGetMetrics]? = nil, filterResult: FilterResult_gameCenterDetailsRuleBasedMatchmakingRequestsGetMetrics? = nil, sort: [Sort_gameCenterDetailsRuleBasedMatchmakingRequestsGetMetrics]? = nil, completion: @escaping (_ data: GameCenterMatchmakingAppRequestsV1MetricResponse?, _ error: Error?) -> Void)
+    open class func gameCenterDetailsRuleBasedMatchmakingRequestsGetMetrics(id: String, granularity: Granularity_gameCenterDetailsRuleBasedMatchmakingRequestsGetMetrics, groupBy: [GroupBy_gameCenterDetailsRuleBasedMatchmakingRequestsGetMetrics]? = nil, filterResult: FilterResult_gameCenterDetailsRuleBasedMatchmakingRequestsGetMetrics? = nil, sort: [Sort_gameCenterDetailsRuleBasedMatchmakingRequestsGetMetrics]? = nil, limit: Int? = nil, completion: @escaping (_ data: GameCenterMatchmakingAppRequestsV1MetricResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -1046,12 +1046,12 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let granularity = "granularity_example" // String | the granularity of the per-group dataset
-let limit = 987 // Int | maximum number of groups to return per page (optional)
 let groupBy = ["groupBy_example"] // [String] | the dimension by which to group the results (optional)
 let filterResult = "filterResult_example" // String | filter by 'result' attribute dimension (optional)
 let sort = ["sort_example"] // [String] | comma-separated list of sort expressions; metrics will be sorted as specified (optional)
+let limit = 987 // Int | maximum number of groups to return per page (optional)
 
-GameCenterDetailsAPI.gameCenterDetailsRuleBasedMatchmakingRequestsGetMetrics(id: id, granularity: granularity, limit: limit, groupBy: groupBy, filterResult: filterResult, sort: sort) { (response, error) in
+GameCenterDetailsAPI.gameCenterDetailsRuleBasedMatchmakingRequestsGetMetrics(id: id, granularity: granularity, groupBy: groupBy, filterResult: filterResult, sort: sort, limit: limit) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -1069,10 +1069,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **granularity** | **String** | the granularity of the per-group dataset | 
- **limit** | **Int** | maximum number of groups to return per page | [optional] 
  **groupBy** | [**[String]**](String.md) | the dimension by which to group the results | [optional] 
  **filterResult** | **String** | filter by &#39;result&#39; attribute dimension | [optional] 
  **sort** | [**[String]**](String.md) | comma-separated list of sort expressions; metrics will be sorted as specified | [optional] 
+ **limit** | **Int** | maximum number of groups to return per page | [optional] 
 
 ### Return type
 
@@ -1102,7 +1102,7 @@ Name | Type | Description  | Notes
 import ASC
 
 let id = "id_example" // String | the id of the requested resource
-let gameCenterDetailUpdateRequest = GameCenterDetailUpdateRequest(data: GameCenterDetailUpdateRequest_data(type: "type_example", id: "id_example", attributes: GameCenterDetailCreateRequest_data_attributes(challengeEnabled: false), relationships: GameCenterDetailUpdateRequest_data_relationships(gameCenterGroup: GameCenterAchievementCreateRequest_data_relationships_gameCenterGroup(data: GameCenterAchievement_relationships_gameCenterGroup_data(type: "type_example", id: "id_example")), defaultLeaderboard: GameCenterDetailUpdateRequest_data_relationships_defaultLeaderboard(data: GameCenterDetail_relationships_gameCenterLeaderboards_data_inner(type: "type_example", id: "id_example")), defaultGroupLeaderboard: nil))) // GameCenterDetailUpdateRequest | GameCenterDetail representation
+let gameCenterDetailUpdateRequest = GameCenterDetailUpdateRequest(data: GameCenterDetailUpdateRequest_data(type: "type_example", id: "id_example", attributes: GameCenterDetailCreateRequest_data_attributes(challengeEnabled: false), relationships: GameCenterDetailUpdateRequest_data_relationships(gameCenterGroup: GameCenterAchievement_relationships_gameCenterGroup(data: GameCenterAchievement_relationships_gameCenterGroup_data(type: "type_example", id: "id_example")), defaultLeaderboard: GameCenterDetail_relationships_defaultLeaderboard(data: GameCenterDetail_relationships_gameCenterLeaderboards_data_inner(type: "type_example", id: "id_example")), defaultGroupLeaderboard: nil))) // GameCenterDetailUpdateRequest | GameCenterDetail representation
 
 GameCenterDetailsAPI.gameCenterDetailsUpdateInstance(id: id, gameCenterDetailUpdateRequest: gameCenterDetailUpdateRequest) { (response, error) in
     guard error == nil else {

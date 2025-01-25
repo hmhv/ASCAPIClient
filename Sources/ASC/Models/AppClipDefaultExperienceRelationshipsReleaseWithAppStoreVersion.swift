@@ -12,10 +12,10 @@ import AnyCodable
 
 public struct AppClipDefaultExperienceRelationshipsReleaseWithAppStoreVersion: Codable, JSONEncodable, Hashable {
 
-    public var links: AlternativeDistributionPackageVersionRelationshipsVariantsLinks?
+    public var links: RelationshipLinks?
     public var data: AlternativeDistributionPackageCreateRequestDataRelationshipsAppStoreVersionData?
 
-    public init(links: AlternativeDistributionPackageVersionRelationshipsVariantsLinks? = nil, data: AlternativeDistributionPackageCreateRequestDataRelationshipsAppStoreVersionData? = nil) {
+    public init(links: RelationshipLinks? = nil, data: AlternativeDistributionPackageCreateRequestDataRelationshipsAppStoreVersionData? = nil) {
         self.links = links
         self.data = data
     }

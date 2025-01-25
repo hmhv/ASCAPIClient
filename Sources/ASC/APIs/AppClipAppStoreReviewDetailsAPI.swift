@@ -81,8 +81,8 @@ open class AppClipAppStoreReviewDetailsAPI {
      * enum for parameter fieldsAppClipAppStoreReviewDetails
      */
     public enum FieldsAppClipAppStoreReviewDetails_appClipAppStoreReviewDetailsGetInstance: String, CaseIterable {
-        case appclipdefaultexperience = "appClipDefaultExperience"
         case invocationurls = "invocationUrls"
+        case appclipdefaultexperience = "appClipDefaultExperience"
     }
 
     /**

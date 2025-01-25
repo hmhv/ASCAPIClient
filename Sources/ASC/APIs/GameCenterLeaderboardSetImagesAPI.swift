@@ -149,13 +149,12 @@ open class GameCenterLeaderboardSetImagesAPI {
      * enum for parameter fieldsGameCenterLeaderboardSetImages
      */
     public enum FieldsGameCenterLeaderboardSetImages_gameCenterLeaderboardSetImagesGetInstance: String, CaseIterable {
-        case assetdeliverystate = "assetDeliveryState"
-        case filename = "fileName"
         case filesize = "fileSize"
-        case gamecenterleaderboardsetlocalization = "gameCenterLeaderboardSetLocalization"
+        case filename = "fileName"
         case imageasset = "imageAsset"
         case uploadoperations = "uploadOperations"
-        case uploaded = "uploaded"
+        case assetdeliverystate = "assetDeliveryState"
+        case gamecenterleaderboardsetlocalization = "gameCenterLeaderboardSetLocalization"
     }
 
     /**

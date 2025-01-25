@@ -13,16 +13,13 @@ import AnyCodable
 public struct BetaBuildUsagesV1MetricResponseDataInner: Codable, JSONEncodable, Hashable {
 
     public var dataPoints: BetaBuildUsagesV1MetricResponseDataInnerDataPoints?
-    public var dimensions: BetaBuildUsagesV1MetricResponseDataInnerDimensions?
 
-    public init(dataPoints: BetaBuildUsagesV1MetricResponseDataInnerDataPoints? = nil, dimensions: BetaBuildUsagesV1MetricResponseDataInnerDimensions? = nil) {
+    public init(dataPoints: BetaBuildUsagesV1MetricResponseDataInnerDataPoints? = nil) {
         self.dataPoints = dataPoints
-        self.dimensions = dimensions
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case dataPoints
-        case dimensions
     }
 
     // Encodable protocol methods
@@ -30,7 +27,6 @@ public struct BetaBuildUsagesV1MetricResponseDataInner: Codable, JSONEncodable, 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(dataPoints, forKey: .dataPoints)
-        try container.encodeIfPresent(dimensions, forKey: .dimensions)
     }
 }
 

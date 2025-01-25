@@ -12,10 +12,10 @@ import AnyCodable
 
 public struct GameCenterAchievementLocalizationRelationshipsGameCenterAchievementImage: Codable, JSONEncodable, Hashable {
 
-    public var links: AlternativeDistributionPackageVersionRelationshipsVariantsLinks?
+    public var links: RelationshipLinks?
     public var data: GameCenterAchievementLocalizationRelationshipsGameCenterAchievementImageData?
 
-    public init(links: AlternativeDistributionPackageVersionRelationshipsVariantsLinks? = nil, data: GameCenterAchievementLocalizationRelationshipsGameCenterAchievementImageData? = nil) {
+    public init(links: RelationshipLinks? = nil, data: GameCenterAchievementLocalizationRelationshipsGameCenterAchievementImageData? = nil) {
         self.links = links
         self.data = data
     }

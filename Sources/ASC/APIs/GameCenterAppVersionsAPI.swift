@@ -13,78 +13,201 @@ import AnyCodable
 open class GameCenterAppVersionsAPI {
 
     /**
-     * enum for parameter fieldsAgeRatingDeclarations
+     * enum for parameter fieldsAppStoreVersions
      */
-    public enum FieldsAgeRatingDeclarations_gameCenterAppVersionsAppStoreVersionGetToOneRelated: String, CaseIterable {
-        case ageratingoverride = "ageRatingOverride"
-        case alcoholtobaccoordruguseorreferences = "alcoholTobaccoOrDrugUseOrReferences"
-        case contests = "contests"
-        case gambling = "gambling"
-        case gamblingandcontests = "gamblingAndContests"
-        case gamblingsimulated = "gamblingSimulated"
-        case horrororfearthemes = "horrorOrFearThemes"
-        case kidsageband = "kidsAgeBand"
-        case matureorsuggestivethemes = "matureOrSuggestiveThemes"
-        case medicalortreatmentinformation = "medicalOrTreatmentInformation"
-        case profanityorcrudehumor = "profanityOrCrudeHumor"
-        case seventeenplus = "seventeenPlus"
-        case sexualcontentgraphicandnudity = "sexualContentGraphicAndNudity"
-        case sexualcontentornudity = "sexualContentOrNudity"
-        case unrestrictedwebaccess = "unrestrictedWebAccess"
-        case violencecartoonorfantasy = "violenceCartoonOrFantasy"
-        case violencerealistic = "violenceRealistic"
-        case violencerealisticprolongedgraphicorsadistic = "violenceRealisticProlongedGraphicOrSadistic"
+    public enum FieldsAppStoreVersions_gameCenterAppVersionsAppStoreVersionGetToOneRelated: String, CaseIterable {
+        case platform = "platform"
+        case versionstring = "versionString"
+        case appstorestate = "appStoreState"
+        case appversionstate = "appVersionState"
+        case copyright = "copyright"
+        case reviewtype = "reviewType"
+        case releasetype = "releaseType"
+        case earliestreleasedate = "earliestReleaseDate"
+        case downloadable = "downloadable"
+        case createddate = "createdDate"
+        case app = "app"
+        case ageratingdeclaration = "ageRatingDeclaration"
+        case appstoreversionlocalizations = "appStoreVersionLocalizations"
+        case build = "build"
+        case appstoreversionphasedrelease = "appStoreVersionPhasedRelease"
+        case gamecenterappversion = "gameCenterAppVersion"
+        case routingappcoverage = "routingAppCoverage"
+        case appstorereviewdetail = "appStoreReviewDetail"
+        case appstoreversionsubmission = "appStoreVersionSubmission"
+        case appclipdefaultexperience = "appClipDefaultExperience"
+        case appstoreversionexperiments = "appStoreVersionExperiments"
+        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
+        case customerreviews = "customerReviews"
+        case alternativedistributionpackage = "alternativeDistributionPackage"
     }
 
     /**
-     * enum for parameter fieldsAppStoreReviewDetails
+     * enum for parameter fieldsApps
      */
-    public enum FieldsAppStoreReviewDetails_gameCenterAppVersionsAppStoreVersionGetToOneRelated: String, CaseIterable {
-        case appstorereviewattachments = "appStoreReviewAttachments"
-        case appstoreversion = "appStoreVersion"
-        case contactemail = "contactEmail"
-        case contactfirstname = "contactFirstName"
-        case contactlastname = "contactLastName"
-        case contactphone = "contactPhone"
-        case demoaccountname = "demoAccountName"
-        case demoaccountpassword = "demoAccountPassword"
-        case demoaccountrequired = "demoAccountRequired"
-        case notes = "notes"
+    public enum FieldsApps_gameCenterAppVersionsAppStoreVersionGetToOneRelated: String, CaseIterable {
+        case name = "name"
+        case bundleid = "bundleId"
+        case sku = "sku"
+        case primarylocale = "primaryLocale"
+        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
+        case subscriptionstatusurl = "subscriptionStatusUrl"
+        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
+        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
+        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
+        case contentrightsdeclaration = "contentRightsDeclaration"
+        case streamlinedpurchasingenabled = "streamlinedPurchasingEnabled"
+        case appencryptiondeclarations = "appEncryptionDeclarations"
+        case ciproduct = "ciProduct"
+        case betatesters = "betaTesters"
+        case betagroups = "betaGroups"
+        case appstoreversions = "appStoreVersions"
+        case prereleaseversions = "preReleaseVersions"
+        case betaapplocalizations = "betaAppLocalizations"
+        case builds = "builds"
+        case betalicenseagreement = "betaLicenseAgreement"
+        case betaappreviewdetail = "betaAppReviewDetail"
+        case appinfos = "appInfos"
+        case appclips = "appClips"
+        case apppricepoints = "appPricePoints"
+        case enduserlicenseagreement = "endUserLicenseAgreement"
+        case apppriceschedule = "appPriceSchedule"
+        case appavailabilityv2 = "appAvailabilityV2"
+        case inapppurchases = "inAppPurchases"
+        case subscriptiongroups = "subscriptionGroups"
+        case gamecenterenabledversions = "gameCenterEnabledVersions"
+        case perfpowermetrics = "perfPowerMetrics"
+        case appcustomproductpages = "appCustomProductPages"
+        case inapppurchasesv2 = "inAppPurchasesV2"
+        case promotedpurchases = "promotedPurchases"
+        case appevents = "appEvents"
+        case reviewsubmissions = "reviewSubmissions"
+        case subscriptiongraceperiod = "subscriptionGracePeriod"
+        case customerreviews = "customerReviews"
+        case gamecenterdetail = "gameCenterDetail"
+        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
+        case alternativedistributionkey = "alternativeDistributionKey"
+        case analyticsreportrequests = "analyticsReportRequests"
+        case marketplacesearchdetail = "marketplaceSearchDetail"
+    }
+
+    /**
+     * enum for parameter fieldsAgeRatingDeclarations
+     */
+    public enum FieldsAgeRatingDeclarations_gameCenterAppVersionsAppStoreVersionGetToOneRelated: String, CaseIterable {
+        case alcoholtobaccoordruguseorreferences = "alcoholTobaccoOrDrugUseOrReferences"
+        case contests = "contests"
+        case gamblingandcontests = "gamblingAndContests"
+        case gambling = "gambling"
+        case gamblingsimulated = "gamblingSimulated"
+        case kidsageband = "kidsAgeBand"
+        case lootbox = "lootBox"
+        case medicalortreatmentinformation = "medicalOrTreatmentInformation"
+        case profanityorcrudehumor = "profanityOrCrudeHumor"
+        case sexualcontentgraphicandnudity = "sexualContentGraphicAndNudity"
+        case sexualcontentornudity = "sexualContentOrNudity"
+        case horrororfearthemes = "horrorOrFearThemes"
+        case matureorsuggestivethemes = "matureOrSuggestiveThemes"
+        case unrestrictedwebaccess = "unrestrictedWebAccess"
+        case violencecartoonorfantasy = "violenceCartoonOrFantasy"
+        case violencerealisticprolongedgraphicorsadistic = "violenceRealisticProlongedGraphicOrSadistic"
+        case violencerealistic = "violenceRealistic"
+        case ageratingoverride = "ageRatingOverride"
+        case koreaageratingoverride = "koreaAgeRatingOverride"
+        case seventeenplus = "seventeenPlus"
     }
 
     /**
      * enum for parameter fieldsAppStoreVersionLocalizations
      */
     public enum FieldsAppStoreVersionLocalizations_gameCenterAppVersionsAppStoreVersionGetToOneRelated: String, CaseIterable {
-        case apppreviewsets = "appPreviewSets"
-        case appscreenshotsets = "appScreenshotSets"
-        case appstoreversion = "appStoreVersion"
         case description = "description"
-        case keywords = "keywords"
         case locale = "locale"
+        case keywords = "keywords"
         case marketingurl = "marketingUrl"
         case promotionaltext = "promotionalText"
         case supporturl = "supportUrl"
         case whatsnew = "whatsNew"
+        case appstoreversion = "appStoreVersion"
+        case appscreenshotsets = "appScreenshotSets"
+        case apppreviewsets = "appPreviewSets"
     }
 
     /**
-     * enum for parameter fieldsAppStoreVersionExperiments
+     * enum for parameter fieldsBuilds
      */
-    public enum FieldsAppStoreVersionExperiments_gameCenterAppVersionsAppStoreVersionGetToOneRelated: String, CaseIterable {
+    public enum FieldsBuilds_gameCenterAppVersionsAppStoreVersionGetToOneRelated: String, CaseIterable {
+        case version = "version"
+        case uploadeddate = "uploadedDate"
+        case expirationdate = "expirationDate"
+        case expired = "expired"
+        case minosversion = "minOsVersion"
+        case lsminimumsystemversion = "lsMinimumSystemVersion"
+        case computedminmacosversion = "computedMinMacOsVersion"
+        case iconassettoken = "iconAssetToken"
+        case processingstate = "processingState"
+        case buildaudiencetype = "buildAudienceType"
+        case usesnonexemptencryption = "usesNonExemptEncryption"
+        case prereleaseversion = "preReleaseVersion"
+        case individualtesters = "individualTesters"
+        case betagroups = "betaGroups"
+        case betabuildlocalizations = "betaBuildLocalizations"
+        case appencryptiondeclaration = "appEncryptionDeclaration"
+        case betaappreviewsubmission = "betaAppReviewSubmission"
         case app = "app"
+        case buildbetadetail = "buildBetaDetail"
         case appstoreversion = "appStoreVersion"
-        case appstoreversionexperimenttreatments = "appStoreVersionExperimentTreatments"
-        case controlversions = "controlVersions"
-        case enddate = "endDate"
-        case latestcontrolversion = "latestControlVersion"
-        case name = "name"
-        case platform = "platform"
-        case reviewrequired = "reviewRequired"
+        case icons = "icons"
+        case buildbundles = "buildBundles"
+        case perfpowermetrics = "perfPowerMetrics"
+        case diagnosticsignatures = "diagnosticSignatures"
+    }
+
+    /**
+     * enum for parameter fieldsAppStoreVersionPhasedReleases
+     */
+    public enum FieldsAppStoreVersionPhasedReleases_gameCenterAppVersionsAppStoreVersionGetToOneRelated: String, CaseIterable {
+        case phasedreleasestate = "phasedReleaseState"
         case startdate = "startDate"
-        case started = "started"
-        case state = "state"
-        case trafficproportion = "trafficProportion"
+        case totalpauseduration = "totalPauseDuration"
+        case currentdaynumber = "currentDayNumber"
+    }
+
+    /**
+     * enum for parameter fieldsGameCenterAppVersions
+     */
+    public enum FieldsGameCenterAppVersions_gameCenterAppVersionsAppStoreVersionGetToOneRelated: String, CaseIterable {
+        case enabled = "enabled"
+        case compatibilityversions = "compatibilityVersions"
+        case appstoreversion = "appStoreVersion"
+    }
+
+    /**
+     * enum for parameter fieldsRoutingAppCoverages
+     */
+    public enum FieldsRoutingAppCoverages_gameCenterAppVersionsAppStoreVersionGetToOneRelated: String, CaseIterable {
+        case filesize = "fileSize"
+        case filename = "fileName"
+        case sourcefilechecksum = "sourceFileChecksum"
+        case uploadoperations = "uploadOperations"
+        case assetdeliverystate = "assetDeliveryState"
+        case appstoreversion = "appStoreVersion"
+    }
+
+    /**
+     * enum for parameter fieldsAppStoreReviewDetails
+     */
+    public enum FieldsAppStoreReviewDetails_gameCenterAppVersionsAppStoreVersionGetToOneRelated: String, CaseIterable {
+        case contactfirstname = "contactFirstName"
+        case contactlastname = "contactLastName"
+        case contactphone = "contactPhone"
+        case contactemail = "contactEmail"
+        case demoaccountname = "demoAccountName"
+        case demoaccountpassword = "demoAccountPassword"
+        case demoaccountrequired = "demoAccountRequired"
+        case notes = "notes"
+        case appstoreversion = "appStoreVersion"
+        case appstorereviewattachments = "appStoreReviewAttachments"
     }
 
     /**
@@ -95,203 +218,85 @@ open class GameCenterAppVersionsAPI {
     }
 
     /**
-     * enum for parameter fieldsAlternativeDistributionPackages
-     */
-    public enum FieldsAlternativeDistributionPackages_gameCenterAppVersionsAppStoreVersionGetToOneRelated: String, CaseIterable {
-        case appstoreversion = "appStoreVersion"
-        case versions = "versions"
-    }
-
-    /**
-     * enum for parameter fieldsAppStoreVersions
-     */
-    public enum FieldsAppStoreVersions_gameCenterAppVersionsAppStoreVersionGetToOneRelated: String, CaseIterable {
-        case ageratingdeclaration = "ageRatingDeclaration"
-        case alternativedistributionpackage = "alternativeDistributionPackage"
-        case app = "app"
-        case appclipdefaultexperience = "appClipDefaultExperience"
-        case appstorereviewdetail = "appStoreReviewDetail"
-        case appstorestate = "appStoreState"
-        case appstoreversionexperiments = "appStoreVersionExperiments"
-        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
-        case appstoreversionlocalizations = "appStoreVersionLocalizations"
-        case appstoreversionphasedrelease = "appStoreVersionPhasedRelease"
-        case appstoreversionsubmission = "appStoreVersionSubmission"
-        case appversionstate = "appVersionState"
-        case build = "build"
-        case copyright = "copyright"
-        case createddate = "createdDate"
-        case customerreviews = "customerReviews"
-        case downloadable = "downloadable"
-        case earliestreleasedate = "earliestReleaseDate"
-        case platform = "platform"
-        case releasetype = "releaseType"
-        case reviewtype = "reviewType"
-        case routingappcoverage = "routingAppCoverage"
-        case versionstring = "versionString"
-    }
-
-    /**
-     * enum for parameter fieldsApps
-     */
-    public enum FieldsApps_gameCenterAppVersionsAppStoreVersionGetToOneRelated: String, CaseIterable {
-        case alternativedistributionkey = "alternativeDistributionKey"
-        case analyticsreportrequests = "analyticsReportRequests"
-        case appavailability = "appAvailability"
-        case appclips = "appClips"
-        case appcustomproductpages = "appCustomProductPages"
-        case appencryptiondeclarations = "appEncryptionDeclarations"
-        case appevents = "appEvents"
-        case appinfos = "appInfos"
-        case apppricepoints = "appPricePoints"
-        case apppriceschedule = "appPriceSchedule"
-        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
-        case appstoreversions = "appStoreVersions"
-        case availableinnewterritories = "availableInNewTerritories"
-        case availableterritories = "availableTerritories"
-        case betaapplocalizations = "betaAppLocalizations"
-        case betaappreviewdetail = "betaAppReviewDetail"
-        case betagroups = "betaGroups"
-        case betalicenseagreement = "betaLicenseAgreement"
-        case betatesters = "betaTesters"
-        case builds = "builds"
-        case bundleid = "bundleId"
-        case ciproduct = "ciProduct"
-        case contentrightsdeclaration = "contentRightsDeclaration"
-        case customerreviews = "customerReviews"
-        case enduserlicenseagreement = "endUserLicenseAgreement"
-        case gamecenterdetail = "gameCenterDetail"
-        case gamecenterenabledversions = "gameCenterEnabledVersions"
-        case inapppurchases = "inAppPurchases"
-        case inapppurchasesv2 = "inAppPurchasesV2"
-        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
-        case marketplacesearchdetail = "marketplaceSearchDetail"
-        case name = "name"
-        case perfpowermetrics = "perfPowerMetrics"
-        case preorder = "preOrder"
-        case prereleaseversions = "preReleaseVersions"
-        case pricepoints = "pricePoints"
-        case prices = "prices"
-        case primarylocale = "primaryLocale"
-        case promotedpurchases = "promotedPurchases"
-        case reviewsubmissions = "reviewSubmissions"
-        case sku = "sku"
-        case subscriptiongraceperiod = "subscriptionGracePeriod"
-        case subscriptiongroups = "subscriptionGroups"
-        case subscriptionstatusurl = "subscriptionStatusUrl"
-        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
-        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
-        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
-    }
-
-    /**
-     * enum for parameter fieldsRoutingAppCoverages
-     */
-    public enum FieldsRoutingAppCoverages_gameCenterAppVersionsAppStoreVersionGetToOneRelated: String, CaseIterable {
-        case appstoreversion = "appStoreVersion"
-        case assetdeliverystate = "assetDeliveryState"
-        case filename = "fileName"
-        case filesize = "fileSize"
-        case sourcefilechecksum = "sourceFileChecksum"
-        case uploadoperations = "uploadOperations"
-        case uploaded = "uploaded"
-    }
-
-    /**
      * enum for parameter fieldsAppClipDefaultExperiences
      */
     public enum FieldsAppClipDefaultExperiences_gameCenterAppVersionsAppStoreVersionGetToOneRelated: String, CaseIterable {
         case action = "action"
         case appclip = "appClip"
-        case appclipappstorereviewdetail = "appClipAppStoreReviewDetail"
-        case appclipdefaultexperiencelocalizations = "appClipDefaultExperienceLocalizations"
-        case appclipdefaultexperiencetemplate = "appClipDefaultExperienceTemplate"
         case releasewithappstoreversion = "releaseWithAppStoreVersion"
+        case appclipdefaultexperiencelocalizations = "appClipDefaultExperienceLocalizations"
+        case appclipappstorereviewdetail = "appClipAppStoreReviewDetail"
     }
 
     /**
-     * enum for parameter fieldsAppStoreVersionPhasedReleases
+     * enum for parameter fieldsAppStoreVersionExperiments
      */
-    public enum FieldsAppStoreVersionPhasedReleases_gameCenterAppVersionsAppStoreVersionGetToOneRelated: String, CaseIterable {
-        case appstoreversion = "appStoreVersion"
-        case currentdaynumber = "currentDayNumber"
-        case phasedreleasestate = "phasedReleaseState"
+    public enum FieldsAppStoreVersionExperiments_gameCenterAppVersionsAppStoreVersionGetToOneRelated: String, CaseIterable {
+        case name = "name"
+        case trafficproportion = "trafficProportion"
+        case state = "state"
+        case reviewrequired = "reviewRequired"
         case startdate = "startDate"
-        case totalpauseduration = "totalPauseDuration"
+        case enddate = "endDate"
+        case appstoreversion = "appStoreVersion"
+        case appstoreversionexperimenttreatments = "appStoreVersionExperimentTreatments"
+        case platform = "platform"
+        case app = "app"
+        case latestcontrolversion = "latestControlVersion"
+        case controlversions = "controlVersions"
     }
 
     /**
-     * enum for parameter fieldsBuilds
+     * enum for parameter fieldsAlternativeDistributionPackages
      */
-    public enum FieldsBuilds_gameCenterAppVersionsAppStoreVersionGetToOneRelated: String, CaseIterable {
-        case app = "app"
-        case appencryptiondeclaration = "appEncryptionDeclaration"
-        case appstoreversion = "appStoreVersion"
-        case betaappreviewsubmission = "betaAppReviewSubmission"
-        case betabuildlocalizations = "betaBuildLocalizations"
-        case betagroups = "betaGroups"
-        case buildaudiencetype = "buildAudienceType"
-        case buildbetadetail = "buildBetaDetail"
-        case buildbundles = "buildBundles"
-        case computedminmacosversion = "computedMinMacOsVersion"
-        case diagnosticsignatures = "diagnosticSignatures"
-        case expirationdate = "expirationDate"
-        case expired = "expired"
-        case iconassettoken = "iconAssetToken"
-        case icons = "icons"
-        case individualtesters = "individualTesters"
-        case lsminimumsystemversion = "lsMinimumSystemVersion"
-        case minosversion = "minOsVersion"
-        case perfpowermetrics = "perfPowerMetrics"
-        case prereleaseversion = "preReleaseVersion"
-        case processingstate = "processingState"
-        case uploadeddate = "uploadedDate"
-        case usesnonexemptencryption = "usesNonExemptEncryption"
-        case version = "version"
+    public enum FieldsAlternativeDistributionPackages_gameCenterAppVersionsAppStoreVersionGetToOneRelated: String, CaseIterable {
+        case versions = "versions"
     }
 
     /**
      * enum for parameter include
      */
     public enum Include_gameCenterAppVersionsAppStoreVersionGetToOneRelated: String, CaseIterable {
-        case ageratingdeclaration = "ageRatingDeclaration"
-        case alternativedistributionpackage = "alternativeDistributionPackage"
         case app = "app"
-        case appclipdefaultexperience = "appClipDefaultExperience"
+        case ageratingdeclaration = "ageRatingDeclaration"
+        case appstoreversionlocalizations = "appStoreVersionLocalizations"
+        case build = "build"
+        case appstoreversionphasedrelease = "appStoreVersionPhasedRelease"
+        case gamecenterappversion = "gameCenterAppVersion"
+        case routingappcoverage = "routingAppCoverage"
         case appstorereviewdetail = "appStoreReviewDetail"
+        case appstoreversionsubmission = "appStoreVersionSubmission"
+        case appclipdefaultexperience = "appClipDefaultExperience"
         case appstoreversionexperiments = "appStoreVersionExperiments"
         case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
-        case appstoreversionlocalizations = "appStoreVersionLocalizations"
-        case appstoreversionphasedrelease = "appStoreVersionPhasedRelease"
-        case appstoreversionsubmission = "appStoreVersionSubmission"
-        case build = "build"
-        case routingappcoverage = "routingAppCoverage"
+        case alternativedistributionpackage = "alternativeDistributionPackage"
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
-     - parameter fieldsAgeRatingDeclarations: (query) the fields to include for returned resources of type ageRatingDeclarations (optional)
-     - parameter fieldsAppStoreReviewDetails: (query) the fields to include for returned resources of type appStoreReviewDetails (optional)
-     - parameter fieldsAppStoreVersionLocalizations: (query) the fields to include for returned resources of type appStoreVersionLocalizations (optional)
-     - parameter fieldsAppStoreVersionExperiments: (query) the fields to include for returned resources of type appStoreVersionExperiments (optional)
-     - parameter fieldsAppStoreVersionSubmissions: (query) the fields to include for returned resources of type appStoreVersionSubmissions (optional)
-     - parameter fieldsAlternativeDistributionPackages: (query) the fields to include for returned resources of type alternativeDistributionPackages (optional)
      - parameter fieldsAppStoreVersions: (query) the fields to include for returned resources of type appStoreVersions (optional)
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
-     - parameter fieldsRoutingAppCoverages: (query) the fields to include for returned resources of type routingAppCoverages (optional)
-     - parameter fieldsAppClipDefaultExperiences: (query) the fields to include for returned resources of type appClipDefaultExperiences (optional)
-     - parameter fieldsAppStoreVersionPhasedReleases: (query) the fields to include for returned resources of type appStoreVersionPhasedReleases (optional)
+     - parameter fieldsAgeRatingDeclarations: (query) the fields to include for returned resources of type ageRatingDeclarations (optional)
+     - parameter fieldsAppStoreVersionLocalizations: (query) the fields to include for returned resources of type appStoreVersionLocalizations (optional)
      - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
+     - parameter fieldsAppStoreVersionPhasedReleases: (query) the fields to include for returned resources of type appStoreVersionPhasedReleases (optional)
+     - parameter fieldsGameCenterAppVersions: (query) the fields to include for returned resources of type gameCenterAppVersions (optional)
+     - parameter fieldsRoutingAppCoverages: (query) the fields to include for returned resources of type routingAppCoverages (optional)
+     - parameter fieldsAppStoreReviewDetails: (query) the fields to include for returned resources of type appStoreReviewDetails (optional)
+     - parameter fieldsAppStoreVersionSubmissions: (query) the fields to include for returned resources of type appStoreVersionSubmissions (optional)
+     - parameter fieldsAppClipDefaultExperiences: (query) the fields to include for returned resources of type appClipDefaultExperiences (optional)
+     - parameter fieldsAppStoreVersionExperiments: (query) the fields to include for returned resources of type appStoreVersionExperiments (optional)
+     - parameter fieldsAlternativeDistributionPackages: (query) the fields to include for returned resources of type alternativeDistributionPackages (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAppStoreVersionLocalizations: (query) maximum number of related appStoreVersionLocalizations returned (when they are included) (optional)
      - parameter limitAppStoreVersionExperiments: (query) maximum number of related appStoreVersionExperiments returned (when they are included) (optional)
      - parameter limitAppStoreVersionExperimentsV2: (query) maximum number of related appStoreVersionExperimentsV2 returned (when they are included) (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: AppStoreVersionResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterAppVersionsAppStoreVersionGetToOneRelated(id: String, fieldsAgeRatingDeclarations: [FieldsAgeRatingDeclarations_gameCenterAppVersionsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreReviewDetails: [FieldsAppStoreReviewDetails_gameCenterAppVersionsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionLocalizations: [FieldsAppStoreVersionLocalizations_gameCenterAppVersionsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_gameCenterAppVersionsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionSubmissions: [FieldsAppStoreVersionSubmissions_gameCenterAppVersionsAppStoreVersionGetToOneRelated]? = nil, fieldsAlternativeDistributionPackages: [FieldsAlternativeDistributionPackages_gameCenterAppVersionsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_gameCenterAppVersionsAppStoreVersionGetToOneRelated]? = nil, fieldsApps: [FieldsApps_gameCenterAppVersionsAppStoreVersionGetToOneRelated]? = nil, fieldsRoutingAppCoverages: [FieldsRoutingAppCoverages_gameCenterAppVersionsAppStoreVersionGetToOneRelated]? = nil, fieldsAppClipDefaultExperiences: [FieldsAppClipDefaultExperiences_gameCenterAppVersionsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionPhasedReleases: [FieldsAppStoreVersionPhasedReleases_gameCenterAppVersionsAppStoreVersionGetToOneRelated]? = nil, fieldsBuilds: [FieldsBuilds_gameCenterAppVersionsAppStoreVersionGetToOneRelated]? = nil, limitAppStoreVersionLocalizations: Int? = nil, limitAppStoreVersionExperiments: Int? = nil, limitAppStoreVersionExperimentsV2: Int? = nil, include: [Include_gameCenterAppVersionsAppStoreVersionGetToOneRelated]? = nil) async throws -> AppStoreVersionResponse {
-        return try await gameCenterAppVersionsAppStoreVersionGetToOneRelatedWithRequestBuilder(id: id, fieldsAgeRatingDeclarations: fieldsAgeRatingDeclarations, fieldsAppStoreReviewDetails: fieldsAppStoreReviewDetails, fieldsAppStoreVersionLocalizations: fieldsAppStoreVersionLocalizations, fieldsAppStoreVersionExperiments: fieldsAppStoreVersionExperiments, fieldsAppStoreVersionSubmissions: fieldsAppStoreVersionSubmissions, fieldsAlternativeDistributionPackages: fieldsAlternativeDistributionPackages, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsApps: fieldsApps, fieldsRoutingAppCoverages: fieldsRoutingAppCoverages, fieldsAppClipDefaultExperiences: fieldsAppClipDefaultExperiences, fieldsAppStoreVersionPhasedReleases: fieldsAppStoreVersionPhasedReleases, fieldsBuilds: fieldsBuilds, limitAppStoreVersionLocalizations: limitAppStoreVersionLocalizations, limitAppStoreVersionExperiments: limitAppStoreVersionExperiments, limitAppStoreVersionExperimentsV2: limitAppStoreVersionExperimentsV2, include: include).execute().body
+    open class func gameCenterAppVersionsAppStoreVersionGetToOneRelated(id: String, fieldsAppStoreVersions: [FieldsAppStoreVersions_gameCenterAppVersionsAppStoreVersionGetToOneRelated]? = nil, fieldsApps: [FieldsApps_gameCenterAppVersionsAppStoreVersionGetToOneRelated]? = nil, fieldsAgeRatingDeclarations: [FieldsAgeRatingDeclarations_gameCenterAppVersionsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionLocalizations: [FieldsAppStoreVersionLocalizations_gameCenterAppVersionsAppStoreVersionGetToOneRelated]? = nil, fieldsBuilds: [FieldsBuilds_gameCenterAppVersionsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionPhasedReleases: [FieldsAppStoreVersionPhasedReleases_gameCenterAppVersionsAppStoreVersionGetToOneRelated]? = nil, fieldsGameCenterAppVersions: [FieldsGameCenterAppVersions_gameCenterAppVersionsAppStoreVersionGetToOneRelated]? = nil, fieldsRoutingAppCoverages: [FieldsRoutingAppCoverages_gameCenterAppVersionsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreReviewDetails: [FieldsAppStoreReviewDetails_gameCenterAppVersionsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionSubmissions: [FieldsAppStoreVersionSubmissions_gameCenterAppVersionsAppStoreVersionGetToOneRelated]? = nil, fieldsAppClipDefaultExperiences: [FieldsAppClipDefaultExperiences_gameCenterAppVersionsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_gameCenterAppVersionsAppStoreVersionGetToOneRelated]? = nil, fieldsAlternativeDistributionPackages: [FieldsAlternativeDistributionPackages_gameCenterAppVersionsAppStoreVersionGetToOneRelated]? = nil, include: [Include_gameCenterAppVersionsAppStoreVersionGetToOneRelated]? = nil, limitAppStoreVersionLocalizations: Int? = nil, limitAppStoreVersionExperiments: Int? = nil, limitAppStoreVersionExperimentsV2: Int? = nil) async throws -> AppStoreVersionResponse {
+        return try await gameCenterAppVersionsAppStoreVersionGetToOneRelatedWithRequestBuilder(id: id, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsApps: fieldsApps, fieldsAgeRatingDeclarations: fieldsAgeRatingDeclarations, fieldsAppStoreVersionLocalizations: fieldsAppStoreVersionLocalizations, fieldsBuilds: fieldsBuilds, fieldsAppStoreVersionPhasedReleases: fieldsAppStoreVersionPhasedReleases, fieldsGameCenterAppVersions: fieldsGameCenterAppVersions, fieldsRoutingAppCoverages: fieldsRoutingAppCoverages, fieldsAppStoreReviewDetails: fieldsAppStoreReviewDetails, fieldsAppStoreVersionSubmissions: fieldsAppStoreVersionSubmissions, fieldsAppClipDefaultExperiences: fieldsAppClipDefaultExperiences, fieldsAppStoreVersionExperiments: fieldsAppStoreVersionExperiments, fieldsAlternativeDistributionPackages: fieldsAlternativeDistributionPackages, include: include, limitAppStoreVersionLocalizations: limitAppStoreVersionLocalizations, limitAppStoreVersionExperiments: limitAppStoreVersionExperiments, limitAppStoreVersionExperimentsV2: limitAppStoreVersionExperimentsV2).execute().body
     }
 
     /**
@@ -309,25 +314,26 @@ open class GameCenterAppVersionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
-     - parameter fieldsAgeRatingDeclarations: (query) the fields to include for returned resources of type ageRatingDeclarations (optional)
-     - parameter fieldsAppStoreReviewDetails: (query) the fields to include for returned resources of type appStoreReviewDetails (optional)
-     - parameter fieldsAppStoreVersionLocalizations: (query) the fields to include for returned resources of type appStoreVersionLocalizations (optional)
-     - parameter fieldsAppStoreVersionExperiments: (query) the fields to include for returned resources of type appStoreVersionExperiments (optional)
-     - parameter fieldsAppStoreVersionSubmissions: (query) the fields to include for returned resources of type appStoreVersionSubmissions (optional)
-     - parameter fieldsAlternativeDistributionPackages: (query) the fields to include for returned resources of type alternativeDistributionPackages (optional)
      - parameter fieldsAppStoreVersions: (query) the fields to include for returned resources of type appStoreVersions (optional)
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
-     - parameter fieldsRoutingAppCoverages: (query) the fields to include for returned resources of type routingAppCoverages (optional)
-     - parameter fieldsAppClipDefaultExperiences: (query) the fields to include for returned resources of type appClipDefaultExperiences (optional)
-     - parameter fieldsAppStoreVersionPhasedReleases: (query) the fields to include for returned resources of type appStoreVersionPhasedReleases (optional)
+     - parameter fieldsAgeRatingDeclarations: (query) the fields to include for returned resources of type ageRatingDeclarations (optional)
+     - parameter fieldsAppStoreVersionLocalizations: (query) the fields to include for returned resources of type appStoreVersionLocalizations (optional)
      - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
+     - parameter fieldsAppStoreVersionPhasedReleases: (query) the fields to include for returned resources of type appStoreVersionPhasedReleases (optional)
+     - parameter fieldsGameCenterAppVersions: (query) the fields to include for returned resources of type gameCenterAppVersions (optional)
+     - parameter fieldsRoutingAppCoverages: (query) the fields to include for returned resources of type routingAppCoverages (optional)
+     - parameter fieldsAppStoreReviewDetails: (query) the fields to include for returned resources of type appStoreReviewDetails (optional)
+     - parameter fieldsAppStoreVersionSubmissions: (query) the fields to include for returned resources of type appStoreVersionSubmissions (optional)
+     - parameter fieldsAppClipDefaultExperiences: (query) the fields to include for returned resources of type appClipDefaultExperiences (optional)
+     - parameter fieldsAppStoreVersionExperiments: (query) the fields to include for returned resources of type appStoreVersionExperiments (optional)
+     - parameter fieldsAlternativeDistributionPackages: (query) the fields to include for returned resources of type alternativeDistributionPackages (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAppStoreVersionLocalizations: (query) maximum number of related appStoreVersionLocalizations returned (when they are included) (optional)
      - parameter limitAppStoreVersionExperiments: (query) maximum number of related appStoreVersionExperiments returned (when they are included) (optional)
      - parameter limitAppStoreVersionExperimentsV2: (query) maximum number of related appStoreVersionExperimentsV2 returned (when they are included) (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: RequestBuilder<AppStoreVersionResponse> 
      */
-    open class func gameCenterAppVersionsAppStoreVersionGetToOneRelatedWithRequestBuilder(id: String, fieldsAgeRatingDeclarations: [FieldsAgeRatingDeclarations_gameCenterAppVersionsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreReviewDetails: [FieldsAppStoreReviewDetails_gameCenterAppVersionsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionLocalizations: [FieldsAppStoreVersionLocalizations_gameCenterAppVersionsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_gameCenterAppVersionsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionSubmissions: [FieldsAppStoreVersionSubmissions_gameCenterAppVersionsAppStoreVersionGetToOneRelated]? = nil, fieldsAlternativeDistributionPackages: [FieldsAlternativeDistributionPackages_gameCenterAppVersionsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_gameCenterAppVersionsAppStoreVersionGetToOneRelated]? = nil, fieldsApps: [FieldsApps_gameCenterAppVersionsAppStoreVersionGetToOneRelated]? = nil, fieldsRoutingAppCoverages: [FieldsRoutingAppCoverages_gameCenterAppVersionsAppStoreVersionGetToOneRelated]? = nil, fieldsAppClipDefaultExperiences: [FieldsAppClipDefaultExperiences_gameCenterAppVersionsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionPhasedReleases: [FieldsAppStoreVersionPhasedReleases_gameCenterAppVersionsAppStoreVersionGetToOneRelated]? = nil, fieldsBuilds: [FieldsBuilds_gameCenterAppVersionsAppStoreVersionGetToOneRelated]? = nil, limitAppStoreVersionLocalizations: Int? = nil, limitAppStoreVersionExperiments: Int? = nil, limitAppStoreVersionExperimentsV2: Int? = nil, include: [Include_gameCenterAppVersionsAppStoreVersionGetToOneRelated]? = nil) -> RequestBuilder<AppStoreVersionResponse> {
+    open class func gameCenterAppVersionsAppStoreVersionGetToOneRelatedWithRequestBuilder(id: String, fieldsAppStoreVersions: [FieldsAppStoreVersions_gameCenterAppVersionsAppStoreVersionGetToOneRelated]? = nil, fieldsApps: [FieldsApps_gameCenterAppVersionsAppStoreVersionGetToOneRelated]? = nil, fieldsAgeRatingDeclarations: [FieldsAgeRatingDeclarations_gameCenterAppVersionsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionLocalizations: [FieldsAppStoreVersionLocalizations_gameCenterAppVersionsAppStoreVersionGetToOneRelated]? = nil, fieldsBuilds: [FieldsBuilds_gameCenterAppVersionsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionPhasedReleases: [FieldsAppStoreVersionPhasedReleases_gameCenterAppVersionsAppStoreVersionGetToOneRelated]? = nil, fieldsGameCenterAppVersions: [FieldsGameCenterAppVersions_gameCenterAppVersionsAppStoreVersionGetToOneRelated]? = nil, fieldsRoutingAppCoverages: [FieldsRoutingAppCoverages_gameCenterAppVersionsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreReviewDetails: [FieldsAppStoreReviewDetails_gameCenterAppVersionsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionSubmissions: [FieldsAppStoreVersionSubmissions_gameCenterAppVersionsAppStoreVersionGetToOneRelated]? = nil, fieldsAppClipDefaultExperiences: [FieldsAppClipDefaultExperiences_gameCenterAppVersionsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_gameCenterAppVersionsAppStoreVersionGetToOneRelated]? = nil, fieldsAlternativeDistributionPackages: [FieldsAlternativeDistributionPackages_gameCenterAppVersionsAppStoreVersionGetToOneRelated]? = nil, include: [Include_gameCenterAppVersionsAppStoreVersionGetToOneRelated]? = nil, limitAppStoreVersionLocalizations: Int? = nil, limitAppStoreVersionExperiments: Int? = nil, limitAppStoreVersionExperimentsV2: Int? = nil) -> RequestBuilder<AppStoreVersionResponse> {
         var localVariablePath = "/v1/gameCenterAppVersions/{id}/appStoreVersion"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -337,22 +343,23 @@ open class GameCenterAppVersionsAPI {
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[ageRatingDeclarations]": (wrappedValue: fieldsAgeRatingDeclarations?.encodeToJSON(), isExplode: false),
-            "fields[appStoreReviewDetails]": (wrappedValue: fieldsAppStoreReviewDetails?.encodeToJSON(), isExplode: false),
-            "fields[appStoreVersionLocalizations]": (wrappedValue: fieldsAppStoreVersionLocalizations?.encodeToJSON(), isExplode: false),
-            "fields[appStoreVersionExperiments]": (wrappedValue: fieldsAppStoreVersionExperiments?.encodeToJSON(), isExplode: false),
-            "fields[appStoreVersionSubmissions]": (wrappedValue: fieldsAppStoreVersionSubmissions?.encodeToJSON(), isExplode: false),
-            "fields[alternativeDistributionPackages]": (wrappedValue: fieldsAlternativeDistributionPackages?.encodeToJSON(), isExplode: false),
             "fields[appStoreVersions]": (wrappedValue: fieldsAppStoreVersions?.encodeToJSON(), isExplode: false),
             "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
-            "fields[routingAppCoverages]": (wrappedValue: fieldsRoutingAppCoverages?.encodeToJSON(), isExplode: false),
-            "fields[appClipDefaultExperiences]": (wrappedValue: fieldsAppClipDefaultExperiences?.encodeToJSON(), isExplode: false),
-            "fields[appStoreVersionPhasedReleases]": (wrappedValue: fieldsAppStoreVersionPhasedReleases?.encodeToJSON(), isExplode: false),
+            "fields[ageRatingDeclarations]": (wrappedValue: fieldsAgeRatingDeclarations?.encodeToJSON(), isExplode: false),
+            "fields[appStoreVersionLocalizations]": (wrappedValue: fieldsAppStoreVersionLocalizations?.encodeToJSON(), isExplode: false),
             "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(), isExplode: false),
+            "fields[appStoreVersionPhasedReleases]": (wrappedValue: fieldsAppStoreVersionPhasedReleases?.encodeToJSON(), isExplode: false),
+            "fields[gameCenterAppVersions]": (wrappedValue: fieldsGameCenterAppVersions?.encodeToJSON(), isExplode: false),
+            "fields[routingAppCoverages]": (wrappedValue: fieldsRoutingAppCoverages?.encodeToJSON(), isExplode: false),
+            "fields[appStoreReviewDetails]": (wrappedValue: fieldsAppStoreReviewDetails?.encodeToJSON(), isExplode: false),
+            "fields[appStoreVersionSubmissions]": (wrappedValue: fieldsAppStoreVersionSubmissions?.encodeToJSON(), isExplode: false),
+            "fields[appClipDefaultExperiences]": (wrappedValue: fieldsAppClipDefaultExperiences?.encodeToJSON(), isExplode: false),
+            "fields[appStoreVersionExperiments]": (wrappedValue: fieldsAppStoreVersionExperiments?.encodeToJSON(), isExplode: false),
+            "fields[alternativeDistributionPackages]": (wrappedValue: fieldsAlternativeDistributionPackages?.encodeToJSON(), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "limit[appStoreVersionLocalizations]": (wrappedValue: limitAppStoreVersionLocalizations?.encodeToJSON(), isExplode: true),
             "limit[appStoreVersionExperiments]": (wrappedValue: limitAppStoreVersionExperiments?.encodeToJSON(), isExplode: true),
             "limit[appStoreVersionExperimentsV2]": (wrappedValue: limitAppStoreVersionExperimentsV2?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -527,65 +534,66 @@ open class GameCenterAppVersionsAPI {
     }
 
     /**
-     * enum for parameter fieldsAppStoreVersions
-     */
-    public enum FieldsAppStoreVersions_gameCenterAppVersionsCompatibilityVersionsGetToManyRelated: String, CaseIterable {
-        case ageratingdeclaration = "ageRatingDeclaration"
-        case alternativedistributionpackage = "alternativeDistributionPackage"
-        case app = "app"
-        case appclipdefaultexperience = "appClipDefaultExperience"
-        case appstorereviewdetail = "appStoreReviewDetail"
-        case appstorestate = "appStoreState"
-        case appstoreversionexperiments = "appStoreVersionExperiments"
-        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
-        case appstoreversionlocalizations = "appStoreVersionLocalizations"
-        case appstoreversionphasedrelease = "appStoreVersionPhasedRelease"
-        case appstoreversionsubmission = "appStoreVersionSubmission"
-        case appversionstate = "appVersionState"
-        case build = "build"
-        case copyright = "copyright"
-        case createddate = "createdDate"
-        case customerreviews = "customerReviews"
-        case downloadable = "downloadable"
-        case earliestreleasedate = "earliestReleaseDate"
-        case platform = "platform"
-        case releasetype = "releaseType"
-        case reviewtype = "reviewType"
-        case routingappcoverage = "routingAppCoverage"
-        case versionstring = "versionString"
-    }
-
-    /**
      * enum for parameter fieldsGameCenterAppVersions
      */
     public enum FieldsGameCenterAppVersions_gameCenterAppVersionsCompatibilityVersionsGetToManyRelated: String, CaseIterable {
-        case appstoreversion = "appStoreVersion"
-        case compatibilityversions = "compatibilityVersions"
         case enabled = "enabled"
+        case compatibilityversions = "compatibilityVersions"
+        case appstoreversion = "appStoreVersion"
+    }
+
+    /**
+     * enum for parameter fieldsAppStoreVersions
+     */
+    public enum FieldsAppStoreVersions_gameCenterAppVersionsCompatibilityVersionsGetToManyRelated: String, CaseIterable {
+        case platform = "platform"
+        case versionstring = "versionString"
+        case appstorestate = "appStoreState"
+        case appversionstate = "appVersionState"
+        case copyright = "copyright"
+        case reviewtype = "reviewType"
+        case releasetype = "releaseType"
+        case earliestreleasedate = "earliestReleaseDate"
+        case downloadable = "downloadable"
+        case createddate = "createdDate"
+        case app = "app"
+        case ageratingdeclaration = "ageRatingDeclaration"
+        case appstoreversionlocalizations = "appStoreVersionLocalizations"
+        case build = "build"
+        case appstoreversionphasedrelease = "appStoreVersionPhasedRelease"
+        case gamecenterappversion = "gameCenterAppVersion"
+        case routingappcoverage = "routingAppCoverage"
+        case appstorereviewdetail = "appStoreReviewDetail"
+        case appstoreversionsubmission = "appStoreVersionSubmission"
+        case appclipdefaultexperience = "appClipDefaultExperience"
+        case appstoreversionexperiments = "appStoreVersionExperiments"
+        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
+        case customerreviews = "customerReviews"
+        case alternativedistributionpackage = "alternativeDistributionPackage"
     }
 
     /**
      * enum for parameter include
      */
     public enum Include_gameCenterAppVersionsCompatibilityVersionsGetToManyRelated: String, CaseIterable {
-        case appstoreversion = "appStoreVersion"
         case compatibilityversions = "compatibilityVersions"
+        case appstoreversion = "appStoreVersion"
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter filterEnabled: (query) filter by attribute &#39;enabled&#39; (optional)
-     - parameter fieldsAppStoreVersions: (query) the fields to include for returned resources of type appStoreVersions (optional)
      - parameter fieldsGameCenterAppVersions: (query) the fields to include for returned resources of type gameCenterAppVersions (optional)
+     - parameter fieldsAppStoreVersions: (query) the fields to include for returned resources of type appStoreVersions (optional)
      - parameter limit: (query) maximum resources per page (optional)
-     - parameter limitCompatibilityVersions: (query) maximum number of related compatibilityVersions returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitCompatibilityVersions: (query) maximum number of related compatibilityVersions returned (when they are included) (optional)
      - returns: GameCenterAppVersionsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterAppVersionsCompatibilityVersionsGetToManyRelated(id: String, filterEnabled: [String]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_gameCenterAppVersionsCompatibilityVersionsGetToManyRelated]? = nil, fieldsGameCenterAppVersions: [FieldsGameCenterAppVersions_gameCenterAppVersionsCompatibilityVersionsGetToManyRelated]? = nil, limit: Int? = nil, limitCompatibilityVersions: Int? = nil, include: [Include_gameCenterAppVersionsCompatibilityVersionsGetToManyRelated]? = nil) async throws -> GameCenterAppVersionsResponse {
-        return try await gameCenterAppVersionsCompatibilityVersionsGetToManyRelatedWithRequestBuilder(id: id, filterEnabled: filterEnabled, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsGameCenterAppVersions: fieldsGameCenterAppVersions, limit: limit, limitCompatibilityVersions: limitCompatibilityVersions, include: include).execute().body
+    open class func gameCenterAppVersionsCompatibilityVersionsGetToManyRelated(id: String, filterEnabled: [String]? = nil, fieldsGameCenterAppVersions: [FieldsGameCenterAppVersions_gameCenterAppVersionsCompatibilityVersionsGetToManyRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_gameCenterAppVersionsCompatibilityVersionsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_gameCenterAppVersionsCompatibilityVersionsGetToManyRelated]? = nil, limitCompatibilityVersions: Int? = nil) async throws -> GameCenterAppVersionsResponse {
+        return try await gameCenterAppVersionsCompatibilityVersionsGetToManyRelatedWithRequestBuilder(id: id, filterEnabled: filterEnabled, fieldsGameCenterAppVersions: fieldsGameCenterAppVersions, fieldsAppStoreVersions: fieldsAppStoreVersions, limit: limit, include: include, limitCompatibilityVersions: limitCompatibilityVersions).execute().body
     }
 
     /**
@@ -604,14 +612,14 @@ open class GameCenterAppVersionsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter filterEnabled: (query) filter by attribute &#39;enabled&#39; (optional)
-     - parameter fieldsAppStoreVersions: (query) the fields to include for returned resources of type appStoreVersions (optional)
      - parameter fieldsGameCenterAppVersions: (query) the fields to include for returned resources of type gameCenterAppVersions (optional)
+     - parameter fieldsAppStoreVersions: (query) the fields to include for returned resources of type appStoreVersions (optional)
      - parameter limit: (query) maximum resources per page (optional)
-     - parameter limitCompatibilityVersions: (query) maximum number of related compatibilityVersions returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitCompatibilityVersions: (query) maximum number of related compatibilityVersions returned (when they are included) (optional)
      - returns: RequestBuilder<GameCenterAppVersionsResponse> 
      */
-    open class func gameCenterAppVersionsCompatibilityVersionsGetToManyRelatedWithRequestBuilder(id: String, filterEnabled: [String]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_gameCenterAppVersionsCompatibilityVersionsGetToManyRelated]? = nil, fieldsGameCenterAppVersions: [FieldsGameCenterAppVersions_gameCenterAppVersionsCompatibilityVersionsGetToManyRelated]? = nil, limit: Int? = nil, limitCompatibilityVersions: Int? = nil, include: [Include_gameCenterAppVersionsCompatibilityVersionsGetToManyRelated]? = nil) -> RequestBuilder<GameCenterAppVersionsResponse> {
+    open class func gameCenterAppVersionsCompatibilityVersionsGetToManyRelatedWithRequestBuilder(id: String, filterEnabled: [String]? = nil, fieldsGameCenterAppVersions: [FieldsGameCenterAppVersions_gameCenterAppVersionsCompatibilityVersionsGetToManyRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_gameCenterAppVersionsCompatibilityVersionsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_gameCenterAppVersionsCompatibilityVersionsGetToManyRelated]? = nil, limitCompatibilityVersions: Int? = nil) -> RequestBuilder<GameCenterAppVersionsResponse> {
         var localVariablePath = "/v1/gameCenterAppVersions/{id}/compatibilityVersions"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -622,11 +630,11 @@ open class GameCenterAppVersionsAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "filter[enabled]": (wrappedValue: filterEnabled?.encodeToJSON(), isExplode: false),
-            "fields[appStoreVersions]": (wrappedValue: fieldsAppStoreVersions?.encodeToJSON(), isExplode: false),
             "fields[gameCenterAppVersions]": (wrappedValue: fieldsGameCenterAppVersions?.encodeToJSON(), isExplode: false),
+            "fields[appStoreVersions]": (wrappedValue: fieldsAppStoreVersions?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "limit[compatibilityVersions]": (wrappedValue: limitCompatibilityVersions?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "limit[compatibilityVersions]": (wrappedValue: limitCompatibilityVersions?.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -802,60 +810,61 @@ open class GameCenterAppVersionsAPI {
      * enum for parameter fieldsGameCenterAppVersions
      */
     public enum FieldsGameCenterAppVersions_gameCenterAppVersionsGetInstance: String, CaseIterable {
-        case appstoreversion = "appStoreVersion"
-        case compatibilityversions = "compatibilityVersions"
         case enabled = "enabled"
-    }
-
-    /**
-     * enum for parameter include
-     */
-    public enum Include_gameCenterAppVersionsGetInstance: String, CaseIterable {
-        case appstoreversion = "appStoreVersion"
         case compatibilityversions = "compatibilityVersions"
+        case appstoreversion = "appStoreVersion"
     }
 
     /**
      * enum for parameter fieldsAppStoreVersions
      */
     public enum FieldsAppStoreVersions_gameCenterAppVersionsGetInstance: String, CaseIterable {
-        case ageratingdeclaration = "ageRatingDeclaration"
-        case alternativedistributionpackage = "alternativeDistributionPackage"
-        case app = "app"
-        case appclipdefaultexperience = "appClipDefaultExperience"
-        case appstorereviewdetail = "appStoreReviewDetail"
+        case platform = "platform"
+        case versionstring = "versionString"
         case appstorestate = "appStoreState"
+        case appversionstate = "appVersionState"
+        case copyright = "copyright"
+        case reviewtype = "reviewType"
+        case releasetype = "releaseType"
+        case earliestreleasedate = "earliestReleaseDate"
+        case downloadable = "downloadable"
+        case createddate = "createdDate"
+        case app = "app"
+        case ageratingdeclaration = "ageRatingDeclaration"
+        case appstoreversionlocalizations = "appStoreVersionLocalizations"
+        case build = "build"
+        case appstoreversionphasedrelease = "appStoreVersionPhasedRelease"
+        case gamecenterappversion = "gameCenterAppVersion"
+        case routingappcoverage = "routingAppCoverage"
+        case appstorereviewdetail = "appStoreReviewDetail"
+        case appstoreversionsubmission = "appStoreVersionSubmission"
+        case appclipdefaultexperience = "appClipDefaultExperience"
         case appstoreversionexperiments = "appStoreVersionExperiments"
         case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
-        case appstoreversionlocalizations = "appStoreVersionLocalizations"
-        case appstoreversionphasedrelease = "appStoreVersionPhasedRelease"
-        case appstoreversionsubmission = "appStoreVersionSubmission"
-        case appversionstate = "appVersionState"
-        case build = "build"
-        case copyright = "copyright"
-        case createddate = "createdDate"
         case customerreviews = "customerReviews"
-        case downloadable = "downloadable"
-        case earliestreleasedate = "earliestReleaseDate"
-        case platform = "platform"
-        case releasetype = "releaseType"
-        case reviewtype = "reviewType"
-        case routingappcoverage = "routingAppCoverage"
-        case versionstring = "versionString"
+        case alternativedistributionpackage = "alternativeDistributionPackage"
+    }
+
+    /**
+     * enum for parameter include
+     */
+    public enum Include_gameCenterAppVersionsGetInstance: String, CaseIterable {
+        case compatibilityversions = "compatibilityVersions"
+        case appstoreversion = "appStoreVersion"
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsGameCenterAppVersions: (query) the fields to include for returned resources of type gameCenterAppVersions (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter fieldsAppStoreVersions: (query) the fields to include for returned resources of type appStoreVersions (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitCompatibilityVersions: (query) maximum number of related compatibilityVersions returned (when they are included) (optional)
      - returns: GameCenterAppVersionResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterAppVersionsGetInstance(id: String, fieldsGameCenterAppVersions: [FieldsGameCenterAppVersions_gameCenterAppVersionsGetInstance]? = nil, include: [Include_gameCenterAppVersionsGetInstance]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_gameCenterAppVersionsGetInstance]? = nil, limitCompatibilityVersions: Int? = nil) async throws -> GameCenterAppVersionResponse {
-        return try await gameCenterAppVersionsGetInstanceWithRequestBuilder(id: id, fieldsGameCenterAppVersions: fieldsGameCenterAppVersions, include: include, fieldsAppStoreVersions: fieldsAppStoreVersions, limitCompatibilityVersions: limitCompatibilityVersions).execute().body
+    open class func gameCenterAppVersionsGetInstance(id: String, fieldsGameCenterAppVersions: [FieldsGameCenterAppVersions_gameCenterAppVersionsGetInstance]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_gameCenterAppVersionsGetInstance]? = nil, include: [Include_gameCenterAppVersionsGetInstance]? = nil, limitCompatibilityVersions: Int? = nil) async throws -> GameCenterAppVersionResponse {
+        return try await gameCenterAppVersionsGetInstanceWithRequestBuilder(id: id, fieldsGameCenterAppVersions: fieldsGameCenterAppVersions, fieldsAppStoreVersions: fieldsAppStoreVersions, include: include, limitCompatibilityVersions: limitCompatibilityVersions).execute().body
     }
 
     /**
@@ -874,12 +883,12 @@ open class GameCenterAppVersionsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsGameCenterAppVersions: (query) the fields to include for returned resources of type gameCenterAppVersions (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter fieldsAppStoreVersions: (query) the fields to include for returned resources of type appStoreVersions (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitCompatibilityVersions: (query) maximum number of related compatibilityVersions returned (when they are included) (optional)
      - returns: RequestBuilder<GameCenterAppVersionResponse> 
      */
-    open class func gameCenterAppVersionsGetInstanceWithRequestBuilder(id: String, fieldsGameCenterAppVersions: [FieldsGameCenterAppVersions_gameCenterAppVersionsGetInstance]? = nil, include: [Include_gameCenterAppVersionsGetInstance]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_gameCenterAppVersionsGetInstance]? = nil, limitCompatibilityVersions: Int? = nil) -> RequestBuilder<GameCenterAppVersionResponse> {
+    open class func gameCenterAppVersionsGetInstanceWithRequestBuilder(id: String, fieldsGameCenterAppVersions: [FieldsGameCenterAppVersions_gameCenterAppVersionsGetInstance]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_gameCenterAppVersionsGetInstance]? = nil, include: [Include_gameCenterAppVersionsGetInstance]? = nil, limitCompatibilityVersions: Int? = nil) -> RequestBuilder<GameCenterAppVersionResponse> {
         var localVariablePath = "/v1/gameCenterAppVersions/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -890,8 +899,8 @@ open class GameCenterAppVersionsAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[gameCenterAppVersions]": (wrappedValue: fieldsGameCenterAppVersions?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "fields[appStoreVersions]": (wrappedValue: fieldsAppStoreVersions?.encodeToJSON(), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "limit[compatibilityVersions]": (wrappedValue: limitCompatibilityVersions?.encodeToJSON(), isExplode: true),
         ])
 

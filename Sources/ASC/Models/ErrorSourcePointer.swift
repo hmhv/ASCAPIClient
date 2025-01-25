@@ -12,9 +12,9 @@ import AnyCodable
 
 public struct ErrorSourcePointer: Codable, JSONEncodable, Hashable {
 
-    public var pointer: String?
+    public var pointer: String
 
-    public init(pointer: String? = nil) {
+    public init(pointer: String) {
         self.pointer = pointer
     }
 
@@ -26,7 +26,7 @@ public struct ErrorSourcePointer: Codable, JSONEncodable, Hashable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(pointer, forKey: .pointer)
+        try container.encode(pointer, forKey: .pointer)
     }
 }
 

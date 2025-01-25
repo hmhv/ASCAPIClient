@@ -12,11 +12,11 @@ import AnyCodable
 
 public struct AppStoreVersionRelationshipsAppStoreVersionExperiments: Codable, JSONEncodable, Hashable {
 
-    public var links: AlternativeDistributionPackageVersionRelationshipsVariantsLinks?
+    public var links: RelationshipLinks?
     public var meta: PagingInformation?
     public var data: [AppStoreVersionExperimentTreatmentRelationshipsAppStoreVersionExperimentData]?
 
-    public init(links: AlternativeDistributionPackageVersionRelationshipsVariantsLinks? = nil, meta: PagingInformation? = nil, data: [AppStoreVersionExperimentTreatmentRelationshipsAppStoreVersionExperimentData]? = nil) {
+    public init(links: RelationshipLinks? = nil, meta: PagingInformation? = nil, data: [AppStoreVersionExperimentTreatmentRelationshipsAppStoreVersionExperimentData]? = nil) {
         self.links = links
         self.meta = meta
         self.data = data

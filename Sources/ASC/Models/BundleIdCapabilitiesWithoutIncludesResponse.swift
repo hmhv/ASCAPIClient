@@ -12,11 +12,11 @@ import AnyCodable
 
 public struct BundleIdCapabilitiesWithoutIncludesResponse: Codable, JSONEncodable, Hashable {
 
-    public var data: [BundleId]
+    public var data: [BundleIdCapability]
     public var links: PagedDocumentLinks
     public var meta: PagingInformation?
 
-    public init(data: [BundleId], links: PagedDocumentLinks, meta: PagingInformation? = nil) {
+    public init(data: [BundleIdCapability], links: PagedDocumentLinks, meta: PagingInformation? = nil) {
         self.data = data
         self.links = links
         self.meta = meta

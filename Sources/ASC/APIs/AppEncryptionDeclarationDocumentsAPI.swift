@@ -81,15 +81,13 @@ open class AppEncryptionDeclarationDocumentsAPI {
      * enum for parameter fieldsAppEncryptionDeclarationDocuments
      */
     public enum FieldsAppEncryptionDeclarationDocuments_appEncryptionDeclarationDocumentsGetInstance: String, CaseIterable {
-        case appencryptiondeclaration = "appEncryptionDeclaration"
-        case assetdeliverystate = "assetDeliveryState"
+        case filesize = "fileSize"
+        case filename = "fileName"
         case assettoken = "assetToken"
         case downloadurl = "downloadUrl"
-        case filename = "fileName"
-        case filesize = "fileSize"
         case sourcefilechecksum = "sourceFileChecksum"
         case uploadoperations = "uploadOperations"
-        case uploaded = "uploaded"
+        case assetdeliverystate = "assetDeliveryState"
     }
 
     /**

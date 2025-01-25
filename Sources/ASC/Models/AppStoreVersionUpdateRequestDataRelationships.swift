@@ -13,9 +13,9 @@ import AnyCodable
 public struct AppStoreVersionUpdateRequestDataRelationships: Codable, JSONEncodable, Hashable {
 
     public var build: AppStoreVersionCreateRequestDataRelationshipsBuild?
-    public var appClipDefaultExperience: AppClipDefaultExperienceCreateRequestDataRelationshipsAppClipDefaultExperienceTemplate?
+    public var appClipDefaultExperience: AppClipAppStoreReviewDetailRelationshipsAppClipDefaultExperience?
 
-    public init(build: AppStoreVersionCreateRequestDataRelationshipsBuild? = nil, appClipDefaultExperience: AppClipDefaultExperienceCreateRequestDataRelationshipsAppClipDefaultExperienceTemplate? = nil) {
+    public init(build: AppStoreVersionCreateRequestDataRelationshipsBuild? = nil, appClipDefaultExperience: AppClipAppStoreReviewDetailRelationshipsAppClipDefaultExperience? = nil) {
         self.build = build
         self.appClipDefaultExperience = appClipDefaultExperience
     }

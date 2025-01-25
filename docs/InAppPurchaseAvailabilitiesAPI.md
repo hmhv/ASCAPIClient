@@ -72,7 +72,7 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import ASC
 
-let inAppPurchaseAvailabilityCreateRequest = InAppPurchaseAvailabilityCreateRequest(data: InAppPurchaseAvailabilityCreateRequest_data(type: "type_example", attributes: AppAvailabilityV2CreateRequest_data_attributes(availableInNewTerritories: false), relationships: InAppPurchaseAvailabilityCreateRequest_data_relationships(inAppPurchase: InAppPurchaseAppStoreReviewScreenshotCreateRequest_data_relationships_inAppPurchaseV2(data: App_relationships_inAppPurchases_data_inner(type: "type_example", id: "id_example")), availableTerritories: AppAvailabilityCreateRequest_data_relationships_availableTerritories(data: [AppAvailability_relationships_availableTerritories_data_inner(type: "type_example", id: "id_example")])))) // InAppPurchaseAvailabilityCreateRequest | InAppPurchaseAvailability representation
+let inAppPurchaseAvailabilityCreateRequest = InAppPurchaseAvailabilityCreateRequest(data: InAppPurchaseAvailabilityCreateRequest_data(type: "type_example", attributes: AppAvailabilityV2CreateRequest_data_attributes(availableInNewTerritories: false), relationships: InAppPurchaseAvailabilityCreateRequest_data_relationships(inAppPurchase: InAppPurchaseAppStoreReviewScreenshotCreateRequest_data_relationships_inAppPurchaseV2(data: App_relationships_inAppPurchases_data_inner(type: "type_example", id: "id_example")), availableTerritories: EndUserLicenseAgreementCreateRequest_data_relationships_territories(data: [AppPricePointV3_relationships_territory_data(type: "type_example", id: "id_example")])))) // InAppPurchaseAvailabilityCreateRequest | InAppPurchaseAvailability representation
 
 InAppPurchaseAvailabilitiesAPI.inAppPurchaseAvailabilitiesCreateInstance(inAppPurchaseAvailabilityCreateRequest: inAppPurchaseAvailabilityCreateRequest) { (response, error) in
     guard error == nil else {
@@ -109,7 +109,7 @@ Name | Type | Description  | Notes
 
 # **inAppPurchaseAvailabilitiesGetInstance**
 ```swift
-    open class func inAppPurchaseAvailabilitiesGetInstance(id: String, fieldsInAppPurchaseAvailabilities: [FieldsInAppPurchaseAvailabilities_inAppPurchaseAvailabilitiesGetInstance]? = nil, include: [Include_inAppPurchaseAvailabilitiesGetInstance]? = nil, fieldsTerritories: [FieldsTerritories_inAppPurchaseAvailabilitiesGetInstance]? = nil, limitAvailableTerritories: Int? = nil, completion: @escaping (_ data: InAppPurchaseAvailabilityResponse?, _ error: Error?) -> Void)
+    open class func inAppPurchaseAvailabilitiesGetInstance(id: String, fieldsInAppPurchaseAvailabilities: [FieldsInAppPurchaseAvailabilities_inAppPurchaseAvailabilitiesGetInstance]? = nil, fieldsTerritories: [FieldsTerritories_inAppPurchaseAvailabilitiesGetInstance]? = nil, include: [Include_inAppPurchaseAvailabilitiesGetInstance]? = nil, limitAvailableTerritories: Int? = nil, completion: @escaping (_ data: InAppPurchaseAvailabilityResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -121,11 +121,11 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let fieldsInAppPurchaseAvailabilities = ["fieldsInAppPurchaseAvailabilities_example"] // [String] | the fields to include for returned resources of type inAppPurchaseAvailabilities (optional)
-let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let fieldsTerritories = ["fieldsTerritories_example"] // [String] | the fields to include for returned resources of type territories (optional)
+let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let limitAvailableTerritories = 987 // Int | maximum number of related availableTerritories returned (when they are included) (optional)
 
-InAppPurchaseAvailabilitiesAPI.inAppPurchaseAvailabilitiesGetInstance(id: id, fieldsInAppPurchaseAvailabilities: fieldsInAppPurchaseAvailabilities, include: include, fieldsTerritories: fieldsTerritories, limitAvailableTerritories: limitAvailableTerritories) { (response, error) in
+InAppPurchaseAvailabilitiesAPI.inAppPurchaseAvailabilitiesGetInstance(id: id, fieldsInAppPurchaseAvailabilities: fieldsInAppPurchaseAvailabilities, fieldsTerritories: fieldsTerritories, include: include, limitAvailableTerritories: limitAvailableTerritories) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -143,8 +143,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **fieldsInAppPurchaseAvailabilities** | [**[String]**](String.md) | the fields to include for returned resources of type inAppPurchaseAvailabilities | [optional] 
- **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **fieldsTerritories** | [**[String]**](String.md) | the fields to include for returned resources of type territories | [optional] 
+ **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **limitAvailableTerritories** | **Int** | maximum number of related availableTerritories returned (when they are included) | [optional] 
 
 ### Return type

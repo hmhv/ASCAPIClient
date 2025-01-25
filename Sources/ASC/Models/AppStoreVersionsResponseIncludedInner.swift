@@ -22,6 +22,7 @@ public enum AppStoreVersionsResponseIncludedInner: Codable, JSONEncodable, Hasha
     case typeAppStoreVersionPhasedRelease(AppStoreVersionPhasedRelease)
     case typeAppStoreVersionSubmission(AppStoreVersionSubmission)
     case typeBuild(Build)
+    case typeGameCenterAppVersion(GameCenterAppVersion)
     case typeRoutingAppCoverage(RoutingAppCoverage)
 
     public func encode(to encoder: Encoder) throws {
@@ -48,6 +49,8 @@ public enum AppStoreVersionsResponseIncludedInner: Codable, JSONEncodable, Hasha
         case .typeAppStoreVersionSubmission(let value):
             try container.encode(value)
         case .typeBuild(let value):
+            try container.encode(value)
+        case .typeGameCenterAppVersion(let value):
             try container.encode(value)
         case .typeRoutingAppCoverage(let value):
             try container.encode(value)
@@ -78,6 +81,8 @@ public enum AppStoreVersionsResponseIncludedInner: Codable, JSONEncodable, Hasha
             self = .typeAppStoreVersionSubmission(value)
         } else if let value = try? container.decode(Build.self) {
             self = .typeBuild(value)
+        } else if let value = try? container.decode(GameCenterAppVersion.self) {
+            self = .typeGameCenterAppVersion(value)
         } else if let value = try? container.decode(RoutingAppCoverage.self) {
             self = .typeRoutingAppCoverage(value)
         } else {

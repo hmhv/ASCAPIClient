@@ -149,18 +149,30 @@ open class AppEventsAPI {
      * enum for parameter fieldsAppEvents
      */
     public enum FieldsAppEvents_appEventsGetInstance: String, CaseIterable {
-        case app = "app"
-        case archivedterritoryschedules = "archivedTerritorySchedules"
+        case referencename = "referenceName"
         case badge = "badge"
-        case deeplink = "deepLink"
         case eventstate = "eventState"
-        case localizations = "localizations"
+        case deeplink = "deepLink"
+        case purchaserequirement = "purchaseRequirement"
         case primarylocale = "primaryLocale"
         case priority = "priority"
-        case purchaserequirement = "purchaseRequirement"
         case purpose = "purpose"
-        case referencename = "referenceName"
         case territoryschedules = "territorySchedules"
+        case archivedterritoryschedules = "archivedTerritorySchedules"
+        case localizations = "localizations"
+    }
+
+    /**
+     * enum for parameter fieldsAppEventLocalizations
+     */
+    public enum FieldsAppEventLocalizations_appEventsGetInstance: String, CaseIterable {
+        case locale = "locale"
+        case name = "name"
+        case shortdescription = "shortDescription"
+        case longdescription = "longDescription"
+        case appevent = "appEvent"
+        case appeventscreenshots = "appEventScreenshots"
+        case appeventvideoclips = "appEventVideoClips"
     }
 
     /**
@@ -171,30 +183,17 @@ open class AppEventsAPI {
     }
 
     /**
-     * enum for parameter fieldsAppEventLocalizations
-     */
-    public enum FieldsAppEventLocalizations_appEventsGetInstance: String, CaseIterable {
-        case appevent = "appEvent"
-        case appeventscreenshots = "appEventScreenshots"
-        case appeventvideoclips = "appEventVideoClips"
-        case locale = "locale"
-        case longdescription = "longDescription"
-        case name = "name"
-        case shortdescription = "shortDescription"
-    }
-
-    /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAppEvents: (query) the fields to include for returned resources of type appEvents (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter fieldsAppEventLocalizations: (query) the fields to include for returned resources of type appEventLocalizations (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitLocalizations: (query) maximum number of related localizations returned (when they are included) (optional)
      - returns: AppEventResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appEventsGetInstance(id: String, fieldsAppEvents: [FieldsAppEvents_appEventsGetInstance]? = nil, include: [Include_appEventsGetInstance]? = nil, fieldsAppEventLocalizations: [FieldsAppEventLocalizations_appEventsGetInstance]? = nil, limitLocalizations: Int? = nil) async throws -> AppEventResponse {
-        return try await appEventsGetInstanceWithRequestBuilder(id: id, fieldsAppEvents: fieldsAppEvents, include: include, fieldsAppEventLocalizations: fieldsAppEventLocalizations, limitLocalizations: limitLocalizations).execute().body
+    open class func appEventsGetInstance(id: String, fieldsAppEvents: [FieldsAppEvents_appEventsGetInstance]? = nil, fieldsAppEventLocalizations: [FieldsAppEventLocalizations_appEventsGetInstance]? = nil, include: [Include_appEventsGetInstance]? = nil, limitLocalizations: Int? = nil) async throws -> AppEventResponse {
+        return try await appEventsGetInstanceWithRequestBuilder(id: id, fieldsAppEvents: fieldsAppEvents, fieldsAppEventLocalizations: fieldsAppEventLocalizations, include: include, limitLocalizations: limitLocalizations).execute().body
     }
 
     /**
@@ -213,12 +212,12 @@ open class AppEventsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAppEvents: (query) the fields to include for returned resources of type appEvents (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter fieldsAppEventLocalizations: (query) the fields to include for returned resources of type appEventLocalizations (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitLocalizations: (query) maximum number of related localizations returned (when they are included) (optional)
      - returns: RequestBuilder<AppEventResponse> 
      */
-    open class func appEventsGetInstanceWithRequestBuilder(id: String, fieldsAppEvents: [FieldsAppEvents_appEventsGetInstance]? = nil, include: [Include_appEventsGetInstance]? = nil, fieldsAppEventLocalizations: [FieldsAppEventLocalizations_appEventsGetInstance]? = nil, limitLocalizations: Int? = nil) -> RequestBuilder<AppEventResponse> {
+    open class func appEventsGetInstanceWithRequestBuilder(id: String, fieldsAppEvents: [FieldsAppEvents_appEventsGetInstance]? = nil, fieldsAppEventLocalizations: [FieldsAppEventLocalizations_appEventsGetInstance]? = nil, include: [Include_appEventsGetInstance]? = nil, limitLocalizations: Int? = nil) -> RequestBuilder<AppEventResponse> {
         var localVariablePath = "/v1/appEvents/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -229,8 +228,8 @@ open class AppEventsAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[appEvents]": (wrappedValue: fieldsAppEvents?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "fields[appEventLocalizations]": (wrappedValue: fieldsAppEventLocalizations?.encodeToJSON(), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "limit[localizations]": (wrappedValue: limitLocalizations?.encodeToJSON(), isExplode: true),
         ])
 
@@ -266,65 +265,64 @@ open class AppEventsAPI {
     }
 
     /**
-     * enum for parameter fieldsAppEventScreenshots
-     */
-    public enum FieldsAppEventScreenshots_appEventsLocalizationsGetToManyRelated: String, CaseIterable {
-        case appeventassettype = "appEventAssetType"
-        case appeventlocalization = "appEventLocalization"
-        case assetdeliverystate = "assetDeliveryState"
-        case assettoken = "assetToken"
-        case filename = "fileName"
-        case filesize = "fileSize"
-        case imageasset = "imageAsset"
-        case uploadoperations = "uploadOperations"
-        case uploaded = "uploaded"
-    }
-
-    /**
-     * enum for parameter fieldsAppEventVideoClips
-     */
-    public enum FieldsAppEventVideoClips_appEventsLocalizationsGetToManyRelated: String, CaseIterable {
-        case appeventassettype = "appEventAssetType"
-        case appeventlocalization = "appEventLocalization"
-        case assetdeliverystate = "assetDeliveryState"
-        case filename = "fileName"
-        case filesize = "fileSize"
-        case previewframetimecode = "previewFrameTimeCode"
-        case previewimage = "previewImage"
-        case uploadoperations = "uploadOperations"
-        case uploaded = "uploaded"
-        case videourl = "videoUrl"
-    }
-
-    /**
      * enum for parameter fieldsAppEventLocalizations
      */
     public enum FieldsAppEventLocalizations_appEventsLocalizationsGetToManyRelated: String, CaseIterable {
+        case locale = "locale"
+        case name = "name"
+        case shortdescription = "shortDescription"
+        case longdescription = "longDescription"
         case appevent = "appEvent"
         case appeventscreenshots = "appEventScreenshots"
         case appeventvideoclips = "appEventVideoClips"
-        case locale = "locale"
-        case longdescription = "longDescription"
-        case name = "name"
-        case shortdescription = "shortDescription"
     }
 
     /**
      * enum for parameter fieldsAppEvents
      */
     public enum FieldsAppEvents_appEventsLocalizationsGetToManyRelated: String, CaseIterable {
-        case app = "app"
-        case archivedterritoryschedules = "archivedTerritorySchedules"
+        case referencename = "referenceName"
         case badge = "badge"
-        case deeplink = "deepLink"
         case eventstate = "eventState"
-        case localizations = "localizations"
+        case deeplink = "deepLink"
+        case purchaserequirement = "purchaseRequirement"
         case primarylocale = "primaryLocale"
         case priority = "priority"
-        case purchaserequirement = "purchaseRequirement"
         case purpose = "purpose"
-        case referencename = "referenceName"
         case territoryschedules = "territorySchedules"
+        case archivedterritoryschedules = "archivedTerritorySchedules"
+        case localizations = "localizations"
+    }
+
+    /**
+     * enum for parameter fieldsAppEventScreenshots
+     */
+    public enum FieldsAppEventScreenshots_appEventsLocalizationsGetToManyRelated: String, CaseIterable {
+        case filesize = "fileSize"
+        case filename = "fileName"
+        case imageasset = "imageAsset"
+        case assettoken = "assetToken"
+        case uploadoperations = "uploadOperations"
+        case assetdeliverystate = "assetDeliveryState"
+        case appeventassettype = "appEventAssetType"
+        case appeventlocalization = "appEventLocalization"
+    }
+
+    /**
+     * enum for parameter fieldsAppEventVideoClips
+     */
+    public enum FieldsAppEventVideoClips_appEventsLocalizationsGetToManyRelated: String, CaseIterable {
+        case filesize = "fileSize"
+        case filename = "fileName"
+        case previewframetimecode = "previewFrameTimeCode"
+        case videourl = "videoUrl"
+        case previewframeimage = "previewFrameImage"
+        case previewimage = "previewImage"
+        case uploadoperations = "uploadOperations"
+        case assetdeliverystate = "assetDeliveryState"
+        case videodeliverystate = "videoDeliveryState"
+        case appeventassettype = "appEventAssetType"
+        case appeventlocalization = "appEventLocalization"
     }
 
     /**
@@ -339,19 +337,19 @@ open class AppEventsAPI {
     /**
 
      - parameter id: (path) the id of the requested resource 
-     - parameter fieldsAppEventScreenshots: (query) the fields to include for returned resources of type appEventScreenshots (optional)
-     - parameter fieldsAppEventVideoClips: (query) the fields to include for returned resources of type appEventVideoClips (optional)
      - parameter fieldsAppEventLocalizations: (query) the fields to include for returned resources of type appEventLocalizations (optional)
      - parameter fieldsAppEvents: (query) the fields to include for returned resources of type appEvents (optional)
+     - parameter fieldsAppEventScreenshots: (query) the fields to include for returned resources of type appEventScreenshots (optional)
+     - parameter fieldsAppEventVideoClips: (query) the fields to include for returned resources of type appEventVideoClips (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAppEventScreenshots: (query) maximum number of related appEventScreenshots returned (when they are included) (optional)
      - parameter limitAppEventVideoClips: (query) maximum number of related appEventVideoClips returned (when they are included) (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: AppEventLocalizationsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appEventsLocalizationsGetToManyRelated(id: String, fieldsAppEventScreenshots: [FieldsAppEventScreenshots_appEventsLocalizationsGetToManyRelated]? = nil, fieldsAppEventVideoClips: [FieldsAppEventVideoClips_appEventsLocalizationsGetToManyRelated]? = nil, fieldsAppEventLocalizations: [FieldsAppEventLocalizations_appEventsLocalizationsGetToManyRelated]? = nil, fieldsAppEvents: [FieldsAppEvents_appEventsLocalizationsGetToManyRelated]? = nil, limit: Int? = nil, limitAppEventScreenshots: Int? = nil, limitAppEventVideoClips: Int? = nil, include: [Include_appEventsLocalizationsGetToManyRelated]? = nil) async throws -> AppEventLocalizationsResponse {
-        return try await appEventsLocalizationsGetToManyRelatedWithRequestBuilder(id: id, fieldsAppEventScreenshots: fieldsAppEventScreenshots, fieldsAppEventVideoClips: fieldsAppEventVideoClips, fieldsAppEventLocalizations: fieldsAppEventLocalizations, fieldsAppEvents: fieldsAppEvents, limit: limit, limitAppEventScreenshots: limitAppEventScreenshots, limitAppEventVideoClips: limitAppEventVideoClips, include: include).execute().body
+    open class func appEventsLocalizationsGetToManyRelated(id: String, fieldsAppEventLocalizations: [FieldsAppEventLocalizations_appEventsLocalizationsGetToManyRelated]? = nil, fieldsAppEvents: [FieldsAppEvents_appEventsLocalizationsGetToManyRelated]? = nil, fieldsAppEventScreenshots: [FieldsAppEventScreenshots_appEventsLocalizationsGetToManyRelated]? = nil, fieldsAppEventVideoClips: [FieldsAppEventVideoClips_appEventsLocalizationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appEventsLocalizationsGetToManyRelated]? = nil, limitAppEventScreenshots: Int? = nil, limitAppEventVideoClips: Int? = nil) async throws -> AppEventLocalizationsResponse {
+        return try await appEventsLocalizationsGetToManyRelatedWithRequestBuilder(id: id, fieldsAppEventLocalizations: fieldsAppEventLocalizations, fieldsAppEvents: fieldsAppEvents, fieldsAppEventScreenshots: fieldsAppEventScreenshots, fieldsAppEventVideoClips: fieldsAppEventVideoClips, limit: limit, include: include, limitAppEventScreenshots: limitAppEventScreenshots, limitAppEventVideoClips: limitAppEventVideoClips).execute().body
     }
 
     /**
@@ -369,17 +367,17 @@ open class AppEventsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
-     - parameter fieldsAppEventScreenshots: (query) the fields to include for returned resources of type appEventScreenshots (optional)
-     - parameter fieldsAppEventVideoClips: (query) the fields to include for returned resources of type appEventVideoClips (optional)
      - parameter fieldsAppEventLocalizations: (query) the fields to include for returned resources of type appEventLocalizations (optional)
      - parameter fieldsAppEvents: (query) the fields to include for returned resources of type appEvents (optional)
+     - parameter fieldsAppEventScreenshots: (query) the fields to include for returned resources of type appEventScreenshots (optional)
+     - parameter fieldsAppEventVideoClips: (query) the fields to include for returned resources of type appEventVideoClips (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAppEventScreenshots: (query) maximum number of related appEventScreenshots returned (when they are included) (optional)
      - parameter limitAppEventVideoClips: (query) maximum number of related appEventVideoClips returned (when they are included) (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: RequestBuilder<AppEventLocalizationsResponse> 
      */
-    open class func appEventsLocalizationsGetToManyRelatedWithRequestBuilder(id: String, fieldsAppEventScreenshots: [FieldsAppEventScreenshots_appEventsLocalizationsGetToManyRelated]? = nil, fieldsAppEventVideoClips: [FieldsAppEventVideoClips_appEventsLocalizationsGetToManyRelated]? = nil, fieldsAppEventLocalizations: [FieldsAppEventLocalizations_appEventsLocalizationsGetToManyRelated]? = nil, fieldsAppEvents: [FieldsAppEvents_appEventsLocalizationsGetToManyRelated]? = nil, limit: Int? = nil, limitAppEventScreenshots: Int? = nil, limitAppEventVideoClips: Int? = nil, include: [Include_appEventsLocalizationsGetToManyRelated]? = nil) -> RequestBuilder<AppEventLocalizationsResponse> {
+    open class func appEventsLocalizationsGetToManyRelatedWithRequestBuilder(id: String, fieldsAppEventLocalizations: [FieldsAppEventLocalizations_appEventsLocalizationsGetToManyRelated]? = nil, fieldsAppEvents: [FieldsAppEvents_appEventsLocalizationsGetToManyRelated]? = nil, fieldsAppEventScreenshots: [FieldsAppEventScreenshots_appEventsLocalizationsGetToManyRelated]? = nil, fieldsAppEventVideoClips: [FieldsAppEventVideoClips_appEventsLocalizationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appEventsLocalizationsGetToManyRelated]? = nil, limitAppEventScreenshots: Int? = nil, limitAppEventVideoClips: Int? = nil) -> RequestBuilder<AppEventLocalizationsResponse> {
         var localVariablePath = "/v1/appEvents/{id}/localizations"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -389,14 +387,14 @@ open class AppEventsAPI {
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[appEventScreenshots]": (wrappedValue: fieldsAppEventScreenshots?.encodeToJSON(), isExplode: false),
-            "fields[appEventVideoClips]": (wrappedValue: fieldsAppEventVideoClips?.encodeToJSON(), isExplode: false),
             "fields[appEventLocalizations]": (wrappedValue: fieldsAppEventLocalizations?.encodeToJSON(), isExplode: false),
             "fields[appEvents]": (wrappedValue: fieldsAppEvents?.encodeToJSON(), isExplode: false),
+            "fields[appEventScreenshots]": (wrappedValue: fieldsAppEventScreenshots?.encodeToJSON(), isExplode: false),
+            "fields[appEventVideoClips]": (wrappedValue: fieldsAppEventVideoClips?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "limit[appEventScreenshots]": (wrappedValue: limitAppEventScreenshots?.encodeToJSON(), isExplode: true),
             "limit[appEventVideoClips]": (wrappedValue: limitAppEventVideoClips?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [

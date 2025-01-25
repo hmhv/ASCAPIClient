@@ -149,16 +149,15 @@ open class SubscriptionAppStoreReviewScreenshotsAPI {
      * enum for parameter fieldsSubscriptionAppStoreReviewScreenshots
      */
     public enum FieldsSubscriptionAppStoreReviewScreenshots_subscriptionAppStoreReviewScreenshotsGetInstance: String, CaseIterable {
-        case assetdeliverystate = "assetDeliveryState"
+        case filesize = "fileSize"
+        case filename = "fileName"
+        case sourcefilechecksum = "sourceFileChecksum"
+        case imageasset = "imageAsset"
         case assettoken = "assetToken"
         case assettype = "assetType"
-        case filename = "fileName"
-        case filesize = "fileSize"
-        case imageasset = "imageAsset"
-        case sourcefilechecksum = "sourceFileChecksum"
-        case subscription = "subscription"
         case uploadoperations = "uploadOperations"
-        case uploaded = "uploaded"
+        case assetdeliverystate = "assetDeliveryState"
+        case subscription = "subscription"
     }
 
     /**

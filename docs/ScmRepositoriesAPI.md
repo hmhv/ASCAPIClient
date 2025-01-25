@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 # **scmRepositoriesGetCollection**
 ```swift
-    open class func scmRepositoriesGetCollection(filterId: [String]? = nil, fieldsScmRepositories: [FieldsScmRepositories_scmRepositoriesGetCollection]? = nil, limit: Int? = nil, include: [Include_scmRepositoriesGetCollection]? = nil, fieldsScmGitReferences: [FieldsScmGitReferences_scmRepositoriesGetCollection]? = nil, fieldsScmPullRequests: [FieldsScmPullRequests_scmRepositoriesGetCollection]? = nil, completion: @escaping (_ data: ScmRepositoriesResponse?, _ error: Error?) -> Void)
+    open class func scmRepositoriesGetCollection(filterId: [String]? = nil, fieldsScmRepositories: [FieldsScmRepositories_scmRepositoriesGetCollection]? = nil, limit: Int? = nil, include: [Include_scmRepositoriesGetCollection]? = nil, completion: @escaping (_ data: ScmRepositoriesResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -26,10 +26,8 @@ let filterId = ["inner_example"] // [String] | filter by id(s) (optional)
 let fieldsScmRepositories = ["fieldsScmRepositories_example"] // [String] | the fields to include for returned resources of type scmRepositories (optional)
 let limit = 987 // Int | maximum resources per page (optional)
 let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
-let fieldsScmGitReferences = ["fieldsScmGitReferences_example"] // [String] | the fields to include for returned resources of type scmGitReferences (optional)
-let fieldsScmPullRequests = ["fieldsScmPullRequests_example"] // [String] | the fields to include for returned resources of type scmPullRequests (optional)
 
-ScmRepositoriesAPI.scmRepositoriesGetCollection(filterId: filterId, fieldsScmRepositories: fieldsScmRepositories, limit: limit, include: include, fieldsScmGitReferences: fieldsScmGitReferences, fieldsScmPullRequests: fieldsScmPullRequests) { (response, error) in
+ScmRepositoriesAPI.scmRepositoriesGetCollection(filterId: filterId, fieldsScmRepositories: fieldsScmRepositories, limit: limit, include: include) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -49,8 +47,6 @@ Name | Type | Description  | Notes
  **fieldsScmRepositories** | [**[String]**](String.md) | the fields to include for returned resources of type scmRepositories | [optional] 
  **limit** | **Int** | maximum resources per page | [optional] 
  **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
- **fieldsScmGitReferences** | [**[String]**](String.md) | the fields to include for returned resources of type scmGitReferences | [optional] 
- **fieldsScmPullRequests** | [**[String]**](String.md) | the fields to include for returned resources of type scmPullRequests | [optional] 
 
 ### Return type
 
@@ -69,7 +65,7 @@ Name | Type | Description  | Notes
 
 # **scmRepositoriesGetInstance**
 ```swift
-    open class func scmRepositoriesGetInstance(id: String, fieldsScmRepositories: [FieldsScmRepositories_scmRepositoriesGetInstance]? = nil, include: [Include_scmRepositoriesGetInstance]? = nil, fieldsScmGitReferences: [FieldsScmGitReferences_scmRepositoriesGetInstance]? = nil, fieldsScmPullRequests: [FieldsScmPullRequests_scmRepositoriesGetInstance]? = nil, completion: @escaping (_ data: ScmRepositoryResponse?, _ error: Error?) -> Void)
+    open class func scmRepositoriesGetInstance(id: String, fieldsScmRepositories: [FieldsScmRepositories_scmRepositoriesGetInstance]? = nil, include: [Include_scmRepositoriesGetInstance]? = nil, completion: @escaping (_ data: ScmRepositoryResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -82,10 +78,8 @@ import ASC
 let id = "id_example" // String | the id of the requested resource
 let fieldsScmRepositories = ["fieldsScmRepositories_example"] // [String] | the fields to include for returned resources of type scmRepositories (optional)
 let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
-let fieldsScmGitReferences = ["fieldsScmGitReferences_example"] // [String] | the fields to include for returned resources of type scmGitReferences (optional)
-let fieldsScmPullRequests = ["fieldsScmPullRequests_example"] // [String] | the fields to include for returned resources of type scmPullRequests (optional)
 
-ScmRepositoriesAPI.scmRepositoriesGetInstance(id: id, fieldsScmRepositories: fieldsScmRepositories, include: include, fieldsScmGitReferences: fieldsScmGitReferences, fieldsScmPullRequests: fieldsScmPullRequests) { (response, error) in
+ScmRepositoriesAPI.scmRepositoriesGetInstance(id: id, fieldsScmRepositories: fieldsScmRepositories, include: include) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -104,8 +98,6 @@ Name | Type | Description  | Notes
  **id** | **String** | the id of the requested resource | 
  **fieldsScmRepositories** | [**[String]**](String.md) | the fields to include for returned resources of type scmRepositories | [optional] 
  **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
- **fieldsScmGitReferences** | [**[String]**](String.md) | the fields to include for returned resources of type scmGitReferences | [optional] 
- **fieldsScmPullRequests** | [**[String]**](String.md) | the fields to include for returned resources of type scmPullRequests | [optional] 
 
 ### Return type
 

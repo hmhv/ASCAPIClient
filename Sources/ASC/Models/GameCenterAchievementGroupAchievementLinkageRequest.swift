@@ -10,6 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
+@available(*, deprecated, message: "This schema is deprecated.")
 public struct GameCenterAchievementGroupAchievementLinkageRequest: Codable, JSONEncodable, Hashable {
 
     public var data: GameCenterAchievementLocalizationRelationshipsGameCenterAchievementData

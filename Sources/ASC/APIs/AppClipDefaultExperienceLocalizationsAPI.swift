@@ -16,24 +16,23 @@ open class AppClipDefaultExperienceLocalizationsAPI {
      * enum for parameter fieldsAppClipHeaderImages
      */
     public enum FieldsAppClipHeaderImages_appClipDefaultExperienceLocalizationsAppClipHeaderImageGetToOneRelated: String, CaseIterable {
-        case appclipdefaultexperiencelocalization = "appClipDefaultExperienceLocalization"
-        case assetdeliverystate = "assetDeliveryState"
-        case filename = "fileName"
         case filesize = "fileSize"
-        case imageasset = "imageAsset"
+        case filename = "fileName"
         case sourcefilechecksum = "sourceFileChecksum"
+        case imageasset = "imageAsset"
         case uploadoperations = "uploadOperations"
-        case uploaded = "uploaded"
+        case assetdeliverystate = "assetDeliveryState"
+        case appclipdefaultexperiencelocalization = "appClipDefaultExperienceLocalization"
     }
 
     /**
      * enum for parameter fieldsAppClipDefaultExperienceLocalizations
      */
     public enum FieldsAppClipDefaultExperienceLocalizations_appClipDefaultExperienceLocalizationsAppClipHeaderImageGetToOneRelated: String, CaseIterable {
-        case appclipdefaultexperience = "appClipDefaultExperience"
-        case appclipheaderimage = "appClipHeaderImage"
         case locale = "locale"
         case subtitle = "subtitle"
+        case appclipdefaultexperience = "appClipDefaultExperience"
+        case appclipheaderimage = "appClipHeaderImage"
     }
 
     /**
@@ -259,10 +258,23 @@ open class AppClipDefaultExperienceLocalizationsAPI {
      * enum for parameter fieldsAppClipDefaultExperienceLocalizations
      */
     public enum FieldsAppClipDefaultExperienceLocalizations_appClipDefaultExperienceLocalizationsGetInstance: String, CaseIterable {
-        case appclipdefaultexperience = "appClipDefaultExperience"
-        case appclipheaderimage = "appClipHeaderImage"
         case locale = "locale"
         case subtitle = "subtitle"
+        case appclipdefaultexperience = "appClipDefaultExperience"
+        case appclipheaderimage = "appClipHeaderImage"
+    }
+
+    /**
+     * enum for parameter fieldsAppClipHeaderImages
+     */
+    public enum FieldsAppClipHeaderImages_appClipDefaultExperienceLocalizationsGetInstance: String, CaseIterable {
+        case filesize = "fileSize"
+        case filename = "fileName"
+        case sourcefilechecksum = "sourceFileChecksum"
+        case imageasset = "imageAsset"
+        case uploadoperations = "uploadOperations"
+        case assetdeliverystate = "assetDeliveryState"
+        case appclipdefaultexperiencelocalization = "appClipDefaultExperienceLocalization"
     }
 
     /**
@@ -274,30 +286,16 @@ open class AppClipDefaultExperienceLocalizationsAPI {
     }
 
     /**
-     * enum for parameter fieldsAppClipHeaderImages
-     */
-    public enum FieldsAppClipHeaderImages_appClipDefaultExperienceLocalizationsGetInstance: String, CaseIterable {
-        case appclipdefaultexperiencelocalization = "appClipDefaultExperienceLocalization"
-        case assetdeliverystate = "assetDeliveryState"
-        case filename = "fileName"
-        case filesize = "fileSize"
-        case imageasset = "imageAsset"
-        case sourcefilechecksum = "sourceFileChecksum"
-        case uploadoperations = "uploadOperations"
-        case uploaded = "uploaded"
-    }
-
-    /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAppClipDefaultExperienceLocalizations: (query) the fields to include for returned resources of type appClipDefaultExperienceLocalizations (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter fieldsAppClipHeaderImages: (query) the fields to include for returned resources of type appClipHeaderImages (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: AppClipDefaultExperienceLocalizationResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appClipDefaultExperienceLocalizationsGetInstance(id: String, fieldsAppClipDefaultExperienceLocalizations: [FieldsAppClipDefaultExperienceLocalizations_appClipDefaultExperienceLocalizationsGetInstance]? = nil, include: [Include_appClipDefaultExperienceLocalizationsGetInstance]? = nil, fieldsAppClipHeaderImages: [FieldsAppClipHeaderImages_appClipDefaultExperienceLocalizationsGetInstance]? = nil) async throws -> AppClipDefaultExperienceLocalizationResponse {
-        return try await appClipDefaultExperienceLocalizationsGetInstanceWithRequestBuilder(id: id, fieldsAppClipDefaultExperienceLocalizations: fieldsAppClipDefaultExperienceLocalizations, include: include, fieldsAppClipHeaderImages: fieldsAppClipHeaderImages).execute().body
+    open class func appClipDefaultExperienceLocalizationsGetInstance(id: String, fieldsAppClipDefaultExperienceLocalizations: [FieldsAppClipDefaultExperienceLocalizations_appClipDefaultExperienceLocalizationsGetInstance]? = nil, fieldsAppClipHeaderImages: [FieldsAppClipHeaderImages_appClipDefaultExperienceLocalizationsGetInstance]? = nil, include: [Include_appClipDefaultExperienceLocalizationsGetInstance]? = nil) async throws -> AppClipDefaultExperienceLocalizationResponse {
+        return try await appClipDefaultExperienceLocalizationsGetInstanceWithRequestBuilder(id: id, fieldsAppClipDefaultExperienceLocalizations: fieldsAppClipDefaultExperienceLocalizations, fieldsAppClipHeaderImages: fieldsAppClipHeaderImages, include: include).execute().body
     }
 
     /**
@@ -316,11 +314,11 @@ open class AppClipDefaultExperienceLocalizationsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAppClipDefaultExperienceLocalizations: (query) the fields to include for returned resources of type appClipDefaultExperienceLocalizations (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter fieldsAppClipHeaderImages: (query) the fields to include for returned resources of type appClipHeaderImages (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: RequestBuilder<AppClipDefaultExperienceLocalizationResponse> 
      */
-    open class func appClipDefaultExperienceLocalizationsGetInstanceWithRequestBuilder(id: String, fieldsAppClipDefaultExperienceLocalizations: [FieldsAppClipDefaultExperienceLocalizations_appClipDefaultExperienceLocalizationsGetInstance]? = nil, include: [Include_appClipDefaultExperienceLocalizationsGetInstance]? = nil, fieldsAppClipHeaderImages: [FieldsAppClipHeaderImages_appClipDefaultExperienceLocalizationsGetInstance]? = nil) -> RequestBuilder<AppClipDefaultExperienceLocalizationResponse> {
+    open class func appClipDefaultExperienceLocalizationsGetInstanceWithRequestBuilder(id: String, fieldsAppClipDefaultExperienceLocalizations: [FieldsAppClipDefaultExperienceLocalizations_appClipDefaultExperienceLocalizationsGetInstance]? = nil, fieldsAppClipHeaderImages: [FieldsAppClipHeaderImages_appClipDefaultExperienceLocalizationsGetInstance]? = nil, include: [Include_appClipDefaultExperienceLocalizationsGetInstance]? = nil) -> RequestBuilder<AppClipDefaultExperienceLocalizationResponse> {
         var localVariablePath = "/v1/appClipDefaultExperienceLocalizations/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -331,8 +329,8 @@ open class AppClipDefaultExperienceLocalizationsAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[appClipDefaultExperienceLocalizations]": (wrappedValue: fieldsAppClipDefaultExperienceLocalizations?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "fields[appClipHeaderImages]": (wrappedValue: fieldsAppClipHeaderImages?.encodeToJSON(), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [

@@ -12,11 +12,11 @@ import AnyCodable
 
 public struct BuildBundleRelationshipsBuildBundleFileSizes: Codable, JSONEncodable, Hashable {
 
-    public var links: AlternativeDistributionPackageVersionRelationshipsVariantsLinks?
+    public var links: RelationshipLinks?
     public var meta: PagingInformation?
     public var data: [BuildBundleRelationshipsBuildBundleFileSizesDataInner]?
 
-    public init(links: AlternativeDistributionPackageVersionRelationshipsVariantsLinks? = nil, meta: PagingInformation? = nil, data: [BuildBundleRelationshipsBuildBundleFileSizesDataInner]? = nil) {
+    public init(links: RelationshipLinks? = nil, meta: PagingInformation? = nil, data: [BuildBundleRelationshipsBuildBundleFileSizesDataInner]? = nil) {
         self.links = links
         self.meta = meta
         self.data = data

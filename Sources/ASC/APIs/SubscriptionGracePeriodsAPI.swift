@@ -16,10 +16,10 @@ open class SubscriptionGracePeriodsAPI {
      * enum for parameter fieldsSubscriptionGracePeriods
      */
     public enum FieldsSubscriptionGracePeriods_subscriptionGracePeriodsGetInstance: String, CaseIterable {
-        case duration = "duration"
         case optin = "optIn"
-        case renewaltype = "renewalType"
         case sandboxoptin = "sandboxOptIn"
+        case duration = "duration"
+        case renewaltype = "renewalType"
     }
 
     /**

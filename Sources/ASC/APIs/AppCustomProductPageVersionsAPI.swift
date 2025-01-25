@@ -13,46 +13,47 @@ import AnyCodable
 open class AppCustomProductPageVersionsAPI {
 
     /**
-     * enum for parameter fieldsAppScreenshotSets
-     */
-    public enum FieldsAppScreenshotSets_appCustomProductPageVersionsAppCustomProductPageLocalizationsGetToManyRelated: String, CaseIterable {
-        case appcustomproductpagelocalization = "appCustomProductPageLocalization"
-        case appscreenshots = "appScreenshots"
-        case appstoreversionexperimenttreatmentlocalization = "appStoreVersionExperimentTreatmentLocalization"
-        case appstoreversionlocalization = "appStoreVersionLocalization"
-        case screenshotdisplaytype = "screenshotDisplayType"
-    }
-
-    /**
      * enum for parameter fieldsAppCustomProductPageLocalizations
      */
     public enum FieldsAppCustomProductPageLocalizations_appCustomProductPageVersionsAppCustomProductPageLocalizationsGetToManyRelated: String, CaseIterable {
-        case appcustomproductpageversion = "appCustomProductPageVersion"
-        case apppreviewsets = "appPreviewSets"
-        case appscreenshotsets = "appScreenshotSets"
         case locale = "locale"
         case promotionaltext = "promotionalText"
+        case appcustomproductpageversion = "appCustomProductPageVersion"
+        case appscreenshotsets = "appScreenshotSets"
+        case apppreviewsets = "appPreviewSets"
     }
 
     /**
      * enum for parameter fieldsAppCustomProductPageVersions
      */
     public enum FieldsAppCustomProductPageVersions_appCustomProductPageVersionsAppCustomProductPageLocalizationsGetToManyRelated: String, CaseIterable {
+        case version = "version"
+        case state = "state"
+        case deeplink = "deepLink"
         case appcustomproductpage = "appCustomProductPage"
         case appcustomproductpagelocalizations = "appCustomProductPageLocalizations"
-        case state = "state"
-        case version = "version"
+    }
+
+    /**
+     * enum for parameter fieldsAppScreenshotSets
+     */
+    public enum FieldsAppScreenshotSets_appCustomProductPageVersionsAppCustomProductPageLocalizationsGetToManyRelated: String, CaseIterable {
+        case screenshotdisplaytype = "screenshotDisplayType"
+        case appstoreversionlocalization = "appStoreVersionLocalization"
+        case appcustomproductpagelocalization = "appCustomProductPageLocalization"
+        case appstoreversionexperimenttreatmentlocalization = "appStoreVersionExperimentTreatmentLocalization"
+        case appscreenshots = "appScreenshots"
     }
 
     /**
      * enum for parameter fieldsAppPreviewSets
      */
     public enum FieldsAppPreviewSets_appCustomProductPageVersionsAppCustomProductPageLocalizationsGetToManyRelated: String, CaseIterable {
-        case appcustomproductpagelocalization = "appCustomProductPageLocalization"
-        case apppreviews = "appPreviews"
-        case appstoreversionexperimenttreatmentlocalization = "appStoreVersionExperimentTreatmentLocalization"
-        case appstoreversionlocalization = "appStoreVersionLocalization"
         case previewtype = "previewType"
+        case appstoreversionlocalization = "appStoreVersionLocalization"
+        case appcustomproductpagelocalization = "appCustomProductPageLocalization"
+        case appstoreversionexperimenttreatmentlocalization = "appStoreVersionExperimentTreatmentLocalization"
+        case apppreviews = "appPreviews"
     }
 
     /**
@@ -60,27 +61,27 @@ open class AppCustomProductPageVersionsAPI {
      */
     public enum Include_appCustomProductPageVersionsAppCustomProductPageLocalizationsGetToManyRelated: String, CaseIterable {
         case appcustomproductpageversion = "appCustomProductPageVersion"
-        case apppreviewsets = "appPreviewSets"
         case appscreenshotsets = "appScreenshotSets"
+        case apppreviewsets = "appPreviewSets"
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter filterLocale: (query) filter by attribute &#39;locale&#39; (optional)
-     - parameter fieldsAppScreenshotSets: (query) the fields to include for returned resources of type appScreenshotSets (optional)
      - parameter fieldsAppCustomProductPageLocalizations: (query) the fields to include for returned resources of type appCustomProductPageLocalizations (optional)
      - parameter fieldsAppCustomProductPageVersions: (query) the fields to include for returned resources of type appCustomProductPageVersions (optional)
+     - parameter fieldsAppScreenshotSets: (query) the fields to include for returned resources of type appScreenshotSets (optional)
      - parameter fieldsAppPreviewSets: (query) the fields to include for returned resources of type appPreviewSets (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAppScreenshotSets: (query) maximum number of related appScreenshotSets returned (when they are included) (optional)
      - parameter limitAppPreviewSets: (query) maximum number of related appPreviewSets returned (when they are included) (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: AppCustomProductPageLocalizationsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appCustomProductPageVersionsAppCustomProductPageLocalizationsGetToManyRelated(id: String, filterLocale: [String]? = nil, fieldsAppScreenshotSets: [FieldsAppScreenshotSets_appCustomProductPageVersionsAppCustomProductPageLocalizationsGetToManyRelated]? = nil, fieldsAppCustomProductPageLocalizations: [FieldsAppCustomProductPageLocalizations_appCustomProductPageVersionsAppCustomProductPageLocalizationsGetToManyRelated]? = nil, fieldsAppCustomProductPageVersions: [FieldsAppCustomProductPageVersions_appCustomProductPageVersionsAppCustomProductPageLocalizationsGetToManyRelated]? = nil, fieldsAppPreviewSets: [FieldsAppPreviewSets_appCustomProductPageVersionsAppCustomProductPageLocalizationsGetToManyRelated]? = nil, limit: Int? = nil, limitAppScreenshotSets: Int? = nil, limitAppPreviewSets: Int? = nil, include: [Include_appCustomProductPageVersionsAppCustomProductPageLocalizationsGetToManyRelated]? = nil) async throws -> AppCustomProductPageLocalizationsResponse {
-        return try await appCustomProductPageVersionsAppCustomProductPageLocalizationsGetToManyRelatedWithRequestBuilder(id: id, filterLocale: filterLocale, fieldsAppScreenshotSets: fieldsAppScreenshotSets, fieldsAppCustomProductPageLocalizations: fieldsAppCustomProductPageLocalizations, fieldsAppCustomProductPageVersions: fieldsAppCustomProductPageVersions, fieldsAppPreviewSets: fieldsAppPreviewSets, limit: limit, limitAppScreenshotSets: limitAppScreenshotSets, limitAppPreviewSets: limitAppPreviewSets, include: include).execute().body
+    open class func appCustomProductPageVersionsAppCustomProductPageLocalizationsGetToManyRelated(id: String, filterLocale: [String]? = nil, fieldsAppCustomProductPageLocalizations: [FieldsAppCustomProductPageLocalizations_appCustomProductPageVersionsAppCustomProductPageLocalizationsGetToManyRelated]? = nil, fieldsAppCustomProductPageVersions: [FieldsAppCustomProductPageVersions_appCustomProductPageVersionsAppCustomProductPageLocalizationsGetToManyRelated]? = nil, fieldsAppScreenshotSets: [FieldsAppScreenshotSets_appCustomProductPageVersionsAppCustomProductPageLocalizationsGetToManyRelated]? = nil, fieldsAppPreviewSets: [FieldsAppPreviewSets_appCustomProductPageVersionsAppCustomProductPageLocalizationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appCustomProductPageVersionsAppCustomProductPageLocalizationsGetToManyRelated]? = nil, limitAppScreenshotSets: Int? = nil, limitAppPreviewSets: Int? = nil) async throws -> AppCustomProductPageLocalizationsResponse {
+        return try await appCustomProductPageVersionsAppCustomProductPageLocalizationsGetToManyRelatedWithRequestBuilder(id: id, filterLocale: filterLocale, fieldsAppCustomProductPageLocalizations: fieldsAppCustomProductPageLocalizations, fieldsAppCustomProductPageVersions: fieldsAppCustomProductPageVersions, fieldsAppScreenshotSets: fieldsAppScreenshotSets, fieldsAppPreviewSets: fieldsAppPreviewSets, limit: limit, include: include, limitAppScreenshotSets: limitAppScreenshotSets, limitAppPreviewSets: limitAppPreviewSets).execute().body
     }
 
     /**
@@ -99,17 +100,17 @@ open class AppCustomProductPageVersionsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter filterLocale: (query) filter by attribute &#39;locale&#39; (optional)
-     - parameter fieldsAppScreenshotSets: (query) the fields to include for returned resources of type appScreenshotSets (optional)
      - parameter fieldsAppCustomProductPageLocalizations: (query) the fields to include for returned resources of type appCustomProductPageLocalizations (optional)
      - parameter fieldsAppCustomProductPageVersions: (query) the fields to include for returned resources of type appCustomProductPageVersions (optional)
+     - parameter fieldsAppScreenshotSets: (query) the fields to include for returned resources of type appScreenshotSets (optional)
      - parameter fieldsAppPreviewSets: (query) the fields to include for returned resources of type appPreviewSets (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAppScreenshotSets: (query) maximum number of related appScreenshotSets returned (when they are included) (optional)
      - parameter limitAppPreviewSets: (query) maximum number of related appPreviewSets returned (when they are included) (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: RequestBuilder<AppCustomProductPageLocalizationsResponse> 
      */
-    open class func appCustomProductPageVersionsAppCustomProductPageLocalizationsGetToManyRelatedWithRequestBuilder(id: String, filterLocale: [String]? = nil, fieldsAppScreenshotSets: [FieldsAppScreenshotSets_appCustomProductPageVersionsAppCustomProductPageLocalizationsGetToManyRelated]? = nil, fieldsAppCustomProductPageLocalizations: [FieldsAppCustomProductPageLocalizations_appCustomProductPageVersionsAppCustomProductPageLocalizationsGetToManyRelated]? = nil, fieldsAppCustomProductPageVersions: [FieldsAppCustomProductPageVersions_appCustomProductPageVersionsAppCustomProductPageLocalizationsGetToManyRelated]? = nil, fieldsAppPreviewSets: [FieldsAppPreviewSets_appCustomProductPageVersionsAppCustomProductPageLocalizationsGetToManyRelated]? = nil, limit: Int? = nil, limitAppScreenshotSets: Int? = nil, limitAppPreviewSets: Int? = nil, include: [Include_appCustomProductPageVersionsAppCustomProductPageLocalizationsGetToManyRelated]? = nil) -> RequestBuilder<AppCustomProductPageLocalizationsResponse> {
+    open class func appCustomProductPageVersionsAppCustomProductPageLocalizationsGetToManyRelatedWithRequestBuilder(id: String, filterLocale: [String]? = nil, fieldsAppCustomProductPageLocalizations: [FieldsAppCustomProductPageLocalizations_appCustomProductPageVersionsAppCustomProductPageLocalizationsGetToManyRelated]? = nil, fieldsAppCustomProductPageVersions: [FieldsAppCustomProductPageVersions_appCustomProductPageVersionsAppCustomProductPageLocalizationsGetToManyRelated]? = nil, fieldsAppScreenshotSets: [FieldsAppScreenshotSets_appCustomProductPageVersionsAppCustomProductPageLocalizationsGetToManyRelated]? = nil, fieldsAppPreviewSets: [FieldsAppPreviewSets_appCustomProductPageVersionsAppCustomProductPageLocalizationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appCustomProductPageVersionsAppCustomProductPageLocalizationsGetToManyRelated]? = nil, limitAppScreenshotSets: Int? = nil, limitAppPreviewSets: Int? = nil) -> RequestBuilder<AppCustomProductPageLocalizationsResponse> {
         var localVariablePath = "/v1/appCustomProductPageVersions/{id}/appCustomProductPageLocalizations"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -120,14 +121,14 @@ open class AppCustomProductPageVersionsAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "filter[locale]": (wrappedValue: filterLocale?.encodeToJSON(), isExplode: false),
-            "fields[appScreenshotSets]": (wrappedValue: fieldsAppScreenshotSets?.encodeToJSON(), isExplode: false),
             "fields[appCustomProductPageLocalizations]": (wrappedValue: fieldsAppCustomProductPageLocalizations?.encodeToJSON(), isExplode: false),
             "fields[appCustomProductPageVersions]": (wrappedValue: fieldsAppCustomProductPageVersions?.encodeToJSON(), isExplode: false),
+            "fields[appScreenshotSets]": (wrappedValue: fieldsAppScreenshotSets?.encodeToJSON(), isExplode: false),
             "fields[appPreviewSets]": (wrappedValue: fieldsAppPreviewSets?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "limit[appScreenshotSets]": (wrappedValue: limitAppScreenshotSets?.encodeToJSON(), isExplode: true),
             "limit[appPreviewSets]": (wrappedValue: limitAppPreviewSets?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -230,10 +231,22 @@ open class AppCustomProductPageVersionsAPI {
      * enum for parameter fieldsAppCustomProductPageVersions
      */
     public enum FieldsAppCustomProductPageVersions_appCustomProductPageVersionsGetInstance: String, CaseIterable {
+        case version = "version"
+        case state = "state"
+        case deeplink = "deepLink"
         case appcustomproductpage = "appCustomProductPage"
         case appcustomproductpagelocalizations = "appCustomProductPageLocalizations"
-        case state = "state"
-        case version = "version"
+    }
+
+    /**
+     * enum for parameter fieldsAppCustomProductPageLocalizations
+     */
+    public enum FieldsAppCustomProductPageLocalizations_appCustomProductPageVersionsGetInstance: String, CaseIterable {
+        case locale = "locale"
+        case promotionaltext = "promotionalText"
+        case appcustomproductpageversion = "appCustomProductPageVersion"
+        case appscreenshotsets = "appScreenshotSets"
+        case apppreviewsets = "appPreviewSets"
     }
 
     /**
@@ -245,28 +258,17 @@ open class AppCustomProductPageVersionsAPI {
     }
 
     /**
-     * enum for parameter fieldsAppCustomProductPageLocalizations
-     */
-    public enum FieldsAppCustomProductPageLocalizations_appCustomProductPageVersionsGetInstance: String, CaseIterable {
-        case appcustomproductpageversion = "appCustomProductPageVersion"
-        case apppreviewsets = "appPreviewSets"
-        case appscreenshotsets = "appScreenshotSets"
-        case locale = "locale"
-        case promotionaltext = "promotionalText"
-    }
-
-    /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAppCustomProductPageVersions: (query) the fields to include for returned resources of type appCustomProductPageVersions (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter fieldsAppCustomProductPageLocalizations: (query) the fields to include for returned resources of type appCustomProductPageLocalizations (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAppCustomProductPageLocalizations: (query) maximum number of related appCustomProductPageLocalizations returned (when they are included) (optional)
      - returns: AppCustomProductPageVersionResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appCustomProductPageVersionsGetInstance(id: String, fieldsAppCustomProductPageVersions: [FieldsAppCustomProductPageVersions_appCustomProductPageVersionsGetInstance]? = nil, include: [Include_appCustomProductPageVersionsGetInstance]? = nil, fieldsAppCustomProductPageLocalizations: [FieldsAppCustomProductPageLocalizations_appCustomProductPageVersionsGetInstance]? = nil, limitAppCustomProductPageLocalizations: Int? = nil) async throws -> AppCustomProductPageVersionResponse {
-        return try await appCustomProductPageVersionsGetInstanceWithRequestBuilder(id: id, fieldsAppCustomProductPageVersions: fieldsAppCustomProductPageVersions, include: include, fieldsAppCustomProductPageLocalizations: fieldsAppCustomProductPageLocalizations, limitAppCustomProductPageLocalizations: limitAppCustomProductPageLocalizations).execute().body
+    open class func appCustomProductPageVersionsGetInstance(id: String, fieldsAppCustomProductPageVersions: [FieldsAppCustomProductPageVersions_appCustomProductPageVersionsGetInstance]? = nil, fieldsAppCustomProductPageLocalizations: [FieldsAppCustomProductPageLocalizations_appCustomProductPageVersionsGetInstance]? = nil, include: [Include_appCustomProductPageVersionsGetInstance]? = nil, limitAppCustomProductPageLocalizations: Int? = nil) async throws -> AppCustomProductPageVersionResponse {
+        return try await appCustomProductPageVersionsGetInstanceWithRequestBuilder(id: id, fieldsAppCustomProductPageVersions: fieldsAppCustomProductPageVersions, fieldsAppCustomProductPageLocalizations: fieldsAppCustomProductPageLocalizations, include: include, limitAppCustomProductPageLocalizations: limitAppCustomProductPageLocalizations).execute().body
     }
 
     /**
@@ -285,12 +287,12 @@ open class AppCustomProductPageVersionsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAppCustomProductPageVersions: (query) the fields to include for returned resources of type appCustomProductPageVersions (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter fieldsAppCustomProductPageLocalizations: (query) the fields to include for returned resources of type appCustomProductPageLocalizations (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAppCustomProductPageLocalizations: (query) maximum number of related appCustomProductPageLocalizations returned (when they are included) (optional)
      - returns: RequestBuilder<AppCustomProductPageVersionResponse> 
      */
-    open class func appCustomProductPageVersionsGetInstanceWithRequestBuilder(id: String, fieldsAppCustomProductPageVersions: [FieldsAppCustomProductPageVersions_appCustomProductPageVersionsGetInstance]? = nil, include: [Include_appCustomProductPageVersionsGetInstance]? = nil, fieldsAppCustomProductPageLocalizations: [FieldsAppCustomProductPageLocalizations_appCustomProductPageVersionsGetInstance]? = nil, limitAppCustomProductPageLocalizations: Int? = nil) -> RequestBuilder<AppCustomProductPageVersionResponse> {
+    open class func appCustomProductPageVersionsGetInstanceWithRequestBuilder(id: String, fieldsAppCustomProductPageVersions: [FieldsAppCustomProductPageVersions_appCustomProductPageVersionsGetInstance]? = nil, fieldsAppCustomProductPageLocalizations: [FieldsAppCustomProductPageLocalizations_appCustomProductPageVersionsGetInstance]? = nil, include: [Include_appCustomProductPageVersionsGetInstance]? = nil, limitAppCustomProductPageLocalizations: Int? = nil) -> RequestBuilder<AppCustomProductPageVersionResponse> {
         var localVariablePath = "/v1/appCustomProductPageVersions/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -301,8 +303,8 @@ open class AppCustomProductPageVersionsAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[appCustomProductPageVersions]": (wrappedValue: fieldsAppCustomProductPageVersions?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "fields[appCustomProductPageLocalizations]": (wrappedValue: fieldsAppCustomProductPageLocalizations?.encodeToJSON(), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "limit[appCustomProductPageLocalizations]": (wrappedValue: limitAppCustomProductPageLocalizations?.encodeToJSON(), isExplode: true),
         ])
 
@@ -335,5 +337,75 @@ open class AppCustomProductPageVersionsAPI {
         let localVariableRequestBuilder: RequestBuilder<AppCustomProductPageVersionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+    }
+
+    /**
+
+     - parameter id: (path) the id of the requested resource 
+     - parameter appCustomProductPageVersionUpdateRequest: (body) AppCustomProductPageVersion representation 
+     - returns: AppCustomProductPageVersionResponse
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func appCustomProductPageVersionsUpdateInstance(id: String, appCustomProductPageVersionUpdateRequest: AppCustomProductPageVersionUpdateRequest) async throws -> AppCustomProductPageVersionResponse {
+        return try await appCustomProductPageVersionsUpdateInstanceWithRequestBuilder(id: id, appCustomProductPageVersionUpdateRequest: appCustomProductPageVersionUpdateRequest).execute().body
+    }
+
+    /**
+     - parameter urlString: next or first url from App Store Connect API
+     - returns: AppCustomProductPageVersionResponse
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func appCustomProductPageVersionsUpdateInstance(urlString: String) async throws -> AppCustomProductPageVersionResponse {
+        return try await appCustomProductPageVersionsUpdateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    }
+
+    /**
+     - PATCH /v1/appCustomProductPageVersions/{id}
+     - Bearer Token:
+       - type: http
+       - name: itc-bearer-token
+     - parameter id: (path) the id of the requested resource 
+     - parameter appCustomProductPageVersionUpdateRequest: (body) AppCustomProductPageVersion representation 
+     - returns: RequestBuilder<AppCustomProductPageVersionResponse> 
+     */
+    open class func appCustomProductPageVersionsUpdateInstanceWithRequestBuilder(id: String, appCustomProductPageVersionUpdateRequest: AppCustomProductPageVersionUpdateRequest) -> RequestBuilder<AppCustomProductPageVersionResponse> {
+        var localVariablePath = "/v1/appCustomProductPageVersions/{id}"
+        let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
+        let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
+        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: appCustomProductPageVersionUpdateRequest)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            "Content-Type": "application/json",
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<AppCustomProductPageVersionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+    }
+
+    /**
+     - PATCH /v1/appCustomProductPageVersions/{id}
+     - Bearer Token:
+       - type: http
+       - name: itc-bearer-token
+     - parameter urlString: next or first url from App Store Connect API
+     - returns: RequestBuilder<AppCustomProductPageVersionResponse> 
+     */
+    open class func appCustomProductPageVersionsUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppCustomProductPageVersionResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            "Content-Type": "application/json",
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<AppCustomProductPageVersionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 }

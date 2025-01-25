@@ -16,10 +16,10 @@ open class CiBuildActionsAPI {
      * enum for parameter fieldsCiArtifacts
      */
     public enum FieldsCiArtifacts_ciBuildActionsArtifactsGetToManyRelated: String, CaseIterable {
-        case downloadurl = "downloadUrl"
+        case filetype = "fileType"
         case filename = "fileName"
         case filesize = "fileSize"
-        case filetype = "fileType"
+        case downloadurl = "downloadUrl"
     }
 
     /**
@@ -99,130 +99,128 @@ open class CiBuildActionsAPI {
     }
 
     /**
-     * enum for parameter fieldsScmGitReferences
-     */
-    public enum FieldsScmGitReferences_ciBuildActionsBuildRunGetToOneRelated: String, CaseIterable {
-        case canonicalname = "canonicalName"
-        case isdeleted = "isDeleted"
-        case kind = "kind"
-        case name = "name"
-        case repository = "repository"
-    }
-
-    /**
      * enum for parameter fieldsCiBuildRuns
      */
     public enum FieldsCiBuildRuns_ciBuildActionsBuildRunGetToOneRelated: String, CaseIterable {
-        case actions = "actions"
-        case buildrun = "buildRun"
-        case builds = "builds"
-        case cancelreason = "cancelReason"
-        case clean = "clean"
-        case completionstatus = "completionStatus"
+        case number = "number"
         case createddate = "createdDate"
-        case destinationbranch = "destinationBranch"
-        case destinationcommit = "destinationCommit"
-        case executionprogress = "executionProgress"
+        case starteddate = "startedDate"
         case finisheddate = "finishedDate"
+        case sourcecommit = "sourceCommit"
+        case destinationcommit = "destinationCommit"
         case ispullrequestbuild = "isPullRequestBuild"
         case issuecounts = "issueCounts"
-        case number = "number"
-        case product = "product"
-        case pullrequest = "pullRequest"
-        case sourcebranchortag = "sourceBranchOrTag"
-        case sourcecommit = "sourceCommit"
+        case executionprogress = "executionProgress"
+        case completionstatus = "completionStatus"
         case startreason = "startReason"
-        case starteddate = "startedDate"
+        case cancelreason = "cancelReason"
+        case builds = "builds"
         case workflow = "workflow"
-    }
-
-    /**
-     * enum for parameter fieldsCiWorkflows
-     */
-    public enum FieldsCiWorkflows_ciBuildActionsBuildRunGetToOneRelated: String, CaseIterable {
-        case actions = "actions"
-        case branchstartcondition = "branchStartCondition"
-        case buildruns = "buildRuns"
-        case clean = "clean"
-        case containerfilepath = "containerFilePath"
-        case description = "description"
-        case isenabled = "isEnabled"
-        case islockedforediting = "isLockedForEditing"
-        case lastmodifieddate = "lastModifiedDate"
-        case macosversion = "macOsVersion"
-        case manualbranchstartcondition = "manualBranchStartCondition"
-        case manualpullrequeststartcondition = "manualPullRequestStartCondition"
-        case manualtagstartcondition = "manualTagStartCondition"
-        case name = "name"
         case product = "product"
-        case pullrequeststartcondition = "pullRequestStartCondition"
-        case repository = "repository"
-        case scheduledstartcondition = "scheduledStartCondition"
-        case tagstartcondition = "tagStartCondition"
-        case xcodeversion = "xcodeVersion"
-    }
-
-    /**
-     * enum for parameter fieldsScmPullRequests
-     */
-    public enum FieldsScmPullRequests_ciBuildActionsBuildRunGetToOneRelated: String, CaseIterable {
-        case destinationbranchname = "destinationBranchName"
-        case destinationrepositoryname = "destinationRepositoryName"
-        case destinationrepositoryowner = "destinationRepositoryOwner"
-        case isclosed = "isClosed"
-        case iscrossrepository = "isCrossRepository"
-        case number = "number"
-        case repository = "repository"
-        case sourcebranchname = "sourceBranchName"
-        case sourcerepositoryname = "sourceRepositoryName"
-        case sourcerepositoryowner = "sourceRepositoryOwner"
-        case title = "title"
-        case weburl = "webUrl"
-    }
-
-    /**
-     * enum for parameter fieldsCiProducts
-     */
-    public enum FieldsCiProducts_ciBuildActionsBuildRunGetToOneRelated: String, CaseIterable {
-        case additionalrepositories = "additionalRepositories"
-        case app = "app"
-        case buildruns = "buildRuns"
-        case bundleid = "bundleId"
-        case createddate = "createdDate"
-        case name = "name"
-        case primaryrepositories = "primaryRepositories"
-        case producttype = "productType"
-        case workflows = "workflows"
+        case sourcebranchortag = "sourceBranchOrTag"
+        case destinationbranch = "destinationBranch"
+        case actions = "actions"
+        case pullrequest = "pullRequest"
     }
 
     /**
      * enum for parameter fieldsBuilds
      */
     public enum FieldsBuilds_ciBuildActionsBuildRunGetToOneRelated: String, CaseIterable {
-        case app = "app"
-        case appencryptiondeclaration = "appEncryptionDeclaration"
-        case appstoreversion = "appStoreVersion"
-        case betaappreviewsubmission = "betaAppReviewSubmission"
-        case betabuildlocalizations = "betaBuildLocalizations"
-        case betagroups = "betaGroups"
-        case buildaudiencetype = "buildAudienceType"
-        case buildbetadetail = "buildBetaDetail"
-        case buildbundles = "buildBundles"
-        case computedminmacosversion = "computedMinMacOsVersion"
-        case diagnosticsignatures = "diagnosticSignatures"
+        case version = "version"
+        case uploadeddate = "uploadedDate"
         case expirationdate = "expirationDate"
         case expired = "expired"
-        case iconassettoken = "iconAssetToken"
-        case icons = "icons"
-        case individualtesters = "individualTesters"
-        case lsminimumsystemversion = "lsMinimumSystemVersion"
         case minosversion = "minOsVersion"
-        case perfpowermetrics = "perfPowerMetrics"
-        case prereleaseversion = "preReleaseVersion"
+        case lsminimumsystemversion = "lsMinimumSystemVersion"
+        case computedminmacosversion = "computedMinMacOsVersion"
+        case iconassettoken = "iconAssetToken"
         case processingstate = "processingState"
-        case uploadeddate = "uploadedDate"
+        case buildaudiencetype = "buildAudienceType"
         case usesnonexemptencryption = "usesNonExemptEncryption"
-        case version = "version"
+        case prereleaseversion = "preReleaseVersion"
+        case individualtesters = "individualTesters"
+        case betagroups = "betaGroups"
+        case betabuildlocalizations = "betaBuildLocalizations"
+        case appencryptiondeclaration = "appEncryptionDeclaration"
+        case betaappreviewsubmission = "betaAppReviewSubmission"
+        case app = "app"
+        case buildbetadetail = "buildBetaDetail"
+        case appstoreversion = "appStoreVersion"
+        case icons = "icons"
+        case buildbundles = "buildBundles"
+        case perfpowermetrics = "perfPowerMetrics"
+        case diagnosticsignatures = "diagnosticSignatures"
+    }
+
+    /**
+     * enum for parameter fieldsCiWorkflows
+     */
+    public enum FieldsCiWorkflows_ciBuildActionsBuildRunGetToOneRelated: String, CaseIterable {
+        case name = "name"
+        case description = "description"
+        case branchstartcondition = "branchStartCondition"
+        case tagstartcondition = "tagStartCondition"
+        case pullrequeststartcondition = "pullRequestStartCondition"
+        case scheduledstartcondition = "scheduledStartCondition"
+        case manualbranchstartcondition = "manualBranchStartCondition"
+        case manualtagstartcondition = "manualTagStartCondition"
+        case manualpullrequeststartcondition = "manualPullRequestStartCondition"
+        case actions = "actions"
+        case isenabled = "isEnabled"
+        case islockedforediting = "isLockedForEditing"
+        case clean = "clean"
+        case containerfilepath = "containerFilePath"
+        case lastmodifieddate = "lastModifiedDate"
+        case product = "product"
+        case repository = "repository"
+        case xcodeversion = "xcodeVersion"
+        case macosversion = "macOsVersion"
+        case buildruns = "buildRuns"
+    }
+
+    /**
+     * enum for parameter fieldsCiProducts
+     */
+    public enum FieldsCiProducts_ciBuildActionsBuildRunGetToOneRelated: String, CaseIterable {
+        case name = "name"
+        case createddate = "createdDate"
+        case producttype = "productType"
+        case app = "app"
+        case bundleid = "bundleId"
+        case workflows = "workflows"
+        case primaryrepositories = "primaryRepositories"
+        case additionalrepositories = "additionalRepositories"
+        case buildruns = "buildRuns"
+    }
+
+    /**
+     * enum for parameter fieldsScmGitReferences
+     */
+    public enum FieldsScmGitReferences_ciBuildActionsBuildRunGetToOneRelated: String, CaseIterable {
+        case name = "name"
+        case canonicalname = "canonicalName"
+        case isdeleted = "isDeleted"
+        case kind = "kind"
+        case repository = "repository"
+    }
+
+    /**
+     * enum for parameter fieldsScmPullRequests
+     */
+    public enum FieldsScmPullRequests_ciBuildActionsBuildRunGetToOneRelated: String, CaseIterable {
+        case title = "title"
+        case number = "number"
+        case weburl = "webUrl"
+        case sourcerepositoryowner = "sourceRepositoryOwner"
+        case sourcerepositoryname = "sourceRepositoryName"
+        case sourcebranchname = "sourceBranchName"
+        case destinationrepositoryowner = "destinationRepositoryOwner"
+        case destinationrepositoryname = "destinationRepositoryName"
+        case destinationbranchname = "destinationBranchName"
+        case isclosed = "isClosed"
+        case iscrossrepository = "isCrossRepository"
+        case repository = "repository"
     }
 
     /**
@@ -230,29 +228,29 @@ open class CiBuildActionsAPI {
      */
     public enum Include_ciBuildActionsBuildRunGetToOneRelated: String, CaseIterable {
         case builds = "builds"
-        case destinationbranch = "destinationBranch"
-        case product = "product"
-        case pullrequest = "pullRequest"
-        case sourcebranchortag = "sourceBranchOrTag"
         case workflow = "workflow"
+        case product = "product"
+        case sourcebranchortag = "sourceBranchOrTag"
+        case destinationbranch = "destinationBranch"
+        case pullrequest = "pullRequest"
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
-     - parameter fieldsScmGitReferences: (query) the fields to include for returned resources of type scmGitReferences (optional)
      - parameter fieldsCiBuildRuns: (query) the fields to include for returned resources of type ciBuildRuns (optional)
-     - parameter fieldsCiWorkflows: (query) the fields to include for returned resources of type ciWorkflows (optional)
-     - parameter fieldsScmPullRequests: (query) the fields to include for returned resources of type scmPullRequests (optional)
-     - parameter fieldsCiProducts: (query) the fields to include for returned resources of type ciProducts (optional)
      - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
-     - parameter limitBuilds: (query) maximum number of related builds returned (when they are included) (optional)
+     - parameter fieldsCiWorkflows: (query) the fields to include for returned resources of type ciWorkflows (optional)
+     - parameter fieldsCiProducts: (query) the fields to include for returned resources of type ciProducts (optional)
+     - parameter fieldsScmGitReferences: (query) the fields to include for returned resources of type scmGitReferences (optional)
+     - parameter fieldsScmPullRequests: (query) the fields to include for returned resources of type scmPullRequests (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitBuilds: (query) maximum number of related builds returned (when they are included) (optional)
      - returns: CiBuildRunResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciBuildActionsBuildRunGetToOneRelated(id: String, fieldsScmGitReferences: [FieldsScmGitReferences_ciBuildActionsBuildRunGetToOneRelated]? = nil, fieldsCiBuildRuns: [FieldsCiBuildRuns_ciBuildActionsBuildRunGetToOneRelated]? = nil, fieldsCiWorkflows: [FieldsCiWorkflows_ciBuildActionsBuildRunGetToOneRelated]? = nil, fieldsScmPullRequests: [FieldsScmPullRequests_ciBuildActionsBuildRunGetToOneRelated]? = nil, fieldsCiProducts: [FieldsCiProducts_ciBuildActionsBuildRunGetToOneRelated]? = nil, fieldsBuilds: [FieldsBuilds_ciBuildActionsBuildRunGetToOneRelated]? = nil, limitBuilds: Int? = nil, include: [Include_ciBuildActionsBuildRunGetToOneRelated]? = nil) async throws -> CiBuildRunResponse {
-        return try await ciBuildActionsBuildRunGetToOneRelatedWithRequestBuilder(id: id, fieldsScmGitReferences: fieldsScmGitReferences, fieldsCiBuildRuns: fieldsCiBuildRuns, fieldsCiWorkflows: fieldsCiWorkflows, fieldsScmPullRequests: fieldsScmPullRequests, fieldsCiProducts: fieldsCiProducts, fieldsBuilds: fieldsBuilds, limitBuilds: limitBuilds, include: include).execute().body
+    open class func ciBuildActionsBuildRunGetToOneRelated(id: String, fieldsCiBuildRuns: [FieldsCiBuildRuns_ciBuildActionsBuildRunGetToOneRelated]? = nil, fieldsBuilds: [FieldsBuilds_ciBuildActionsBuildRunGetToOneRelated]? = nil, fieldsCiWorkflows: [FieldsCiWorkflows_ciBuildActionsBuildRunGetToOneRelated]? = nil, fieldsCiProducts: [FieldsCiProducts_ciBuildActionsBuildRunGetToOneRelated]? = nil, fieldsScmGitReferences: [FieldsScmGitReferences_ciBuildActionsBuildRunGetToOneRelated]? = nil, fieldsScmPullRequests: [FieldsScmPullRequests_ciBuildActionsBuildRunGetToOneRelated]? = nil, include: [Include_ciBuildActionsBuildRunGetToOneRelated]? = nil, limitBuilds: Int? = nil) async throws -> CiBuildRunResponse {
+        return try await ciBuildActionsBuildRunGetToOneRelatedWithRequestBuilder(id: id, fieldsCiBuildRuns: fieldsCiBuildRuns, fieldsBuilds: fieldsBuilds, fieldsCiWorkflows: fieldsCiWorkflows, fieldsCiProducts: fieldsCiProducts, fieldsScmGitReferences: fieldsScmGitReferences, fieldsScmPullRequests: fieldsScmPullRequests, include: include, limitBuilds: limitBuilds).execute().body
     }
 
     /**
@@ -270,17 +268,17 @@ open class CiBuildActionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
-     - parameter fieldsScmGitReferences: (query) the fields to include for returned resources of type scmGitReferences (optional)
      - parameter fieldsCiBuildRuns: (query) the fields to include for returned resources of type ciBuildRuns (optional)
-     - parameter fieldsCiWorkflows: (query) the fields to include for returned resources of type ciWorkflows (optional)
-     - parameter fieldsScmPullRequests: (query) the fields to include for returned resources of type scmPullRequests (optional)
-     - parameter fieldsCiProducts: (query) the fields to include for returned resources of type ciProducts (optional)
      - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
-     - parameter limitBuilds: (query) maximum number of related builds returned (when they are included) (optional)
+     - parameter fieldsCiWorkflows: (query) the fields to include for returned resources of type ciWorkflows (optional)
+     - parameter fieldsCiProducts: (query) the fields to include for returned resources of type ciProducts (optional)
+     - parameter fieldsScmGitReferences: (query) the fields to include for returned resources of type scmGitReferences (optional)
+     - parameter fieldsScmPullRequests: (query) the fields to include for returned resources of type scmPullRequests (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitBuilds: (query) maximum number of related builds returned (when they are included) (optional)
      - returns: RequestBuilder<CiBuildRunResponse> 
      */
-    open class func ciBuildActionsBuildRunGetToOneRelatedWithRequestBuilder(id: String, fieldsScmGitReferences: [FieldsScmGitReferences_ciBuildActionsBuildRunGetToOneRelated]? = nil, fieldsCiBuildRuns: [FieldsCiBuildRuns_ciBuildActionsBuildRunGetToOneRelated]? = nil, fieldsCiWorkflows: [FieldsCiWorkflows_ciBuildActionsBuildRunGetToOneRelated]? = nil, fieldsScmPullRequests: [FieldsScmPullRequests_ciBuildActionsBuildRunGetToOneRelated]? = nil, fieldsCiProducts: [FieldsCiProducts_ciBuildActionsBuildRunGetToOneRelated]? = nil, fieldsBuilds: [FieldsBuilds_ciBuildActionsBuildRunGetToOneRelated]? = nil, limitBuilds: Int? = nil, include: [Include_ciBuildActionsBuildRunGetToOneRelated]? = nil) -> RequestBuilder<CiBuildRunResponse> {
+    open class func ciBuildActionsBuildRunGetToOneRelatedWithRequestBuilder(id: String, fieldsCiBuildRuns: [FieldsCiBuildRuns_ciBuildActionsBuildRunGetToOneRelated]? = nil, fieldsBuilds: [FieldsBuilds_ciBuildActionsBuildRunGetToOneRelated]? = nil, fieldsCiWorkflows: [FieldsCiWorkflows_ciBuildActionsBuildRunGetToOneRelated]? = nil, fieldsCiProducts: [FieldsCiProducts_ciBuildActionsBuildRunGetToOneRelated]? = nil, fieldsScmGitReferences: [FieldsScmGitReferences_ciBuildActionsBuildRunGetToOneRelated]? = nil, fieldsScmPullRequests: [FieldsScmPullRequests_ciBuildActionsBuildRunGetToOneRelated]? = nil, include: [Include_ciBuildActionsBuildRunGetToOneRelated]? = nil, limitBuilds: Int? = nil) -> RequestBuilder<CiBuildRunResponse> {
         var localVariablePath = "/v1/ciBuildActions/{id}/buildRun"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -290,14 +288,14 @@ open class CiBuildActionsAPI {
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[scmGitReferences]": (wrappedValue: fieldsScmGitReferences?.encodeToJSON(), isExplode: false),
             "fields[ciBuildRuns]": (wrappedValue: fieldsCiBuildRuns?.encodeToJSON(), isExplode: false),
-            "fields[ciWorkflows]": (wrappedValue: fieldsCiWorkflows?.encodeToJSON(), isExplode: false),
-            "fields[scmPullRequests]": (wrappedValue: fieldsScmPullRequests?.encodeToJSON(), isExplode: false),
-            "fields[ciProducts]": (wrappedValue: fieldsCiProducts?.encodeToJSON(), isExplode: false),
             "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(), isExplode: false),
-            "limit[builds]": (wrappedValue: limitBuilds?.encodeToJSON(), isExplode: true),
+            "fields[ciWorkflows]": (wrappedValue: fieldsCiWorkflows?.encodeToJSON(), isExplode: false),
+            "fields[ciProducts]": (wrappedValue: fieldsCiProducts?.encodeToJSON(), isExplode: false),
+            "fields[scmGitReferences]": (wrappedValue: fieldsScmGitReferences?.encodeToJSON(), isExplode: false),
+            "fields[scmPullRequests]": (wrappedValue: fieldsScmPullRequests?.encodeToJSON(), isExplode: false),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "limit[builds]": (wrappedValue: limitBuilds?.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -335,18 +333,43 @@ open class CiBuildActionsAPI {
      * enum for parameter fieldsCiBuildActions
      */
     public enum FieldsCiBuildActions_ciBuildActionsGetInstance: String, CaseIterable {
-        case actiontype = "actionType"
-        case artifacts = "artifacts"
-        case buildrun = "buildRun"
-        case completionstatus = "completionStatus"
-        case executionprogress = "executionProgress"
-        case finisheddate = "finishedDate"
-        case isrequiredtopass = "isRequiredToPass"
-        case issuecounts = "issueCounts"
-        case issues = "issues"
         case name = "name"
+        case actiontype = "actionType"
         case starteddate = "startedDate"
+        case finisheddate = "finishedDate"
+        case issuecounts = "issueCounts"
+        case executionprogress = "executionProgress"
+        case completionstatus = "completionStatus"
+        case isrequiredtopass = "isRequiredToPass"
+        case buildrun = "buildRun"
+        case artifacts = "artifacts"
+        case issues = "issues"
         case testresults = "testResults"
+    }
+
+    /**
+     * enum for parameter fieldsCiBuildRuns
+     */
+    public enum FieldsCiBuildRuns_ciBuildActionsGetInstance: String, CaseIterable {
+        case number = "number"
+        case createddate = "createdDate"
+        case starteddate = "startedDate"
+        case finisheddate = "finishedDate"
+        case sourcecommit = "sourceCommit"
+        case destinationcommit = "destinationCommit"
+        case ispullrequestbuild = "isPullRequestBuild"
+        case issuecounts = "issueCounts"
+        case executionprogress = "executionProgress"
+        case completionstatus = "completionStatus"
+        case startreason = "startReason"
+        case cancelreason = "cancelReason"
+        case builds = "builds"
+        case workflow = "workflow"
+        case product = "product"
+        case sourcebranchortag = "sourceBranchOrTag"
+        case destinationbranch = "destinationBranch"
+        case actions = "actions"
+        case pullrequest = "pullRequest"
     }
 
     /**
@@ -357,78 +380,16 @@ open class CiBuildActionsAPI {
     }
 
     /**
-     * enum for parameter fieldsCiIssues
-     */
-    public enum FieldsCiIssues_ciBuildActionsGetInstance: String, CaseIterable {
-        case category = "category"
-        case filesource = "fileSource"
-        case issuetype = "issueType"
-        case message = "message"
-    }
-
-    /**
-     * enum for parameter fieldsCiBuildRuns
-     */
-    public enum FieldsCiBuildRuns_ciBuildActionsGetInstance: String, CaseIterable {
-        case actions = "actions"
-        case buildrun = "buildRun"
-        case builds = "builds"
-        case cancelreason = "cancelReason"
-        case clean = "clean"
-        case completionstatus = "completionStatus"
-        case createddate = "createdDate"
-        case destinationbranch = "destinationBranch"
-        case destinationcommit = "destinationCommit"
-        case executionprogress = "executionProgress"
-        case finisheddate = "finishedDate"
-        case ispullrequestbuild = "isPullRequestBuild"
-        case issuecounts = "issueCounts"
-        case number = "number"
-        case product = "product"
-        case pullrequest = "pullRequest"
-        case sourcebranchortag = "sourceBranchOrTag"
-        case sourcecommit = "sourceCommit"
-        case startreason = "startReason"
-        case starteddate = "startedDate"
-        case workflow = "workflow"
-    }
-
-    /**
-     * enum for parameter fieldsCiTestResults
-     */
-    public enum FieldsCiTestResults_ciBuildActionsGetInstance: String, CaseIterable {
-        case classname = "className"
-        case destinationtestresults = "destinationTestResults"
-        case filesource = "fileSource"
-        case message = "message"
-        case name = "name"
-        case status = "status"
-    }
-
-    /**
-     * enum for parameter fieldsCiArtifacts
-     */
-    public enum FieldsCiArtifacts_ciBuildActionsGetInstance: String, CaseIterable {
-        case downloadurl = "downloadUrl"
-        case filename = "fileName"
-        case filesize = "fileSize"
-        case filetype = "fileType"
-    }
-
-    /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsCiBuildActions: (query) the fields to include for returned resources of type ciBuildActions (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
-     - parameter fieldsCiIssues: (query) the fields to include for returned resources of type ciIssues (optional)
      - parameter fieldsCiBuildRuns: (query) the fields to include for returned resources of type ciBuildRuns (optional)
-     - parameter fieldsCiTestResults: (query) the fields to include for returned resources of type ciTestResults (optional)
-     - parameter fieldsCiArtifacts: (query) the fields to include for returned resources of type ciArtifacts (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: CiBuildActionResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciBuildActionsGetInstance(id: String, fieldsCiBuildActions: [FieldsCiBuildActions_ciBuildActionsGetInstance]? = nil, include: [Include_ciBuildActionsGetInstance]? = nil, fieldsCiIssues: [FieldsCiIssues_ciBuildActionsGetInstance]? = nil, fieldsCiBuildRuns: [FieldsCiBuildRuns_ciBuildActionsGetInstance]? = nil, fieldsCiTestResults: [FieldsCiTestResults_ciBuildActionsGetInstance]? = nil, fieldsCiArtifacts: [FieldsCiArtifacts_ciBuildActionsGetInstance]? = nil) async throws -> CiBuildActionResponse {
-        return try await ciBuildActionsGetInstanceWithRequestBuilder(id: id, fieldsCiBuildActions: fieldsCiBuildActions, include: include, fieldsCiIssues: fieldsCiIssues, fieldsCiBuildRuns: fieldsCiBuildRuns, fieldsCiTestResults: fieldsCiTestResults, fieldsCiArtifacts: fieldsCiArtifacts).execute().body
+    open class func ciBuildActionsGetInstance(id: String, fieldsCiBuildActions: [FieldsCiBuildActions_ciBuildActionsGetInstance]? = nil, fieldsCiBuildRuns: [FieldsCiBuildRuns_ciBuildActionsGetInstance]? = nil, include: [Include_ciBuildActionsGetInstance]? = nil) async throws -> CiBuildActionResponse {
+        return try await ciBuildActionsGetInstanceWithRequestBuilder(id: id, fieldsCiBuildActions: fieldsCiBuildActions, fieldsCiBuildRuns: fieldsCiBuildRuns, include: include).execute().body
     }
 
     /**
@@ -447,14 +408,11 @@ open class CiBuildActionsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsCiBuildActions: (query) the fields to include for returned resources of type ciBuildActions (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
-     - parameter fieldsCiIssues: (query) the fields to include for returned resources of type ciIssues (optional)
      - parameter fieldsCiBuildRuns: (query) the fields to include for returned resources of type ciBuildRuns (optional)
-     - parameter fieldsCiTestResults: (query) the fields to include for returned resources of type ciTestResults (optional)
-     - parameter fieldsCiArtifacts: (query) the fields to include for returned resources of type ciArtifacts (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: RequestBuilder<CiBuildActionResponse> 
      */
-    open class func ciBuildActionsGetInstanceWithRequestBuilder(id: String, fieldsCiBuildActions: [FieldsCiBuildActions_ciBuildActionsGetInstance]? = nil, include: [Include_ciBuildActionsGetInstance]? = nil, fieldsCiIssues: [FieldsCiIssues_ciBuildActionsGetInstance]? = nil, fieldsCiBuildRuns: [FieldsCiBuildRuns_ciBuildActionsGetInstance]? = nil, fieldsCiTestResults: [FieldsCiTestResults_ciBuildActionsGetInstance]? = nil, fieldsCiArtifacts: [FieldsCiArtifacts_ciBuildActionsGetInstance]? = nil) -> RequestBuilder<CiBuildActionResponse> {
+    open class func ciBuildActionsGetInstanceWithRequestBuilder(id: String, fieldsCiBuildActions: [FieldsCiBuildActions_ciBuildActionsGetInstance]? = nil, fieldsCiBuildRuns: [FieldsCiBuildRuns_ciBuildActionsGetInstance]? = nil, include: [Include_ciBuildActionsGetInstance]? = nil) -> RequestBuilder<CiBuildActionResponse> {
         var localVariablePath = "/v1/ciBuildActions/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -465,11 +423,8 @@ open class CiBuildActionsAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[ciBuildActions]": (wrappedValue: fieldsCiBuildActions?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "fields[ciIssues]": (wrappedValue: fieldsCiIssues?.encodeToJSON(), isExplode: false),
             "fields[ciBuildRuns]": (wrappedValue: fieldsCiBuildRuns?.encodeToJSON(), isExplode: false),
-            "fields[ciTestResults]": (wrappedValue: fieldsCiTestResults?.encodeToJSON(), isExplode: false),
-            "fields[ciArtifacts]": (wrappedValue: fieldsCiArtifacts?.encodeToJSON(), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -507,10 +462,10 @@ open class CiBuildActionsAPI {
      * enum for parameter fieldsCiIssues
      */
     public enum FieldsCiIssues_ciBuildActionsIssuesGetToManyRelated: String, CaseIterable {
-        case category = "category"
-        case filesource = "fileSource"
         case issuetype = "issueType"
         case message = "message"
+        case filesource = "fileSource"
+        case category = "category"
     }
 
     /**
@@ -594,11 +549,11 @@ open class CiBuildActionsAPI {
      */
     public enum FieldsCiTestResults_ciBuildActionsTestResultsGetToManyRelated: String, CaseIterable {
         case classname = "className"
-        case destinationtestresults = "destinationTestResults"
-        case filesource = "fileSource"
-        case message = "message"
         case name = "name"
         case status = "status"
+        case filesource = "fileSource"
+        case message = "message"
+        case destinationtestresults = "destinationTestResults"
     }
 
     /**

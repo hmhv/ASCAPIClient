@@ -12,9 +12,9 @@ import AnyCodable
 
 public struct GameCenterMatchmakingAppRequestsV1MetricResponseDataInnerDimensions: Codable, JSONEncodable, Hashable {
 
-    public var result: BetaBuildUsagesV1MetricResponseDataInnerDimensionsBundleIds?
+    public var result: GameCenterMatchmakingAppRequestsV1MetricResponseDataInnerDimensionsResult?
 
-    public init(result: BetaBuildUsagesV1MetricResponseDataInnerDimensionsBundleIds? = nil) {
+    public init(result: GameCenterMatchmakingAppRequestsV1MetricResponseDataInnerDimensionsResult? = nil) {
         self.result = result
     }
 

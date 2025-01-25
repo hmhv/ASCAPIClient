@@ -22,14 +22,6 @@ public struct AppEventUpdateRequestDataAttributes: Codable, JSONEncodable, Hasha
         case specialEvent = "SPECIAL_EVENT"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
-    public enum PurchaseRequirement: String, Codable, CaseIterable, CaseIterableDefaultsLast {
-        case noCostAssociated = "NO_COST_ASSOCIATED"
-        case inAppPurchase = "IN_APP_PURCHASE"
-        case subscription = "SUBSCRIPTION"
-        case inAppPurchaseAndSubscription = "IN_APP_PURCHASE_AND_SUBSCRIPTION"
-        case inAppPurchaseOrSubscription = "IN_APP_PURCHASE_OR_SUBSCRIPTION"
-        case unknownDefaultOpenApi = "unknown_default_open_api"
-    }
     public enum Priority: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case high = "HIGH"
         case normal = "NORMAL"
@@ -45,13 +37,13 @@ public struct AppEventUpdateRequestDataAttributes: Codable, JSONEncodable, Hasha
     public var referenceName: String?
     public var badge: Badge?
     public var deepLink: String?
-    public var purchaseRequirement: PurchaseRequirement?
+    public var purchaseRequirement: String?
     public var primaryLocale: String?
     public var priority: Priority?
     public var purpose: Purpose?
     public var territorySchedules: [AppEventAttributesTerritorySchedulesInner]?
 
-    public init(referenceName: String? = nil, badge: Badge? = nil, deepLink: String? = nil, purchaseRequirement: PurchaseRequirement? = nil, primaryLocale: String? = nil, priority: Priority? = nil, purpose: Purpose? = nil, territorySchedules: [AppEventAttributesTerritorySchedulesInner]? = nil) {
+    public init(referenceName: String? = nil, badge: Badge? = nil, deepLink: String? = nil, purchaseRequirement: String? = nil, primaryLocale: String? = nil, priority: Priority? = nil, purpose: Purpose? = nil, territorySchedules: [AppEventAttributesTerritorySchedulesInner]? = nil) {
         self.referenceName = referenceName
         self.badge = badge
         self.deepLink = deepLink

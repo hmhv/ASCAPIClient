@@ -12,10 +12,10 @@ import AnyCodable
 
 public struct InAppPurchasePriceInlineCreateRelationships: Codable, JSONEncodable, Hashable {
 
-    public var inAppPurchaseV2: InAppPurchasePriceInlineCreateRelationshipsInAppPurchaseV2?
-    public var inAppPurchasePricePoint: InAppPurchasePriceInlineCreateRelationshipsInAppPurchasePricePoint?
+    public var inAppPurchaseV2: InAppPurchaseAppStoreReviewScreenshotRelationshipsInAppPurchaseV2?
+    public var inAppPurchasePricePoint: InAppPurchasePriceRelationshipsInAppPurchasePricePoint?
 
-    public init(inAppPurchaseV2: InAppPurchasePriceInlineCreateRelationshipsInAppPurchaseV2? = nil, inAppPurchasePricePoint: InAppPurchasePriceInlineCreateRelationshipsInAppPurchasePricePoint? = nil) {
+    public init(inAppPurchaseV2: InAppPurchaseAppStoreReviewScreenshotRelationshipsInAppPurchaseV2? = nil, inAppPurchasePricePoint: InAppPurchasePriceRelationshipsInAppPurchasePricePoint? = nil) {
         self.inAppPurchaseV2 = inAppPurchaseV2
         self.inAppPurchasePricePoint = inAppPurchasePricePoint
     }

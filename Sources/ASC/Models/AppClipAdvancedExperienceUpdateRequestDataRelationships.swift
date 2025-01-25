@@ -12,11 +12,11 @@ import AnyCodable
 
 public struct AppClipAdvancedExperienceUpdateRequestDataRelationships: Codable, JSONEncodable, Hashable {
 
-    public var appClip: AppClipAdvancedExperienceUpdateRequestDataRelationshipsAppClip?
-    public var headerImage: AppClipAdvancedExperienceUpdateRequestDataRelationshipsHeaderImage?
+    public var appClip: AppClipAdvancedExperienceRelationshipsAppClip?
+    public var headerImage: AppClipAdvancedExperienceRelationshipsHeaderImage?
     public var localizations: AppClipAdvancedExperienceUpdateRequestDataRelationshipsLocalizations?
 
-    public init(appClip: AppClipAdvancedExperienceUpdateRequestDataRelationshipsAppClip? = nil, headerImage: AppClipAdvancedExperienceUpdateRequestDataRelationshipsHeaderImage? = nil, localizations: AppClipAdvancedExperienceUpdateRequestDataRelationshipsLocalizations? = nil) {
+    public init(appClip: AppClipAdvancedExperienceRelationshipsAppClip? = nil, headerImage: AppClipAdvancedExperienceRelationshipsHeaderImage? = nil, localizations: AppClipAdvancedExperienceUpdateRequestDataRelationshipsLocalizations? = nil) {
         self.appClip = appClip
         self.headerImage = headerImage
         self.localizations = localizations

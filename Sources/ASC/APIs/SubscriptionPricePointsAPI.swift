@@ -17,11 +17,10 @@ open class SubscriptionPricePointsAPI {
      */
     public enum FieldsSubscriptionPricePoints_subscriptionPricePointsEqualizationsGetToManyRelated: String, CaseIterable {
         case customerprice = "customerPrice"
-        case equalizations = "equalizations"
         case proceeds = "proceeds"
         case proceedsyear2 = "proceedsYear2"
-        case subscription = "subscription"
         case territory = "territory"
+        case equalizations = "equalizations"
     }
 
     /**
@@ -41,8 +40,8 @@ open class SubscriptionPricePointsAPI {
     /**
 
      - parameter id: (path) the id of the requested resource 
-     - parameter filterSubscription: (query) filter by id(s) of related &#39;subscription&#39; (optional)
      - parameter filterTerritory: (query) filter by id(s) of related &#39;territory&#39; (optional)
+     - parameter filterSubscription: (query) filter by id(s) of related &#39;subscription&#39; (optional)
      - parameter fieldsSubscriptionPricePoints: (query) the fields to include for returned resources of type subscriptionPricePoints (optional)
      - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
      - parameter limit: (query) maximum resources per page (optional)
@@ -50,8 +49,8 @@ open class SubscriptionPricePointsAPI {
      - returns: SubscriptionPricePointsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionPricePointsEqualizationsGetToManyRelated(id: String, filterSubscription: [String]? = nil, filterTerritory: [String]? = nil, fieldsSubscriptionPricePoints: [FieldsSubscriptionPricePoints_subscriptionPricePointsEqualizationsGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_subscriptionPricePointsEqualizationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionPricePointsEqualizationsGetToManyRelated]? = nil) async throws -> SubscriptionPricePointsResponse {
-        return try await subscriptionPricePointsEqualizationsGetToManyRelatedWithRequestBuilder(id: id, filterSubscription: filterSubscription, filterTerritory: filterTerritory, fieldsSubscriptionPricePoints: fieldsSubscriptionPricePoints, fieldsTerritories: fieldsTerritories, limit: limit, include: include).execute().body
+    open class func subscriptionPricePointsEqualizationsGetToManyRelated(id: String, filterTerritory: [String]? = nil, filterSubscription: [String]? = nil, fieldsSubscriptionPricePoints: [FieldsSubscriptionPricePoints_subscriptionPricePointsEqualizationsGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_subscriptionPricePointsEqualizationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionPricePointsEqualizationsGetToManyRelated]? = nil) async throws -> SubscriptionPricePointsResponse {
+        return try await subscriptionPricePointsEqualizationsGetToManyRelatedWithRequestBuilder(id: id, filterTerritory: filterTerritory, filterSubscription: filterSubscription, fieldsSubscriptionPricePoints: fieldsSubscriptionPricePoints, fieldsTerritories: fieldsTerritories, limit: limit, include: include).execute().body
     }
 
     /**
@@ -69,15 +68,15 @@ open class SubscriptionPricePointsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
-     - parameter filterSubscription: (query) filter by id(s) of related &#39;subscription&#39; (optional)
      - parameter filterTerritory: (query) filter by id(s) of related &#39;territory&#39; (optional)
+     - parameter filterSubscription: (query) filter by id(s) of related &#39;subscription&#39; (optional)
      - parameter fieldsSubscriptionPricePoints: (query) the fields to include for returned resources of type subscriptionPricePoints (optional)
      - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: RequestBuilder<SubscriptionPricePointsResponse> 
      */
-    open class func subscriptionPricePointsEqualizationsGetToManyRelatedWithRequestBuilder(id: String, filterSubscription: [String]? = nil, filterTerritory: [String]? = nil, fieldsSubscriptionPricePoints: [FieldsSubscriptionPricePoints_subscriptionPricePointsEqualizationsGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_subscriptionPricePointsEqualizationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionPricePointsEqualizationsGetToManyRelated]? = nil) -> RequestBuilder<SubscriptionPricePointsResponse> {
+    open class func subscriptionPricePointsEqualizationsGetToManyRelatedWithRequestBuilder(id: String, filterTerritory: [String]? = nil, filterSubscription: [String]? = nil, fieldsSubscriptionPricePoints: [FieldsSubscriptionPricePoints_subscriptionPricePointsEqualizationsGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_subscriptionPricePointsEqualizationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionPricePointsEqualizationsGetToManyRelated]? = nil) -> RequestBuilder<SubscriptionPricePointsResponse> {
         var localVariablePath = "/v1/subscriptionPricePoints/{id}/equalizations"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -87,8 +86,8 @@ open class SubscriptionPricePointsAPI {
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[subscription]": (wrappedValue: filterSubscription?.encodeToJSON(), isExplode: false),
             "filter[territory]": (wrappedValue: filterTerritory?.encodeToJSON(), isExplode: false),
+            "filter[subscription]": (wrappedValue: filterSubscription?.encodeToJSON(), isExplode: false),
             "fields[subscriptionPricePoints]": (wrappedValue: fieldsSubscriptionPricePoints?.encodeToJSON(), isExplode: false),
             "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
@@ -131,11 +130,10 @@ open class SubscriptionPricePointsAPI {
      */
     public enum FieldsSubscriptionPricePoints_subscriptionPricePointsGetInstance: String, CaseIterable {
         case customerprice = "customerPrice"
-        case equalizations = "equalizations"
         case proceeds = "proceeds"
         case proceedsyear2 = "proceedsYear2"
-        case subscription = "subscription"
         case territory = "territory"
+        case equalizations = "equalizations"
     }
 
     /**

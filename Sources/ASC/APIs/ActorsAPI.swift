@@ -17,10 +17,10 @@ open class ActorsAPI {
      */
     public enum FieldsActors_actorsGetCollection: String, CaseIterable {
         case actortype = "actorType"
-        case apikeyid = "apiKeyId"
-        case useremail = "userEmail"
         case userfirstname = "userFirstName"
         case userlastname = "userLastName"
+        case useremail = "userEmail"
+        case apikeyid = "apiKeyId"
     }
 
     /**
@@ -102,10 +102,10 @@ open class ActorsAPI {
      */
     public enum FieldsActors_actorsGetInstance: String, CaseIterable {
         case actortype = "actorType"
-        case apikeyid = "apiKeyId"
-        case useremail = "userEmail"
         case userfirstname = "userFirstName"
         case userlastname = "userLastName"
+        case useremail = "userEmail"
+        case apikeyid = "apiKeyId"
     }
 
     /**

@@ -61,7 +61,7 @@ Name | Type | Description  | Notes
 
 # **buildBetaDetailsGetCollection**
 ```swift
-    open class func buildBetaDetailsGetCollection(filterBuild: [String]? = nil, filterId: [String]? = nil, fieldsBuildBetaDetails: [FieldsBuildBetaDetails_buildBetaDetailsGetCollection]? = nil, limit: Int? = nil, include: [Include_buildBetaDetailsGetCollection]? = nil, fieldsBuilds: [FieldsBuilds_buildBetaDetailsGetCollection]? = nil, completion: @escaping (_ data: BuildBetaDetailsResponse?, _ error: Error?) -> Void)
+    open class func buildBetaDetailsGetCollection(filterBuild: [String]? = nil, filterId: [String]? = nil, fieldsBuildBetaDetails: [FieldsBuildBetaDetails_buildBetaDetailsGetCollection]? = nil, fieldsBuilds: [FieldsBuilds_buildBetaDetailsGetCollection]? = nil, limit: Int? = nil, include: [Include_buildBetaDetailsGetCollection]? = nil, completion: @escaping (_ data: BuildBetaDetailsResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -74,11 +74,11 @@ import ASC
 let filterBuild = ["inner_example"] // [String] | filter by id(s) of related 'build' (optional)
 let filterId = ["inner_example"] // [String] | filter by id(s) (optional)
 let fieldsBuildBetaDetails = ["fieldsBuildBetaDetails_example"] // [String] | the fields to include for returned resources of type buildBetaDetails (optional)
+let fieldsBuilds = ["fieldsBuilds_example"] // [String] | the fields to include for returned resources of type builds (optional)
 let limit = 987 // Int | maximum resources per page (optional)
 let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
-let fieldsBuilds = ["fieldsBuilds_example"] // [String] | the fields to include for returned resources of type builds (optional)
 
-BuildBetaDetailsAPI.buildBetaDetailsGetCollection(filterBuild: filterBuild, filterId: filterId, fieldsBuildBetaDetails: fieldsBuildBetaDetails, limit: limit, include: include, fieldsBuilds: fieldsBuilds) { (response, error) in
+BuildBetaDetailsAPI.buildBetaDetailsGetCollection(filterBuild: filterBuild, filterId: filterId, fieldsBuildBetaDetails: fieldsBuildBetaDetails, fieldsBuilds: fieldsBuilds, limit: limit, include: include) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -97,9 +97,9 @@ Name | Type | Description  | Notes
  **filterBuild** | [**[String]**](String.md) | filter by id(s) of related &#39;build&#39; | [optional] 
  **filterId** | [**[String]**](String.md) | filter by id(s) | [optional] 
  **fieldsBuildBetaDetails** | [**[String]**](String.md) | the fields to include for returned resources of type buildBetaDetails | [optional] 
+ **fieldsBuilds** | [**[String]**](String.md) | the fields to include for returned resources of type builds | [optional] 
  **limit** | **Int** | maximum resources per page | [optional] 
  **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
- **fieldsBuilds** | [**[String]**](String.md) | the fields to include for returned resources of type builds | [optional] 
 
 ### Return type
 
@@ -118,7 +118,7 @@ Name | Type | Description  | Notes
 
 # **buildBetaDetailsGetInstance**
 ```swift
-    open class func buildBetaDetailsGetInstance(id: String, fieldsBuildBetaDetails: [FieldsBuildBetaDetails_buildBetaDetailsGetInstance]? = nil, include: [Include_buildBetaDetailsGetInstance]? = nil, fieldsBuilds: [FieldsBuilds_buildBetaDetailsGetInstance]? = nil, completion: @escaping (_ data: BuildBetaDetailResponse?, _ error: Error?) -> Void)
+    open class func buildBetaDetailsGetInstance(id: String, fieldsBuildBetaDetails: [FieldsBuildBetaDetails_buildBetaDetailsGetInstance]? = nil, fieldsBuilds: [FieldsBuilds_buildBetaDetailsGetInstance]? = nil, include: [Include_buildBetaDetailsGetInstance]? = nil, completion: @escaping (_ data: BuildBetaDetailResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -130,10 +130,10 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let fieldsBuildBetaDetails = ["fieldsBuildBetaDetails_example"] // [String] | the fields to include for returned resources of type buildBetaDetails (optional)
-let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let fieldsBuilds = ["fieldsBuilds_example"] // [String] | the fields to include for returned resources of type builds (optional)
+let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 
-BuildBetaDetailsAPI.buildBetaDetailsGetInstance(id: id, fieldsBuildBetaDetails: fieldsBuildBetaDetails, include: include, fieldsBuilds: fieldsBuilds) { (response, error) in
+BuildBetaDetailsAPI.buildBetaDetailsGetInstance(id: id, fieldsBuildBetaDetails: fieldsBuildBetaDetails, fieldsBuilds: fieldsBuilds, include: include) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -151,8 +151,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **fieldsBuildBetaDetails** | [**[String]**](String.md) | the fields to include for returned resources of type buildBetaDetails | [optional] 
- **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **fieldsBuilds** | [**[String]**](String.md) | the fields to include for returned resources of type builds | [optional] 
+ **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
 
 ### Return type
 

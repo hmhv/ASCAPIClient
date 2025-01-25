@@ -16,10 +16,10 @@ open class CiIssuesAPI {
      * enum for parameter fieldsCiIssues
      */
     public enum FieldsCiIssues_ciIssuesGetInstance: String, CaseIterable {
-        case category = "category"
-        case filesource = "fileSource"
         case issuetype = "issueType"
         case message = "message"
+        case filesource = "fileSource"
+        case category = "category"
     }
 
     /**

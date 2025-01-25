@@ -13,62 +13,62 @@ import AnyCodable
 open class CiProductsAPI {
 
     /**
-     * enum for parameter fieldsScmGitReferences
+     * enum for parameter fieldsScmRepositories
      */
-    public enum FieldsScmGitReferences_ciProductsAdditionalRepositoriesGetToManyRelated: String, CaseIterable {
-        case canonicalname = "canonicalName"
-        case isdeleted = "isDeleted"
-        case kind = "kind"
-        case name = "name"
-        case repository = "repository"
+    public enum FieldsScmRepositories_ciProductsAdditionalRepositoriesGetToManyRelated: String, CaseIterable {
+        case lastaccesseddate = "lastAccessedDate"
+        case httpcloneurl = "httpCloneUrl"
+        case sshcloneurl = "sshCloneUrl"
+        case ownername = "ownerName"
+        case repositoryname = "repositoryName"
+        case scmprovider = "scmProvider"
+        case defaultbranch = "defaultBranch"
+        case gitreferences = "gitReferences"
+        case pullrequests = "pullRequests"
     }
 
     /**
      * enum for parameter fieldsScmProviders
      */
     public enum FieldsScmProviders_ciProductsAdditionalRepositoriesGetToManyRelated: String, CaseIterable {
-        case repositories = "repositories"
         case scmprovidertype = "scmProviderType"
         case url = "url"
+        case repositories = "repositories"
     }
 
     /**
-     * enum for parameter fieldsScmRepositories
+     * enum for parameter fieldsScmGitReferences
      */
-    public enum FieldsScmRepositories_ciProductsAdditionalRepositoriesGetToManyRelated: String, CaseIterable {
-        case defaultbranch = "defaultBranch"
-        case gitreferences = "gitReferences"
-        case httpcloneurl = "httpCloneUrl"
-        case lastaccesseddate = "lastAccessedDate"
-        case ownername = "ownerName"
-        case pullrequests = "pullRequests"
-        case repositoryname = "repositoryName"
-        case scmprovider = "scmProvider"
-        case sshcloneurl = "sshCloneUrl"
+    public enum FieldsScmGitReferences_ciProductsAdditionalRepositoriesGetToManyRelated: String, CaseIterable {
+        case name = "name"
+        case canonicalname = "canonicalName"
+        case isdeleted = "isDeleted"
+        case kind = "kind"
+        case repository = "repository"
     }
 
     /**
      * enum for parameter include
      */
     public enum Include_ciProductsAdditionalRepositoriesGetToManyRelated: String, CaseIterable {
-        case defaultbranch = "defaultBranch"
         case scmprovider = "scmProvider"
+        case defaultbranch = "defaultBranch"
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter filterId: (query) filter by id(s) (optional)
-     - parameter fieldsScmGitReferences: (query) the fields to include for returned resources of type scmGitReferences (optional)
-     - parameter fieldsScmProviders: (query) the fields to include for returned resources of type scmProviders (optional)
      - parameter fieldsScmRepositories: (query) the fields to include for returned resources of type scmRepositories (optional)
+     - parameter fieldsScmProviders: (query) the fields to include for returned resources of type scmProviders (optional)
+     - parameter fieldsScmGitReferences: (query) the fields to include for returned resources of type scmGitReferences (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: ScmRepositoriesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciProductsAdditionalRepositoriesGetToManyRelated(id: String, filterId: [String]? = nil, fieldsScmGitReferences: [FieldsScmGitReferences_ciProductsAdditionalRepositoriesGetToManyRelated]? = nil, fieldsScmProviders: [FieldsScmProviders_ciProductsAdditionalRepositoriesGetToManyRelated]? = nil, fieldsScmRepositories: [FieldsScmRepositories_ciProductsAdditionalRepositoriesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_ciProductsAdditionalRepositoriesGetToManyRelated]? = nil) async throws -> ScmRepositoriesResponse {
-        return try await ciProductsAdditionalRepositoriesGetToManyRelatedWithRequestBuilder(id: id, filterId: filterId, fieldsScmGitReferences: fieldsScmGitReferences, fieldsScmProviders: fieldsScmProviders, fieldsScmRepositories: fieldsScmRepositories, limit: limit, include: include).execute().body
+    open class func ciProductsAdditionalRepositoriesGetToManyRelated(id: String, filterId: [String]? = nil, fieldsScmRepositories: [FieldsScmRepositories_ciProductsAdditionalRepositoriesGetToManyRelated]? = nil, fieldsScmProviders: [FieldsScmProviders_ciProductsAdditionalRepositoriesGetToManyRelated]? = nil, fieldsScmGitReferences: [FieldsScmGitReferences_ciProductsAdditionalRepositoriesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_ciProductsAdditionalRepositoriesGetToManyRelated]? = nil) async throws -> ScmRepositoriesResponse {
+        return try await ciProductsAdditionalRepositoriesGetToManyRelatedWithRequestBuilder(id: id, filterId: filterId, fieldsScmRepositories: fieldsScmRepositories, fieldsScmProviders: fieldsScmProviders, fieldsScmGitReferences: fieldsScmGitReferences, limit: limit, include: include).execute().body
     }
 
     /**
@@ -87,14 +87,14 @@ open class CiProductsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter filterId: (query) filter by id(s) (optional)
-     - parameter fieldsScmGitReferences: (query) the fields to include for returned resources of type scmGitReferences (optional)
-     - parameter fieldsScmProviders: (query) the fields to include for returned resources of type scmProviders (optional)
      - parameter fieldsScmRepositories: (query) the fields to include for returned resources of type scmRepositories (optional)
+     - parameter fieldsScmProviders: (query) the fields to include for returned resources of type scmProviders (optional)
+     - parameter fieldsScmGitReferences: (query) the fields to include for returned resources of type scmGitReferences (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: RequestBuilder<ScmRepositoriesResponse> 
      */
-    open class func ciProductsAdditionalRepositoriesGetToManyRelatedWithRequestBuilder(id: String, filterId: [String]? = nil, fieldsScmGitReferences: [FieldsScmGitReferences_ciProductsAdditionalRepositoriesGetToManyRelated]? = nil, fieldsScmProviders: [FieldsScmProviders_ciProductsAdditionalRepositoriesGetToManyRelated]? = nil, fieldsScmRepositories: [FieldsScmRepositories_ciProductsAdditionalRepositoriesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_ciProductsAdditionalRepositoriesGetToManyRelated]? = nil) -> RequestBuilder<ScmRepositoriesResponse> {
+    open class func ciProductsAdditionalRepositoriesGetToManyRelatedWithRequestBuilder(id: String, filterId: [String]? = nil, fieldsScmRepositories: [FieldsScmRepositories_ciProductsAdditionalRepositoriesGetToManyRelated]? = nil, fieldsScmProviders: [FieldsScmProviders_ciProductsAdditionalRepositoriesGetToManyRelated]? = nil, fieldsScmGitReferences: [FieldsScmGitReferences_ciProductsAdditionalRepositoriesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_ciProductsAdditionalRepositoriesGetToManyRelated]? = nil) -> RequestBuilder<ScmRepositoriesResponse> {
         var localVariablePath = "/v1/ciProducts/{id}/additionalRepositories"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -105,9 +105,9 @@ open class CiProductsAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "filter[id]": (wrappedValue: filterId?.encodeToJSON(), isExplode: false),
-            "fields[scmGitReferences]": (wrappedValue: fieldsScmGitReferences?.encodeToJSON(), isExplode: false),
-            "fields[scmProviders]": (wrappedValue: fieldsScmProviders?.encodeToJSON(), isExplode: false),
             "fields[scmRepositories]": (wrappedValue: fieldsScmRepositories?.encodeToJSON(), isExplode: false),
+            "fields[scmProviders]": (wrappedValue: fieldsScmProviders?.encodeToJSON(), isExplode: false),
+            "fields[scmGitReferences]": (wrappedValue: fieldsScmGitReferences?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
         ])
@@ -144,202 +144,193 @@ open class CiProductsAPI {
     }
 
     /**
-     * enum for parameter fieldsBetaAppReviewDetails
+     * enum for parameter fieldsApps
      */
-    public enum FieldsBetaAppReviewDetails_ciProductsAppGetToOneRelated: String, CaseIterable {
-        case app = "app"
-        case contactemail = "contactEmail"
-        case contactfirstname = "contactFirstName"
-        case contactlastname = "contactLastName"
-        case contactphone = "contactPhone"
-        case demoaccountname = "demoAccountName"
-        case demoaccountpassword = "demoAccountPassword"
-        case demoaccountrequired = "demoAccountRequired"
-        case notes = "notes"
+    public enum FieldsApps_ciProductsAppGetToOneRelated: String, CaseIterable {
+        case name = "name"
+        case bundleid = "bundleId"
+        case sku = "sku"
+        case primarylocale = "primaryLocale"
+        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
+        case subscriptionstatusurl = "subscriptionStatusUrl"
+        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
+        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
+        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
+        case contentrightsdeclaration = "contentRightsDeclaration"
+        case streamlinedpurchasingenabled = "streamlinedPurchasingEnabled"
+        case appencryptiondeclarations = "appEncryptionDeclarations"
+        case ciproduct = "ciProduct"
+        case betatesters = "betaTesters"
+        case betagroups = "betaGroups"
+        case appstoreversions = "appStoreVersions"
+        case prereleaseversions = "preReleaseVersions"
+        case betaapplocalizations = "betaAppLocalizations"
+        case builds = "builds"
+        case betalicenseagreement = "betaLicenseAgreement"
+        case betaappreviewdetail = "betaAppReviewDetail"
+        case appinfos = "appInfos"
+        case appclips = "appClips"
+        case apppricepoints = "appPricePoints"
+        case enduserlicenseagreement = "endUserLicenseAgreement"
+        case apppriceschedule = "appPriceSchedule"
+        case appavailabilityv2 = "appAvailabilityV2"
+        case inapppurchases = "inAppPurchases"
+        case subscriptiongroups = "subscriptionGroups"
+        case gamecenterenabledversions = "gameCenterEnabledVersions"
+        case perfpowermetrics = "perfPowerMetrics"
+        case appcustomproductpages = "appCustomProductPages"
+        case inapppurchasesv2 = "inAppPurchasesV2"
+        case promotedpurchases = "promotedPurchases"
+        case appevents = "appEvents"
+        case reviewsubmissions = "reviewSubmissions"
+        case subscriptiongraceperiod = "subscriptionGracePeriod"
+        case customerreviews = "customerReviews"
+        case gamecenterdetail = "gameCenterDetail"
+        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
+        case alternativedistributionkey = "alternativeDistributionKey"
+        case analyticsreportrequests = "analyticsReportRequests"
+        case marketplacesearchdetail = "marketplaceSearchDetail"
     }
 
     /**
-     * enum for parameter fieldsGameCenterDetails
+     * enum for parameter fieldsAppEncryptionDeclarations
      */
-    public enum FieldsGameCenterDetails_ciProductsAppGetToOneRelated: String, CaseIterable {
-        case achievementreleases = "achievementReleases"
+    public enum FieldsAppEncryptionDeclarations_ciProductsAppGetToOneRelated: String, CaseIterable {
+        case appdescription = "appDescription"
+        case createddate = "createdDate"
+        case usesencryption = "usesEncryption"
+        case exempt = "exempt"
+        case containsproprietarycryptography = "containsProprietaryCryptography"
+        case containsthirdpartycryptography = "containsThirdPartyCryptography"
+        case availableonfrenchstore = "availableOnFrenchStore"
+        case platform = "platform"
+        case uploadeddate = "uploadedDate"
+        case documenturl = "documentUrl"
+        case documentname = "documentName"
+        case documenttype = "documentType"
+        case appencryptiondeclarationstate = "appEncryptionDeclarationState"
+        case codevalue = "codeValue"
         case app = "app"
-        case arcadeenabled = "arcadeEnabled"
-        case challengeenabled = "challengeEnabled"
-        case defaultgroupleaderboard = "defaultGroupLeaderboard"
-        case defaultleaderboard = "defaultLeaderboard"
-        case gamecenterachievements = "gameCenterAchievements"
-        case gamecenterappversions = "gameCenterAppVersions"
-        case gamecentergroup = "gameCenterGroup"
-        case gamecenterleaderboardsets = "gameCenterLeaderboardSets"
-        case gamecenterleaderboards = "gameCenterLeaderboards"
-        case leaderboardreleases = "leaderboardReleases"
-        case leaderboardsetreleases = "leaderboardSetReleases"
+        case builds = "builds"
+        case appencryptiondeclarationdocument = "appEncryptionDeclarationDocument"
     }
 
     /**
      * enum for parameter fieldsCiProducts
      */
     public enum FieldsCiProducts_ciProductsAppGetToOneRelated: String, CaseIterable {
-        case additionalrepositories = "additionalRepositories"
-        case app = "app"
-        case buildruns = "buildRuns"
-        case bundleid = "bundleId"
-        case createddate = "createdDate"
         case name = "name"
-        case primaryrepositories = "primaryRepositories"
+        case createddate = "createdDate"
         case producttype = "productType"
-        case workflows = "workflows"
-    }
-
-    /**
-     * enum for parameter fieldsReviewSubmissions
-     */
-    public enum FieldsReviewSubmissions_ciProductsAppGetToOneRelated: String, CaseIterable {
         case app = "app"
-        case appstoreversionforreview = "appStoreVersionForReview"
-        case canceled = "canceled"
-        case items = "items"
-        case lastupdatedbyactor = "lastUpdatedByActor"
-        case platform = "platform"
-        case state = "state"
-        case submitted = "submitted"
-        case submittedbyactor = "submittedByActor"
-        case submitteddate = "submittedDate"
+        case bundleid = "bundleId"
+        case workflows = "workflows"
+        case primaryrepositories = "primaryRepositories"
+        case additionalrepositories = "additionalRepositories"
+        case buildruns = "buildRuns"
     }
 
     /**
      * enum for parameter fieldsBetaGroups
      */
     public enum FieldsBetaGroups_ciProductsAppGetToOneRelated: String, CaseIterable {
-        case app = "app"
-        case betatesters = "betaTesters"
-        case builds = "builds"
-        case createddate = "createdDate"
-        case feedbackenabled = "feedbackEnabled"
-        case hasaccesstoallbuilds = "hasAccessToAllBuilds"
-        case iosbuildsavailableforapplesiliconmac = "iosBuildsAvailableForAppleSiliconMac"
-        case isinternalgroup = "isInternalGroup"
         case name = "name"
-        case publiclink = "publicLink"
+        case createddate = "createdDate"
+        case isinternalgroup = "isInternalGroup"
+        case hasaccesstoallbuilds = "hasAccessToAllBuilds"
         case publiclinkenabled = "publicLinkEnabled"
         case publiclinkid = "publicLinkId"
-        case publiclinklimit = "publicLinkLimit"
         case publiclinklimitenabled = "publicLinkLimitEnabled"
-    }
-
-    /**
-     * enum for parameter fieldsPromotedPurchases
-     */
-    public enum FieldsPromotedPurchases_ciProductsAppGetToOneRelated: String, CaseIterable {
+        case publiclinklimit = "publicLinkLimit"
+        case publiclink = "publicLink"
+        case feedbackenabled = "feedbackEnabled"
+        case iosbuildsavailableforapplesiliconmac = "iosBuildsAvailableForAppleSiliconMac"
         case app = "app"
-        case enabled = "enabled"
-        case inapppurchasev2 = "inAppPurchaseV2"
-        case promotionimages = "promotionImages"
-        case state = "state"
-        case subscription = "subscription"
-        case visibleforallusers = "visibleForAllUsers"
-    }
-
-    /**
-     * enum for parameter fieldsApps
-     */
-    public enum FieldsApps_ciProductsAppGetToOneRelated: String, CaseIterable {
-        case alternativedistributionkey = "alternativeDistributionKey"
-        case analyticsreportrequests = "analyticsReportRequests"
-        case appavailability = "appAvailability"
-        case appclips = "appClips"
-        case appcustomproductpages = "appCustomProductPages"
-        case appencryptiondeclarations = "appEncryptionDeclarations"
-        case appevents = "appEvents"
-        case appinfos = "appInfos"
-        case apppricepoints = "appPricePoints"
-        case apppriceschedule = "appPriceSchedule"
-        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
-        case appstoreversions = "appStoreVersions"
-        case availableinnewterritories = "availableInNewTerritories"
-        case availableterritories = "availableTerritories"
-        case betaapplocalizations = "betaAppLocalizations"
-        case betaappreviewdetail = "betaAppReviewDetail"
-        case betagroups = "betaGroups"
-        case betalicenseagreement = "betaLicenseAgreement"
-        case betatesters = "betaTesters"
         case builds = "builds"
-        case bundleid = "bundleId"
-        case ciproduct = "ciProduct"
-        case contentrightsdeclaration = "contentRightsDeclaration"
-        case customerreviews = "customerReviews"
-        case enduserlicenseagreement = "endUserLicenseAgreement"
-        case gamecenterdetail = "gameCenterDetail"
-        case gamecenterenabledversions = "gameCenterEnabledVersions"
-        case inapppurchases = "inAppPurchases"
-        case inapppurchasesv2 = "inAppPurchasesV2"
-        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
-        case marketplacesearchdetail = "marketplaceSearchDetail"
-        case name = "name"
-        case perfpowermetrics = "perfPowerMetrics"
-        case preorder = "preOrder"
-        case prereleaseversions = "preReleaseVersions"
-        case pricepoints = "pricePoints"
-        case prices = "prices"
-        case primarylocale = "primaryLocale"
-        case promotedpurchases = "promotedPurchases"
-        case reviewsubmissions = "reviewSubmissions"
-        case sku = "sku"
-        case subscriptiongraceperiod = "subscriptionGracePeriod"
-        case subscriptiongroups = "subscriptionGroups"
-        case subscriptionstatusurl = "subscriptionStatusUrl"
-        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
-        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
-        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
+        case betatesters = "betaTesters"
     }
 
     /**
-     * enum for parameter fieldsAppEvents
+     * enum for parameter fieldsAppStoreVersions
      */
-    public enum FieldsAppEvents_ciProductsAppGetToOneRelated: String, CaseIterable {
+    public enum FieldsAppStoreVersions_ciProductsAppGetToOneRelated: String, CaseIterable {
+        case platform = "platform"
+        case versionstring = "versionString"
+        case appstorestate = "appStoreState"
+        case appversionstate = "appVersionState"
+        case copyright = "copyright"
+        case reviewtype = "reviewType"
+        case releasetype = "releaseType"
+        case earliestreleasedate = "earliestReleaseDate"
+        case downloadable = "downloadable"
+        case createddate = "createdDate"
         case app = "app"
-        case archivedterritoryschedules = "archivedTerritorySchedules"
-        case badge = "badge"
-        case deeplink = "deepLink"
-        case eventstate = "eventState"
-        case localizations = "localizations"
-        case primarylocale = "primaryLocale"
-        case priority = "priority"
-        case purchaserequirement = "purchaseRequirement"
-        case purpose = "purpose"
-        case referencename = "referenceName"
-        case territoryschedules = "territorySchedules"
+        case ageratingdeclaration = "ageRatingDeclaration"
+        case appstoreversionlocalizations = "appStoreVersionLocalizations"
+        case build = "build"
+        case appstoreversionphasedrelease = "appStoreVersionPhasedRelease"
+        case gamecenterappversion = "gameCenterAppVersion"
+        case routingappcoverage = "routingAppCoverage"
+        case appstorereviewdetail = "appStoreReviewDetail"
+        case appstoreversionsubmission = "appStoreVersionSubmission"
+        case appclipdefaultexperience = "appClipDefaultExperience"
+        case appstoreversionexperiments = "appStoreVersionExperiments"
+        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
+        case customerreviews = "customerReviews"
+        case alternativedistributionpackage = "alternativeDistributionPackage"
+    }
+
+    /**
+     * enum for parameter fieldsPreReleaseVersions
+     */
+    public enum FieldsPreReleaseVersions_ciProductsAppGetToOneRelated: String, CaseIterable {
+        case version = "version"
+        case platform = "platform"
+        case builds = "builds"
+        case app = "app"
+    }
+
+    /**
+     * enum for parameter fieldsBetaAppLocalizations
+     */
+    public enum FieldsBetaAppLocalizations_ciProductsAppGetToOneRelated: String, CaseIterable {
+        case feedbackemail = "feedbackEmail"
+        case marketingurl = "marketingUrl"
+        case privacypolicyurl = "privacyPolicyUrl"
+        case tvosprivacypolicy = "tvOsPrivacyPolicy"
+        case description = "description"
+        case locale = "locale"
+        case app = "app"
     }
 
     /**
      * enum for parameter fieldsBuilds
      */
     public enum FieldsBuilds_ciProductsAppGetToOneRelated: String, CaseIterable {
-        case app = "app"
-        case appencryptiondeclaration = "appEncryptionDeclaration"
-        case appstoreversion = "appStoreVersion"
-        case betaappreviewsubmission = "betaAppReviewSubmission"
-        case betabuildlocalizations = "betaBuildLocalizations"
-        case betagroups = "betaGroups"
-        case buildaudiencetype = "buildAudienceType"
-        case buildbetadetail = "buildBetaDetail"
-        case buildbundles = "buildBundles"
-        case computedminmacosversion = "computedMinMacOsVersion"
-        case diagnosticsignatures = "diagnosticSignatures"
+        case version = "version"
+        case uploadeddate = "uploadedDate"
         case expirationdate = "expirationDate"
         case expired = "expired"
-        case iconassettoken = "iconAssetToken"
-        case icons = "icons"
-        case individualtesters = "individualTesters"
-        case lsminimumsystemversion = "lsMinimumSystemVersion"
         case minosversion = "minOsVersion"
-        case perfpowermetrics = "perfPowerMetrics"
-        case prereleaseversion = "preReleaseVersion"
+        case lsminimumsystemversion = "lsMinimumSystemVersion"
+        case computedminmacosversion = "computedMinMacOsVersion"
+        case iconassettoken = "iconAssetToken"
         case processingstate = "processingState"
-        case uploadeddate = "uploadedDate"
+        case buildaudiencetype = "buildAudienceType"
         case usesnonexemptencryption = "usesNonExemptEncryption"
-        case version = "version"
+        case prereleaseversion = "preReleaseVersion"
+        case individualtesters = "individualTesters"
+        case betagroups = "betaGroups"
+        case betabuildlocalizations = "betaBuildLocalizations"
+        case appencryptiondeclaration = "appEncryptionDeclaration"
+        case betaappreviewsubmission = "betaAppReviewSubmission"
+        case app = "app"
+        case buildbetadetail = "buildBetaDetail"
+        case appstoreversion = "appStoreVersion"
+        case icons = "icons"
+        case buildbundles = "buildBundles"
+        case perfpowermetrics = "perfPowerMetrics"
+        case diagnosticsignatures = "diagnosticSignatures"
     }
 
     /**
@@ -351,146 +342,52 @@ open class CiProductsAPI {
     }
 
     /**
-     * enum for parameter fieldsAppClips
+     * enum for parameter fieldsBetaAppReviewDetails
      */
-    public enum FieldsAppClips_ciProductsAppGetToOneRelated: String, CaseIterable {
+    public enum FieldsBetaAppReviewDetails_ciProductsAppGetToOneRelated: String, CaseIterable {
+        case contactfirstname = "contactFirstName"
+        case contactlastname = "contactLastName"
+        case contactphone = "contactPhone"
+        case contactemail = "contactEmail"
+        case demoaccountname = "demoAccountName"
+        case demoaccountpassword = "demoAccountPassword"
+        case demoaccountrequired = "demoAccountRequired"
+        case notes = "notes"
         case app = "app"
-        case appclipadvancedexperiences = "appClipAdvancedExperiences"
-        case appclipdefaultexperiences = "appClipDefaultExperiences"
-        case bundleid = "bundleId"
-    }
-
-    /**
-     * enum for parameter fieldsBetaAppLocalizations
-     */
-    public enum FieldsBetaAppLocalizations_ciProductsAppGetToOneRelated: String, CaseIterable {
-        case app = "app"
-        case description = "description"
-        case feedbackemail = "feedbackEmail"
-        case locale = "locale"
-        case marketingurl = "marketingUrl"
-        case privacypolicyurl = "privacyPolicyUrl"
-        case tvosprivacypolicy = "tvOsPrivacyPolicy"
     }
 
     /**
      * enum for parameter fieldsAppInfos
      */
     public enum FieldsAppInfos_ciProductsAppGetToOneRelated: String, CaseIterable {
-        case ageratingdeclaration = "ageRatingDeclaration"
-        case app = "app"
-        case appinfolocalizations = "appInfoLocalizations"
-        case appstoreagerating = "appStoreAgeRating"
         case appstorestate = "appStoreState"
+        case state = "state"
+        case appstoreagerating = "appStoreAgeRating"
+        case australiaagerating = "australiaAgeRating"
         case brazilagerating = "brazilAgeRating"
         case brazilageratingv2 = "brazilAgeRatingV2"
+        case franceagerating = "franceAgeRating"
+        case koreaagerating = "koreaAgeRating"
         case kidsageband = "kidsAgeBand"
+        case app = "app"
+        case ageratingdeclaration = "ageRatingDeclaration"
+        case appinfolocalizations = "appInfoLocalizations"
         case primarycategory = "primaryCategory"
         case primarysubcategoryone = "primarySubcategoryOne"
         case primarysubcategorytwo = "primarySubcategoryTwo"
         case secondarycategory = "secondaryCategory"
         case secondarysubcategoryone = "secondarySubcategoryOne"
         case secondarysubcategorytwo = "secondarySubcategoryTwo"
-        case state = "state"
     }
 
     /**
-     * enum for parameter fieldsPreReleaseVersions
+     * enum for parameter fieldsAppClips
      */
-    public enum FieldsPreReleaseVersions_ciProductsAppGetToOneRelated: String, CaseIterable {
+    public enum FieldsAppClips_ciProductsAppGetToOneRelated: String, CaseIterable {
+        case bundleid = "bundleId"
         case app = "app"
-        case builds = "builds"
-        case platform = "platform"
-        case version = "version"
-    }
-
-    /**
-     * enum for parameter fieldsInAppPurchases
-     */
-    public enum FieldsInAppPurchases_ciProductsAppGetToOneRelated: String, CaseIterable {
-        case app = "app"
-        case appstorereviewscreenshot = "appStoreReviewScreenshot"
-        case apps = "apps"
-        case content = "content"
-        case contenthosting = "contentHosting"
-        case familysharable = "familySharable"
-        case iappriceschedule = "iapPriceSchedule"
-        case inapppurchaseavailability = "inAppPurchaseAvailability"
-        case inapppurchaselocalizations = "inAppPurchaseLocalizations"
-        case inapppurchasetype = "inAppPurchaseType"
-        case name = "name"
-        case pricepoints = "pricePoints"
-        case productid = "productId"
-        case promotedpurchase = "promotedPurchase"
-        case referencename = "referenceName"
-        case reviewnote = "reviewNote"
-        case state = "state"
-    }
-
-    /**
-     * enum for parameter fieldsSubscriptionGroups
-     */
-    public enum FieldsSubscriptionGroups_ciProductsAppGetToOneRelated: String, CaseIterable {
-        case app = "app"
-        case referencename = "referenceName"
-        case subscriptiongrouplocalizations = "subscriptionGroupLocalizations"
-        case subscriptions = "subscriptions"
-    }
-
-    /**
-     * enum for parameter fieldsAppPreOrders
-     */
-    public enum FieldsAppPreOrders_ciProductsAppGetToOneRelated: String, CaseIterable {
-        case app = "app"
-        case appreleasedate = "appReleaseDate"
-        case preorderavailabledate = "preOrderAvailableDate"
-    }
-
-    /**
-     * enum for parameter fieldsAppPrices
-     */
-    public enum FieldsAppPrices_ciProductsAppGetToOneRelated: String, CaseIterable {
-        case app = "app"
-        case pricetier = "priceTier"
-    }
-
-    /**
-     * enum for parameter fieldsGameCenterEnabledVersions
-     */
-    public enum FieldsGameCenterEnabledVersions_ciProductsAppGetToOneRelated: String, CaseIterable {
-        case app = "app"
-        case compatibleversions = "compatibleVersions"
-        case iconasset = "iconAsset"
-        case platform = "platform"
-        case versionstring = "versionString"
-    }
-
-    /**
-     * enum for parameter fieldsAppStoreVersionExperiments
-     */
-    public enum FieldsAppStoreVersionExperiments_ciProductsAppGetToOneRelated: String, CaseIterable {
-        case app = "app"
-        case appstoreversionexperimenttreatments = "appStoreVersionExperimentTreatments"
-        case controlversions = "controlVersions"
-        case enddate = "endDate"
-        case latestcontrolversion = "latestControlVersion"
-        case name = "name"
-        case platform = "platform"
-        case reviewrequired = "reviewRequired"
-        case startdate = "startDate"
-        case started = "started"
-        case state = "state"
-        case trafficproportion = "trafficProportion"
-    }
-
-    /**
-     * enum for parameter fieldsSubscriptionGracePeriods
-     */
-    public enum FieldsSubscriptionGracePeriods_ciProductsAppGetToOneRelated: String, CaseIterable {
-        case duration = "duration"
-        case optin = "optIn"
-        case renewaltype = "renewalType"
-        case sandboxoptin = "sandboxOptIn"
+        case appclipdefaultexperiences = "appClipDefaultExperiences"
+        case appclipadvancedexperiences = "appClipAdvancedExperiences"
     }
 
     /**
@@ -503,138 +400,204 @@ open class CiProductsAPI {
     }
 
     /**
-     * enum for parameter fieldsAppStoreVersions
+     * enum for parameter fieldsInAppPurchases
      */
-    public enum FieldsAppStoreVersions_ciProductsAppGetToOneRelated: String, CaseIterable {
-        case ageratingdeclaration = "ageRatingDeclaration"
-        case alternativedistributionpackage = "alternativeDistributionPackage"
-        case app = "app"
-        case appclipdefaultexperience = "appClipDefaultExperience"
-        case appstorereviewdetail = "appStoreReviewDetail"
-        case appstorestate = "appStoreState"
-        case appstoreversionexperiments = "appStoreVersionExperiments"
-        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
-        case appstoreversionlocalizations = "appStoreVersionLocalizations"
-        case appstoreversionphasedrelease = "appStoreVersionPhasedRelease"
-        case appstoreversionsubmission = "appStoreVersionSubmission"
-        case appversionstate = "appVersionState"
-        case build = "build"
-        case copyright = "copyright"
-        case createddate = "createdDate"
-        case customerreviews = "customerReviews"
-        case downloadable = "downloadable"
-        case earliestreleasedate = "earliestReleaseDate"
-        case platform = "platform"
-        case releasetype = "releaseType"
-        case reviewtype = "reviewType"
-        case routingappcoverage = "routingAppCoverage"
-        case versionstring = "versionString"
+    public enum FieldsInAppPurchases_ciProductsAppGetToOneRelated: String, CaseIterable {
+        case referencename = "referenceName"
+        case productid = "productId"
+        case inapppurchasetype = "inAppPurchaseType"
+        case state = "state"
+        case apps = "apps"
+        case name = "name"
+        case reviewnote = "reviewNote"
+        case familysharable = "familySharable"
+        case contenthosting = "contentHosting"
+        case inapppurchaselocalizations = "inAppPurchaseLocalizations"
+        case pricepoints = "pricePoints"
+        case content = "content"
+        case appstorereviewscreenshot = "appStoreReviewScreenshot"
+        case promotedpurchase = "promotedPurchase"
+        case iappriceschedule = "iapPriceSchedule"
+        case inapppurchaseavailability = "inAppPurchaseAvailability"
+        case images = "images"
     }
 
     /**
-     * enum for parameter fieldsAppEncryptionDeclarations
+     * enum for parameter fieldsSubscriptionGroups
      */
-    public enum FieldsAppEncryptionDeclarations_ciProductsAppGetToOneRelated: String, CaseIterable {
-        case app = "app"
-        case appdescription = "appDescription"
-        case appencryptiondeclarationdocument = "appEncryptionDeclarationDocument"
-        case appencryptiondeclarationstate = "appEncryptionDeclarationState"
-        case availableonfrenchstore = "availableOnFrenchStore"
-        case builds = "builds"
-        case codevalue = "codeValue"
-        case containsproprietarycryptography = "containsProprietaryCryptography"
-        case containsthirdpartycryptography = "containsThirdPartyCryptography"
-        case createddate = "createdDate"
-        case documentname = "documentName"
-        case documenttype = "documentType"
-        case documenturl = "documentUrl"
-        case exempt = "exempt"
+    public enum FieldsSubscriptionGroups_ciProductsAppGetToOneRelated: String, CaseIterable {
+        case referencename = "referenceName"
+        case subscriptions = "subscriptions"
+        case subscriptiongrouplocalizations = "subscriptionGroupLocalizations"
+    }
+
+    /**
+     * enum for parameter fieldsGameCenterEnabledVersions
+     */
+    public enum FieldsGameCenterEnabledVersions_ciProductsAppGetToOneRelated: String, CaseIterable {
         case platform = "platform"
-        case uploadeddate = "uploadedDate"
-        case usesencryption = "usesEncryption"
+        case versionstring = "versionString"
+        case iconasset = "iconAsset"
+        case compatibleversions = "compatibleVersions"
+        case app = "app"
     }
 
     /**
      * enum for parameter fieldsAppCustomProductPages
      */
     public enum FieldsAppCustomProductPages_ciProductsAppGetToOneRelated: String, CaseIterable {
-        case app = "app"
-        case appcustomproductpageversions = "appCustomProductPageVersions"
-        case appstoreversiontemplate = "appStoreVersionTemplate"
-        case customproductpagetemplate = "customProductPageTemplate"
         case name = "name"
         case url = "url"
         case visible = "visible"
+        case app = "app"
+        case appcustomproductpageversions = "appCustomProductPageVersions"
     }
 
     /**
-     * enum for parameter fieldsTerritories
+     * enum for parameter fieldsPromotedPurchases
      */
-    public enum FieldsTerritories_ciProductsAppGetToOneRelated: String, CaseIterable {
-        case currency = "currency"
+    public enum FieldsPromotedPurchases_ciProductsAppGetToOneRelated: String, CaseIterable {
+        case visibleforallusers = "visibleForAllUsers"
+        case enabled = "enabled"
+        case state = "state"
+        case inapppurchasev2 = "inAppPurchaseV2"
+        case subscription = "subscription"
+        case promotionimages = "promotionImages"
+    }
+
+    /**
+     * enum for parameter fieldsAppEvents
+     */
+    public enum FieldsAppEvents_ciProductsAppGetToOneRelated: String, CaseIterable {
+        case referencename = "referenceName"
+        case badge = "badge"
+        case eventstate = "eventState"
+        case deeplink = "deepLink"
+        case purchaserequirement = "purchaseRequirement"
+        case primarylocale = "primaryLocale"
+        case priority = "priority"
+        case purpose = "purpose"
+        case territoryschedules = "territorySchedules"
+        case archivedterritoryschedules = "archivedTerritorySchedules"
+        case localizations = "localizations"
+    }
+
+    /**
+     * enum for parameter fieldsReviewSubmissions
+     */
+    public enum FieldsReviewSubmissions_ciProductsAppGetToOneRelated: String, CaseIterable {
+        case platform = "platform"
+        case submitteddate = "submittedDate"
+        case state = "state"
+        case app = "app"
+        case items = "items"
+        case appstoreversionforreview = "appStoreVersionForReview"
+        case submittedbyactor = "submittedByActor"
+        case lastupdatedbyactor = "lastUpdatedByActor"
+    }
+
+    /**
+     * enum for parameter fieldsSubscriptionGracePeriods
+     */
+    public enum FieldsSubscriptionGracePeriods_ciProductsAppGetToOneRelated: String, CaseIterable {
+        case optin = "optIn"
+        case sandboxoptin = "sandboxOptIn"
+        case duration = "duration"
+        case renewaltype = "renewalType"
+    }
+
+    /**
+     * enum for parameter fieldsGameCenterDetails
+     */
+    public enum FieldsGameCenterDetails_ciProductsAppGetToOneRelated: String, CaseIterable {
+        case arcadeenabled = "arcadeEnabled"
+        case challengeenabled = "challengeEnabled"
+        case app = "app"
+        case gamecenterappversions = "gameCenterAppVersions"
+        case gamecentergroup = "gameCenterGroup"
+        case gamecenterleaderboards = "gameCenterLeaderboards"
+        case gamecenterleaderboardsets = "gameCenterLeaderboardSets"
+        case gamecenterachievements = "gameCenterAchievements"
+        case defaultleaderboard = "defaultLeaderboard"
+        case defaultgroupleaderboard = "defaultGroupLeaderboard"
+        case achievementreleases = "achievementReleases"
+        case leaderboardreleases = "leaderboardReleases"
+        case leaderboardsetreleases = "leaderboardSetReleases"
+    }
+
+    /**
+     * enum for parameter fieldsAppStoreVersionExperiments
+     */
+    public enum FieldsAppStoreVersionExperiments_ciProductsAppGetToOneRelated: String, CaseIterable {
+        case name = "name"
+        case platform = "platform"
+        case trafficproportion = "trafficProportion"
+        case state = "state"
+        case reviewrequired = "reviewRequired"
+        case startdate = "startDate"
+        case enddate = "endDate"
+        case app = "app"
+        case latestcontrolversion = "latestControlVersion"
+        case controlversions = "controlVersions"
+        case appstoreversionexperimenttreatments = "appStoreVersionExperimentTreatments"
     }
 
     /**
      * enum for parameter include
      */
     public enum Include_ciProductsAppGetToOneRelated: String, CaseIterable {
-        case appclips = "appClips"
-        case appcustomproductpages = "appCustomProductPages"
         case appencryptiondeclarations = "appEncryptionDeclarations"
-        case appevents = "appEvents"
-        case appinfos = "appInfos"
-        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
-        case appstoreversions = "appStoreVersions"
-        case availableterritories = "availableTerritories"
-        case betaapplocalizations = "betaAppLocalizations"
-        case betaappreviewdetail = "betaAppReviewDetail"
-        case betagroups = "betaGroups"
-        case betalicenseagreement = "betaLicenseAgreement"
-        case builds = "builds"
         case ciproduct = "ciProduct"
-        case enduserlicenseagreement = "endUserLicenseAgreement"
-        case gamecenterdetail = "gameCenterDetail"
-        case gamecenterenabledversions = "gameCenterEnabledVersions"
-        case inapppurchases = "inAppPurchases"
-        case inapppurchasesv2 = "inAppPurchasesV2"
-        case preorder = "preOrder"
+        case betagroups = "betaGroups"
+        case appstoreversions = "appStoreVersions"
         case prereleaseversions = "preReleaseVersions"
-        case prices = "prices"
+        case betaapplocalizations = "betaAppLocalizations"
+        case builds = "builds"
+        case betalicenseagreement = "betaLicenseAgreement"
+        case betaappreviewdetail = "betaAppReviewDetail"
+        case appinfos = "appInfos"
+        case appclips = "appClips"
+        case enduserlicenseagreement = "endUserLicenseAgreement"
+        case inapppurchases = "inAppPurchases"
+        case subscriptiongroups = "subscriptionGroups"
+        case gamecenterenabledversions = "gameCenterEnabledVersions"
+        case appcustomproductpages = "appCustomProductPages"
+        case inapppurchasesv2 = "inAppPurchasesV2"
         case promotedpurchases = "promotedPurchases"
+        case appevents = "appEvents"
         case reviewsubmissions = "reviewSubmissions"
         case subscriptiongraceperiod = "subscriptionGracePeriod"
-        case subscriptiongroups = "subscriptionGroups"
+        case gamecenterdetail = "gameCenterDetail"
+        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
-     - parameter fieldsBetaAppReviewDetails: (query) the fields to include for returned resources of type betaAppReviewDetails (optional)
-     - parameter fieldsGameCenterDetails: (query) the fields to include for returned resources of type gameCenterDetails (optional)
-     - parameter fieldsCiProducts: (query) the fields to include for returned resources of type ciProducts (optional)
-     - parameter fieldsReviewSubmissions: (query) the fields to include for returned resources of type reviewSubmissions (optional)
-     - parameter fieldsBetaGroups: (query) the fields to include for returned resources of type betaGroups (optional)
-     - parameter fieldsPromotedPurchases: (query) the fields to include for returned resources of type promotedPurchases (optional)
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
-     - parameter fieldsAppEvents: (query) the fields to include for returned resources of type appEvents (optional)
+     - parameter fieldsAppEncryptionDeclarations: (query) the fields to include for returned resources of type appEncryptionDeclarations (optional)
+     - parameter fieldsCiProducts: (query) the fields to include for returned resources of type ciProducts (optional)
+     - parameter fieldsBetaGroups: (query) the fields to include for returned resources of type betaGroups (optional)
+     - parameter fieldsAppStoreVersions: (query) the fields to include for returned resources of type appStoreVersions (optional)
+     - parameter fieldsPreReleaseVersions: (query) the fields to include for returned resources of type preReleaseVersions (optional)
+     - parameter fieldsBetaAppLocalizations: (query) the fields to include for returned resources of type betaAppLocalizations (optional)
      - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
      - parameter fieldsBetaLicenseAgreements: (query) the fields to include for returned resources of type betaLicenseAgreements (optional)
-     - parameter fieldsAppClips: (query) the fields to include for returned resources of type appClips (optional)
-     - parameter fieldsBetaAppLocalizations: (query) the fields to include for returned resources of type betaAppLocalizations (optional)
+     - parameter fieldsBetaAppReviewDetails: (query) the fields to include for returned resources of type betaAppReviewDetails (optional)
      - parameter fieldsAppInfos: (query) the fields to include for returned resources of type appInfos (optional)
-     - parameter fieldsPreReleaseVersions: (query) the fields to include for returned resources of type preReleaseVersions (optional)
+     - parameter fieldsAppClips: (query) the fields to include for returned resources of type appClips (optional)
+     - parameter fieldsEndUserLicenseAgreements: (query) the fields to include for returned resources of type endUserLicenseAgreements (optional)
      - parameter fieldsInAppPurchases: (query) the fields to include for returned resources of type inAppPurchases (optional)
      - parameter fieldsSubscriptionGroups: (query) the fields to include for returned resources of type subscriptionGroups (optional)
-     - parameter fieldsAppPreOrders: (query) the fields to include for returned resources of type appPreOrders (optional)
-     - parameter fieldsAppPrices: (query) the fields to include for returned resources of type appPrices (optional)
      - parameter fieldsGameCenterEnabledVersions: (query) the fields to include for returned resources of type gameCenterEnabledVersions (optional)
-     - parameter fieldsAppStoreVersionExperiments: (query) the fields to include for returned resources of type appStoreVersionExperiments (optional)
-     - parameter fieldsSubscriptionGracePeriods: (query) the fields to include for returned resources of type subscriptionGracePeriods (optional)
-     - parameter fieldsEndUserLicenseAgreements: (query) the fields to include for returned resources of type endUserLicenseAgreements (optional)
-     - parameter fieldsAppStoreVersions: (query) the fields to include for returned resources of type appStoreVersions (optional)
-     - parameter fieldsAppEncryptionDeclarations: (query) the fields to include for returned resources of type appEncryptionDeclarations (optional)
      - parameter fieldsAppCustomProductPages: (query) the fields to include for returned resources of type appCustomProductPages (optional)
-     - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
+     - parameter fieldsPromotedPurchases: (query) the fields to include for returned resources of type promotedPurchases (optional)
+     - parameter fieldsAppEvents: (query) the fields to include for returned resources of type appEvents (optional)
+     - parameter fieldsReviewSubmissions: (query) the fields to include for returned resources of type reviewSubmissions (optional)
+     - parameter fieldsSubscriptionGracePeriods: (query) the fields to include for returned resources of type subscriptionGracePeriods (optional)
+     - parameter fieldsGameCenterDetails: (query) the fields to include for returned resources of type gameCenterDetails (optional)
+     - parameter fieldsAppStoreVersionExperiments: (query) the fields to include for returned resources of type appStoreVersionExperiments (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAppEncryptionDeclarations: (query) maximum number of related appEncryptionDeclarations returned (when they are included) (optional)
      - parameter limitBetaGroups: (query) maximum number of related betaGroups returned (when they are included) (optional)
      - parameter limitAppStoreVersions: (query) maximum number of related appStoreVersions returned (when they are included) (optional)
@@ -643,8 +606,6 @@ open class CiProductsAPI {
      - parameter limitBuilds: (query) maximum number of related builds returned (when they are included) (optional)
      - parameter limitAppInfos: (query) maximum number of related appInfos returned (when they are included) (optional)
      - parameter limitAppClips: (query) maximum number of related appClips returned (when they are included) (optional)
-     - parameter limitPrices: (query) maximum number of related prices returned (when they are included) (optional)
-     - parameter limitAvailableTerritories: (query) maximum number of related availableTerritories returned (when they are included) (optional)
      - parameter limitInAppPurchases: (query) maximum number of related inAppPurchases returned (when they are included) (optional)
      - parameter limitSubscriptionGroups: (query) maximum number of related subscriptionGroups returned (when they are included) (optional)
      - parameter limitGameCenterEnabledVersions: (query) maximum number of related gameCenterEnabledVersions returned (when they are included) (optional)
@@ -654,12 +615,11 @@ open class CiProductsAPI {
      - parameter limitAppEvents: (query) maximum number of related appEvents returned (when they are included) (optional)
      - parameter limitReviewSubmissions: (query) maximum number of related reviewSubmissions returned (when they are included) (optional)
      - parameter limitAppStoreVersionExperimentsV2: (query) maximum number of related appStoreVersionExperimentsV2 returned (when they are included) (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: AppResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciProductsAppGetToOneRelated(id: String, fieldsBetaAppReviewDetails: [FieldsBetaAppReviewDetails_ciProductsAppGetToOneRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_ciProductsAppGetToOneRelated]? = nil, fieldsCiProducts: [FieldsCiProducts_ciProductsAppGetToOneRelated]? = nil, fieldsReviewSubmissions: [FieldsReviewSubmissions_ciProductsAppGetToOneRelated]? = nil, fieldsBetaGroups: [FieldsBetaGroups_ciProductsAppGetToOneRelated]? = nil, fieldsPromotedPurchases: [FieldsPromotedPurchases_ciProductsAppGetToOneRelated]? = nil, fieldsApps: [FieldsApps_ciProductsAppGetToOneRelated]? = nil, fieldsAppEvents: [FieldsAppEvents_ciProductsAppGetToOneRelated]? = nil, fieldsBuilds: [FieldsBuilds_ciProductsAppGetToOneRelated]? = nil, fieldsBetaLicenseAgreements: [FieldsBetaLicenseAgreements_ciProductsAppGetToOneRelated]? = nil, fieldsAppClips: [FieldsAppClips_ciProductsAppGetToOneRelated]? = nil, fieldsBetaAppLocalizations: [FieldsBetaAppLocalizations_ciProductsAppGetToOneRelated]? = nil, fieldsAppInfos: [FieldsAppInfos_ciProductsAppGetToOneRelated]? = nil, fieldsPreReleaseVersions: [FieldsPreReleaseVersions_ciProductsAppGetToOneRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_ciProductsAppGetToOneRelated]? = nil, fieldsSubscriptionGroups: [FieldsSubscriptionGroups_ciProductsAppGetToOneRelated]? = nil, fieldsAppPreOrders: [FieldsAppPreOrders_ciProductsAppGetToOneRelated]? = nil, fieldsAppPrices: [FieldsAppPrices_ciProductsAppGetToOneRelated]? = nil, fieldsGameCenterEnabledVersions: [FieldsGameCenterEnabledVersions_ciProductsAppGetToOneRelated]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_ciProductsAppGetToOneRelated]? = nil, fieldsSubscriptionGracePeriods: [FieldsSubscriptionGracePeriods_ciProductsAppGetToOneRelated]? = nil, fieldsEndUserLicenseAgreements: [FieldsEndUserLicenseAgreements_ciProductsAppGetToOneRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_ciProductsAppGetToOneRelated]? = nil, fieldsAppEncryptionDeclarations: [FieldsAppEncryptionDeclarations_ciProductsAppGetToOneRelated]? = nil, fieldsAppCustomProductPages: [FieldsAppCustomProductPages_ciProductsAppGetToOneRelated]? = nil, fieldsTerritories: [FieldsTerritories_ciProductsAppGetToOneRelated]? = nil, limitAppEncryptionDeclarations: Int? = nil, limitBetaGroups: Int? = nil, limitAppStoreVersions: Int? = nil, limitPreReleaseVersions: Int? = nil, limitBetaAppLocalizations: Int? = nil, limitBuilds: Int? = nil, limitAppInfos: Int? = nil, limitAppClips: Int? = nil, limitPrices: Int? = nil, limitAvailableTerritories: Int? = nil, limitInAppPurchases: Int? = nil, limitSubscriptionGroups: Int? = nil, limitGameCenterEnabledVersions: Int? = nil, limitAppCustomProductPages: Int? = nil, limitInAppPurchasesV2: Int? = nil, limitPromotedPurchases: Int? = nil, limitAppEvents: Int? = nil, limitReviewSubmissions: Int? = nil, limitAppStoreVersionExperimentsV2: Int? = nil, include: [Include_ciProductsAppGetToOneRelated]? = nil) async throws -> AppResponse {
-        return try await ciProductsAppGetToOneRelatedWithRequestBuilder(id: id, fieldsBetaAppReviewDetails: fieldsBetaAppReviewDetails, fieldsGameCenterDetails: fieldsGameCenterDetails, fieldsCiProducts: fieldsCiProducts, fieldsReviewSubmissions: fieldsReviewSubmissions, fieldsBetaGroups: fieldsBetaGroups, fieldsPromotedPurchases: fieldsPromotedPurchases, fieldsApps: fieldsApps, fieldsAppEvents: fieldsAppEvents, fieldsBuilds: fieldsBuilds, fieldsBetaLicenseAgreements: fieldsBetaLicenseAgreements, fieldsAppClips: fieldsAppClips, fieldsBetaAppLocalizations: fieldsBetaAppLocalizations, fieldsAppInfos: fieldsAppInfos, fieldsPreReleaseVersions: fieldsPreReleaseVersions, fieldsInAppPurchases: fieldsInAppPurchases, fieldsSubscriptionGroups: fieldsSubscriptionGroups, fieldsAppPreOrders: fieldsAppPreOrders, fieldsAppPrices: fieldsAppPrices, fieldsGameCenterEnabledVersions: fieldsGameCenterEnabledVersions, fieldsAppStoreVersionExperiments: fieldsAppStoreVersionExperiments, fieldsSubscriptionGracePeriods: fieldsSubscriptionGracePeriods, fieldsEndUserLicenseAgreements: fieldsEndUserLicenseAgreements, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsAppEncryptionDeclarations: fieldsAppEncryptionDeclarations, fieldsAppCustomProductPages: fieldsAppCustomProductPages, fieldsTerritories: fieldsTerritories, limitAppEncryptionDeclarations: limitAppEncryptionDeclarations, limitBetaGroups: limitBetaGroups, limitAppStoreVersions: limitAppStoreVersions, limitPreReleaseVersions: limitPreReleaseVersions, limitBetaAppLocalizations: limitBetaAppLocalizations, limitBuilds: limitBuilds, limitAppInfos: limitAppInfos, limitAppClips: limitAppClips, limitPrices: limitPrices, limitAvailableTerritories: limitAvailableTerritories, limitInAppPurchases: limitInAppPurchases, limitSubscriptionGroups: limitSubscriptionGroups, limitGameCenterEnabledVersions: limitGameCenterEnabledVersions, limitAppCustomProductPages: limitAppCustomProductPages, limitInAppPurchasesV2: limitInAppPurchasesV2, limitPromotedPurchases: limitPromotedPurchases, limitAppEvents: limitAppEvents, limitReviewSubmissions: limitReviewSubmissions, limitAppStoreVersionExperimentsV2: limitAppStoreVersionExperimentsV2, include: include).execute().body
+    open class func ciProductsAppGetToOneRelated(id: String, fieldsApps: [FieldsApps_ciProductsAppGetToOneRelated]? = nil, fieldsAppEncryptionDeclarations: [FieldsAppEncryptionDeclarations_ciProductsAppGetToOneRelated]? = nil, fieldsCiProducts: [FieldsCiProducts_ciProductsAppGetToOneRelated]? = nil, fieldsBetaGroups: [FieldsBetaGroups_ciProductsAppGetToOneRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_ciProductsAppGetToOneRelated]? = nil, fieldsPreReleaseVersions: [FieldsPreReleaseVersions_ciProductsAppGetToOneRelated]? = nil, fieldsBetaAppLocalizations: [FieldsBetaAppLocalizations_ciProductsAppGetToOneRelated]? = nil, fieldsBuilds: [FieldsBuilds_ciProductsAppGetToOneRelated]? = nil, fieldsBetaLicenseAgreements: [FieldsBetaLicenseAgreements_ciProductsAppGetToOneRelated]? = nil, fieldsBetaAppReviewDetails: [FieldsBetaAppReviewDetails_ciProductsAppGetToOneRelated]? = nil, fieldsAppInfos: [FieldsAppInfos_ciProductsAppGetToOneRelated]? = nil, fieldsAppClips: [FieldsAppClips_ciProductsAppGetToOneRelated]? = nil, fieldsEndUserLicenseAgreements: [FieldsEndUserLicenseAgreements_ciProductsAppGetToOneRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_ciProductsAppGetToOneRelated]? = nil, fieldsSubscriptionGroups: [FieldsSubscriptionGroups_ciProductsAppGetToOneRelated]? = nil, fieldsGameCenterEnabledVersions: [FieldsGameCenterEnabledVersions_ciProductsAppGetToOneRelated]? = nil, fieldsAppCustomProductPages: [FieldsAppCustomProductPages_ciProductsAppGetToOneRelated]? = nil, fieldsPromotedPurchases: [FieldsPromotedPurchases_ciProductsAppGetToOneRelated]? = nil, fieldsAppEvents: [FieldsAppEvents_ciProductsAppGetToOneRelated]? = nil, fieldsReviewSubmissions: [FieldsReviewSubmissions_ciProductsAppGetToOneRelated]? = nil, fieldsSubscriptionGracePeriods: [FieldsSubscriptionGracePeriods_ciProductsAppGetToOneRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_ciProductsAppGetToOneRelated]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_ciProductsAppGetToOneRelated]? = nil, include: [Include_ciProductsAppGetToOneRelated]? = nil, limitAppEncryptionDeclarations: Int? = nil, limitBetaGroups: Int? = nil, limitAppStoreVersions: Int? = nil, limitPreReleaseVersions: Int? = nil, limitBetaAppLocalizations: Int? = nil, limitBuilds: Int? = nil, limitAppInfos: Int? = nil, limitAppClips: Int? = nil, limitInAppPurchases: Int? = nil, limitSubscriptionGroups: Int? = nil, limitGameCenterEnabledVersions: Int? = nil, limitAppCustomProductPages: Int? = nil, limitInAppPurchasesV2: Int? = nil, limitPromotedPurchases: Int? = nil, limitAppEvents: Int? = nil, limitReviewSubmissions: Int? = nil, limitAppStoreVersionExperimentsV2: Int? = nil) async throws -> AppResponse {
+        return try await ciProductsAppGetToOneRelatedWithRequestBuilder(id: id, fieldsApps: fieldsApps, fieldsAppEncryptionDeclarations: fieldsAppEncryptionDeclarations, fieldsCiProducts: fieldsCiProducts, fieldsBetaGroups: fieldsBetaGroups, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsPreReleaseVersions: fieldsPreReleaseVersions, fieldsBetaAppLocalizations: fieldsBetaAppLocalizations, fieldsBuilds: fieldsBuilds, fieldsBetaLicenseAgreements: fieldsBetaLicenseAgreements, fieldsBetaAppReviewDetails: fieldsBetaAppReviewDetails, fieldsAppInfos: fieldsAppInfos, fieldsAppClips: fieldsAppClips, fieldsEndUserLicenseAgreements: fieldsEndUserLicenseAgreements, fieldsInAppPurchases: fieldsInAppPurchases, fieldsSubscriptionGroups: fieldsSubscriptionGroups, fieldsGameCenterEnabledVersions: fieldsGameCenterEnabledVersions, fieldsAppCustomProductPages: fieldsAppCustomProductPages, fieldsPromotedPurchases: fieldsPromotedPurchases, fieldsAppEvents: fieldsAppEvents, fieldsReviewSubmissions: fieldsReviewSubmissions, fieldsSubscriptionGracePeriods: fieldsSubscriptionGracePeriods, fieldsGameCenterDetails: fieldsGameCenterDetails, fieldsAppStoreVersionExperiments: fieldsAppStoreVersionExperiments, include: include, limitAppEncryptionDeclarations: limitAppEncryptionDeclarations, limitBetaGroups: limitBetaGroups, limitAppStoreVersions: limitAppStoreVersions, limitPreReleaseVersions: limitPreReleaseVersions, limitBetaAppLocalizations: limitBetaAppLocalizations, limitBuilds: limitBuilds, limitAppInfos: limitAppInfos, limitAppClips: limitAppClips, limitInAppPurchases: limitInAppPurchases, limitSubscriptionGroups: limitSubscriptionGroups, limitGameCenterEnabledVersions: limitGameCenterEnabledVersions, limitAppCustomProductPages: limitAppCustomProductPages, limitInAppPurchasesV2: limitInAppPurchasesV2, limitPromotedPurchases: limitPromotedPurchases, limitAppEvents: limitAppEvents, limitReviewSubmissions: limitReviewSubmissions, limitAppStoreVersionExperimentsV2: limitAppStoreVersionExperimentsV2).execute().body
     }
 
     /**
@@ -677,32 +637,30 @@ open class CiProductsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
-     - parameter fieldsBetaAppReviewDetails: (query) the fields to include for returned resources of type betaAppReviewDetails (optional)
-     - parameter fieldsGameCenterDetails: (query) the fields to include for returned resources of type gameCenterDetails (optional)
-     - parameter fieldsCiProducts: (query) the fields to include for returned resources of type ciProducts (optional)
-     - parameter fieldsReviewSubmissions: (query) the fields to include for returned resources of type reviewSubmissions (optional)
-     - parameter fieldsBetaGroups: (query) the fields to include for returned resources of type betaGroups (optional)
-     - parameter fieldsPromotedPurchases: (query) the fields to include for returned resources of type promotedPurchases (optional)
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
-     - parameter fieldsAppEvents: (query) the fields to include for returned resources of type appEvents (optional)
+     - parameter fieldsAppEncryptionDeclarations: (query) the fields to include for returned resources of type appEncryptionDeclarations (optional)
+     - parameter fieldsCiProducts: (query) the fields to include for returned resources of type ciProducts (optional)
+     - parameter fieldsBetaGroups: (query) the fields to include for returned resources of type betaGroups (optional)
+     - parameter fieldsAppStoreVersions: (query) the fields to include for returned resources of type appStoreVersions (optional)
+     - parameter fieldsPreReleaseVersions: (query) the fields to include for returned resources of type preReleaseVersions (optional)
+     - parameter fieldsBetaAppLocalizations: (query) the fields to include for returned resources of type betaAppLocalizations (optional)
      - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
      - parameter fieldsBetaLicenseAgreements: (query) the fields to include for returned resources of type betaLicenseAgreements (optional)
-     - parameter fieldsAppClips: (query) the fields to include for returned resources of type appClips (optional)
-     - parameter fieldsBetaAppLocalizations: (query) the fields to include for returned resources of type betaAppLocalizations (optional)
+     - parameter fieldsBetaAppReviewDetails: (query) the fields to include for returned resources of type betaAppReviewDetails (optional)
      - parameter fieldsAppInfos: (query) the fields to include for returned resources of type appInfos (optional)
-     - parameter fieldsPreReleaseVersions: (query) the fields to include for returned resources of type preReleaseVersions (optional)
+     - parameter fieldsAppClips: (query) the fields to include for returned resources of type appClips (optional)
+     - parameter fieldsEndUserLicenseAgreements: (query) the fields to include for returned resources of type endUserLicenseAgreements (optional)
      - parameter fieldsInAppPurchases: (query) the fields to include for returned resources of type inAppPurchases (optional)
      - parameter fieldsSubscriptionGroups: (query) the fields to include for returned resources of type subscriptionGroups (optional)
-     - parameter fieldsAppPreOrders: (query) the fields to include for returned resources of type appPreOrders (optional)
-     - parameter fieldsAppPrices: (query) the fields to include for returned resources of type appPrices (optional)
      - parameter fieldsGameCenterEnabledVersions: (query) the fields to include for returned resources of type gameCenterEnabledVersions (optional)
-     - parameter fieldsAppStoreVersionExperiments: (query) the fields to include for returned resources of type appStoreVersionExperiments (optional)
-     - parameter fieldsSubscriptionGracePeriods: (query) the fields to include for returned resources of type subscriptionGracePeriods (optional)
-     - parameter fieldsEndUserLicenseAgreements: (query) the fields to include for returned resources of type endUserLicenseAgreements (optional)
-     - parameter fieldsAppStoreVersions: (query) the fields to include for returned resources of type appStoreVersions (optional)
-     - parameter fieldsAppEncryptionDeclarations: (query) the fields to include for returned resources of type appEncryptionDeclarations (optional)
      - parameter fieldsAppCustomProductPages: (query) the fields to include for returned resources of type appCustomProductPages (optional)
-     - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
+     - parameter fieldsPromotedPurchases: (query) the fields to include for returned resources of type promotedPurchases (optional)
+     - parameter fieldsAppEvents: (query) the fields to include for returned resources of type appEvents (optional)
+     - parameter fieldsReviewSubmissions: (query) the fields to include for returned resources of type reviewSubmissions (optional)
+     - parameter fieldsSubscriptionGracePeriods: (query) the fields to include for returned resources of type subscriptionGracePeriods (optional)
+     - parameter fieldsGameCenterDetails: (query) the fields to include for returned resources of type gameCenterDetails (optional)
+     - parameter fieldsAppStoreVersionExperiments: (query) the fields to include for returned resources of type appStoreVersionExperiments (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAppEncryptionDeclarations: (query) maximum number of related appEncryptionDeclarations returned (when they are included) (optional)
      - parameter limitBetaGroups: (query) maximum number of related betaGroups returned (when they are included) (optional)
      - parameter limitAppStoreVersions: (query) maximum number of related appStoreVersions returned (when they are included) (optional)
@@ -711,8 +669,6 @@ open class CiProductsAPI {
      - parameter limitBuilds: (query) maximum number of related builds returned (when they are included) (optional)
      - parameter limitAppInfos: (query) maximum number of related appInfos returned (when they are included) (optional)
      - parameter limitAppClips: (query) maximum number of related appClips returned (when they are included) (optional)
-     - parameter limitPrices: (query) maximum number of related prices returned (when they are included) (optional)
-     - parameter limitAvailableTerritories: (query) maximum number of related availableTerritories returned (when they are included) (optional)
      - parameter limitInAppPurchases: (query) maximum number of related inAppPurchases returned (when they are included) (optional)
      - parameter limitSubscriptionGroups: (query) maximum number of related subscriptionGroups returned (when they are included) (optional)
      - parameter limitGameCenterEnabledVersions: (query) maximum number of related gameCenterEnabledVersions returned (when they are included) (optional)
@@ -722,10 +678,9 @@ open class CiProductsAPI {
      - parameter limitAppEvents: (query) maximum number of related appEvents returned (when they are included) (optional)
      - parameter limitReviewSubmissions: (query) maximum number of related reviewSubmissions returned (when they are included) (optional)
      - parameter limitAppStoreVersionExperimentsV2: (query) maximum number of related appStoreVersionExperimentsV2 returned (when they are included) (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: RequestBuilder<AppResponse> 
      */
-    open class func ciProductsAppGetToOneRelatedWithRequestBuilder(id: String, fieldsBetaAppReviewDetails: [FieldsBetaAppReviewDetails_ciProductsAppGetToOneRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_ciProductsAppGetToOneRelated]? = nil, fieldsCiProducts: [FieldsCiProducts_ciProductsAppGetToOneRelated]? = nil, fieldsReviewSubmissions: [FieldsReviewSubmissions_ciProductsAppGetToOneRelated]? = nil, fieldsBetaGroups: [FieldsBetaGroups_ciProductsAppGetToOneRelated]? = nil, fieldsPromotedPurchases: [FieldsPromotedPurchases_ciProductsAppGetToOneRelated]? = nil, fieldsApps: [FieldsApps_ciProductsAppGetToOneRelated]? = nil, fieldsAppEvents: [FieldsAppEvents_ciProductsAppGetToOneRelated]? = nil, fieldsBuilds: [FieldsBuilds_ciProductsAppGetToOneRelated]? = nil, fieldsBetaLicenseAgreements: [FieldsBetaLicenseAgreements_ciProductsAppGetToOneRelated]? = nil, fieldsAppClips: [FieldsAppClips_ciProductsAppGetToOneRelated]? = nil, fieldsBetaAppLocalizations: [FieldsBetaAppLocalizations_ciProductsAppGetToOneRelated]? = nil, fieldsAppInfos: [FieldsAppInfos_ciProductsAppGetToOneRelated]? = nil, fieldsPreReleaseVersions: [FieldsPreReleaseVersions_ciProductsAppGetToOneRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_ciProductsAppGetToOneRelated]? = nil, fieldsSubscriptionGroups: [FieldsSubscriptionGroups_ciProductsAppGetToOneRelated]? = nil, fieldsAppPreOrders: [FieldsAppPreOrders_ciProductsAppGetToOneRelated]? = nil, fieldsAppPrices: [FieldsAppPrices_ciProductsAppGetToOneRelated]? = nil, fieldsGameCenterEnabledVersions: [FieldsGameCenterEnabledVersions_ciProductsAppGetToOneRelated]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_ciProductsAppGetToOneRelated]? = nil, fieldsSubscriptionGracePeriods: [FieldsSubscriptionGracePeriods_ciProductsAppGetToOneRelated]? = nil, fieldsEndUserLicenseAgreements: [FieldsEndUserLicenseAgreements_ciProductsAppGetToOneRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_ciProductsAppGetToOneRelated]? = nil, fieldsAppEncryptionDeclarations: [FieldsAppEncryptionDeclarations_ciProductsAppGetToOneRelated]? = nil, fieldsAppCustomProductPages: [FieldsAppCustomProductPages_ciProductsAppGetToOneRelated]? = nil, fieldsTerritories: [FieldsTerritories_ciProductsAppGetToOneRelated]? = nil, limitAppEncryptionDeclarations: Int? = nil, limitBetaGroups: Int? = nil, limitAppStoreVersions: Int? = nil, limitPreReleaseVersions: Int? = nil, limitBetaAppLocalizations: Int? = nil, limitBuilds: Int? = nil, limitAppInfos: Int? = nil, limitAppClips: Int? = nil, limitPrices: Int? = nil, limitAvailableTerritories: Int? = nil, limitInAppPurchases: Int? = nil, limitSubscriptionGroups: Int? = nil, limitGameCenterEnabledVersions: Int? = nil, limitAppCustomProductPages: Int? = nil, limitInAppPurchasesV2: Int? = nil, limitPromotedPurchases: Int? = nil, limitAppEvents: Int? = nil, limitReviewSubmissions: Int? = nil, limitAppStoreVersionExperimentsV2: Int? = nil, include: [Include_ciProductsAppGetToOneRelated]? = nil) -> RequestBuilder<AppResponse> {
+    open class func ciProductsAppGetToOneRelatedWithRequestBuilder(id: String, fieldsApps: [FieldsApps_ciProductsAppGetToOneRelated]? = nil, fieldsAppEncryptionDeclarations: [FieldsAppEncryptionDeclarations_ciProductsAppGetToOneRelated]? = nil, fieldsCiProducts: [FieldsCiProducts_ciProductsAppGetToOneRelated]? = nil, fieldsBetaGroups: [FieldsBetaGroups_ciProductsAppGetToOneRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_ciProductsAppGetToOneRelated]? = nil, fieldsPreReleaseVersions: [FieldsPreReleaseVersions_ciProductsAppGetToOneRelated]? = nil, fieldsBetaAppLocalizations: [FieldsBetaAppLocalizations_ciProductsAppGetToOneRelated]? = nil, fieldsBuilds: [FieldsBuilds_ciProductsAppGetToOneRelated]? = nil, fieldsBetaLicenseAgreements: [FieldsBetaLicenseAgreements_ciProductsAppGetToOneRelated]? = nil, fieldsBetaAppReviewDetails: [FieldsBetaAppReviewDetails_ciProductsAppGetToOneRelated]? = nil, fieldsAppInfos: [FieldsAppInfos_ciProductsAppGetToOneRelated]? = nil, fieldsAppClips: [FieldsAppClips_ciProductsAppGetToOneRelated]? = nil, fieldsEndUserLicenseAgreements: [FieldsEndUserLicenseAgreements_ciProductsAppGetToOneRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_ciProductsAppGetToOneRelated]? = nil, fieldsSubscriptionGroups: [FieldsSubscriptionGroups_ciProductsAppGetToOneRelated]? = nil, fieldsGameCenterEnabledVersions: [FieldsGameCenterEnabledVersions_ciProductsAppGetToOneRelated]? = nil, fieldsAppCustomProductPages: [FieldsAppCustomProductPages_ciProductsAppGetToOneRelated]? = nil, fieldsPromotedPurchases: [FieldsPromotedPurchases_ciProductsAppGetToOneRelated]? = nil, fieldsAppEvents: [FieldsAppEvents_ciProductsAppGetToOneRelated]? = nil, fieldsReviewSubmissions: [FieldsReviewSubmissions_ciProductsAppGetToOneRelated]? = nil, fieldsSubscriptionGracePeriods: [FieldsSubscriptionGracePeriods_ciProductsAppGetToOneRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_ciProductsAppGetToOneRelated]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_ciProductsAppGetToOneRelated]? = nil, include: [Include_ciProductsAppGetToOneRelated]? = nil, limitAppEncryptionDeclarations: Int? = nil, limitBetaGroups: Int? = nil, limitAppStoreVersions: Int? = nil, limitPreReleaseVersions: Int? = nil, limitBetaAppLocalizations: Int? = nil, limitBuilds: Int? = nil, limitAppInfos: Int? = nil, limitAppClips: Int? = nil, limitInAppPurchases: Int? = nil, limitSubscriptionGroups: Int? = nil, limitGameCenterEnabledVersions: Int? = nil, limitAppCustomProductPages: Int? = nil, limitInAppPurchasesV2: Int? = nil, limitPromotedPurchases: Int? = nil, limitAppEvents: Int? = nil, limitReviewSubmissions: Int? = nil, limitAppStoreVersionExperimentsV2: Int? = nil) -> RequestBuilder<AppResponse> {
         var localVariablePath = "/v1/ciProducts/{id}/app"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -735,32 +690,30 @@ open class CiProductsAPI {
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[betaAppReviewDetails]": (wrappedValue: fieldsBetaAppReviewDetails?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterDetails]": (wrappedValue: fieldsGameCenterDetails?.encodeToJSON(), isExplode: false),
-            "fields[ciProducts]": (wrappedValue: fieldsCiProducts?.encodeToJSON(), isExplode: false),
-            "fields[reviewSubmissions]": (wrappedValue: fieldsReviewSubmissions?.encodeToJSON(), isExplode: false),
-            "fields[betaGroups]": (wrappedValue: fieldsBetaGroups?.encodeToJSON(), isExplode: false),
-            "fields[promotedPurchases]": (wrappedValue: fieldsPromotedPurchases?.encodeToJSON(), isExplode: false),
             "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
-            "fields[appEvents]": (wrappedValue: fieldsAppEvents?.encodeToJSON(), isExplode: false),
+            "fields[appEncryptionDeclarations]": (wrappedValue: fieldsAppEncryptionDeclarations?.encodeToJSON(), isExplode: false),
+            "fields[ciProducts]": (wrappedValue: fieldsCiProducts?.encodeToJSON(), isExplode: false),
+            "fields[betaGroups]": (wrappedValue: fieldsBetaGroups?.encodeToJSON(), isExplode: false),
+            "fields[appStoreVersions]": (wrappedValue: fieldsAppStoreVersions?.encodeToJSON(), isExplode: false),
+            "fields[preReleaseVersions]": (wrappedValue: fieldsPreReleaseVersions?.encodeToJSON(), isExplode: false),
+            "fields[betaAppLocalizations]": (wrappedValue: fieldsBetaAppLocalizations?.encodeToJSON(), isExplode: false),
             "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(), isExplode: false),
             "fields[betaLicenseAgreements]": (wrappedValue: fieldsBetaLicenseAgreements?.encodeToJSON(), isExplode: false),
-            "fields[appClips]": (wrappedValue: fieldsAppClips?.encodeToJSON(), isExplode: false),
-            "fields[betaAppLocalizations]": (wrappedValue: fieldsBetaAppLocalizations?.encodeToJSON(), isExplode: false),
+            "fields[betaAppReviewDetails]": (wrappedValue: fieldsBetaAppReviewDetails?.encodeToJSON(), isExplode: false),
             "fields[appInfos]": (wrappedValue: fieldsAppInfos?.encodeToJSON(), isExplode: false),
-            "fields[preReleaseVersions]": (wrappedValue: fieldsPreReleaseVersions?.encodeToJSON(), isExplode: false),
+            "fields[appClips]": (wrappedValue: fieldsAppClips?.encodeToJSON(), isExplode: false),
+            "fields[endUserLicenseAgreements]": (wrappedValue: fieldsEndUserLicenseAgreements?.encodeToJSON(), isExplode: false),
             "fields[inAppPurchases]": (wrappedValue: fieldsInAppPurchases?.encodeToJSON(), isExplode: false),
             "fields[subscriptionGroups]": (wrappedValue: fieldsSubscriptionGroups?.encodeToJSON(), isExplode: false),
-            "fields[appPreOrders]": (wrappedValue: fieldsAppPreOrders?.encodeToJSON(), isExplode: false),
-            "fields[appPrices]": (wrappedValue: fieldsAppPrices?.encodeToJSON(), isExplode: false),
             "fields[gameCenterEnabledVersions]": (wrappedValue: fieldsGameCenterEnabledVersions?.encodeToJSON(), isExplode: false),
-            "fields[appStoreVersionExperiments]": (wrappedValue: fieldsAppStoreVersionExperiments?.encodeToJSON(), isExplode: false),
-            "fields[subscriptionGracePeriods]": (wrappedValue: fieldsSubscriptionGracePeriods?.encodeToJSON(), isExplode: false),
-            "fields[endUserLicenseAgreements]": (wrappedValue: fieldsEndUserLicenseAgreements?.encodeToJSON(), isExplode: false),
-            "fields[appStoreVersions]": (wrappedValue: fieldsAppStoreVersions?.encodeToJSON(), isExplode: false),
-            "fields[appEncryptionDeclarations]": (wrappedValue: fieldsAppEncryptionDeclarations?.encodeToJSON(), isExplode: false),
             "fields[appCustomProductPages]": (wrappedValue: fieldsAppCustomProductPages?.encodeToJSON(), isExplode: false),
-            "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(), isExplode: false),
+            "fields[promotedPurchases]": (wrappedValue: fieldsPromotedPurchases?.encodeToJSON(), isExplode: false),
+            "fields[appEvents]": (wrappedValue: fieldsAppEvents?.encodeToJSON(), isExplode: false),
+            "fields[reviewSubmissions]": (wrappedValue: fieldsReviewSubmissions?.encodeToJSON(), isExplode: false),
+            "fields[subscriptionGracePeriods]": (wrappedValue: fieldsSubscriptionGracePeriods?.encodeToJSON(), isExplode: false),
+            "fields[gameCenterDetails]": (wrappedValue: fieldsGameCenterDetails?.encodeToJSON(), isExplode: false),
+            "fields[appStoreVersionExperiments]": (wrappedValue: fieldsAppStoreVersionExperiments?.encodeToJSON(), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "limit[appEncryptionDeclarations]": (wrappedValue: limitAppEncryptionDeclarations?.encodeToJSON(), isExplode: true),
             "limit[betaGroups]": (wrappedValue: limitBetaGroups?.encodeToJSON(), isExplode: true),
             "limit[appStoreVersions]": (wrappedValue: limitAppStoreVersions?.encodeToJSON(), isExplode: true),
@@ -769,8 +722,6 @@ open class CiProductsAPI {
             "limit[builds]": (wrappedValue: limitBuilds?.encodeToJSON(), isExplode: true),
             "limit[appInfos]": (wrappedValue: limitAppInfos?.encodeToJSON(), isExplode: true),
             "limit[appClips]": (wrappedValue: limitAppClips?.encodeToJSON(), isExplode: true),
-            "limit[prices]": (wrappedValue: limitPrices?.encodeToJSON(), isExplode: true),
-            "limit[availableTerritories]": (wrappedValue: limitAvailableTerritories?.encodeToJSON(), isExplode: true),
             "limit[inAppPurchases]": (wrappedValue: limitInAppPurchases?.encodeToJSON(), isExplode: true),
             "limit[subscriptionGroups]": (wrappedValue: limitSubscriptionGroups?.encodeToJSON(), isExplode: true),
             "limit[gameCenterEnabledVersions]": (wrappedValue: limitGameCenterEnabledVersions?.encodeToJSON(), isExplode: true),
@@ -780,7 +731,6 @@ open class CiProductsAPI {
             "limit[appEvents]": (wrappedValue: limitAppEvents?.encodeToJSON(), isExplode: true),
             "limit[reviewSubmissions]": (wrappedValue: limitReviewSubmissions?.encodeToJSON(), isExplode: true),
             "limit[appStoreVersionExperimentsV2]": (wrappedValue: limitAppStoreVersionExperimentsV2?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -823,130 +773,128 @@ open class CiProductsAPI {
     }
 
     /**
-     * enum for parameter fieldsScmGitReferences
-     */
-    public enum FieldsScmGitReferences_ciProductsBuildRunsGetToManyRelated: String, CaseIterable {
-        case canonicalname = "canonicalName"
-        case isdeleted = "isDeleted"
-        case kind = "kind"
-        case name = "name"
-        case repository = "repository"
-    }
-
-    /**
      * enum for parameter fieldsCiBuildRuns
      */
     public enum FieldsCiBuildRuns_ciProductsBuildRunsGetToManyRelated: String, CaseIterable {
-        case actions = "actions"
-        case buildrun = "buildRun"
-        case builds = "builds"
-        case cancelreason = "cancelReason"
-        case clean = "clean"
-        case completionstatus = "completionStatus"
+        case number = "number"
         case createddate = "createdDate"
-        case destinationbranch = "destinationBranch"
-        case destinationcommit = "destinationCommit"
-        case executionprogress = "executionProgress"
+        case starteddate = "startedDate"
         case finisheddate = "finishedDate"
+        case sourcecommit = "sourceCommit"
+        case destinationcommit = "destinationCommit"
         case ispullrequestbuild = "isPullRequestBuild"
         case issuecounts = "issueCounts"
-        case number = "number"
-        case product = "product"
-        case pullrequest = "pullRequest"
-        case sourcebranchortag = "sourceBranchOrTag"
-        case sourcecommit = "sourceCommit"
+        case executionprogress = "executionProgress"
+        case completionstatus = "completionStatus"
         case startreason = "startReason"
-        case starteddate = "startedDate"
+        case cancelreason = "cancelReason"
+        case builds = "builds"
         case workflow = "workflow"
-    }
-
-    /**
-     * enum for parameter fieldsCiWorkflows
-     */
-    public enum FieldsCiWorkflows_ciProductsBuildRunsGetToManyRelated: String, CaseIterable {
-        case actions = "actions"
-        case branchstartcondition = "branchStartCondition"
-        case buildruns = "buildRuns"
-        case clean = "clean"
-        case containerfilepath = "containerFilePath"
-        case description = "description"
-        case isenabled = "isEnabled"
-        case islockedforediting = "isLockedForEditing"
-        case lastmodifieddate = "lastModifiedDate"
-        case macosversion = "macOsVersion"
-        case manualbranchstartcondition = "manualBranchStartCondition"
-        case manualpullrequeststartcondition = "manualPullRequestStartCondition"
-        case manualtagstartcondition = "manualTagStartCondition"
-        case name = "name"
         case product = "product"
-        case pullrequeststartcondition = "pullRequestStartCondition"
-        case repository = "repository"
-        case scheduledstartcondition = "scheduledStartCondition"
-        case tagstartcondition = "tagStartCondition"
-        case xcodeversion = "xcodeVersion"
-    }
-
-    /**
-     * enum for parameter fieldsScmPullRequests
-     */
-    public enum FieldsScmPullRequests_ciProductsBuildRunsGetToManyRelated: String, CaseIterable {
-        case destinationbranchname = "destinationBranchName"
-        case destinationrepositoryname = "destinationRepositoryName"
-        case destinationrepositoryowner = "destinationRepositoryOwner"
-        case isclosed = "isClosed"
-        case iscrossrepository = "isCrossRepository"
-        case number = "number"
-        case repository = "repository"
-        case sourcebranchname = "sourceBranchName"
-        case sourcerepositoryname = "sourceRepositoryName"
-        case sourcerepositoryowner = "sourceRepositoryOwner"
-        case title = "title"
-        case weburl = "webUrl"
-    }
-
-    /**
-     * enum for parameter fieldsCiProducts
-     */
-    public enum FieldsCiProducts_ciProductsBuildRunsGetToManyRelated: String, CaseIterable {
-        case additionalrepositories = "additionalRepositories"
-        case app = "app"
-        case buildruns = "buildRuns"
-        case bundleid = "bundleId"
-        case createddate = "createdDate"
-        case name = "name"
-        case primaryrepositories = "primaryRepositories"
-        case producttype = "productType"
-        case workflows = "workflows"
+        case sourcebranchortag = "sourceBranchOrTag"
+        case destinationbranch = "destinationBranch"
+        case actions = "actions"
+        case pullrequest = "pullRequest"
     }
 
     /**
      * enum for parameter fieldsBuilds
      */
     public enum FieldsBuilds_ciProductsBuildRunsGetToManyRelated: String, CaseIterable {
-        case app = "app"
-        case appencryptiondeclaration = "appEncryptionDeclaration"
-        case appstoreversion = "appStoreVersion"
-        case betaappreviewsubmission = "betaAppReviewSubmission"
-        case betabuildlocalizations = "betaBuildLocalizations"
-        case betagroups = "betaGroups"
-        case buildaudiencetype = "buildAudienceType"
-        case buildbetadetail = "buildBetaDetail"
-        case buildbundles = "buildBundles"
-        case computedminmacosversion = "computedMinMacOsVersion"
-        case diagnosticsignatures = "diagnosticSignatures"
+        case version = "version"
+        case uploadeddate = "uploadedDate"
         case expirationdate = "expirationDate"
         case expired = "expired"
-        case iconassettoken = "iconAssetToken"
-        case icons = "icons"
-        case individualtesters = "individualTesters"
-        case lsminimumsystemversion = "lsMinimumSystemVersion"
         case minosversion = "minOsVersion"
-        case perfpowermetrics = "perfPowerMetrics"
-        case prereleaseversion = "preReleaseVersion"
+        case lsminimumsystemversion = "lsMinimumSystemVersion"
+        case computedminmacosversion = "computedMinMacOsVersion"
+        case iconassettoken = "iconAssetToken"
         case processingstate = "processingState"
-        case uploadeddate = "uploadedDate"
+        case buildaudiencetype = "buildAudienceType"
         case usesnonexemptencryption = "usesNonExemptEncryption"
-        case version = "version"
+        case prereleaseversion = "preReleaseVersion"
+        case individualtesters = "individualTesters"
+        case betagroups = "betaGroups"
+        case betabuildlocalizations = "betaBuildLocalizations"
+        case appencryptiondeclaration = "appEncryptionDeclaration"
+        case betaappreviewsubmission = "betaAppReviewSubmission"
+        case app = "app"
+        case buildbetadetail = "buildBetaDetail"
+        case appstoreversion = "appStoreVersion"
+        case icons = "icons"
+        case buildbundles = "buildBundles"
+        case perfpowermetrics = "perfPowerMetrics"
+        case diagnosticsignatures = "diagnosticSignatures"
+    }
+
+    /**
+     * enum for parameter fieldsCiWorkflows
+     */
+    public enum FieldsCiWorkflows_ciProductsBuildRunsGetToManyRelated: String, CaseIterable {
+        case name = "name"
+        case description = "description"
+        case branchstartcondition = "branchStartCondition"
+        case tagstartcondition = "tagStartCondition"
+        case pullrequeststartcondition = "pullRequestStartCondition"
+        case scheduledstartcondition = "scheduledStartCondition"
+        case manualbranchstartcondition = "manualBranchStartCondition"
+        case manualtagstartcondition = "manualTagStartCondition"
+        case manualpullrequeststartcondition = "manualPullRequestStartCondition"
+        case actions = "actions"
+        case isenabled = "isEnabled"
+        case islockedforediting = "isLockedForEditing"
+        case clean = "clean"
+        case containerfilepath = "containerFilePath"
+        case lastmodifieddate = "lastModifiedDate"
+        case product = "product"
+        case repository = "repository"
+        case xcodeversion = "xcodeVersion"
+        case macosversion = "macOsVersion"
+        case buildruns = "buildRuns"
+    }
+
+    /**
+     * enum for parameter fieldsCiProducts
+     */
+    public enum FieldsCiProducts_ciProductsBuildRunsGetToManyRelated: String, CaseIterable {
+        case name = "name"
+        case createddate = "createdDate"
+        case producttype = "productType"
+        case app = "app"
+        case bundleid = "bundleId"
+        case workflows = "workflows"
+        case primaryrepositories = "primaryRepositories"
+        case additionalrepositories = "additionalRepositories"
+        case buildruns = "buildRuns"
+    }
+
+    /**
+     * enum for parameter fieldsScmGitReferences
+     */
+    public enum FieldsScmGitReferences_ciProductsBuildRunsGetToManyRelated: String, CaseIterable {
+        case name = "name"
+        case canonicalname = "canonicalName"
+        case isdeleted = "isDeleted"
+        case kind = "kind"
+        case repository = "repository"
+    }
+
+    /**
+     * enum for parameter fieldsScmPullRequests
+     */
+    public enum FieldsScmPullRequests_ciProductsBuildRunsGetToManyRelated: String, CaseIterable {
+        case title = "title"
+        case number = "number"
+        case weburl = "webUrl"
+        case sourcerepositoryowner = "sourceRepositoryOwner"
+        case sourcerepositoryname = "sourceRepositoryName"
+        case sourcebranchname = "sourceBranchName"
+        case destinationrepositoryowner = "destinationRepositoryOwner"
+        case destinationrepositoryname = "destinationRepositoryName"
+        case destinationbranchname = "destinationBranchName"
+        case isclosed = "isClosed"
+        case iscrossrepository = "isCrossRepository"
+        case repository = "repository"
     }
 
     /**
@@ -954,11 +902,11 @@ open class CiProductsAPI {
      */
     public enum Include_ciProductsBuildRunsGetToManyRelated: String, CaseIterable {
         case builds = "builds"
-        case destinationbranch = "destinationBranch"
-        case product = "product"
-        case pullrequest = "pullRequest"
-        case sourcebranchortag = "sourceBranchOrTag"
         case workflow = "workflow"
+        case product = "product"
+        case sourcebranchortag = "sourceBranchOrTag"
+        case destinationbranch = "destinationBranch"
+        case pullrequest = "pullRequest"
     }
 
     /**
@@ -966,20 +914,20 @@ open class CiProductsAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter filterBuilds: (query) filter by id(s) of related &#39;builds&#39; (optional)
      - parameter sort: (query) comma-separated list of sort expressions; resources will be sorted as specified (optional)
-     - parameter fieldsScmGitReferences: (query) the fields to include for returned resources of type scmGitReferences (optional)
      - parameter fieldsCiBuildRuns: (query) the fields to include for returned resources of type ciBuildRuns (optional)
-     - parameter fieldsCiWorkflows: (query) the fields to include for returned resources of type ciWorkflows (optional)
-     - parameter fieldsScmPullRequests: (query) the fields to include for returned resources of type scmPullRequests (optional)
-     - parameter fieldsCiProducts: (query) the fields to include for returned resources of type ciProducts (optional)
      - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
+     - parameter fieldsCiWorkflows: (query) the fields to include for returned resources of type ciWorkflows (optional)
+     - parameter fieldsCiProducts: (query) the fields to include for returned resources of type ciProducts (optional)
+     - parameter fieldsScmGitReferences: (query) the fields to include for returned resources of type scmGitReferences (optional)
+     - parameter fieldsScmPullRequests: (query) the fields to include for returned resources of type scmPullRequests (optional)
      - parameter limit: (query) maximum resources per page (optional)
-     - parameter limitBuilds: (query) maximum number of related builds returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitBuilds: (query) maximum number of related builds returned (when they are included) (optional)
      - returns: CiBuildRunsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciProductsBuildRunsGetToManyRelated(id: String, filterBuilds: [String]? = nil, sort: [Sort_ciProductsBuildRunsGetToManyRelated]? = nil, fieldsScmGitReferences: [FieldsScmGitReferences_ciProductsBuildRunsGetToManyRelated]? = nil, fieldsCiBuildRuns: [FieldsCiBuildRuns_ciProductsBuildRunsGetToManyRelated]? = nil, fieldsCiWorkflows: [FieldsCiWorkflows_ciProductsBuildRunsGetToManyRelated]? = nil, fieldsScmPullRequests: [FieldsScmPullRequests_ciProductsBuildRunsGetToManyRelated]? = nil, fieldsCiProducts: [FieldsCiProducts_ciProductsBuildRunsGetToManyRelated]? = nil, fieldsBuilds: [FieldsBuilds_ciProductsBuildRunsGetToManyRelated]? = nil, limit: Int? = nil, limitBuilds: Int? = nil, include: [Include_ciProductsBuildRunsGetToManyRelated]? = nil) async throws -> CiBuildRunsResponse {
-        return try await ciProductsBuildRunsGetToManyRelatedWithRequestBuilder(id: id, filterBuilds: filterBuilds, sort: sort, fieldsScmGitReferences: fieldsScmGitReferences, fieldsCiBuildRuns: fieldsCiBuildRuns, fieldsCiWorkflows: fieldsCiWorkflows, fieldsScmPullRequests: fieldsScmPullRequests, fieldsCiProducts: fieldsCiProducts, fieldsBuilds: fieldsBuilds, limit: limit, limitBuilds: limitBuilds, include: include).execute().body
+    open class func ciProductsBuildRunsGetToManyRelated(id: String, filterBuilds: [String]? = nil, sort: [Sort_ciProductsBuildRunsGetToManyRelated]? = nil, fieldsCiBuildRuns: [FieldsCiBuildRuns_ciProductsBuildRunsGetToManyRelated]? = nil, fieldsBuilds: [FieldsBuilds_ciProductsBuildRunsGetToManyRelated]? = nil, fieldsCiWorkflows: [FieldsCiWorkflows_ciProductsBuildRunsGetToManyRelated]? = nil, fieldsCiProducts: [FieldsCiProducts_ciProductsBuildRunsGetToManyRelated]? = nil, fieldsScmGitReferences: [FieldsScmGitReferences_ciProductsBuildRunsGetToManyRelated]? = nil, fieldsScmPullRequests: [FieldsScmPullRequests_ciProductsBuildRunsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_ciProductsBuildRunsGetToManyRelated]? = nil, limitBuilds: Int? = nil) async throws -> CiBuildRunsResponse {
+        return try await ciProductsBuildRunsGetToManyRelatedWithRequestBuilder(id: id, filterBuilds: filterBuilds, sort: sort, fieldsCiBuildRuns: fieldsCiBuildRuns, fieldsBuilds: fieldsBuilds, fieldsCiWorkflows: fieldsCiWorkflows, fieldsCiProducts: fieldsCiProducts, fieldsScmGitReferences: fieldsScmGitReferences, fieldsScmPullRequests: fieldsScmPullRequests, limit: limit, include: include, limitBuilds: limitBuilds).execute().body
     }
 
     /**
@@ -999,18 +947,18 @@ open class CiProductsAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter filterBuilds: (query) filter by id(s) of related &#39;builds&#39; (optional)
      - parameter sort: (query) comma-separated list of sort expressions; resources will be sorted as specified (optional)
-     - parameter fieldsScmGitReferences: (query) the fields to include for returned resources of type scmGitReferences (optional)
      - parameter fieldsCiBuildRuns: (query) the fields to include for returned resources of type ciBuildRuns (optional)
-     - parameter fieldsCiWorkflows: (query) the fields to include for returned resources of type ciWorkflows (optional)
-     - parameter fieldsScmPullRequests: (query) the fields to include for returned resources of type scmPullRequests (optional)
-     - parameter fieldsCiProducts: (query) the fields to include for returned resources of type ciProducts (optional)
      - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
+     - parameter fieldsCiWorkflows: (query) the fields to include for returned resources of type ciWorkflows (optional)
+     - parameter fieldsCiProducts: (query) the fields to include for returned resources of type ciProducts (optional)
+     - parameter fieldsScmGitReferences: (query) the fields to include for returned resources of type scmGitReferences (optional)
+     - parameter fieldsScmPullRequests: (query) the fields to include for returned resources of type scmPullRequests (optional)
      - parameter limit: (query) maximum resources per page (optional)
-     - parameter limitBuilds: (query) maximum number of related builds returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitBuilds: (query) maximum number of related builds returned (when they are included) (optional)
      - returns: RequestBuilder<CiBuildRunsResponse> 
      */
-    open class func ciProductsBuildRunsGetToManyRelatedWithRequestBuilder(id: String, filterBuilds: [String]? = nil, sort: [Sort_ciProductsBuildRunsGetToManyRelated]? = nil, fieldsScmGitReferences: [FieldsScmGitReferences_ciProductsBuildRunsGetToManyRelated]? = nil, fieldsCiBuildRuns: [FieldsCiBuildRuns_ciProductsBuildRunsGetToManyRelated]? = nil, fieldsCiWorkflows: [FieldsCiWorkflows_ciProductsBuildRunsGetToManyRelated]? = nil, fieldsScmPullRequests: [FieldsScmPullRequests_ciProductsBuildRunsGetToManyRelated]? = nil, fieldsCiProducts: [FieldsCiProducts_ciProductsBuildRunsGetToManyRelated]? = nil, fieldsBuilds: [FieldsBuilds_ciProductsBuildRunsGetToManyRelated]? = nil, limit: Int? = nil, limitBuilds: Int? = nil, include: [Include_ciProductsBuildRunsGetToManyRelated]? = nil) -> RequestBuilder<CiBuildRunsResponse> {
+    open class func ciProductsBuildRunsGetToManyRelatedWithRequestBuilder(id: String, filterBuilds: [String]? = nil, sort: [Sort_ciProductsBuildRunsGetToManyRelated]? = nil, fieldsCiBuildRuns: [FieldsCiBuildRuns_ciProductsBuildRunsGetToManyRelated]? = nil, fieldsBuilds: [FieldsBuilds_ciProductsBuildRunsGetToManyRelated]? = nil, fieldsCiWorkflows: [FieldsCiWorkflows_ciProductsBuildRunsGetToManyRelated]? = nil, fieldsCiProducts: [FieldsCiProducts_ciProductsBuildRunsGetToManyRelated]? = nil, fieldsScmGitReferences: [FieldsScmGitReferences_ciProductsBuildRunsGetToManyRelated]? = nil, fieldsScmPullRequests: [FieldsScmPullRequests_ciProductsBuildRunsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_ciProductsBuildRunsGetToManyRelated]? = nil, limitBuilds: Int? = nil) -> RequestBuilder<CiBuildRunsResponse> {
         var localVariablePath = "/v1/ciProducts/{id}/buildRuns"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -1022,15 +970,15 @@ open class CiProductsAPI {
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "filter[builds]": (wrappedValue: filterBuilds?.encodeToJSON(), isExplode: false),
             "sort": (wrappedValue: sort?.encodeToJSON(), isExplode: false),
-            "fields[scmGitReferences]": (wrappedValue: fieldsScmGitReferences?.encodeToJSON(), isExplode: false),
             "fields[ciBuildRuns]": (wrappedValue: fieldsCiBuildRuns?.encodeToJSON(), isExplode: false),
-            "fields[ciWorkflows]": (wrappedValue: fieldsCiWorkflows?.encodeToJSON(), isExplode: false),
-            "fields[scmPullRequests]": (wrappedValue: fieldsScmPullRequests?.encodeToJSON(), isExplode: false),
-            "fields[ciProducts]": (wrappedValue: fieldsCiProducts?.encodeToJSON(), isExplode: false),
             "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(), isExplode: false),
+            "fields[ciWorkflows]": (wrappedValue: fieldsCiWorkflows?.encodeToJSON(), isExplode: false),
+            "fields[ciProducts]": (wrappedValue: fieldsCiProducts?.encodeToJSON(), isExplode: false),
+            "fields[scmGitReferences]": (wrappedValue: fieldsScmGitReferences?.encodeToJSON(), isExplode: false),
+            "fields[scmPullRequests]": (wrappedValue: fieldsScmPullRequests?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "limit[builds]": (wrappedValue: limitBuilds?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "limit[builds]": (wrappedValue: limitBuilds?.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -1144,15 +1092,79 @@ open class CiProductsAPI {
      * enum for parameter fieldsCiProducts
      */
     public enum FieldsCiProducts_ciProductsGetCollection: String, CaseIterable {
-        case additionalrepositories = "additionalRepositories"
-        case app = "app"
-        case buildruns = "buildRuns"
-        case bundleid = "bundleId"
-        case createddate = "createdDate"
         case name = "name"
-        case primaryrepositories = "primaryRepositories"
+        case createddate = "createdDate"
         case producttype = "productType"
+        case app = "app"
+        case bundleid = "bundleId"
         case workflows = "workflows"
+        case primaryrepositories = "primaryRepositories"
+        case additionalrepositories = "additionalRepositories"
+        case buildruns = "buildRuns"
+    }
+
+    /**
+     * enum for parameter fieldsApps
+     */
+    public enum FieldsApps_ciProductsGetCollection: String, CaseIterable {
+        case name = "name"
+        case bundleid = "bundleId"
+        case sku = "sku"
+        case primarylocale = "primaryLocale"
+        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
+        case subscriptionstatusurl = "subscriptionStatusUrl"
+        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
+        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
+        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
+        case contentrightsdeclaration = "contentRightsDeclaration"
+        case streamlinedpurchasingenabled = "streamlinedPurchasingEnabled"
+        case appencryptiondeclarations = "appEncryptionDeclarations"
+        case ciproduct = "ciProduct"
+        case betatesters = "betaTesters"
+        case betagroups = "betaGroups"
+        case appstoreversions = "appStoreVersions"
+        case prereleaseversions = "preReleaseVersions"
+        case betaapplocalizations = "betaAppLocalizations"
+        case builds = "builds"
+        case betalicenseagreement = "betaLicenseAgreement"
+        case betaappreviewdetail = "betaAppReviewDetail"
+        case appinfos = "appInfos"
+        case appclips = "appClips"
+        case apppricepoints = "appPricePoints"
+        case enduserlicenseagreement = "endUserLicenseAgreement"
+        case apppriceschedule = "appPriceSchedule"
+        case appavailabilityv2 = "appAvailabilityV2"
+        case inapppurchases = "inAppPurchases"
+        case subscriptiongroups = "subscriptionGroups"
+        case gamecenterenabledversions = "gameCenterEnabledVersions"
+        case perfpowermetrics = "perfPowerMetrics"
+        case appcustomproductpages = "appCustomProductPages"
+        case inapppurchasesv2 = "inAppPurchasesV2"
+        case promotedpurchases = "promotedPurchases"
+        case appevents = "appEvents"
+        case reviewsubmissions = "reviewSubmissions"
+        case subscriptiongraceperiod = "subscriptionGracePeriod"
+        case customerreviews = "customerReviews"
+        case gamecenterdetail = "gameCenterDetail"
+        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
+        case alternativedistributionkey = "alternativeDistributionKey"
+        case analyticsreportrequests = "analyticsReportRequests"
+        case marketplacesearchdetail = "marketplaceSearchDetail"
+    }
+
+    /**
+     * enum for parameter fieldsScmRepositories
+     */
+    public enum FieldsScmRepositories_ciProductsGetCollection: String, CaseIterable {
+        case lastaccesseddate = "lastAccessedDate"
+        case httpcloneurl = "httpCloneUrl"
+        case sshcloneurl = "sshCloneUrl"
+        case ownername = "ownerName"
+        case repositoryname = "repositoryName"
+        case scmprovider = "scmProvider"
+        case defaultbranch = "defaultBranch"
+        case gitreferences = "gitReferences"
+        case pullrequests = "pullRequests"
     }
 
     /**
@@ -1165,143 +1177,20 @@ open class CiProductsAPI {
     }
 
     /**
-     * enum for parameter fieldsCiBuildRuns
-     */
-    public enum FieldsCiBuildRuns_ciProductsGetCollection: String, CaseIterable {
-        case actions = "actions"
-        case buildrun = "buildRun"
-        case builds = "builds"
-        case cancelreason = "cancelReason"
-        case clean = "clean"
-        case completionstatus = "completionStatus"
-        case createddate = "createdDate"
-        case destinationbranch = "destinationBranch"
-        case destinationcommit = "destinationCommit"
-        case executionprogress = "executionProgress"
-        case finisheddate = "finishedDate"
-        case ispullrequestbuild = "isPullRequestBuild"
-        case issuecounts = "issueCounts"
-        case number = "number"
-        case product = "product"
-        case pullrequest = "pullRequest"
-        case sourcebranchortag = "sourceBranchOrTag"
-        case sourcecommit = "sourceCommit"
-        case startreason = "startReason"
-        case starteddate = "startedDate"
-        case workflow = "workflow"
-    }
-
-    /**
-     * enum for parameter fieldsCiWorkflows
-     */
-    public enum FieldsCiWorkflows_ciProductsGetCollection: String, CaseIterable {
-        case actions = "actions"
-        case branchstartcondition = "branchStartCondition"
-        case buildruns = "buildRuns"
-        case clean = "clean"
-        case containerfilepath = "containerFilePath"
-        case description = "description"
-        case isenabled = "isEnabled"
-        case islockedforediting = "isLockedForEditing"
-        case lastmodifieddate = "lastModifiedDate"
-        case macosversion = "macOsVersion"
-        case manualbranchstartcondition = "manualBranchStartCondition"
-        case manualpullrequeststartcondition = "manualPullRequestStartCondition"
-        case manualtagstartcondition = "manualTagStartCondition"
-        case name = "name"
-        case product = "product"
-        case pullrequeststartcondition = "pullRequestStartCondition"
-        case repository = "repository"
-        case scheduledstartcondition = "scheduledStartCondition"
-        case tagstartcondition = "tagStartCondition"
-        case xcodeversion = "xcodeVersion"
-    }
-
-    /**
-     * enum for parameter fieldsApps
-     */
-    public enum FieldsApps_ciProductsGetCollection: String, CaseIterable {
-        case alternativedistributionkey = "alternativeDistributionKey"
-        case analyticsreportrequests = "analyticsReportRequests"
-        case appavailability = "appAvailability"
-        case appclips = "appClips"
-        case appcustomproductpages = "appCustomProductPages"
-        case appencryptiondeclarations = "appEncryptionDeclarations"
-        case appevents = "appEvents"
-        case appinfos = "appInfos"
-        case apppricepoints = "appPricePoints"
-        case apppriceschedule = "appPriceSchedule"
-        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
-        case appstoreversions = "appStoreVersions"
-        case availableinnewterritories = "availableInNewTerritories"
-        case availableterritories = "availableTerritories"
-        case betaapplocalizations = "betaAppLocalizations"
-        case betaappreviewdetail = "betaAppReviewDetail"
-        case betagroups = "betaGroups"
-        case betalicenseagreement = "betaLicenseAgreement"
-        case betatesters = "betaTesters"
-        case builds = "builds"
-        case bundleid = "bundleId"
-        case ciproduct = "ciProduct"
-        case contentrightsdeclaration = "contentRightsDeclaration"
-        case customerreviews = "customerReviews"
-        case enduserlicenseagreement = "endUserLicenseAgreement"
-        case gamecenterdetail = "gameCenterDetail"
-        case gamecenterenabledversions = "gameCenterEnabledVersions"
-        case inapppurchases = "inAppPurchases"
-        case inapppurchasesv2 = "inAppPurchasesV2"
-        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
-        case marketplacesearchdetail = "marketplaceSearchDetail"
-        case name = "name"
-        case perfpowermetrics = "perfPowerMetrics"
-        case preorder = "preOrder"
-        case prereleaseversions = "preReleaseVersions"
-        case pricepoints = "pricePoints"
-        case prices = "prices"
-        case primarylocale = "primaryLocale"
-        case promotedpurchases = "promotedPurchases"
-        case reviewsubmissions = "reviewSubmissions"
-        case sku = "sku"
-        case subscriptiongraceperiod = "subscriptionGracePeriod"
-        case subscriptiongroups = "subscriptionGroups"
-        case subscriptionstatusurl = "subscriptionStatusUrl"
-        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
-        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
-        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
-    }
-
-    /**
-     * enum for parameter fieldsScmRepositories
-     */
-    public enum FieldsScmRepositories_ciProductsGetCollection: String, CaseIterable {
-        case defaultbranch = "defaultBranch"
-        case gitreferences = "gitReferences"
-        case httpcloneurl = "httpCloneUrl"
-        case lastaccesseddate = "lastAccessedDate"
-        case ownername = "ownerName"
-        case pullrequests = "pullRequests"
-        case repositoryname = "repositoryName"
-        case scmprovider = "scmProvider"
-        case sshcloneurl = "sshCloneUrl"
-    }
-
-    /**
 
      - parameter filterProductType: (query) filter by attribute &#39;productType&#39; (optional)
      - parameter filterApp: (query) filter by id(s) of related &#39;app&#39; (optional)
      - parameter fieldsCiProducts: (query) the fields to include for returned resources of type ciProducts (optional)
-     - parameter limit: (query) maximum resources per page (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
-     - parameter fieldsCiBuildRuns: (query) the fields to include for returned resources of type ciBuildRuns (optional)
-     - parameter fieldsCiWorkflows: (query) the fields to include for returned resources of type ciWorkflows (optional)
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
      - parameter fieldsScmRepositories: (query) the fields to include for returned resources of type scmRepositories (optional)
+     - parameter limit: (query) maximum resources per page (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitPrimaryRepositories: (query) maximum number of related primaryRepositories returned (when they are included) (optional)
      - returns: CiProductsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciProductsGetCollection(filterProductType: [FilterProductType_ciProductsGetCollection]? = nil, filterApp: [String]? = nil, fieldsCiProducts: [FieldsCiProducts_ciProductsGetCollection]? = nil, limit: Int? = nil, include: [Include_ciProductsGetCollection]? = nil, fieldsCiBuildRuns: [FieldsCiBuildRuns_ciProductsGetCollection]? = nil, fieldsCiWorkflows: [FieldsCiWorkflows_ciProductsGetCollection]? = nil, fieldsApps: [FieldsApps_ciProductsGetCollection]? = nil, fieldsScmRepositories: [FieldsScmRepositories_ciProductsGetCollection]? = nil, limitPrimaryRepositories: Int? = nil) async throws -> CiProductsResponse {
-        return try await ciProductsGetCollectionWithRequestBuilder(filterProductType: filterProductType, filterApp: filterApp, fieldsCiProducts: fieldsCiProducts, limit: limit, include: include, fieldsCiBuildRuns: fieldsCiBuildRuns, fieldsCiWorkflows: fieldsCiWorkflows, fieldsApps: fieldsApps, fieldsScmRepositories: fieldsScmRepositories, limitPrimaryRepositories: limitPrimaryRepositories).execute().body
+    open class func ciProductsGetCollection(filterProductType: [FilterProductType_ciProductsGetCollection]? = nil, filterApp: [String]? = nil, fieldsCiProducts: [FieldsCiProducts_ciProductsGetCollection]? = nil, fieldsApps: [FieldsApps_ciProductsGetCollection]? = nil, fieldsScmRepositories: [FieldsScmRepositories_ciProductsGetCollection]? = nil, limit: Int? = nil, include: [Include_ciProductsGetCollection]? = nil, limitPrimaryRepositories: Int? = nil) async throws -> CiProductsResponse {
+        return try await ciProductsGetCollectionWithRequestBuilder(filterProductType: filterProductType, filterApp: filterApp, fieldsCiProducts: fieldsCiProducts, fieldsApps: fieldsApps, fieldsScmRepositories: fieldsScmRepositories, limit: limit, include: include, limitPrimaryRepositories: limitPrimaryRepositories).execute().body
     }
 
     /**
@@ -1321,16 +1210,14 @@ open class CiProductsAPI {
      - parameter filterProductType: (query) filter by attribute &#39;productType&#39; (optional)
      - parameter filterApp: (query) filter by id(s) of related &#39;app&#39; (optional)
      - parameter fieldsCiProducts: (query) the fields to include for returned resources of type ciProducts (optional)
-     - parameter limit: (query) maximum resources per page (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
-     - parameter fieldsCiBuildRuns: (query) the fields to include for returned resources of type ciBuildRuns (optional)
-     - parameter fieldsCiWorkflows: (query) the fields to include for returned resources of type ciWorkflows (optional)
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
      - parameter fieldsScmRepositories: (query) the fields to include for returned resources of type scmRepositories (optional)
+     - parameter limit: (query) maximum resources per page (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitPrimaryRepositories: (query) maximum number of related primaryRepositories returned (when they are included) (optional)
      - returns: RequestBuilder<CiProductsResponse> 
      */
-    open class func ciProductsGetCollectionWithRequestBuilder(filterProductType: [FilterProductType_ciProductsGetCollection]? = nil, filterApp: [String]? = nil, fieldsCiProducts: [FieldsCiProducts_ciProductsGetCollection]? = nil, limit: Int? = nil, include: [Include_ciProductsGetCollection]? = nil, fieldsCiBuildRuns: [FieldsCiBuildRuns_ciProductsGetCollection]? = nil, fieldsCiWorkflows: [FieldsCiWorkflows_ciProductsGetCollection]? = nil, fieldsApps: [FieldsApps_ciProductsGetCollection]? = nil, fieldsScmRepositories: [FieldsScmRepositories_ciProductsGetCollection]? = nil, limitPrimaryRepositories: Int? = nil) -> RequestBuilder<CiProductsResponse> {
+    open class func ciProductsGetCollectionWithRequestBuilder(filterProductType: [FilterProductType_ciProductsGetCollection]? = nil, filterApp: [String]? = nil, fieldsCiProducts: [FieldsCiProducts_ciProductsGetCollection]? = nil, fieldsApps: [FieldsApps_ciProductsGetCollection]? = nil, fieldsScmRepositories: [FieldsScmRepositories_ciProductsGetCollection]? = nil, limit: Int? = nil, include: [Include_ciProductsGetCollection]? = nil, limitPrimaryRepositories: Int? = nil) -> RequestBuilder<CiProductsResponse> {
         let localVariablePath = "/v1/ciProducts"
         let localVariableURLString = ASCAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -1340,12 +1227,10 @@ open class CiProductsAPI {
             "filter[productType]": (wrappedValue: filterProductType?.encodeToJSON(), isExplode: false),
             "filter[app]": (wrappedValue: filterApp?.encodeToJSON(), isExplode: false),
             "fields[ciProducts]": (wrappedValue: fieldsCiProducts?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "fields[ciBuildRuns]": (wrappedValue: fieldsCiBuildRuns?.encodeToJSON(), isExplode: false),
-            "fields[ciWorkflows]": (wrappedValue: fieldsCiWorkflows?.encodeToJSON(), isExplode: false),
             "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
             "fields[scmRepositories]": (wrappedValue: fieldsScmRepositories?.encodeToJSON(), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "limit[primaryRepositories]": (wrappedValue: limitPrimaryRepositories?.encodeToJSON(), isExplode: true),
         ])
 
@@ -1384,15 +1269,79 @@ open class CiProductsAPI {
      * enum for parameter fieldsCiProducts
      */
     public enum FieldsCiProducts_ciProductsGetInstance: String, CaseIterable {
-        case additionalrepositories = "additionalRepositories"
-        case app = "app"
-        case buildruns = "buildRuns"
-        case bundleid = "bundleId"
-        case createddate = "createdDate"
         case name = "name"
-        case primaryrepositories = "primaryRepositories"
+        case createddate = "createdDate"
         case producttype = "productType"
+        case app = "app"
+        case bundleid = "bundleId"
         case workflows = "workflows"
+        case primaryrepositories = "primaryRepositories"
+        case additionalrepositories = "additionalRepositories"
+        case buildruns = "buildRuns"
+    }
+
+    /**
+     * enum for parameter fieldsApps
+     */
+    public enum FieldsApps_ciProductsGetInstance: String, CaseIterable {
+        case name = "name"
+        case bundleid = "bundleId"
+        case sku = "sku"
+        case primarylocale = "primaryLocale"
+        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
+        case subscriptionstatusurl = "subscriptionStatusUrl"
+        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
+        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
+        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
+        case contentrightsdeclaration = "contentRightsDeclaration"
+        case streamlinedpurchasingenabled = "streamlinedPurchasingEnabled"
+        case appencryptiondeclarations = "appEncryptionDeclarations"
+        case ciproduct = "ciProduct"
+        case betatesters = "betaTesters"
+        case betagroups = "betaGroups"
+        case appstoreversions = "appStoreVersions"
+        case prereleaseversions = "preReleaseVersions"
+        case betaapplocalizations = "betaAppLocalizations"
+        case builds = "builds"
+        case betalicenseagreement = "betaLicenseAgreement"
+        case betaappreviewdetail = "betaAppReviewDetail"
+        case appinfos = "appInfos"
+        case appclips = "appClips"
+        case apppricepoints = "appPricePoints"
+        case enduserlicenseagreement = "endUserLicenseAgreement"
+        case apppriceschedule = "appPriceSchedule"
+        case appavailabilityv2 = "appAvailabilityV2"
+        case inapppurchases = "inAppPurchases"
+        case subscriptiongroups = "subscriptionGroups"
+        case gamecenterenabledversions = "gameCenterEnabledVersions"
+        case perfpowermetrics = "perfPowerMetrics"
+        case appcustomproductpages = "appCustomProductPages"
+        case inapppurchasesv2 = "inAppPurchasesV2"
+        case promotedpurchases = "promotedPurchases"
+        case appevents = "appEvents"
+        case reviewsubmissions = "reviewSubmissions"
+        case subscriptiongraceperiod = "subscriptionGracePeriod"
+        case customerreviews = "customerReviews"
+        case gamecenterdetail = "gameCenterDetail"
+        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
+        case alternativedistributionkey = "alternativeDistributionKey"
+        case analyticsreportrequests = "analyticsReportRequests"
+        case marketplacesearchdetail = "marketplaceSearchDetail"
+    }
+
+    /**
+     * enum for parameter fieldsScmRepositories
+     */
+    public enum FieldsScmRepositories_ciProductsGetInstance: String, CaseIterable {
+        case lastaccesseddate = "lastAccessedDate"
+        case httpcloneurl = "httpCloneUrl"
+        case sshcloneurl = "sshCloneUrl"
+        case ownername = "ownerName"
+        case repositoryname = "repositoryName"
+        case scmprovider = "scmProvider"
+        case defaultbranch = "defaultBranch"
+        case gitreferences = "gitReferences"
+        case pullrequests = "pullRequests"
     }
 
     /**
@@ -1405,141 +1354,18 @@ open class CiProductsAPI {
     }
 
     /**
-     * enum for parameter fieldsCiBuildRuns
-     */
-    public enum FieldsCiBuildRuns_ciProductsGetInstance: String, CaseIterable {
-        case actions = "actions"
-        case buildrun = "buildRun"
-        case builds = "builds"
-        case cancelreason = "cancelReason"
-        case clean = "clean"
-        case completionstatus = "completionStatus"
-        case createddate = "createdDate"
-        case destinationbranch = "destinationBranch"
-        case destinationcommit = "destinationCommit"
-        case executionprogress = "executionProgress"
-        case finisheddate = "finishedDate"
-        case ispullrequestbuild = "isPullRequestBuild"
-        case issuecounts = "issueCounts"
-        case number = "number"
-        case product = "product"
-        case pullrequest = "pullRequest"
-        case sourcebranchortag = "sourceBranchOrTag"
-        case sourcecommit = "sourceCommit"
-        case startreason = "startReason"
-        case starteddate = "startedDate"
-        case workflow = "workflow"
-    }
-
-    /**
-     * enum for parameter fieldsCiWorkflows
-     */
-    public enum FieldsCiWorkflows_ciProductsGetInstance: String, CaseIterable {
-        case actions = "actions"
-        case branchstartcondition = "branchStartCondition"
-        case buildruns = "buildRuns"
-        case clean = "clean"
-        case containerfilepath = "containerFilePath"
-        case description = "description"
-        case isenabled = "isEnabled"
-        case islockedforediting = "isLockedForEditing"
-        case lastmodifieddate = "lastModifiedDate"
-        case macosversion = "macOsVersion"
-        case manualbranchstartcondition = "manualBranchStartCondition"
-        case manualpullrequeststartcondition = "manualPullRequestStartCondition"
-        case manualtagstartcondition = "manualTagStartCondition"
-        case name = "name"
-        case product = "product"
-        case pullrequeststartcondition = "pullRequestStartCondition"
-        case repository = "repository"
-        case scheduledstartcondition = "scheduledStartCondition"
-        case tagstartcondition = "tagStartCondition"
-        case xcodeversion = "xcodeVersion"
-    }
-
-    /**
-     * enum for parameter fieldsApps
-     */
-    public enum FieldsApps_ciProductsGetInstance: String, CaseIterable {
-        case alternativedistributionkey = "alternativeDistributionKey"
-        case analyticsreportrequests = "analyticsReportRequests"
-        case appavailability = "appAvailability"
-        case appclips = "appClips"
-        case appcustomproductpages = "appCustomProductPages"
-        case appencryptiondeclarations = "appEncryptionDeclarations"
-        case appevents = "appEvents"
-        case appinfos = "appInfos"
-        case apppricepoints = "appPricePoints"
-        case apppriceschedule = "appPriceSchedule"
-        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
-        case appstoreversions = "appStoreVersions"
-        case availableinnewterritories = "availableInNewTerritories"
-        case availableterritories = "availableTerritories"
-        case betaapplocalizations = "betaAppLocalizations"
-        case betaappreviewdetail = "betaAppReviewDetail"
-        case betagroups = "betaGroups"
-        case betalicenseagreement = "betaLicenseAgreement"
-        case betatesters = "betaTesters"
-        case builds = "builds"
-        case bundleid = "bundleId"
-        case ciproduct = "ciProduct"
-        case contentrightsdeclaration = "contentRightsDeclaration"
-        case customerreviews = "customerReviews"
-        case enduserlicenseagreement = "endUserLicenseAgreement"
-        case gamecenterdetail = "gameCenterDetail"
-        case gamecenterenabledversions = "gameCenterEnabledVersions"
-        case inapppurchases = "inAppPurchases"
-        case inapppurchasesv2 = "inAppPurchasesV2"
-        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
-        case marketplacesearchdetail = "marketplaceSearchDetail"
-        case name = "name"
-        case perfpowermetrics = "perfPowerMetrics"
-        case preorder = "preOrder"
-        case prereleaseversions = "preReleaseVersions"
-        case pricepoints = "pricePoints"
-        case prices = "prices"
-        case primarylocale = "primaryLocale"
-        case promotedpurchases = "promotedPurchases"
-        case reviewsubmissions = "reviewSubmissions"
-        case sku = "sku"
-        case subscriptiongraceperiod = "subscriptionGracePeriod"
-        case subscriptiongroups = "subscriptionGroups"
-        case subscriptionstatusurl = "subscriptionStatusUrl"
-        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
-        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
-        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
-    }
-
-    /**
-     * enum for parameter fieldsScmRepositories
-     */
-    public enum FieldsScmRepositories_ciProductsGetInstance: String, CaseIterable {
-        case defaultbranch = "defaultBranch"
-        case gitreferences = "gitReferences"
-        case httpcloneurl = "httpCloneUrl"
-        case lastaccesseddate = "lastAccessedDate"
-        case ownername = "ownerName"
-        case pullrequests = "pullRequests"
-        case repositoryname = "repositoryName"
-        case scmprovider = "scmProvider"
-        case sshcloneurl = "sshCloneUrl"
-    }
-
-    /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsCiProducts: (query) the fields to include for returned resources of type ciProducts (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
-     - parameter fieldsCiBuildRuns: (query) the fields to include for returned resources of type ciBuildRuns (optional)
-     - parameter fieldsCiWorkflows: (query) the fields to include for returned resources of type ciWorkflows (optional)
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
      - parameter fieldsScmRepositories: (query) the fields to include for returned resources of type scmRepositories (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitPrimaryRepositories: (query) maximum number of related primaryRepositories returned (when they are included) (optional)
      - returns: CiProductResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciProductsGetInstance(id: String, fieldsCiProducts: [FieldsCiProducts_ciProductsGetInstance]? = nil, include: [Include_ciProductsGetInstance]? = nil, fieldsCiBuildRuns: [FieldsCiBuildRuns_ciProductsGetInstance]? = nil, fieldsCiWorkflows: [FieldsCiWorkflows_ciProductsGetInstance]? = nil, fieldsApps: [FieldsApps_ciProductsGetInstance]? = nil, fieldsScmRepositories: [FieldsScmRepositories_ciProductsGetInstance]? = nil, limitPrimaryRepositories: Int? = nil) async throws -> CiProductResponse {
-        return try await ciProductsGetInstanceWithRequestBuilder(id: id, fieldsCiProducts: fieldsCiProducts, include: include, fieldsCiBuildRuns: fieldsCiBuildRuns, fieldsCiWorkflows: fieldsCiWorkflows, fieldsApps: fieldsApps, fieldsScmRepositories: fieldsScmRepositories, limitPrimaryRepositories: limitPrimaryRepositories).execute().body
+    open class func ciProductsGetInstance(id: String, fieldsCiProducts: [FieldsCiProducts_ciProductsGetInstance]? = nil, fieldsApps: [FieldsApps_ciProductsGetInstance]? = nil, fieldsScmRepositories: [FieldsScmRepositories_ciProductsGetInstance]? = nil, include: [Include_ciProductsGetInstance]? = nil, limitPrimaryRepositories: Int? = nil) async throws -> CiProductResponse {
+        return try await ciProductsGetInstanceWithRequestBuilder(id: id, fieldsCiProducts: fieldsCiProducts, fieldsApps: fieldsApps, fieldsScmRepositories: fieldsScmRepositories, include: include, limitPrimaryRepositories: limitPrimaryRepositories).execute().body
     }
 
     /**
@@ -1558,15 +1384,13 @@ open class CiProductsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsCiProducts: (query) the fields to include for returned resources of type ciProducts (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
-     - parameter fieldsCiBuildRuns: (query) the fields to include for returned resources of type ciBuildRuns (optional)
-     - parameter fieldsCiWorkflows: (query) the fields to include for returned resources of type ciWorkflows (optional)
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
      - parameter fieldsScmRepositories: (query) the fields to include for returned resources of type scmRepositories (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitPrimaryRepositories: (query) maximum number of related primaryRepositories returned (when they are included) (optional)
      - returns: RequestBuilder<CiProductResponse> 
      */
-    open class func ciProductsGetInstanceWithRequestBuilder(id: String, fieldsCiProducts: [FieldsCiProducts_ciProductsGetInstance]? = nil, include: [Include_ciProductsGetInstance]? = nil, fieldsCiBuildRuns: [FieldsCiBuildRuns_ciProductsGetInstance]? = nil, fieldsCiWorkflows: [FieldsCiWorkflows_ciProductsGetInstance]? = nil, fieldsApps: [FieldsApps_ciProductsGetInstance]? = nil, fieldsScmRepositories: [FieldsScmRepositories_ciProductsGetInstance]? = nil, limitPrimaryRepositories: Int? = nil) -> RequestBuilder<CiProductResponse> {
+    open class func ciProductsGetInstanceWithRequestBuilder(id: String, fieldsCiProducts: [FieldsCiProducts_ciProductsGetInstance]? = nil, fieldsApps: [FieldsApps_ciProductsGetInstance]? = nil, fieldsScmRepositories: [FieldsScmRepositories_ciProductsGetInstance]? = nil, include: [Include_ciProductsGetInstance]? = nil, limitPrimaryRepositories: Int? = nil) -> RequestBuilder<CiProductResponse> {
         var localVariablePath = "/v1/ciProducts/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -1577,11 +1401,9 @@ open class CiProductsAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[ciProducts]": (wrappedValue: fieldsCiProducts?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "fields[ciBuildRuns]": (wrappedValue: fieldsCiBuildRuns?.encodeToJSON(), isExplode: false),
-            "fields[ciWorkflows]": (wrappedValue: fieldsCiWorkflows?.encodeToJSON(), isExplode: false),
             "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
             "fields[scmRepositories]": (wrappedValue: fieldsScmRepositories?.encodeToJSON(), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "limit[primaryRepositories]": (wrappedValue: limitPrimaryRepositories?.encodeToJSON(), isExplode: true),
         ])
 
@@ -1617,62 +1439,62 @@ open class CiProductsAPI {
     }
 
     /**
-     * enum for parameter fieldsScmGitReferences
+     * enum for parameter fieldsScmRepositories
      */
-    public enum FieldsScmGitReferences_ciProductsPrimaryRepositoriesGetToManyRelated: String, CaseIterable {
-        case canonicalname = "canonicalName"
-        case isdeleted = "isDeleted"
-        case kind = "kind"
-        case name = "name"
-        case repository = "repository"
+    public enum FieldsScmRepositories_ciProductsPrimaryRepositoriesGetToManyRelated: String, CaseIterable {
+        case lastaccesseddate = "lastAccessedDate"
+        case httpcloneurl = "httpCloneUrl"
+        case sshcloneurl = "sshCloneUrl"
+        case ownername = "ownerName"
+        case repositoryname = "repositoryName"
+        case scmprovider = "scmProvider"
+        case defaultbranch = "defaultBranch"
+        case gitreferences = "gitReferences"
+        case pullrequests = "pullRequests"
     }
 
     /**
      * enum for parameter fieldsScmProviders
      */
     public enum FieldsScmProviders_ciProductsPrimaryRepositoriesGetToManyRelated: String, CaseIterable {
-        case repositories = "repositories"
         case scmprovidertype = "scmProviderType"
         case url = "url"
+        case repositories = "repositories"
     }
 
     /**
-     * enum for parameter fieldsScmRepositories
+     * enum for parameter fieldsScmGitReferences
      */
-    public enum FieldsScmRepositories_ciProductsPrimaryRepositoriesGetToManyRelated: String, CaseIterable {
-        case defaultbranch = "defaultBranch"
-        case gitreferences = "gitReferences"
-        case httpcloneurl = "httpCloneUrl"
-        case lastaccesseddate = "lastAccessedDate"
-        case ownername = "ownerName"
-        case pullrequests = "pullRequests"
-        case repositoryname = "repositoryName"
-        case scmprovider = "scmProvider"
-        case sshcloneurl = "sshCloneUrl"
+    public enum FieldsScmGitReferences_ciProductsPrimaryRepositoriesGetToManyRelated: String, CaseIterable {
+        case name = "name"
+        case canonicalname = "canonicalName"
+        case isdeleted = "isDeleted"
+        case kind = "kind"
+        case repository = "repository"
     }
 
     /**
      * enum for parameter include
      */
     public enum Include_ciProductsPrimaryRepositoriesGetToManyRelated: String, CaseIterable {
-        case defaultbranch = "defaultBranch"
         case scmprovider = "scmProvider"
+        case defaultbranch = "defaultBranch"
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter filterId: (query) filter by id(s) (optional)
-     - parameter fieldsScmGitReferences: (query) the fields to include for returned resources of type scmGitReferences (optional)
-     - parameter fieldsScmProviders: (query) the fields to include for returned resources of type scmProviders (optional)
      - parameter fieldsScmRepositories: (query) the fields to include for returned resources of type scmRepositories (optional)
+     - parameter fieldsScmProviders: (query) the fields to include for returned resources of type scmProviders (optional)
+     - parameter fieldsScmGitReferences: (query) the fields to include for returned resources of type scmGitReferences (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: ScmRepositoriesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciProductsPrimaryRepositoriesGetToManyRelated(id: String, filterId: [String]? = nil, fieldsScmGitReferences: [FieldsScmGitReferences_ciProductsPrimaryRepositoriesGetToManyRelated]? = nil, fieldsScmProviders: [FieldsScmProviders_ciProductsPrimaryRepositoriesGetToManyRelated]? = nil, fieldsScmRepositories: [FieldsScmRepositories_ciProductsPrimaryRepositoriesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_ciProductsPrimaryRepositoriesGetToManyRelated]? = nil) async throws -> ScmRepositoriesResponse {
-        return try await ciProductsPrimaryRepositoriesGetToManyRelatedWithRequestBuilder(id: id, filterId: filterId, fieldsScmGitReferences: fieldsScmGitReferences, fieldsScmProviders: fieldsScmProviders, fieldsScmRepositories: fieldsScmRepositories, limit: limit, include: include).execute().body
+    open class func ciProductsPrimaryRepositoriesGetToManyRelated(id: String, filterId: [String]? = nil, fieldsScmRepositories: [FieldsScmRepositories_ciProductsPrimaryRepositoriesGetToManyRelated]? = nil, fieldsScmProviders: [FieldsScmProviders_ciProductsPrimaryRepositoriesGetToManyRelated]? = nil, fieldsScmGitReferences: [FieldsScmGitReferences_ciProductsPrimaryRepositoriesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_ciProductsPrimaryRepositoriesGetToManyRelated]? = nil) async throws -> ScmRepositoriesResponse {
+        return try await ciProductsPrimaryRepositoriesGetToManyRelatedWithRequestBuilder(id: id, filterId: filterId, fieldsScmRepositories: fieldsScmRepositories, fieldsScmProviders: fieldsScmProviders, fieldsScmGitReferences: fieldsScmGitReferences, limit: limit, include: include).execute().body
     }
 
     /**
@@ -1691,14 +1513,14 @@ open class CiProductsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter filterId: (query) filter by id(s) (optional)
-     - parameter fieldsScmGitReferences: (query) the fields to include for returned resources of type scmGitReferences (optional)
-     - parameter fieldsScmProviders: (query) the fields to include for returned resources of type scmProviders (optional)
      - parameter fieldsScmRepositories: (query) the fields to include for returned resources of type scmRepositories (optional)
+     - parameter fieldsScmProviders: (query) the fields to include for returned resources of type scmProviders (optional)
+     - parameter fieldsScmGitReferences: (query) the fields to include for returned resources of type scmGitReferences (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: RequestBuilder<ScmRepositoriesResponse> 
      */
-    open class func ciProductsPrimaryRepositoriesGetToManyRelatedWithRequestBuilder(id: String, filterId: [String]? = nil, fieldsScmGitReferences: [FieldsScmGitReferences_ciProductsPrimaryRepositoriesGetToManyRelated]? = nil, fieldsScmProviders: [FieldsScmProviders_ciProductsPrimaryRepositoriesGetToManyRelated]? = nil, fieldsScmRepositories: [FieldsScmRepositories_ciProductsPrimaryRepositoriesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_ciProductsPrimaryRepositoriesGetToManyRelated]? = nil) -> RequestBuilder<ScmRepositoriesResponse> {
+    open class func ciProductsPrimaryRepositoriesGetToManyRelatedWithRequestBuilder(id: String, filterId: [String]? = nil, fieldsScmRepositories: [FieldsScmRepositories_ciProductsPrimaryRepositoriesGetToManyRelated]? = nil, fieldsScmProviders: [FieldsScmProviders_ciProductsPrimaryRepositoriesGetToManyRelated]? = nil, fieldsScmGitReferences: [FieldsScmGitReferences_ciProductsPrimaryRepositoriesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_ciProductsPrimaryRepositoriesGetToManyRelated]? = nil) -> RequestBuilder<ScmRepositoriesResponse> {
         var localVariablePath = "/v1/ciProducts/{id}/primaryRepositories"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -1709,9 +1531,9 @@ open class CiProductsAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "filter[id]": (wrappedValue: filterId?.encodeToJSON(), isExplode: false),
-            "fields[scmGitReferences]": (wrappedValue: fieldsScmGitReferences?.encodeToJSON(), isExplode: false),
-            "fields[scmProviders]": (wrappedValue: fieldsScmProviders?.encodeToJSON(), isExplode: false),
             "fields[scmRepositories]": (wrappedValue: fieldsScmRepositories?.encodeToJSON(), isExplode: false),
+            "fields[scmProviders]": (wrappedValue: fieldsScmProviders?.encodeToJSON(), isExplode: false),
+            "fields[scmGitReferences]": (wrappedValue: fieldsScmGitReferences?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
         ])
@@ -1748,105 +1570,105 @@ open class CiProductsAPI {
     }
 
     /**
-     * enum for parameter fieldsCiXcodeVersions
-     */
-    public enum FieldsCiXcodeVersions_ciProductsWorkflowsGetToManyRelated: String, CaseIterable {
-        case macosversions = "macOsVersions"
-        case name = "name"
-        case testdestinations = "testDestinations"
-        case version = "version"
-    }
-
-    /**
      * enum for parameter fieldsCiWorkflows
      */
     public enum FieldsCiWorkflows_ciProductsWorkflowsGetToManyRelated: String, CaseIterable {
-        case actions = "actions"
-        case branchstartcondition = "branchStartCondition"
-        case buildruns = "buildRuns"
-        case clean = "clean"
-        case containerfilepath = "containerFilePath"
+        case name = "name"
         case description = "description"
+        case branchstartcondition = "branchStartCondition"
+        case tagstartcondition = "tagStartCondition"
+        case pullrequeststartcondition = "pullRequestStartCondition"
+        case scheduledstartcondition = "scheduledStartCondition"
+        case manualbranchstartcondition = "manualBranchStartCondition"
+        case manualtagstartcondition = "manualTagStartCondition"
+        case manualpullrequeststartcondition = "manualPullRequestStartCondition"
+        case actions = "actions"
         case isenabled = "isEnabled"
         case islockedforediting = "isLockedForEditing"
+        case clean = "clean"
+        case containerfilepath = "containerFilePath"
         case lastmodifieddate = "lastModifiedDate"
-        case macosversion = "macOsVersion"
-        case manualbranchstartcondition = "manualBranchStartCondition"
-        case manualpullrequeststartcondition = "manualPullRequestStartCondition"
-        case manualtagstartcondition = "manualTagStartCondition"
-        case name = "name"
         case product = "product"
-        case pullrequeststartcondition = "pullRequestStartCondition"
         case repository = "repository"
-        case scheduledstartcondition = "scheduledStartCondition"
-        case tagstartcondition = "tagStartCondition"
         case xcodeversion = "xcodeVersion"
-    }
-
-    /**
-     * enum for parameter fieldsCiMacOsVersions
-     */
-    public enum FieldsCiMacOsVersions_ciProductsWorkflowsGetToManyRelated: String, CaseIterable {
-        case name = "name"
-        case version = "version"
-        case xcodeversions = "xcodeVersions"
+        case macosversion = "macOsVersion"
+        case buildruns = "buildRuns"
     }
 
     /**
      * enum for parameter fieldsCiProducts
      */
     public enum FieldsCiProducts_ciProductsWorkflowsGetToManyRelated: String, CaseIterable {
-        case additionalrepositories = "additionalRepositories"
-        case app = "app"
-        case buildruns = "buildRuns"
-        case bundleid = "bundleId"
-        case createddate = "createdDate"
         case name = "name"
-        case primaryrepositories = "primaryRepositories"
+        case createddate = "createdDate"
         case producttype = "productType"
+        case app = "app"
+        case bundleid = "bundleId"
         case workflows = "workflows"
+        case primaryrepositories = "primaryRepositories"
+        case additionalrepositories = "additionalRepositories"
+        case buildruns = "buildRuns"
     }
 
     /**
      * enum for parameter fieldsScmRepositories
      */
     public enum FieldsScmRepositories_ciProductsWorkflowsGetToManyRelated: String, CaseIterable {
-        case defaultbranch = "defaultBranch"
-        case gitreferences = "gitReferences"
-        case httpcloneurl = "httpCloneUrl"
         case lastaccesseddate = "lastAccessedDate"
+        case httpcloneurl = "httpCloneUrl"
+        case sshcloneurl = "sshCloneUrl"
         case ownername = "ownerName"
-        case pullrequests = "pullRequests"
         case repositoryname = "repositoryName"
         case scmprovider = "scmProvider"
-        case sshcloneurl = "sshCloneUrl"
+        case defaultbranch = "defaultBranch"
+        case gitreferences = "gitReferences"
+        case pullrequests = "pullRequests"
+    }
+
+    /**
+     * enum for parameter fieldsCiXcodeVersions
+     */
+    public enum FieldsCiXcodeVersions_ciProductsWorkflowsGetToManyRelated: String, CaseIterable {
+        case version = "version"
+        case name = "name"
+        case testdestinations = "testDestinations"
+        case macosversions = "macOsVersions"
+    }
+
+    /**
+     * enum for parameter fieldsCiMacOsVersions
+     */
+    public enum FieldsCiMacOsVersions_ciProductsWorkflowsGetToManyRelated: String, CaseIterable {
+        case version = "version"
+        case name = "name"
+        case xcodeversions = "xcodeVersions"
     }
 
     /**
      * enum for parameter include
      */
     public enum Include_ciProductsWorkflowsGetToManyRelated: String, CaseIterable {
-        case macosversion = "macOsVersion"
         case product = "product"
         case repository = "repository"
         case xcodeversion = "xcodeVersion"
+        case macosversion = "macOsVersion"
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
-     - parameter fieldsCiXcodeVersions: (query) the fields to include for returned resources of type ciXcodeVersions (optional)
      - parameter fieldsCiWorkflows: (query) the fields to include for returned resources of type ciWorkflows (optional)
-     - parameter fieldsCiMacOsVersions: (query) the fields to include for returned resources of type ciMacOsVersions (optional)
      - parameter fieldsCiProducts: (query) the fields to include for returned resources of type ciProducts (optional)
      - parameter fieldsScmRepositories: (query) the fields to include for returned resources of type scmRepositories (optional)
+     - parameter fieldsCiXcodeVersions: (query) the fields to include for returned resources of type ciXcodeVersions (optional)
+     - parameter fieldsCiMacOsVersions: (query) the fields to include for returned resources of type ciMacOsVersions (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: CiWorkflowsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciProductsWorkflowsGetToManyRelated(id: String, fieldsCiXcodeVersions: [FieldsCiXcodeVersions_ciProductsWorkflowsGetToManyRelated]? = nil, fieldsCiWorkflows: [FieldsCiWorkflows_ciProductsWorkflowsGetToManyRelated]? = nil, fieldsCiMacOsVersions: [FieldsCiMacOsVersions_ciProductsWorkflowsGetToManyRelated]? = nil, fieldsCiProducts: [FieldsCiProducts_ciProductsWorkflowsGetToManyRelated]? = nil, fieldsScmRepositories: [FieldsScmRepositories_ciProductsWorkflowsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_ciProductsWorkflowsGetToManyRelated]? = nil) async throws -> CiWorkflowsResponse {
-        return try await ciProductsWorkflowsGetToManyRelatedWithRequestBuilder(id: id, fieldsCiXcodeVersions: fieldsCiXcodeVersions, fieldsCiWorkflows: fieldsCiWorkflows, fieldsCiMacOsVersions: fieldsCiMacOsVersions, fieldsCiProducts: fieldsCiProducts, fieldsScmRepositories: fieldsScmRepositories, limit: limit, include: include).execute().body
+    open class func ciProductsWorkflowsGetToManyRelated(id: String, fieldsCiWorkflows: [FieldsCiWorkflows_ciProductsWorkflowsGetToManyRelated]? = nil, fieldsCiProducts: [FieldsCiProducts_ciProductsWorkflowsGetToManyRelated]? = nil, fieldsScmRepositories: [FieldsScmRepositories_ciProductsWorkflowsGetToManyRelated]? = nil, fieldsCiXcodeVersions: [FieldsCiXcodeVersions_ciProductsWorkflowsGetToManyRelated]? = nil, fieldsCiMacOsVersions: [FieldsCiMacOsVersions_ciProductsWorkflowsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_ciProductsWorkflowsGetToManyRelated]? = nil) async throws -> CiWorkflowsResponse {
+        return try await ciProductsWorkflowsGetToManyRelatedWithRequestBuilder(id: id, fieldsCiWorkflows: fieldsCiWorkflows, fieldsCiProducts: fieldsCiProducts, fieldsScmRepositories: fieldsScmRepositories, fieldsCiXcodeVersions: fieldsCiXcodeVersions, fieldsCiMacOsVersions: fieldsCiMacOsVersions, limit: limit, include: include).execute().body
     }
 
     /**
@@ -1864,16 +1686,16 @@ open class CiProductsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
-     - parameter fieldsCiXcodeVersions: (query) the fields to include for returned resources of type ciXcodeVersions (optional)
      - parameter fieldsCiWorkflows: (query) the fields to include for returned resources of type ciWorkflows (optional)
-     - parameter fieldsCiMacOsVersions: (query) the fields to include for returned resources of type ciMacOsVersions (optional)
      - parameter fieldsCiProducts: (query) the fields to include for returned resources of type ciProducts (optional)
      - parameter fieldsScmRepositories: (query) the fields to include for returned resources of type scmRepositories (optional)
+     - parameter fieldsCiXcodeVersions: (query) the fields to include for returned resources of type ciXcodeVersions (optional)
+     - parameter fieldsCiMacOsVersions: (query) the fields to include for returned resources of type ciMacOsVersions (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: RequestBuilder<CiWorkflowsResponse> 
      */
-    open class func ciProductsWorkflowsGetToManyRelatedWithRequestBuilder(id: String, fieldsCiXcodeVersions: [FieldsCiXcodeVersions_ciProductsWorkflowsGetToManyRelated]? = nil, fieldsCiWorkflows: [FieldsCiWorkflows_ciProductsWorkflowsGetToManyRelated]? = nil, fieldsCiMacOsVersions: [FieldsCiMacOsVersions_ciProductsWorkflowsGetToManyRelated]? = nil, fieldsCiProducts: [FieldsCiProducts_ciProductsWorkflowsGetToManyRelated]? = nil, fieldsScmRepositories: [FieldsScmRepositories_ciProductsWorkflowsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_ciProductsWorkflowsGetToManyRelated]? = nil) -> RequestBuilder<CiWorkflowsResponse> {
+    open class func ciProductsWorkflowsGetToManyRelatedWithRequestBuilder(id: String, fieldsCiWorkflows: [FieldsCiWorkflows_ciProductsWorkflowsGetToManyRelated]? = nil, fieldsCiProducts: [FieldsCiProducts_ciProductsWorkflowsGetToManyRelated]? = nil, fieldsScmRepositories: [FieldsScmRepositories_ciProductsWorkflowsGetToManyRelated]? = nil, fieldsCiXcodeVersions: [FieldsCiXcodeVersions_ciProductsWorkflowsGetToManyRelated]? = nil, fieldsCiMacOsVersions: [FieldsCiMacOsVersions_ciProductsWorkflowsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_ciProductsWorkflowsGetToManyRelated]? = nil) -> RequestBuilder<CiWorkflowsResponse> {
         var localVariablePath = "/v1/ciProducts/{id}/workflows"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -1883,11 +1705,11 @@ open class CiProductsAPI {
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[ciXcodeVersions]": (wrappedValue: fieldsCiXcodeVersions?.encodeToJSON(), isExplode: false),
             "fields[ciWorkflows]": (wrappedValue: fieldsCiWorkflows?.encodeToJSON(), isExplode: false),
-            "fields[ciMacOsVersions]": (wrappedValue: fieldsCiMacOsVersions?.encodeToJSON(), isExplode: false),
             "fields[ciProducts]": (wrappedValue: fieldsCiProducts?.encodeToJSON(), isExplode: false),
             "fields[scmRepositories]": (wrappedValue: fieldsScmRepositories?.encodeToJSON(), isExplode: false),
+            "fields[ciXcodeVersions]": (wrappedValue: fieldsCiXcodeVersions?.encodeToJSON(), isExplode: false),
+            "fields[ciMacOsVersions]": (wrappedValue: fieldsCiMacOsVersions?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
         ])

@@ -4,7 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **data** | [AppPricePointV3] |  | 
-**included** | [AppAvailabilityResponseIncludedInner] |  | [optional] 
+**included** | [AppPricePointsV3ResponseIncludedInner] |  | [optional] 
 **links** | [**PagedDocumentLinks**](PagedDocumentLinks.md) |  | 
 **meta** | [**PagingInformation**](PagingInformation.md) |  | [optional] 
 

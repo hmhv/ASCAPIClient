@@ -19,20 +19,17 @@ public struct AppUpdateRequestData: Codable, JSONEncodable, Hashable {
     public var type: ModelType
     public var id: String
     public var attributes: AppUpdateRequestDataAttributes?
-    public var relationships: AppUpdateRequestDataRelationships?
 
-    public init(type: ModelType, id: String, attributes: AppUpdateRequestDataAttributes? = nil, relationships: AppUpdateRequestDataRelationships? = nil) {
+    public init(type: ModelType, id: String, attributes: AppUpdateRequestDataAttributes? = nil) {
         self.type = type
         self.id = id
         self.attributes = attributes
-        self.relationships = relationships
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case type
         case id
         case attributes
-        case relationships
     }
 
     // Encodable protocol methods
@@ -42,7 +39,6 @@ public struct AppUpdateRequestData: Codable, JSONEncodable, Hashable {
         try container.encode(type, forKey: .type)
         try container.encode(id, forKey: .id)
         try container.encodeIfPresent(attributes, forKey: .attributes)
-        try container.encodeIfPresent(relationships, forKey: .relationships)
     }
 }
 

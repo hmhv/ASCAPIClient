@@ -155,7 +155,9 @@ open class CertificatesAPI {
         case macInstallerDistribution = "MAC_INSTALLER_DISTRIBUTION"
         case macAppDevelopment = "MAC_APP_DEVELOPMENT"
         case developerIdKext = "DEVELOPER_ID_KEXT"
+        case developerIdKextG2 = "DEVELOPER_ID_KEXT_G2"
         case developerIdApplication = "DEVELOPER_ID_APPLICATION"
+        case developerIdApplicationG2 = "DEVELOPER_ID_APPLICATION_G2"
         case development = "DEVELOPMENT"
         case distribution = "DISTRIBUTION"
         case passTypeId = "PASS_TYPE_ID"
@@ -166,34 +168,33 @@ open class CertificatesAPI {
      * enum for parameter sort
      */
     public enum Sort_certificatesGetCollection: String, CaseIterable {
-        case certificatetype = "certificateType"
-        case certificatetype2 = "-certificateType"
         case displayname = "displayName"
         case displayname2 = "-displayName"
-        case id = "id"
-        case id2 = "-id"
+        case certificatetype = "certificateType"
+        case certificatetype2 = "-certificateType"
         case serialnumber = "serialNumber"
         case serialnumber2 = "-serialNumber"
+        case id = "id"
+        case id2 = "-id"
     }
 
     /**
      * enum for parameter fieldsCertificates
      */
     public enum FieldsCertificates_certificatesGetCollection: String, CaseIterable {
-        case certificatecontent = "certificateContent"
-        case certificatetype = "certificateType"
-        case csrcontent = "csrContent"
-        case displayname = "displayName"
-        case expirationdate = "expirationDate"
         case name = "name"
-        case platform = "platform"
+        case certificatetype = "certificateType"
+        case displayname = "displayName"
         case serialnumber = "serialNumber"
+        case platform = "platform"
+        case expirationdate = "expirationDate"
+        case certificatecontent = "certificateContent"
     }
 
     /**
 
-     - parameter filterCertificateType: (query) filter by attribute &#39;certificateType&#39; (optional)
      - parameter filterDisplayName: (query) filter by attribute &#39;displayName&#39; (optional)
+     - parameter filterCertificateType: (query) filter by attribute &#39;certificateType&#39; (optional)
      - parameter filterSerialNumber: (query) filter by attribute &#39;serialNumber&#39; (optional)
      - parameter filterId: (query) filter by id(s) (optional)
      - parameter sort: (query) comma-separated list of sort expressions; resources will be sorted as specified (optional)
@@ -202,8 +203,8 @@ open class CertificatesAPI {
      - returns: CertificatesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func certificatesGetCollection(filterCertificateType: [FilterCertificateType_certificatesGetCollection]? = nil, filterDisplayName: [String]? = nil, filterSerialNumber: [String]? = nil, filterId: [String]? = nil, sort: [Sort_certificatesGetCollection]? = nil, fieldsCertificates: [FieldsCertificates_certificatesGetCollection]? = nil, limit: Int? = nil) async throws -> CertificatesResponse {
-        return try await certificatesGetCollectionWithRequestBuilder(filterCertificateType: filterCertificateType, filterDisplayName: filterDisplayName, filterSerialNumber: filterSerialNumber, filterId: filterId, sort: sort, fieldsCertificates: fieldsCertificates, limit: limit).execute().body
+    open class func certificatesGetCollection(filterDisplayName: [String]? = nil, filterCertificateType: [FilterCertificateType_certificatesGetCollection]? = nil, filterSerialNumber: [String]? = nil, filterId: [String]? = nil, sort: [Sort_certificatesGetCollection]? = nil, fieldsCertificates: [FieldsCertificates_certificatesGetCollection]? = nil, limit: Int? = nil) async throws -> CertificatesResponse {
+        return try await certificatesGetCollectionWithRequestBuilder(filterDisplayName: filterDisplayName, filterCertificateType: filterCertificateType, filterSerialNumber: filterSerialNumber, filterId: filterId, sort: sort, fieldsCertificates: fieldsCertificates, limit: limit).execute().body
     }
 
     /**
@@ -220,8 +221,8 @@ open class CertificatesAPI {
      - Bearer Token:
        - type: http
        - name: itc-bearer-token
-     - parameter filterCertificateType: (query) filter by attribute &#39;certificateType&#39; (optional)
      - parameter filterDisplayName: (query) filter by attribute &#39;displayName&#39; (optional)
+     - parameter filterCertificateType: (query) filter by attribute &#39;certificateType&#39; (optional)
      - parameter filterSerialNumber: (query) filter by attribute &#39;serialNumber&#39; (optional)
      - parameter filterId: (query) filter by id(s) (optional)
      - parameter sort: (query) comma-separated list of sort expressions; resources will be sorted as specified (optional)
@@ -229,15 +230,15 @@ open class CertificatesAPI {
      - parameter limit: (query) maximum resources per page (optional)
      - returns: RequestBuilder<CertificatesResponse> 
      */
-    open class func certificatesGetCollectionWithRequestBuilder(filterCertificateType: [FilterCertificateType_certificatesGetCollection]? = nil, filterDisplayName: [String]? = nil, filterSerialNumber: [String]? = nil, filterId: [String]? = nil, sort: [Sort_certificatesGetCollection]? = nil, fieldsCertificates: [FieldsCertificates_certificatesGetCollection]? = nil, limit: Int? = nil) -> RequestBuilder<CertificatesResponse> {
+    open class func certificatesGetCollectionWithRequestBuilder(filterDisplayName: [String]? = nil, filterCertificateType: [FilterCertificateType_certificatesGetCollection]? = nil, filterSerialNumber: [String]? = nil, filterId: [String]? = nil, sort: [Sort_certificatesGetCollection]? = nil, fieldsCertificates: [FieldsCertificates_certificatesGetCollection]? = nil, limit: Int? = nil) -> RequestBuilder<CertificatesResponse> {
         let localVariablePath = "/v1/certificates"
         let localVariableURLString = ASCAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[certificateType]": (wrappedValue: filterCertificateType?.encodeToJSON(), isExplode: false),
             "filter[displayName]": (wrappedValue: filterDisplayName?.encodeToJSON(), isExplode: false),
+            "filter[certificateType]": (wrappedValue: filterCertificateType?.encodeToJSON(), isExplode: false),
             "filter[serialNumber]": (wrappedValue: filterSerialNumber?.encodeToJSON(), isExplode: false),
             "filter[id]": (wrappedValue: filterId?.encodeToJSON(), isExplode: false),
             "sort": (wrappedValue: sort?.encodeToJSON(), isExplode: false),
@@ -280,14 +281,13 @@ open class CertificatesAPI {
      * enum for parameter fieldsCertificates
      */
     public enum FieldsCertificates_certificatesGetInstance: String, CaseIterable {
-        case certificatecontent = "certificateContent"
-        case certificatetype = "certificateType"
-        case csrcontent = "csrContent"
-        case displayname = "displayName"
-        case expirationdate = "expirationDate"
         case name = "name"
-        case platform = "platform"
+        case certificatetype = "certificateType"
+        case displayname = "displayName"
         case serialnumber = "serialNumber"
+        case platform = "platform"
+        case expirationdate = "expirationDate"
+        case certificatecontent = "certificateContent"
     }
 
     /**

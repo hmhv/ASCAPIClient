@@ -81,8 +81,21 @@ open class AlternativeDistributionPackagesAPI {
      * enum for parameter fieldsAlternativeDistributionPackages
      */
     public enum FieldsAlternativeDistributionPackages_alternativeDistributionPackagesGetInstance: String, CaseIterable {
-        case appstoreversion = "appStoreVersion"
         case versions = "versions"
+    }
+
+    /**
+     * enum for parameter fieldsAlternativeDistributionPackageVersions
+     */
+    public enum FieldsAlternativeDistributionPackageVersions_alternativeDistributionPackagesGetInstance: String, CaseIterable {
+        case url = "url"
+        case urlexpirationdate = "urlExpirationDate"
+        case version = "version"
+        case filechecksum = "fileChecksum"
+        case state = "state"
+        case variants = "variants"
+        case deltas = "deltas"
+        case alternativedistributionpackage = "alternativeDistributionPackage"
     }
 
     /**
@@ -93,31 +106,17 @@ open class AlternativeDistributionPackagesAPI {
     }
 
     /**
-     * enum for parameter fieldsAlternativeDistributionPackageVersions
-     */
-    public enum FieldsAlternativeDistributionPackageVersions_alternativeDistributionPackagesGetInstance: String, CaseIterable {
-        case alternativedistributionpackage = "alternativeDistributionPackage"
-        case deltas = "deltas"
-        case filechecksum = "fileChecksum"
-        case state = "state"
-        case url = "url"
-        case urlexpirationdate = "urlExpirationDate"
-        case variants = "variants"
-        case version = "version"
-    }
-
-    /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAlternativeDistributionPackages: (query) the fields to include for returned resources of type alternativeDistributionPackages (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter fieldsAlternativeDistributionPackageVersions: (query) the fields to include for returned resources of type alternativeDistributionPackageVersions (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitVersions: (query) maximum number of related versions returned (when they are included) (optional)
      - returns: AlternativeDistributionPackageResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func alternativeDistributionPackagesGetInstance(id: String, fieldsAlternativeDistributionPackages: [FieldsAlternativeDistributionPackages_alternativeDistributionPackagesGetInstance]? = nil, include: [Include_alternativeDistributionPackagesGetInstance]? = nil, fieldsAlternativeDistributionPackageVersions: [FieldsAlternativeDistributionPackageVersions_alternativeDistributionPackagesGetInstance]? = nil, limitVersions: Int? = nil) async throws -> AlternativeDistributionPackageResponse {
-        return try await alternativeDistributionPackagesGetInstanceWithRequestBuilder(id: id, fieldsAlternativeDistributionPackages: fieldsAlternativeDistributionPackages, include: include, fieldsAlternativeDistributionPackageVersions: fieldsAlternativeDistributionPackageVersions, limitVersions: limitVersions).execute().body
+    open class func alternativeDistributionPackagesGetInstance(id: String, fieldsAlternativeDistributionPackages: [FieldsAlternativeDistributionPackages_alternativeDistributionPackagesGetInstance]? = nil, fieldsAlternativeDistributionPackageVersions: [FieldsAlternativeDistributionPackageVersions_alternativeDistributionPackagesGetInstance]? = nil, include: [Include_alternativeDistributionPackagesGetInstance]? = nil, limitVersions: Int? = nil) async throws -> AlternativeDistributionPackageResponse {
+        return try await alternativeDistributionPackagesGetInstanceWithRequestBuilder(id: id, fieldsAlternativeDistributionPackages: fieldsAlternativeDistributionPackages, fieldsAlternativeDistributionPackageVersions: fieldsAlternativeDistributionPackageVersions, include: include, limitVersions: limitVersions).execute().body
     }
 
     /**
@@ -136,12 +135,12 @@ open class AlternativeDistributionPackagesAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAlternativeDistributionPackages: (query) the fields to include for returned resources of type alternativeDistributionPackages (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter fieldsAlternativeDistributionPackageVersions: (query) the fields to include for returned resources of type alternativeDistributionPackageVersions (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitVersions: (query) maximum number of related versions returned (when they are included) (optional)
      - returns: RequestBuilder<AlternativeDistributionPackageResponse> 
      */
-    open class func alternativeDistributionPackagesGetInstanceWithRequestBuilder(id: String, fieldsAlternativeDistributionPackages: [FieldsAlternativeDistributionPackages_alternativeDistributionPackagesGetInstance]? = nil, include: [Include_alternativeDistributionPackagesGetInstance]? = nil, fieldsAlternativeDistributionPackageVersions: [FieldsAlternativeDistributionPackageVersions_alternativeDistributionPackagesGetInstance]? = nil, limitVersions: Int? = nil) -> RequestBuilder<AlternativeDistributionPackageResponse> {
+    open class func alternativeDistributionPackagesGetInstanceWithRequestBuilder(id: String, fieldsAlternativeDistributionPackages: [FieldsAlternativeDistributionPackages_alternativeDistributionPackagesGetInstance]? = nil, fieldsAlternativeDistributionPackageVersions: [FieldsAlternativeDistributionPackageVersions_alternativeDistributionPackagesGetInstance]? = nil, include: [Include_alternativeDistributionPackagesGetInstance]? = nil, limitVersions: Int? = nil) -> RequestBuilder<AlternativeDistributionPackageResponse> {
         var localVariablePath = "/v1/alternativeDistributionPackages/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -152,8 +151,8 @@ open class AlternativeDistributionPackagesAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[alternativeDistributionPackages]": (wrappedValue: fieldsAlternativeDistributionPackages?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "fields[alternativeDistributionPackageVersions]": (wrappedValue: fieldsAlternativeDistributionPackageVersions?.encodeToJSON(), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "limit[versions]": (wrappedValue: limitVersions?.encodeToJSON(), isExplode: true),
         ])
 
@@ -197,73 +196,72 @@ open class AlternativeDistributionPackagesAPI {
     }
 
     /**
-     * enum for parameter fieldsAlternativeDistributionPackageVariants
-     */
-    public enum FieldsAlternativeDistributionPackageVariants_alternativeDistributionPackagesVersionsGetToManyRelated: String, CaseIterable {
-        case alternativedistributionkeyblob = "alternativeDistributionKeyBlob"
-        case filechecksum = "fileChecksum"
-        case url = "url"
-        case urlexpirationdate = "urlExpirationDate"
-    }
-
-    /**
-     * enum for parameter fieldsAlternativeDistributionPackages
-     */
-    public enum FieldsAlternativeDistributionPackages_alternativeDistributionPackagesVersionsGetToManyRelated: String, CaseIterable {
-        case appstoreversion = "appStoreVersion"
-        case versions = "versions"
-    }
-
-    /**
      * enum for parameter fieldsAlternativeDistributionPackageVersions
      */
     public enum FieldsAlternativeDistributionPackageVersions_alternativeDistributionPackagesVersionsGetToManyRelated: String, CaseIterable {
-        case alternativedistributionpackage = "alternativeDistributionPackage"
-        case deltas = "deltas"
-        case filechecksum = "fileChecksum"
-        case state = "state"
         case url = "url"
         case urlexpirationdate = "urlExpirationDate"
-        case variants = "variants"
         case version = "version"
+        case filechecksum = "fileChecksum"
+        case state = "state"
+        case variants = "variants"
+        case deltas = "deltas"
+        case alternativedistributionpackage = "alternativeDistributionPackage"
+    }
+
+    /**
+     * enum for parameter fieldsAlternativeDistributionPackageVariants
+     */
+    public enum FieldsAlternativeDistributionPackageVariants_alternativeDistributionPackagesVersionsGetToManyRelated: String, CaseIterable {
+        case url = "url"
+        case urlexpirationdate = "urlExpirationDate"
+        case alternativedistributionkeyblob = "alternativeDistributionKeyBlob"
+        case filechecksum = "fileChecksum"
     }
 
     /**
      * enum for parameter fieldsAlternativeDistributionPackageDeltas
      */
     public enum FieldsAlternativeDistributionPackageDeltas_alternativeDistributionPackagesVersionsGetToManyRelated: String, CaseIterable {
-        case alternativedistributionkeyblob = "alternativeDistributionKeyBlob"
-        case filechecksum = "fileChecksum"
         case url = "url"
         case urlexpirationdate = "urlExpirationDate"
+        case alternativedistributionkeyblob = "alternativeDistributionKeyBlob"
+        case filechecksum = "fileChecksum"
+    }
+
+    /**
+     * enum for parameter fieldsAlternativeDistributionPackages
+     */
+    public enum FieldsAlternativeDistributionPackages_alternativeDistributionPackagesVersionsGetToManyRelated: String, CaseIterable {
+        case versions = "versions"
     }
 
     /**
      * enum for parameter include
      */
     public enum Include_alternativeDistributionPackagesVersionsGetToManyRelated: String, CaseIterable {
-        case alternativedistributionpackage = "alternativeDistributionPackage"
-        case deltas = "deltas"
         case variants = "variants"
+        case deltas = "deltas"
+        case alternativedistributionpackage = "alternativeDistributionPackage"
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter filterState: (query) filter by attribute &#39;state&#39; (optional)
-     - parameter fieldsAlternativeDistributionPackageVariants: (query) the fields to include for returned resources of type alternativeDistributionPackageVariants (optional)
-     - parameter fieldsAlternativeDistributionPackages: (query) the fields to include for returned resources of type alternativeDistributionPackages (optional)
      - parameter fieldsAlternativeDistributionPackageVersions: (query) the fields to include for returned resources of type alternativeDistributionPackageVersions (optional)
+     - parameter fieldsAlternativeDistributionPackageVariants: (query) the fields to include for returned resources of type alternativeDistributionPackageVariants (optional)
      - parameter fieldsAlternativeDistributionPackageDeltas: (query) the fields to include for returned resources of type alternativeDistributionPackageDeltas (optional)
+     - parameter fieldsAlternativeDistributionPackages: (query) the fields to include for returned resources of type alternativeDistributionPackages (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitVariants: (query) maximum number of related variants returned (when they are included) (optional)
      - parameter limitDeltas: (query) maximum number of related deltas returned (when they are included) (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: AlternativeDistributionPackageVersionsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func alternativeDistributionPackagesVersionsGetToManyRelated(id: String, filterState: [FilterState_alternativeDistributionPackagesVersionsGetToManyRelated]? = nil, fieldsAlternativeDistributionPackageVariants: [FieldsAlternativeDistributionPackageVariants_alternativeDistributionPackagesVersionsGetToManyRelated]? = nil, fieldsAlternativeDistributionPackages: [FieldsAlternativeDistributionPackages_alternativeDistributionPackagesVersionsGetToManyRelated]? = nil, fieldsAlternativeDistributionPackageVersions: [FieldsAlternativeDistributionPackageVersions_alternativeDistributionPackagesVersionsGetToManyRelated]? = nil, fieldsAlternativeDistributionPackageDeltas: [FieldsAlternativeDistributionPackageDeltas_alternativeDistributionPackagesVersionsGetToManyRelated]? = nil, limit: Int? = nil, limitVariants: Int? = nil, limitDeltas: Int? = nil, include: [Include_alternativeDistributionPackagesVersionsGetToManyRelated]? = nil) async throws -> AlternativeDistributionPackageVersionsResponse {
-        return try await alternativeDistributionPackagesVersionsGetToManyRelatedWithRequestBuilder(id: id, filterState: filterState, fieldsAlternativeDistributionPackageVariants: fieldsAlternativeDistributionPackageVariants, fieldsAlternativeDistributionPackages: fieldsAlternativeDistributionPackages, fieldsAlternativeDistributionPackageVersions: fieldsAlternativeDistributionPackageVersions, fieldsAlternativeDistributionPackageDeltas: fieldsAlternativeDistributionPackageDeltas, limit: limit, limitVariants: limitVariants, limitDeltas: limitDeltas, include: include).execute().body
+    open class func alternativeDistributionPackagesVersionsGetToManyRelated(id: String, filterState: [FilterState_alternativeDistributionPackagesVersionsGetToManyRelated]? = nil, fieldsAlternativeDistributionPackageVersions: [FieldsAlternativeDistributionPackageVersions_alternativeDistributionPackagesVersionsGetToManyRelated]? = nil, fieldsAlternativeDistributionPackageVariants: [FieldsAlternativeDistributionPackageVariants_alternativeDistributionPackagesVersionsGetToManyRelated]? = nil, fieldsAlternativeDistributionPackageDeltas: [FieldsAlternativeDistributionPackageDeltas_alternativeDistributionPackagesVersionsGetToManyRelated]? = nil, fieldsAlternativeDistributionPackages: [FieldsAlternativeDistributionPackages_alternativeDistributionPackagesVersionsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_alternativeDistributionPackagesVersionsGetToManyRelated]? = nil, limitVariants: Int? = nil, limitDeltas: Int? = nil) async throws -> AlternativeDistributionPackageVersionsResponse {
+        return try await alternativeDistributionPackagesVersionsGetToManyRelatedWithRequestBuilder(id: id, filterState: filterState, fieldsAlternativeDistributionPackageVersions: fieldsAlternativeDistributionPackageVersions, fieldsAlternativeDistributionPackageVariants: fieldsAlternativeDistributionPackageVariants, fieldsAlternativeDistributionPackageDeltas: fieldsAlternativeDistributionPackageDeltas, fieldsAlternativeDistributionPackages: fieldsAlternativeDistributionPackages, limit: limit, include: include, limitVariants: limitVariants, limitDeltas: limitDeltas).execute().body
     }
 
     /**
@@ -282,17 +280,17 @@ open class AlternativeDistributionPackagesAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter filterState: (query) filter by attribute &#39;state&#39; (optional)
-     - parameter fieldsAlternativeDistributionPackageVariants: (query) the fields to include for returned resources of type alternativeDistributionPackageVariants (optional)
-     - parameter fieldsAlternativeDistributionPackages: (query) the fields to include for returned resources of type alternativeDistributionPackages (optional)
      - parameter fieldsAlternativeDistributionPackageVersions: (query) the fields to include for returned resources of type alternativeDistributionPackageVersions (optional)
+     - parameter fieldsAlternativeDistributionPackageVariants: (query) the fields to include for returned resources of type alternativeDistributionPackageVariants (optional)
      - parameter fieldsAlternativeDistributionPackageDeltas: (query) the fields to include for returned resources of type alternativeDistributionPackageDeltas (optional)
+     - parameter fieldsAlternativeDistributionPackages: (query) the fields to include for returned resources of type alternativeDistributionPackages (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitVariants: (query) maximum number of related variants returned (when they are included) (optional)
      - parameter limitDeltas: (query) maximum number of related deltas returned (when they are included) (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: RequestBuilder<AlternativeDistributionPackageVersionsResponse> 
      */
-    open class func alternativeDistributionPackagesVersionsGetToManyRelatedWithRequestBuilder(id: String, filterState: [FilterState_alternativeDistributionPackagesVersionsGetToManyRelated]? = nil, fieldsAlternativeDistributionPackageVariants: [FieldsAlternativeDistributionPackageVariants_alternativeDistributionPackagesVersionsGetToManyRelated]? = nil, fieldsAlternativeDistributionPackages: [FieldsAlternativeDistributionPackages_alternativeDistributionPackagesVersionsGetToManyRelated]? = nil, fieldsAlternativeDistributionPackageVersions: [FieldsAlternativeDistributionPackageVersions_alternativeDistributionPackagesVersionsGetToManyRelated]? = nil, fieldsAlternativeDistributionPackageDeltas: [FieldsAlternativeDistributionPackageDeltas_alternativeDistributionPackagesVersionsGetToManyRelated]? = nil, limit: Int? = nil, limitVariants: Int? = nil, limitDeltas: Int? = nil, include: [Include_alternativeDistributionPackagesVersionsGetToManyRelated]? = nil) -> RequestBuilder<AlternativeDistributionPackageVersionsResponse> {
+    open class func alternativeDistributionPackagesVersionsGetToManyRelatedWithRequestBuilder(id: String, filterState: [FilterState_alternativeDistributionPackagesVersionsGetToManyRelated]? = nil, fieldsAlternativeDistributionPackageVersions: [FieldsAlternativeDistributionPackageVersions_alternativeDistributionPackagesVersionsGetToManyRelated]? = nil, fieldsAlternativeDistributionPackageVariants: [FieldsAlternativeDistributionPackageVariants_alternativeDistributionPackagesVersionsGetToManyRelated]? = nil, fieldsAlternativeDistributionPackageDeltas: [FieldsAlternativeDistributionPackageDeltas_alternativeDistributionPackagesVersionsGetToManyRelated]? = nil, fieldsAlternativeDistributionPackages: [FieldsAlternativeDistributionPackages_alternativeDistributionPackagesVersionsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_alternativeDistributionPackagesVersionsGetToManyRelated]? = nil, limitVariants: Int? = nil, limitDeltas: Int? = nil) -> RequestBuilder<AlternativeDistributionPackageVersionsResponse> {
         var localVariablePath = "/v1/alternativeDistributionPackages/{id}/versions"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -303,14 +301,14 @@ open class AlternativeDistributionPackagesAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "filter[state]": (wrappedValue: filterState?.encodeToJSON(), isExplode: false),
-            "fields[alternativeDistributionPackageVariants]": (wrappedValue: fieldsAlternativeDistributionPackageVariants?.encodeToJSON(), isExplode: false),
-            "fields[alternativeDistributionPackages]": (wrappedValue: fieldsAlternativeDistributionPackages?.encodeToJSON(), isExplode: false),
             "fields[alternativeDistributionPackageVersions]": (wrappedValue: fieldsAlternativeDistributionPackageVersions?.encodeToJSON(), isExplode: false),
+            "fields[alternativeDistributionPackageVariants]": (wrappedValue: fieldsAlternativeDistributionPackageVariants?.encodeToJSON(), isExplode: false),
             "fields[alternativeDistributionPackageDeltas]": (wrappedValue: fieldsAlternativeDistributionPackageDeltas?.encodeToJSON(), isExplode: false),
+            "fields[alternativeDistributionPackages]": (wrappedValue: fieldsAlternativeDistributionPackages?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "limit[variants]": (wrappedValue: limitVariants?.encodeToJSON(), isExplode: true),
             "limit[deltas]": (wrappedValue: limitDeltas?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [

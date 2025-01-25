@@ -12,9 +12,9 @@ import AnyCodable
 
 public struct InAppPurchaseRelationships: Codable, JSONEncodable, Hashable {
 
-    public var apps: BetaTesterRelationshipsApps?
+    public var apps: InAppPurchaseRelationshipsApps?
 
-    public init(apps: BetaTesterRelationshipsApps? = nil) {
+    public init(apps: InAppPurchaseRelationshipsApps? = nil) {
         self.apps = apps
     }
 

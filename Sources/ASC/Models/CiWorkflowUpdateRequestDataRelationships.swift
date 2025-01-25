@@ -12,10 +12,10 @@ import AnyCodable
 
 public struct CiWorkflowUpdateRequestDataRelationships: Codable, JSONEncodable, Hashable {
 
-    public var xcodeVersion: CiWorkflowUpdateRequestDataRelationshipsXcodeVersion?
-    public var macOsVersion: CiWorkflowUpdateRequestDataRelationshipsMacOsVersion?
+    public var xcodeVersion: CiWorkflowRelationshipsXcodeVersion?
+    public var macOsVersion: CiWorkflowRelationshipsMacOsVersion?
 
-    public init(xcodeVersion: CiWorkflowUpdateRequestDataRelationshipsXcodeVersion? = nil, macOsVersion: CiWorkflowUpdateRequestDataRelationshipsMacOsVersion? = nil) {
+    public init(xcodeVersion: CiWorkflowRelationshipsXcodeVersion? = nil, macOsVersion: CiWorkflowRelationshipsMacOsVersion? = nil) {
         self.xcodeVersion = xcodeVersion
         self.macOsVersion = macOsVersion
     }

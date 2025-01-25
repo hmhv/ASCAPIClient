@@ -149,9 +149,9 @@ open class GameCenterLeaderboardSetReleasesAPI {
      * enum for parameter fieldsGameCenterLeaderboardSetReleases
      */
     public enum FieldsGameCenterLeaderboardSetReleases_gameCenterLeaderboardSetReleasesGetInstance: String, CaseIterable {
+        case live = "live"
         case gamecenterdetail = "gameCenterDetail"
         case gamecenterleaderboardset = "gameCenterLeaderboardSet"
-        case live = "live"
     }
 
     /**

@@ -149,26 +149,25 @@ open class GameCenterLeaderboardLocalizationsAPI {
      * enum for parameter fieldsGameCenterLeaderboardImages
      */
     public enum FieldsGameCenterLeaderboardImages_gameCenterLeaderboardLocalizationsGameCenterLeaderboardImageGetToOneRelated: String, CaseIterable {
-        case assetdeliverystate = "assetDeliveryState"
-        case filename = "fileName"
         case filesize = "fileSize"
-        case gamecenterleaderboardlocalization = "gameCenterLeaderboardLocalization"
+        case filename = "fileName"
         case imageasset = "imageAsset"
         case uploadoperations = "uploadOperations"
-        case uploaded = "uploaded"
+        case assetdeliverystate = "assetDeliveryState"
+        case gamecenterleaderboardlocalization = "gameCenterLeaderboardLocalization"
     }
 
     /**
      * enum for parameter fieldsGameCenterLeaderboardLocalizations
      */
     public enum FieldsGameCenterLeaderboardLocalizations_gameCenterLeaderboardLocalizationsGameCenterLeaderboardImageGetToOneRelated: String, CaseIterable {
+        case locale = "locale"
+        case name = "name"
         case formatteroverride = "formatterOverride"
         case formattersuffix = "formatterSuffix"
         case formattersuffixsingular = "formatterSuffixSingular"
         case gamecenterleaderboard = "gameCenterLeaderboard"
         case gamecenterleaderboardimage = "gameCenterLeaderboardImage"
-        case locale = "locale"
-        case name = "name"
     }
 
     /**
@@ -261,13 +260,25 @@ open class GameCenterLeaderboardLocalizationsAPI {
      * enum for parameter fieldsGameCenterLeaderboardLocalizations
      */
     public enum FieldsGameCenterLeaderboardLocalizations_gameCenterLeaderboardLocalizationsGetInstance: String, CaseIterable {
+        case locale = "locale"
+        case name = "name"
         case formatteroverride = "formatterOverride"
         case formattersuffix = "formatterSuffix"
         case formattersuffixsingular = "formatterSuffixSingular"
         case gamecenterleaderboard = "gameCenterLeaderboard"
         case gamecenterleaderboardimage = "gameCenterLeaderboardImage"
-        case locale = "locale"
-        case name = "name"
+    }
+
+    /**
+     * enum for parameter fieldsGameCenterLeaderboardImages
+     */
+    public enum FieldsGameCenterLeaderboardImages_gameCenterLeaderboardLocalizationsGetInstance: String, CaseIterable {
+        case filesize = "fileSize"
+        case filename = "fileName"
+        case imageasset = "imageAsset"
+        case uploadoperations = "uploadOperations"
+        case assetdeliverystate = "assetDeliveryState"
+        case gamecenterleaderboardlocalization = "gameCenterLeaderboardLocalization"
     }
 
     /**
@@ -279,29 +290,16 @@ open class GameCenterLeaderboardLocalizationsAPI {
     }
 
     /**
-     * enum for parameter fieldsGameCenterLeaderboardImages
-     */
-    public enum FieldsGameCenterLeaderboardImages_gameCenterLeaderboardLocalizationsGetInstance: String, CaseIterable {
-        case assetdeliverystate = "assetDeliveryState"
-        case filename = "fileName"
-        case filesize = "fileSize"
-        case gamecenterleaderboardlocalization = "gameCenterLeaderboardLocalization"
-        case imageasset = "imageAsset"
-        case uploadoperations = "uploadOperations"
-        case uploaded = "uploaded"
-    }
-
-    /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsGameCenterLeaderboardLocalizations: (query) the fields to include for returned resources of type gameCenterLeaderboardLocalizations (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter fieldsGameCenterLeaderboardImages: (query) the fields to include for returned resources of type gameCenterLeaderboardImages (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: GameCenterLeaderboardLocalizationResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterLeaderboardLocalizationsGetInstance(id: String, fieldsGameCenterLeaderboardLocalizations: [FieldsGameCenterLeaderboardLocalizations_gameCenterLeaderboardLocalizationsGetInstance]? = nil, include: [Include_gameCenterLeaderboardLocalizationsGetInstance]? = nil, fieldsGameCenterLeaderboardImages: [FieldsGameCenterLeaderboardImages_gameCenterLeaderboardLocalizationsGetInstance]? = nil) async throws -> GameCenterLeaderboardLocalizationResponse {
-        return try await gameCenterLeaderboardLocalizationsGetInstanceWithRequestBuilder(id: id, fieldsGameCenterLeaderboardLocalizations: fieldsGameCenterLeaderboardLocalizations, include: include, fieldsGameCenterLeaderboardImages: fieldsGameCenterLeaderboardImages).execute().body
+    open class func gameCenterLeaderboardLocalizationsGetInstance(id: String, fieldsGameCenterLeaderboardLocalizations: [FieldsGameCenterLeaderboardLocalizations_gameCenterLeaderboardLocalizationsGetInstance]? = nil, fieldsGameCenterLeaderboardImages: [FieldsGameCenterLeaderboardImages_gameCenterLeaderboardLocalizationsGetInstance]? = nil, include: [Include_gameCenterLeaderboardLocalizationsGetInstance]? = nil) async throws -> GameCenterLeaderboardLocalizationResponse {
+        return try await gameCenterLeaderboardLocalizationsGetInstanceWithRequestBuilder(id: id, fieldsGameCenterLeaderboardLocalizations: fieldsGameCenterLeaderboardLocalizations, fieldsGameCenterLeaderboardImages: fieldsGameCenterLeaderboardImages, include: include).execute().body
     }
 
     /**
@@ -320,11 +318,11 @@ open class GameCenterLeaderboardLocalizationsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsGameCenterLeaderboardLocalizations: (query) the fields to include for returned resources of type gameCenterLeaderboardLocalizations (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter fieldsGameCenterLeaderboardImages: (query) the fields to include for returned resources of type gameCenterLeaderboardImages (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: RequestBuilder<GameCenterLeaderboardLocalizationResponse> 
      */
-    open class func gameCenterLeaderboardLocalizationsGetInstanceWithRequestBuilder(id: String, fieldsGameCenterLeaderboardLocalizations: [FieldsGameCenterLeaderboardLocalizations_gameCenterLeaderboardLocalizationsGetInstance]? = nil, include: [Include_gameCenterLeaderboardLocalizationsGetInstance]? = nil, fieldsGameCenterLeaderboardImages: [FieldsGameCenterLeaderboardImages_gameCenterLeaderboardLocalizationsGetInstance]? = nil) -> RequestBuilder<GameCenterLeaderboardLocalizationResponse> {
+    open class func gameCenterLeaderboardLocalizationsGetInstanceWithRequestBuilder(id: String, fieldsGameCenterLeaderboardLocalizations: [FieldsGameCenterLeaderboardLocalizations_gameCenterLeaderboardLocalizationsGetInstance]? = nil, fieldsGameCenterLeaderboardImages: [FieldsGameCenterLeaderboardImages_gameCenterLeaderboardLocalizationsGetInstance]? = nil, include: [Include_gameCenterLeaderboardLocalizationsGetInstance]? = nil) -> RequestBuilder<GameCenterLeaderboardLocalizationResponse> {
         var localVariablePath = "/v1/gameCenterLeaderboardLocalizations/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -335,8 +333,8 @@ open class GameCenterLeaderboardLocalizationsAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[gameCenterLeaderboardLocalizations]": (wrappedValue: fieldsGameCenterLeaderboardLocalizations?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "fields[gameCenterLeaderboardImages]": (wrappedValue: fieldsGameCenterLeaderboardImages?.encodeToJSON(), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [

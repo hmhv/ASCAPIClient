@@ -12,16 +12,13 @@ import AnyCodable
 
 public struct GameCenterLeaderboardSetLocalizationRelationshipsGameCenterLeaderboardSet: Codable, JSONEncodable, Hashable {
 
-    public var links: AlternativeDistributionPackageVersionRelationshipsVariantsLinks?
     public var data: GameCenterDetailRelationshipsGameCenterLeaderboardSetsDataInner?
 
-    public init(links: AlternativeDistributionPackageVersionRelationshipsVariantsLinks? = nil, data: GameCenterDetailRelationshipsGameCenterLeaderboardSetsDataInner? = nil) {
-        self.links = links
+    public init(data: GameCenterDetailRelationshipsGameCenterLeaderboardSetsDataInner? = nil) {
         self.data = data
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
-        case links
         case data
     }
 
@@ -29,7 +26,6 @@ public struct GameCenterLeaderboardSetLocalizationRelationshipsGameCenterLeaderb
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(links, forKey: .links)
         try container.encodeIfPresent(data, forKey: .data)
     }
 }

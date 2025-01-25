@@ -111,7 +111,7 @@ Void (empty response body)
 
 # **gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated**
 ```swift
-    open class func gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated(id: String, filterPlatform: [FilterPlatform_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated]? = nil, filterVersionString: [String]? = nil, filterApp: [String]? = nil, filterId: [String]? = nil, sort: [Sort_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated]? = nil, fieldsGameCenterEnabledVersions: [FieldsGameCenterEnabledVersions_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated]? = nil, fieldsApps: [FieldsApps_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated]? = nil, limit: Int? = nil, limitCompatibleVersions: Int? = nil, include: [Include_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated]? = nil, completion: @escaping (_ data: GameCenterEnabledVersionsResponse?, _ error: Error?) -> Void)
+    open class func gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated(id: String, filterPlatform: [FilterPlatform_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated]? = nil, filterVersionString: [String]? = nil, filterApp: [String]? = nil, filterId: [String]? = nil, sort: [Sort_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated]? = nil, fieldsGameCenterEnabledVersions: [FieldsGameCenterEnabledVersions_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated]? = nil, fieldsApps: [FieldsApps_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated]? = nil, limitCompatibleVersions: Int? = nil, completion: @escaping (_ data: GameCenterEnabledVersionsResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -130,10 +130,10 @@ let sort = ["sort_example"] // [String] | comma-separated list of sort expressio
 let fieldsGameCenterEnabledVersions = ["fieldsGameCenterEnabledVersions_example"] // [String] | the fields to include for returned resources of type gameCenterEnabledVersions (optional)
 let fieldsApps = ["fieldsApps_example"] // [String] | the fields to include for returned resources of type apps (optional)
 let limit = 987 // Int | maximum resources per page (optional)
-let limitCompatibleVersions = 987 // Int | maximum number of related compatibleVersions returned (when they are included) (optional)
 let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
+let limitCompatibleVersions = 987 // Int | maximum number of related compatibleVersions returned (when they are included) (optional)
 
-GameCenterEnabledVersionsAPI.gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated(id: id, filterPlatform: filterPlatform, filterVersionString: filterVersionString, filterApp: filterApp, filterId: filterId, sort: sort, fieldsGameCenterEnabledVersions: fieldsGameCenterEnabledVersions, fieldsApps: fieldsApps, limit: limit, limitCompatibleVersions: limitCompatibleVersions, include: include) { (response, error) in
+GameCenterEnabledVersionsAPI.gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated(id: id, filterPlatform: filterPlatform, filterVersionString: filterVersionString, filterApp: filterApp, filterId: filterId, sort: sort, fieldsGameCenterEnabledVersions: fieldsGameCenterEnabledVersions, fieldsApps: fieldsApps, limit: limit, include: include, limitCompatibleVersions: limitCompatibleVersions) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -158,8 +158,8 @@ Name | Type | Description  | Notes
  **fieldsGameCenterEnabledVersions** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterEnabledVersions | [optional] 
  **fieldsApps** | [**[String]**](String.md) | the fields to include for returned resources of type apps | [optional] 
  **limit** | **Int** | maximum resources per page | [optional] 
- **limitCompatibleVersions** | **Int** | maximum number of related compatibleVersions returned (when they are included) | [optional] 
  **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
+ **limitCompatibleVersions** | **Int** | maximum number of related compatibleVersions returned (when they are included) | [optional] 
 
 ### Return type
 

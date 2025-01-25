@@ -150,7 +150,6 @@ open class MarketplaceWebhooksAPI {
      */
     public enum FieldsMarketplaceWebhooks_marketplaceWebhooksGetCollection: String, CaseIterable {
         case endpointurl = "endpointUrl"
-        case secret = "secret"
     }
 
     /**

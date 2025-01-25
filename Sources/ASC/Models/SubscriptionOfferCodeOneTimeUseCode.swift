@@ -19,10 +19,10 @@ public struct SubscriptionOfferCodeOneTimeUseCode: Codable, JSONEncodable, Hasha
     public var type: ModelType
     public var id: String
     public var attributes: SubscriptionOfferCodeOneTimeUseCodeAttributes?
-    public var relationships: SubscriptionOfferCodeCustomCodeRelationships?
+    public var relationships: SubscriptionOfferCodeOneTimeUseCodeRelationships?
     public var links: ResourceLinks?
 
-    public init(type: ModelType, id: String, attributes: SubscriptionOfferCodeOneTimeUseCodeAttributes? = nil, relationships: SubscriptionOfferCodeCustomCodeRelationships? = nil, links: ResourceLinks? = nil) {
+    public init(type: ModelType, id: String, attributes: SubscriptionOfferCodeOneTimeUseCodeAttributes? = nil, relationships: SubscriptionOfferCodeOneTimeUseCodeRelationships? = nil, links: ResourceLinks? = nil) {
         self.type = type
         self.id = id
         self.attributes = attributes

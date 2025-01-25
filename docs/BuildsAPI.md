@@ -224,7 +224,7 @@ Name | Type | Description  | Notes
 
 # **buildsAppStoreVersionGetToOneRelated**
 ```swift
-    open class func buildsAppStoreVersionGetToOneRelated(id: String, fieldsAgeRatingDeclarations: [FieldsAgeRatingDeclarations_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreReviewDetails: [FieldsAppStoreReviewDetails_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionLocalizations: [FieldsAppStoreVersionLocalizations_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionSubmissions: [FieldsAppStoreVersionSubmissions_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAlternativeDistributionPackages: [FieldsAlternativeDistributionPackages_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsApps: [FieldsApps_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsRoutingAppCoverages: [FieldsRoutingAppCoverages_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppClipDefaultExperiences: [FieldsAppClipDefaultExperiences_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionPhasedReleases: [FieldsAppStoreVersionPhasedReleases_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsBuilds: [FieldsBuilds_buildsAppStoreVersionGetToOneRelated]? = nil, limitAppStoreVersionLocalizations: Int? = nil, limitAppStoreVersionExperiments: Int? = nil, limitAppStoreVersionExperimentsV2: Int? = nil, include: [Include_buildsAppStoreVersionGetToOneRelated]? = nil, completion: @escaping (_ data: AppStoreVersionResponse?, _ error: Error?) -> Void)
+    open class func buildsAppStoreVersionGetToOneRelated(id: String, fieldsAppStoreVersions: [FieldsAppStoreVersions_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsApps: [FieldsApps_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAgeRatingDeclarations: [FieldsAgeRatingDeclarations_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionLocalizations: [FieldsAppStoreVersionLocalizations_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsBuilds: [FieldsBuilds_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionPhasedReleases: [FieldsAppStoreVersionPhasedReleases_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsGameCenterAppVersions: [FieldsGameCenterAppVersions_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsRoutingAppCoverages: [FieldsRoutingAppCoverages_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreReviewDetails: [FieldsAppStoreReviewDetails_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionSubmissions: [FieldsAppStoreVersionSubmissions_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppClipDefaultExperiences: [FieldsAppClipDefaultExperiences_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAlternativeDistributionPackages: [FieldsAlternativeDistributionPackages_buildsAppStoreVersionGetToOneRelated]? = nil, include: [Include_buildsAppStoreVersionGetToOneRelated]? = nil, limitAppStoreVersionLocalizations: Int? = nil, limitAppStoreVersionExperiments: Int? = nil, limitAppStoreVersionExperimentsV2: Int? = nil, completion: @escaping (_ data: AppStoreVersionResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -235,24 +235,25 @@ Name | Type | Description  | Notes
 import ASC
 
 let id = "id_example" // String | the id of the requested resource
-let fieldsAgeRatingDeclarations = ["fieldsAgeRatingDeclarations_example"] // [String] | the fields to include for returned resources of type ageRatingDeclarations (optional)
-let fieldsAppStoreReviewDetails = ["fieldsAppStoreReviewDetails_example"] // [String] | the fields to include for returned resources of type appStoreReviewDetails (optional)
-let fieldsAppStoreVersionLocalizations = ["fieldsAppStoreVersionLocalizations_example"] // [String] | the fields to include for returned resources of type appStoreVersionLocalizations (optional)
-let fieldsAppStoreVersionExperiments = ["fieldsAppStoreVersionExperiments_example"] // [String] | the fields to include for returned resources of type appStoreVersionExperiments (optional)
-let fieldsAppStoreVersionSubmissions = ["fieldsAppStoreVersionSubmissions_example"] // [String] | the fields to include for returned resources of type appStoreVersionSubmissions (optional)
-let fieldsAlternativeDistributionPackages = ["fieldsAlternativeDistributionPackages_example"] // [String] | the fields to include for returned resources of type alternativeDistributionPackages (optional)
 let fieldsAppStoreVersions = ["fieldsAppStoreVersions_example"] // [String] | the fields to include for returned resources of type appStoreVersions (optional)
 let fieldsApps = ["fieldsApps_example"] // [String] | the fields to include for returned resources of type apps (optional)
-let fieldsRoutingAppCoverages = ["fieldsRoutingAppCoverages_example"] // [String] | the fields to include for returned resources of type routingAppCoverages (optional)
-let fieldsAppClipDefaultExperiences = ["fieldsAppClipDefaultExperiences_example"] // [String] | the fields to include for returned resources of type appClipDefaultExperiences (optional)
-let fieldsAppStoreVersionPhasedReleases = ["fieldsAppStoreVersionPhasedReleases_example"] // [String] | the fields to include for returned resources of type appStoreVersionPhasedReleases (optional)
+let fieldsAgeRatingDeclarations = ["fieldsAgeRatingDeclarations_example"] // [String] | the fields to include for returned resources of type ageRatingDeclarations (optional)
+let fieldsAppStoreVersionLocalizations = ["fieldsAppStoreVersionLocalizations_example"] // [String] | the fields to include for returned resources of type appStoreVersionLocalizations (optional)
 let fieldsBuilds = ["fieldsBuilds_example"] // [String] | the fields to include for returned resources of type builds (optional)
+let fieldsAppStoreVersionPhasedReleases = ["fieldsAppStoreVersionPhasedReleases_example"] // [String] | the fields to include for returned resources of type appStoreVersionPhasedReleases (optional)
+let fieldsGameCenterAppVersions = ["fieldsGameCenterAppVersions_example"] // [String] | the fields to include for returned resources of type gameCenterAppVersions (optional)
+let fieldsRoutingAppCoverages = ["fieldsRoutingAppCoverages_example"] // [String] | the fields to include for returned resources of type routingAppCoverages (optional)
+let fieldsAppStoreReviewDetails = ["fieldsAppStoreReviewDetails_example"] // [String] | the fields to include for returned resources of type appStoreReviewDetails (optional)
+let fieldsAppStoreVersionSubmissions = ["fieldsAppStoreVersionSubmissions_example"] // [String] | the fields to include for returned resources of type appStoreVersionSubmissions (optional)
+let fieldsAppClipDefaultExperiences = ["fieldsAppClipDefaultExperiences_example"] // [String] | the fields to include for returned resources of type appClipDefaultExperiences (optional)
+let fieldsAppStoreVersionExperiments = ["fieldsAppStoreVersionExperiments_example"] // [String] | the fields to include for returned resources of type appStoreVersionExperiments (optional)
+let fieldsAlternativeDistributionPackages = ["fieldsAlternativeDistributionPackages_example"] // [String] | the fields to include for returned resources of type alternativeDistributionPackages (optional)
+let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let limitAppStoreVersionLocalizations = 987 // Int | maximum number of related appStoreVersionLocalizations returned (when they are included) (optional)
 let limitAppStoreVersionExperiments = 987 // Int | maximum number of related appStoreVersionExperiments returned (when they are included) (optional)
 let limitAppStoreVersionExperimentsV2 = 987 // Int | maximum number of related appStoreVersionExperimentsV2 returned (when they are included) (optional)
-let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 
-BuildsAPI.buildsAppStoreVersionGetToOneRelated(id: id, fieldsAgeRatingDeclarations: fieldsAgeRatingDeclarations, fieldsAppStoreReviewDetails: fieldsAppStoreReviewDetails, fieldsAppStoreVersionLocalizations: fieldsAppStoreVersionLocalizations, fieldsAppStoreVersionExperiments: fieldsAppStoreVersionExperiments, fieldsAppStoreVersionSubmissions: fieldsAppStoreVersionSubmissions, fieldsAlternativeDistributionPackages: fieldsAlternativeDistributionPackages, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsApps: fieldsApps, fieldsRoutingAppCoverages: fieldsRoutingAppCoverages, fieldsAppClipDefaultExperiences: fieldsAppClipDefaultExperiences, fieldsAppStoreVersionPhasedReleases: fieldsAppStoreVersionPhasedReleases, fieldsBuilds: fieldsBuilds, limitAppStoreVersionLocalizations: limitAppStoreVersionLocalizations, limitAppStoreVersionExperiments: limitAppStoreVersionExperiments, limitAppStoreVersionExperimentsV2: limitAppStoreVersionExperimentsV2, include: include) { (response, error) in
+BuildsAPI.buildsAppStoreVersionGetToOneRelated(id: id, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsApps: fieldsApps, fieldsAgeRatingDeclarations: fieldsAgeRatingDeclarations, fieldsAppStoreVersionLocalizations: fieldsAppStoreVersionLocalizations, fieldsBuilds: fieldsBuilds, fieldsAppStoreVersionPhasedReleases: fieldsAppStoreVersionPhasedReleases, fieldsGameCenterAppVersions: fieldsGameCenterAppVersions, fieldsRoutingAppCoverages: fieldsRoutingAppCoverages, fieldsAppStoreReviewDetails: fieldsAppStoreReviewDetails, fieldsAppStoreVersionSubmissions: fieldsAppStoreVersionSubmissions, fieldsAppClipDefaultExperiences: fieldsAppClipDefaultExperiences, fieldsAppStoreVersionExperiments: fieldsAppStoreVersionExperiments, fieldsAlternativeDistributionPackages: fieldsAlternativeDistributionPackages, include: include, limitAppStoreVersionLocalizations: limitAppStoreVersionLocalizations, limitAppStoreVersionExperiments: limitAppStoreVersionExperiments, limitAppStoreVersionExperimentsV2: limitAppStoreVersionExperimentsV2) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -269,22 +270,23 @@ BuildsAPI.buildsAppStoreVersionGetToOneRelated(id: id, fieldsAgeRatingDeclaratio
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
- **fieldsAgeRatingDeclarations** | [**[String]**](String.md) | the fields to include for returned resources of type ageRatingDeclarations | [optional] 
- **fieldsAppStoreReviewDetails** | [**[String]**](String.md) | the fields to include for returned resources of type appStoreReviewDetails | [optional] 
- **fieldsAppStoreVersionLocalizations** | [**[String]**](String.md) | the fields to include for returned resources of type appStoreVersionLocalizations | [optional] 
- **fieldsAppStoreVersionExperiments** | [**[String]**](String.md) | the fields to include for returned resources of type appStoreVersionExperiments | [optional] 
- **fieldsAppStoreVersionSubmissions** | [**[String]**](String.md) | the fields to include for returned resources of type appStoreVersionSubmissions | [optional] 
- **fieldsAlternativeDistributionPackages** | [**[String]**](String.md) | the fields to include for returned resources of type alternativeDistributionPackages | [optional] 
  **fieldsAppStoreVersions** | [**[String]**](String.md) | the fields to include for returned resources of type appStoreVersions | [optional] 
  **fieldsApps** | [**[String]**](String.md) | the fields to include for returned resources of type apps | [optional] 
- **fieldsRoutingAppCoverages** | [**[String]**](String.md) | the fields to include for returned resources of type routingAppCoverages | [optional] 
- **fieldsAppClipDefaultExperiences** | [**[String]**](String.md) | the fields to include for returned resources of type appClipDefaultExperiences | [optional] 
- **fieldsAppStoreVersionPhasedReleases** | [**[String]**](String.md) | the fields to include for returned resources of type appStoreVersionPhasedReleases | [optional] 
+ **fieldsAgeRatingDeclarations** | [**[String]**](String.md) | the fields to include for returned resources of type ageRatingDeclarations | [optional] 
+ **fieldsAppStoreVersionLocalizations** | [**[String]**](String.md) | the fields to include for returned resources of type appStoreVersionLocalizations | [optional] 
  **fieldsBuilds** | [**[String]**](String.md) | the fields to include for returned resources of type builds | [optional] 
+ **fieldsAppStoreVersionPhasedReleases** | [**[String]**](String.md) | the fields to include for returned resources of type appStoreVersionPhasedReleases | [optional] 
+ **fieldsGameCenterAppVersions** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterAppVersions | [optional] 
+ **fieldsRoutingAppCoverages** | [**[String]**](String.md) | the fields to include for returned resources of type routingAppCoverages | [optional] 
+ **fieldsAppStoreReviewDetails** | [**[String]**](String.md) | the fields to include for returned resources of type appStoreReviewDetails | [optional] 
+ **fieldsAppStoreVersionSubmissions** | [**[String]**](String.md) | the fields to include for returned resources of type appStoreVersionSubmissions | [optional] 
+ **fieldsAppClipDefaultExperiences** | [**[String]**](String.md) | the fields to include for returned resources of type appClipDefaultExperiences | [optional] 
+ **fieldsAppStoreVersionExperiments** | [**[String]**](String.md) | the fields to include for returned resources of type appStoreVersionExperiments | [optional] 
+ **fieldsAlternativeDistributionPackages** | [**[String]**](String.md) | the fields to include for returned resources of type alternativeDistributionPackages | [optional] 
+ **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **limitAppStoreVersionLocalizations** | **Int** | maximum number of related appStoreVersionLocalizations returned (when they are included) | [optional] 
  **limitAppStoreVersionExperiments** | **Int** | maximum number of related appStoreVersionExperiments returned (when they are included) | [optional] 
  **limitAppStoreVersionExperimentsV2** | **Int** | maximum number of related appStoreVersionExperimentsV2 returned (when they are included) | [optional] 
- **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
 
 ### Return type
 
@@ -656,7 +658,7 @@ Name | Type | Description  | Notes
 
 # **buildsGetCollection**
 ```swift
-    open class func buildsGetCollection(filterBetaAppReviewSubmissionBetaReviewState: [FilterBetaAppReviewSubmissionBetaReviewState_buildsGetCollection]? = nil, filterBuildAudienceType: [FilterBuildAudienceType_buildsGetCollection]? = nil, filterExpired: [String]? = nil, filterPreReleaseVersionPlatform: [FilterPreReleaseVersionPlatform_buildsGetCollection]? = nil, filterPreReleaseVersionVersion: [String]? = nil, filterProcessingState: [FilterProcessingState_buildsGetCollection]? = nil, filterUsesNonExemptEncryption: [String]? = nil, filterVersion: [String]? = nil, filterApp: [String]? = nil, filterAppStoreVersion: [String]? = nil, filterBetaGroups: [String]? = nil, filterPreReleaseVersion: [String]? = nil, filterId: [String]? = nil, sort: [Sort_buildsGetCollection]? = nil, fieldsBuilds: [FieldsBuilds_buildsGetCollection]? = nil, limit: Int? = nil, include: [Include_buildsGetCollection]? = nil, fieldsDiagnosticSignatures: [FieldsDiagnosticSignatures_buildsGetCollection]? = nil, fieldsBuildIcons: [FieldsBuildIcons_buildsGetCollection]? = nil, fieldsBuildBetaDetails: [FieldsBuildBetaDetails_buildsGetCollection]? = nil, fieldsBetaAppReviewSubmissions: [FieldsBetaAppReviewSubmissions_buildsGetCollection]? = nil, fieldsBetaTesters: [FieldsBetaTesters_buildsGetCollection]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_buildsGetCollection]? = nil, fieldsBetaBuildLocalizations: [FieldsBetaBuildLocalizations_buildsGetCollection]? = nil, fieldsPreReleaseVersions: [FieldsPreReleaseVersions_buildsGetCollection]? = nil, fieldsAppEncryptionDeclarations: [FieldsAppEncryptionDeclarations_buildsGetCollection]? = nil, fieldsApps: [FieldsApps_buildsGetCollection]? = nil, fieldsPerfPowerMetrics: [FieldsPerfPowerMetrics_buildsGetCollection]? = nil, limitBetaBuildLocalizations: Int? = nil, limitBetaGroups: Int? = nil, limitBuildBundles: Int? = nil, limitIcons: Int? = nil, limitIndividualTesters: Int? = nil, completion: @escaping (_ data: BuildsResponse?, _ error: Error?) -> Void)
+    open class func buildsGetCollection(filterVersion: [String]? = nil, filterExpired: [String]? = nil, filterProcessingState: [FilterProcessingState_buildsGetCollection]? = nil, filterBetaAppReviewSubmissionBetaReviewState: [FilterBetaAppReviewSubmissionBetaReviewState_buildsGetCollection]? = nil, filterUsesNonExemptEncryption: [String]? = nil, filterPreReleaseVersionVersion: [String]? = nil, filterPreReleaseVersionPlatform: [FilterPreReleaseVersionPlatform_buildsGetCollection]? = nil, filterBuildAudienceType: [FilterBuildAudienceType_buildsGetCollection]? = nil, filterPreReleaseVersion: [String]? = nil, filterApp: [String]? = nil, filterBetaGroups: [String]? = nil, filterAppStoreVersion: [String]? = nil, filterId: [String]? = nil, sort: [Sort_buildsGetCollection]? = nil, fieldsBuilds: [FieldsBuilds_buildsGetCollection]? = nil, fieldsPreReleaseVersions: [FieldsPreReleaseVersions_buildsGetCollection]? = nil, fieldsBetaTesters: [FieldsBetaTesters_buildsGetCollection]? = nil, fieldsBetaBuildLocalizations: [FieldsBetaBuildLocalizations_buildsGetCollection]? = nil, fieldsAppEncryptionDeclarations: [FieldsAppEncryptionDeclarations_buildsGetCollection]? = nil, fieldsBetaAppReviewSubmissions: [FieldsBetaAppReviewSubmissions_buildsGetCollection]? = nil, fieldsApps: [FieldsApps_buildsGetCollection]? = nil, fieldsBuildBetaDetails: [FieldsBuildBetaDetails_buildsGetCollection]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_buildsGetCollection]? = nil, fieldsBuildIcons: [FieldsBuildIcons_buildsGetCollection]? = nil, limit: Int? = nil, include: [Include_buildsGetCollection]? = nil, limitBetaBuildLocalizations: Int? = nil, limitBetaGroups: Int? = nil, limitBuildBundles: Int? = nil, limitIcons: Int? = nil, limitIndividualTesters: Int? = nil, completion: @escaping (_ data: BuildsResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -666,41 +668,39 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import ASC
 
-let filterBetaAppReviewSubmissionBetaReviewState = ["filterBetaAppReviewSubmissionBetaReviewState_example"] // [String] | filter by attribute 'betaAppReviewSubmission.betaReviewState' (optional)
-let filterBuildAudienceType = ["filterBuildAudienceType_example"] // [String] | filter by attribute 'buildAudienceType' (optional)
-let filterExpired = ["inner_example"] // [String] | filter by attribute 'expired' (optional)
-let filterPreReleaseVersionPlatform = ["filterPreReleaseVersionPlatform_example"] // [String] | filter by attribute 'preReleaseVersion.platform' (optional)
-let filterPreReleaseVersionVersion = ["inner_example"] // [String] | filter by attribute 'preReleaseVersion.version' (optional)
-let filterProcessingState = ["filterProcessingState_example"] // [String] | filter by attribute 'processingState' (optional)
-let filterUsesNonExemptEncryption = ["inner_example"] // [String] | filter by attribute 'usesNonExemptEncryption' (optional)
 let filterVersion = ["inner_example"] // [String] | filter by attribute 'version' (optional)
-let filterApp = ["inner_example"] // [String] | filter by id(s) of related 'app' (optional)
-let filterAppStoreVersion = ["inner_example"] // [String] | filter by id(s) of related 'appStoreVersion' (optional)
-let filterBetaGroups = ["inner_example"] // [String] | filter by id(s) of related 'betaGroups' (optional)
+let filterExpired = ["inner_example"] // [String] | filter by attribute 'expired' (optional)
+let filterProcessingState = ["filterProcessingState_example"] // [String] | filter by attribute 'processingState' (optional)
+let filterBetaAppReviewSubmissionBetaReviewState = ["filterBetaAppReviewSubmissionBetaReviewState_example"] // [String] | filter by attribute 'betaAppReviewSubmission.betaReviewState' (optional)
+let filterUsesNonExemptEncryption = ["inner_example"] // [String] | filter by attribute 'usesNonExemptEncryption' (optional)
+let filterPreReleaseVersionVersion = ["inner_example"] // [String] | filter by attribute 'preReleaseVersion.version' (optional)
+let filterPreReleaseVersionPlatform = ["filterPreReleaseVersionPlatform_example"] // [String] | filter by attribute 'preReleaseVersion.platform' (optional)
+let filterBuildAudienceType = ["filterBuildAudienceType_example"] // [String] | filter by attribute 'buildAudienceType' (optional)
 let filterPreReleaseVersion = ["inner_example"] // [String] | filter by id(s) of related 'preReleaseVersion' (optional)
+let filterApp = ["inner_example"] // [String] | filter by id(s) of related 'app' (optional)
+let filterBetaGroups = ["inner_example"] // [String] | filter by id(s) of related 'betaGroups' (optional)
+let filterAppStoreVersion = ["inner_example"] // [String] | filter by id(s) of related 'appStoreVersion' (optional)
 let filterId = ["inner_example"] // [String] | filter by id(s) (optional)
 let sort = ["sort_example"] // [String] | comma-separated list of sort expressions; resources will be sorted as specified (optional)
 let fieldsBuilds = ["fieldsBuilds_example"] // [String] | the fields to include for returned resources of type builds (optional)
+let fieldsPreReleaseVersions = ["fieldsPreReleaseVersions_example"] // [String] | the fields to include for returned resources of type preReleaseVersions (optional)
+let fieldsBetaTesters = ["fieldsBetaTesters_example"] // [String] | the fields to include for returned resources of type betaTesters (optional)
+let fieldsBetaBuildLocalizations = ["fieldsBetaBuildLocalizations_example"] // [String] | the fields to include for returned resources of type betaBuildLocalizations (optional)
+let fieldsAppEncryptionDeclarations = ["fieldsAppEncryptionDeclarations_example"] // [String] | the fields to include for returned resources of type appEncryptionDeclarations (optional)
+let fieldsBetaAppReviewSubmissions = ["fieldsBetaAppReviewSubmissions_example"] // [String] | the fields to include for returned resources of type betaAppReviewSubmissions (optional)
+let fieldsApps = ["fieldsApps_example"] // [String] | the fields to include for returned resources of type apps (optional)
+let fieldsBuildBetaDetails = ["fieldsBuildBetaDetails_example"] // [String] | the fields to include for returned resources of type buildBetaDetails (optional)
+let fieldsAppStoreVersions = ["fieldsAppStoreVersions_example"] // [String] | the fields to include for returned resources of type appStoreVersions (optional)
+let fieldsBuildIcons = ["fieldsBuildIcons_example"] // [String] | the fields to include for returned resources of type buildIcons (optional)
 let limit = 987 // Int | maximum resources per page (optional)
 let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
-let fieldsDiagnosticSignatures = ["fieldsDiagnosticSignatures_example"] // [String] | the fields to include for returned resources of type diagnosticSignatures (optional)
-let fieldsBuildIcons = ["fieldsBuildIcons_example"] // [String] | the fields to include for returned resources of type buildIcons (optional)
-let fieldsBuildBetaDetails = ["fieldsBuildBetaDetails_example"] // [String] | the fields to include for returned resources of type buildBetaDetails (optional)
-let fieldsBetaAppReviewSubmissions = ["fieldsBetaAppReviewSubmissions_example"] // [String] | the fields to include for returned resources of type betaAppReviewSubmissions (optional)
-let fieldsBetaTesters = ["fieldsBetaTesters_example"] // [String] | the fields to include for returned resources of type betaTesters (optional)
-let fieldsAppStoreVersions = ["fieldsAppStoreVersions_example"] // [String] | the fields to include for returned resources of type appStoreVersions (optional)
-let fieldsBetaBuildLocalizations = ["fieldsBetaBuildLocalizations_example"] // [String] | the fields to include for returned resources of type betaBuildLocalizations (optional)
-let fieldsPreReleaseVersions = ["fieldsPreReleaseVersions_example"] // [String] | the fields to include for returned resources of type preReleaseVersions (optional)
-let fieldsAppEncryptionDeclarations = ["fieldsAppEncryptionDeclarations_example"] // [String] | the fields to include for returned resources of type appEncryptionDeclarations (optional)
-let fieldsApps = ["fieldsApps_example"] // [String] | the fields to include for returned resources of type apps (optional)
-let fieldsPerfPowerMetrics = ["fieldsPerfPowerMetrics_example"] // [String] | the fields to include for returned resources of type perfPowerMetrics (optional)
 let limitBetaBuildLocalizations = 987 // Int | maximum number of related betaBuildLocalizations returned (when they are included) (optional)
 let limitBetaGroups = 987 // Int | maximum number of related betaGroups returned (when they are included) (optional)
 let limitBuildBundles = 987 // Int | maximum number of related buildBundles returned (when they are included) (optional)
 let limitIcons = 987 // Int | maximum number of related icons returned (when they are included) (optional)
 let limitIndividualTesters = 987 // Int | maximum number of related individualTesters returned (when they are included) (optional)
 
-BuildsAPI.buildsGetCollection(filterBetaAppReviewSubmissionBetaReviewState: filterBetaAppReviewSubmissionBetaReviewState, filterBuildAudienceType: filterBuildAudienceType, filterExpired: filterExpired, filterPreReleaseVersionPlatform: filterPreReleaseVersionPlatform, filterPreReleaseVersionVersion: filterPreReleaseVersionVersion, filterProcessingState: filterProcessingState, filterUsesNonExemptEncryption: filterUsesNonExemptEncryption, filterVersion: filterVersion, filterApp: filterApp, filterAppStoreVersion: filterAppStoreVersion, filterBetaGroups: filterBetaGroups, filterPreReleaseVersion: filterPreReleaseVersion, filterId: filterId, sort: sort, fieldsBuilds: fieldsBuilds, limit: limit, include: include, fieldsDiagnosticSignatures: fieldsDiagnosticSignatures, fieldsBuildIcons: fieldsBuildIcons, fieldsBuildBetaDetails: fieldsBuildBetaDetails, fieldsBetaAppReviewSubmissions: fieldsBetaAppReviewSubmissions, fieldsBetaTesters: fieldsBetaTesters, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsBetaBuildLocalizations: fieldsBetaBuildLocalizations, fieldsPreReleaseVersions: fieldsPreReleaseVersions, fieldsAppEncryptionDeclarations: fieldsAppEncryptionDeclarations, fieldsApps: fieldsApps, fieldsPerfPowerMetrics: fieldsPerfPowerMetrics, limitBetaBuildLocalizations: limitBetaBuildLocalizations, limitBetaGroups: limitBetaGroups, limitBuildBundles: limitBuildBundles, limitIcons: limitIcons, limitIndividualTesters: limitIndividualTesters) { (response, error) in
+BuildsAPI.buildsGetCollection(filterVersion: filterVersion, filterExpired: filterExpired, filterProcessingState: filterProcessingState, filterBetaAppReviewSubmissionBetaReviewState: filterBetaAppReviewSubmissionBetaReviewState, filterUsesNonExemptEncryption: filterUsesNonExemptEncryption, filterPreReleaseVersionVersion: filterPreReleaseVersionVersion, filterPreReleaseVersionPlatform: filterPreReleaseVersionPlatform, filterBuildAudienceType: filterBuildAudienceType, filterPreReleaseVersion: filterPreReleaseVersion, filterApp: filterApp, filterBetaGroups: filterBetaGroups, filterAppStoreVersion: filterAppStoreVersion, filterId: filterId, sort: sort, fieldsBuilds: fieldsBuilds, fieldsPreReleaseVersions: fieldsPreReleaseVersions, fieldsBetaTesters: fieldsBetaTesters, fieldsBetaBuildLocalizations: fieldsBetaBuildLocalizations, fieldsAppEncryptionDeclarations: fieldsAppEncryptionDeclarations, fieldsBetaAppReviewSubmissions: fieldsBetaAppReviewSubmissions, fieldsApps: fieldsApps, fieldsBuildBetaDetails: fieldsBuildBetaDetails, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsBuildIcons: fieldsBuildIcons, limit: limit, include: include, limitBetaBuildLocalizations: limitBetaBuildLocalizations, limitBetaGroups: limitBetaGroups, limitBuildBundles: limitBuildBundles, limitIcons: limitIcons, limitIndividualTesters: limitIndividualTesters) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -716,34 +716,32 @@ BuildsAPI.buildsGetCollection(filterBetaAppReviewSubmissionBetaReviewState: filt
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **filterBetaAppReviewSubmissionBetaReviewState** | [**[String]**](String.md) | filter by attribute &#39;betaAppReviewSubmission.betaReviewState&#39; | [optional] 
- **filterBuildAudienceType** | [**[String]**](String.md) | filter by attribute &#39;buildAudienceType&#39; | [optional] 
- **filterExpired** | [**[String]**](String.md) | filter by attribute &#39;expired&#39; | [optional] 
- **filterPreReleaseVersionPlatform** | [**[String]**](String.md) | filter by attribute &#39;preReleaseVersion.platform&#39; | [optional] 
- **filterPreReleaseVersionVersion** | [**[String]**](String.md) | filter by attribute &#39;preReleaseVersion.version&#39; | [optional] 
- **filterProcessingState** | [**[String]**](String.md) | filter by attribute &#39;processingState&#39; | [optional] 
- **filterUsesNonExemptEncryption** | [**[String]**](String.md) | filter by attribute &#39;usesNonExemptEncryption&#39; | [optional] 
  **filterVersion** | [**[String]**](String.md) | filter by attribute &#39;version&#39; | [optional] 
- **filterApp** | [**[String]**](String.md) | filter by id(s) of related &#39;app&#39; | [optional] 
- **filterAppStoreVersion** | [**[String]**](String.md) | filter by id(s) of related &#39;appStoreVersion&#39; | [optional] 
- **filterBetaGroups** | [**[String]**](String.md) | filter by id(s) of related &#39;betaGroups&#39; | [optional] 
+ **filterExpired** | [**[String]**](String.md) | filter by attribute &#39;expired&#39; | [optional] 
+ **filterProcessingState** | [**[String]**](String.md) | filter by attribute &#39;processingState&#39; | [optional] 
+ **filterBetaAppReviewSubmissionBetaReviewState** | [**[String]**](String.md) | filter by attribute &#39;betaAppReviewSubmission.betaReviewState&#39; | [optional] 
+ **filterUsesNonExemptEncryption** | [**[String]**](String.md) | filter by attribute &#39;usesNonExemptEncryption&#39; | [optional] 
+ **filterPreReleaseVersionVersion** | [**[String]**](String.md) | filter by attribute &#39;preReleaseVersion.version&#39; | [optional] 
+ **filterPreReleaseVersionPlatform** | [**[String]**](String.md) | filter by attribute &#39;preReleaseVersion.platform&#39; | [optional] 
+ **filterBuildAudienceType** | [**[String]**](String.md) | filter by attribute &#39;buildAudienceType&#39; | [optional] 
  **filterPreReleaseVersion** | [**[String]**](String.md) | filter by id(s) of related &#39;preReleaseVersion&#39; | [optional] 
+ **filterApp** | [**[String]**](String.md) | filter by id(s) of related &#39;app&#39; | [optional] 
+ **filterBetaGroups** | [**[String]**](String.md) | filter by id(s) of related &#39;betaGroups&#39; | [optional] 
+ **filterAppStoreVersion** | [**[String]**](String.md) | filter by id(s) of related &#39;appStoreVersion&#39; | [optional] 
  **filterId** | [**[String]**](String.md) | filter by id(s) | [optional] 
  **sort** | [**[String]**](String.md) | comma-separated list of sort expressions; resources will be sorted as specified | [optional] 
  **fieldsBuilds** | [**[String]**](String.md) | the fields to include for returned resources of type builds | [optional] 
+ **fieldsPreReleaseVersions** | [**[String]**](String.md) | the fields to include for returned resources of type preReleaseVersions | [optional] 
+ **fieldsBetaTesters** | [**[String]**](String.md) | the fields to include for returned resources of type betaTesters | [optional] 
+ **fieldsBetaBuildLocalizations** | [**[String]**](String.md) | the fields to include for returned resources of type betaBuildLocalizations | [optional] 
+ **fieldsAppEncryptionDeclarations** | [**[String]**](String.md) | the fields to include for returned resources of type appEncryptionDeclarations | [optional] 
+ **fieldsBetaAppReviewSubmissions** | [**[String]**](String.md) | the fields to include for returned resources of type betaAppReviewSubmissions | [optional] 
+ **fieldsApps** | [**[String]**](String.md) | the fields to include for returned resources of type apps | [optional] 
+ **fieldsBuildBetaDetails** | [**[String]**](String.md) | the fields to include for returned resources of type buildBetaDetails | [optional] 
+ **fieldsAppStoreVersions** | [**[String]**](String.md) | the fields to include for returned resources of type appStoreVersions | [optional] 
+ **fieldsBuildIcons** | [**[String]**](String.md) | the fields to include for returned resources of type buildIcons | [optional] 
  **limit** | **Int** | maximum resources per page | [optional] 
  **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
- **fieldsDiagnosticSignatures** | [**[String]**](String.md) | the fields to include for returned resources of type diagnosticSignatures | [optional] 
- **fieldsBuildIcons** | [**[String]**](String.md) | the fields to include for returned resources of type buildIcons | [optional] 
- **fieldsBuildBetaDetails** | [**[String]**](String.md) | the fields to include for returned resources of type buildBetaDetails | [optional] 
- **fieldsBetaAppReviewSubmissions** | [**[String]**](String.md) | the fields to include for returned resources of type betaAppReviewSubmissions | [optional] 
- **fieldsBetaTesters** | [**[String]**](String.md) | the fields to include for returned resources of type betaTesters | [optional] 
- **fieldsAppStoreVersions** | [**[String]**](String.md) | the fields to include for returned resources of type appStoreVersions | [optional] 
- **fieldsBetaBuildLocalizations** | [**[String]**](String.md) | the fields to include for returned resources of type betaBuildLocalizations | [optional] 
- **fieldsPreReleaseVersions** | [**[String]**](String.md) | the fields to include for returned resources of type preReleaseVersions | [optional] 
- **fieldsAppEncryptionDeclarations** | [**[String]**](String.md) | the fields to include for returned resources of type appEncryptionDeclarations | [optional] 
- **fieldsApps** | [**[String]**](String.md) | the fields to include for returned resources of type apps | [optional] 
- **fieldsPerfPowerMetrics** | [**[String]**](String.md) | the fields to include for returned resources of type perfPowerMetrics | [optional] 
  **limitBetaBuildLocalizations** | **Int** | maximum number of related betaBuildLocalizations returned (when they are included) | [optional] 
  **limitBetaGroups** | **Int** | maximum number of related betaGroups returned (when they are included) | [optional] 
  **limitBuildBundles** | **Int** | maximum number of related buildBundles returned (when they are included) | [optional] 
@@ -767,7 +765,7 @@ Name | Type | Description  | Notes
 
 # **buildsGetInstance**
 ```swift
-    open class func buildsGetInstance(id: String, fieldsBuilds: [FieldsBuilds_buildsGetInstance]? = nil, include: [Include_buildsGetInstance]? = nil, fieldsDiagnosticSignatures: [FieldsDiagnosticSignatures_buildsGetInstance]? = nil, fieldsBuildIcons: [FieldsBuildIcons_buildsGetInstance]? = nil, fieldsBuildBetaDetails: [FieldsBuildBetaDetails_buildsGetInstance]? = nil, fieldsBetaAppReviewSubmissions: [FieldsBetaAppReviewSubmissions_buildsGetInstance]? = nil, fieldsBetaTesters: [FieldsBetaTesters_buildsGetInstance]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_buildsGetInstance]? = nil, fieldsBetaBuildLocalizations: [FieldsBetaBuildLocalizations_buildsGetInstance]? = nil, fieldsPreReleaseVersions: [FieldsPreReleaseVersions_buildsGetInstance]? = nil, fieldsAppEncryptionDeclarations: [FieldsAppEncryptionDeclarations_buildsGetInstance]? = nil, fieldsApps: [FieldsApps_buildsGetInstance]? = nil, fieldsPerfPowerMetrics: [FieldsPerfPowerMetrics_buildsGetInstance]? = nil, limitBetaBuildLocalizations: Int? = nil, limitBetaGroups: Int? = nil, limitBuildBundles: Int? = nil, limitIcons: Int? = nil, limitIndividualTesters: Int? = nil, completion: @escaping (_ data: BuildResponse?, _ error: Error?) -> Void)
+    open class func buildsGetInstance(id: String, fieldsBuilds: [FieldsBuilds_buildsGetInstance]? = nil, fieldsPreReleaseVersions: [FieldsPreReleaseVersions_buildsGetInstance]? = nil, fieldsBetaTesters: [FieldsBetaTesters_buildsGetInstance]? = nil, fieldsBetaBuildLocalizations: [FieldsBetaBuildLocalizations_buildsGetInstance]? = nil, fieldsAppEncryptionDeclarations: [FieldsAppEncryptionDeclarations_buildsGetInstance]? = nil, fieldsBetaAppReviewSubmissions: [FieldsBetaAppReviewSubmissions_buildsGetInstance]? = nil, fieldsApps: [FieldsApps_buildsGetInstance]? = nil, fieldsBuildBetaDetails: [FieldsBuildBetaDetails_buildsGetInstance]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_buildsGetInstance]? = nil, fieldsBuildIcons: [FieldsBuildIcons_buildsGetInstance]? = nil, include: [Include_buildsGetInstance]? = nil, limitBetaBuildLocalizations: Int? = nil, limitBetaGroups: Int? = nil, limitBuildBundles: Int? = nil, limitIcons: Int? = nil, limitIndividualTesters: Int? = nil, completion: @escaping (_ data: BuildResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -779,25 +777,23 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let fieldsBuilds = ["fieldsBuilds_example"] // [String] | the fields to include for returned resources of type builds (optional)
-let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
-let fieldsDiagnosticSignatures = ["fieldsDiagnosticSignatures_example"] // [String] | the fields to include for returned resources of type diagnosticSignatures (optional)
-let fieldsBuildIcons = ["fieldsBuildIcons_example"] // [String] | the fields to include for returned resources of type buildIcons (optional)
-let fieldsBuildBetaDetails = ["fieldsBuildBetaDetails_example"] // [String] | the fields to include for returned resources of type buildBetaDetails (optional)
-let fieldsBetaAppReviewSubmissions = ["fieldsBetaAppReviewSubmissions_example"] // [String] | the fields to include for returned resources of type betaAppReviewSubmissions (optional)
-let fieldsBetaTesters = ["fieldsBetaTesters_example"] // [String] | the fields to include for returned resources of type betaTesters (optional)
-let fieldsAppStoreVersions = ["fieldsAppStoreVersions_example"] // [String] | the fields to include for returned resources of type appStoreVersions (optional)
-let fieldsBetaBuildLocalizations = ["fieldsBetaBuildLocalizations_example"] // [String] | the fields to include for returned resources of type betaBuildLocalizations (optional)
 let fieldsPreReleaseVersions = ["fieldsPreReleaseVersions_example"] // [String] | the fields to include for returned resources of type preReleaseVersions (optional)
+let fieldsBetaTesters = ["fieldsBetaTesters_example"] // [String] | the fields to include for returned resources of type betaTesters (optional)
+let fieldsBetaBuildLocalizations = ["fieldsBetaBuildLocalizations_example"] // [String] | the fields to include for returned resources of type betaBuildLocalizations (optional)
 let fieldsAppEncryptionDeclarations = ["fieldsAppEncryptionDeclarations_example"] // [String] | the fields to include for returned resources of type appEncryptionDeclarations (optional)
+let fieldsBetaAppReviewSubmissions = ["fieldsBetaAppReviewSubmissions_example"] // [String] | the fields to include for returned resources of type betaAppReviewSubmissions (optional)
 let fieldsApps = ["fieldsApps_example"] // [String] | the fields to include for returned resources of type apps (optional)
-let fieldsPerfPowerMetrics = ["fieldsPerfPowerMetrics_example"] // [String] | the fields to include for returned resources of type perfPowerMetrics (optional)
+let fieldsBuildBetaDetails = ["fieldsBuildBetaDetails_example"] // [String] | the fields to include for returned resources of type buildBetaDetails (optional)
+let fieldsAppStoreVersions = ["fieldsAppStoreVersions_example"] // [String] | the fields to include for returned resources of type appStoreVersions (optional)
+let fieldsBuildIcons = ["fieldsBuildIcons_example"] // [String] | the fields to include for returned resources of type buildIcons (optional)
+let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let limitBetaBuildLocalizations = 987 // Int | maximum number of related betaBuildLocalizations returned (when they are included) (optional)
 let limitBetaGroups = 987 // Int | maximum number of related betaGroups returned (when they are included) (optional)
 let limitBuildBundles = 987 // Int | maximum number of related buildBundles returned (when they are included) (optional)
 let limitIcons = 987 // Int | maximum number of related icons returned (when they are included) (optional)
 let limitIndividualTesters = 987 // Int | maximum number of related individualTesters returned (when they are included) (optional)
 
-BuildsAPI.buildsGetInstance(id: id, fieldsBuilds: fieldsBuilds, include: include, fieldsDiagnosticSignatures: fieldsDiagnosticSignatures, fieldsBuildIcons: fieldsBuildIcons, fieldsBuildBetaDetails: fieldsBuildBetaDetails, fieldsBetaAppReviewSubmissions: fieldsBetaAppReviewSubmissions, fieldsBetaTesters: fieldsBetaTesters, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsBetaBuildLocalizations: fieldsBetaBuildLocalizations, fieldsPreReleaseVersions: fieldsPreReleaseVersions, fieldsAppEncryptionDeclarations: fieldsAppEncryptionDeclarations, fieldsApps: fieldsApps, fieldsPerfPowerMetrics: fieldsPerfPowerMetrics, limitBetaBuildLocalizations: limitBetaBuildLocalizations, limitBetaGroups: limitBetaGroups, limitBuildBundles: limitBuildBundles, limitIcons: limitIcons, limitIndividualTesters: limitIndividualTesters) { (response, error) in
+BuildsAPI.buildsGetInstance(id: id, fieldsBuilds: fieldsBuilds, fieldsPreReleaseVersions: fieldsPreReleaseVersions, fieldsBetaTesters: fieldsBetaTesters, fieldsBetaBuildLocalizations: fieldsBetaBuildLocalizations, fieldsAppEncryptionDeclarations: fieldsAppEncryptionDeclarations, fieldsBetaAppReviewSubmissions: fieldsBetaAppReviewSubmissions, fieldsApps: fieldsApps, fieldsBuildBetaDetails: fieldsBuildBetaDetails, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsBuildIcons: fieldsBuildIcons, include: include, limitBetaBuildLocalizations: limitBetaBuildLocalizations, limitBetaGroups: limitBetaGroups, limitBuildBundles: limitBuildBundles, limitIcons: limitIcons, limitIndividualTesters: limitIndividualTesters) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -815,18 +811,16 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **fieldsBuilds** | [**[String]**](String.md) | the fields to include for returned resources of type builds | [optional] 
- **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
- **fieldsDiagnosticSignatures** | [**[String]**](String.md) | the fields to include for returned resources of type diagnosticSignatures | [optional] 
- **fieldsBuildIcons** | [**[String]**](String.md) | the fields to include for returned resources of type buildIcons | [optional] 
- **fieldsBuildBetaDetails** | [**[String]**](String.md) | the fields to include for returned resources of type buildBetaDetails | [optional] 
- **fieldsBetaAppReviewSubmissions** | [**[String]**](String.md) | the fields to include for returned resources of type betaAppReviewSubmissions | [optional] 
- **fieldsBetaTesters** | [**[String]**](String.md) | the fields to include for returned resources of type betaTesters | [optional] 
- **fieldsAppStoreVersions** | [**[String]**](String.md) | the fields to include for returned resources of type appStoreVersions | [optional] 
- **fieldsBetaBuildLocalizations** | [**[String]**](String.md) | the fields to include for returned resources of type betaBuildLocalizations | [optional] 
  **fieldsPreReleaseVersions** | [**[String]**](String.md) | the fields to include for returned resources of type preReleaseVersions | [optional] 
+ **fieldsBetaTesters** | [**[String]**](String.md) | the fields to include for returned resources of type betaTesters | [optional] 
+ **fieldsBetaBuildLocalizations** | [**[String]**](String.md) | the fields to include for returned resources of type betaBuildLocalizations | [optional] 
  **fieldsAppEncryptionDeclarations** | [**[String]**](String.md) | the fields to include for returned resources of type appEncryptionDeclarations | [optional] 
+ **fieldsBetaAppReviewSubmissions** | [**[String]**](String.md) | the fields to include for returned resources of type betaAppReviewSubmissions | [optional] 
  **fieldsApps** | [**[String]**](String.md) | the fields to include for returned resources of type apps | [optional] 
- **fieldsPerfPowerMetrics** | [**[String]**](String.md) | the fields to include for returned resources of type perfPowerMetrics | [optional] 
+ **fieldsBuildBetaDetails** | [**[String]**](String.md) | the fields to include for returned resources of type buildBetaDetails | [optional] 
+ **fieldsAppStoreVersions** | [**[String]**](String.md) | the fields to include for returned resources of type appStoreVersions | [optional] 
+ **fieldsBuildIcons** | [**[String]**](String.md) | the fields to include for returned resources of type buildIcons | [optional] 
+ **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **limitBetaBuildLocalizations** | **Int** | maximum number of related betaBuildLocalizations returned (when they are included) | [optional] 
  **limitBetaGroups** | **Int** | maximum number of related betaGroups returned (when they are included) | [optional] 
  **limitBuildBundles** | **Int** | maximum number of related buildBundles returned (when they are included) | [optional] 
@@ -1099,7 +1093,7 @@ Name | Type | Description  | Notes
 
 # **buildsPerfPowerMetricsGetToManyRelated**
 ```swift
-    open class func buildsPerfPowerMetricsGetToManyRelated(id: String, filterDeviceType: [String]? = nil, filterMetricType: [FilterMetricType_buildsPerfPowerMetricsGetToManyRelated]? = nil, filterPlatform: [FilterPlatform_buildsPerfPowerMetricsGetToManyRelated]? = nil, completion: @escaping (_ data: XcodeMetrics?, _ error: Error?) -> Void)
+    open class func buildsPerfPowerMetricsGetToManyRelated(id: String, filterPlatform: [FilterPlatform_buildsPerfPowerMetricsGetToManyRelated]? = nil, filterMetricType: [FilterMetricType_buildsPerfPowerMetricsGetToManyRelated]? = nil, filterDeviceType: [String]? = nil, completion: @escaping (_ data: XcodeMetrics?, _ error: Error?) -> Void)
 ```
 
 
@@ -1110,11 +1104,11 @@ Name | Type | Description  | Notes
 import ASC
 
 let id = "id_example" // String | the id of the requested resource
-let filterDeviceType = ["inner_example"] // [String] | filter by attribute 'deviceType' (optional)
-let filterMetricType = ["filterMetricType_example"] // [String] | filter by attribute 'metricType' (optional)
 let filterPlatform = ["filterPlatform_example"] // [String] | filter by attribute 'platform' (optional)
+let filterMetricType = ["filterMetricType_example"] // [String] | filter by attribute 'metricType' (optional)
+let filterDeviceType = ["inner_example"] // [String] | filter by attribute 'deviceType' (optional)
 
-BuildsAPI.buildsPerfPowerMetricsGetToManyRelated(id: id, filterDeviceType: filterDeviceType, filterMetricType: filterMetricType, filterPlatform: filterPlatform) { (response, error) in
+BuildsAPI.buildsPerfPowerMetricsGetToManyRelated(id: id, filterPlatform: filterPlatform, filterMetricType: filterMetricType, filterDeviceType: filterDeviceType) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -1131,9 +1125,9 @@ BuildsAPI.buildsPerfPowerMetricsGetToManyRelated(id: id, filterDeviceType: filte
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
- **filterDeviceType** | [**[String]**](String.md) | filter by attribute &#39;deviceType&#39; | [optional] 
- **filterMetricType** | [**[String]**](String.md) | filter by attribute &#39;metricType&#39; | [optional] 
  **filterPlatform** | [**[String]**](String.md) | filter by attribute &#39;platform&#39; | [optional] 
+ **filterMetricType** | [**[String]**](String.md) | filter by attribute &#39;metricType&#39; | [optional] 
+ **filterDeviceType** | [**[String]**](String.md) | filter by attribute &#39;deviceType&#39; | [optional] 
 
 ### Return type
 

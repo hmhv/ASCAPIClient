@@ -108,7 +108,7 @@ Void (empty response body)
 
 # **gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelated**
 ```swift
-    open class func gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelated(id: String, fieldsGameCenterAchievementReleases: [FieldsGameCenterAchievementReleases_gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelated]? = nil, fieldsGameCenterGroups: [FieldsGameCenterGroups_gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelated]? = nil, fieldsGameCenterAchievementLocalizations: [FieldsGameCenterAchievementLocalizations_gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelated]? = nil, fieldsGameCenterAchievements: [FieldsGameCenterAchievements_gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelated]? = nil, limitLocalizations: Int? = nil, limitReleases: Int? = nil, include: [Include_gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelated]? = nil, completion: @escaping (_ data: GameCenterAchievementResponse?, _ error: Error?) -> Void)
+    open class func gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelated(id: String, fieldsGameCenterAchievements: [FieldsGameCenterAchievements_gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelated]? = nil, fieldsGameCenterGroups: [FieldsGameCenterGroups_gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelated]? = nil, fieldsGameCenterAchievementLocalizations: [FieldsGameCenterAchievementLocalizations_gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelated]? = nil, fieldsGameCenterAchievementReleases: [FieldsGameCenterAchievementReleases_gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelated]? = nil, include: [Include_gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelated]? = nil, limitLocalizations: Int? = nil, limitReleases: Int? = nil, completion: @escaping (_ data: GameCenterAchievementResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -119,16 +119,16 @@ Void (empty response body)
 import ASC
 
 let id = "id_example" // String | the id of the requested resource
-let fieldsGameCenterAchievementReleases = ["fieldsGameCenterAchievementReleases_example"] // [String] | the fields to include for returned resources of type gameCenterAchievementReleases (optional)
-let fieldsGameCenterGroups = ["fieldsGameCenterGroups_example"] // [String] | the fields to include for returned resources of type gameCenterGroups (optional)
-let fieldsGameCenterDetails = ["fieldsGameCenterDetails_example"] // [String] | the fields to include for returned resources of type gameCenterDetails (optional)
-let fieldsGameCenterAchievementLocalizations = ["fieldsGameCenterAchievementLocalizations_example"] // [String] | the fields to include for returned resources of type gameCenterAchievementLocalizations (optional)
 let fieldsGameCenterAchievements = ["fieldsGameCenterAchievements_example"] // [String] | the fields to include for returned resources of type gameCenterAchievements (optional)
+let fieldsGameCenterDetails = ["fieldsGameCenterDetails_example"] // [String] | the fields to include for returned resources of type gameCenterDetails (optional)
+let fieldsGameCenterGroups = ["fieldsGameCenterGroups_example"] // [String] | the fields to include for returned resources of type gameCenterGroups (optional)
+let fieldsGameCenterAchievementLocalizations = ["fieldsGameCenterAchievementLocalizations_example"] // [String] | the fields to include for returned resources of type gameCenterAchievementLocalizations (optional)
+let fieldsGameCenterAchievementReleases = ["fieldsGameCenterAchievementReleases_example"] // [String] | the fields to include for returned resources of type gameCenterAchievementReleases (optional)
+let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let limitLocalizations = 987 // Int | maximum number of related localizations returned (when they are included) (optional)
 let limitReleases = 987 // Int | maximum number of related releases returned (when they are included) (optional)
-let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 
-GameCenterAchievementLocalizationsAPI.gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelated(id: id, fieldsGameCenterAchievementReleases: fieldsGameCenterAchievementReleases, fieldsGameCenterGroups: fieldsGameCenterGroups, fieldsGameCenterDetails: fieldsGameCenterDetails, fieldsGameCenterAchievementLocalizations: fieldsGameCenterAchievementLocalizations, fieldsGameCenterAchievements: fieldsGameCenterAchievements, limitLocalizations: limitLocalizations, limitReleases: limitReleases, include: include) { (response, error) in
+GameCenterAchievementLocalizationsAPI.gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelated(id: id, fieldsGameCenterAchievements: fieldsGameCenterAchievements, fieldsGameCenterDetails: fieldsGameCenterDetails, fieldsGameCenterGroups: fieldsGameCenterGroups, fieldsGameCenterAchievementLocalizations: fieldsGameCenterAchievementLocalizations, fieldsGameCenterAchievementReleases: fieldsGameCenterAchievementReleases, include: include, limitLocalizations: limitLocalizations, limitReleases: limitReleases) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -145,14 +145,14 @@ GameCenterAchievementLocalizationsAPI.gameCenterAchievementLocalizationsGameCent
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
- **fieldsGameCenterAchievementReleases** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterAchievementReleases | [optional] 
- **fieldsGameCenterGroups** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterGroups | [optional] 
- **fieldsGameCenterDetails** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterDetails | [optional] 
- **fieldsGameCenterAchievementLocalizations** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterAchievementLocalizations | [optional] 
  **fieldsGameCenterAchievements** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterAchievements | [optional] 
+ **fieldsGameCenterDetails** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterDetails | [optional] 
+ **fieldsGameCenterGroups** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterGroups | [optional] 
+ **fieldsGameCenterAchievementLocalizations** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterAchievementLocalizations | [optional] 
+ **fieldsGameCenterAchievementReleases** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterAchievementReleases | [optional] 
+ **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **limitLocalizations** | **Int** | maximum number of related localizations returned (when they are included) | [optional] 
  **limitReleases** | **Int** | maximum number of related releases returned (when they are included) | [optional] 
- **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
 
 ### Return type
 
@@ -224,7 +224,7 @@ Name | Type | Description  | Notes
 
 # **gameCenterAchievementLocalizationsGetInstance**
 ```swift
-    open class func gameCenterAchievementLocalizationsGetInstance(id: String, fieldsGameCenterAchievementLocalizations: [FieldsGameCenterAchievementLocalizations_gameCenterAchievementLocalizationsGetInstance]? = nil, include: [Include_gameCenterAchievementLocalizationsGetInstance]? = nil, fieldsGameCenterAchievementImages: [FieldsGameCenterAchievementImages_gameCenterAchievementLocalizationsGetInstance]? = nil, fieldsGameCenterAchievements: [FieldsGameCenterAchievements_gameCenterAchievementLocalizationsGetInstance]? = nil, completion: @escaping (_ data: GameCenterAchievementLocalizationResponse?, _ error: Error?) -> Void)
+    open class func gameCenterAchievementLocalizationsGetInstance(id: String, fieldsGameCenterAchievementLocalizations: [FieldsGameCenterAchievementLocalizations_gameCenterAchievementLocalizationsGetInstance]? = nil, fieldsGameCenterAchievements: [FieldsGameCenterAchievements_gameCenterAchievementLocalizationsGetInstance]? = nil, fieldsGameCenterAchievementImages: [FieldsGameCenterAchievementImages_gameCenterAchievementLocalizationsGetInstance]? = nil, include: [Include_gameCenterAchievementLocalizationsGetInstance]? = nil, completion: @escaping (_ data: GameCenterAchievementLocalizationResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -236,11 +236,11 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let fieldsGameCenterAchievementLocalizations = ["fieldsGameCenterAchievementLocalizations_example"] // [String] | the fields to include for returned resources of type gameCenterAchievementLocalizations (optional)
-let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
-let fieldsGameCenterAchievementImages = ["fieldsGameCenterAchievementImages_example"] // [String] | the fields to include for returned resources of type gameCenterAchievementImages (optional)
 let fieldsGameCenterAchievements = ["fieldsGameCenterAchievements_example"] // [String] | the fields to include for returned resources of type gameCenterAchievements (optional)
+let fieldsGameCenterAchievementImages = ["fieldsGameCenterAchievementImages_example"] // [String] | the fields to include for returned resources of type gameCenterAchievementImages (optional)
+let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 
-GameCenterAchievementLocalizationsAPI.gameCenterAchievementLocalizationsGetInstance(id: id, fieldsGameCenterAchievementLocalizations: fieldsGameCenterAchievementLocalizations, include: include, fieldsGameCenterAchievementImages: fieldsGameCenterAchievementImages, fieldsGameCenterAchievements: fieldsGameCenterAchievements) { (response, error) in
+GameCenterAchievementLocalizationsAPI.gameCenterAchievementLocalizationsGetInstance(id: id, fieldsGameCenterAchievementLocalizations: fieldsGameCenterAchievementLocalizations, fieldsGameCenterAchievements: fieldsGameCenterAchievements, fieldsGameCenterAchievementImages: fieldsGameCenterAchievementImages, include: include) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -258,9 +258,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **fieldsGameCenterAchievementLocalizations** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterAchievementLocalizations | [optional] 
- **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
- **fieldsGameCenterAchievementImages** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterAchievementImages | [optional] 
  **fieldsGameCenterAchievements** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterAchievements | [optional] 
+ **fieldsGameCenterAchievementImages** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterAchievementImages | [optional] 
+ **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
 
 ### Return type
 

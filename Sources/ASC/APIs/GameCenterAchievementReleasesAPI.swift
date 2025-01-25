@@ -149,17 +149,17 @@ open class GameCenterAchievementReleasesAPI {
      * enum for parameter fieldsGameCenterAchievementReleases
      */
     public enum FieldsGameCenterAchievementReleases_gameCenterAchievementReleasesGetInstance: String, CaseIterable {
-        case gamecenterachievement = "gameCenterAchievement"
-        case gamecenterdetail = "gameCenterDetail"
         case live = "live"
+        case gamecenterdetail = "gameCenterDetail"
+        case gamecenterachievement = "gameCenterAchievement"
     }
 
     /**
      * enum for parameter include
      */
     public enum Include_gameCenterAchievementReleasesGetInstance: String, CaseIterable {
-        case gamecenterachievement = "gameCenterAchievement"
         case gamecenterdetail = "gameCenterDetail"
+        case gamecenterachievement = "gameCenterAchievement"
     }
 
     /**

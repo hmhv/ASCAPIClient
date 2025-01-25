@@ -15,9 +15,9 @@ public struct AppCustomProductPageCreateRequestDataRelationships: Codable, JSONE
     public var app: AnalyticsReportRequestCreateRequestDataRelationshipsApp
     public var appCustomProductPageVersions: AppCustomProductPageCreateRequestDataRelationshipsAppCustomProductPageVersions?
     public var appStoreVersionTemplate: AppClipDefaultExperienceCreateRequestDataRelationshipsReleaseWithAppStoreVersion?
-    public var customProductPageTemplate: AppCustomProductPageVersionInlineCreateRelationshipsAppCustomProductPage?
+    public var customProductPageTemplate: AppCustomProductPageVersionRelationshipsAppCustomProductPage?
 
-    public init(app: AnalyticsReportRequestCreateRequestDataRelationshipsApp, appCustomProductPageVersions: AppCustomProductPageCreateRequestDataRelationshipsAppCustomProductPageVersions? = nil, appStoreVersionTemplate: AppClipDefaultExperienceCreateRequestDataRelationshipsReleaseWithAppStoreVersion? = nil, customProductPageTemplate: AppCustomProductPageVersionInlineCreateRelationshipsAppCustomProductPage? = nil) {
+    public init(app: AnalyticsReportRequestCreateRequestDataRelationshipsApp, appCustomProductPageVersions: AppCustomProductPageCreateRequestDataRelationshipsAppCustomProductPageVersions? = nil, appStoreVersionTemplate: AppClipDefaultExperienceCreateRequestDataRelationshipsReleaseWithAppStoreVersion? = nil, customProductPageTemplate: AppCustomProductPageVersionRelationshipsAppCustomProductPage? = nil) {
         self.app = app
         self.appCustomProductPageVersions = appCustomProductPageVersions
         self.appStoreVersionTemplate = appStoreVersionTemplate

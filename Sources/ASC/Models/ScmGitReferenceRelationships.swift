@@ -12,9 +12,9 @@ import AnyCodable
 
 public struct ScmGitReferenceRelationships: Codable, JSONEncodable, Hashable {
 
-    public var repository: CiWorkflowRelationshipsRepository?
+    public var repository: ScmGitReferenceRelationshipsRepository?
 
-    public init(repository: CiWorkflowRelationshipsRepository? = nil) {
+    public init(repository: ScmGitReferenceRelationshipsRepository? = nil) {
         self.repository = repository
     }
 

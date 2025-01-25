@@ -177,7 +177,7 @@ Void (empty response body)
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import ASC
 
-let appPreviewSetCreateRequest = AppPreviewSetCreateRequest(data: AppPreviewSetCreateRequest_data(type: "type_example", attributes: AppPreviewSetCreateRequest_data_attributes(previewType: PreviewType()), relationships: AppPreviewSetCreateRequest_data_relationships(appStoreVersionLocalization: AppPreviewSetCreateRequest_data_relationships_appStoreVersionLocalization(data: AppPreviewSet_relationships_appStoreVersionLocalization_data(type: "type_example", id: "id_example")), appCustomProductPageLocalization: AppPreviewSetCreateRequest_data_relationships_appCustomProductPageLocalization(data: AppCustomProductPageVersion_relationships_appCustomProductPageLocalizations_data_inner(type: "type_example", id: "id_example")), appStoreVersionExperimentTreatmentLocalization: AppPreviewSetCreateRequest_data_relationships_appStoreVersionExperimentTreatmentLocalization(data: AppPreviewSet_relationships_appStoreVersionExperimentTreatmentLocalization_data(type: "type_example", id: "id_example"))))) // AppPreviewSetCreateRequest | AppPreviewSet representation
+let appPreviewSetCreateRequest = AppPreviewSetCreateRequest(data: AppPreviewSetCreateRequest_data(type: "type_example", attributes: AppPreviewSetCreateRequest_data_attributes(previewType: PreviewType()), relationships: AppPreviewSetCreateRequest_data_relationships(appStoreVersionLocalization: AppPreviewSet_relationships_appStoreVersionLocalization(data: AppPreviewSet_relationships_appStoreVersionLocalization_data(type: "type_example", id: "id_example")), appCustomProductPageLocalization: AppPreviewSet_relationships_appCustomProductPageLocalization(data: AppCustomProductPageVersion_relationships_appCustomProductPageLocalizations_data_inner(type: "type_example", id: "id_example")), appStoreVersionExperimentTreatmentLocalization: AppPreviewSet_relationships_appStoreVersionExperimentTreatmentLocalization(data: AppPreviewSet_relationships_appStoreVersionExperimentTreatmentLocalization_data(type: "type_example", id: "id_example"))))) // AppPreviewSetCreateRequest | AppPreviewSet representation
 
 AppPreviewSetsAPI.appPreviewSetsCreateInstance(appPreviewSetCreateRequest: appPreviewSetCreateRequest) { (response, error) in
     guard error == nil else {
@@ -261,7 +261,7 @@ Void (empty response body)
 
 # **appPreviewSetsGetInstance**
 ```swift
-    open class func appPreviewSetsGetInstance(id: String, fieldsAppPreviewSets: [FieldsAppPreviewSets_appPreviewSetsGetInstance]? = nil, include: [Include_appPreviewSetsGetInstance]? = nil, fieldsAppPreviews: [FieldsAppPreviews_appPreviewSetsGetInstance]? = nil, limitAppPreviews: Int? = nil, completion: @escaping (_ data: AppPreviewSetResponse?, _ error: Error?) -> Void)
+    open class func appPreviewSetsGetInstance(id: String, fieldsAppPreviewSets: [FieldsAppPreviewSets_appPreviewSetsGetInstance]? = nil, fieldsAppPreviews: [FieldsAppPreviews_appPreviewSetsGetInstance]? = nil, include: [Include_appPreviewSetsGetInstance]? = nil, limitAppPreviews: Int? = nil, completion: @escaping (_ data: AppPreviewSetResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -273,11 +273,11 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let fieldsAppPreviewSets = ["fieldsAppPreviewSets_example"] // [String] | the fields to include for returned resources of type appPreviewSets (optional)
-let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let fieldsAppPreviews = ["fieldsAppPreviews_example"] // [String] | the fields to include for returned resources of type appPreviews (optional)
+let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let limitAppPreviews = 987 // Int | maximum number of related appPreviews returned (when they are included) (optional)
 
-AppPreviewSetsAPI.appPreviewSetsGetInstance(id: id, fieldsAppPreviewSets: fieldsAppPreviewSets, include: include, fieldsAppPreviews: fieldsAppPreviews, limitAppPreviews: limitAppPreviews) { (response, error) in
+AppPreviewSetsAPI.appPreviewSetsGetInstance(id: id, fieldsAppPreviewSets: fieldsAppPreviewSets, fieldsAppPreviews: fieldsAppPreviews, include: include, limitAppPreviews: limitAppPreviews) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -295,8 +295,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **fieldsAppPreviewSets** | [**[String]**](String.md) | the fields to include for returned resources of type appPreviewSets | [optional] 
- **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **fieldsAppPreviews** | [**[String]**](String.md) | the fields to include for returned resources of type appPreviews | [optional] 
+ **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **limitAppPreviews** | **Int** | maximum number of related appPreviews returned (when they are included) | [optional] 
 
 ### Return type

@@ -157,7 +157,7 @@ Void (empty response body)
 
 # **betaAppLocalizationsGetCollection**
 ```swift
-    open class func betaAppLocalizationsGetCollection(filterLocale: [String]? = nil, filterApp: [String]? = nil, fieldsBetaAppLocalizations: [FieldsBetaAppLocalizations_betaAppLocalizationsGetCollection]? = nil, limit: Int? = nil, include: [Include_betaAppLocalizationsGetCollection]? = nil, fieldsApps: [FieldsApps_betaAppLocalizationsGetCollection]? = nil, completion: @escaping (_ data: BetaAppLocalizationsResponse?, _ error: Error?) -> Void)
+    open class func betaAppLocalizationsGetCollection(filterLocale: [String]? = nil, filterApp: [String]? = nil, fieldsBetaAppLocalizations: [FieldsBetaAppLocalizations_betaAppLocalizationsGetCollection]? = nil, fieldsApps: [FieldsApps_betaAppLocalizationsGetCollection]? = nil, limit: Int? = nil, include: [Include_betaAppLocalizationsGetCollection]? = nil, completion: @escaping (_ data: BetaAppLocalizationsResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -170,11 +170,11 @@ import ASC
 let filterLocale = ["inner_example"] // [String] | filter by attribute 'locale' (optional)
 let filterApp = ["inner_example"] // [String] | filter by id(s) of related 'app' (optional)
 let fieldsBetaAppLocalizations = ["fieldsBetaAppLocalizations_example"] // [String] | the fields to include for returned resources of type betaAppLocalizations (optional)
+let fieldsApps = ["fieldsApps_example"] // [String] | the fields to include for returned resources of type apps (optional)
 let limit = 987 // Int | maximum resources per page (optional)
 let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
-let fieldsApps = ["fieldsApps_example"] // [String] | the fields to include for returned resources of type apps (optional)
 
-BetaAppLocalizationsAPI.betaAppLocalizationsGetCollection(filterLocale: filterLocale, filterApp: filterApp, fieldsBetaAppLocalizations: fieldsBetaAppLocalizations, limit: limit, include: include, fieldsApps: fieldsApps) { (response, error) in
+BetaAppLocalizationsAPI.betaAppLocalizationsGetCollection(filterLocale: filterLocale, filterApp: filterApp, fieldsBetaAppLocalizations: fieldsBetaAppLocalizations, fieldsApps: fieldsApps, limit: limit, include: include) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -193,9 +193,9 @@ Name | Type | Description  | Notes
  **filterLocale** | [**[String]**](String.md) | filter by attribute &#39;locale&#39; | [optional] 
  **filterApp** | [**[String]**](String.md) | filter by id(s) of related &#39;app&#39; | [optional] 
  **fieldsBetaAppLocalizations** | [**[String]**](String.md) | the fields to include for returned resources of type betaAppLocalizations | [optional] 
+ **fieldsApps** | [**[String]**](String.md) | the fields to include for returned resources of type apps | [optional] 
  **limit** | **Int** | maximum resources per page | [optional] 
  **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
- **fieldsApps** | [**[String]**](String.md) | the fields to include for returned resources of type apps | [optional] 
 
 ### Return type
 
@@ -214,7 +214,7 @@ Name | Type | Description  | Notes
 
 # **betaAppLocalizationsGetInstance**
 ```swift
-    open class func betaAppLocalizationsGetInstance(id: String, fieldsBetaAppLocalizations: [FieldsBetaAppLocalizations_betaAppLocalizationsGetInstance]? = nil, include: [Include_betaAppLocalizationsGetInstance]? = nil, fieldsApps: [FieldsApps_betaAppLocalizationsGetInstance]? = nil, completion: @escaping (_ data: BetaAppLocalizationResponse?, _ error: Error?) -> Void)
+    open class func betaAppLocalizationsGetInstance(id: String, fieldsBetaAppLocalizations: [FieldsBetaAppLocalizations_betaAppLocalizationsGetInstance]? = nil, fieldsApps: [FieldsApps_betaAppLocalizationsGetInstance]? = nil, include: [Include_betaAppLocalizationsGetInstance]? = nil, completion: @escaping (_ data: BetaAppLocalizationResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -226,10 +226,10 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let fieldsBetaAppLocalizations = ["fieldsBetaAppLocalizations_example"] // [String] | the fields to include for returned resources of type betaAppLocalizations (optional)
-let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let fieldsApps = ["fieldsApps_example"] // [String] | the fields to include for returned resources of type apps (optional)
+let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 
-BetaAppLocalizationsAPI.betaAppLocalizationsGetInstance(id: id, fieldsBetaAppLocalizations: fieldsBetaAppLocalizations, include: include, fieldsApps: fieldsApps) { (response, error) in
+BetaAppLocalizationsAPI.betaAppLocalizationsGetInstance(id: id, fieldsBetaAppLocalizations: fieldsBetaAppLocalizations, fieldsApps: fieldsApps, include: include) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -247,8 +247,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **fieldsBetaAppLocalizations** | [**[String]**](String.md) | the fields to include for returned resources of type betaAppLocalizations | [optional] 
- **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **fieldsApps** | [**[String]**](String.md) | the fields to include for returned resources of type apps | [optional] 
+ **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
 
 ### Return type
 

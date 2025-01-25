@@ -26,17 +26,17 @@ open class AppCategoriesAPI {
      * enum for parameter fieldsAppCategories
      */
     public enum FieldsAppCategories_appCategoriesGetCollection: String, CaseIterable {
-        case parent = "parent"
         case platforms = "platforms"
         case subcategories = "subcategories"
+        case parent = "parent"
     }
 
     /**
      * enum for parameter include
      */
     public enum Include_appCategoriesGetCollection: String, CaseIterable {
-        case parent = "parent"
         case subcategories = "subcategories"
+        case parent = "parent"
     }
 
     /**
@@ -126,17 +126,17 @@ open class AppCategoriesAPI {
      * enum for parameter fieldsAppCategories
      */
     public enum FieldsAppCategories_appCategoriesGetInstance: String, CaseIterable {
-        case parent = "parent"
         case platforms = "platforms"
         case subcategories = "subcategories"
+        case parent = "parent"
     }
 
     /**
      * enum for parameter include
      */
     public enum Include_appCategoriesGetInstance: String, CaseIterable {
-        case parent = "parent"
         case subcategories = "subcategories"
+        case parent = "parent"
     }
 
     /**
@@ -222,9 +222,9 @@ open class AppCategoriesAPI {
      * enum for parameter fieldsAppCategories
      */
     public enum FieldsAppCategories_appCategoriesParentGetToOneRelated: String, CaseIterable {
-        case parent = "parent"
         case platforms = "platforms"
         case subcategories = "subcategories"
+        case parent = "parent"
     }
 
     /**
@@ -304,9 +304,9 @@ open class AppCategoriesAPI {
      * enum for parameter fieldsAppCategories
      */
     public enum FieldsAppCategories_appCategoriesSubcategoriesGetToManyRelated: String, CaseIterable {
-        case parent = "parent"
         case platforms = "platforms"
         case subcategories = "subcategories"
+        case parent = "parent"
     }
 
     /**

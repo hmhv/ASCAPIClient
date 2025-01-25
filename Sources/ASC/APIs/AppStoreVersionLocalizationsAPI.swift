@@ -35,78 +35,79 @@ open class AppStoreVersionLocalizationsAPI {
     }
 
     /**
-     * enum for parameter fieldsAppCustomProductPageLocalizations
-     */
-    public enum FieldsAppCustomProductPageLocalizations_appStoreVersionLocalizationsAppPreviewSetsGetToManyRelated: String, CaseIterable {
-        case appcustomproductpageversion = "appCustomProductPageVersion"
-        case apppreviewsets = "appPreviewSets"
-        case appscreenshotsets = "appScreenshotSets"
-        case locale = "locale"
-        case promotionaltext = "promotionalText"
-    }
-
-    /**
-     * enum for parameter fieldsAppStoreVersionExperimentTreatmentLocalizations
-     */
-    public enum FieldsAppStoreVersionExperimentTreatmentLocalizations_appStoreVersionLocalizationsAppPreviewSetsGetToManyRelated: String, CaseIterable {
-        case apppreviewsets = "appPreviewSets"
-        case appscreenshotsets = "appScreenshotSets"
-        case appstoreversionexperimenttreatment = "appStoreVersionExperimentTreatment"
-        case locale = "locale"
-    }
-
-    /**
-     * enum for parameter fieldsAppPreviews
-     */
-    public enum FieldsAppPreviews_appStoreVersionLocalizationsAppPreviewSetsGetToManyRelated: String, CaseIterable {
-        case apppreviewset = "appPreviewSet"
-        case assetdeliverystate = "assetDeliveryState"
-        case filename = "fileName"
-        case filesize = "fileSize"
-        case mimetype = "mimeType"
-        case previewframetimecode = "previewFrameTimeCode"
-        case previewimage = "previewImage"
-        case sourcefilechecksum = "sourceFileChecksum"
-        case uploadoperations = "uploadOperations"
-        case uploaded = "uploaded"
-        case videourl = "videoUrl"
-    }
-
-    /**
      * enum for parameter fieldsAppPreviewSets
      */
     public enum FieldsAppPreviewSets_appStoreVersionLocalizationsAppPreviewSetsGetToManyRelated: String, CaseIterable {
-        case appcustomproductpagelocalization = "appCustomProductPageLocalization"
-        case apppreviews = "appPreviews"
-        case appstoreversionexperimenttreatmentlocalization = "appStoreVersionExperimentTreatmentLocalization"
-        case appstoreversionlocalization = "appStoreVersionLocalization"
         case previewtype = "previewType"
+        case appstoreversionlocalization = "appStoreVersionLocalization"
+        case appcustomproductpagelocalization = "appCustomProductPageLocalization"
+        case appstoreversionexperimenttreatmentlocalization = "appStoreVersionExperimentTreatmentLocalization"
+        case apppreviews = "appPreviews"
     }
 
     /**
      * enum for parameter fieldsAppStoreVersionLocalizations
      */
     public enum FieldsAppStoreVersionLocalizations_appStoreVersionLocalizationsAppPreviewSetsGetToManyRelated: String, CaseIterable {
-        case apppreviewsets = "appPreviewSets"
-        case appscreenshotsets = "appScreenshotSets"
-        case appstoreversion = "appStoreVersion"
         case description = "description"
-        case keywords = "keywords"
         case locale = "locale"
+        case keywords = "keywords"
         case marketingurl = "marketingUrl"
         case promotionaltext = "promotionalText"
         case supporturl = "supportUrl"
         case whatsnew = "whatsNew"
+        case appstoreversion = "appStoreVersion"
+        case appscreenshotsets = "appScreenshotSets"
+        case apppreviewsets = "appPreviewSets"
+    }
+
+    /**
+     * enum for parameter fieldsAppCustomProductPageLocalizations
+     */
+    public enum FieldsAppCustomProductPageLocalizations_appStoreVersionLocalizationsAppPreviewSetsGetToManyRelated: String, CaseIterable {
+        case locale = "locale"
+        case promotionaltext = "promotionalText"
+        case appcustomproductpageversion = "appCustomProductPageVersion"
+        case appscreenshotsets = "appScreenshotSets"
+        case apppreviewsets = "appPreviewSets"
+    }
+
+    /**
+     * enum for parameter fieldsAppStoreVersionExperimentTreatmentLocalizations
+     */
+    public enum FieldsAppStoreVersionExperimentTreatmentLocalizations_appStoreVersionLocalizationsAppPreviewSetsGetToManyRelated: String, CaseIterable {
+        case locale = "locale"
+        case appstoreversionexperimenttreatment = "appStoreVersionExperimentTreatment"
+        case appscreenshotsets = "appScreenshotSets"
+        case apppreviewsets = "appPreviewSets"
+    }
+
+    /**
+     * enum for parameter fieldsAppPreviews
+     */
+    public enum FieldsAppPreviews_appStoreVersionLocalizationsAppPreviewSetsGetToManyRelated: String, CaseIterable {
+        case filesize = "fileSize"
+        case filename = "fileName"
+        case sourcefilechecksum = "sourceFileChecksum"
+        case previewframetimecode = "previewFrameTimeCode"
+        case mimetype = "mimeType"
+        case videourl = "videoUrl"
+        case previewframeimage = "previewFrameImage"
+        case previewimage = "previewImage"
+        case uploadoperations = "uploadOperations"
+        case assetdeliverystate = "assetDeliveryState"
+        case videodeliverystate = "videoDeliveryState"
+        case apppreviewset = "appPreviewSet"
     }
 
     /**
      * enum for parameter include
      */
     public enum Include_appStoreVersionLocalizationsAppPreviewSetsGetToManyRelated: String, CaseIterable {
-        case appcustomproductpagelocalization = "appCustomProductPageLocalization"
-        case apppreviews = "appPreviews"
-        case appstoreversionexperimenttreatmentlocalization = "appStoreVersionExperimentTreatmentLocalization"
         case appstoreversionlocalization = "appStoreVersionLocalization"
+        case appcustomproductpagelocalization = "appCustomProductPageLocalization"
+        case appstoreversionexperimenttreatmentlocalization = "appStoreVersionExperimentTreatmentLocalization"
+        case apppreviews = "appPreviews"
     }
 
     /**
@@ -115,19 +116,19 @@ open class AppStoreVersionLocalizationsAPI {
      - parameter filterPreviewType: (query) filter by attribute &#39;previewType&#39; (optional)
      - parameter filterAppCustomProductPageLocalization: (query) filter by id(s) of related &#39;appCustomProductPageLocalization&#39; (optional)
      - parameter filterAppStoreVersionExperimentTreatmentLocalization: (query) filter by id(s) of related &#39;appStoreVersionExperimentTreatmentLocalization&#39; (optional)
+     - parameter fieldsAppPreviewSets: (query) the fields to include for returned resources of type appPreviewSets (optional)
+     - parameter fieldsAppStoreVersionLocalizations: (query) the fields to include for returned resources of type appStoreVersionLocalizations (optional)
      - parameter fieldsAppCustomProductPageLocalizations: (query) the fields to include for returned resources of type appCustomProductPageLocalizations (optional)
      - parameter fieldsAppStoreVersionExperimentTreatmentLocalizations: (query) the fields to include for returned resources of type appStoreVersionExperimentTreatmentLocalizations (optional)
      - parameter fieldsAppPreviews: (query) the fields to include for returned resources of type appPreviews (optional)
-     - parameter fieldsAppPreviewSets: (query) the fields to include for returned resources of type appPreviewSets (optional)
-     - parameter fieldsAppStoreVersionLocalizations: (query) the fields to include for returned resources of type appStoreVersionLocalizations (optional)
      - parameter limit: (query) maximum resources per page (optional)
-     - parameter limitAppPreviews: (query) maximum number of related appPreviews returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitAppPreviews: (query) maximum number of related appPreviews returned (when they are included) (optional)
      - returns: AppPreviewSetsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionLocalizationsAppPreviewSetsGetToManyRelated(id: String, filterPreviewType: [FilterPreviewType_appStoreVersionLocalizationsAppPreviewSetsGetToManyRelated]? = nil, filterAppCustomProductPageLocalization: [String]? = nil, filterAppStoreVersionExperimentTreatmentLocalization: [String]? = nil, fieldsAppCustomProductPageLocalizations: [FieldsAppCustomProductPageLocalizations_appStoreVersionLocalizationsAppPreviewSetsGetToManyRelated]? = nil, fieldsAppStoreVersionExperimentTreatmentLocalizations: [FieldsAppStoreVersionExperimentTreatmentLocalizations_appStoreVersionLocalizationsAppPreviewSetsGetToManyRelated]? = nil, fieldsAppPreviews: [FieldsAppPreviews_appStoreVersionLocalizationsAppPreviewSetsGetToManyRelated]? = nil, fieldsAppPreviewSets: [FieldsAppPreviewSets_appStoreVersionLocalizationsAppPreviewSetsGetToManyRelated]? = nil, fieldsAppStoreVersionLocalizations: [FieldsAppStoreVersionLocalizations_appStoreVersionLocalizationsAppPreviewSetsGetToManyRelated]? = nil, limit: Int? = nil, limitAppPreviews: Int? = nil, include: [Include_appStoreVersionLocalizationsAppPreviewSetsGetToManyRelated]? = nil) async throws -> AppPreviewSetsResponse {
-        return try await appStoreVersionLocalizationsAppPreviewSetsGetToManyRelatedWithRequestBuilder(id: id, filterPreviewType: filterPreviewType, filterAppCustomProductPageLocalization: filterAppCustomProductPageLocalization, filterAppStoreVersionExperimentTreatmentLocalization: filterAppStoreVersionExperimentTreatmentLocalization, fieldsAppCustomProductPageLocalizations: fieldsAppCustomProductPageLocalizations, fieldsAppStoreVersionExperimentTreatmentLocalizations: fieldsAppStoreVersionExperimentTreatmentLocalizations, fieldsAppPreviews: fieldsAppPreviews, fieldsAppPreviewSets: fieldsAppPreviewSets, fieldsAppStoreVersionLocalizations: fieldsAppStoreVersionLocalizations, limit: limit, limitAppPreviews: limitAppPreviews, include: include).execute().body
+    open class func appStoreVersionLocalizationsAppPreviewSetsGetToManyRelated(id: String, filterPreviewType: [FilterPreviewType_appStoreVersionLocalizationsAppPreviewSetsGetToManyRelated]? = nil, filterAppCustomProductPageLocalization: [String]? = nil, filterAppStoreVersionExperimentTreatmentLocalization: [String]? = nil, fieldsAppPreviewSets: [FieldsAppPreviewSets_appStoreVersionLocalizationsAppPreviewSetsGetToManyRelated]? = nil, fieldsAppStoreVersionLocalizations: [FieldsAppStoreVersionLocalizations_appStoreVersionLocalizationsAppPreviewSetsGetToManyRelated]? = nil, fieldsAppCustomProductPageLocalizations: [FieldsAppCustomProductPageLocalizations_appStoreVersionLocalizationsAppPreviewSetsGetToManyRelated]? = nil, fieldsAppStoreVersionExperimentTreatmentLocalizations: [FieldsAppStoreVersionExperimentTreatmentLocalizations_appStoreVersionLocalizationsAppPreviewSetsGetToManyRelated]? = nil, fieldsAppPreviews: [FieldsAppPreviews_appStoreVersionLocalizationsAppPreviewSetsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appStoreVersionLocalizationsAppPreviewSetsGetToManyRelated]? = nil, limitAppPreviews: Int? = nil) async throws -> AppPreviewSetsResponse {
+        return try await appStoreVersionLocalizationsAppPreviewSetsGetToManyRelatedWithRequestBuilder(id: id, filterPreviewType: filterPreviewType, filterAppCustomProductPageLocalization: filterAppCustomProductPageLocalization, filterAppStoreVersionExperimentTreatmentLocalization: filterAppStoreVersionExperimentTreatmentLocalization, fieldsAppPreviewSets: fieldsAppPreviewSets, fieldsAppStoreVersionLocalizations: fieldsAppStoreVersionLocalizations, fieldsAppCustomProductPageLocalizations: fieldsAppCustomProductPageLocalizations, fieldsAppStoreVersionExperimentTreatmentLocalizations: fieldsAppStoreVersionExperimentTreatmentLocalizations, fieldsAppPreviews: fieldsAppPreviews, limit: limit, include: include, limitAppPreviews: limitAppPreviews).execute().body
     }
 
     /**
@@ -148,17 +149,17 @@ open class AppStoreVersionLocalizationsAPI {
      - parameter filterPreviewType: (query) filter by attribute &#39;previewType&#39; (optional)
      - parameter filterAppCustomProductPageLocalization: (query) filter by id(s) of related &#39;appCustomProductPageLocalization&#39; (optional)
      - parameter filterAppStoreVersionExperimentTreatmentLocalization: (query) filter by id(s) of related &#39;appStoreVersionExperimentTreatmentLocalization&#39; (optional)
+     - parameter fieldsAppPreviewSets: (query) the fields to include for returned resources of type appPreviewSets (optional)
+     - parameter fieldsAppStoreVersionLocalizations: (query) the fields to include for returned resources of type appStoreVersionLocalizations (optional)
      - parameter fieldsAppCustomProductPageLocalizations: (query) the fields to include for returned resources of type appCustomProductPageLocalizations (optional)
      - parameter fieldsAppStoreVersionExperimentTreatmentLocalizations: (query) the fields to include for returned resources of type appStoreVersionExperimentTreatmentLocalizations (optional)
      - parameter fieldsAppPreviews: (query) the fields to include for returned resources of type appPreviews (optional)
-     - parameter fieldsAppPreviewSets: (query) the fields to include for returned resources of type appPreviewSets (optional)
-     - parameter fieldsAppStoreVersionLocalizations: (query) the fields to include for returned resources of type appStoreVersionLocalizations (optional)
      - parameter limit: (query) maximum resources per page (optional)
-     - parameter limitAppPreviews: (query) maximum number of related appPreviews returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitAppPreviews: (query) maximum number of related appPreviews returned (when they are included) (optional)
      - returns: RequestBuilder<AppPreviewSetsResponse> 
      */
-    open class func appStoreVersionLocalizationsAppPreviewSetsGetToManyRelatedWithRequestBuilder(id: String, filterPreviewType: [FilterPreviewType_appStoreVersionLocalizationsAppPreviewSetsGetToManyRelated]? = nil, filterAppCustomProductPageLocalization: [String]? = nil, filterAppStoreVersionExperimentTreatmentLocalization: [String]? = nil, fieldsAppCustomProductPageLocalizations: [FieldsAppCustomProductPageLocalizations_appStoreVersionLocalizationsAppPreviewSetsGetToManyRelated]? = nil, fieldsAppStoreVersionExperimentTreatmentLocalizations: [FieldsAppStoreVersionExperimentTreatmentLocalizations_appStoreVersionLocalizationsAppPreviewSetsGetToManyRelated]? = nil, fieldsAppPreviews: [FieldsAppPreviews_appStoreVersionLocalizationsAppPreviewSetsGetToManyRelated]? = nil, fieldsAppPreviewSets: [FieldsAppPreviewSets_appStoreVersionLocalizationsAppPreviewSetsGetToManyRelated]? = nil, fieldsAppStoreVersionLocalizations: [FieldsAppStoreVersionLocalizations_appStoreVersionLocalizationsAppPreviewSetsGetToManyRelated]? = nil, limit: Int? = nil, limitAppPreviews: Int? = nil, include: [Include_appStoreVersionLocalizationsAppPreviewSetsGetToManyRelated]? = nil) -> RequestBuilder<AppPreviewSetsResponse> {
+    open class func appStoreVersionLocalizationsAppPreviewSetsGetToManyRelatedWithRequestBuilder(id: String, filterPreviewType: [FilterPreviewType_appStoreVersionLocalizationsAppPreviewSetsGetToManyRelated]? = nil, filterAppCustomProductPageLocalization: [String]? = nil, filterAppStoreVersionExperimentTreatmentLocalization: [String]? = nil, fieldsAppPreviewSets: [FieldsAppPreviewSets_appStoreVersionLocalizationsAppPreviewSetsGetToManyRelated]? = nil, fieldsAppStoreVersionLocalizations: [FieldsAppStoreVersionLocalizations_appStoreVersionLocalizationsAppPreviewSetsGetToManyRelated]? = nil, fieldsAppCustomProductPageLocalizations: [FieldsAppCustomProductPageLocalizations_appStoreVersionLocalizationsAppPreviewSetsGetToManyRelated]? = nil, fieldsAppStoreVersionExperimentTreatmentLocalizations: [FieldsAppStoreVersionExperimentTreatmentLocalizations_appStoreVersionLocalizationsAppPreviewSetsGetToManyRelated]? = nil, fieldsAppPreviews: [FieldsAppPreviews_appStoreVersionLocalizationsAppPreviewSetsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appStoreVersionLocalizationsAppPreviewSetsGetToManyRelated]? = nil, limitAppPreviews: Int? = nil) -> RequestBuilder<AppPreviewSetsResponse> {
         var localVariablePath = "/v1/appStoreVersionLocalizations/{id}/appPreviewSets"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -171,14 +172,14 @@ open class AppStoreVersionLocalizationsAPI {
             "filter[previewType]": (wrappedValue: filterPreviewType?.encodeToJSON(), isExplode: false),
             "filter[appCustomProductPageLocalization]": (wrappedValue: filterAppCustomProductPageLocalization?.encodeToJSON(), isExplode: false),
             "filter[appStoreVersionExperimentTreatmentLocalization]": (wrappedValue: filterAppStoreVersionExperimentTreatmentLocalization?.encodeToJSON(), isExplode: false),
+            "fields[appPreviewSets]": (wrappedValue: fieldsAppPreviewSets?.encodeToJSON(), isExplode: false),
+            "fields[appStoreVersionLocalizations]": (wrappedValue: fieldsAppStoreVersionLocalizations?.encodeToJSON(), isExplode: false),
             "fields[appCustomProductPageLocalizations]": (wrappedValue: fieldsAppCustomProductPageLocalizations?.encodeToJSON(), isExplode: false),
             "fields[appStoreVersionExperimentTreatmentLocalizations]": (wrappedValue: fieldsAppStoreVersionExperimentTreatmentLocalizations?.encodeToJSON(), isExplode: false),
             "fields[appPreviews]": (wrappedValue: fieldsAppPreviews?.encodeToJSON(), isExplode: false),
-            "fields[appPreviewSets]": (wrappedValue: fieldsAppPreviewSets?.encodeToJSON(), isExplode: false),
-            "fields[appStoreVersionLocalizations]": (wrappedValue: fieldsAppStoreVersionLocalizations?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "limit[appPreviews]": (wrappedValue: limitAppPreviews?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "limit[appPreviews]": (wrappedValue: limitAppPreviews?.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -231,6 +232,7 @@ open class AppStoreVersionLocalizationsAPI {
         case appIpad97 = "APP_IPAD_97"
         case appDesktop = "APP_DESKTOP"
         case appWatchUltra = "APP_WATCH_ULTRA"
+        case appWatchSeries10 = "APP_WATCH_SERIES_10"
         case appWatchSeries7 = "APP_WATCH_SERIES_7"
         case appWatchSeries4 = "APP_WATCH_SERIES_4"
         case appWatchSeries3 = "APP_WATCH_SERIES_3"
@@ -254,74 +256,73 @@ open class AppStoreVersionLocalizationsAPI {
      * enum for parameter fieldsAppScreenshotSets
      */
     public enum FieldsAppScreenshotSets_appStoreVersionLocalizationsAppScreenshotSetsGetToManyRelated: String, CaseIterable {
-        case appcustomproductpagelocalization = "appCustomProductPageLocalization"
-        case appscreenshots = "appScreenshots"
-        case appstoreversionexperimenttreatmentlocalization = "appStoreVersionExperimentTreatmentLocalization"
-        case appstoreversionlocalization = "appStoreVersionLocalization"
         case screenshotdisplaytype = "screenshotDisplayType"
-    }
-
-    /**
-     * enum for parameter fieldsAppCustomProductPageLocalizations
-     */
-    public enum FieldsAppCustomProductPageLocalizations_appStoreVersionLocalizationsAppScreenshotSetsGetToManyRelated: String, CaseIterable {
-        case appcustomproductpageversion = "appCustomProductPageVersion"
-        case apppreviewsets = "appPreviewSets"
-        case appscreenshotsets = "appScreenshotSets"
-        case locale = "locale"
-        case promotionaltext = "promotionalText"
-    }
-
-    /**
-     * enum for parameter fieldsAppStoreVersionExperimentTreatmentLocalizations
-     */
-    public enum FieldsAppStoreVersionExperimentTreatmentLocalizations_appStoreVersionLocalizationsAppScreenshotSetsGetToManyRelated: String, CaseIterable {
-        case apppreviewsets = "appPreviewSets"
-        case appscreenshotsets = "appScreenshotSets"
-        case appstoreversionexperimenttreatment = "appStoreVersionExperimentTreatment"
-        case locale = "locale"
-    }
-
-    /**
-     * enum for parameter fieldsAppScreenshots
-     */
-    public enum FieldsAppScreenshots_appStoreVersionLocalizationsAppScreenshotSetsGetToManyRelated: String, CaseIterable {
-        case appscreenshotset = "appScreenshotSet"
-        case assetdeliverystate = "assetDeliveryState"
-        case assettoken = "assetToken"
-        case assettype = "assetType"
-        case filename = "fileName"
-        case filesize = "fileSize"
-        case imageasset = "imageAsset"
-        case sourcefilechecksum = "sourceFileChecksum"
-        case uploadoperations = "uploadOperations"
-        case uploaded = "uploaded"
+        case appstoreversionlocalization = "appStoreVersionLocalization"
+        case appcustomproductpagelocalization = "appCustomProductPageLocalization"
+        case appstoreversionexperimenttreatmentlocalization = "appStoreVersionExperimentTreatmentLocalization"
+        case appscreenshots = "appScreenshots"
     }
 
     /**
      * enum for parameter fieldsAppStoreVersionLocalizations
      */
     public enum FieldsAppStoreVersionLocalizations_appStoreVersionLocalizationsAppScreenshotSetsGetToManyRelated: String, CaseIterable {
-        case apppreviewsets = "appPreviewSets"
-        case appscreenshotsets = "appScreenshotSets"
-        case appstoreversion = "appStoreVersion"
         case description = "description"
-        case keywords = "keywords"
         case locale = "locale"
+        case keywords = "keywords"
         case marketingurl = "marketingUrl"
         case promotionaltext = "promotionalText"
         case supporturl = "supportUrl"
         case whatsnew = "whatsNew"
+        case appstoreversion = "appStoreVersion"
+        case appscreenshotsets = "appScreenshotSets"
+        case apppreviewsets = "appPreviewSets"
+    }
+
+    /**
+     * enum for parameter fieldsAppCustomProductPageLocalizations
+     */
+    public enum FieldsAppCustomProductPageLocalizations_appStoreVersionLocalizationsAppScreenshotSetsGetToManyRelated: String, CaseIterable {
+        case locale = "locale"
+        case promotionaltext = "promotionalText"
+        case appcustomproductpageversion = "appCustomProductPageVersion"
+        case appscreenshotsets = "appScreenshotSets"
+        case apppreviewsets = "appPreviewSets"
+    }
+
+    /**
+     * enum for parameter fieldsAppStoreVersionExperimentTreatmentLocalizations
+     */
+    public enum FieldsAppStoreVersionExperimentTreatmentLocalizations_appStoreVersionLocalizationsAppScreenshotSetsGetToManyRelated: String, CaseIterable {
+        case locale = "locale"
+        case appstoreversionexperimenttreatment = "appStoreVersionExperimentTreatment"
+        case appscreenshotsets = "appScreenshotSets"
+        case apppreviewsets = "appPreviewSets"
+    }
+
+    /**
+     * enum for parameter fieldsAppScreenshots
+     */
+    public enum FieldsAppScreenshots_appStoreVersionLocalizationsAppScreenshotSetsGetToManyRelated: String, CaseIterable {
+        case filesize = "fileSize"
+        case filename = "fileName"
+        case sourcefilechecksum = "sourceFileChecksum"
+        case imageasset = "imageAsset"
+        case assettoken = "assetToken"
+        case assettype = "assetType"
+        case uploadoperations = "uploadOperations"
+        case assetdeliverystate = "assetDeliveryState"
+        case appscreenshotset = "appScreenshotSet"
     }
 
     /**
      * enum for parameter include
      */
     public enum Include_appStoreVersionLocalizationsAppScreenshotSetsGetToManyRelated: String, CaseIterable {
-        case appcustomproductpagelocalization = "appCustomProductPageLocalization"
-        case appscreenshots = "appScreenshots"
-        case appstoreversionexperimenttreatmentlocalization = "appStoreVersionExperimentTreatmentLocalization"
         case appstoreversionlocalization = "appStoreVersionLocalization"
+        case appcustomproductpagelocalization = "appCustomProductPageLocalization"
+        case appstoreversionexperimenttreatmentlocalization = "appStoreVersionExperimentTreatmentLocalization"
+        case appscreenshots = "appScreenshots"
     }
 
     /**
@@ -331,18 +332,18 @@ open class AppStoreVersionLocalizationsAPI {
      - parameter filterAppCustomProductPageLocalization: (query) filter by id(s) of related &#39;appCustomProductPageLocalization&#39; (optional)
      - parameter filterAppStoreVersionExperimentTreatmentLocalization: (query) filter by id(s) of related &#39;appStoreVersionExperimentTreatmentLocalization&#39; (optional)
      - parameter fieldsAppScreenshotSets: (query) the fields to include for returned resources of type appScreenshotSets (optional)
+     - parameter fieldsAppStoreVersionLocalizations: (query) the fields to include for returned resources of type appStoreVersionLocalizations (optional)
      - parameter fieldsAppCustomProductPageLocalizations: (query) the fields to include for returned resources of type appCustomProductPageLocalizations (optional)
      - parameter fieldsAppStoreVersionExperimentTreatmentLocalizations: (query) the fields to include for returned resources of type appStoreVersionExperimentTreatmentLocalizations (optional)
      - parameter fieldsAppScreenshots: (query) the fields to include for returned resources of type appScreenshots (optional)
-     - parameter fieldsAppStoreVersionLocalizations: (query) the fields to include for returned resources of type appStoreVersionLocalizations (optional)
      - parameter limit: (query) maximum resources per page (optional)
-     - parameter limitAppScreenshots: (query) maximum number of related appScreenshots returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitAppScreenshots: (query) maximum number of related appScreenshots returned (when they are included) (optional)
      - returns: AppScreenshotSetsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionLocalizationsAppScreenshotSetsGetToManyRelated(id: String, filterScreenshotDisplayType: [FilterScreenshotDisplayType_appStoreVersionLocalizationsAppScreenshotSetsGetToManyRelated]? = nil, filterAppCustomProductPageLocalization: [String]? = nil, filterAppStoreVersionExperimentTreatmentLocalization: [String]? = nil, fieldsAppScreenshotSets: [FieldsAppScreenshotSets_appStoreVersionLocalizationsAppScreenshotSetsGetToManyRelated]? = nil, fieldsAppCustomProductPageLocalizations: [FieldsAppCustomProductPageLocalizations_appStoreVersionLocalizationsAppScreenshotSetsGetToManyRelated]? = nil, fieldsAppStoreVersionExperimentTreatmentLocalizations: [FieldsAppStoreVersionExperimentTreatmentLocalizations_appStoreVersionLocalizationsAppScreenshotSetsGetToManyRelated]? = nil, fieldsAppScreenshots: [FieldsAppScreenshots_appStoreVersionLocalizationsAppScreenshotSetsGetToManyRelated]? = nil, fieldsAppStoreVersionLocalizations: [FieldsAppStoreVersionLocalizations_appStoreVersionLocalizationsAppScreenshotSetsGetToManyRelated]? = nil, limit: Int? = nil, limitAppScreenshots: Int? = nil, include: [Include_appStoreVersionLocalizationsAppScreenshotSetsGetToManyRelated]? = nil) async throws -> AppScreenshotSetsResponse {
-        return try await appStoreVersionLocalizationsAppScreenshotSetsGetToManyRelatedWithRequestBuilder(id: id, filterScreenshotDisplayType: filterScreenshotDisplayType, filterAppCustomProductPageLocalization: filterAppCustomProductPageLocalization, filterAppStoreVersionExperimentTreatmentLocalization: filterAppStoreVersionExperimentTreatmentLocalization, fieldsAppScreenshotSets: fieldsAppScreenshotSets, fieldsAppCustomProductPageLocalizations: fieldsAppCustomProductPageLocalizations, fieldsAppStoreVersionExperimentTreatmentLocalizations: fieldsAppStoreVersionExperimentTreatmentLocalizations, fieldsAppScreenshots: fieldsAppScreenshots, fieldsAppStoreVersionLocalizations: fieldsAppStoreVersionLocalizations, limit: limit, limitAppScreenshots: limitAppScreenshots, include: include).execute().body
+    open class func appStoreVersionLocalizationsAppScreenshotSetsGetToManyRelated(id: String, filterScreenshotDisplayType: [FilterScreenshotDisplayType_appStoreVersionLocalizationsAppScreenshotSetsGetToManyRelated]? = nil, filterAppCustomProductPageLocalization: [String]? = nil, filterAppStoreVersionExperimentTreatmentLocalization: [String]? = nil, fieldsAppScreenshotSets: [FieldsAppScreenshotSets_appStoreVersionLocalizationsAppScreenshotSetsGetToManyRelated]? = nil, fieldsAppStoreVersionLocalizations: [FieldsAppStoreVersionLocalizations_appStoreVersionLocalizationsAppScreenshotSetsGetToManyRelated]? = nil, fieldsAppCustomProductPageLocalizations: [FieldsAppCustomProductPageLocalizations_appStoreVersionLocalizationsAppScreenshotSetsGetToManyRelated]? = nil, fieldsAppStoreVersionExperimentTreatmentLocalizations: [FieldsAppStoreVersionExperimentTreatmentLocalizations_appStoreVersionLocalizationsAppScreenshotSetsGetToManyRelated]? = nil, fieldsAppScreenshots: [FieldsAppScreenshots_appStoreVersionLocalizationsAppScreenshotSetsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appStoreVersionLocalizationsAppScreenshotSetsGetToManyRelated]? = nil, limitAppScreenshots: Int? = nil) async throws -> AppScreenshotSetsResponse {
+        return try await appStoreVersionLocalizationsAppScreenshotSetsGetToManyRelatedWithRequestBuilder(id: id, filterScreenshotDisplayType: filterScreenshotDisplayType, filterAppCustomProductPageLocalization: filterAppCustomProductPageLocalization, filterAppStoreVersionExperimentTreatmentLocalization: filterAppStoreVersionExperimentTreatmentLocalization, fieldsAppScreenshotSets: fieldsAppScreenshotSets, fieldsAppStoreVersionLocalizations: fieldsAppStoreVersionLocalizations, fieldsAppCustomProductPageLocalizations: fieldsAppCustomProductPageLocalizations, fieldsAppStoreVersionExperimentTreatmentLocalizations: fieldsAppStoreVersionExperimentTreatmentLocalizations, fieldsAppScreenshots: fieldsAppScreenshots, limit: limit, include: include, limitAppScreenshots: limitAppScreenshots).execute().body
     }
 
     /**
@@ -364,16 +365,16 @@ open class AppStoreVersionLocalizationsAPI {
      - parameter filterAppCustomProductPageLocalization: (query) filter by id(s) of related &#39;appCustomProductPageLocalization&#39; (optional)
      - parameter filterAppStoreVersionExperimentTreatmentLocalization: (query) filter by id(s) of related &#39;appStoreVersionExperimentTreatmentLocalization&#39; (optional)
      - parameter fieldsAppScreenshotSets: (query) the fields to include for returned resources of type appScreenshotSets (optional)
+     - parameter fieldsAppStoreVersionLocalizations: (query) the fields to include for returned resources of type appStoreVersionLocalizations (optional)
      - parameter fieldsAppCustomProductPageLocalizations: (query) the fields to include for returned resources of type appCustomProductPageLocalizations (optional)
      - parameter fieldsAppStoreVersionExperimentTreatmentLocalizations: (query) the fields to include for returned resources of type appStoreVersionExperimentTreatmentLocalizations (optional)
      - parameter fieldsAppScreenshots: (query) the fields to include for returned resources of type appScreenshots (optional)
-     - parameter fieldsAppStoreVersionLocalizations: (query) the fields to include for returned resources of type appStoreVersionLocalizations (optional)
      - parameter limit: (query) maximum resources per page (optional)
-     - parameter limitAppScreenshots: (query) maximum number of related appScreenshots returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitAppScreenshots: (query) maximum number of related appScreenshots returned (when they are included) (optional)
      - returns: RequestBuilder<AppScreenshotSetsResponse> 
      */
-    open class func appStoreVersionLocalizationsAppScreenshotSetsGetToManyRelatedWithRequestBuilder(id: String, filterScreenshotDisplayType: [FilterScreenshotDisplayType_appStoreVersionLocalizationsAppScreenshotSetsGetToManyRelated]? = nil, filterAppCustomProductPageLocalization: [String]? = nil, filterAppStoreVersionExperimentTreatmentLocalization: [String]? = nil, fieldsAppScreenshotSets: [FieldsAppScreenshotSets_appStoreVersionLocalizationsAppScreenshotSetsGetToManyRelated]? = nil, fieldsAppCustomProductPageLocalizations: [FieldsAppCustomProductPageLocalizations_appStoreVersionLocalizationsAppScreenshotSetsGetToManyRelated]? = nil, fieldsAppStoreVersionExperimentTreatmentLocalizations: [FieldsAppStoreVersionExperimentTreatmentLocalizations_appStoreVersionLocalizationsAppScreenshotSetsGetToManyRelated]? = nil, fieldsAppScreenshots: [FieldsAppScreenshots_appStoreVersionLocalizationsAppScreenshotSetsGetToManyRelated]? = nil, fieldsAppStoreVersionLocalizations: [FieldsAppStoreVersionLocalizations_appStoreVersionLocalizationsAppScreenshotSetsGetToManyRelated]? = nil, limit: Int? = nil, limitAppScreenshots: Int? = nil, include: [Include_appStoreVersionLocalizationsAppScreenshotSetsGetToManyRelated]? = nil) -> RequestBuilder<AppScreenshotSetsResponse> {
+    open class func appStoreVersionLocalizationsAppScreenshotSetsGetToManyRelatedWithRequestBuilder(id: String, filterScreenshotDisplayType: [FilterScreenshotDisplayType_appStoreVersionLocalizationsAppScreenshotSetsGetToManyRelated]? = nil, filterAppCustomProductPageLocalization: [String]? = nil, filterAppStoreVersionExperimentTreatmentLocalization: [String]? = nil, fieldsAppScreenshotSets: [FieldsAppScreenshotSets_appStoreVersionLocalizationsAppScreenshotSetsGetToManyRelated]? = nil, fieldsAppStoreVersionLocalizations: [FieldsAppStoreVersionLocalizations_appStoreVersionLocalizationsAppScreenshotSetsGetToManyRelated]? = nil, fieldsAppCustomProductPageLocalizations: [FieldsAppCustomProductPageLocalizations_appStoreVersionLocalizationsAppScreenshotSetsGetToManyRelated]? = nil, fieldsAppStoreVersionExperimentTreatmentLocalizations: [FieldsAppStoreVersionExperimentTreatmentLocalizations_appStoreVersionLocalizationsAppScreenshotSetsGetToManyRelated]? = nil, fieldsAppScreenshots: [FieldsAppScreenshots_appStoreVersionLocalizationsAppScreenshotSetsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appStoreVersionLocalizationsAppScreenshotSetsGetToManyRelated]? = nil, limitAppScreenshots: Int? = nil) -> RequestBuilder<AppScreenshotSetsResponse> {
         var localVariablePath = "/v1/appStoreVersionLocalizations/{id}/appScreenshotSets"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -387,13 +388,13 @@ open class AppStoreVersionLocalizationsAPI {
             "filter[appCustomProductPageLocalization]": (wrappedValue: filterAppCustomProductPageLocalization?.encodeToJSON(), isExplode: false),
             "filter[appStoreVersionExperimentTreatmentLocalization]": (wrappedValue: filterAppStoreVersionExperimentTreatmentLocalization?.encodeToJSON(), isExplode: false),
             "fields[appScreenshotSets]": (wrappedValue: fieldsAppScreenshotSets?.encodeToJSON(), isExplode: false),
+            "fields[appStoreVersionLocalizations]": (wrappedValue: fieldsAppStoreVersionLocalizations?.encodeToJSON(), isExplode: false),
             "fields[appCustomProductPageLocalizations]": (wrappedValue: fieldsAppCustomProductPageLocalizations?.encodeToJSON(), isExplode: false),
             "fields[appStoreVersionExperimentTreatmentLocalizations]": (wrappedValue: fieldsAppStoreVersionExperimentTreatmentLocalizations?.encodeToJSON(), isExplode: false),
             "fields[appScreenshots]": (wrappedValue: fieldsAppScreenshots?.encodeToJSON(), isExplode: false),
-            "fields[appStoreVersionLocalizations]": (wrappedValue: fieldsAppStoreVersionLocalizations?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "limit[appScreenshots]": (wrappedValue: limitAppScreenshots?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "limit[appScreenshots]": (wrappedValue: limitAppScreenshots?.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -564,63 +565,63 @@ open class AppStoreVersionLocalizationsAPI {
      * enum for parameter fieldsAppStoreVersionLocalizations
      */
     public enum FieldsAppStoreVersionLocalizations_appStoreVersionLocalizationsGetInstance: String, CaseIterable {
-        case apppreviewsets = "appPreviewSets"
-        case appscreenshotsets = "appScreenshotSets"
-        case appstoreversion = "appStoreVersion"
         case description = "description"
-        case keywords = "keywords"
         case locale = "locale"
+        case keywords = "keywords"
         case marketingurl = "marketingUrl"
         case promotionaltext = "promotionalText"
         case supporturl = "supportUrl"
         case whatsnew = "whatsNew"
-    }
-
-    /**
-     * enum for parameter include
-     */
-    public enum Include_appStoreVersionLocalizationsGetInstance: String, CaseIterable {
-        case apppreviewsets = "appPreviewSets"
-        case appscreenshotsets = "appScreenshotSets"
         case appstoreversion = "appStoreVersion"
+        case appscreenshotsets = "appScreenshotSets"
+        case apppreviewsets = "appPreviewSets"
     }
 
     /**
      * enum for parameter fieldsAppScreenshotSets
      */
     public enum FieldsAppScreenshotSets_appStoreVersionLocalizationsGetInstance: String, CaseIterable {
-        case appcustomproductpagelocalization = "appCustomProductPageLocalization"
-        case appscreenshots = "appScreenshots"
-        case appstoreversionexperimenttreatmentlocalization = "appStoreVersionExperimentTreatmentLocalization"
-        case appstoreversionlocalization = "appStoreVersionLocalization"
         case screenshotdisplaytype = "screenshotDisplayType"
+        case appstoreversionlocalization = "appStoreVersionLocalization"
+        case appcustomproductpagelocalization = "appCustomProductPageLocalization"
+        case appstoreversionexperimenttreatmentlocalization = "appStoreVersionExperimentTreatmentLocalization"
+        case appscreenshots = "appScreenshots"
     }
 
     /**
      * enum for parameter fieldsAppPreviewSets
      */
     public enum FieldsAppPreviewSets_appStoreVersionLocalizationsGetInstance: String, CaseIterable {
-        case appcustomproductpagelocalization = "appCustomProductPageLocalization"
-        case apppreviews = "appPreviews"
-        case appstoreversionexperimenttreatmentlocalization = "appStoreVersionExperimentTreatmentLocalization"
-        case appstoreversionlocalization = "appStoreVersionLocalization"
         case previewtype = "previewType"
+        case appstoreversionlocalization = "appStoreVersionLocalization"
+        case appcustomproductpagelocalization = "appCustomProductPageLocalization"
+        case appstoreversionexperimenttreatmentlocalization = "appStoreVersionExperimentTreatmentLocalization"
+        case apppreviews = "appPreviews"
+    }
+
+    /**
+     * enum for parameter include
+     */
+    public enum Include_appStoreVersionLocalizationsGetInstance: String, CaseIterable {
+        case appstoreversion = "appStoreVersion"
+        case appscreenshotsets = "appScreenshotSets"
+        case apppreviewsets = "appPreviewSets"
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAppStoreVersionLocalizations: (query) the fields to include for returned resources of type appStoreVersionLocalizations (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter fieldsAppScreenshotSets: (query) the fields to include for returned resources of type appScreenshotSets (optional)
      - parameter fieldsAppPreviewSets: (query) the fields to include for returned resources of type appPreviewSets (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAppPreviewSets: (query) maximum number of related appPreviewSets returned (when they are included) (optional)
      - parameter limitAppScreenshotSets: (query) maximum number of related appScreenshotSets returned (when they are included) (optional)
      - returns: AppStoreVersionLocalizationResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionLocalizationsGetInstance(id: String, fieldsAppStoreVersionLocalizations: [FieldsAppStoreVersionLocalizations_appStoreVersionLocalizationsGetInstance]? = nil, include: [Include_appStoreVersionLocalizationsGetInstance]? = nil, fieldsAppScreenshotSets: [FieldsAppScreenshotSets_appStoreVersionLocalizationsGetInstance]? = nil, fieldsAppPreviewSets: [FieldsAppPreviewSets_appStoreVersionLocalizationsGetInstance]? = nil, limitAppPreviewSets: Int? = nil, limitAppScreenshotSets: Int? = nil) async throws -> AppStoreVersionLocalizationResponse {
-        return try await appStoreVersionLocalizationsGetInstanceWithRequestBuilder(id: id, fieldsAppStoreVersionLocalizations: fieldsAppStoreVersionLocalizations, include: include, fieldsAppScreenshotSets: fieldsAppScreenshotSets, fieldsAppPreviewSets: fieldsAppPreviewSets, limitAppPreviewSets: limitAppPreviewSets, limitAppScreenshotSets: limitAppScreenshotSets).execute().body
+    open class func appStoreVersionLocalizationsGetInstance(id: String, fieldsAppStoreVersionLocalizations: [FieldsAppStoreVersionLocalizations_appStoreVersionLocalizationsGetInstance]? = nil, fieldsAppScreenshotSets: [FieldsAppScreenshotSets_appStoreVersionLocalizationsGetInstance]? = nil, fieldsAppPreviewSets: [FieldsAppPreviewSets_appStoreVersionLocalizationsGetInstance]? = nil, include: [Include_appStoreVersionLocalizationsGetInstance]? = nil, limitAppPreviewSets: Int? = nil, limitAppScreenshotSets: Int? = nil) async throws -> AppStoreVersionLocalizationResponse {
+        return try await appStoreVersionLocalizationsGetInstanceWithRequestBuilder(id: id, fieldsAppStoreVersionLocalizations: fieldsAppStoreVersionLocalizations, fieldsAppScreenshotSets: fieldsAppScreenshotSets, fieldsAppPreviewSets: fieldsAppPreviewSets, include: include, limitAppPreviewSets: limitAppPreviewSets, limitAppScreenshotSets: limitAppScreenshotSets).execute().body
     }
 
     /**
@@ -639,14 +640,14 @@ open class AppStoreVersionLocalizationsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAppStoreVersionLocalizations: (query) the fields to include for returned resources of type appStoreVersionLocalizations (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter fieldsAppScreenshotSets: (query) the fields to include for returned resources of type appScreenshotSets (optional)
      - parameter fieldsAppPreviewSets: (query) the fields to include for returned resources of type appPreviewSets (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAppPreviewSets: (query) maximum number of related appPreviewSets returned (when they are included) (optional)
      - parameter limitAppScreenshotSets: (query) maximum number of related appScreenshotSets returned (when they are included) (optional)
      - returns: RequestBuilder<AppStoreVersionLocalizationResponse> 
      */
-    open class func appStoreVersionLocalizationsGetInstanceWithRequestBuilder(id: String, fieldsAppStoreVersionLocalizations: [FieldsAppStoreVersionLocalizations_appStoreVersionLocalizationsGetInstance]? = nil, include: [Include_appStoreVersionLocalizationsGetInstance]? = nil, fieldsAppScreenshotSets: [FieldsAppScreenshotSets_appStoreVersionLocalizationsGetInstance]? = nil, fieldsAppPreviewSets: [FieldsAppPreviewSets_appStoreVersionLocalizationsGetInstance]? = nil, limitAppPreviewSets: Int? = nil, limitAppScreenshotSets: Int? = nil) -> RequestBuilder<AppStoreVersionLocalizationResponse> {
+    open class func appStoreVersionLocalizationsGetInstanceWithRequestBuilder(id: String, fieldsAppStoreVersionLocalizations: [FieldsAppStoreVersionLocalizations_appStoreVersionLocalizationsGetInstance]? = nil, fieldsAppScreenshotSets: [FieldsAppScreenshotSets_appStoreVersionLocalizationsGetInstance]? = nil, fieldsAppPreviewSets: [FieldsAppPreviewSets_appStoreVersionLocalizationsGetInstance]? = nil, include: [Include_appStoreVersionLocalizationsGetInstance]? = nil, limitAppPreviewSets: Int? = nil, limitAppScreenshotSets: Int? = nil) -> RequestBuilder<AppStoreVersionLocalizationResponse> {
         var localVariablePath = "/v1/appStoreVersionLocalizations/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -657,9 +658,9 @@ open class AppStoreVersionLocalizationsAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[appStoreVersionLocalizations]": (wrappedValue: fieldsAppStoreVersionLocalizations?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "fields[appScreenshotSets]": (wrappedValue: fieldsAppScreenshotSets?.encodeToJSON(), isExplode: false),
             "fields[appPreviewSets]": (wrappedValue: fieldsAppPreviewSets?.encodeToJSON(), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "limit[appPreviewSets]": (wrappedValue: limitAppPreviewSets?.encodeToJSON(), isExplode: true),
             "limit[appScreenshotSets]": (wrappedValue: limitAppScreenshotSets?.encodeToJSON(), isExplode: true),
         ])

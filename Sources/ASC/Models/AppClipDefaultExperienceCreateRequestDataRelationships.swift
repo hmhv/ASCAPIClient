@@ -14,9 +14,9 @@ public struct AppClipDefaultExperienceCreateRequestDataRelationships: Codable, J
 
     public var appClip: AppClipAdvancedExperienceCreateRequestDataRelationshipsAppClip
     public var releaseWithAppStoreVersion: AppClipDefaultExperienceCreateRequestDataRelationshipsReleaseWithAppStoreVersion?
-    public var appClipDefaultExperienceTemplate: AppClipDefaultExperienceCreateRequestDataRelationshipsAppClipDefaultExperienceTemplate?
+    public var appClipDefaultExperienceTemplate: AppClipAppStoreReviewDetailRelationshipsAppClipDefaultExperience?
 
-    public init(appClip: AppClipAdvancedExperienceCreateRequestDataRelationshipsAppClip, releaseWithAppStoreVersion: AppClipDefaultExperienceCreateRequestDataRelationshipsReleaseWithAppStoreVersion? = nil, appClipDefaultExperienceTemplate: AppClipDefaultExperienceCreateRequestDataRelationshipsAppClipDefaultExperienceTemplate? = nil) {
+    public init(appClip: AppClipAdvancedExperienceCreateRequestDataRelationshipsAppClip, releaseWithAppStoreVersion: AppClipDefaultExperienceCreateRequestDataRelationshipsReleaseWithAppStoreVersion? = nil, appClipDefaultExperienceTemplate: AppClipAppStoreReviewDetailRelationshipsAppClipDefaultExperience? = nil) {
         self.appClip = appClip
         self.releaseWithAppStoreVersion = releaseWithAppStoreVersion
         self.appClipDefaultExperienceTemplate = appClipDefaultExperienceTemplate

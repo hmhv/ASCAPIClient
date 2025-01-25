@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 # **scmProvidersGetCollection**
 ```swift
-    open class func scmProvidersGetCollection(fieldsScmProviders: [FieldsScmProviders_scmProvidersGetCollection]? = nil, limit: Int? = nil, fieldsScmRepositories: [FieldsScmRepositories_scmProvidersGetCollection]? = nil, completion: @escaping (_ data: ScmProvidersResponse?, _ error: Error?) -> Void)
+    open class func scmProvidersGetCollection(fieldsScmProviders: [FieldsScmProviders_scmProvidersGetCollection]? = nil, limit: Int? = nil, completion: @escaping (_ data: ScmProvidersResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -23,9 +23,8 @@ import ASC
 
 let fieldsScmProviders = ["fieldsScmProviders_example"] // [String] | the fields to include for returned resources of type scmProviders (optional)
 let limit = 987 // Int | maximum resources per page (optional)
-let fieldsScmRepositories = ["fieldsScmRepositories_example"] // [String] | the fields to include for returned resources of type scmRepositories (optional)
 
-ScmProvidersAPI.scmProvidersGetCollection(fieldsScmProviders: fieldsScmProviders, limit: limit, fieldsScmRepositories: fieldsScmRepositories) { (response, error) in
+ScmProvidersAPI.scmProvidersGetCollection(fieldsScmProviders: fieldsScmProviders, limit: limit) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -43,7 +42,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **fieldsScmProviders** | [**[String]**](String.md) | the fields to include for returned resources of type scmProviders | [optional] 
  **limit** | **Int** | maximum resources per page | [optional] 
- **fieldsScmRepositories** | [**[String]**](String.md) | the fields to include for returned resources of type scmRepositories | [optional] 
 
 ### Return type
 
@@ -62,7 +60,7 @@ Name | Type | Description  | Notes
 
 # **scmProvidersGetInstance**
 ```swift
-    open class func scmProvidersGetInstance(id: String, fieldsScmProviders: [FieldsScmProviders_scmProvidersGetInstance]? = nil, fieldsScmRepositories: [FieldsScmRepositories_scmProvidersGetInstance]? = nil, completion: @escaping (_ data: ScmProviderResponse?, _ error: Error?) -> Void)
+    open class func scmProvidersGetInstance(id: String, fieldsScmProviders: [FieldsScmProviders_scmProvidersGetInstance]? = nil, completion: @escaping (_ data: ScmProviderResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -74,9 +72,8 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let fieldsScmProviders = ["fieldsScmProviders_example"] // [String] | the fields to include for returned resources of type scmProviders (optional)
-let fieldsScmRepositories = ["fieldsScmRepositories_example"] // [String] | the fields to include for returned resources of type scmRepositories (optional)
 
-ScmProvidersAPI.scmProvidersGetInstance(id: id, fieldsScmProviders: fieldsScmProviders, fieldsScmRepositories: fieldsScmRepositories) { (response, error) in
+ScmProvidersAPI.scmProvidersGetInstance(id: id, fieldsScmProviders: fieldsScmProviders) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -94,7 +91,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **fieldsScmProviders** | [**[String]**](String.md) | the fields to include for returned resources of type scmProviders | [optional] 
- **fieldsScmRepositories** | [**[String]**](String.md) | the fields to include for returned resources of type scmRepositories | [optional] 
 
 ### Return type
 
@@ -113,7 +109,7 @@ Name | Type | Description  | Notes
 
 # **scmProvidersRepositoriesGetToManyRelated**
 ```swift
-    open class func scmProvidersRepositoriesGetToManyRelated(id: String, filterId: [String]? = nil, fieldsScmGitReferences: [FieldsScmGitReferences_scmProvidersRepositoriesGetToManyRelated]? = nil, fieldsScmProviders: [FieldsScmProviders_scmProvidersRepositoriesGetToManyRelated]? = nil, fieldsScmRepositories: [FieldsScmRepositories_scmProvidersRepositoriesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_scmProvidersRepositoriesGetToManyRelated]? = nil, completion: @escaping (_ data: ScmRepositoriesResponse?, _ error: Error?) -> Void)
+    open class func scmProvidersRepositoriesGetToManyRelated(id: String, filterId: [String]? = nil, fieldsScmRepositories: [FieldsScmRepositories_scmProvidersRepositoriesGetToManyRelated]? = nil, fieldsScmProviders: [FieldsScmProviders_scmProvidersRepositoriesGetToManyRelated]? = nil, fieldsScmGitReferences: [FieldsScmGitReferences_scmProvidersRepositoriesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_scmProvidersRepositoriesGetToManyRelated]? = nil, completion: @escaping (_ data: ScmRepositoriesResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -125,13 +121,13 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let filterId = ["inner_example"] // [String] | filter by id(s) (optional)
-let fieldsScmGitReferences = ["fieldsScmGitReferences_example"] // [String] | the fields to include for returned resources of type scmGitReferences (optional)
-let fieldsScmProviders = ["fieldsScmProviders_example"] // [String] | the fields to include for returned resources of type scmProviders (optional)
 let fieldsScmRepositories = ["fieldsScmRepositories_example"] // [String] | the fields to include for returned resources of type scmRepositories (optional)
+let fieldsScmProviders = ["fieldsScmProviders_example"] // [String] | the fields to include for returned resources of type scmProviders (optional)
+let fieldsScmGitReferences = ["fieldsScmGitReferences_example"] // [String] | the fields to include for returned resources of type scmGitReferences (optional)
 let limit = 987 // Int | maximum resources per page (optional)
 let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 
-ScmProvidersAPI.scmProvidersRepositoriesGetToManyRelated(id: id, filterId: filterId, fieldsScmGitReferences: fieldsScmGitReferences, fieldsScmProviders: fieldsScmProviders, fieldsScmRepositories: fieldsScmRepositories, limit: limit, include: include) { (response, error) in
+ScmProvidersAPI.scmProvidersRepositoriesGetToManyRelated(id: id, filterId: filterId, fieldsScmRepositories: fieldsScmRepositories, fieldsScmProviders: fieldsScmProviders, fieldsScmGitReferences: fieldsScmGitReferences, limit: limit, include: include) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -149,9 +145,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **filterId** | [**[String]**](String.md) | filter by id(s) | [optional] 
- **fieldsScmGitReferences** | [**[String]**](String.md) | the fields to include for returned resources of type scmGitReferences | [optional] 
- **fieldsScmProviders** | [**[String]**](String.md) | the fields to include for returned resources of type scmProviders | [optional] 
  **fieldsScmRepositories** | [**[String]**](String.md) | the fields to include for returned resources of type scmRepositories | [optional] 
+ **fieldsScmProviders** | [**[String]**](String.md) | the fields to include for returned resources of type scmProviders | [optional] 
+ **fieldsScmGitReferences** | [**[String]**](String.md) | the fields to include for returned resources of type scmGitReferences | [optional] 
  **limit** | **Int** | maximum resources per page | [optional] 
  **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
 

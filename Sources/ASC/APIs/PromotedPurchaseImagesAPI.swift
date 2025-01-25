@@ -17,6 +17,7 @@ open class PromotedPurchaseImagesAPI {
      - parameter promotedPurchaseImageCreateRequest: (body) PromotedPurchaseImage representation 
      - returns: PromotedPurchaseImageResponse
      */
+    @available(*, deprecated, message: "This operation is deprecated.")
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     open class func promotedPurchaseImagesCreateInstance(promotedPurchaseImageCreateRequest: PromotedPurchaseImageCreateRequest) async throws -> PromotedPurchaseImageResponse {
         return try await promotedPurchaseImagesCreateInstanceWithRequestBuilder(promotedPurchaseImageCreateRequest: promotedPurchaseImageCreateRequest).execute().body
@@ -26,6 +27,7 @@ open class PromotedPurchaseImagesAPI {
      - parameter urlString: next or first url from App Store Connect API
      - returns: PromotedPurchaseImageResponse
      */
+    @available(*, deprecated, message: "This operation is deprecated.")
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     open class func promotedPurchaseImagesCreateInstance(urlString: String) async throws -> PromotedPurchaseImageResponse {
         return try await promotedPurchaseImagesCreateInstanceWithRequestBuilder(urlString: urlString).execute().body
@@ -39,6 +41,7 @@ open class PromotedPurchaseImagesAPI {
      - parameter promotedPurchaseImageCreateRequest: (body) PromotedPurchaseImage representation 
      - returns: RequestBuilder<PromotedPurchaseImageResponse> 
      */
+    @available(*, deprecated, message: "This operation is deprecated.")
     open class func promotedPurchaseImagesCreateInstanceWithRequestBuilder(promotedPurchaseImageCreateRequest: PromotedPurchaseImageCreateRequest) -> RequestBuilder<PromotedPurchaseImageResponse> {
         let localVariablePath = "/v1/promotedPurchaseImages"
         let localVariableURLString = ASCAPI.basePath + localVariablePath
@@ -65,6 +68,7 @@ open class PromotedPurchaseImagesAPI {
      - parameter urlString: next or first url from App Store Connect API
      - returns: RequestBuilder<PromotedPurchaseImageResponse> 
      */
+    @available(*, deprecated, message: "This operation is deprecated.")
     open class func promotedPurchaseImagesCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<PromotedPurchaseImageResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
@@ -82,6 +86,7 @@ open class PromotedPurchaseImagesAPI {
      - parameter id: (path) the id of the requested resource 
      - returns: Void
      */
+    @available(*, deprecated, message: "This operation is deprecated.")
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     open class func promotedPurchaseImagesDeleteInstance(id: String) async throws {
         return try await promotedPurchaseImagesDeleteInstanceWithRequestBuilder(id: id).execute().body
@@ -91,6 +96,7 @@ open class PromotedPurchaseImagesAPI {
      - parameter urlString: next or first url from App Store Connect API
      - returns: Void
      */
+    @available(*, deprecated, message: "This operation is deprecated.")
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     open class func promotedPurchaseImagesDeleteInstance(urlString: String) async throws {
         return try await promotedPurchaseImagesDeleteInstanceWithRequestBuilder(urlString: urlString).execute().body
@@ -104,6 +110,7 @@ open class PromotedPurchaseImagesAPI {
      - parameter id: (path) the id of the requested resource 
      - returns: RequestBuilder<Void> 
      */
+    @available(*, deprecated, message: "This operation is deprecated.")
     open class func promotedPurchaseImagesDeleteInstanceWithRequestBuilder(id: String) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/promotedPurchaseImages/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
@@ -133,6 +140,7 @@ open class PromotedPurchaseImagesAPI {
      - parameter urlString: next or first url from App Store Connect API
      - returns: RequestBuilder<Void> 
      */
+    @available(*, deprecated, message: "This operation is deprecated.")
     open class func promotedPurchaseImagesDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
@@ -149,16 +157,15 @@ open class PromotedPurchaseImagesAPI {
      * enum for parameter fieldsPromotedPurchaseImages
      */
     public enum FieldsPromotedPurchaseImages_promotedPurchaseImagesGetInstance: String, CaseIterable {
-        case assettoken = "assetToken"
-        case assettype = "assetType"
-        case filename = "fileName"
         case filesize = "fileSize"
-        case imageasset = "imageAsset"
-        case promotedpurchase = "promotedPurchase"
+        case filename = "fileName"
         case sourcefilechecksum = "sourceFileChecksum"
-        case state = "state"
+        case assettoken = "assetToken"
+        case imageasset = "imageAsset"
+        case assettype = "assetType"
         case uploadoperations = "uploadOperations"
-        case uploaded = "uploaded"
+        case state = "state"
+        case promotedpurchase = "promotedPurchase"
     }
 
     /**
@@ -175,6 +182,7 @@ open class PromotedPurchaseImagesAPI {
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: PromotedPurchaseImageResponse
      */
+    @available(*, deprecated, message: "This operation is deprecated.")
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     open class func promotedPurchaseImagesGetInstance(id: String, fieldsPromotedPurchaseImages: [FieldsPromotedPurchaseImages_promotedPurchaseImagesGetInstance]? = nil, include: [Include_promotedPurchaseImagesGetInstance]? = nil) async throws -> PromotedPurchaseImageResponse {
         return try await promotedPurchaseImagesGetInstanceWithRequestBuilder(id: id, fieldsPromotedPurchaseImages: fieldsPromotedPurchaseImages, include: include).execute().body
@@ -184,6 +192,7 @@ open class PromotedPurchaseImagesAPI {
      - parameter urlString: next or first url from App Store Connect API
      - returns: PromotedPurchaseImageResponse
      */
+    @available(*, deprecated, message: "This operation is deprecated.")
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     open class func promotedPurchaseImagesGetInstance(urlString: String) async throws -> PromotedPurchaseImageResponse {
         return try await promotedPurchaseImagesGetInstanceWithRequestBuilder(urlString: urlString).execute().body
@@ -199,6 +208,7 @@ open class PromotedPurchaseImagesAPI {
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: RequestBuilder<PromotedPurchaseImageResponse> 
      */
+    @available(*, deprecated, message: "This operation is deprecated.")
     open class func promotedPurchaseImagesGetInstanceWithRequestBuilder(id: String, fieldsPromotedPurchaseImages: [FieldsPromotedPurchaseImages_promotedPurchaseImagesGetInstance]? = nil, include: [Include_promotedPurchaseImagesGetInstance]? = nil) -> RequestBuilder<PromotedPurchaseImageResponse> {
         var localVariablePath = "/v1/promotedPurchaseImages/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
@@ -232,6 +242,7 @@ open class PromotedPurchaseImagesAPI {
      - parameter urlString: next or first url from App Store Connect API
      - returns: RequestBuilder<PromotedPurchaseImageResponse> 
      */
+    @available(*, deprecated, message: "This operation is deprecated.")
     open class func promotedPurchaseImagesGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<PromotedPurchaseImageResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
@@ -250,6 +261,7 @@ open class PromotedPurchaseImagesAPI {
      - parameter promotedPurchaseImageUpdateRequest: (body) PromotedPurchaseImage representation 
      - returns: PromotedPurchaseImageResponse
      */
+    @available(*, deprecated, message: "This operation is deprecated.")
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     open class func promotedPurchaseImagesUpdateInstance(id: String, promotedPurchaseImageUpdateRequest: PromotedPurchaseImageUpdateRequest) async throws -> PromotedPurchaseImageResponse {
         return try await promotedPurchaseImagesUpdateInstanceWithRequestBuilder(id: id, promotedPurchaseImageUpdateRequest: promotedPurchaseImageUpdateRequest).execute().body
@@ -259,6 +271,7 @@ open class PromotedPurchaseImagesAPI {
      - parameter urlString: next or first url from App Store Connect API
      - returns: PromotedPurchaseImageResponse
      */
+    @available(*, deprecated, message: "This operation is deprecated.")
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     open class func promotedPurchaseImagesUpdateInstance(urlString: String) async throws -> PromotedPurchaseImageResponse {
         return try await promotedPurchaseImagesUpdateInstanceWithRequestBuilder(urlString: urlString).execute().body
@@ -273,6 +286,7 @@ open class PromotedPurchaseImagesAPI {
      - parameter promotedPurchaseImageUpdateRequest: (body) PromotedPurchaseImage representation 
      - returns: RequestBuilder<PromotedPurchaseImageResponse> 
      */
+    @available(*, deprecated, message: "This operation is deprecated.")
     open class func promotedPurchaseImagesUpdateInstanceWithRequestBuilder(id: String, promotedPurchaseImageUpdateRequest: PromotedPurchaseImageUpdateRequest) -> RequestBuilder<PromotedPurchaseImageResponse> {
         var localVariablePath = "/v1/promotedPurchaseImages/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
@@ -302,6 +316,7 @@ open class PromotedPurchaseImagesAPI {
      - parameter urlString: next or first url from App Store Connect API
      - returns: RequestBuilder<PromotedPurchaseImageResponse> 
      */
+    @available(*, deprecated, message: "This operation is deprecated.")
     open class func promotedPurchaseImagesUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<PromotedPurchaseImageResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",

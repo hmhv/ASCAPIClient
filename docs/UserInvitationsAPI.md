@@ -107,7 +107,7 @@ Void (empty response body)
 
 # **userInvitationsGetCollection**
 ```swift
-    open class func userInvitationsGetCollection(filterEmail: [String]? = nil, filterRoles: [FilterRoles_userInvitationsGetCollection]? = nil, filterVisibleApps: [String]? = nil, sort: [Sort_userInvitationsGetCollection]? = nil, fieldsUserInvitations: [FieldsUserInvitations_userInvitationsGetCollection]? = nil, limit: Int? = nil, include: [Include_userInvitationsGetCollection]? = nil, fieldsApps: [FieldsApps_userInvitationsGetCollection]? = nil, limitVisibleApps: Int? = nil, completion: @escaping (_ data: UserInvitationsResponse?, _ error: Error?) -> Void)
+    open class func userInvitationsGetCollection(filterEmail: [String]? = nil, filterRoles: [FilterRoles_userInvitationsGetCollection]? = nil, filterVisibleApps: [String]? = nil, sort: [Sort_userInvitationsGetCollection]? = nil, fieldsUserInvitations: [FieldsUserInvitations_userInvitationsGetCollection]? = nil, fieldsApps: [FieldsApps_userInvitationsGetCollection]? = nil, limit: Int? = nil, include: [Include_userInvitationsGetCollection]? = nil, limitVisibleApps: Int? = nil, completion: @escaping (_ data: UserInvitationsResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -122,12 +122,12 @@ let filterRoles = ["filterRoles_example"] // [String] | filter by attribute 'rol
 let filterVisibleApps = ["inner_example"] // [String] | filter by id(s) of related 'visibleApps' (optional)
 let sort = ["sort_example"] // [String] | comma-separated list of sort expressions; resources will be sorted as specified (optional)
 let fieldsUserInvitations = ["fieldsUserInvitations_example"] // [String] | the fields to include for returned resources of type userInvitations (optional)
+let fieldsApps = ["fieldsApps_example"] // [String] | the fields to include for returned resources of type apps (optional)
 let limit = 987 // Int | maximum resources per page (optional)
 let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
-let fieldsApps = ["fieldsApps_example"] // [String] | the fields to include for returned resources of type apps (optional)
 let limitVisibleApps = 987 // Int | maximum number of related visibleApps returned (when they are included) (optional)
 
-UserInvitationsAPI.userInvitationsGetCollection(filterEmail: filterEmail, filterRoles: filterRoles, filterVisibleApps: filterVisibleApps, sort: sort, fieldsUserInvitations: fieldsUserInvitations, limit: limit, include: include, fieldsApps: fieldsApps, limitVisibleApps: limitVisibleApps) { (response, error) in
+UserInvitationsAPI.userInvitationsGetCollection(filterEmail: filterEmail, filterRoles: filterRoles, filterVisibleApps: filterVisibleApps, sort: sort, fieldsUserInvitations: fieldsUserInvitations, fieldsApps: fieldsApps, limit: limit, include: include, limitVisibleApps: limitVisibleApps) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -148,9 +148,9 @@ Name | Type | Description  | Notes
  **filterVisibleApps** | [**[String]**](String.md) | filter by id(s) of related &#39;visibleApps&#39; | [optional] 
  **sort** | [**[String]**](String.md) | comma-separated list of sort expressions; resources will be sorted as specified | [optional] 
  **fieldsUserInvitations** | [**[String]**](String.md) | the fields to include for returned resources of type userInvitations | [optional] 
+ **fieldsApps** | [**[String]**](String.md) | the fields to include for returned resources of type apps | [optional] 
  **limit** | **Int** | maximum resources per page | [optional] 
  **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
- **fieldsApps** | [**[String]**](String.md) | the fields to include for returned resources of type apps | [optional] 
  **limitVisibleApps** | **Int** | maximum number of related visibleApps returned (when they are included) | [optional] 
 
 ### Return type
@@ -170,7 +170,7 @@ Name | Type | Description  | Notes
 
 # **userInvitationsGetInstance**
 ```swift
-    open class func userInvitationsGetInstance(id: String, fieldsUserInvitations: [FieldsUserInvitations_userInvitationsGetInstance]? = nil, include: [Include_userInvitationsGetInstance]? = nil, fieldsApps: [FieldsApps_userInvitationsGetInstance]? = nil, limitVisibleApps: Int? = nil, completion: @escaping (_ data: UserInvitationResponse?, _ error: Error?) -> Void)
+    open class func userInvitationsGetInstance(id: String, fieldsUserInvitations: [FieldsUserInvitations_userInvitationsGetInstance]? = nil, fieldsApps: [FieldsApps_userInvitationsGetInstance]? = nil, include: [Include_userInvitationsGetInstance]? = nil, limitVisibleApps: Int? = nil, completion: @escaping (_ data: UserInvitationResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -182,11 +182,11 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let fieldsUserInvitations = ["fieldsUserInvitations_example"] // [String] | the fields to include for returned resources of type userInvitations (optional)
-let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let fieldsApps = ["fieldsApps_example"] // [String] | the fields to include for returned resources of type apps (optional)
+let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let limitVisibleApps = 987 // Int | maximum number of related visibleApps returned (when they are included) (optional)
 
-UserInvitationsAPI.userInvitationsGetInstance(id: id, fieldsUserInvitations: fieldsUserInvitations, include: include, fieldsApps: fieldsApps, limitVisibleApps: limitVisibleApps) { (response, error) in
+UserInvitationsAPI.userInvitationsGetInstance(id: id, fieldsUserInvitations: fieldsUserInvitations, fieldsApps: fieldsApps, include: include, limitVisibleApps: limitVisibleApps) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -204,8 +204,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **fieldsUserInvitations** | [**[String]**](String.md) | the fields to include for returned resources of type userInvitations | [optional] 
- **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **fieldsApps** | [**[String]**](String.md) | the fields to include for returned resources of type apps | [optional] 
+ **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **limitVisibleApps** | **Int** | maximum number of related visibleApps returned (when they are included) | [optional] 
 
 ### Return type

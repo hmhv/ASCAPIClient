@@ -155,6 +155,13 @@ open class EndUserLicenseAgreementsAPI {
     }
 
     /**
+     * enum for parameter fieldsTerritories
+     */
+    public enum FieldsTerritories_endUserLicenseAgreementsGetInstance: String, CaseIterable {
+        case currency = "currency"
+    }
+
+    /**
      * enum for parameter include
      */
     public enum Include_endUserLicenseAgreementsGetInstance: String, CaseIterable {
@@ -163,24 +170,17 @@ open class EndUserLicenseAgreementsAPI {
     }
 
     /**
-     * enum for parameter fieldsTerritories
-     */
-    public enum FieldsTerritories_endUserLicenseAgreementsGetInstance: String, CaseIterable {
-        case currency = "currency"
-    }
-
-    /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsEndUserLicenseAgreements: (query) the fields to include for returned resources of type endUserLicenseAgreements (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitTerritories: (query) maximum number of related territories returned (when they are included) (optional)
      - returns: EndUserLicenseAgreementResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func endUserLicenseAgreementsGetInstance(id: String, fieldsEndUserLicenseAgreements: [FieldsEndUserLicenseAgreements_endUserLicenseAgreementsGetInstance]? = nil, include: [Include_endUserLicenseAgreementsGetInstance]? = nil, fieldsTerritories: [FieldsTerritories_endUserLicenseAgreementsGetInstance]? = nil, limitTerritories: Int? = nil) async throws -> EndUserLicenseAgreementResponse {
-        return try await endUserLicenseAgreementsGetInstanceWithRequestBuilder(id: id, fieldsEndUserLicenseAgreements: fieldsEndUserLicenseAgreements, include: include, fieldsTerritories: fieldsTerritories, limitTerritories: limitTerritories).execute().body
+    open class func endUserLicenseAgreementsGetInstance(id: String, fieldsEndUserLicenseAgreements: [FieldsEndUserLicenseAgreements_endUserLicenseAgreementsGetInstance]? = nil, fieldsTerritories: [FieldsTerritories_endUserLicenseAgreementsGetInstance]? = nil, include: [Include_endUserLicenseAgreementsGetInstance]? = nil, limitTerritories: Int? = nil) async throws -> EndUserLicenseAgreementResponse {
+        return try await endUserLicenseAgreementsGetInstanceWithRequestBuilder(id: id, fieldsEndUserLicenseAgreements: fieldsEndUserLicenseAgreements, fieldsTerritories: fieldsTerritories, include: include, limitTerritories: limitTerritories).execute().body
     }
 
     /**
@@ -199,12 +199,12 @@ open class EndUserLicenseAgreementsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsEndUserLicenseAgreements: (query) the fields to include for returned resources of type endUserLicenseAgreements (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitTerritories: (query) maximum number of related territories returned (when they are included) (optional)
      - returns: RequestBuilder<EndUserLicenseAgreementResponse> 
      */
-    open class func endUserLicenseAgreementsGetInstanceWithRequestBuilder(id: String, fieldsEndUserLicenseAgreements: [FieldsEndUserLicenseAgreements_endUserLicenseAgreementsGetInstance]? = nil, include: [Include_endUserLicenseAgreementsGetInstance]? = nil, fieldsTerritories: [FieldsTerritories_endUserLicenseAgreementsGetInstance]? = nil, limitTerritories: Int? = nil) -> RequestBuilder<EndUserLicenseAgreementResponse> {
+    open class func endUserLicenseAgreementsGetInstanceWithRequestBuilder(id: String, fieldsEndUserLicenseAgreements: [FieldsEndUserLicenseAgreements_endUserLicenseAgreementsGetInstance]? = nil, fieldsTerritories: [FieldsTerritories_endUserLicenseAgreementsGetInstance]? = nil, include: [Include_endUserLicenseAgreementsGetInstance]? = nil, limitTerritories: Int? = nil) -> RequestBuilder<EndUserLicenseAgreementResponse> {
         var localVariablePath = "/v1/endUserLicenseAgreements/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -215,8 +215,8 @@ open class EndUserLicenseAgreementsAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[endUserLicenseAgreements]": (wrappedValue: fieldsEndUserLicenseAgreements?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "limit[territories]": (wrappedValue: limitTerritories?.encodeToJSON(), isExplode: true),
         ])
 

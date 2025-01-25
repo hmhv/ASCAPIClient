@@ -182,72 +182,68 @@ open class GameCenterEnabledVersionsAPI {
      * enum for parameter fieldsGameCenterEnabledVersions
      */
     public enum FieldsGameCenterEnabledVersions_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated: String, CaseIterable {
-        case app = "app"
-        case compatibleversions = "compatibleVersions"
-        case iconasset = "iconAsset"
         case platform = "platform"
         case versionstring = "versionString"
+        case iconasset = "iconAsset"
+        case compatibleversions = "compatibleVersions"
+        case app = "app"
     }
 
     /**
      * enum for parameter fieldsApps
      */
     public enum FieldsApps_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated: String, CaseIterable {
+        case name = "name"
+        case bundleid = "bundleId"
+        case sku = "sku"
+        case primarylocale = "primaryLocale"
+        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
+        case subscriptionstatusurl = "subscriptionStatusUrl"
+        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
+        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
+        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
+        case contentrightsdeclaration = "contentRightsDeclaration"
+        case streamlinedpurchasingenabled = "streamlinedPurchasingEnabled"
+        case appencryptiondeclarations = "appEncryptionDeclarations"
+        case ciproduct = "ciProduct"
+        case betatesters = "betaTesters"
+        case betagroups = "betaGroups"
+        case appstoreversions = "appStoreVersions"
+        case prereleaseversions = "preReleaseVersions"
+        case betaapplocalizations = "betaAppLocalizations"
+        case builds = "builds"
+        case betalicenseagreement = "betaLicenseAgreement"
+        case betaappreviewdetail = "betaAppReviewDetail"
+        case appinfos = "appInfos"
+        case appclips = "appClips"
+        case apppricepoints = "appPricePoints"
+        case enduserlicenseagreement = "endUserLicenseAgreement"
+        case apppriceschedule = "appPriceSchedule"
+        case appavailabilityv2 = "appAvailabilityV2"
+        case inapppurchases = "inAppPurchases"
+        case subscriptiongroups = "subscriptionGroups"
+        case gamecenterenabledversions = "gameCenterEnabledVersions"
+        case perfpowermetrics = "perfPowerMetrics"
+        case appcustomproductpages = "appCustomProductPages"
+        case inapppurchasesv2 = "inAppPurchasesV2"
+        case promotedpurchases = "promotedPurchases"
+        case appevents = "appEvents"
+        case reviewsubmissions = "reviewSubmissions"
+        case subscriptiongraceperiod = "subscriptionGracePeriod"
+        case customerreviews = "customerReviews"
+        case gamecenterdetail = "gameCenterDetail"
+        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
         case alternativedistributionkey = "alternativeDistributionKey"
         case analyticsreportrequests = "analyticsReportRequests"
-        case appavailability = "appAvailability"
-        case appclips = "appClips"
-        case appcustomproductpages = "appCustomProductPages"
-        case appencryptiondeclarations = "appEncryptionDeclarations"
-        case appevents = "appEvents"
-        case appinfos = "appInfos"
-        case apppricepoints = "appPricePoints"
-        case apppriceschedule = "appPriceSchedule"
-        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
-        case appstoreversions = "appStoreVersions"
-        case availableinnewterritories = "availableInNewTerritories"
-        case availableterritories = "availableTerritories"
-        case betaapplocalizations = "betaAppLocalizations"
-        case betaappreviewdetail = "betaAppReviewDetail"
-        case betagroups = "betaGroups"
-        case betalicenseagreement = "betaLicenseAgreement"
-        case betatesters = "betaTesters"
-        case builds = "builds"
-        case bundleid = "bundleId"
-        case ciproduct = "ciProduct"
-        case contentrightsdeclaration = "contentRightsDeclaration"
-        case customerreviews = "customerReviews"
-        case enduserlicenseagreement = "endUserLicenseAgreement"
-        case gamecenterdetail = "gameCenterDetail"
-        case gamecenterenabledversions = "gameCenterEnabledVersions"
-        case inapppurchases = "inAppPurchases"
-        case inapppurchasesv2 = "inAppPurchasesV2"
-        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
         case marketplacesearchdetail = "marketplaceSearchDetail"
-        case name = "name"
-        case perfpowermetrics = "perfPowerMetrics"
-        case preorder = "preOrder"
-        case prereleaseversions = "preReleaseVersions"
-        case pricepoints = "pricePoints"
-        case prices = "prices"
-        case primarylocale = "primaryLocale"
-        case promotedpurchases = "promotedPurchases"
-        case reviewsubmissions = "reviewSubmissions"
-        case sku = "sku"
-        case subscriptiongraceperiod = "subscriptionGracePeriod"
-        case subscriptiongroups = "subscriptionGroups"
-        case subscriptionstatusurl = "subscriptionStatusUrl"
-        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
-        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
-        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
     }
 
     /**
      * enum for parameter include
      */
     public enum Include_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated: String, CaseIterable {
-        case app = "app"
         case compatibleversions = "compatibleVersions"
+        case app = "app"
     }
 
     /**
@@ -261,14 +257,14 @@ open class GameCenterEnabledVersionsAPI {
      - parameter fieldsGameCenterEnabledVersions: (query) the fields to include for returned resources of type gameCenterEnabledVersions (optional)
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
      - parameter limit: (query) maximum resources per page (optional)
-     - parameter limitCompatibleVersions: (query) maximum number of related compatibleVersions returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitCompatibleVersions: (query) maximum number of related compatibleVersions returned (when they are included) (optional)
      - returns: GameCenterEnabledVersionsResponse
      */
     @available(*, deprecated, message: "This operation is deprecated.")
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated(id: String, filterPlatform: [FilterPlatform_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated]? = nil, filterVersionString: [String]? = nil, filterApp: [String]? = nil, filterId: [String]? = nil, sort: [Sort_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated]? = nil, fieldsGameCenterEnabledVersions: [FieldsGameCenterEnabledVersions_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated]? = nil, fieldsApps: [FieldsApps_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated]? = nil, limit: Int? = nil, limitCompatibleVersions: Int? = nil, include: [Include_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated]? = nil) async throws -> GameCenterEnabledVersionsResponse {
-        return try await gameCenterEnabledVersionsCompatibleVersionsGetToManyRelatedWithRequestBuilder(id: id, filterPlatform: filterPlatform, filterVersionString: filterVersionString, filterApp: filterApp, filterId: filterId, sort: sort, fieldsGameCenterEnabledVersions: fieldsGameCenterEnabledVersions, fieldsApps: fieldsApps, limit: limit, limitCompatibleVersions: limitCompatibleVersions, include: include).execute().body
+    open class func gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated(id: String, filterPlatform: [FilterPlatform_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated]? = nil, filterVersionString: [String]? = nil, filterApp: [String]? = nil, filterId: [String]? = nil, sort: [Sort_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated]? = nil, fieldsGameCenterEnabledVersions: [FieldsGameCenterEnabledVersions_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated]? = nil, fieldsApps: [FieldsApps_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated]? = nil, limitCompatibleVersions: Int? = nil) async throws -> GameCenterEnabledVersionsResponse {
+        return try await gameCenterEnabledVersionsCompatibleVersionsGetToManyRelatedWithRequestBuilder(id: id, filterPlatform: filterPlatform, filterVersionString: filterVersionString, filterApp: filterApp, filterId: filterId, sort: sort, fieldsGameCenterEnabledVersions: fieldsGameCenterEnabledVersions, fieldsApps: fieldsApps, limit: limit, include: include, limitCompatibleVersions: limitCompatibleVersions).execute().body
     }
 
     /**
@@ -295,12 +291,12 @@ open class GameCenterEnabledVersionsAPI {
      - parameter fieldsGameCenterEnabledVersions: (query) the fields to include for returned resources of type gameCenterEnabledVersions (optional)
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
      - parameter limit: (query) maximum resources per page (optional)
-     - parameter limitCompatibleVersions: (query) maximum number of related compatibleVersions returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitCompatibleVersions: (query) maximum number of related compatibleVersions returned (when they are included) (optional)
      - returns: RequestBuilder<GameCenterEnabledVersionsResponse> 
      */
     @available(*, deprecated, message: "This operation is deprecated.")
-    open class func gameCenterEnabledVersionsCompatibleVersionsGetToManyRelatedWithRequestBuilder(id: String, filterPlatform: [FilterPlatform_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated]? = nil, filterVersionString: [String]? = nil, filterApp: [String]? = nil, filterId: [String]? = nil, sort: [Sort_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated]? = nil, fieldsGameCenterEnabledVersions: [FieldsGameCenterEnabledVersions_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated]? = nil, fieldsApps: [FieldsApps_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated]? = nil, limit: Int? = nil, limitCompatibleVersions: Int? = nil, include: [Include_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated]? = nil) -> RequestBuilder<GameCenterEnabledVersionsResponse> {
+    open class func gameCenterEnabledVersionsCompatibleVersionsGetToManyRelatedWithRequestBuilder(id: String, filterPlatform: [FilterPlatform_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated]? = nil, filterVersionString: [String]? = nil, filterApp: [String]? = nil, filterId: [String]? = nil, sort: [Sort_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated]? = nil, fieldsGameCenterEnabledVersions: [FieldsGameCenterEnabledVersions_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated]? = nil, fieldsApps: [FieldsApps_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated]? = nil, limitCompatibleVersions: Int? = nil) -> RequestBuilder<GameCenterEnabledVersionsResponse> {
         var localVariablePath = "/v1/gameCenterEnabledVersions/{id}/compatibleVersions"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -318,8 +314,8 @@ open class GameCenterEnabledVersionsAPI {
             "fields[gameCenterEnabledVersions]": (wrappedValue: fieldsGameCenterEnabledVersions?.encodeToJSON(), isExplode: false),
             "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "limit[compatibleVersions]": (wrappedValue: limitCompatibleVersions?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "limit[compatibleVersions]": (wrappedValue: limitCompatibleVersions?.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [

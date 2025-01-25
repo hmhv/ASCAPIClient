@@ -81,11 +81,11 @@ open class SubscriptionOfferCodesAPI {
      * enum for parameter fieldsSubscriptionOfferCodeCustomCodes
      */
     public enum FieldsSubscriptionOfferCodeCustomCodes_subscriptionOfferCodesCustomCodesGetToManyRelated: String, CaseIterable {
-        case active = "active"
-        case createddate = "createdDate"
         case customcode = "customCode"
-        case expirationdate = "expirationDate"
         case numberofcodes = "numberOfCodes"
+        case createddate = "createdDate"
+        case expirationdate = "expirationDate"
+        case active = "active"
         case offercode = "offerCode"
     }
 
@@ -93,18 +93,18 @@ open class SubscriptionOfferCodesAPI {
      * enum for parameter fieldsSubscriptionOfferCodes
      */
     public enum FieldsSubscriptionOfferCodes_subscriptionOfferCodesCustomCodesGetToManyRelated: String, CaseIterable {
-        case active = "active"
-        case customcodes = "customCodes"
-        case customereligibilities = "customerEligibilities"
-        case duration = "duration"
         case name = "name"
-        case numberofperiods = "numberOfPeriods"
+        case customereligibilities = "customerEligibilities"
         case offereligibility = "offerEligibility"
+        case duration = "duration"
         case offermode = "offerMode"
-        case onetimeusecodes = "oneTimeUseCodes"
-        case prices = "prices"
-        case subscription = "subscription"
+        case numberofperiods = "numberOfPeriods"
         case totalnumberofcodes = "totalNumberOfCodes"
+        case active = "active"
+        case subscription = "subscription"
+        case onetimeusecodes = "oneTimeUseCodes"
+        case customcodes = "customCodes"
+        case prices = "prices"
     }
 
     /**
@@ -200,78 +200,78 @@ open class SubscriptionOfferCodesAPI {
      * enum for parameter fieldsSubscriptionOfferCodes
      */
     public enum FieldsSubscriptionOfferCodes_subscriptionOfferCodesGetInstance: String, CaseIterable {
-        case active = "active"
-        case customcodes = "customCodes"
-        case customereligibilities = "customerEligibilities"
-        case duration = "duration"
         case name = "name"
-        case numberofperiods = "numberOfPeriods"
+        case customereligibilities = "customerEligibilities"
         case offereligibility = "offerEligibility"
+        case duration = "duration"
         case offermode = "offerMode"
-        case onetimeusecodes = "oneTimeUseCodes"
-        case prices = "prices"
-        case subscription = "subscription"
+        case numberofperiods = "numberOfPeriods"
         case totalnumberofcodes = "totalNumberOfCodes"
-    }
-
-    /**
-     * enum for parameter include
-     */
-    public enum Include_subscriptionOfferCodesGetInstance: String, CaseIterable {
-        case customcodes = "customCodes"
-        case onetimeusecodes = "oneTimeUseCodes"
-        case prices = "prices"
-        case subscription = "subscription"
-    }
-
-    /**
-     * enum for parameter fieldsSubscriptionOfferCodeCustomCodes
-     */
-    public enum FieldsSubscriptionOfferCodeCustomCodes_subscriptionOfferCodesGetInstance: String, CaseIterable {
         case active = "active"
-        case createddate = "createdDate"
-        case customcode = "customCode"
-        case expirationdate = "expirationDate"
-        case numberofcodes = "numberOfCodes"
-        case offercode = "offerCode"
+        case subscription = "subscription"
+        case onetimeusecodes = "oneTimeUseCodes"
+        case customcodes = "customCodes"
+        case prices = "prices"
     }
 
     /**
      * enum for parameter fieldsSubscriptionOfferCodeOneTimeUseCodes
      */
     public enum FieldsSubscriptionOfferCodeOneTimeUseCodes_subscriptionOfferCodesGetInstance: String, CaseIterable {
-        case active = "active"
+        case numberofcodes = "numberOfCodes"
         case createddate = "createdDate"
         case expirationdate = "expirationDate"
-        case numberofcodes = "numberOfCodes"
+        case active = "active"
         case offercode = "offerCode"
         case values = "values"
+    }
+
+    /**
+     * enum for parameter fieldsSubscriptionOfferCodeCustomCodes
+     */
+    public enum FieldsSubscriptionOfferCodeCustomCodes_subscriptionOfferCodesGetInstance: String, CaseIterable {
+        case customcode = "customCode"
+        case numberofcodes = "numberOfCodes"
+        case createddate = "createdDate"
+        case expirationdate = "expirationDate"
+        case active = "active"
+        case offercode = "offerCode"
     }
 
     /**
      * enum for parameter fieldsSubscriptionOfferCodePrices
      */
     public enum FieldsSubscriptionOfferCodePrices_subscriptionOfferCodesGetInstance: String, CaseIterable {
-        case subscriptionpricepoint = "subscriptionPricePoint"
         case territory = "territory"
+        case subscriptionpricepoint = "subscriptionPricePoint"
+    }
+
+    /**
+     * enum for parameter include
+     */
+    public enum Include_subscriptionOfferCodesGetInstance: String, CaseIterable {
+        case subscription = "subscription"
+        case onetimeusecodes = "oneTimeUseCodes"
+        case customcodes = "customCodes"
+        case prices = "prices"
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsSubscriptionOfferCodes: (query) the fields to include for returned resources of type subscriptionOfferCodes (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
-     - parameter fieldsSubscriptionOfferCodeCustomCodes: (query) the fields to include for returned resources of type subscriptionOfferCodeCustomCodes (optional)
      - parameter fieldsSubscriptionOfferCodeOneTimeUseCodes: (query) the fields to include for returned resources of type subscriptionOfferCodeOneTimeUseCodes (optional)
+     - parameter fieldsSubscriptionOfferCodeCustomCodes: (query) the fields to include for returned resources of type subscriptionOfferCodeCustomCodes (optional)
      - parameter fieldsSubscriptionOfferCodePrices: (query) the fields to include for returned resources of type subscriptionOfferCodePrices (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitCustomCodes: (query) maximum number of related customCodes returned (when they are included) (optional)
      - parameter limitOneTimeUseCodes: (query) maximum number of related oneTimeUseCodes returned (when they are included) (optional)
      - parameter limitPrices: (query) maximum number of related prices returned (when they are included) (optional)
      - returns: SubscriptionOfferCodeResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionOfferCodesGetInstance(id: String, fieldsSubscriptionOfferCodes: [FieldsSubscriptionOfferCodes_subscriptionOfferCodesGetInstance]? = nil, include: [Include_subscriptionOfferCodesGetInstance]? = nil, fieldsSubscriptionOfferCodeCustomCodes: [FieldsSubscriptionOfferCodeCustomCodes_subscriptionOfferCodesGetInstance]? = nil, fieldsSubscriptionOfferCodeOneTimeUseCodes: [FieldsSubscriptionOfferCodeOneTimeUseCodes_subscriptionOfferCodesGetInstance]? = nil, fieldsSubscriptionOfferCodePrices: [FieldsSubscriptionOfferCodePrices_subscriptionOfferCodesGetInstance]? = nil, limitCustomCodes: Int? = nil, limitOneTimeUseCodes: Int? = nil, limitPrices: Int? = nil) async throws -> SubscriptionOfferCodeResponse {
-        return try await subscriptionOfferCodesGetInstanceWithRequestBuilder(id: id, fieldsSubscriptionOfferCodes: fieldsSubscriptionOfferCodes, include: include, fieldsSubscriptionOfferCodeCustomCodes: fieldsSubscriptionOfferCodeCustomCodes, fieldsSubscriptionOfferCodeOneTimeUseCodes: fieldsSubscriptionOfferCodeOneTimeUseCodes, fieldsSubscriptionOfferCodePrices: fieldsSubscriptionOfferCodePrices, limitCustomCodes: limitCustomCodes, limitOneTimeUseCodes: limitOneTimeUseCodes, limitPrices: limitPrices).execute().body
+    open class func subscriptionOfferCodesGetInstance(id: String, fieldsSubscriptionOfferCodes: [FieldsSubscriptionOfferCodes_subscriptionOfferCodesGetInstance]? = nil, fieldsSubscriptionOfferCodeOneTimeUseCodes: [FieldsSubscriptionOfferCodeOneTimeUseCodes_subscriptionOfferCodesGetInstance]? = nil, fieldsSubscriptionOfferCodeCustomCodes: [FieldsSubscriptionOfferCodeCustomCodes_subscriptionOfferCodesGetInstance]? = nil, fieldsSubscriptionOfferCodePrices: [FieldsSubscriptionOfferCodePrices_subscriptionOfferCodesGetInstance]? = nil, include: [Include_subscriptionOfferCodesGetInstance]? = nil, limitCustomCodes: Int? = nil, limitOneTimeUseCodes: Int? = nil, limitPrices: Int? = nil) async throws -> SubscriptionOfferCodeResponse {
+        return try await subscriptionOfferCodesGetInstanceWithRequestBuilder(id: id, fieldsSubscriptionOfferCodes: fieldsSubscriptionOfferCodes, fieldsSubscriptionOfferCodeOneTimeUseCodes: fieldsSubscriptionOfferCodeOneTimeUseCodes, fieldsSubscriptionOfferCodeCustomCodes: fieldsSubscriptionOfferCodeCustomCodes, fieldsSubscriptionOfferCodePrices: fieldsSubscriptionOfferCodePrices, include: include, limitCustomCodes: limitCustomCodes, limitOneTimeUseCodes: limitOneTimeUseCodes, limitPrices: limitPrices).execute().body
     }
 
     /**
@@ -290,16 +290,16 @@ open class SubscriptionOfferCodesAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsSubscriptionOfferCodes: (query) the fields to include for returned resources of type subscriptionOfferCodes (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
-     - parameter fieldsSubscriptionOfferCodeCustomCodes: (query) the fields to include for returned resources of type subscriptionOfferCodeCustomCodes (optional)
      - parameter fieldsSubscriptionOfferCodeOneTimeUseCodes: (query) the fields to include for returned resources of type subscriptionOfferCodeOneTimeUseCodes (optional)
+     - parameter fieldsSubscriptionOfferCodeCustomCodes: (query) the fields to include for returned resources of type subscriptionOfferCodeCustomCodes (optional)
      - parameter fieldsSubscriptionOfferCodePrices: (query) the fields to include for returned resources of type subscriptionOfferCodePrices (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitCustomCodes: (query) maximum number of related customCodes returned (when they are included) (optional)
      - parameter limitOneTimeUseCodes: (query) maximum number of related oneTimeUseCodes returned (when they are included) (optional)
      - parameter limitPrices: (query) maximum number of related prices returned (when they are included) (optional)
      - returns: RequestBuilder<SubscriptionOfferCodeResponse> 
      */
-    open class func subscriptionOfferCodesGetInstanceWithRequestBuilder(id: String, fieldsSubscriptionOfferCodes: [FieldsSubscriptionOfferCodes_subscriptionOfferCodesGetInstance]? = nil, include: [Include_subscriptionOfferCodesGetInstance]? = nil, fieldsSubscriptionOfferCodeCustomCodes: [FieldsSubscriptionOfferCodeCustomCodes_subscriptionOfferCodesGetInstance]? = nil, fieldsSubscriptionOfferCodeOneTimeUseCodes: [FieldsSubscriptionOfferCodeOneTimeUseCodes_subscriptionOfferCodesGetInstance]? = nil, fieldsSubscriptionOfferCodePrices: [FieldsSubscriptionOfferCodePrices_subscriptionOfferCodesGetInstance]? = nil, limitCustomCodes: Int? = nil, limitOneTimeUseCodes: Int? = nil, limitPrices: Int? = nil) -> RequestBuilder<SubscriptionOfferCodeResponse> {
+    open class func subscriptionOfferCodesGetInstanceWithRequestBuilder(id: String, fieldsSubscriptionOfferCodes: [FieldsSubscriptionOfferCodes_subscriptionOfferCodesGetInstance]? = nil, fieldsSubscriptionOfferCodeOneTimeUseCodes: [FieldsSubscriptionOfferCodeOneTimeUseCodes_subscriptionOfferCodesGetInstance]? = nil, fieldsSubscriptionOfferCodeCustomCodes: [FieldsSubscriptionOfferCodeCustomCodes_subscriptionOfferCodesGetInstance]? = nil, fieldsSubscriptionOfferCodePrices: [FieldsSubscriptionOfferCodePrices_subscriptionOfferCodesGetInstance]? = nil, include: [Include_subscriptionOfferCodesGetInstance]? = nil, limitCustomCodes: Int? = nil, limitOneTimeUseCodes: Int? = nil, limitPrices: Int? = nil) -> RequestBuilder<SubscriptionOfferCodeResponse> {
         var localVariablePath = "/v1/subscriptionOfferCodes/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -310,10 +310,10 @@ open class SubscriptionOfferCodesAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[subscriptionOfferCodes]": (wrappedValue: fieldsSubscriptionOfferCodes?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "fields[subscriptionOfferCodeCustomCodes]": (wrappedValue: fieldsSubscriptionOfferCodeCustomCodes?.encodeToJSON(), isExplode: false),
             "fields[subscriptionOfferCodeOneTimeUseCodes]": (wrappedValue: fieldsSubscriptionOfferCodeOneTimeUseCodes?.encodeToJSON(), isExplode: false),
+            "fields[subscriptionOfferCodeCustomCodes]": (wrappedValue: fieldsSubscriptionOfferCodeCustomCodes?.encodeToJSON(), isExplode: false),
             "fields[subscriptionOfferCodePrices]": (wrappedValue: fieldsSubscriptionOfferCodePrices?.encodeToJSON(), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "limit[customCodes]": (wrappedValue: limitCustomCodes?.encodeToJSON(), isExplode: true),
             "limit[oneTimeUseCodes]": (wrappedValue: limitOneTimeUseCodes?.encodeToJSON(), isExplode: true),
             "limit[prices]": (wrappedValue: limitPrices?.encodeToJSON(), isExplode: true),
@@ -351,33 +351,33 @@ open class SubscriptionOfferCodesAPI {
     }
 
     /**
-     * enum for parameter fieldsSubscriptionOfferCodes
-     */
-    public enum FieldsSubscriptionOfferCodes_subscriptionOfferCodesOneTimeUseCodesGetToManyRelated: String, CaseIterable {
-        case active = "active"
-        case customcodes = "customCodes"
-        case customereligibilities = "customerEligibilities"
-        case duration = "duration"
-        case name = "name"
-        case numberofperiods = "numberOfPeriods"
-        case offereligibility = "offerEligibility"
-        case offermode = "offerMode"
-        case onetimeusecodes = "oneTimeUseCodes"
-        case prices = "prices"
-        case subscription = "subscription"
-        case totalnumberofcodes = "totalNumberOfCodes"
-    }
-
-    /**
      * enum for parameter fieldsSubscriptionOfferCodeOneTimeUseCodes
      */
     public enum FieldsSubscriptionOfferCodeOneTimeUseCodes_subscriptionOfferCodesOneTimeUseCodesGetToManyRelated: String, CaseIterable {
-        case active = "active"
+        case numberofcodes = "numberOfCodes"
         case createddate = "createdDate"
         case expirationdate = "expirationDate"
-        case numberofcodes = "numberOfCodes"
+        case active = "active"
         case offercode = "offerCode"
         case values = "values"
+    }
+
+    /**
+     * enum for parameter fieldsSubscriptionOfferCodes
+     */
+    public enum FieldsSubscriptionOfferCodes_subscriptionOfferCodesOneTimeUseCodesGetToManyRelated: String, CaseIterable {
+        case name = "name"
+        case customereligibilities = "customerEligibilities"
+        case offereligibility = "offerEligibility"
+        case duration = "duration"
+        case offermode = "offerMode"
+        case numberofperiods = "numberOfPeriods"
+        case totalnumberofcodes = "totalNumberOfCodes"
+        case active = "active"
+        case subscription = "subscription"
+        case onetimeusecodes = "oneTimeUseCodes"
+        case customcodes = "customCodes"
+        case prices = "prices"
     }
 
     /**
@@ -390,15 +390,15 @@ open class SubscriptionOfferCodesAPI {
     /**
 
      - parameter id: (path) the id of the requested resource 
-     - parameter fieldsSubscriptionOfferCodes: (query) the fields to include for returned resources of type subscriptionOfferCodes (optional)
      - parameter fieldsSubscriptionOfferCodeOneTimeUseCodes: (query) the fields to include for returned resources of type subscriptionOfferCodeOneTimeUseCodes (optional)
+     - parameter fieldsSubscriptionOfferCodes: (query) the fields to include for returned resources of type subscriptionOfferCodes (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: SubscriptionOfferCodeOneTimeUseCodesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionOfferCodesOneTimeUseCodesGetToManyRelated(id: String, fieldsSubscriptionOfferCodes: [FieldsSubscriptionOfferCodes_subscriptionOfferCodesOneTimeUseCodesGetToManyRelated]? = nil, fieldsSubscriptionOfferCodeOneTimeUseCodes: [FieldsSubscriptionOfferCodeOneTimeUseCodes_subscriptionOfferCodesOneTimeUseCodesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionOfferCodesOneTimeUseCodesGetToManyRelated]? = nil) async throws -> SubscriptionOfferCodeOneTimeUseCodesResponse {
-        return try await subscriptionOfferCodesOneTimeUseCodesGetToManyRelatedWithRequestBuilder(id: id, fieldsSubscriptionOfferCodes: fieldsSubscriptionOfferCodes, fieldsSubscriptionOfferCodeOneTimeUseCodes: fieldsSubscriptionOfferCodeOneTimeUseCodes, limit: limit, include: include).execute().body
+    open class func subscriptionOfferCodesOneTimeUseCodesGetToManyRelated(id: String, fieldsSubscriptionOfferCodeOneTimeUseCodes: [FieldsSubscriptionOfferCodeOneTimeUseCodes_subscriptionOfferCodesOneTimeUseCodesGetToManyRelated]? = nil, fieldsSubscriptionOfferCodes: [FieldsSubscriptionOfferCodes_subscriptionOfferCodesOneTimeUseCodesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionOfferCodesOneTimeUseCodesGetToManyRelated]? = nil) async throws -> SubscriptionOfferCodeOneTimeUseCodesResponse {
+        return try await subscriptionOfferCodesOneTimeUseCodesGetToManyRelatedWithRequestBuilder(id: id, fieldsSubscriptionOfferCodeOneTimeUseCodes: fieldsSubscriptionOfferCodeOneTimeUseCodes, fieldsSubscriptionOfferCodes: fieldsSubscriptionOfferCodes, limit: limit, include: include).execute().body
     }
 
     /**
@@ -416,13 +416,13 @@ open class SubscriptionOfferCodesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
-     - parameter fieldsSubscriptionOfferCodes: (query) the fields to include for returned resources of type subscriptionOfferCodes (optional)
      - parameter fieldsSubscriptionOfferCodeOneTimeUseCodes: (query) the fields to include for returned resources of type subscriptionOfferCodeOneTimeUseCodes (optional)
+     - parameter fieldsSubscriptionOfferCodes: (query) the fields to include for returned resources of type subscriptionOfferCodes (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: RequestBuilder<SubscriptionOfferCodeOneTimeUseCodesResponse> 
      */
-    open class func subscriptionOfferCodesOneTimeUseCodesGetToManyRelatedWithRequestBuilder(id: String, fieldsSubscriptionOfferCodes: [FieldsSubscriptionOfferCodes_subscriptionOfferCodesOneTimeUseCodesGetToManyRelated]? = nil, fieldsSubscriptionOfferCodeOneTimeUseCodes: [FieldsSubscriptionOfferCodeOneTimeUseCodes_subscriptionOfferCodesOneTimeUseCodesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionOfferCodesOneTimeUseCodesGetToManyRelated]? = nil) -> RequestBuilder<SubscriptionOfferCodeOneTimeUseCodesResponse> {
+    open class func subscriptionOfferCodesOneTimeUseCodesGetToManyRelatedWithRequestBuilder(id: String, fieldsSubscriptionOfferCodeOneTimeUseCodes: [FieldsSubscriptionOfferCodeOneTimeUseCodes_subscriptionOfferCodesOneTimeUseCodesGetToManyRelated]? = nil, fieldsSubscriptionOfferCodes: [FieldsSubscriptionOfferCodes_subscriptionOfferCodesOneTimeUseCodesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionOfferCodesOneTimeUseCodesGetToManyRelated]? = nil) -> RequestBuilder<SubscriptionOfferCodeOneTimeUseCodesResponse> {
         var localVariablePath = "/v1/subscriptionOfferCodes/{id}/oneTimeUseCodes"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -432,8 +432,8 @@ open class SubscriptionOfferCodesAPI {
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[subscriptionOfferCodes]": (wrappedValue: fieldsSubscriptionOfferCodes?.encodeToJSON(), isExplode: false),
             "fields[subscriptionOfferCodeOneTimeUseCodes]": (wrappedValue: fieldsSubscriptionOfferCodeOneTimeUseCodes?.encodeToJSON(), isExplode: false),
+            "fields[subscriptionOfferCodes]": (wrappedValue: fieldsSubscriptionOfferCodes?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
         ])
@@ -470,15 +470,11 @@ open class SubscriptionOfferCodesAPI {
     }
 
     /**
-     * enum for parameter fieldsSubscriptionPricePoints
+     * enum for parameter fieldsSubscriptionOfferCodePrices
      */
-    public enum FieldsSubscriptionPricePoints_subscriptionOfferCodesPricesGetToManyRelated: String, CaseIterable {
-        case customerprice = "customerPrice"
-        case equalizations = "equalizations"
-        case proceeds = "proceeds"
-        case proceedsyear2 = "proceedsYear2"
-        case subscription = "subscription"
+    public enum FieldsSubscriptionOfferCodePrices_subscriptionOfferCodesPricesGetToManyRelated: String, CaseIterable {
         case territory = "territory"
+        case subscriptionpricepoint = "subscriptionPricePoint"
     }
 
     /**
@@ -489,35 +485,38 @@ open class SubscriptionOfferCodesAPI {
     }
 
     /**
-     * enum for parameter fieldsSubscriptionOfferCodePrices
+     * enum for parameter fieldsSubscriptionPricePoints
      */
-    public enum FieldsSubscriptionOfferCodePrices_subscriptionOfferCodesPricesGetToManyRelated: String, CaseIterable {
-        case subscriptionpricepoint = "subscriptionPricePoint"
+    public enum FieldsSubscriptionPricePoints_subscriptionOfferCodesPricesGetToManyRelated: String, CaseIterable {
+        case customerprice = "customerPrice"
+        case proceeds = "proceeds"
+        case proceedsyear2 = "proceedsYear2"
         case territory = "territory"
+        case equalizations = "equalizations"
     }
 
     /**
      * enum for parameter include
      */
     public enum Include_subscriptionOfferCodesPricesGetToManyRelated: String, CaseIterable {
-        case subscriptionpricepoint = "subscriptionPricePoint"
         case territory = "territory"
+        case subscriptionpricepoint = "subscriptionPricePoint"
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter filterTerritory: (query) filter by id(s) of related &#39;territory&#39; (optional)
-     - parameter fieldsSubscriptionPricePoints: (query) the fields to include for returned resources of type subscriptionPricePoints (optional)
-     - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
      - parameter fieldsSubscriptionOfferCodePrices: (query) the fields to include for returned resources of type subscriptionOfferCodePrices (optional)
+     - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
+     - parameter fieldsSubscriptionPricePoints: (query) the fields to include for returned resources of type subscriptionPricePoints (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: SubscriptionOfferCodePricesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionOfferCodesPricesGetToManyRelated(id: String, filterTerritory: [String]? = nil, fieldsSubscriptionPricePoints: [FieldsSubscriptionPricePoints_subscriptionOfferCodesPricesGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_subscriptionOfferCodesPricesGetToManyRelated]? = nil, fieldsSubscriptionOfferCodePrices: [FieldsSubscriptionOfferCodePrices_subscriptionOfferCodesPricesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionOfferCodesPricesGetToManyRelated]? = nil) async throws -> SubscriptionOfferCodePricesResponse {
-        return try await subscriptionOfferCodesPricesGetToManyRelatedWithRequestBuilder(id: id, filterTerritory: filterTerritory, fieldsSubscriptionPricePoints: fieldsSubscriptionPricePoints, fieldsTerritories: fieldsTerritories, fieldsSubscriptionOfferCodePrices: fieldsSubscriptionOfferCodePrices, limit: limit, include: include).execute().body
+    open class func subscriptionOfferCodesPricesGetToManyRelated(id: String, filterTerritory: [String]? = nil, fieldsSubscriptionOfferCodePrices: [FieldsSubscriptionOfferCodePrices_subscriptionOfferCodesPricesGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_subscriptionOfferCodesPricesGetToManyRelated]? = nil, fieldsSubscriptionPricePoints: [FieldsSubscriptionPricePoints_subscriptionOfferCodesPricesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionOfferCodesPricesGetToManyRelated]? = nil) async throws -> SubscriptionOfferCodePricesResponse {
+        return try await subscriptionOfferCodesPricesGetToManyRelatedWithRequestBuilder(id: id, filterTerritory: filterTerritory, fieldsSubscriptionOfferCodePrices: fieldsSubscriptionOfferCodePrices, fieldsTerritories: fieldsTerritories, fieldsSubscriptionPricePoints: fieldsSubscriptionPricePoints, limit: limit, include: include).execute().body
     }
 
     /**
@@ -536,14 +535,14 @@ open class SubscriptionOfferCodesAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter filterTerritory: (query) filter by id(s) of related &#39;territory&#39; (optional)
-     - parameter fieldsSubscriptionPricePoints: (query) the fields to include for returned resources of type subscriptionPricePoints (optional)
-     - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
      - parameter fieldsSubscriptionOfferCodePrices: (query) the fields to include for returned resources of type subscriptionOfferCodePrices (optional)
+     - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
+     - parameter fieldsSubscriptionPricePoints: (query) the fields to include for returned resources of type subscriptionPricePoints (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: RequestBuilder<SubscriptionOfferCodePricesResponse> 
      */
-    open class func subscriptionOfferCodesPricesGetToManyRelatedWithRequestBuilder(id: String, filterTerritory: [String]? = nil, fieldsSubscriptionPricePoints: [FieldsSubscriptionPricePoints_subscriptionOfferCodesPricesGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_subscriptionOfferCodesPricesGetToManyRelated]? = nil, fieldsSubscriptionOfferCodePrices: [FieldsSubscriptionOfferCodePrices_subscriptionOfferCodesPricesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionOfferCodesPricesGetToManyRelated]? = nil) -> RequestBuilder<SubscriptionOfferCodePricesResponse> {
+    open class func subscriptionOfferCodesPricesGetToManyRelatedWithRequestBuilder(id: String, filterTerritory: [String]? = nil, fieldsSubscriptionOfferCodePrices: [FieldsSubscriptionOfferCodePrices_subscriptionOfferCodesPricesGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_subscriptionOfferCodesPricesGetToManyRelated]? = nil, fieldsSubscriptionPricePoints: [FieldsSubscriptionPricePoints_subscriptionOfferCodesPricesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionOfferCodesPricesGetToManyRelated]? = nil) -> RequestBuilder<SubscriptionOfferCodePricesResponse> {
         var localVariablePath = "/v1/subscriptionOfferCodes/{id}/prices"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -554,9 +553,9 @@ open class SubscriptionOfferCodesAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "filter[territory]": (wrappedValue: filterTerritory?.encodeToJSON(), isExplode: false),
-            "fields[subscriptionPricePoints]": (wrappedValue: fieldsSubscriptionPricePoints?.encodeToJSON(), isExplode: false),
-            "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(), isExplode: false),
             "fields[subscriptionOfferCodePrices]": (wrappedValue: fieldsSubscriptionOfferCodePrices?.encodeToJSON(), isExplode: false),
+            "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(), isExplode: false),
+            "fields[subscriptionPricePoints]": (wrappedValue: fieldsSubscriptionPricePoints?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
         ])

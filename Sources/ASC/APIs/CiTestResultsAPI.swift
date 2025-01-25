@@ -17,11 +17,11 @@ open class CiTestResultsAPI {
      */
     public enum FieldsCiTestResults_ciTestResultsGetInstance: String, CaseIterable {
         case classname = "className"
-        case destinationtestresults = "destinationTestResults"
-        case filesource = "fileSource"
-        case message = "message"
         case name = "name"
         case status = "status"
+        case filesource = "fileSource"
+        case message = "message"
+        case destinationtestresults = "destinationTestResults"
     }
 
     /**

@@ -18,15 +18,17 @@ public struct ErrorResponseErrorsInner: Codable, JSONEncodable, Hashable {
     public var title: String
     public var detail: String
     public var source: ErrorResponseErrorsInnerSource?
+    public var links: ErrorLinks?
     public var meta: [String: AnyCodable]?
 
-    public init(id: String? = nil, status: String, code: String, title: String, detail: String, source: ErrorResponseErrorsInnerSource? = nil, meta: [String: AnyCodable]? = nil) {
+    public init(id: String? = nil, status: String, code: String, title: String, detail: String, source: ErrorResponseErrorsInnerSource? = nil, links: ErrorLinks? = nil, meta: [String: AnyCodable]? = nil) {
         self.id = id
         self.status = status
         self.code = code
         self.title = title
         self.detail = detail
         self.source = source
+        self.links = links
         self.meta = meta
     }
 
@@ -37,6 +39,7 @@ public struct ErrorResponseErrorsInner: Codable, JSONEncodable, Hashable {
         case title
         case detail
         case source
+        case links
         case meta
     }
 
@@ -50,6 +53,7 @@ public struct ErrorResponseErrorsInner: Codable, JSONEncodable, Hashable {
         try container.encode(title, forKey: .title)
         try container.encode(detail, forKey: .detail)
         try container.encodeIfPresent(source, forKey: .source)
+        try container.encodeIfPresent(links, forKey: .links)
         try container.encodeIfPresent(meta, forKey: .meta)
     }
 }

@@ -158,10 +158,10 @@ open class GameCenterMatchmakingQueuesAPI {
      * enum for parameter sort
      */
     public enum Sort_gameCenterMatchmakingQueuesExperimentMatchmakingQueueSizesGetMetrics: String, CaseIterable {
-        case averagenumberofrequests = "averageNumberOfRequests"
-        case averagenumberofrequests2 = "-averageNumberOfRequests"
         case count = "count"
         case count2 = "-count"
+        case averagenumberofrequests = "averageNumberOfRequests"
+        case averagenumberofrequests2 = "-averageNumberOfRequests"
         case p50numberofrequests = "p50NumberOfRequests"
         case p50numberofrequests2 = "-p50NumberOfRequests"
         case p95numberofrequests = "p95NumberOfRequests"
@@ -172,13 +172,13 @@ open class GameCenterMatchmakingQueuesAPI {
 
      - parameter id: (path) the id of the requested resource 
      - parameter granularity: (query) the granularity of the per-group dataset 
-     - parameter limit: (query) maximum number of groups to return per page (optional)
      - parameter sort: (query) comma-separated list of sort expressions; metrics will be sorted as specified (optional)
+     - parameter limit: (query) maximum number of groups to return per page (optional)
      - returns: GameCenterMatchmakingQueueSizesV1MetricResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterMatchmakingQueuesExperimentMatchmakingQueueSizesGetMetrics(id: String, granularity: Granularity_gameCenterMatchmakingQueuesExperimentMatchmakingQueueSizesGetMetrics, limit: Int? = nil, sort: [Sort_gameCenterMatchmakingQueuesExperimentMatchmakingQueueSizesGetMetrics]? = nil) async throws -> GameCenterMatchmakingQueueSizesV1MetricResponse {
-        return try await gameCenterMatchmakingQueuesExperimentMatchmakingQueueSizesGetMetricsWithRequestBuilder(id: id, granularity: granularity, limit: limit, sort: sort).execute().body
+    open class func gameCenterMatchmakingQueuesExperimentMatchmakingQueueSizesGetMetrics(id: String, granularity: Granularity_gameCenterMatchmakingQueuesExperimentMatchmakingQueueSizesGetMetrics, sort: [Sort_gameCenterMatchmakingQueuesExperimentMatchmakingQueueSizesGetMetrics]? = nil, limit: Int? = nil) async throws -> GameCenterMatchmakingQueueSizesV1MetricResponse {
+        return try await gameCenterMatchmakingQueuesExperimentMatchmakingQueueSizesGetMetricsWithRequestBuilder(id: id, granularity: granularity, sort: sort, limit: limit).execute().body
     }
 
     /**
@@ -197,11 +197,11 @@ open class GameCenterMatchmakingQueuesAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter granularity: (query) the granularity of the per-group dataset 
-     - parameter limit: (query) maximum number of groups to return per page (optional)
      - parameter sort: (query) comma-separated list of sort expressions; metrics will be sorted as specified (optional)
+     - parameter limit: (query) maximum number of groups to return per page (optional)
      - returns: RequestBuilder<GameCenterMatchmakingQueueSizesV1MetricResponse> 
      */
-    open class func gameCenterMatchmakingQueuesExperimentMatchmakingQueueSizesGetMetricsWithRequestBuilder(id: String, granularity: Granularity_gameCenterMatchmakingQueuesExperimentMatchmakingQueueSizesGetMetrics, limit: Int? = nil, sort: [Sort_gameCenterMatchmakingQueuesExperimentMatchmakingQueueSizesGetMetrics]? = nil) -> RequestBuilder<GameCenterMatchmakingQueueSizesV1MetricResponse> {
+    open class func gameCenterMatchmakingQueuesExperimentMatchmakingQueueSizesGetMetricsWithRequestBuilder(id: String, granularity: Granularity_gameCenterMatchmakingQueuesExperimentMatchmakingQueueSizesGetMetrics, sort: [Sort_gameCenterMatchmakingQueuesExperimentMatchmakingQueueSizesGetMetrics]? = nil, limit: Int? = nil) -> RequestBuilder<GameCenterMatchmakingQueueSizesV1MetricResponse> {
         var localVariablePath = "/v1/gameCenterMatchmakingQueues/{id}/metrics/experimentMatchmakingQueueSizes"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -211,9 +211,9 @@ open class GameCenterMatchmakingQueuesAPI {
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
             "granularity": (wrappedValue: granularity.encodeToJSON(), isExplode: false),
             "sort": (wrappedValue: sort?.encodeToJSON(), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -260,8 +260,8 @@ open class GameCenterMatchmakingQueuesAPI {
      * enum for parameter groupBy
      */
     public enum GroupBy_gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics: String, CaseIterable {
-        case gamecenterdetail = "gameCenterDetail"
         case result = "result"
+        case gamecenterdetail = "gameCenterDetail"
     }
 
     /**
@@ -277,10 +277,10 @@ open class GameCenterMatchmakingQueuesAPI {
      * enum for parameter sort
      */
     public enum Sort_gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics: String, CaseIterable {
-        case averagesecondsinqueue = "averageSecondsInQueue"
-        case averagesecondsinqueue2 = "-averageSecondsInQueue"
         case count = "count"
         case count2 = "-count"
+        case averagesecondsinqueue = "averageSecondsInQueue"
+        case averagesecondsinqueue2 = "-averageSecondsInQueue"
         case p50secondsinqueue = "p50SecondsInQueue"
         case p50secondsinqueue2 = "-p50SecondsInQueue"
         case p95secondsinqueue = "p95SecondsInQueue"
@@ -291,16 +291,16 @@ open class GameCenterMatchmakingQueuesAPI {
 
      - parameter id: (path) the id of the requested resource 
      - parameter granularity: (query) the granularity of the per-group dataset 
-     - parameter limit: (query) maximum number of groups to return per page (optional)
      - parameter groupBy: (query) the dimension by which to group the results (optional)
      - parameter filterResult: (query) filter by &#39;result&#39; attribute dimension (optional)
      - parameter filterGameCenterDetail: (query) filter by &#39;gameCenterDetail&#39; relationship dimension (optional)
      - parameter sort: (query) comma-separated list of sort expressions; metrics will be sorted as specified (optional)
+     - parameter limit: (query) maximum number of groups to return per page (optional)
      - returns: GameCenterMatchmakingQueueRequestsV1MetricResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics(id: String, granularity: Granularity_gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics, limit: Int? = nil, groupBy: [GroupBy_gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics]? = nil, filterResult: FilterResult_gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics? = nil, filterGameCenterDetail: String? = nil, sort: [Sort_gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics]? = nil) async throws -> GameCenterMatchmakingQueueRequestsV1MetricResponse {
-        return try await gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetricsWithRequestBuilder(id: id, granularity: granularity, limit: limit, groupBy: groupBy, filterResult: filterResult, filterGameCenterDetail: filterGameCenterDetail, sort: sort).execute().body
+    open class func gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics(id: String, granularity: Granularity_gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics, groupBy: [GroupBy_gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics]? = nil, filterResult: FilterResult_gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics? = nil, filterGameCenterDetail: String? = nil, sort: [Sort_gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics]? = nil, limit: Int? = nil) async throws -> GameCenterMatchmakingQueueRequestsV1MetricResponse {
+        return try await gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetricsWithRequestBuilder(id: id, granularity: granularity, groupBy: groupBy, filterResult: filterResult, filterGameCenterDetail: filterGameCenterDetail, sort: sort, limit: limit).execute().body
     }
 
     /**
@@ -319,14 +319,14 @@ open class GameCenterMatchmakingQueuesAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter granularity: (query) the granularity of the per-group dataset 
-     - parameter limit: (query) maximum number of groups to return per page (optional)
      - parameter groupBy: (query) the dimension by which to group the results (optional)
      - parameter filterResult: (query) filter by &#39;result&#39; attribute dimension (optional)
      - parameter filterGameCenterDetail: (query) filter by &#39;gameCenterDetail&#39; relationship dimension (optional)
      - parameter sort: (query) comma-separated list of sort expressions; metrics will be sorted as specified (optional)
+     - parameter limit: (query) maximum number of groups to return per page (optional)
      - returns: RequestBuilder<GameCenterMatchmakingQueueRequestsV1MetricResponse> 
      */
-    open class func gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetricsWithRequestBuilder(id: String, granularity: Granularity_gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics, limit: Int? = nil, groupBy: [GroupBy_gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics]? = nil, filterResult: FilterResult_gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics? = nil, filterGameCenterDetail: String? = nil, sort: [Sort_gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics]? = nil) -> RequestBuilder<GameCenterMatchmakingQueueRequestsV1MetricResponse> {
+    open class func gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetricsWithRequestBuilder(id: String, granularity: Granularity_gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics, groupBy: [GroupBy_gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics]? = nil, filterResult: FilterResult_gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics? = nil, filterGameCenterDetail: String? = nil, sort: [Sort_gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics]? = nil, limit: Int? = nil) -> RequestBuilder<GameCenterMatchmakingQueueRequestsV1MetricResponse> {
         var localVariablePath = "/v1/gameCenterMatchmakingQueues/{id}/metrics/experimentMatchmakingRequests"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -336,12 +336,12 @@ open class GameCenterMatchmakingQueuesAPI {
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
             "granularity": (wrappedValue: granularity.encodeToJSON(), isExplode: false),
             "groupBy": (wrappedValue: groupBy?.encodeToJSON(), isExplode: false),
             "filter[result]": (wrappedValue: filterResult?.encodeToJSON(), isExplode: false),
             "filter[gameCenterDetail]": (wrappedValue: filterGameCenterDetail?.encodeToJSON(), isExplode: false),
             "sort": (wrappedValue: sort?.encodeToJSON(), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -379,18 +379,18 @@ open class GameCenterMatchmakingQueuesAPI {
      * enum for parameter fieldsGameCenterMatchmakingQueues
      */
     public enum FieldsGameCenterMatchmakingQueues_gameCenterMatchmakingQueuesGetCollection: String, CaseIterable {
-        case classicmatchmakingbundleids = "classicMatchmakingBundleIds"
-        case experimentruleset = "experimentRuleSet"
         case referencename = "referenceName"
+        case classicmatchmakingbundleids = "classicMatchmakingBundleIds"
         case ruleset = "ruleSet"
+        case experimentruleset = "experimentRuleSet"
     }
 
     /**
      * enum for parameter include
      */
     public enum Include_gameCenterMatchmakingQueuesGetCollection: String, CaseIterable {
-        case experimentruleset = "experimentRuleSet"
         case ruleset = "ruleSet"
+        case experimentruleset = "experimentRuleSet"
     }
 
     /**
@@ -471,18 +471,18 @@ open class GameCenterMatchmakingQueuesAPI {
      * enum for parameter fieldsGameCenterMatchmakingQueues
      */
     public enum FieldsGameCenterMatchmakingQueues_gameCenterMatchmakingQueuesGetInstance: String, CaseIterable {
-        case classicmatchmakingbundleids = "classicMatchmakingBundleIds"
-        case experimentruleset = "experimentRuleSet"
         case referencename = "referenceName"
+        case classicmatchmakingbundleids = "classicMatchmakingBundleIds"
         case ruleset = "ruleSet"
+        case experimentruleset = "experimentRuleSet"
     }
 
     /**
      * enum for parameter include
      */
     public enum Include_gameCenterMatchmakingQueuesGetInstance: String, CaseIterable {
-        case experimentruleset = "experimentRuleSet"
         case ruleset = "ruleSet"
+        case experimentruleset = "experimentRuleSet"
     }
 
     /**
@@ -574,10 +574,10 @@ open class GameCenterMatchmakingQueuesAPI {
      * enum for parameter sort
      */
     public enum Sort_gameCenterMatchmakingQueuesMatchmakingQueueSizesGetMetrics: String, CaseIterable {
-        case averagenumberofrequests = "averageNumberOfRequests"
-        case averagenumberofrequests2 = "-averageNumberOfRequests"
         case count = "count"
         case count2 = "-count"
+        case averagenumberofrequests = "averageNumberOfRequests"
+        case averagenumberofrequests2 = "-averageNumberOfRequests"
         case p50numberofrequests = "p50NumberOfRequests"
         case p50numberofrequests2 = "-p50NumberOfRequests"
         case p95numberofrequests = "p95NumberOfRequests"
@@ -588,13 +588,13 @@ open class GameCenterMatchmakingQueuesAPI {
 
      - parameter id: (path) the id of the requested resource 
      - parameter granularity: (query) the granularity of the per-group dataset 
-     - parameter limit: (query) maximum number of groups to return per page (optional)
      - parameter sort: (query) comma-separated list of sort expressions; metrics will be sorted as specified (optional)
+     - parameter limit: (query) maximum number of groups to return per page (optional)
      - returns: GameCenterMatchmakingQueueSizesV1MetricResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterMatchmakingQueuesMatchmakingQueueSizesGetMetrics(id: String, granularity: Granularity_gameCenterMatchmakingQueuesMatchmakingQueueSizesGetMetrics, limit: Int? = nil, sort: [Sort_gameCenterMatchmakingQueuesMatchmakingQueueSizesGetMetrics]? = nil) async throws -> GameCenterMatchmakingQueueSizesV1MetricResponse {
-        return try await gameCenterMatchmakingQueuesMatchmakingQueueSizesGetMetricsWithRequestBuilder(id: id, granularity: granularity, limit: limit, sort: sort).execute().body
+    open class func gameCenterMatchmakingQueuesMatchmakingQueueSizesGetMetrics(id: String, granularity: Granularity_gameCenterMatchmakingQueuesMatchmakingQueueSizesGetMetrics, sort: [Sort_gameCenterMatchmakingQueuesMatchmakingQueueSizesGetMetrics]? = nil, limit: Int? = nil) async throws -> GameCenterMatchmakingQueueSizesV1MetricResponse {
+        return try await gameCenterMatchmakingQueuesMatchmakingQueueSizesGetMetricsWithRequestBuilder(id: id, granularity: granularity, sort: sort, limit: limit).execute().body
     }
 
     /**
@@ -613,11 +613,11 @@ open class GameCenterMatchmakingQueuesAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter granularity: (query) the granularity of the per-group dataset 
-     - parameter limit: (query) maximum number of groups to return per page (optional)
      - parameter sort: (query) comma-separated list of sort expressions; metrics will be sorted as specified (optional)
+     - parameter limit: (query) maximum number of groups to return per page (optional)
      - returns: RequestBuilder<GameCenterMatchmakingQueueSizesV1MetricResponse> 
      */
-    open class func gameCenterMatchmakingQueuesMatchmakingQueueSizesGetMetricsWithRequestBuilder(id: String, granularity: Granularity_gameCenterMatchmakingQueuesMatchmakingQueueSizesGetMetrics, limit: Int? = nil, sort: [Sort_gameCenterMatchmakingQueuesMatchmakingQueueSizesGetMetrics]? = nil) -> RequestBuilder<GameCenterMatchmakingQueueSizesV1MetricResponse> {
+    open class func gameCenterMatchmakingQueuesMatchmakingQueueSizesGetMetricsWithRequestBuilder(id: String, granularity: Granularity_gameCenterMatchmakingQueuesMatchmakingQueueSizesGetMetrics, sort: [Sort_gameCenterMatchmakingQueuesMatchmakingQueueSizesGetMetrics]? = nil, limit: Int? = nil) -> RequestBuilder<GameCenterMatchmakingQueueSizesV1MetricResponse> {
         var localVariablePath = "/v1/gameCenterMatchmakingQueues/{id}/metrics/matchmakingQueueSizes"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -627,9 +627,9 @@ open class GameCenterMatchmakingQueuesAPI {
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
             "granularity": (wrappedValue: granularity.encodeToJSON(), isExplode: false),
             "sort": (wrappedValue: sort?.encodeToJSON(), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -676,8 +676,8 @@ open class GameCenterMatchmakingQueuesAPI {
      * enum for parameter groupBy
      */
     public enum GroupBy_gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics: String, CaseIterable {
-        case gamecenterdetail = "gameCenterDetail"
         case result = "result"
+        case gamecenterdetail = "gameCenterDetail"
     }
 
     /**
@@ -693,10 +693,10 @@ open class GameCenterMatchmakingQueuesAPI {
      * enum for parameter sort
      */
     public enum Sort_gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics: String, CaseIterable {
-        case averagesecondsinqueue = "averageSecondsInQueue"
-        case averagesecondsinqueue2 = "-averageSecondsInQueue"
         case count = "count"
         case count2 = "-count"
+        case averagesecondsinqueue = "averageSecondsInQueue"
+        case averagesecondsinqueue2 = "-averageSecondsInQueue"
         case p50secondsinqueue = "p50SecondsInQueue"
         case p50secondsinqueue2 = "-p50SecondsInQueue"
         case p95secondsinqueue = "p95SecondsInQueue"
@@ -707,16 +707,16 @@ open class GameCenterMatchmakingQueuesAPI {
 
      - parameter id: (path) the id of the requested resource 
      - parameter granularity: (query) the granularity of the per-group dataset 
-     - parameter limit: (query) maximum number of groups to return per page (optional)
      - parameter groupBy: (query) the dimension by which to group the results (optional)
      - parameter filterResult: (query) filter by &#39;result&#39; attribute dimension (optional)
      - parameter filterGameCenterDetail: (query) filter by &#39;gameCenterDetail&#39; relationship dimension (optional)
      - parameter sort: (query) comma-separated list of sort expressions; metrics will be sorted as specified (optional)
+     - parameter limit: (query) maximum number of groups to return per page (optional)
      - returns: GameCenterMatchmakingQueueRequestsV1MetricResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics(id: String, granularity: Granularity_gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics, limit: Int? = nil, groupBy: [GroupBy_gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics]? = nil, filterResult: FilterResult_gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics? = nil, filterGameCenterDetail: String? = nil, sort: [Sort_gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics]? = nil) async throws -> GameCenterMatchmakingQueueRequestsV1MetricResponse {
-        return try await gameCenterMatchmakingQueuesMatchmakingRequestsGetMetricsWithRequestBuilder(id: id, granularity: granularity, limit: limit, groupBy: groupBy, filterResult: filterResult, filterGameCenterDetail: filterGameCenterDetail, sort: sort).execute().body
+    open class func gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics(id: String, granularity: Granularity_gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics, groupBy: [GroupBy_gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics]? = nil, filterResult: FilterResult_gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics? = nil, filterGameCenterDetail: String? = nil, sort: [Sort_gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics]? = nil, limit: Int? = nil) async throws -> GameCenterMatchmakingQueueRequestsV1MetricResponse {
+        return try await gameCenterMatchmakingQueuesMatchmakingRequestsGetMetricsWithRequestBuilder(id: id, granularity: granularity, groupBy: groupBy, filterResult: filterResult, filterGameCenterDetail: filterGameCenterDetail, sort: sort, limit: limit).execute().body
     }
 
     /**
@@ -735,14 +735,14 @@ open class GameCenterMatchmakingQueuesAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter granularity: (query) the granularity of the per-group dataset 
-     - parameter limit: (query) maximum number of groups to return per page (optional)
      - parameter groupBy: (query) the dimension by which to group the results (optional)
      - parameter filterResult: (query) filter by &#39;result&#39; attribute dimension (optional)
      - parameter filterGameCenterDetail: (query) filter by &#39;gameCenterDetail&#39; relationship dimension (optional)
      - parameter sort: (query) comma-separated list of sort expressions; metrics will be sorted as specified (optional)
+     - parameter limit: (query) maximum number of groups to return per page (optional)
      - returns: RequestBuilder<GameCenterMatchmakingQueueRequestsV1MetricResponse> 
      */
-    open class func gameCenterMatchmakingQueuesMatchmakingRequestsGetMetricsWithRequestBuilder(id: String, granularity: Granularity_gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics, limit: Int? = nil, groupBy: [GroupBy_gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics]? = nil, filterResult: FilterResult_gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics? = nil, filterGameCenterDetail: String? = nil, sort: [Sort_gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics]? = nil) -> RequestBuilder<GameCenterMatchmakingQueueRequestsV1MetricResponse> {
+    open class func gameCenterMatchmakingQueuesMatchmakingRequestsGetMetricsWithRequestBuilder(id: String, granularity: Granularity_gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics, groupBy: [GroupBy_gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics]? = nil, filterResult: FilterResult_gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics? = nil, filterGameCenterDetail: String? = nil, sort: [Sort_gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics]? = nil, limit: Int? = nil) -> RequestBuilder<GameCenterMatchmakingQueueRequestsV1MetricResponse> {
         var localVariablePath = "/v1/gameCenterMatchmakingQueues/{id}/metrics/matchmakingRequests"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -752,12 +752,12 @@ open class GameCenterMatchmakingQueuesAPI {
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
             "granularity": (wrappedValue: granularity.encodeToJSON(), isExplode: false),
             "groupBy": (wrappedValue: groupBy?.encodeToJSON(), isExplode: false),
             "filter[result]": (wrappedValue: filterResult?.encodeToJSON(), isExplode: false),
             "filter[gameCenterDetail]": (wrappedValue: filterGameCenterDetail?.encodeToJSON(), isExplode: false),
             "sort": (wrappedValue: sort?.encodeToJSON(), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -804,10 +804,10 @@ open class GameCenterMatchmakingQueuesAPI {
      * enum for parameter sort
      */
     public enum Sort_gameCenterMatchmakingQueuesMatchmakingSessionsGetMetrics: String, CaseIterable {
-        case averageplayercount = "averagePlayerCount"
-        case averageplayercount2 = "-averagePlayerCount"
         case count = "count"
         case count2 = "-count"
+        case averageplayercount = "averagePlayerCount"
+        case averageplayercount2 = "-averagePlayerCount"
         case p50playercount = "p50PlayerCount"
         case p50playercount2 = "-p50PlayerCount"
         case p95playercount = "p95PlayerCount"
@@ -818,13 +818,13 @@ open class GameCenterMatchmakingQueuesAPI {
 
      - parameter id: (path) the id of the requested resource 
      - parameter granularity: (query) the granularity of the per-group dataset 
-     - parameter limit: (query) maximum number of groups to return per page (optional)
      - parameter sort: (query) comma-separated list of sort expressions; metrics will be sorted as specified (optional)
+     - parameter limit: (query) maximum number of groups to return per page (optional)
      - returns: GameCenterMatchmakingSessionsV1MetricResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterMatchmakingQueuesMatchmakingSessionsGetMetrics(id: String, granularity: Granularity_gameCenterMatchmakingQueuesMatchmakingSessionsGetMetrics, limit: Int? = nil, sort: [Sort_gameCenterMatchmakingQueuesMatchmakingSessionsGetMetrics]? = nil) async throws -> GameCenterMatchmakingSessionsV1MetricResponse {
-        return try await gameCenterMatchmakingQueuesMatchmakingSessionsGetMetricsWithRequestBuilder(id: id, granularity: granularity, limit: limit, sort: sort).execute().body
+    open class func gameCenterMatchmakingQueuesMatchmakingSessionsGetMetrics(id: String, granularity: Granularity_gameCenterMatchmakingQueuesMatchmakingSessionsGetMetrics, sort: [Sort_gameCenterMatchmakingQueuesMatchmakingSessionsGetMetrics]? = nil, limit: Int? = nil) async throws -> GameCenterMatchmakingSessionsV1MetricResponse {
+        return try await gameCenterMatchmakingQueuesMatchmakingSessionsGetMetricsWithRequestBuilder(id: id, granularity: granularity, sort: sort, limit: limit).execute().body
     }
 
     /**
@@ -843,11 +843,11 @@ open class GameCenterMatchmakingQueuesAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter granularity: (query) the granularity of the per-group dataset 
-     - parameter limit: (query) maximum number of groups to return per page (optional)
      - parameter sort: (query) comma-separated list of sort expressions; metrics will be sorted as specified (optional)
+     - parameter limit: (query) maximum number of groups to return per page (optional)
      - returns: RequestBuilder<GameCenterMatchmakingSessionsV1MetricResponse> 
      */
-    open class func gameCenterMatchmakingQueuesMatchmakingSessionsGetMetricsWithRequestBuilder(id: String, granularity: Granularity_gameCenterMatchmakingQueuesMatchmakingSessionsGetMetrics, limit: Int? = nil, sort: [Sort_gameCenterMatchmakingQueuesMatchmakingSessionsGetMetrics]? = nil) -> RequestBuilder<GameCenterMatchmakingSessionsV1MetricResponse> {
+    open class func gameCenterMatchmakingQueuesMatchmakingSessionsGetMetricsWithRequestBuilder(id: String, granularity: Granularity_gameCenterMatchmakingQueuesMatchmakingSessionsGetMetrics, sort: [Sort_gameCenterMatchmakingQueuesMatchmakingSessionsGetMetrics]? = nil, limit: Int? = nil) -> RequestBuilder<GameCenterMatchmakingSessionsV1MetricResponse> {
         var localVariablePath = "/v1/gameCenterMatchmakingQueues/{id}/metrics/matchmakingSessions"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -857,9 +857,9 @@ open class GameCenterMatchmakingQueuesAPI {
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
             "granularity": (wrappedValue: granularity.encodeToJSON(), isExplode: false),
             "sort": (wrappedValue: sort?.encodeToJSON(), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [

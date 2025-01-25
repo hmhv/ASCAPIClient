@@ -12,10 +12,10 @@ import AnyCodable
 
 public struct BetaAppReviewSubmissionWithoutIncludesResponse: Codable, JSONEncodable, Hashable {
 
-    public var data: Build
+    public var data: BetaAppReviewSubmission
     public var links: DocumentLinks
 
-    public init(data: Build, links: DocumentLinks) {
+    public init(data: BetaAppReviewSubmission, links: DocumentLinks) {
         self.data = data
         self.links = links
     }

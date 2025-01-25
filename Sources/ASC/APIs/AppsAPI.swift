@@ -16,7 +16,6 @@ open class AppsAPI {
      * enum for parameter fieldsAlternativeDistributionKeys
      */
     public enum FieldsAlternativeDistributionKeys_appsAlternativeDistributionKeyGetToOneRelated: String, CaseIterable {
-        case app = "app"
         case publickey = "publicKey"
     }
 
@@ -106,18 +105,17 @@ open class AppsAPI {
      */
     public enum FieldsAnalyticsReportRequests_appsAnalyticsReportRequestsGetToManyRelated: String, CaseIterable {
         case accesstype = "accessType"
-        case app = "app"
-        case reports = "reports"
         case stoppedduetoinactivity = "stoppedDueToInactivity"
+        case reports = "reports"
     }
 
     /**
      * enum for parameter fieldsAnalyticsReports
      */
     public enum FieldsAnalyticsReports_appsAnalyticsReportRequestsGetToManyRelated: String, CaseIterable {
+        case name = "name"
         case category = "category"
         case instances = "instances"
-        case name = "name"
     }
 
     /**
@@ -134,13 +132,13 @@ open class AppsAPI {
      - parameter fieldsAnalyticsReportRequests: (query) the fields to include for returned resources of type analyticsReportRequests (optional)
      - parameter fieldsAnalyticsReports: (query) the fields to include for returned resources of type analyticsReports (optional)
      - parameter limit: (query) maximum resources per page (optional)
-     - parameter limitReports: (query) maximum number of related reports returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitReports: (query) maximum number of related reports returned (when they are included) (optional)
      - returns: AnalyticsReportRequestsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appsAnalyticsReportRequestsGetToManyRelated(id: String, filterAccessType: [FilterAccessType_appsAnalyticsReportRequestsGetToManyRelated]? = nil, fieldsAnalyticsReportRequests: [FieldsAnalyticsReportRequests_appsAnalyticsReportRequestsGetToManyRelated]? = nil, fieldsAnalyticsReports: [FieldsAnalyticsReports_appsAnalyticsReportRequestsGetToManyRelated]? = nil, limit: Int? = nil, limitReports: Int? = nil, include: [Include_appsAnalyticsReportRequestsGetToManyRelated]? = nil) async throws -> AnalyticsReportRequestsResponse {
-        return try await appsAnalyticsReportRequestsGetToManyRelatedWithRequestBuilder(id: id, filterAccessType: filterAccessType, fieldsAnalyticsReportRequests: fieldsAnalyticsReportRequests, fieldsAnalyticsReports: fieldsAnalyticsReports, limit: limit, limitReports: limitReports, include: include).execute().body
+    open class func appsAnalyticsReportRequestsGetToManyRelated(id: String, filterAccessType: [FilterAccessType_appsAnalyticsReportRequestsGetToManyRelated]? = nil, fieldsAnalyticsReportRequests: [FieldsAnalyticsReportRequests_appsAnalyticsReportRequestsGetToManyRelated]? = nil, fieldsAnalyticsReports: [FieldsAnalyticsReports_appsAnalyticsReportRequestsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appsAnalyticsReportRequestsGetToManyRelated]? = nil, limitReports: Int? = nil) async throws -> AnalyticsReportRequestsResponse {
+        return try await appsAnalyticsReportRequestsGetToManyRelatedWithRequestBuilder(id: id, filterAccessType: filterAccessType, fieldsAnalyticsReportRequests: fieldsAnalyticsReportRequests, fieldsAnalyticsReports: fieldsAnalyticsReports, limit: limit, include: include, limitReports: limitReports).execute().body
     }
 
     /**
@@ -162,11 +160,11 @@ open class AppsAPI {
      - parameter fieldsAnalyticsReportRequests: (query) the fields to include for returned resources of type analyticsReportRequests (optional)
      - parameter fieldsAnalyticsReports: (query) the fields to include for returned resources of type analyticsReports (optional)
      - parameter limit: (query) maximum resources per page (optional)
-     - parameter limitReports: (query) maximum number of related reports returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitReports: (query) maximum number of related reports returned (when they are included) (optional)
      - returns: RequestBuilder<AnalyticsReportRequestsResponse> 
      */
-    open class func appsAnalyticsReportRequestsGetToManyRelatedWithRequestBuilder(id: String, filterAccessType: [FilterAccessType_appsAnalyticsReportRequestsGetToManyRelated]? = nil, fieldsAnalyticsReportRequests: [FieldsAnalyticsReportRequests_appsAnalyticsReportRequestsGetToManyRelated]? = nil, fieldsAnalyticsReports: [FieldsAnalyticsReports_appsAnalyticsReportRequestsGetToManyRelated]? = nil, limit: Int? = nil, limitReports: Int? = nil, include: [Include_appsAnalyticsReportRequestsGetToManyRelated]? = nil) -> RequestBuilder<AnalyticsReportRequestsResponse> {
+    open class func appsAnalyticsReportRequestsGetToManyRelatedWithRequestBuilder(id: String, filterAccessType: [FilterAccessType_appsAnalyticsReportRequestsGetToManyRelated]? = nil, fieldsAnalyticsReportRequests: [FieldsAnalyticsReportRequests_appsAnalyticsReportRequestsGetToManyRelated]? = nil, fieldsAnalyticsReports: [FieldsAnalyticsReports_appsAnalyticsReportRequestsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appsAnalyticsReportRequestsGetToManyRelated]? = nil, limitReports: Int? = nil) -> RequestBuilder<AnalyticsReportRequestsResponse> {
         var localVariablePath = "/v1/apps/{id}/analyticsReportRequests"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -180,8 +178,8 @@ open class AppsAPI {
             "fields[analyticsReportRequests]": (wrappedValue: fieldsAnalyticsReportRequests?.encodeToJSON(), isExplode: false),
             "fields[analyticsReports]": (wrappedValue: fieldsAnalyticsReports?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "limit[reports]": (wrappedValue: limitReports?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "limit[reports]": (wrappedValue: limitReports?.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -218,122 +216,67 @@ open class AppsAPI {
     /**
      * enum for parameter fieldsAppAvailabilities
      */
-    public enum FieldsAppAvailabilities_appsAppAvailabilityGetToOneRelated: String, CaseIterable {
-        case app = "app"
+    public enum FieldsAppAvailabilities_appsAppAvailabilityV2GetToOneRelated: String, CaseIterable {
         case availableinnewterritories = "availableInNewTerritories"
-        case availableterritories = "availableTerritories"
+        case territoryavailabilities = "territoryAvailabilities"
     }
 
     /**
-     * enum for parameter fieldsApps
+     * enum for parameter fieldsTerritoryAvailabilities
      */
-    public enum FieldsApps_appsAppAvailabilityGetToOneRelated: String, CaseIterable {
-        case alternativedistributionkey = "alternativeDistributionKey"
-        case analyticsreportrequests = "analyticsReportRequests"
-        case appavailability = "appAvailability"
-        case appclips = "appClips"
-        case appcustomproductpages = "appCustomProductPages"
-        case appencryptiondeclarations = "appEncryptionDeclarations"
-        case appevents = "appEvents"
-        case appinfos = "appInfos"
-        case apppricepoints = "appPricePoints"
-        case apppriceschedule = "appPriceSchedule"
-        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
-        case appstoreversions = "appStoreVersions"
-        case availableinnewterritories = "availableInNewTerritories"
-        case availableterritories = "availableTerritories"
-        case betaapplocalizations = "betaAppLocalizations"
-        case betaappreviewdetail = "betaAppReviewDetail"
-        case betagroups = "betaGroups"
-        case betalicenseagreement = "betaLicenseAgreement"
-        case betatesters = "betaTesters"
-        case builds = "builds"
-        case bundleid = "bundleId"
-        case ciproduct = "ciProduct"
-        case contentrightsdeclaration = "contentRightsDeclaration"
-        case customerreviews = "customerReviews"
-        case enduserlicenseagreement = "endUserLicenseAgreement"
-        case gamecenterdetail = "gameCenterDetail"
-        case gamecenterenabledversions = "gameCenterEnabledVersions"
-        case inapppurchases = "inAppPurchases"
-        case inapppurchasesv2 = "inAppPurchasesV2"
-        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
-        case marketplacesearchdetail = "marketplaceSearchDetail"
-        case name = "name"
-        case perfpowermetrics = "perfPowerMetrics"
-        case preorder = "preOrder"
-        case prereleaseversions = "preReleaseVersions"
-        case pricepoints = "pricePoints"
-        case prices = "prices"
-        case primarylocale = "primaryLocale"
-        case promotedpurchases = "promotedPurchases"
-        case reviewsubmissions = "reviewSubmissions"
-        case sku = "sku"
-        case subscriptiongraceperiod = "subscriptionGracePeriod"
-        case subscriptiongroups = "subscriptionGroups"
-        case subscriptionstatusurl = "subscriptionStatusUrl"
-        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
-        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
-        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
-    }
-
-    /**
-     * enum for parameter fieldsTerritories
-     */
-    public enum FieldsTerritories_appsAppAvailabilityGetToOneRelated: String, CaseIterable {
-        case currency = "currency"
+    public enum FieldsTerritoryAvailabilities_appsAppAvailabilityV2GetToOneRelated: String, CaseIterable {
+        case available = "available"
+        case releasedate = "releaseDate"
+        case preorderenabled = "preOrderEnabled"
+        case preorderpublishdate = "preOrderPublishDate"
+        case contentstatuses = "contentStatuses"
+        case territory = "territory"
     }
 
     /**
      * enum for parameter include
      */
-    public enum Include_appsAppAvailabilityGetToOneRelated: String, CaseIterable {
-        case app = "app"
-        case availableterritories = "availableTerritories"
+    public enum Include_appsAppAvailabilityV2GetToOneRelated: String, CaseIterable {
+        case territoryavailabilities = "territoryAvailabilities"
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAppAvailabilities: (query) the fields to include for returned resources of type appAvailabilities (optional)
-     - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
-     - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
-     - parameter limitAvailableTerritories: (query) maximum number of related availableTerritories returned (when they are included) (optional)
+     - parameter fieldsTerritoryAvailabilities: (query) the fields to include for returned resources of type territoryAvailabilities (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
-     - returns: AppAvailabilityResponse
+     - parameter limitTerritoryAvailabilities: (query) maximum number of related territoryAvailabilities returned (when they are included) (optional)
+     - returns: AppAvailabilityV2Response
      */
-    @available(*, deprecated, message: "This operation is deprecated.")
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appsAppAvailabilityGetToOneRelated(id: String, fieldsAppAvailabilities: [FieldsAppAvailabilities_appsAppAvailabilityGetToOneRelated]? = nil, fieldsApps: [FieldsApps_appsAppAvailabilityGetToOneRelated]? = nil, fieldsTerritories: [FieldsTerritories_appsAppAvailabilityGetToOneRelated]? = nil, limitAvailableTerritories: Int? = nil, include: [Include_appsAppAvailabilityGetToOneRelated]? = nil) async throws -> AppAvailabilityResponse {
-        return try await appsAppAvailabilityGetToOneRelatedWithRequestBuilder(id: id, fieldsAppAvailabilities: fieldsAppAvailabilities, fieldsApps: fieldsApps, fieldsTerritories: fieldsTerritories, limitAvailableTerritories: limitAvailableTerritories, include: include).execute().body
+    open class func appsAppAvailabilityV2GetToOneRelated(id: String, fieldsAppAvailabilities: [FieldsAppAvailabilities_appsAppAvailabilityV2GetToOneRelated]? = nil, fieldsTerritoryAvailabilities: [FieldsTerritoryAvailabilities_appsAppAvailabilityV2GetToOneRelated]? = nil, include: [Include_appsAppAvailabilityV2GetToOneRelated]? = nil, limitTerritoryAvailabilities: Int? = nil) async throws -> AppAvailabilityV2Response {
+        return try await appsAppAvailabilityV2GetToOneRelatedWithRequestBuilder(id: id, fieldsAppAvailabilities: fieldsAppAvailabilities, fieldsTerritoryAvailabilities: fieldsTerritoryAvailabilities, include: include, limitTerritoryAvailabilities: limitTerritoryAvailabilities).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
-     - returns: AppAvailabilityResponse
+     - returns: AppAvailabilityV2Response
      */
-    @available(*, deprecated, message: "This operation is deprecated.")
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appsAppAvailabilityGetToOneRelated(urlString: String) async throws -> AppAvailabilityResponse {
-        return try await appsAppAvailabilityGetToOneRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func appsAppAvailabilityV2GetToOneRelated(urlString: String) async throws -> AppAvailabilityV2Response {
+        return try await appsAppAvailabilityV2GetToOneRelatedWithRequestBuilder(urlString: urlString).execute().body
     }
 
     /**
-     - GET /v1/apps/{id}/appAvailability
+     - GET /v1/apps/{id}/appAvailabilityV2
      - Bearer Token:
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAppAvailabilities: (query) the fields to include for returned resources of type appAvailabilities (optional)
-     - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
-     - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
-     - parameter limitAvailableTerritories: (query) maximum number of related availableTerritories returned (when they are included) (optional)
+     - parameter fieldsTerritoryAvailabilities: (query) the fields to include for returned resources of type territoryAvailabilities (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
-     - returns: RequestBuilder<AppAvailabilityResponse> 
+     - parameter limitTerritoryAvailabilities: (query) maximum number of related territoryAvailabilities returned (when they are included) (optional)
+     - returns: RequestBuilder<AppAvailabilityV2Response> 
      */
-    @available(*, deprecated, message: "This operation is deprecated.")
-    open class func appsAppAvailabilityGetToOneRelatedWithRequestBuilder(id: String, fieldsAppAvailabilities: [FieldsAppAvailabilities_appsAppAvailabilityGetToOneRelated]? = nil, fieldsApps: [FieldsApps_appsAppAvailabilityGetToOneRelated]? = nil, fieldsTerritories: [FieldsTerritories_appsAppAvailabilityGetToOneRelated]? = nil, limitAvailableTerritories: Int? = nil, include: [Include_appsAppAvailabilityGetToOneRelated]? = nil) -> RequestBuilder<AppAvailabilityResponse> {
-        var localVariablePath = "/v1/apps/{id}/appAvailability"
+    open class func appsAppAvailabilityV2GetToOneRelatedWithRequestBuilder(id: String, fieldsAppAvailabilities: [FieldsAppAvailabilities_appsAppAvailabilityV2GetToOneRelated]? = nil, fieldsTerritoryAvailabilities: [FieldsTerritoryAvailabilities_appsAppAvailabilityV2GetToOneRelated]? = nil, include: [Include_appsAppAvailabilityV2GetToOneRelated]? = nil, limitTerritoryAvailabilities: Int? = nil) -> RequestBuilder<AppAvailabilityV2Response> {
+        var localVariablePath = "/v1/apps/{id}/appAvailabilityV2"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
@@ -343,10 +286,9 @@ open class AppsAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[appAvailabilities]": (wrappedValue: fieldsAppAvailabilities?.encodeToJSON(), isExplode: false),
-            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
-            "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(), isExplode: false),
-            "limit[availableTerritories]": (wrappedValue: limitAvailableTerritories?.encodeToJSON(), isExplode: true),
+            "fields[territoryAvailabilities]": (wrappedValue: fieldsTerritoryAvailabilities?.encodeToJSON(), isExplode: false),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "limit[territoryAvailabilities]": (wrappedValue: limitTerritoryAvailabilities?.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -355,28 +297,27 @@ open class AppsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppAvailabilityResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppAvailabilityV2Response>.Type = ASCAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
-     - GET /v1/apps/{id}/appAvailability
+     - GET /v1/apps/{id}/appAvailabilityV2
      - Bearer Token:
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
-     - returns: RequestBuilder<AppAvailabilityResponse> 
+     - returns: RequestBuilder<AppAvailabilityV2Response> 
      */
-    @available(*, deprecated, message: "This operation is deprecated.")
-    open class func appsAppAvailabilityGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppAvailabilityResponse> {
+    open class func appsAppAvailabilityV2GetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppAvailabilityV2Response> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppAvailabilityResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppAvailabilityV2Response>.Type = ASCAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
@@ -385,63 +326,59 @@ open class AppsAPI {
      * enum for parameter fieldsAppClips
      */
     public enum FieldsAppClips_appsAppClipsGetToManyRelated: String, CaseIterable {
-        case app = "app"
-        case appclipadvancedexperiences = "appClipAdvancedExperiences"
-        case appclipdefaultexperiences = "appClipDefaultExperiences"
         case bundleid = "bundleId"
+        case app = "app"
+        case appclipdefaultexperiences = "appClipDefaultExperiences"
+        case appclipadvancedexperiences = "appClipAdvancedExperiences"
     }
 
     /**
      * enum for parameter fieldsApps
      */
     public enum FieldsApps_appsAppClipsGetToManyRelated: String, CaseIterable {
+        case name = "name"
+        case bundleid = "bundleId"
+        case sku = "sku"
+        case primarylocale = "primaryLocale"
+        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
+        case subscriptionstatusurl = "subscriptionStatusUrl"
+        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
+        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
+        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
+        case contentrightsdeclaration = "contentRightsDeclaration"
+        case streamlinedpurchasingenabled = "streamlinedPurchasingEnabled"
+        case appencryptiondeclarations = "appEncryptionDeclarations"
+        case ciproduct = "ciProduct"
+        case betatesters = "betaTesters"
+        case betagroups = "betaGroups"
+        case appstoreversions = "appStoreVersions"
+        case prereleaseversions = "preReleaseVersions"
+        case betaapplocalizations = "betaAppLocalizations"
+        case builds = "builds"
+        case betalicenseagreement = "betaLicenseAgreement"
+        case betaappreviewdetail = "betaAppReviewDetail"
+        case appinfos = "appInfos"
+        case appclips = "appClips"
+        case apppricepoints = "appPricePoints"
+        case enduserlicenseagreement = "endUserLicenseAgreement"
+        case apppriceschedule = "appPriceSchedule"
+        case appavailabilityv2 = "appAvailabilityV2"
+        case inapppurchases = "inAppPurchases"
+        case subscriptiongroups = "subscriptionGroups"
+        case gamecenterenabledversions = "gameCenterEnabledVersions"
+        case perfpowermetrics = "perfPowerMetrics"
+        case appcustomproductpages = "appCustomProductPages"
+        case inapppurchasesv2 = "inAppPurchasesV2"
+        case promotedpurchases = "promotedPurchases"
+        case appevents = "appEvents"
+        case reviewsubmissions = "reviewSubmissions"
+        case subscriptiongraceperiod = "subscriptionGracePeriod"
+        case customerreviews = "customerReviews"
+        case gamecenterdetail = "gameCenterDetail"
+        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
         case alternativedistributionkey = "alternativeDistributionKey"
         case analyticsreportrequests = "analyticsReportRequests"
-        case appavailability = "appAvailability"
-        case appclips = "appClips"
-        case appcustomproductpages = "appCustomProductPages"
-        case appencryptiondeclarations = "appEncryptionDeclarations"
-        case appevents = "appEvents"
-        case appinfos = "appInfos"
-        case apppricepoints = "appPricePoints"
-        case apppriceschedule = "appPriceSchedule"
-        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
-        case appstoreversions = "appStoreVersions"
-        case availableinnewterritories = "availableInNewTerritories"
-        case availableterritories = "availableTerritories"
-        case betaapplocalizations = "betaAppLocalizations"
-        case betaappreviewdetail = "betaAppReviewDetail"
-        case betagroups = "betaGroups"
-        case betalicenseagreement = "betaLicenseAgreement"
-        case betatesters = "betaTesters"
-        case builds = "builds"
-        case bundleid = "bundleId"
-        case ciproduct = "ciProduct"
-        case contentrightsdeclaration = "contentRightsDeclaration"
-        case customerreviews = "customerReviews"
-        case enduserlicenseagreement = "endUserLicenseAgreement"
-        case gamecenterdetail = "gameCenterDetail"
-        case gamecenterenabledversions = "gameCenterEnabledVersions"
-        case inapppurchases = "inAppPurchases"
-        case inapppurchasesv2 = "inAppPurchasesV2"
-        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
         case marketplacesearchdetail = "marketplaceSearchDetail"
-        case name = "name"
-        case perfpowermetrics = "perfPowerMetrics"
-        case preorder = "preOrder"
-        case prereleaseversions = "preReleaseVersions"
-        case pricepoints = "pricePoints"
-        case prices = "prices"
-        case primarylocale = "primaryLocale"
-        case promotedpurchases = "promotedPurchases"
-        case reviewsubmissions = "reviewSubmissions"
-        case sku = "sku"
-        case subscriptiongraceperiod = "subscriptionGracePeriod"
-        case subscriptiongroups = "subscriptionGroups"
-        case subscriptionstatusurl = "subscriptionStatusUrl"
-        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
-        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
-        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
     }
 
     /**
@@ -450,10 +387,9 @@ open class AppsAPI {
     public enum FieldsAppClipDefaultExperiences_appsAppClipsGetToManyRelated: String, CaseIterable {
         case action = "action"
         case appclip = "appClip"
-        case appclipappstorereviewdetail = "appClipAppStoreReviewDetail"
-        case appclipdefaultexperiencelocalizations = "appClipDefaultExperienceLocalizations"
-        case appclipdefaultexperiencetemplate = "appClipDefaultExperienceTemplate"
         case releasewithappstoreversion = "releaseWithAppStoreVersion"
+        case appclipdefaultexperiencelocalizations = "appClipDefaultExperienceLocalizations"
+        case appclipappstorereviewdetail = "appClipAppStoreReviewDetail"
     }
 
     /**
@@ -472,13 +408,13 @@ open class AppsAPI {
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
      - parameter fieldsAppClipDefaultExperiences: (query) the fields to include for returned resources of type appClipDefaultExperiences (optional)
      - parameter limit: (query) maximum resources per page (optional)
-     - parameter limitAppClipDefaultExperiences: (query) maximum number of related appClipDefaultExperiences returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitAppClipDefaultExperiences: (query) maximum number of related appClipDefaultExperiences returned (when they are included) (optional)
      - returns: AppClipsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appsAppClipsGetToManyRelated(id: String, filterBundleId: [String]? = nil, fieldsAppClips: [FieldsAppClips_appsAppClipsGetToManyRelated]? = nil, fieldsApps: [FieldsApps_appsAppClipsGetToManyRelated]? = nil, fieldsAppClipDefaultExperiences: [FieldsAppClipDefaultExperiences_appsAppClipsGetToManyRelated]? = nil, limit: Int? = nil, limitAppClipDefaultExperiences: Int? = nil, include: [Include_appsAppClipsGetToManyRelated]? = nil) async throws -> AppClipsResponse {
-        return try await appsAppClipsGetToManyRelatedWithRequestBuilder(id: id, filterBundleId: filterBundleId, fieldsAppClips: fieldsAppClips, fieldsApps: fieldsApps, fieldsAppClipDefaultExperiences: fieldsAppClipDefaultExperiences, limit: limit, limitAppClipDefaultExperiences: limitAppClipDefaultExperiences, include: include).execute().body
+    open class func appsAppClipsGetToManyRelated(id: String, filterBundleId: [String]? = nil, fieldsAppClips: [FieldsAppClips_appsAppClipsGetToManyRelated]? = nil, fieldsApps: [FieldsApps_appsAppClipsGetToManyRelated]? = nil, fieldsAppClipDefaultExperiences: [FieldsAppClipDefaultExperiences_appsAppClipsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appsAppClipsGetToManyRelated]? = nil, limitAppClipDefaultExperiences: Int? = nil) async throws -> AppClipsResponse {
+        return try await appsAppClipsGetToManyRelatedWithRequestBuilder(id: id, filterBundleId: filterBundleId, fieldsAppClips: fieldsAppClips, fieldsApps: fieldsApps, fieldsAppClipDefaultExperiences: fieldsAppClipDefaultExperiences, limit: limit, include: include, limitAppClipDefaultExperiences: limitAppClipDefaultExperiences).execute().body
     }
 
     /**
@@ -501,11 +437,11 @@ open class AppsAPI {
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
      - parameter fieldsAppClipDefaultExperiences: (query) the fields to include for returned resources of type appClipDefaultExperiences (optional)
      - parameter limit: (query) maximum resources per page (optional)
-     - parameter limitAppClipDefaultExperiences: (query) maximum number of related appClipDefaultExperiences returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitAppClipDefaultExperiences: (query) maximum number of related appClipDefaultExperiences returned (when they are included) (optional)
      - returns: RequestBuilder<AppClipsResponse> 
      */
-    open class func appsAppClipsGetToManyRelatedWithRequestBuilder(id: String, filterBundleId: [String]? = nil, fieldsAppClips: [FieldsAppClips_appsAppClipsGetToManyRelated]? = nil, fieldsApps: [FieldsApps_appsAppClipsGetToManyRelated]? = nil, fieldsAppClipDefaultExperiences: [FieldsAppClipDefaultExperiences_appsAppClipsGetToManyRelated]? = nil, limit: Int? = nil, limitAppClipDefaultExperiences: Int? = nil, include: [Include_appsAppClipsGetToManyRelated]? = nil) -> RequestBuilder<AppClipsResponse> {
+    open class func appsAppClipsGetToManyRelatedWithRequestBuilder(id: String, filterBundleId: [String]? = nil, fieldsAppClips: [FieldsAppClips_appsAppClipsGetToManyRelated]? = nil, fieldsApps: [FieldsApps_appsAppClipsGetToManyRelated]? = nil, fieldsAppClipDefaultExperiences: [FieldsAppClipDefaultExperiences_appsAppClipsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appsAppClipsGetToManyRelated]? = nil, limitAppClipDefaultExperiences: Int? = nil) -> RequestBuilder<AppClipsResponse> {
         var localVariablePath = "/v1/apps/{id}/appClips"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -520,8 +456,8 @@ open class AppsAPI {
             "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
             "fields[appClipDefaultExperiences]": (wrappedValue: fieldsAppClipDefaultExperiences?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "limit[appClipDefaultExperiences]": (wrappedValue: limitAppClipDefaultExperiences?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "limit[appClipDefaultExperiences]": (wrappedValue: limitAppClipDefaultExperiences?.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -559,76 +495,71 @@ open class AppsAPI {
      * enum for parameter fieldsAppCustomProductPages
      */
     public enum FieldsAppCustomProductPages_appsAppCustomProductPagesGetToManyRelated: String, CaseIterable {
-        case app = "app"
-        case appcustomproductpageversions = "appCustomProductPageVersions"
-        case appstoreversiontemplate = "appStoreVersionTemplate"
-        case customproductpagetemplate = "customProductPageTemplate"
         case name = "name"
         case url = "url"
         case visible = "visible"
-    }
-
-    /**
-     * enum for parameter fieldsAppCustomProductPageVersions
-     */
-    public enum FieldsAppCustomProductPageVersions_appsAppCustomProductPagesGetToManyRelated: String, CaseIterable {
-        case appcustomproductpage = "appCustomProductPage"
-        case appcustomproductpagelocalizations = "appCustomProductPageLocalizations"
-        case state = "state"
-        case version = "version"
+        case app = "app"
+        case appcustomproductpageversions = "appCustomProductPageVersions"
     }
 
     /**
      * enum for parameter fieldsApps
      */
     public enum FieldsApps_appsAppCustomProductPagesGetToManyRelated: String, CaseIterable {
+        case name = "name"
+        case bundleid = "bundleId"
+        case sku = "sku"
+        case primarylocale = "primaryLocale"
+        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
+        case subscriptionstatusurl = "subscriptionStatusUrl"
+        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
+        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
+        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
+        case contentrightsdeclaration = "contentRightsDeclaration"
+        case streamlinedpurchasingenabled = "streamlinedPurchasingEnabled"
+        case appencryptiondeclarations = "appEncryptionDeclarations"
+        case ciproduct = "ciProduct"
+        case betatesters = "betaTesters"
+        case betagroups = "betaGroups"
+        case appstoreversions = "appStoreVersions"
+        case prereleaseversions = "preReleaseVersions"
+        case betaapplocalizations = "betaAppLocalizations"
+        case builds = "builds"
+        case betalicenseagreement = "betaLicenseAgreement"
+        case betaappreviewdetail = "betaAppReviewDetail"
+        case appinfos = "appInfos"
+        case appclips = "appClips"
+        case apppricepoints = "appPricePoints"
+        case enduserlicenseagreement = "endUserLicenseAgreement"
+        case apppriceschedule = "appPriceSchedule"
+        case appavailabilityv2 = "appAvailabilityV2"
+        case inapppurchases = "inAppPurchases"
+        case subscriptiongroups = "subscriptionGroups"
+        case gamecenterenabledversions = "gameCenterEnabledVersions"
+        case perfpowermetrics = "perfPowerMetrics"
+        case appcustomproductpages = "appCustomProductPages"
+        case inapppurchasesv2 = "inAppPurchasesV2"
+        case promotedpurchases = "promotedPurchases"
+        case appevents = "appEvents"
+        case reviewsubmissions = "reviewSubmissions"
+        case subscriptiongraceperiod = "subscriptionGracePeriod"
+        case customerreviews = "customerReviews"
+        case gamecenterdetail = "gameCenterDetail"
+        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
         case alternativedistributionkey = "alternativeDistributionKey"
         case analyticsreportrequests = "analyticsReportRequests"
-        case appavailability = "appAvailability"
-        case appclips = "appClips"
-        case appcustomproductpages = "appCustomProductPages"
-        case appencryptiondeclarations = "appEncryptionDeclarations"
-        case appevents = "appEvents"
-        case appinfos = "appInfos"
-        case apppricepoints = "appPricePoints"
-        case apppriceschedule = "appPriceSchedule"
-        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
-        case appstoreversions = "appStoreVersions"
-        case availableinnewterritories = "availableInNewTerritories"
-        case availableterritories = "availableTerritories"
-        case betaapplocalizations = "betaAppLocalizations"
-        case betaappreviewdetail = "betaAppReviewDetail"
-        case betagroups = "betaGroups"
-        case betalicenseagreement = "betaLicenseAgreement"
-        case betatesters = "betaTesters"
-        case builds = "builds"
-        case bundleid = "bundleId"
-        case ciproduct = "ciProduct"
-        case contentrightsdeclaration = "contentRightsDeclaration"
-        case customerreviews = "customerReviews"
-        case enduserlicenseagreement = "endUserLicenseAgreement"
-        case gamecenterdetail = "gameCenterDetail"
-        case gamecenterenabledversions = "gameCenterEnabledVersions"
-        case inapppurchases = "inAppPurchases"
-        case inapppurchasesv2 = "inAppPurchasesV2"
-        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
         case marketplacesearchdetail = "marketplaceSearchDetail"
-        case name = "name"
-        case perfpowermetrics = "perfPowerMetrics"
-        case preorder = "preOrder"
-        case prereleaseversions = "preReleaseVersions"
-        case pricepoints = "pricePoints"
-        case prices = "prices"
-        case primarylocale = "primaryLocale"
-        case promotedpurchases = "promotedPurchases"
-        case reviewsubmissions = "reviewSubmissions"
-        case sku = "sku"
-        case subscriptiongraceperiod = "subscriptionGracePeriod"
-        case subscriptiongroups = "subscriptionGroups"
-        case subscriptionstatusurl = "subscriptionStatusUrl"
-        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
-        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
-        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
+    }
+
+    /**
+     * enum for parameter fieldsAppCustomProductPageVersions
+     */
+    public enum FieldsAppCustomProductPageVersions_appsAppCustomProductPagesGetToManyRelated: String, CaseIterable {
+        case version = "version"
+        case state = "state"
+        case deeplink = "deepLink"
+        case appcustomproductpage = "appCustomProductPage"
+        case appcustomproductpagelocalizations = "appCustomProductPageLocalizations"
     }
 
     /**
@@ -644,16 +575,16 @@ open class AppsAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter filterVisible: (query) filter by attribute &#39;visible&#39; (optional)
      - parameter fieldsAppCustomProductPages: (query) the fields to include for returned resources of type appCustomProductPages (optional)
-     - parameter fieldsAppCustomProductPageVersions: (query) the fields to include for returned resources of type appCustomProductPageVersions (optional)
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
+     - parameter fieldsAppCustomProductPageVersions: (query) the fields to include for returned resources of type appCustomProductPageVersions (optional)
      - parameter limit: (query) maximum resources per page (optional)
-     - parameter limitAppCustomProductPageVersions: (query) maximum number of related appCustomProductPageVersions returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitAppCustomProductPageVersions: (query) maximum number of related appCustomProductPageVersions returned (when they are included) (optional)
      - returns: AppCustomProductPagesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appsAppCustomProductPagesGetToManyRelated(id: String, filterVisible: [String]? = nil, fieldsAppCustomProductPages: [FieldsAppCustomProductPages_appsAppCustomProductPagesGetToManyRelated]? = nil, fieldsAppCustomProductPageVersions: [FieldsAppCustomProductPageVersions_appsAppCustomProductPagesGetToManyRelated]? = nil, fieldsApps: [FieldsApps_appsAppCustomProductPagesGetToManyRelated]? = nil, limit: Int? = nil, limitAppCustomProductPageVersions: Int? = nil, include: [Include_appsAppCustomProductPagesGetToManyRelated]? = nil) async throws -> AppCustomProductPagesResponse {
-        return try await appsAppCustomProductPagesGetToManyRelatedWithRequestBuilder(id: id, filterVisible: filterVisible, fieldsAppCustomProductPages: fieldsAppCustomProductPages, fieldsAppCustomProductPageVersions: fieldsAppCustomProductPageVersions, fieldsApps: fieldsApps, limit: limit, limitAppCustomProductPageVersions: limitAppCustomProductPageVersions, include: include).execute().body
+    open class func appsAppCustomProductPagesGetToManyRelated(id: String, filterVisible: [String]? = nil, fieldsAppCustomProductPages: [FieldsAppCustomProductPages_appsAppCustomProductPagesGetToManyRelated]? = nil, fieldsApps: [FieldsApps_appsAppCustomProductPagesGetToManyRelated]? = nil, fieldsAppCustomProductPageVersions: [FieldsAppCustomProductPageVersions_appsAppCustomProductPagesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appsAppCustomProductPagesGetToManyRelated]? = nil, limitAppCustomProductPageVersions: Int? = nil) async throws -> AppCustomProductPagesResponse {
+        return try await appsAppCustomProductPagesGetToManyRelatedWithRequestBuilder(id: id, filterVisible: filterVisible, fieldsAppCustomProductPages: fieldsAppCustomProductPages, fieldsApps: fieldsApps, fieldsAppCustomProductPageVersions: fieldsAppCustomProductPageVersions, limit: limit, include: include, limitAppCustomProductPageVersions: limitAppCustomProductPageVersions).execute().body
     }
 
     /**
@@ -673,14 +604,14 @@ open class AppsAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter filterVisible: (query) filter by attribute &#39;visible&#39; (optional)
      - parameter fieldsAppCustomProductPages: (query) the fields to include for returned resources of type appCustomProductPages (optional)
-     - parameter fieldsAppCustomProductPageVersions: (query) the fields to include for returned resources of type appCustomProductPageVersions (optional)
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
+     - parameter fieldsAppCustomProductPageVersions: (query) the fields to include for returned resources of type appCustomProductPageVersions (optional)
      - parameter limit: (query) maximum resources per page (optional)
-     - parameter limitAppCustomProductPageVersions: (query) maximum number of related appCustomProductPageVersions returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitAppCustomProductPageVersions: (query) maximum number of related appCustomProductPageVersions returned (when they are included) (optional)
      - returns: RequestBuilder<AppCustomProductPagesResponse> 
      */
-    open class func appsAppCustomProductPagesGetToManyRelatedWithRequestBuilder(id: String, filterVisible: [String]? = nil, fieldsAppCustomProductPages: [FieldsAppCustomProductPages_appsAppCustomProductPagesGetToManyRelated]? = nil, fieldsAppCustomProductPageVersions: [FieldsAppCustomProductPageVersions_appsAppCustomProductPagesGetToManyRelated]? = nil, fieldsApps: [FieldsApps_appsAppCustomProductPagesGetToManyRelated]? = nil, limit: Int? = nil, limitAppCustomProductPageVersions: Int? = nil, include: [Include_appsAppCustomProductPagesGetToManyRelated]? = nil) -> RequestBuilder<AppCustomProductPagesResponse> {
+    open class func appsAppCustomProductPagesGetToManyRelatedWithRequestBuilder(id: String, filterVisible: [String]? = nil, fieldsAppCustomProductPages: [FieldsAppCustomProductPages_appsAppCustomProductPagesGetToManyRelated]? = nil, fieldsApps: [FieldsApps_appsAppCustomProductPagesGetToManyRelated]? = nil, fieldsAppCustomProductPageVersions: [FieldsAppCustomProductPageVersions_appsAppCustomProductPagesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appsAppCustomProductPagesGetToManyRelated]? = nil, limitAppCustomProductPageVersions: Int? = nil) -> RequestBuilder<AppCustomProductPagesResponse> {
         var localVariablePath = "/v1/apps/{id}/appCustomProductPages"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -692,11 +623,11 @@ open class AppsAPI {
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "filter[visible]": (wrappedValue: filterVisible?.encodeToJSON(), isExplode: false),
             "fields[appCustomProductPages]": (wrappedValue: fieldsAppCustomProductPages?.encodeToJSON(), isExplode: false),
-            "fields[appCustomProductPageVersions]": (wrappedValue: fieldsAppCustomProductPageVersions?.encodeToJSON(), isExplode: false),
             "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
+            "fields[appCustomProductPageVersions]": (wrappedValue: fieldsAppCustomProductPageVersions?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "limit[appCustomProductPageVersions]": (wrappedValue: limitAppCustomProductPageVersions?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "limit[appCustomProductPageVersions]": (wrappedValue: limitAppCustomProductPageVersions?.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -744,121 +675,115 @@ open class AppsAPI {
      * enum for parameter fieldsAppEncryptionDeclarations
      */
     public enum FieldsAppEncryptionDeclarations_appsAppEncryptionDeclarationsGetToManyRelated: String, CaseIterable {
-        case app = "app"
         case appdescription = "appDescription"
-        case appencryptiondeclarationdocument = "appEncryptionDeclarationDocument"
-        case appencryptiondeclarationstate = "appEncryptionDeclarationState"
-        case availableonfrenchstore = "availableOnFrenchStore"
-        case builds = "builds"
-        case codevalue = "codeValue"
+        case createddate = "createdDate"
+        case usesencryption = "usesEncryption"
+        case exempt = "exempt"
         case containsproprietarycryptography = "containsProprietaryCryptography"
         case containsthirdpartycryptography = "containsThirdPartyCryptography"
-        case createddate = "createdDate"
-        case documentname = "documentName"
-        case documenttype = "documentType"
-        case documenturl = "documentUrl"
-        case exempt = "exempt"
+        case availableonfrenchstore = "availableOnFrenchStore"
         case platform = "platform"
         case uploadeddate = "uploadedDate"
-        case usesencryption = "usesEncryption"
+        case documenturl = "documentUrl"
+        case documentname = "documentName"
+        case documenttype = "documentType"
+        case appencryptiondeclarationstate = "appEncryptionDeclarationState"
+        case codevalue = "codeValue"
+        case app = "app"
+        case builds = "builds"
+        case appencryptiondeclarationdocument = "appEncryptionDeclarationDocument"
     }
 
     /**
      * enum for parameter fieldsApps
      */
     public enum FieldsApps_appsAppEncryptionDeclarationsGetToManyRelated: String, CaseIterable {
+        case name = "name"
+        case bundleid = "bundleId"
+        case sku = "sku"
+        case primarylocale = "primaryLocale"
+        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
+        case subscriptionstatusurl = "subscriptionStatusUrl"
+        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
+        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
+        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
+        case contentrightsdeclaration = "contentRightsDeclaration"
+        case streamlinedpurchasingenabled = "streamlinedPurchasingEnabled"
+        case appencryptiondeclarations = "appEncryptionDeclarations"
+        case ciproduct = "ciProduct"
+        case betatesters = "betaTesters"
+        case betagroups = "betaGroups"
+        case appstoreversions = "appStoreVersions"
+        case prereleaseversions = "preReleaseVersions"
+        case betaapplocalizations = "betaAppLocalizations"
+        case builds = "builds"
+        case betalicenseagreement = "betaLicenseAgreement"
+        case betaappreviewdetail = "betaAppReviewDetail"
+        case appinfos = "appInfos"
+        case appclips = "appClips"
+        case apppricepoints = "appPricePoints"
+        case enduserlicenseagreement = "endUserLicenseAgreement"
+        case apppriceschedule = "appPriceSchedule"
+        case appavailabilityv2 = "appAvailabilityV2"
+        case inapppurchases = "inAppPurchases"
+        case subscriptiongroups = "subscriptionGroups"
+        case gamecenterenabledversions = "gameCenterEnabledVersions"
+        case perfpowermetrics = "perfPowerMetrics"
+        case appcustomproductpages = "appCustomProductPages"
+        case inapppurchasesv2 = "inAppPurchasesV2"
+        case promotedpurchases = "promotedPurchases"
+        case appevents = "appEvents"
+        case reviewsubmissions = "reviewSubmissions"
+        case subscriptiongraceperiod = "subscriptionGracePeriod"
+        case customerreviews = "customerReviews"
+        case gamecenterdetail = "gameCenterDetail"
+        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
         case alternativedistributionkey = "alternativeDistributionKey"
         case analyticsreportrequests = "analyticsReportRequests"
-        case appavailability = "appAvailability"
-        case appclips = "appClips"
-        case appcustomproductpages = "appCustomProductPages"
-        case appencryptiondeclarations = "appEncryptionDeclarations"
-        case appevents = "appEvents"
-        case appinfos = "appInfos"
-        case apppricepoints = "appPricePoints"
-        case apppriceschedule = "appPriceSchedule"
-        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
-        case appstoreversions = "appStoreVersions"
-        case availableinnewterritories = "availableInNewTerritories"
-        case availableterritories = "availableTerritories"
-        case betaapplocalizations = "betaAppLocalizations"
-        case betaappreviewdetail = "betaAppReviewDetail"
-        case betagroups = "betaGroups"
-        case betalicenseagreement = "betaLicenseAgreement"
-        case betatesters = "betaTesters"
-        case builds = "builds"
-        case bundleid = "bundleId"
-        case ciproduct = "ciProduct"
-        case contentrightsdeclaration = "contentRightsDeclaration"
-        case customerreviews = "customerReviews"
-        case enduserlicenseagreement = "endUserLicenseAgreement"
-        case gamecenterdetail = "gameCenterDetail"
-        case gamecenterenabledversions = "gameCenterEnabledVersions"
-        case inapppurchases = "inAppPurchases"
-        case inapppurchasesv2 = "inAppPurchasesV2"
-        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
         case marketplacesearchdetail = "marketplaceSearchDetail"
-        case name = "name"
-        case perfpowermetrics = "perfPowerMetrics"
-        case preorder = "preOrder"
-        case prereleaseversions = "preReleaseVersions"
-        case pricepoints = "pricePoints"
-        case prices = "prices"
-        case primarylocale = "primaryLocale"
-        case promotedpurchases = "promotedPurchases"
-        case reviewsubmissions = "reviewSubmissions"
-        case sku = "sku"
-        case subscriptiongraceperiod = "subscriptionGracePeriod"
-        case subscriptiongroups = "subscriptionGroups"
-        case subscriptionstatusurl = "subscriptionStatusUrl"
-        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
-        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
-        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
-    }
-
-    /**
-     * enum for parameter fieldsAppEncryptionDeclarationDocuments
-     */
-    public enum FieldsAppEncryptionDeclarationDocuments_appsAppEncryptionDeclarationsGetToManyRelated: String, CaseIterable {
-        case appencryptiondeclaration = "appEncryptionDeclaration"
-        case assetdeliverystate = "assetDeliveryState"
-        case assettoken = "assetToken"
-        case downloadurl = "downloadUrl"
-        case filename = "fileName"
-        case filesize = "fileSize"
-        case sourcefilechecksum = "sourceFileChecksum"
-        case uploadoperations = "uploadOperations"
-        case uploaded = "uploaded"
     }
 
     /**
      * enum for parameter fieldsBuilds
      */
     public enum FieldsBuilds_appsAppEncryptionDeclarationsGetToManyRelated: String, CaseIterable {
-        case app = "app"
-        case appencryptiondeclaration = "appEncryptionDeclaration"
-        case appstoreversion = "appStoreVersion"
-        case betaappreviewsubmission = "betaAppReviewSubmission"
-        case betabuildlocalizations = "betaBuildLocalizations"
-        case betagroups = "betaGroups"
-        case buildaudiencetype = "buildAudienceType"
-        case buildbetadetail = "buildBetaDetail"
-        case buildbundles = "buildBundles"
-        case computedminmacosversion = "computedMinMacOsVersion"
-        case diagnosticsignatures = "diagnosticSignatures"
+        case version = "version"
+        case uploadeddate = "uploadedDate"
         case expirationdate = "expirationDate"
         case expired = "expired"
-        case iconassettoken = "iconAssetToken"
-        case icons = "icons"
-        case individualtesters = "individualTesters"
-        case lsminimumsystemversion = "lsMinimumSystemVersion"
         case minosversion = "minOsVersion"
-        case perfpowermetrics = "perfPowerMetrics"
-        case prereleaseversion = "preReleaseVersion"
+        case lsminimumsystemversion = "lsMinimumSystemVersion"
+        case computedminmacosversion = "computedMinMacOsVersion"
+        case iconassettoken = "iconAssetToken"
         case processingstate = "processingState"
-        case uploadeddate = "uploadedDate"
+        case buildaudiencetype = "buildAudienceType"
         case usesnonexemptencryption = "usesNonExemptEncryption"
-        case version = "version"
+        case prereleaseversion = "preReleaseVersion"
+        case individualtesters = "individualTesters"
+        case betagroups = "betaGroups"
+        case betabuildlocalizations = "betaBuildLocalizations"
+        case appencryptiondeclaration = "appEncryptionDeclaration"
+        case betaappreviewsubmission = "betaAppReviewSubmission"
+        case app = "app"
+        case buildbetadetail = "buildBetaDetail"
+        case appstoreversion = "appStoreVersion"
+        case icons = "icons"
+        case buildbundles = "buildBundles"
+        case perfpowermetrics = "perfPowerMetrics"
+        case diagnosticsignatures = "diagnosticSignatures"
+    }
+
+    /**
+     * enum for parameter fieldsAppEncryptionDeclarationDocuments
+     */
+    public enum FieldsAppEncryptionDeclarationDocuments_appsAppEncryptionDeclarationsGetToManyRelated: String, CaseIterable {
+        case filesize = "fileSize"
+        case filename = "fileName"
+        case assettoken = "assetToken"
+        case downloadurl = "downloadUrl"
+        case sourcefilechecksum = "sourceFileChecksum"
+        case uploadoperations = "uploadOperations"
+        case assetdeliverystate = "assetDeliveryState"
     }
 
     /**
@@ -866,8 +791,8 @@ open class AppsAPI {
      */
     public enum Include_appsAppEncryptionDeclarationsGetToManyRelated: String, CaseIterable {
         case app = "app"
-        case appencryptiondeclarationdocument = "appEncryptionDeclarationDocument"
         case builds = "builds"
+        case appencryptiondeclarationdocument = "appEncryptionDeclarationDocument"
     }
 
     /**
@@ -877,16 +802,16 @@ open class AppsAPI {
      - parameter filterBuilds: (query) filter by id(s) of related &#39;builds&#39; (optional)
      - parameter fieldsAppEncryptionDeclarations: (query) the fields to include for returned resources of type appEncryptionDeclarations (optional)
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
-     - parameter fieldsAppEncryptionDeclarationDocuments: (query) the fields to include for returned resources of type appEncryptionDeclarationDocuments (optional)
      - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
+     - parameter fieldsAppEncryptionDeclarationDocuments: (query) the fields to include for returned resources of type appEncryptionDeclarationDocuments (optional)
      - parameter limit: (query) maximum resources per page (optional)
-     - parameter limitBuilds: (query) maximum number of related builds returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitBuilds: (query) maximum number of related builds returned (when they are included) (optional)
      - returns: AppEncryptionDeclarationsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appsAppEncryptionDeclarationsGetToManyRelated(id: String, filterPlatform: [FilterPlatform_appsAppEncryptionDeclarationsGetToManyRelated]? = nil, filterBuilds: [String]? = nil, fieldsAppEncryptionDeclarations: [FieldsAppEncryptionDeclarations_appsAppEncryptionDeclarationsGetToManyRelated]? = nil, fieldsApps: [FieldsApps_appsAppEncryptionDeclarationsGetToManyRelated]? = nil, fieldsAppEncryptionDeclarationDocuments: [FieldsAppEncryptionDeclarationDocuments_appsAppEncryptionDeclarationsGetToManyRelated]? = nil, fieldsBuilds: [FieldsBuilds_appsAppEncryptionDeclarationsGetToManyRelated]? = nil, limit: Int? = nil, limitBuilds: Int? = nil, include: [Include_appsAppEncryptionDeclarationsGetToManyRelated]? = nil) async throws -> AppEncryptionDeclarationsResponse {
-        return try await appsAppEncryptionDeclarationsGetToManyRelatedWithRequestBuilder(id: id, filterPlatform: filterPlatform, filterBuilds: filterBuilds, fieldsAppEncryptionDeclarations: fieldsAppEncryptionDeclarations, fieldsApps: fieldsApps, fieldsAppEncryptionDeclarationDocuments: fieldsAppEncryptionDeclarationDocuments, fieldsBuilds: fieldsBuilds, limit: limit, limitBuilds: limitBuilds, include: include).execute().body
+    open class func appsAppEncryptionDeclarationsGetToManyRelated(id: String, filterPlatform: [FilterPlatform_appsAppEncryptionDeclarationsGetToManyRelated]? = nil, filterBuilds: [String]? = nil, fieldsAppEncryptionDeclarations: [FieldsAppEncryptionDeclarations_appsAppEncryptionDeclarationsGetToManyRelated]? = nil, fieldsApps: [FieldsApps_appsAppEncryptionDeclarationsGetToManyRelated]? = nil, fieldsBuilds: [FieldsBuilds_appsAppEncryptionDeclarationsGetToManyRelated]? = nil, fieldsAppEncryptionDeclarationDocuments: [FieldsAppEncryptionDeclarationDocuments_appsAppEncryptionDeclarationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appsAppEncryptionDeclarationsGetToManyRelated]? = nil, limitBuilds: Int? = nil) async throws -> AppEncryptionDeclarationsResponse {
+        return try await appsAppEncryptionDeclarationsGetToManyRelatedWithRequestBuilder(id: id, filterPlatform: filterPlatform, filterBuilds: filterBuilds, fieldsAppEncryptionDeclarations: fieldsAppEncryptionDeclarations, fieldsApps: fieldsApps, fieldsBuilds: fieldsBuilds, fieldsAppEncryptionDeclarationDocuments: fieldsAppEncryptionDeclarationDocuments, limit: limit, include: include, limitBuilds: limitBuilds).execute().body
     }
 
     /**
@@ -908,14 +833,14 @@ open class AppsAPI {
      - parameter filterBuilds: (query) filter by id(s) of related &#39;builds&#39; (optional)
      - parameter fieldsAppEncryptionDeclarations: (query) the fields to include for returned resources of type appEncryptionDeclarations (optional)
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
-     - parameter fieldsAppEncryptionDeclarationDocuments: (query) the fields to include for returned resources of type appEncryptionDeclarationDocuments (optional)
      - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
+     - parameter fieldsAppEncryptionDeclarationDocuments: (query) the fields to include for returned resources of type appEncryptionDeclarationDocuments (optional)
      - parameter limit: (query) maximum resources per page (optional)
-     - parameter limitBuilds: (query) maximum number of related builds returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitBuilds: (query) maximum number of related builds returned (when they are included) (optional)
      - returns: RequestBuilder<AppEncryptionDeclarationsResponse> 
      */
-    open class func appsAppEncryptionDeclarationsGetToManyRelatedWithRequestBuilder(id: String, filterPlatform: [FilterPlatform_appsAppEncryptionDeclarationsGetToManyRelated]? = nil, filterBuilds: [String]? = nil, fieldsAppEncryptionDeclarations: [FieldsAppEncryptionDeclarations_appsAppEncryptionDeclarationsGetToManyRelated]? = nil, fieldsApps: [FieldsApps_appsAppEncryptionDeclarationsGetToManyRelated]? = nil, fieldsAppEncryptionDeclarationDocuments: [FieldsAppEncryptionDeclarationDocuments_appsAppEncryptionDeclarationsGetToManyRelated]? = nil, fieldsBuilds: [FieldsBuilds_appsAppEncryptionDeclarationsGetToManyRelated]? = nil, limit: Int? = nil, limitBuilds: Int? = nil, include: [Include_appsAppEncryptionDeclarationsGetToManyRelated]? = nil) -> RequestBuilder<AppEncryptionDeclarationsResponse> {
+    open class func appsAppEncryptionDeclarationsGetToManyRelatedWithRequestBuilder(id: String, filterPlatform: [FilterPlatform_appsAppEncryptionDeclarationsGetToManyRelated]? = nil, filterBuilds: [String]? = nil, fieldsAppEncryptionDeclarations: [FieldsAppEncryptionDeclarations_appsAppEncryptionDeclarationsGetToManyRelated]? = nil, fieldsApps: [FieldsApps_appsAppEncryptionDeclarationsGetToManyRelated]? = nil, fieldsBuilds: [FieldsBuilds_appsAppEncryptionDeclarationsGetToManyRelated]? = nil, fieldsAppEncryptionDeclarationDocuments: [FieldsAppEncryptionDeclarationDocuments_appsAppEncryptionDeclarationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appsAppEncryptionDeclarationsGetToManyRelated]? = nil, limitBuilds: Int? = nil) -> RequestBuilder<AppEncryptionDeclarationsResponse> {
         var localVariablePath = "/v1/apps/{id}/appEncryptionDeclarations"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -929,11 +854,11 @@ open class AppsAPI {
             "filter[builds]": (wrappedValue: filterBuilds?.encodeToJSON(), isExplode: false),
             "fields[appEncryptionDeclarations]": (wrappedValue: fieldsAppEncryptionDeclarations?.encodeToJSON(), isExplode: false),
             "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
-            "fields[appEncryptionDeclarationDocuments]": (wrappedValue: fieldsAppEncryptionDeclarationDocuments?.encodeToJSON(), isExplode: false),
             "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(), isExplode: false),
+            "fields[appEncryptionDeclarationDocuments]": (wrappedValue: fieldsAppEncryptionDeclarationDocuments?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "limit[builds]": (wrappedValue: limitBuilds?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "limit[builds]": (wrappedValue: limitBuilds?.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -984,34 +909,33 @@ open class AppsAPI {
     }
 
     /**
-     * enum for parameter fieldsAppEventLocalizations
-     */
-    public enum FieldsAppEventLocalizations_appsAppEventsGetToManyRelated: String, CaseIterable {
-        case appevent = "appEvent"
-        case appeventscreenshots = "appEventScreenshots"
-        case appeventvideoclips = "appEventVideoClips"
-        case locale = "locale"
-        case longdescription = "longDescription"
-        case name = "name"
-        case shortdescription = "shortDescription"
-    }
-
-    /**
      * enum for parameter fieldsAppEvents
      */
     public enum FieldsAppEvents_appsAppEventsGetToManyRelated: String, CaseIterable {
-        case app = "app"
-        case archivedterritoryschedules = "archivedTerritorySchedules"
+        case referencename = "referenceName"
         case badge = "badge"
-        case deeplink = "deepLink"
         case eventstate = "eventState"
-        case localizations = "localizations"
+        case deeplink = "deepLink"
+        case purchaserequirement = "purchaseRequirement"
         case primarylocale = "primaryLocale"
         case priority = "priority"
-        case purchaserequirement = "purchaseRequirement"
         case purpose = "purpose"
-        case referencename = "referenceName"
         case territoryschedules = "territorySchedules"
+        case archivedterritoryschedules = "archivedTerritorySchedules"
+        case localizations = "localizations"
+    }
+
+    /**
+     * enum for parameter fieldsAppEventLocalizations
+     */
+    public enum FieldsAppEventLocalizations_appsAppEventsGetToManyRelated: String, CaseIterable {
+        case locale = "locale"
+        case name = "name"
+        case shortdescription = "shortDescription"
+        case longdescription = "longDescription"
+        case appevent = "appEvent"
+        case appeventscreenshots = "appEventScreenshots"
+        case appeventvideoclips = "appEventVideoClips"
     }
 
     /**
@@ -1026,16 +950,16 @@ open class AppsAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter filterEventState: (query) filter by attribute &#39;eventState&#39; (optional)
      - parameter filterId: (query) filter by id(s) (optional)
-     - parameter fieldsAppEventLocalizations: (query) the fields to include for returned resources of type appEventLocalizations (optional)
      - parameter fieldsAppEvents: (query) the fields to include for returned resources of type appEvents (optional)
+     - parameter fieldsAppEventLocalizations: (query) the fields to include for returned resources of type appEventLocalizations (optional)
      - parameter limit: (query) maximum resources per page (optional)
-     - parameter limitLocalizations: (query) maximum number of related localizations returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitLocalizations: (query) maximum number of related localizations returned (when they are included) (optional)
      - returns: AppEventsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appsAppEventsGetToManyRelated(id: String, filterEventState: [FilterEventState_appsAppEventsGetToManyRelated]? = nil, filterId: [String]? = nil, fieldsAppEventLocalizations: [FieldsAppEventLocalizations_appsAppEventsGetToManyRelated]? = nil, fieldsAppEvents: [FieldsAppEvents_appsAppEventsGetToManyRelated]? = nil, limit: Int? = nil, limitLocalizations: Int? = nil, include: [Include_appsAppEventsGetToManyRelated]? = nil) async throws -> AppEventsResponse {
-        return try await appsAppEventsGetToManyRelatedWithRequestBuilder(id: id, filterEventState: filterEventState, filterId: filterId, fieldsAppEventLocalizations: fieldsAppEventLocalizations, fieldsAppEvents: fieldsAppEvents, limit: limit, limitLocalizations: limitLocalizations, include: include).execute().body
+    open class func appsAppEventsGetToManyRelated(id: String, filterEventState: [FilterEventState_appsAppEventsGetToManyRelated]? = nil, filterId: [String]? = nil, fieldsAppEvents: [FieldsAppEvents_appsAppEventsGetToManyRelated]? = nil, fieldsAppEventLocalizations: [FieldsAppEventLocalizations_appsAppEventsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appsAppEventsGetToManyRelated]? = nil, limitLocalizations: Int? = nil) async throws -> AppEventsResponse {
+        return try await appsAppEventsGetToManyRelatedWithRequestBuilder(id: id, filterEventState: filterEventState, filterId: filterId, fieldsAppEvents: fieldsAppEvents, fieldsAppEventLocalizations: fieldsAppEventLocalizations, limit: limit, include: include, limitLocalizations: limitLocalizations).execute().body
     }
 
     /**
@@ -1055,14 +979,14 @@ open class AppsAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter filterEventState: (query) filter by attribute &#39;eventState&#39; (optional)
      - parameter filterId: (query) filter by id(s) (optional)
-     - parameter fieldsAppEventLocalizations: (query) the fields to include for returned resources of type appEventLocalizations (optional)
      - parameter fieldsAppEvents: (query) the fields to include for returned resources of type appEvents (optional)
+     - parameter fieldsAppEventLocalizations: (query) the fields to include for returned resources of type appEventLocalizations (optional)
      - parameter limit: (query) maximum resources per page (optional)
-     - parameter limitLocalizations: (query) maximum number of related localizations returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitLocalizations: (query) maximum number of related localizations returned (when they are included) (optional)
      - returns: RequestBuilder<AppEventsResponse> 
      */
-    open class func appsAppEventsGetToManyRelatedWithRequestBuilder(id: String, filterEventState: [FilterEventState_appsAppEventsGetToManyRelated]? = nil, filterId: [String]? = nil, fieldsAppEventLocalizations: [FieldsAppEventLocalizations_appsAppEventsGetToManyRelated]? = nil, fieldsAppEvents: [FieldsAppEvents_appsAppEventsGetToManyRelated]? = nil, limit: Int? = nil, limitLocalizations: Int? = nil, include: [Include_appsAppEventsGetToManyRelated]? = nil) -> RequestBuilder<AppEventsResponse> {
+    open class func appsAppEventsGetToManyRelatedWithRequestBuilder(id: String, filterEventState: [FilterEventState_appsAppEventsGetToManyRelated]? = nil, filterId: [String]? = nil, fieldsAppEvents: [FieldsAppEvents_appsAppEventsGetToManyRelated]? = nil, fieldsAppEventLocalizations: [FieldsAppEventLocalizations_appsAppEventsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appsAppEventsGetToManyRelated]? = nil, limitLocalizations: Int? = nil) -> RequestBuilder<AppEventsResponse> {
         var localVariablePath = "/v1/apps/{id}/appEvents"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -1074,11 +998,11 @@ open class AppsAPI {
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "filter[eventState]": (wrappedValue: filterEventState?.encodeToJSON(), isExplode: false),
             "filter[id]": (wrappedValue: filterId?.encodeToJSON(), isExplode: false),
-            "fields[appEventLocalizations]": (wrappedValue: fieldsAppEventLocalizations?.encodeToJSON(), isExplode: false),
             "fields[appEvents]": (wrappedValue: fieldsAppEvents?.encodeToJSON(), isExplode: false),
+            "fields[appEventLocalizations]": (wrappedValue: fieldsAppEventLocalizations?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "limit[localizations]": (wrappedValue: limitLocalizations?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "limit[localizations]": (wrappedValue: limitLocalizations?.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -1113,131 +1037,132 @@ open class AppsAPI {
     }
 
     /**
-     * enum for parameter fieldsAgeRatingDeclarations
-     */
-    public enum FieldsAgeRatingDeclarations_appsAppInfosGetToManyRelated: String, CaseIterable {
-        case ageratingoverride = "ageRatingOverride"
-        case alcoholtobaccoordruguseorreferences = "alcoholTobaccoOrDrugUseOrReferences"
-        case contests = "contests"
-        case gambling = "gambling"
-        case gamblingandcontests = "gamblingAndContests"
-        case gamblingsimulated = "gamblingSimulated"
-        case horrororfearthemes = "horrorOrFearThemes"
-        case kidsageband = "kidsAgeBand"
-        case matureorsuggestivethemes = "matureOrSuggestiveThemes"
-        case medicalortreatmentinformation = "medicalOrTreatmentInformation"
-        case profanityorcrudehumor = "profanityOrCrudeHumor"
-        case seventeenplus = "seventeenPlus"
-        case sexualcontentgraphicandnudity = "sexualContentGraphicAndNudity"
-        case sexualcontentornudity = "sexualContentOrNudity"
-        case unrestrictedwebaccess = "unrestrictedWebAccess"
-        case violencecartoonorfantasy = "violenceCartoonOrFantasy"
-        case violencerealistic = "violenceRealistic"
-        case violencerealisticprolongedgraphicorsadistic = "violenceRealisticProlongedGraphicOrSadistic"
-    }
-
-    /**
      * enum for parameter fieldsAppInfos
      */
     public enum FieldsAppInfos_appsAppInfosGetToManyRelated: String, CaseIterable {
-        case ageratingdeclaration = "ageRatingDeclaration"
-        case app = "app"
-        case appinfolocalizations = "appInfoLocalizations"
-        case appstoreagerating = "appStoreAgeRating"
         case appstorestate = "appStoreState"
+        case state = "state"
+        case appstoreagerating = "appStoreAgeRating"
+        case australiaagerating = "australiaAgeRating"
         case brazilagerating = "brazilAgeRating"
         case brazilageratingv2 = "brazilAgeRatingV2"
+        case franceagerating = "franceAgeRating"
+        case koreaagerating = "koreaAgeRating"
         case kidsageband = "kidsAgeBand"
+        case app = "app"
+        case ageratingdeclaration = "ageRatingDeclaration"
+        case appinfolocalizations = "appInfoLocalizations"
         case primarycategory = "primaryCategory"
         case primarysubcategoryone = "primarySubcategoryOne"
         case primarysubcategorytwo = "primarySubcategoryTwo"
         case secondarycategory = "secondaryCategory"
         case secondarysubcategoryone = "secondarySubcategoryOne"
         case secondarysubcategorytwo = "secondarySubcategoryTwo"
-        case state = "state"
-    }
-
-    /**
-     * enum for parameter fieldsAppInfoLocalizations
-     */
-    public enum FieldsAppInfoLocalizations_appsAppInfosGetToManyRelated: String, CaseIterable {
-        case appinfo = "appInfo"
-        case locale = "locale"
-        case name = "name"
-        case privacychoicesurl = "privacyChoicesUrl"
-        case privacypolicytext = "privacyPolicyText"
-        case privacypolicyurl = "privacyPolicyUrl"
-        case subtitle = "subtitle"
-    }
-
-    /**
-     * enum for parameter fieldsAppCategories
-     */
-    public enum FieldsAppCategories_appsAppInfosGetToManyRelated: String, CaseIterable {
-        case parent = "parent"
-        case platforms = "platforms"
-        case subcategories = "subcategories"
     }
 
     /**
      * enum for parameter fieldsApps
      */
     public enum FieldsApps_appsAppInfosGetToManyRelated: String, CaseIterable {
+        case name = "name"
+        case bundleid = "bundleId"
+        case sku = "sku"
+        case primarylocale = "primaryLocale"
+        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
+        case subscriptionstatusurl = "subscriptionStatusUrl"
+        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
+        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
+        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
+        case contentrightsdeclaration = "contentRightsDeclaration"
+        case streamlinedpurchasingenabled = "streamlinedPurchasingEnabled"
+        case appencryptiondeclarations = "appEncryptionDeclarations"
+        case ciproduct = "ciProduct"
+        case betatesters = "betaTesters"
+        case betagroups = "betaGroups"
+        case appstoreversions = "appStoreVersions"
+        case prereleaseversions = "preReleaseVersions"
+        case betaapplocalizations = "betaAppLocalizations"
+        case builds = "builds"
+        case betalicenseagreement = "betaLicenseAgreement"
+        case betaappreviewdetail = "betaAppReviewDetail"
+        case appinfos = "appInfos"
+        case appclips = "appClips"
+        case apppricepoints = "appPricePoints"
+        case enduserlicenseagreement = "endUserLicenseAgreement"
+        case apppriceschedule = "appPriceSchedule"
+        case appavailabilityv2 = "appAvailabilityV2"
+        case inapppurchases = "inAppPurchases"
+        case subscriptiongroups = "subscriptionGroups"
+        case gamecenterenabledversions = "gameCenterEnabledVersions"
+        case perfpowermetrics = "perfPowerMetrics"
+        case appcustomproductpages = "appCustomProductPages"
+        case inapppurchasesv2 = "inAppPurchasesV2"
+        case promotedpurchases = "promotedPurchases"
+        case appevents = "appEvents"
+        case reviewsubmissions = "reviewSubmissions"
+        case subscriptiongraceperiod = "subscriptionGracePeriod"
+        case customerreviews = "customerReviews"
+        case gamecenterdetail = "gameCenterDetail"
+        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
         case alternativedistributionkey = "alternativeDistributionKey"
         case analyticsreportrequests = "analyticsReportRequests"
-        case appavailability = "appAvailability"
-        case appclips = "appClips"
-        case appcustomproductpages = "appCustomProductPages"
-        case appencryptiondeclarations = "appEncryptionDeclarations"
-        case appevents = "appEvents"
-        case appinfos = "appInfos"
-        case apppricepoints = "appPricePoints"
-        case apppriceschedule = "appPriceSchedule"
-        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
-        case appstoreversions = "appStoreVersions"
-        case availableinnewterritories = "availableInNewTerritories"
-        case availableterritories = "availableTerritories"
-        case betaapplocalizations = "betaAppLocalizations"
-        case betaappreviewdetail = "betaAppReviewDetail"
-        case betagroups = "betaGroups"
-        case betalicenseagreement = "betaLicenseAgreement"
-        case betatesters = "betaTesters"
-        case builds = "builds"
-        case bundleid = "bundleId"
-        case ciproduct = "ciProduct"
-        case contentrightsdeclaration = "contentRightsDeclaration"
-        case customerreviews = "customerReviews"
-        case enduserlicenseagreement = "endUserLicenseAgreement"
-        case gamecenterdetail = "gameCenterDetail"
-        case gamecenterenabledversions = "gameCenterEnabledVersions"
-        case inapppurchases = "inAppPurchases"
-        case inapppurchasesv2 = "inAppPurchasesV2"
-        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
         case marketplacesearchdetail = "marketplaceSearchDetail"
+    }
+
+    /**
+     * enum for parameter fieldsAgeRatingDeclarations
+     */
+    public enum FieldsAgeRatingDeclarations_appsAppInfosGetToManyRelated: String, CaseIterable {
+        case alcoholtobaccoordruguseorreferences = "alcoholTobaccoOrDrugUseOrReferences"
+        case contests = "contests"
+        case gamblingandcontests = "gamblingAndContests"
+        case gambling = "gambling"
+        case gamblingsimulated = "gamblingSimulated"
+        case kidsageband = "kidsAgeBand"
+        case lootbox = "lootBox"
+        case medicalortreatmentinformation = "medicalOrTreatmentInformation"
+        case profanityorcrudehumor = "profanityOrCrudeHumor"
+        case sexualcontentgraphicandnudity = "sexualContentGraphicAndNudity"
+        case sexualcontentornudity = "sexualContentOrNudity"
+        case horrororfearthemes = "horrorOrFearThemes"
+        case matureorsuggestivethemes = "matureOrSuggestiveThemes"
+        case unrestrictedwebaccess = "unrestrictedWebAccess"
+        case violencecartoonorfantasy = "violenceCartoonOrFantasy"
+        case violencerealisticprolongedgraphicorsadistic = "violenceRealisticProlongedGraphicOrSadistic"
+        case violencerealistic = "violenceRealistic"
+        case ageratingoverride = "ageRatingOverride"
+        case koreaageratingoverride = "koreaAgeRatingOverride"
+        case seventeenplus = "seventeenPlus"
+    }
+
+    /**
+     * enum for parameter fieldsAppInfoLocalizations
+     */
+    public enum FieldsAppInfoLocalizations_appsAppInfosGetToManyRelated: String, CaseIterable {
+        case locale = "locale"
         case name = "name"
-        case perfpowermetrics = "perfPowerMetrics"
-        case preorder = "preOrder"
-        case prereleaseversions = "preReleaseVersions"
-        case pricepoints = "pricePoints"
-        case prices = "prices"
-        case primarylocale = "primaryLocale"
-        case promotedpurchases = "promotedPurchases"
-        case reviewsubmissions = "reviewSubmissions"
-        case sku = "sku"
-        case subscriptiongraceperiod = "subscriptionGracePeriod"
-        case subscriptiongroups = "subscriptionGroups"
-        case subscriptionstatusurl = "subscriptionStatusUrl"
-        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
-        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
-        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
+        case subtitle = "subtitle"
+        case privacypolicyurl = "privacyPolicyUrl"
+        case privacychoicesurl = "privacyChoicesUrl"
+        case privacypolicytext = "privacyPolicyText"
+        case appinfo = "appInfo"
+    }
+
+    /**
+     * enum for parameter fieldsAppCategories
+     */
+    public enum FieldsAppCategories_appsAppInfosGetToManyRelated: String, CaseIterable {
+        case platforms = "platforms"
+        case subcategories = "subcategories"
+        case parent = "parent"
     }
 
     /**
      * enum for parameter include
      */
     public enum Include_appsAppInfosGetToManyRelated: String, CaseIterable {
-        case ageratingdeclaration = "ageRatingDeclaration"
         case app = "app"
+        case ageratingdeclaration = "ageRatingDeclaration"
         case appinfolocalizations = "appInfoLocalizations"
         case primarycategory = "primaryCategory"
         case primarysubcategoryone = "primarySubcategoryOne"
@@ -1250,19 +1175,19 @@ open class AppsAPI {
     /**
 
      - parameter id: (path) the id of the requested resource 
-     - parameter fieldsAgeRatingDeclarations: (query) the fields to include for returned resources of type ageRatingDeclarations (optional)
      - parameter fieldsAppInfos: (query) the fields to include for returned resources of type appInfos (optional)
+     - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
+     - parameter fieldsAgeRatingDeclarations: (query) the fields to include for returned resources of type ageRatingDeclarations (optional)
      - parameter fieldsAppInfoLocalizations: (query) the fields to include for returned resources of type appInfoLocalizations (optional)
      - parameter fieldsAppCategories: (query) the fields to include for returned resources of type appCategories (optional)
-     - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
      - parameter limit: (query) maximum resources per page (optional)
-     - parameter limitAppInfoLocalizations: (query) maximum number of related appInfoLocalizations returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitAppInfoLocalizations: (query) maximum number of related appInfoLocalizations returned (when they are included) (optional)
      - returns: AppInfosResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appsAppInfosGetToManyRelated(id: String, fieldsAgeRatingDeclarations: [FieldsAgeRatingDeclarations_appsAppInfosGetToManyRelated]? = nil, fieldsAppInfos: [FieldsAppInfos_appsAppInfosGetToManyRelated]? = nil, fieldsAppInfoLocalizations: [FieldsAppInfoLocalizations_appsAppInfosGetToManyRelated]? = nil, fieldsAppCategories: [FieldsAppCategories_appsAppInfosGetToManyRelated]? = nil, fieldsApps: [FieldsApps_appsAppInfosGetToManyRelated]? = nil, limit: Int? = nil, limitAppInfoLocalizations: Int? = nil, include: [Include_appsAppInfosGetToManyRelated]? = nil) async throws -> AppInfosResponse {
-        return try await appsAppInfosGetToManyRelatedWithRequestBuilder(id: id, fieldsAgeRatingDeclarations: fieldsAgeRatingDeclarations, fieldsAppInfos: fieldsAppInfos, fieldsAppInfoLocalizations: fieldsAppInfoLocalizations, fieldsAppCategories: fieldsAppCategories, fieldsApps: fieldsApps, limit: limit, limitAppInfoLocalizations: limitAppInfoLocalizations, include: include).execute().body
+    open class func appsAppInfosGetToManyRelated(id: String, fieldsAppInfos: [FieldsAppInfos_appsAppInfosGetToManyRelated]? = nil, fieldsApps: [FieldsApps_appsAppInfosGetToManyRelated]? = nil, fieldsAgeRatingDeclarations: [FieldsAgeRatingDeclarations_appsAppInfosGetToManyRelated]? = nil, fieldsAppInfoLocalizations: [FieldsAppInfoLocalizations_appsAppInfosGetToManyRelated]? = nil, fieldsAppCategories: [FieldsAppCategories_appsAppInfosGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appsAppInfosGetToManyRelated]? = nil, limitAppInfoLocalizations: Int? = nil) async throws -> AppInfosResponse {
+        return try await appsAppInfosGetToManyRelatedWithRequestBuilder(id: id, fieldsAppInfos: fieldsAppInfos, fieldsApps: fieldsApps, fieldsAgeRatingDeclarations: fieldsAgeRatingDeclarations, fieldsAppInfoLocalizations: fieldsAppInfoLocalizations, fieldsAppCategories: fieldsAppCategories, limit: limit, include: include, limitAppInfoLocalizations: limitAppInfoLocalizations).execute().body
     }
 
     /**
@@ -1280,17 +1205,17 @@ open class AppsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
-     - parameter fieldsAgeRatingDeclarations: (query) the fields to include for returned resources of type ageRatingDeclarations (optional)
      - parameter fieldsAppInfos: (query) the fields to include for returned resources of type appInfos (optional)
+     - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
+     - parameter fieldsAgeRatingDeclarations: (query) the fields to include for returned resources of type ageRatingDeclarations (optional)
      - parameter fieldsAppInfoLocalizations: (query) the fields to include for returned resources of type appInfoLocalizations (optional)
      - parameter fieldsAppCategories: (query) the fields to include for returned resources of type appCategories (optional)
-     - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
      - parameter limit: (query) maximum resources per page (optional)
-     - parameter limitAppInfoLocalizations: (query) maximum number of related appInfoLocalizations returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitAppInfoLocalizations: (query) maximum number of related appInfoLocalizations returned (when they are included) (optional)
      - returns: RequestBuilder<AppInfosResponse> 
      */
-    open class func appsAppInfosGetToManyRelatedWithRequestBuilder(id: String, fieldsAgeRatingDeclarations: [FieldsAgeRatingDeclarations_appsAppInfosGetToManyRelated]? = nil, fieldsAppInfos: [FieldsAppInfos_appsAppInfosGetToManyRelated]? = nil, fieldsAppInfoLocalizations: [FieldsAppInfoLocalizations_appsAppInfosGetToManyRelated]? = nil, fieldsAppCategories: [FieldsAppCategories_appsAppInfosGetToManyRelated]? = nil, fieldsApps: [FieldsApps_appsAppInfosGetToManyRelated]? = nil, limit: Int? = nil, limitAppInfoLocalizations: Int? = nil, include: [Include_appsAppInfosGetToManyRelated]? = nil) -> RequestBuilder<AppInfosResponse> {
+    open class func appsAppInfosGetToManyRelatedWithRequestBuilder(id: String, fieldsAppInfos: [FieldsAppInfos_appsAppInfosGetToManyRelated]? = nil, fieldsApps: [FieldsApps_appsAppInfosGetToManyRelated]? = nil, fieldsAgeRatingDeclarations: [FieldsAgeRatingDeclarations_appsAppInfosGetToManyRelated]? = nil, fieldsAppInfoLocalizations: [FieldsAppInfoLocalizations_appsAppInfosGetToManyRelated]? = nil, fieldsAppCategories: [FieldsAppCategories_appsAppInfosGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appsAppInfosGetToManyRelated]? = nil, limitAppInfoLocalizations: Int? = nil) -> RequestBuilder<AppInfosResponse> {
         var localVariablePath = "/v1/apps/{id}/appInfos"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -1300,14 +1225,14 @@ open class AppsAPI {
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[ageRatingDeclarations]": (wrappedValue: fieldsAgeRatingDeclarations?.encodeToJSON(), isExplode: false),
             "fields[appInfos]": (wrappedValue: fieldsAppInfos?.encodeToJSON(), isExplode: false),
+            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
+            "fields[ageRatingDeclarations]": (wrappedValue: fieldsAgeRatingDeclarations?.encodeToJSON(), isExplode: false),
             "fields[appInfoLocalizations]": (wrappedValue: fieldsAppInfoLocalizations?.encodeToJSON(), isExplode: false),
             "fields[appCategories]": (wrappedValue: fieldsAppCategories?.encodeToJSON(), isExplode: false),
-            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "limit[appInfoLocalizations]": (wrappedValue: limitAppInfoLocalizations?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "limit[appInfoLocalizations]": (wrappedValue: limitAppInfoLocalizations?.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -1345,10 +1270,10 @@ open class AppsAPI {
      * enum for parameter fieldsAppPricePoints
      */
     public enum FieldsAppPricePoints_appsAppPricePointsGetToManyRelated: String, CaseIterable {
-        case app = "app"
         case customerprice = "customerPrice"
-        case equalizations = "equalizations"
         case proceeds = "proceeds"
+        case app = "app"
+        case equalizations = "equalizations"
         case territory = "territory"
     }
 
@@ -1356,53 +1281,49 @@ open class AppsAPI {
      * enum for parameter fieldsApps
      */
     public enum FieldsApps_appsAppPricePointsGetToManyRelated: String, CaseIterable {
+        case name = "name"
+        case bundleid = "bundleId"
+        case sku = "sku"
+        case primarylocale = "primaryLocale"
+        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
+        case subscriptionstatusurl = "subscriptionStatusUrl"
+        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
+        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
+        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
+        case contentrightsdeclaration = "contentRightsDeclaration"
+        case streamlinedpurchasingenabled = "streamlinedPurchasingEnabled"
+        case appencryptiondeclarations = "appEncryptionDeclarations"
+        case ciproduct = "ciProduct"
+        case betatesters = "betaTesters"
+        case betagroups = "betaGroups"
+        case appstoreversions = "appStoreVersions"
+        case prereleaseversions = "preReleaseVersions"
+        case betaapplocalizations = "betaAppLocalizations"
+        case builds = "builds"
+        case betalicenseagreement = "betaLicenseAgreement"
+        case betaappreviewdetail = "betaAppReviewDetail"
+        case appinfos = "appInfos"
+        case appclips = "appClips"
+        case apppricepoints = "appPricePoints"
+        case enduserlicenseagreement = "endUserLicenseAgreement"
+        case apppriceschedule = "appPriceSchedule"
+        case appavailabilityv2 = "appAvailabilityV2"
+        case inapppurchases = "inAppPurchases"
+        case subscriptiongroups = "subscriptionGroups"
+        case gamecenterenabledversions = "gameCenterEnabledVersions"
+        case perfpowermetrics = "perfPowerMetrics"
+        case appcustomproductpages = "appCustomProductPages"
+        case inapppurchasesv2 = "inAppPurchasesV2"
+        case promotedpurchases = "promotedPurchases"
+        case appevents = "appEvents"
+        case reviewsubmissions = "reviewSubmissions"
+        case subscriptiongraceperiod = "subscriptionGracePeriod"
+        case customerreviews = "customerReviews"
+        case gamecenterdetail = "gameCenterDetail"
+        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
         case alternativedistributionkey = "alternativeDistributionKey"
         case analyticsreportrequests = "analyticsReportRequests"
-        case appavailability = "appAvailability"
-        case appclips = "appClips"
-        case appcustomproductpages = "appCustomProductPages"
-        case appencryptiondeclarations = "appEncryptionDeclarations"
-        case appevents = "appEvents"
-        case appinfos = "appInfos"
-        case apppricepoints = "appPricePoints"
-        case apppriceschedule = "appPriceSchedule"
-        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
-        case appstoreversions = "appStoreVersions"
-        case availableinnewterritories = "availableInNewTerritories"
-        case availableterritories = "availableTerritories"
-        case betaapplocalizations = "betaAppLocalizations"
-        case betaappreviewdetail = "betaAppReviewDetail"
-        case betagroups = "betaGroups"
-        case betalicenseagreement = "betaLicenseAgreement"
-        case betatesters = "betaTesters"
-        case builds = "builds"
-        case bundleid = "bundleId"
-        case ciproduct = "ciProduct"
-        case contentrightsdeclaration = "contentRightsDeclaration"
-        case customerreviews = "customerReviews"
-        case enduserlicenseagreement = "endUserLicenseAgreement"
-        case gamecenterdetail = "gameCenterDetail"
-        case gamecenterenabledversions = "gameCenterEnabledVersions"
-        case inapppurchases = "inAppPurchases"
-        case inapppurchasesv2 = "inAppPurchasesV2"
-        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
         case marketplacesearchdetail = "marketplaceSearchDetail"
-        case name = "name"
-        case perfpowermetrics = "perfPowerMetrics"
-        case preorder = "preOrder"
-        case prereleaseversions = "preReleaseVersions"
-        case pricepoints = "pricePoints"
-        case prices = "prices"
-        case primarylocale = "primaryLocale"
-        case promotedpurchases = "promotedPurchases"
-        case reviewsubmissions = "reviewSubmissions"
-        case sku = "sku"
-        case subscriptiongraceperiod = "subscriptionGracePeriod"
-        case subscriptiongroups = "subscriptionGroups"
-        case subscriptionstatusurl = "subscriptionStatusUrl"
-        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
-        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
-        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
     }
 
     /**
@@ -1509,77 +1430,62 @@ open class AppsAPI {
     }
 
     /**
-     * enum for parameter fieldsAppPrices
-     */
-    public enum FieldsAppPrices_appsAppPriceScheduleGetToOneRelated: String, CaseIterable {
-        case apppricepoint = "appPricePoint"
-        case enddate = "endDate"
-        case manual = "manual"
-        case startdate = "startDate"
-        case territory = "territory"
-    }
-
-    /**
      * enum for parameter fieldsAppPriceSchedules
      */
     public enum FieldsAppPriceSchedules_appsAppPriceScheduleGetToOneRelated: String, CaseIterable {
         case app = "app"
-        case automaticprices = "automaticPrices"
         case baseterritory = "baseTerritory"
         case manualprices = "manualPrices"
+        case automaticprices = "automaticPrices"
     }
 
     /**
      * enum for parameter fieldsApps
      */
     public enum FieldsApps_appsAppPriceScheduleGetToOneRelated: String, CaseIterable {
+        case name = "name"
+        case bundleid = "bundleId"
+        case sku = "sku"
+        case primarylocale = "primaryLocale"
+        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
+        case subscriptionstatusurl = "subscriptionStatusUrl"
+        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
+        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
+        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
+        case contentrightsdeclaration = "contentRightsDeclaration"
+        case streamlinedpurchasingenabled = "streamlinedPurchasingEnabled"
+        case appencryptiondeclarations = "appEncryptionDeclarations"
+        case ciproduct = "ciProduct"
+        case betatesters = "betaTesters"
+        case betagroups = "betaGroups"
+        case appstoreversions = "appStoreVersions"
+        case prereleaseversions = "preReleaseVersions"
+        case betaapplocalizations = "betaAppLocalizations"
+        case builds = "builds"
+        case betalicenseagreement = "betaLicenseAgreement"
+        case betaappreviewdetail = "betaAppReviewDetail"
+        case appinfos = "appInfos"
+        case appclips = "appClips"
+        case apppricepoints = "appPricePoints"
+        case enduserlicenseagreement = "endUserLicenseAgreement"
+        case apppriceschedule = "appPriceSchedule"
+        case appavailabilityv2 = "appAvailabilityV2"
+        case inapppurchases = "inAppPurchases"
+        case subscriptiongroups = "subscriptionGroups"
+        case gamecenterenabledversions = "gameCenterEnabledVersions"
+        case perfpowermetrics = "perfPowerMetrics"
+        case appcustomproductpages = "appCustomProductPages"
+        case inapppurchasesv2 = "inAppPurchasesV2"
+        case promotedpurchases = "promotedPurchases"
+        case appevents = "appEvents"
+        case reviewsubmissions = "reviewSubmissions"
+        case subscriptiongraceperiod = "subscriptionGracePeriod"
+        case customerreviews = "customerReviews"
+        case gamecenterdetail = "gameCenterDetail"
+        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
         case alternativedistributionkey = "alternativeDistributionKey"
         case analyticsreportrequests = "analyticsReportRequests"
-        case appavailability = "appAvailability"
-        case appclips = "appClips"
-        case appcustomproductpages = "appCustomProductPages"
-        case appencryptiondeclarations = "appEncryptionDeclarations"
-        case appevents = "appEvents"
-        case appinfos = "appInfos"
-        case apppricepoints = "appPricePoints"
-        case apppriceschedule = "appPriceSchedule"
-        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
-        case appstoreversions = "appStoreVersions"
-        case availableinnewterritories = "availableInNewTerritories"
-        case availableterritories = "availableTerritories"
-        case betaapplocalizations = "betaAppLocalizations"
-        case betaappreviewdetail = "betaAppReviewDetail"
-        case betagroups = "betaGroups"
-        case betalicenseagreement = "betaLicenseAgreement"
-        case betatesters = "betaTesters"
-        case builds = "builds"
-        case bundleid = "bundleId"
-        case ciproduct = "ciProduct"
-        case contentrightsdeclaration = "contentRightsDeclaration"
-        case customerreviews = "customerReviews"
-        case enduserlicenseagreement = "endUserLicenseAgreement"
-        case gamecenterdetail = "gameCenterDetail"
-        case gamecenterenabledversions = "gameCenterEnabledVersions"
-        case inapppurchases = "inAppPurchases"
-        case inapppurchasesv2 = "inAppPurchasesV2"
-        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
         case marketplacesearchdetail = "marketplaceSearchDetail"
-        case name = "name"
-        case perfpowermetrics = "perfPowerMetrics"
-        case preorder = "preOrder"
-        case prereleaseversions = "preReleaseVersions"
-        case pricepoints = "pricePoints"
-        case prices = "prices"
-        case primarylocale = "primaryLocale"
-        case promotedpurchases = "promotedPurchases"
-        case reviewsubmissions = "reviewSubmissions"
-        case sku = "sku"
-        case subscriptiongraceperiod = "subscriptionGracePeriod"
-        case subscriptiongroups = "subscriptionGroups"
-        case subscriptionstatusurl = "subscriptionStatusUrl"
-        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
-        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
-        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
     }
 
     /**
@@ -1590,30 +1496,41 @@ open class AppsAPI {
     }
 
     /**
+     * enum for parameter fieldsAppPrices
+     */
+    public enum FieldsAppPrices_appsAppPriceScheduleGetToOneRelated: String, CaseIterable {
+        case manual = "manual"
+        case startdate = "startDate"
+        case enddate = "endDate"
+        case apppricepoint = "appPricePoint"
+        case territory = "territory"
+    }
+
+    /**
      * enum for parameter include
      */
     public enum Include_appsAppPriceScheduleGetToOneRelated: String, CaseIterable {
         case app = "app"
-        case automaticprices = "automaticPrices"
         case baseterritory = "baseTerritory"
         case manualprices = "manualPrices"
+        case automaticprices = "automaticPrices"
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
-     - parameter fieldsAppPrices: (query) the fields to include for returned resources of type appPrices (optional)
      - parameter fieldsAppPriceSchedules: (query) the fields to include for returned resources of type appPriceSchedules (optional)
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
      - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
+     - parameter fieldsAppPrices: (query) the fields to include for returned resources of type appPrices (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitManualPrices: (query) maximum number of related manualPrices returned (when they are included) (optional)
      - parameter limitAutomaticPrices: (query) maximum number of related automaticPrices returned (when they are included) (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: AppPriceScheduleResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appsAppPriceScheduleGetToOneRelated(id: String, fieldsAppPrices: [FieldsAppPrices_appsAppPriceScheduleGetToOneRelated]? = nil, fieldsAppPriceSchedules: [FieldsAppPriceSchedules_appsAppPriceScheduleGetToOneRelated]? = nil, fieldsApps: [FieldsApps_appsAppPriceScheduleGetToOneRelated]? = nil, fieldsTerritories: [FieldsTerritories_appsAppPriceScheduleGetToOneRelated]? = nil, limitManualPrices: Int? = nil, limitAutomaticPrices: Int? = nil, include: [Include_appsAppPriceScheduleGetToOneRelated]? = nil) async throws -> AppPriceScheduleResponse {
-        return try await appsAppPriceScheduleGetToOneRelatedWithRequestBuilder(id: id, fieldsAppPrices: fieldsAppPrices, fieldsAppPriceSchedules: fieldsAppPriceSchedules, fieldsApps: fieldsApps, fieldsTerritories: fieldsTerritories, limitManualPrices: limitManualPrices, limitAutomaticPrices: limitAutomaticPrices, include: include).execute().body
+    open class func appsAppPriceScheduleGetToOneRelated(id: String, fieldsAppPriceSchedules: [FieldsAppPriceSchedules_appsAppPriceScheduleGetToOneRelated]? = nil, fieldsApps: [FieldsApps_appsAppPriceScheduleGetToOneRelated]? = nil, fieldsTerritories: [FieldsTerritories_appsAppPriceScheduleGetToOneRelated]? = nil, fieldsAppPrices: [FieldsAppPrices_appsAppPriceScheduleGetToOneRelated]? = nil, include: [Include_appsAppPriceScheduleGetToOneRelated]? = nil, limitManualPrices: Int? = nil, limitAutomaticPrices: Int? = nil) async throws -> AppPriceScheduleResponse {
+        return try await appsAppPriceScheduleGetToOneRelatedWithRequestBuilder(id: id, fieldsAppPriceSchedules: fieldsAppPriceSchedules, fieldsApps: fieldsApps, fieldsTerritories: fieldsTerritories, fieldsAppPrices: fieldsAppPrices, include: include, limitManualPrices: limitManualPrices, limitAutomaticPrices: limitAutomaticPrices).execute().body
     }
 
     /**
@@ -1631,16 +1548,16 @@ open class AppsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
-     - parameter fieldsAppPrices: (query) the fields to include for returned resources of type appPrices (optional)
      - parameter fieldsAppPriceSchedules: (query) the fields to include for returned resources of type appPriceSchedules (optional)
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
      - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
+     - parameter fieldsAppPrices: (query) the fields to include for returned resources of type appPrices (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitManualPrices: (query) maximum number of related manualPrices returned (when they are included) (optional)
      - parameter limitAutomaticPrices: (query) maximum number of related automaticPrices returned (when they are included) (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: RequestBuilder<AppPriceScheduleResponse> 
      */
-    open class func appsAppPriceScheduleGetToOneRelatedWithRequestBuilder(id: String, fieldsAppPrices: [FieldsAppPrices_appsAppPriceScheduleGetToOneRelated]? = nil, fieldsAppPriceSchedules: [FieldsAppPriceSchedules_appsAppPriceScheduleGetToOneRelated]? = nil, fieldsApps: [FieldsApps_appsAppPriceScheduleGetToOneRelated]? = nil, fieldsTerritories: [FieldsTerritories_appsAppPriceScheduleGetToOneRelated]? = nil, limitManualPrices: Int? = nil, limitAutomaticPrices: Int? = nil, include: [Include_appsAppPriceScheduleGetToOneRelated]? = nil) -> RequestBuilder<AppPriceScheduleResponse> {
+    open class func appsAppPriceScheduleGetToOneRelatedWithRequestBuilder(id: String, fieldsAppPriceSchedules: [FieldsAppPriceSchedules_appsAppPriceScheduleGetToOneRelated]? = nil, fieldsApps: [FieldsApps_appsAppPriceScheduleGetToOneRelated]? = nil, fieldsTerritories: [FieldsTerritories_appsAppPriceScheduleGetToOneRelated]? = nil, fieldsAppPrices: [FieldsAppPrices_appsAppPriceScheduleGetToOneRelated]? = nil, include: [Include_appsAppPriceScheduleGetToOneRelated]? = nil, limitManualPrices: Int? = nil, limitAutomaticPrices: Int? = nil) -> RequestBuilder<AppPriceScheduleResponse> {
         var localVariablePath = "/v1/apps/{id}/appPriceSchedule"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -1650,13 +1567,13 @@ open class AppsAPI {
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[appPrices]": (wrappedValue: fieldsAppPrices?.encodeToJSON(), isExplode: false),
             "fields[appPriceSchedules]": (wrappedValue: fieldsAppPriceSchedules?.encodeToJSON(), isExplode: false),
             "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
             "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(), isExplode: false),
+            "fields[appPrices]": (wrappedValue: fieldsAppPrices?.encodeToJSON(), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "limit[manualPrices]": (wrappedValue: limitManualPrices?.encodeToJSON(), isExplode: true),
             "limit[automaticPrices]": (wrappedValue: limitAutomaticPrices?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -1709,113 +1626,109 @@ open class AppsAPI {
      * enum for parameter fieldsAppStoreVersionExperiments
      */
     public enum FieldsAppStoreVersionExperiments_appsAppStoreVersionExperimentsV2GetToManyRelated: String, CaseIterable {
-        case app = "app"
-        case appstoreversionexperimenttreatments = "appStoreVersionExperimentTreatments"
-        case controlversions = "controlVersions"
-        case enddate = "endDate"
-        case latestcontrolversion = "latestControlVersion"
         case name = "name"
         case platform = "platform"
+        case trafficproportion = "trafficProportion"
+        case state = "state"
         case reviewrequired = "reviewRequired"
         case startdate = "startDate"
-        case started = "started"
-        case state = "state"
-        case trafficproportion = "trafficProportion"
-    }
-
-    /**
-     * enum for parameter fieldsAppStoreVersionExperimentTreatments
-     */
-    public enum FieldsAppStoreVersionExperimentTreatments_appsAppStoreVersionExperimentsV2GetToManyRelated: String, CaseIterable {
-        case appicon = "appIcon"
-        case appiconname = "appIconName"
-        case appstoreversionexperiment = "appStoreVersionExperiment"
-        case appstoreversionexperimenttreatmentlocalizations = "appStoreVersionExperimentTreatmentLocalizations"
-        case appstoreversionexperimentv2 = "appStoreVersionExperimentV2"
-        case name = "name"
-        case promoteddate = "promotedDate"
-    }
-
-    /**
-     * enum for parameter fieldsAppStoreVersions
-     */
-    public enum FieldsAppStoreVersions_appsAppStoreVersionExperimentsV2GetToManyRelated: String, CaseIterable {
-        case ageratingdeclaration = "ageRatingDeclaration"
-        case alternativedistributionpackage = "alternativeDistributionPackage"
+        case enddate = "endDate"
         case app = "app"
-        case appclipdefaultexperience = "appClipDefaultExperience"
-        case appstorereviewdetail = "appStoreReviewDetail"
-        case appstorestate = "appStoreState"
-        case appstoreversionexperiments = "appStoreVersionExperiments"
-        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
-        case appstoreversionlocalizations = "appStoreVersionLocalizations"
-        case appstoreversionphasedrelease = "appStoreVersionPhasedRelease"
-        case appstoreversionsubmission = "appStoreVersionSubmission"
-        case appversionstate = "appVersionState"
-        case build = "build"
-        case copyright = "copyright"
-        case createddate = "createdDate"
-        case customerreviews = "customerReviews"
-        case downloadable = "downloadable"
-        case earliestreleasedate = "earliestReleaseDate"
-        case platform = "platform"
-        case releasetype = "releaseType"
-        case reviewtype = "reviewType"
-        case routingappcoverage = "routingAppCoverage"
-        case versionstring = "versionString"
+        case latestcontrolversion = "latestControlVersion"
+        case controlversions = "controlVersions"
+        case appstoreversionexperimenttreatments = "appStoreVersionExperimentTreatments"
     }
 
     /**
      * enum for parameter fieldsApps
      */
     public enum FieldsApps_appsAppStoreVersionExperimentsV2GetToManyRelated: String, CaseIterable {
+        case name = "name"
+        case bundleid = "bundleId"
+        case sku = "sku"
+        case primarylocale = "primaryLocale"
+        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
+        case subscriptionstatusurl = "subscriptionStatusUrl"
+        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
+        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
+        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
+        case contentrightsdeclaration = "contentRightsDeclaration"
+        case streamlinedpurchasingenabled = "streamlinedPurchasingEnabled"
+        case appencryptiondeclarations = "appEncryptionDeclarations"
+        case ciproduct = "ciProduct"
+        case betatesters = "betaTesters"
+        case betagroups = "betaGroups"
+        case appstoreversions = "appStoreVersions"
+        case prereleaseversions = "preReleaseVersions"
+        case betaapplocalizations = "betaAppLocalizations"
+        case builds = "builds"
+        case betalicenseagreement = "betaLicenseAgreement"
+        case betaappreviewdetail = "betaAppReviewDetail"
+        case appinfos = "appInfos"
+        case appclips = "appClips"
+        case apppricepoints = "appPricePoints"
+        case enduserlicenseagreement = "endUserLicenseAgreement"
+        case apppriceschedule = "appPriceSchedule"
+        case appavailabilityv2 = "appAvailabilityV2"
+        case inapppurchases = "inAppPurchases"
+        case subscriptiongroups = "subscriptionGroups"
+        case gamecenterenabledversions = "gameCenterEnabledVersions"
+        case perfpowermetrics = "perfPowerMetrics"
+        case appcustomproductpages = "appCustomProductPages"
+        case inapppurchasesv2 = "inAppPurchasesV2"
+        case promotedpurchases = "promotedPurchases"
+        case appevents = "appEvents"
+        case reviewsubmissions = "reviewSubmissions"
+        case subscriptiongraceperiod = "subscriptionGracePeriod"
+        case customerreviews = "customerReviews"
+        case gamecenterdetail = "gameCenterDetail"
+        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
         case alternativedistributionkey = "alternativeDistributionKey"
         case analyticsreportrequests = "analyticsReportRequests"
-        case appavailability = "appAvailability"
-        case appclips = "appClips"
-        case appcustomproductpages = "appCustomProductPages"
-        case appencryptiondeclarations = "appEncryptionDeclarations"
-        case appevents = "appEvents"
-        case appinfos = "appInfos"
-        case apppricepoints = "appPricePoints"
-        case apppriceschedule = "appPriceSchedule"
-        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
-        case appstoreversions = "appStoreVersions"
-        case availableinnewterritories = "availableInNewTerritories"
-        case availableterritories = "availableTerritories"
-        case betaapplocalizations = "betaAppLocalizations"
-        case betaappreviewdetail = "betaAppReviewDetail"
-        case betagroups = "betaGroups"
-        case betalicenseagreement = "betaLicenseAgreement"
-        case betatesters = "betaTesters"
-        case builds = "builds"
-        case bundleid = "bundleId"
-        case ciproduct = "ciProduct"
-        case contentrightsdeclaration = "contentRightsDeclaration"
-        case customerreviews = "customerReviews"
-        case enduserlicenseagreement = "endUserLicenseAgreement"
-        case gamecenterdetail = "gameCenterDetail"
-        case gamecenterenabledversions = "gameCenterEnabledVersions"
-        case inapppurchases = "inAppPurchases"
-        case inapppurchasesv2 = "inAppPurchasesV2"
-        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
         case marketplacesearchdetail = "marketplaceSearchDetail"
+    }
+
+    /**
+     * enum for parameter fieldsAppStoreVersions
+     */
+    public enum FieldsAppStoreVersions_appsAppStoreVersionExperimentsV2GetToManyRelated: String, CaseIterable {
+        case platform = "platform"
+        case versionstring = "versionString"
+        case appstorestate = "appStoreState"
+        case appversionstate = "appVersionState"
+        case copyright = "copyright"
+        case reviewtype = "reviewType"
+        case releasetype = "releaseType"
+        case earliestreleasedate = "earliestReleaseDate"
+        case downloadable = "downloadable"
+        case createddate = "createdDate"
+        case app = "app"
+        case ageratingdeclaration = "ageRatingDeclaration"
+        case appstoreversionlocalizations = "appStoreVersionLocalizations"
+        case build = "build"
+        case appstoreversionphasedrelease = "appStoreVersionPhasedRelease"
+        case gamecenterappversion = "gameCenterAppVersion"
+        case routingappcoverage = "routingAppCoverage"
+        case appstorereviewdetail = "appStoreReviewDetail"
+        case appstoreversionsubmission = "appStoreVersionSubmission"
+        case appclipdefaultexperience = "appClipDefaultExperience"
+        case appstoreversionexperiments = "appStoreVersionExperiments"
+        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
+        case customerreviews = "customerReviews"
+        case alternativedistributionpackage = "alternativeDistributionPackage"
+    }
+
+    /**
+     * enum for parameter fieldsAppStoreVersionExperimentTreatments
+     */
+    public enum FieldsAppStoreVersionExperimentTreatments_appsAppStoreVersionExperimentsV2GetToManyRelated: String, CaseIterable {
         case name = "name"
-        case perfpowermetrics = "perfPowerMetrics"
-        case preorder = "preOrder"
-        case prereleaseversions = "preReleaseVersions"
-        case pricepoints = "pricePoints"
-        case prices = "prices"
-        case primarylocale = "primaryLocale"
-        case promotedpurchases = "promotedPurchases"
-        case reviewsubmissions = "reviewSubmissions"
-        case sku = "sku"
-        case subscriptiongraceperiod = "subscriptionGracePeriod"
-        case subscriptiongroups = "subscriptionGroups"
-        case subscriptionstatusurl = "subscriptionStatusUrl"
-        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
-        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
-        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
+        case appicon = "appIcon"
+        case appiconname = "appIconName"
+        case promoteddate = "promotedDate"
+        case appstoreversionexperiment = "appStoreVersionExperiment"
+        case appstoreversionexperimentv2 = "appStoreVersionExperimentV2"
+        case appstoreversionexperimenttreatmentlocalizations = "appStoreVersionExperimentTreatmentLocalizations"
     }
 
     /**
@@ -1823,9 +1736,9 @@ open class AppsAPI {
      */
     public enum Include_appsAppStoreVersionExperimentsV2GetToManyRelated: String, CaseIterable {
         case app = "app"
-        case appstoreversionexperimenttreatments = "appStoreVersionExperimentTreatments"
-        case controlversions = "controlVersions"
         case latestcontrolversion = "latestControlVersion"
+        case controlversions = "controlVersions"
+        case appstoreversionexperimenttreatments = "appStoreVersionExperimentTreatments"
     }
 
     /**
@@ -1833,18 +1746,18 @@ open class AppsAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter filterState: (query) filter by attribute &#39;state&#39; (optional)
      - parameter fieldsAppStoreVersionExperiments: (query) the fields to include for returned resources of type appStoreVersionExperiments (optional)
-     - parameter fieldsAppStoreVersionExperimentTreatments: (query) the fields to include for returned resources of type appStoreVersionExperimentTreatments (optional)
-     - parameter fieldsAppStoreVersions: (query) the fields to include for returned resources of type appStoreVersions (optional)
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
+     - parameter fieldsAppStoreVersions: (query) the fields to include for returned resources of type appStoreVersions (optional)
+     - parameter fieldsAppStoreVersionExperimentTreatments: (query) the fields to include for returned resources of type appStoreVersionExperimentTreatments (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitControlVersions: (query) maximum number of related controlVersions returned (when they are included) (optional)
      - parameter limitAppStoreVersionExperimentTreatments: (query) maximum number of related appStoreVersionExperimentTreatments returned (when they are included) (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: AppStoreVersionExperimentsV2Response
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appsAppStoreVersionExperimentsV2GetToManyRelated(id: String, filterState: [FilterState_appsAppStoreVersionExperimentsV2GetToManyRelated]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_appsAppStoreVersionExperimentsV2GetToManyRelated]? = nil, fieldsAppStoreVersionExperimentTreatments: [FieldsAppStoreVersionExperimentTreatments_appsAppStoreVersionExperimentsV2GetToManyRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_appsAppStoreVersionExperimentsV2GetToManyRelated]? = nil, fieldsApps: [FieldsApps_appsAppStoreVersionExperimentsV2GetToManyRelated]? = nil, limit: Int? = nil, limitControlVersions: Int? = nil, limitAppStoreVersionExperimentTreatments: Int? = nil, include: [Include_appsAppStoreVersionExperimentsV2GetToManyRelated]? = nil) async throws -> AppStoreVersionExperimentsV2Response {
-        return try await appsAppStoreVersionExperimentsV2GetToManyRelatedWithRequestBuilder(id: id, filterState: filterState, fieldsAppStoreVersionExperiments: fieldsAppStoreVersionExperiments, fieldsAppStoreVersionExperimentTreatments: fieldsAppStoreVersionExperimentTreatments, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsApps: fieldsApps, limit: limit, limitControlVersions: limitControlVersions, limitAppStoreVersionExperimentTreatments: limitAppStoreVersionExperimentTreatments, include: include).execute().body
+    open class func appsAppStoreVersionExperimentsV2GetToManyRelated(id: String, filterState: [FilterState_appsAppStoreVersionExperimentsV2GetToManyRelated]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_appsAppStoreVersionExperimentsV2GetToManyRelated]? = nil, fieldsApps: [FieldsApps_appsAppStoreVersionExperimentsV2GetToManyRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_appsAppStoreVersionExperimentsV2GetToManyRelated]? = nil, fieldsAppStoreVersionExperimentTreatments: [FieldsAppStoreVersionExperimentTreatments_appsAppStoreVersionExperimentsV2GetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appsAppStoreVersionExperimentsV2GetToManyRelated]? = nil, limitControlVersions: Int? = nil, limitAppStoreVersionExperimentTreatments: Int? = nil) async throws -> AppStoreVersionExperimentsV2Response {
+        return try await appsAppStoreVersionExperimentsV2GetToManyRelatedWithRequestBuilder(id: id, filterState: filterState, fieldsAppStoreVersionExperiments: fieldsAppStoreVersionExperiments, fieldsApps: fieldsApps, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsAppStoreVersionExperimentTreatments: fieldsAppStoreVersionExperimentTreatments, limit: limit, include: include, limitControlVersions: limitControlVersions, limitAppStoreVersionExperimentTreatments: limitAppStoreVersionExperimentTreatments).execute().body
     }
 
     /**
@@ -1864,16 +1777,16 @@ open class AppsAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter filterState: (query) filter by attribute &#39;state&#39; (optional)
      - parameter fieldsAppStoreVersionExperiments: (query) the fields to include for returned resources of type appStoreVersionExperiments (optional)
-     - parameter fieldsAppStoreVersionExperimentTreatments: (query) the fields to include for returned resources of type appStoreVersionExperimentTreatments (optional)
-     - parameter fieldsAppStoreVersions: (query) the fields to include for returned resources of type appStoreVersions (optional)
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
+     - parameter fieldsAppStoreVersions: (query) the fields to include for returned resources of type appStoreVersions (optional)
+     - parameter fieldsAppStoreVersionExperimentTreatments: (query) the fields to include for returned resources of type appStoreVersionExperimentTreatments (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitControlVersions: (query) maximum number of related controlVersions returned (when they are included) (optional)
      - parameter limitAppStoreVersionExperimentTreatments: (query) maximum number of related appStoreVersionExperimentTreatments returned (when they are included) (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: RequestBuilder<AppStoreVersionExperimentsV2Response> 
      */
-    open class func appsAppStoreVersionExperimentsV2GetToManyRelatedWithRequestBuilder(id: String, filterState: [FilterState_appsAppStoreVersionExperimentsV2GetToManyRelated]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_appsAppStoreVersionExperimentsV2GetToManyRelated]? = nil, fieldsAppStoreVersionExperimentTreatments: [FieldsAppStoreVersionExperimentTreatments_appsAppStoreVersionExperimentsV2GetToManyRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_appsAppStoreVersionExperimentsV2GetToManyRelated]? = nil, fieldsApps: [FieldsApps_appsAppStoreVersionExperimentsV2GetToManyRelated]? = nil, limit: Int? = nil, limitControlVersions: Int? = nil, limitAppStoreVersionExperimentTreatments: Int? = nil, include: [Include_appsAppStoreVersionExperimentsV2GetToManyRelated]? = nil) -> RequestBuilder<AppStoreVersionExperimentsV2Response> {
+    open class func appsAppStoreVersionExperimentsV2GetToManyRelatedWithRequestBuilder(id: String, filterState: [FilterState_appsAppStoreVersionExperimentsV2GetToManyRelated]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_appsAppStoreVersionExperimentsV2GetToManyRelated]? = nil, fieldsApps: [FieldsApps_appsAppStoreVersionExperimentsV2GetToManyRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_appsAppStoreVersionExperimentsV2GetToManyRelated]? = nil, fieldsAppStoreVersionExperimentTreatments: [FieldsAppStoreVersionExperimentTreatments_appsAppStoreVersionExperimentsV2GetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appsAppStoreVersionExperimentsV2GetToManyRelated]? = nil, limitControlVersions: Int? = nil, limitAppStoreVersionExperimentTreatments: Int? = nil) -> RequestBuilder<AppStoreVersionExperimentsV2Response> {
         var localVariablePath = "/v1/apps/{id}/appStoreVersionExperimentsV2"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -1885,13 +1798,13 @@ open class AppsAPI {
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "filter[state]": (wrappedValue: filterState?.encodeToJSON(), isExplode: false),
             "fields[appStoreVersionExperiments]": (wrappedValue: fieldsAppStoreVersionExperiments?.encodeToJSON(), isExplode: false),
-            "fields[appStoreVersionExperimentTreatments]": (wrappedValue: fieldsAppStoreVersionExperimentTreatments?.encodeToJSON(), isExplode: false),
-            "fields[appStoreVersions]": (wrappedValue: fieldsAppStoreVersions?.encodeToJSON(), isExplode: false),
             "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
+            "fields[appStoreVersions]": (wrappedValue: fieldsAppStoreVersions?.encodeToJSON(), isExplode: false),
+            "fields[appStoreVersionExperimentTreatments]": (wrappedValue: fieldsAppStoreVersionExperimentTreatments?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "limit[controlVersions]": (wrappedValue: limitControlVersions?.encodeToJSON(), isExplode: true),
             "limit[appStoreVersionExperimentTreatments]": (wrappedValue: limitAppStoreVersionExperimentTreatments?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -1923,6 +1836,16 @@ open class AppsAPI {
         let localVariableRequestBuilder: RequestBuilder<AppStoreVersionExperimentsV2Response>.Type = ASCAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+    }
+
+    /**
+     * enum for parameter filterPlatform
+     */
+    public enum FilterPlatform_appsAppStoreVersionsGetToManyRelated: String, CaseIterable {
+        case ios = "IOS"
+        case macOs = "MAC_OS"
+        case tvOs = "TV_OS"
+        case visionOs = "VISION_OS"
     }
 
     /**
@@ -1973,88 +1896,201 @@ open class AppsAPI {
     }
 
     /**
-     * enum for parameter filterPlatform
+     * enum for parameter fieldsAppStoreVersions
      */
-    public enum FilterPlatform_appsAppStoreVersionsGetToManyRelated: String, CaseIterable {
-        case ios = "IOS"
-        case macOs = "MAC_OS"
-        case tvOs = "TV_OS"
-        case visionOs = "VISION_OS"
+    public enum FieldsAppStoreVersions_appsAppStoreVersionsGetToManyRelated: String, CaseIterable {
+        case platform = "platform"
+        case versionstring = "versionString"
+        case appstorestate = "appStoreState"
+        case appversionstate = "appVersionState"
+        case copyright = "copyright"
+        case reviewtype = "reviewType"
+        case releasetype = "releaseType"
+        case earliestreleasedate = "earliestReleaseDate"
+        case downloadable = "downloadable"
+        case createddate = "createdDate"
+        case app = "app"
+        case ageratingdeclaration = "ageRatingDeclaration"
+        case appstoreversionlocalizations = "appStoreVersionLocalizations"
+        case build = "build"
+        case appstoreversionphasedrelease = "appStoreVersionPhasedRelease"
+        case gamecenterappversion = "gameCenterAppVersion"
+        case routingappcoverage = "routingAppCoverage"
+        case appstorereviewdetail = "appStoreReviewDetail"
+        case appstoreversionsubmission = "appStoreVersionSubmission"
+        case appclipdefaultexperience = "appClipDefaultExperience"
+        case appstoreversionexperiments = "appStoreVersionExperiments"
+        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
+        case customerreviews = "customerReviews"
+        case alternativedistributionpackage = "alternativeDistributionPackage"
+    }
+
+    /**
+     * enum for parameter fieldsApps
+     */
+    public enum FieldsApps_appsAppStoreVersionsGetToManyRelated: String, CaseIterable {
+        case name = "name"
+        case bundleid = "bundleId"
+        case sku = "sku"
+        case primarylocale = "primaryLocale"
+        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
+        case subscriptionstatusurl = "subscriptionStatusUrl"
+        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
+        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
+        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
+        case contentrightsdeclaration = "contentRightsDeclaration"
+        case streamlinedpurchasingenabled = "streamlinedPurchasingEnabled"
+        case appencryptiondeclarations = "appEncryptionDeclarations"
+        case ciproduct = "ciProduct"
+        case betatesters = "betaTesters"
+        case betagroups = "betaGroups"
+        case appstoreversions = "appStoreVersions"
+        case prereleaseversions = "preReleaseVersions"
+        case betaapplocalizations = "betaAppLocalizations"
+        case builds = "builds"
+        case betalicenseagreement = "betaLicenseAgreement"
+        case betaappreviewdetail = "betaAppReviewDetail"
+        case appinfos = "appInfos"
+        case appclips = "appClips"
+        case apppricepoints = "appPricePoints"
+        case enduserlicenseagreement = "endUserLicenseAgreement"
+        case apppriceschedule = "appPriceSchedule"
+        case appavailabilityv2 = "appAvailabilityV2"
+        case inapppurchases = "inAppPurchases"
+        case subscriptiongroups = "subscriptionGroups"
+        case gamecenterenabledversions = "gameCenterEnabledVersions"
+        case perfpowermetrics = "perfPowerMetrics"
+        case appcustomproductpages = "appCustomProductPages"
+        case inapppurchasesv2 = "inAppPurchasesV2"
+        case promotedpurchases = "promotedPurchases"
+        case appevents = "appEvents"
+        case reviewsubmissions = "reviewSubmissions"
+        case subscriptiongraceperiod = "subscriptionGracePeriod"
+        case customerreviews = "customerReviews"
+        case gamecenterdetail = "gameCenterDetail"
+        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
+        case alternativedistributionkey = "alternativeDistributionKey"
+        case analyticsreportrequests = "analyticsReportRequests"
+        case marketplacesearchdetail = "marketplaceSearchDetail"
     }
 
     /**
      * enum for parameter fieldsAgeRatingDeclarations
      */
     public enum FieldsAgeRatingDeclarations_appsAppStoreVersionsGetToManyRelated: String, CaseIterable {
-        case ageratingoverride = "ageRatingOverride"
         case alcoholtobaccoordruguseorreferences = "alcoholTobaccoOrDrugUseOrReferences"
         case contests = "contests"
-        case gambling = "gambling"
         case gamblingandcontests = "gamblingAndContests"
+        case gambling = "gambling"
         case gamblingsimulated = "gamblingSimulated"
-        case horrororfearthemes = "horrorOrFearThemes"
         case kidsageband = "kidsAgeBand"
-        case matureorsuggestivethemes = "matureOrSuggestiveThemes"
+        case lootbox = "lootBox"
         case medicalortreatmentinformation = "medicalOrTreatmentInformation"
         case profanityorcrudehumor = "profanityOrCrudeHumor"
-        case seventeenplus = "seventeenPlus"
         case sexualcontentgraphicandnudity = "sexualContentGraphicAndNudity"
         case sexualcontentornudity = "sexualContentOrNudity"
+        case horrororfearthemes = "horrorOrFearThemes"
+        case matureorsuggestivethemes = "matureOrSuggestiveThemes"
         case unrestrictedwebaccess = "unrestrictedWebAccess"
         case violencecartoonorfantasy = "violenceCartoonOrFantasy"
-        case violencerealistic = "violenceRealistic"
         case violencerealisticprolongedgraphicorsadistic = "violenceRealisticProlongedGraphicOrSadistic"
-    }
-
-    /**
-     * enum for parameter fieldsAppStoreReviewDetails
-     */
-    public enum FieldsAppStoreReviewDetails_appsAppStoreVersionsGetToManyRelated: String, CaseIterable {
-        case appstorereviewattachments = "appStoreReviewAttachments"
-        case appstoreversion = "appStoreVersion"
-        case contactemail = "contactEmail"
-        case contactfirstname = "contactFirstName"
-        case contactlastname = "contactLastName"
-        case contactphone = "contactPhone"
-        case demoaccountname = "demoAccountName"
-        case demoaccountpassword = "demoAccountPassword"
-        case demoaccountrequired = "demoAccountRequired"
-        case notes = "notes"
+        case violencerealistic = "violenceRealistic"
+        case ageratingoverride = "ageRatingOverride"
+        case koreaageratingoverride = "koreaAgeRatingOverride"
+        case seventeenplus = "seventeenPlus"
     }
 
     /**
      * enum for parameter fieldsAppStoreVersionLocalizations
      */
     public enum FieldsAppStoreVersionLocalizations_appsAppStoreVersionsGetToManyRelated: String, CaseIterable {
-        case apppreviewsets = "appPreviewSets"
-        case appscreenshotsets = "appScreenshotSets"
-        case appstoreversion = "appStoreVersion"
         case description = "description"
-        case keywords = "keywords"
         case locale = "locale"
+        case keywords = "keywords"
         case marketingurl = "marketingUrl"
         case promotionaltext = "promotionalText"
         case supporturl = "supportUrl"
         case whatsnew = "whatsNew"
+        case appstoreversion = "appStoreVersion"
+        case appscreenshotsets = "appScreenshotSets"
+        case apppreviewsets = "appPreviewSets"
     }
 
     /**
-     * enum for parameter fieldsAppStoreVersionExperiments
+     * enum for parameter fieldsBuilds
      */
-    public enum FieldsAppStoreVersionExperiments_appsAppStoreVersionsGetToManyRelated: String, CaseIterable {
+    public enum FieldsBuilds_appsAppStoreVersionsGetToManyRelated: String, CaseIterable {
+        case version = "version"
+        case uploadeddate = "uploadedDate"
+        case expirationdate = "expirationDate"
+        case expired = "expired"
+        case minosversion = "minOsVersion"
+        case lsminimumsystemversion = "lsMinimumSystemVersion"
+        case computedminmacosversion = "computedMinMacOsVersion"
+        case iconassettoken = "iconAssetToken"
+        case processingstate = "processingState"
+        case buildaudiencetype = "buildAudienceType"
+        case usesnonexemptencryption = "usesNonExemptEncryption"
+        case prereleaseversion = "preReleaseVersion"
+        case individualtesters = "individualTesters"
+        case betagroups = "betaGroups"
+        case betabuildlocalizations = "betaBuildLocalizations"
+        case appencryptiondeclaration = "appEncryptionDeclaration"
+        case betaappreviewsubmission = "betaAppReviewSubmission"
         case app = "app"
+        case buildbetadetail = "buildBetaDetail"
         case appstoreversion = "appStoreVersion"
-        case appstoreversionexperimenttreatments = "appStoreVersionExperimentTreatments"
-        case controlversions = "controlVersions"
-        case enddate = "endDate"
-        case latestcontrolversion = "latestControlVersion"
-        case name = "name"
-        case platform = "platform"
-        case reviewrequired = "reviewRequired"
+        case icons = "icons"
+        case buildbundles = "buildBundles"
+        case perfpowermetrics = "perfPowerMetrics"
+        case diagnosticsignatures = "diagnosticSignatures"
+    }
+
+    /**
+     * enum for parameter fieldsAppStoreVersionPhasedReleases
+     */
+    public enum FieldsAppStoreVersionPhasedReleases_appsAppStoreVersionsGetToManyRelated: String, CaseIterable {
+        case phasedreleasestate = "phasedReleaseState"
         case startdate = "startDate"
-        case started = "started"
-        case state = "state"
-        case trafficproportion = "trafficProportion"
+        case totalpauseduration = "totalPauseDuration"
+        case currentdaynumber = "currentDayNumber"
+    }
+
+    /**
+     * enum for parameter fieldsGameCenterAppVersions
+     */
+    public enum FieldsGameCenterAppVersions_appsAppStoreVersionsGetToManyRelated: String, CaseIterable {
+        case enabled = "enabled"
+        case compatibilityversions = "compatibilityVersions"
+        case appstoreversion = "appStoreVersion"
+    }
+
+    /**
+     * enum for parameter fieldsRoutingAppCoverages
+     */
+    public enum FieldsRoutingAppCoverages_appsAppStoreVersionsGetToManyRelated: String, CaseIterable {
+        case filesize = "fileSize"
+        case filename = "fileName"
+        case sourcefilechecksum = "sourceFileChecksum"
+        case uploadoperations = "uploadOperations"
+        case assetdeliverystate = "assetDeliveryState"
+        case appstoreversion = "appStoreVersion"
+    }
+
+    /**
+     * enum for parameter fieldsAppStoreReviewDetails
+     */
+    public enum FieldsAppStoreReviewDetails_appsAppStoreVersionsGetToManyRelated: String, CaseIterable {
+        case contactfirstname = "contactFirstName"
+        case contactlastname = "contactLastName"
+        case contactphone = "contactPhone"
+        case contactemail = "contactEmail"
+        case demoaccountname = "demoAccountName"
+        case demoaccountpassword = "demoAccountPassword"
+        case demoaccountrequired = "demoAccountRequired"
+        case notes = "notes"
+        case appstoreversion = "appStoreVersion"
+        case appstorereviewattachments = "appStoreReviewAttachments"
     }
 
     /**
@@ -2065,209 +2101,91 @@ open class AppsAPI {
     }
 
     /**
-     * enum for parameter fieldsAlternativeDistributionPackages
-     */
-    public enum FieldsAlternativeDistributionPackages_appsAppStoreVersionsGetToManyRelated: String, CaseIterable {
-        case appstoreversion = "appStoreVersion"
-        case versions = "versions"
-    }
-
-    /**
-     * enum for parameter fieldsAppStoreVersions
-     */
-    public enum FieldsAppStoreVersions_appsAppStoreVersionsGetToManyRelated: String, CaseIterable {
-        case ageratingdeclaration = "ageRatingDeclaration"
-        case alternativedistributionpackage = "alternativeDistributionPackage"
-        case app = "app"
-        case appclipdefaultexperience = "appClipDefaultExperience"
-        case appstorereviewdetail = "appStoreReviewDetail"
-        case appstorestate = "appStoreState"
-        case appstoreversionexperiments = "appStoreVersionExperiments"
-        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
-        case appstoreversionlocalizations = "appStoreVersionLocalizations"
-        case appstoreversionphasedrelease = "appStoreVersionPhasedRelease"
-        case appstoreversionsubmission = "appStoreVersionSubmission"
-        case appversionstate = "appVersionState"
-        case build = "build"
-        case copyright = "copyright"
-        case createddate = "createdDate"
-        case customerreviews = "customerReviews"
-        case downloadable = "downloadable"
-        case earliestreleasedate = "earliestReleaseDate"
-        case platform = "platform"
-        case releasetype = "releaseType"
-        case reviewtype = "reviewType"
-        case routingappcoverage = "routingAppCoverage"
-        case versionstring = "versionString"
-    }
-
-    /**
-     * enum for parameter fieldsApps
-     */
-    public enum FieldsApps_appsAppStoreVersionsGetToManyRelated: String, CaseIterable {
-        case alternativedistributionkey = "alternativeDistributionKey"
-        case analyticsreportrequests = "analyticsReportRequests"
-        case appavailability = "appAvailability"
-        case appclips = "appClips"
-        case appcustomproductpages = "appCustomProductPages"
-        case appencryptiondeclarations = "appEncryptionDeclarations"
-        case appevents = "appEvents"
-        case appinfos = "appInfos"
-        case apppricepoints = "appPricePoints"
-        case apppriceschedule = "appPriceSchedule"
-        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
-        case appstoreversions = "appStoreVersions"
-        case availableinnewterritories = "availableInNewTerritories"
-        case availableterritories = "availableTerritories"
-        case betaapplocalizations = "betaAppLocalizations"
-        case betaappreviewdetail = "betaAppReviewDetail"
-        case betagroups = "betaGroups"
-        case betalicenseagreement = "betaLicenseAgreement"
-        case betatesters = "betaTesters"
-        case builds = "builds"
-        case bundleid = "bundleId"
-        case ciproduct = "ciProduct"
-        case contentrightsdeclaration = "contentRightsDeclaration"
-        case customerreviews = "customerReviews"
-        case enduserlicenseagreement = "endUserLicenseAgreement"
-        case gamecenterdetail = "gameCenterDetail"
-        case gamecenterenabledversions = "gameCenterEnabledVersions"
-        case inapppurchases = "inAppPurchases"
-        case inapppurchasesv2 = "inAppPurchasesV2"
-        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
-        case marketplacesearchdetail = "marketplaceSearchDetail"
-        case name = "name"
-        case perfpowermetrics = "perfPowerMetrics"
-        case preorder = "preOrder"
-        case prereleaseversions = "preReleaseVersions"
-        case pricepoints = "pricePoints"
-        case prices = "prices"
-        case primarylocale = "primaryLocale"
-        case promotedpurchases = "promotedPurchases"
-        case reviewsubmissions = "reviewSubmissions"
-        case sku = "sku"
-        case subscriptiongraceperiod = "subscriptionGracePeriod"
-        case subscriptiongroups = "subscriptionGroups"
-        case subscriptionstatusurl = "subscriptionStatusUrl"
-        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
-        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
-        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
-    }
-
-    /**
-     * enum for parameter fieldsRoutingAppCoverages
-     */
-    public enum FieldsRoutingAppCoverages_appsAppStoreVersionsGetToManyRelated: String, CaseIterable {
-        case appstoreversion = "appStoreVersion"
-        case assetdeliverystate = "assetDeliveryState"
-        case filename = "fileName"
-        case filesize = "fileSize"
-        case sourcefilechecksum = "sourceFileChecksum"
-        case uploadoperations = "uploadOperations"
-        case uploaded = "uploaded"
-    }
-
-    /**
      * enum for parameter fieldsAppClipDefaultExperiences
      */
     public enum FieldsAppClipDefaultExperiences_appsAppStoreVersionsGetToManyRelated: String, CaseIterable {
         case action = "action"
         case appclip = "appClip"
-        case appclipappstorereviewdetail = "appClipAppStoreReviewDetail"
-        case appclipdefaultexperiencelocalizations = "appClipDefaultExperienceLocalizations"
-        case appclipdefaultexperiencetemplate = "appClipDefaultExperienceTemplate"
         case releasewithappstoreversion = "releaseWithAppStoreVersion"
+        case appclipdefaultexperiencelocalizations = "appClipDefaultExperienceLocalizations"
+        case appclipappstorereviewdetail = "appClipAppStoreReviewDetail"
     }
 
     /**
-     * enum for parameter fieldsAppStoreVersionPhasedReleases
+     * enum for parameter fieldsAppStoreVersionExperiments
      */
-    public enum FieldsAppStoreVersionPhasedReleases_appsAppStoreVersionsGetToManyRelated: String, CaseIterable {
-        case appstoreversion = "appStoreVersion"
-        case currentdaynumber = "currentDayNumber"
-        case phasedreleasestate = "phasedReleaseState"
+    public enum FieldsAppStoreVersionExperiments_appsAppStoreVersionsGetToManyRelated: String, CaseIterable {
+        case name = "name"
+        case trafficproportion = "trafficProportion"
+        case state = "state"
+        case reviewrequired = "reviewRequired"
         case startdate = "startDate"
-        case totalpauseduration = "totalPauseDuration"
+        case enddate = "endDate"
+        case appstoreversion = "appStoreVersion"
+        case appstoreversionexperimenttreatments = "appStoreVersionExperimentTreatments"
+        case platform = "platform"
+        case app = "app"
+        case latestcontrolversion = "latestControlVersion"
+        case controlversions = "controlVersions"
     }
 
     /**
-     * enum for parameter fieldsBuilds
+     * enum for parameter fieldsAlternativeDistributionPackages
      */
-    public enum FieldsBuilds_appsAppStoreVersionsGetToManyRelated: String, CaseIterable {
-        case app = "app"
-        case appencryptiondeclaration = "appEncryptionDeclaration"
-        case appstoreversion = "appStoreVersion"
-        case betaappreviewsubmission = "betaAppReviewSubmission"
-        case betabuildlocalizations = "betaBuildLocalizations"
-        case betagroups = "betaGroups"
-        case buildaudiencetype = "buildAudienceType"
-        case buildbetadetail = "buildBetaDetail"
-        case buildbundles = "buildBundles"
-        case computedminmacosversion = "computedMinMacOsVersion"
-        case diagnosticsignatures = "diagnosticSignatures"
-        case expirationdate = "expirationDate"
-        case expired = "expired"
-        case iconassettoken = "iconAssetToken"
-        case icons = "icons"
-        case individualtesters = "individualTesters"
-        case lsminimumsystemversion = "lsMinimumSystemVersion"
-        case minosversion = "minOsVersion"
-        case perfpowermetrics = "perfPowerMetrics"
-        case prereleaseversion = "preReleaseVersion"
-        case processingstate = "processingState"
-        case uploadeddate = "uploadedDate"
-        case usesnonexemptencryption = "usesNonExemptEncryption"
-        case version = "version"
+    public enum FieldsAlternativeDistributionPackages_appsAppStoreVersionsGetToManyRelated: String, CaseIterable {
+        case versions = "versions"
     }
 
     /**
      * enum for parameter include
      */
     public enum Include_appsAppStoreVersionsGetToManyRelated: String, CaseIterable {
-        case ageratingdeclaration = "ageRatingDeclaration"
-        case alternativedistributionpackage = "alternativeDistributionPackage"
         case app = "app"
-        case appclipdefaultexperience = "appClipDefaultExperience"
+        case ageratingdeclaration = "ageRatingDeclaration"
+        case appstoreversionlocalizations = "appStoreVersionLocalizations"
+        case build = "build"
+        case appstoreversionphasedrelease = "appStoreVersionPhasedRelease"
+        case gamecenterappversion = "gameCenterAppVersion"
+        case routingappcoverage = "routingAppCoverage"
         case appstorereviewdetail = "appStoreReviewDetail"
+        case appstoreversionsubmission = "appStoreVersionSubmission"
+        case appclipdefaultexperience = "appClipDefaultExperience"
         case appstoreversionexperiments = "appStoreVersionExperiments"
         case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
-        case appstoreversionlocalizations = "appStoreVersionLocalizations"
-        case appstoreversionphasedrelease = "appStoreVersionPhasedRelease"
-        case appstoreversionsubmission = "appStoreVersionSubmission"
-        case build = "build"
-        case routingappcoverage = "routingAppCoverage"
+        case alternativedistributionpackage = "alternativeDistributionPackage"
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
-     - parameter filterAppStoreState: (query) filter by attribute &#39;appStoreState&#39; (optional)
-     - parameter filterAppVersionState: (query) filter by attribute &#39;appVersionState&#39; (optional)
      - parameter filterPlatform: (query) filter by attribute &#39;platform&#39; (optional)
      - parameter filterVersionString: (query) filter by attribute &#39;versionString&#39; (optional)
+     - parameter filterAppStoreState: (query) filter by attribute &#39;appStoreState&#39; (optional)
+     - parameter filterAppVersionState: (query) filter by attribute &#39;appVersionState&#39; (optional)
      - parameter filterId: (query) filter by id(s) (optional)
-     - parameter fieldsAgeRatingDeclarations: (query) the fields to include for returned resources of type ageRatingDeclarations (optional)
-     - parameter fieldsAppStoreReviewDetails: (query) the fields to include for returned resources of type appStoreReviewDetails (optional)
-     - parameter fieldsAppStoreVersionLocalizations: (query) the fields to include for returned resources of type appStoreVersionLocalizations (optional)
-     - parameter fieldsAppStoreVersionExperiments: (query) the fields to include for returned resources of type appStoreVersionExperiments (optional)
-     - parameter fieldsAppStoreVersionSubmissions: (query) the fields to include for returned resources of type appStoreVersionSubmissions (optional)
-     - parameter fieldsAlternativeDistributionPackages: (query) the fields to include for returned resources of type alternativeDistributionPackages (optional)
      - parameter fieldsAppStoreVersions: (query) the fields to include for returned resources of type appStoreVersions (optional)
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
-     - parameter fieldsRoutingAppCoverages: (query) the fields to include for returned resources of type routingAppCoverages (optional)
-     - parameter fieldsAppClipDefaultExperiences: (query) the fields to include for returned resources of type appClipDefaultExperiences (optional)
-     - parameter fieldsAppStoreVersionPhasedReleases: (query) the fields to include for returned resources of type appStoreVersionPhasedReleases (optional)
+     - parameter fieldsAgeRatingDeclarations: (query) the fields to include for returned resources of type ageRatingDeclarations (optional)
+     - parameter fieldsAppStoreVersionLocalizations: (query) the fields to include for returned resources of type appStoreVersionLocalizations (optional)
      - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
+     - parameter fieldsAppStoreVersionPhasedReleases: (query) the fields to include for returned resources of type appStoreVersionPhasedReleases (optional)
+     - parameter fieldsGameCenterAppVersions: (query) the fields to include for returned resources of type gameCenterAppVersions (optional)
+     - parameter fieldsRoutingAppCoverages: (query) the fields to include for returned resources of type routingAppCoverages (optional)
+     - parameter fieldsAppStoreReviewDetails: (query) the fields to include for returned resources of type appStoreReviewDetails (optional)
+     - parameter fieldsAppStoreVersionSubmissions: (query) the fields to include for returned resources of type appStoreVersionSubmissions (optional)
+     - parameter fieldsAppClipDefaultExperiences: (query) the fields to include for returned resources of type appClipDefaultExperiences (optional)
+     - parameter fieldsAppStoreVersionExperiments: (query) the fields to include for returned resources of type appStoreVersionExperiments (optional)
+     - parameter fieldsAlternativeDistributionPackages: (query) the fields to include for returned resources of type alternativeDistributionPackages (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAppStoreVersionLocalizations: (query) maximum number of related appStoreVersionLocalizations returned (when they are included) (optional)
      - parameter limitAppStoreVersionExperiments: (query) maximum number of related appStoreVersionExperiments returned (when they are included) (optional)
      - parameter limitAppStoreVersionExperimentsV2: (query) maximum number of related appStoreVersionExperimentsV2 returned (when they are included) (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: AppStoreVersionsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appsAppStoreVersionsGetToManyRelated(id: String, filterAppStoreState: [FilterAppStoreState_appsAppStoreVersionsGetToManyRelated]? = nil, filterAppVersionState: [FilterAppVersionState_appsAppStoreVersionsGetToManyRelated]? = nil, filterPlatform: [FilterPlatform_appsAppStoreVersionsGetToManyRelated]? = nil, filterVersionString: [String]? = nil, filterId: [String]? = nil, fieldsAgeRatingDeclarations: [FieldsAgeRatingDeclarations_appsAppStoreVersionsGetToManyRelated]? = nil, fieldsAppStoreReviewDetails: [FieldsAppStoreReviewDetails_appsAppStoreVersionsGetToManyRelated]? = nil, fieldsAppStoreVersionLocalizations: [FieldsAppStoreVersionLocalizations_appsAppStoreVersionsGetToManyRelated]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_appsAppStoreVersionsGetToManyRelated]? = nil, fieldsAppStoreVersionSubmissions: [FieldsAppStoreVersionSubmissions_appsAppStoreVersionsGetToManyRelated]? = nil, fieldsAlternativeDistributionPackages: [FieldsAlternativeDistributionPackages_appsAppStoreVersionsGetToManyRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_appsAppStoreVersionsGetToManyRelated]? = nil, fieldsApps: [FieldsApps_appsAppStoreVersionsGetToManyRelated]? = nil, fieldsRoutingAppCoverages: [FieldsRoutingAppCoverages_appsAppStoreVersionsGetToManyRelated]? = nil, fieldsAppClipDefaultExperiences: [FieldsAppClipDefaultExperiences_appsAppStoreVersionsGetToManyRelated]? = nil, fieldsAppStoreVersionPhasedReleases: [FieldsAppStoreVersionPhasedReleases_appsAppStoreVersionsGetToManyRelated]? = nil, fieldsBuilds: [FieldsBuilds_appsAppStoreVersionsGetToManyRelated]? = nil, limit: Int? = nil, limitAppStoreVersionLocalizations: Int? = nil, limitAppStoreVersionExperiments: Int? = nil, limitAppStoreVersionExperimentsV2: Int? = nil, include: [Include_appsAppStoreVersionsGetToManyRelated]? = nil) async throws -> AppStoreVersionsResponse {
-        return try await appsAppStoreVersionsGetToManyRelatedWithRequestBuilder(id: id, filterAppStoreState: filterAppStoreState, filterAppVersionState: filterAppVersionState, filterPlatform: filterPlatform, filterVersionString: filterVersionString, filterId: filterId, fieldsAgeRatingDeclarations: fieldsAgeRatingDeclarations, fieldsAppStoreReviewDetails: fieldsAppStoreReviewDetails, fieldsAppStoreVersionLocalizations: fieldsAppStoreVersionLocalizations, fieldsAppStoreVersionExperiments: fieldsAppStoreVersionExperiments, fieldsAppStoreVersionSubmissions: fieldsAppStoreVersionSubmissions, fieldsAlternativeDistributionPackages: fieldsAlternativeDistributionPackages, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsApps: fieldsApps, fieldsRoutingAppCoverages: fieldsRoutingAppCoverages, fieldsAppClipDefaultExperiences: fieldsAppClipDefaultExperiences, fieldsAppStoreVersionPhasedReleases: fieldsAppStoreVersionPhasedReleases, fieldsBuilds: fieldsBuilds, limit: limit, limitAppStoreVersionLocalizations: limitAppStoreVersionLocalizations, limitAppStoreVersionExperiments: limitAppStoreVersionExperiments, limitAppStoreVersionExperimentsV2: limitAppStoreVersionExperimentsV2, include: include).execute().body
+    open class func appsAppStoreVersionsGetToManyRelated(id: String, filterPlatform: [FilterPlatform_appsAppStoreVersionsGetToManyRelated]? = nil, filterVersionString: [String]? = nil, filterAppStoreState: [FilterAppStoreState_appsAppStoreVersionsGetToManyRelated]? = nil, filterAppVersionState: [FilterAppVersionState_appsAppStoreVersionsGetToManyRelated]? = nil, filterId: [String]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_appsAppStoreVersionsGetToManyRelated]? = nil, fieldsApps: [FieldsApps_appsAppStoreVersionsGetToManyRelated]? = nil, fieldsAgeRatingDeclarations: [FieldsAgeRatingDeclarations_appsAppStoreVersionsGetToManyRelated]? = nil, fieldsAppStoreVersionLocalizations: [FieldsAppStoreVersionLocalizations_appsAppStoreVersionsGetToManyRelated]? = nil, fieldsBuilds: [FieldsBuilds_appsAppStoreVersionsGetToManyRelated]? = nil, fieldsAppStoreVersionPhasedReleases: [FieldsAppStoreVersionPhasedReleases_appsAppStoreVersionsGetToManyRelated]? = nil, fieldsGameCenterAppVersions: [FieldsGameCenterAppVersions_appsAppStoreVersionsGetToManyRelated]? = nil, fieldsRoutingAppCoverages: [FieldsRoutingAppCoverages_appsAppStoreVersionsGetToManyRelated]? = nil, fieldsAppStoreReviewDetails: [FieldsAppStoreReviewDetails_appsAppStoreVersionsGetToManyRelated]? = nil, fieldsAppStoreVersionSubmissions: [FieldsAppStoreVersionSubmissions_appsAppStoreVersionsGetToManyRelated]? = nil, fieldsAppClipDefaultExperiences: [FieldsAppClipDefaultExperiences_appsAppStoreVersionsGetToManyRelated]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_appsAppStoreVersionsGetToManyRelated]? = nil, fieldsAlternativeDistributionPackages: [FieldsAlternativeDistributionPackages_appsAppStoreVersionsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appsAppStoreVersionsGetToManyRelated]? = nil, limitAppStoreVersionLocalizations: Int? = nil, limitAppStoreVersionExperiments: Int? = nil, limitAppStoreVersionExperimentsV2: Int? = nil) async throws -> AppStoreVersionsResponse {
+        return try await appsAppStoreVersionsGetToManyRelatedWithRequestBuilder(id: id, filterPlatform: filterPlatform, filterVersionString: filterVersionString, filterAppStoreState: filterAppStoreState, filterAppVersionState: filterAppVersionState, filterId: filterId, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsApps: fieldsApps, fieldsAgeRatingDeclarations: fieldsAgeRatingDeclarations, fieldsAppStoreVersionLocalizations: fieldsAppStoreVersionLocalizations, fieldsBuilds: fieldsBuilds, fieldsAppStoreVersionPhasedReleases: fieldsAppStoreVersionPhasedReleases, fieldsGameCenterAppVersions: fieldsGameCenterAppVersions, fieldsRoutingAppCoverages: fieldsRoutingAppCoverages, fieldsAppStoreReviewDetails: fieldsAppStoreReviewDetails, fieldsAppStoreVersionSubmissions: fieldsAppStoreVersionSubmissions, fieldsAppClipDefaultExperiences: fieldsAppClipDefaultExperiences, fieldsAppStoreVersionExperiments: fieldsAppStoreVersionExperiments, fieldsAlternativeDistributionPackages: fieldsAlternativeDistributionPackages, limit: limit, include: include, limitAppStoreVersionLocalizations: limitAppStoreVersionLocalizations, limitAppStoreVersionExperiments: limitAppStoreVersionExperiments, limitAppStoreVersionExperimentsV2: limitAppStoreVersionExperimentsV2).execute().body
     }
 
     /**
@@ -2285,31 +2203,32 @@ open class AppsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
-     - parameter filterAppStoreState: (query) filter by attribute &#39;appStoreState&#39; (optional)
-     - parameter filterAppVersionState: (query) filter by attribute &#39;appVersionState&#39; (optional)
      - parameter filterPlatform: (query) filter by attribute &#39;platform&#39; (optional)
      - parameter filterVersionString: (query) filter by attribute &#39;versionString&#39; (optional)
+     - parameter filterAppStoreState: (query) filter by attribute &#39;appStoreState&#39; (optional)
+     - parameter filterAppVersionState: (query) filter by attribute &#39;appVersionState&#39; (optional)
      - parameter filterId: (query) filter by id(s) (optional)
-     - parameter fieldsAgeRatingDeclarations: (query) the fields to include for returned resources of type ageRatingDeclarations (optional)
-     - parameter fieldsAppStoreReviewDetails: (query) the fields to include for returned resources of type appStoreReviewDetails (optional)
-     - parameter fieldsAppStoreVersionLocalizations: (query) the fields to include for returned resources of type appStoreVersionLocalizations (optional)
-     - parameter fieldsAppStoreVersionExperiments: (query) the fields to include for returned resources of type appStoreVersionExperiments (optional)
-     - parameter fieldsAppStoreVersionSubmissions: (query) the fields to include for returned resources of type appStoreVersionSubmissions (optional)
-     - parameter fieldsAlternativeDistributionPackages: (query) the fields to include for returned resources of type alternativeDistributionPackages (optional)
      - parameter fieldsAppStoreVersions: (query) the fields to include for returned resources of type appStoreVersions (optional)
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
-     - parameter fieldsRoutingAppCoverages: (query) the fields to include for returned resources of type routingAppCoverages (optional)
-     - parameter fieldsAppClipDefaultExperiences: (query) the fields to include for returned resources of type appClipDefaultExperiences (optional)
-     - parameter fieldsAppStoreVersionPhasedReleases: (query) the fields to include for returned resources of type appStoreVersionPhasedReleases (optional)
+     - parameter fieldsAgeRatingDeclarations: (query) the fields to include for returned resources of type ageRatingDeclarations (optional)
+     - parameter fieldsAppStoreVersionLocalizations: (query) the fields to include for returned resources of type appStoreVersionLocalizations (optional)
      - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
+     - parameter fieldsAppStoreVersionPhasedReleases: (query) the fields to include for returned resources of type appStoreVersionPhasedReleases (optional)
+     - parameter fieldsGameCenterAppVersions: (query) the fields to include for returned resources of type gameCenterAppVersions (optional)
+     - parameter fieldsRoutingAppCoverages: (query) the fields to include for returned resources of type routingAppCoverages (optional)
+     - parameter fieldsAppStoreReviewDetails: (query) the fields to include for returned resources of type appStoreReviewDetails (optional)
+     - parameter fieldsAppStoreVersionSubmissions: (query) the fields to include for returned resources of type appStoreVersionSubmissions (optional)
+     - parameter fieldsAppClipDefaultExperiences: (query) the fields to include for returned resources of type appClipDefaultExperiences (optional)
+     - parameter fieldsAppStoreVersionExperiments: (query) the fields to include for returned resources of type appStoreVersionExperiments (optional)
+     - parameter fieldsAlternativeDistributionPackages: (query) the fields to include for returned resources of type alternativeDistributionPackages (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAppStoreVersionLocalizations: (query) maximum number of related appStoreVersionLocalizations returned (when they are included) (optional)
      - parameter limitAppStoreVersionExperiments: (query) maximum number of related appStoreVersionExperiments returned (when they are included) (optional)
      - parameter limitAppStoreVersionExperimentsV2: (query) maximum number of related appStoreVersionExperimentsV2 returned (when they are included) (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: RequestBuilder<AppStoreVersionsResponse> 
      */
-    open class func appsAppStoreVersionsGetToManyRelatedWithRequestBuilder(id: String, filterAppStoreState: [FilterAppStoreState_appsAppStoreVersionsGetToManyRelated]? = nil, filterAppVersionState: [FilterAppVersionState_appsAppStoreVersionsGetToManyRelated]? = nil, filterPlatform: [FilterPlatform_appsAppStoreVersionsGetToManyRelated]? = nil, filterVersionString: [String]? = nil, filterId: [String]? = nil, fieldsAgeRatingDeclarations: [FieldsAgeRatingDeclarations_appsAppStoreVersionsGetToManyRelated]? = nil, fieldsAppStoreReviewDetails: [FieldsAppStoreReviewDetails_appsAppStoreVersionsGetToManyRelated]? = nil, fieldsAppStoreVersionLocalizations: [FieldsAppStoreVersionLocalizations_appsAppStoreVersionsGetToManyRelated]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_appsAppStoreVersionsGetToManyRelated]? = nil, fieldsAppStoreVersionSubmissions: [FieldsAppStoreVersionSubmissions_appsAppStoreVersionsGetToManyRelated]? = nil, fieldsAlternativeDistributionPackages: [FieldsAlternativeDistributionPackages_appsAppStoreVersionsGetToManyRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_appsAppStoreVersionsGetToManyRelated]? = nil, fieldsApps: [FieldsApps_appsAppStoreVersionsGetToManyRelated]? = nil, fieldsRoutingAppCoverages: [FieldsRoutingAppCoverages_appsAppStoreVersionsGetToManyRelated]? = nil, fieldsAppClipDefaultExperiences: [FieldsAppClipDefaultExperiences_appsAppStoreVersionsGetToManyRelated]? = nil, fieldsAppStoreVersionPhasedReleases: [FieldsAppStoreVersionPhasedReleases_appsAppStoreVersionsGetToManyRelated]? = nil, fieldsBuilds: [FieldsBuilds_appsAppStoreVersionsGetToManyRelated]? = nil, limit: Int? = nil, limitAppStoreVersionLocalizations: Int? = nil, limitAppStoreVersionExperiments: Int? = nil, limitAppStoreVersionExperimentsV2: Int? = nil, include: [Include_appsAppStoreVersionsGetToManyRelated]? = nil) -> RequestBuilder<AppStoreVersionsResponse> {
+    open class func appsAppStoreVersionsGetToManyRelatedWithRequestBuilder(id: String, filterPlatform: [FilterPlatform_appsAppStoreVersionsGetToManyRelated]? = nil, filterVersionString: [String]? = nil, filterAppStoreState: [FilterAppStoreState_appsAppStoreVersionsGetToManyRelated]? = nil, filterAppVersionState: [FilterAppVersionState_appsAppStoreVersionsGetToManyRelated]? = nil, filterId: [String]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_appsAppStoreVersionsGetToManyRelated]? = nil, fieldsApps: [FieldsApps_appsAppStoreVersionsGetToManyRelated]? = nil, fieldsAgeRatingDeclarations: [FieldsAgeRatingDeclarations_appsAppStoreVersionsGetToManyRelated]? = nil, fieldsAppStoreVersionLocalizations: [FieldsAppStoreVersionLocalizations_appsAppStoreVersionsGetToManyRelated]? = nil, fieldsBuilds: [FieldsBuilds_appsAppStoreVersionsGetToManyRelated]? = nil, fieldsAppStoreVersionPhasedReleases: [FieldsAppStoreVersionPhasedReleases_appsAppStoreVersionsGetToManyRelated]? = nil, fieldsGameCenterAppVersions: [FieldsGameCenterAppVersions_appsAppStoreVersionsGetToManyRelated]? = nil, fieldsRoutingAppCoverages: [FieldsRoutingAppCoverages_appsAppStoreVersionsGetToManyRelated]? = nil, fieldsAppStoreReviewDetails: [FieldsAppStoreReviewDetails_appsAppStoreVersionsGetToManyRelated]? = nil, fieldsAppStoreVersionSubmissions: [FieldsAppStoreVersionSubmissions_appsAppStoreVersionsGetToManyRelated]? = nil, fieldsAppClipDefaultExperiences: [FieldsAppClipDefaultExperiences_appsAppStoreVersionsGetToManyRelated]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_appsAppStoreVersionsGetToManyRelated]? = nil, fieldsAlternativeDistributionPackages: [FieldsAlternativeDistributionPackages_appsAppStoreVersionsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appsAppStoreVersionsGetToManyRelated]? = nil, limitAppStoreVersionLocalizations: Int? = nil, limitAppStoreVersionExperiments: Int? = nil, limitAppStoreVersionExperimentsV2: Int? = nil) -> RequestBuilder<AppStoreVersionsResponse> {
         var localVariablePath = "/v1/apps/{id}/appStoreVersions"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -2319,28 +2238,29 @@ open class AppsAPI {
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[appStoreState]": (wrappedValue: filterAppStoreState?.encodeToJSON(), isExplode: false),
-            "filter[appVersionState]": (wrappedValue: filterAppVersionState?.encodeToJSON(), isExplode: false),
             "filter[platform]": (wrappedValue: filterPlatform?.encodeToJSON(), isExplode: false),
             "filter[versionString]": (wrappedValue: filterVersionString?.encodeToJSON(), isExplode: false),
+            "filter[appStoreState]": (wrappedValue: filterAppStoreState?.encodeToJSON(), isExplode: false),
+            "filter[appVersionState]": (wrappedValue: filterAppVersionState?.encodeToJSON(), isExplode: false),
             "filter[id]": (wrappedValue: filterId?.encodeToJSON(), isExplode: false),
-            "fields[ageRatingDeclarations]": (wrappedValue: fieldsAgeRatingDeclarations?.encodeToJSON(), isExplode: false),
-            "fields[appStoreReviewDetails]": (wrappedValue: fieldsAppStoreReviewDetails?.encodeToJSON(), isExplode: false),
-            "fields[appStoreVersionLocalizations]": (wrappedValue: fieldsAppStoreVersionLocalizations?.encodeToJSON(), isExplode: false),
-            "fields[appStoreVersionExperiments]": (wrappedValue: fieldsAppStoreVersionExperiments?.encodeToJSON(), isExplode: false),
-            "fields[appStoreVersionSubmissions]": (wrappedValue: fieldsAppStoreVersionSubmissions?.encodeToJSON(), isExplode: false),
-            "fields[alternativeDistributionPackages]": (wrappedValue: fieldsAlternativeDistributionPackages?.encodeToJSON(), isExplode: false),
             "fields[appStoreVersions]": (wrappedValue: fieldsAppStoreVersions?.encodeToJSON(), isExplode: false),
             "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
-            "fields[routingAppCoverages]": (wrappedValue: fieldsRoutingAppCoverages?.encodeToJSON(), isExplode: false),
-            "fields[appClipDefaultExperiences]": (wrappedValue: fieldsAppClipDefaultExperiences?.encodeToJSON(), isExplode: false),
-            "fields[appStoreVersionPhasedReleases]": (wrappedValue: fieldsAppStoreVersionPhasedReleases?.encodeToJSON(), isExplode: false),
+            "fields[ageRatingDeclarations]": (wrappedValue: fieldsAgeRatingDeclarations?.encodeToJSON(), isExplode: false),
+            "fields[appStoreVersionLocalizations]": (wrappedValue: fieldsAppStoreVersionLocalizations?.encodeToJSON(), isExplode: false),
             "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(), isExplode: false),
+            "fields[appStoreVersionPhasedReleases]": (wrappedValue: fieldsAppStoreVersionPhasedReleases?.encodeToJSON(), isExplode: false),
+            "fields[gameCenterAppVersions]": (wrappedValue: fieldsGameCenterAppVersions?.encodeToJSON(), isExplode: false),
+            "fields[routingAppCoverages]": (wrappedValue: fieldsRoutingAppCoverages?.encodeToJSON(), isExplode: false),
+            "fields[appStoreReviewDetails]": (wrappedValue: fieldsAppStoreReviewDetails?.encodeToJSON(), isExplode: false),
+            "fields[appStoreVersionSubmissions]": (wrappedValue: fieldsAppStoreVersionSubmissions?.encodeToJSON(), isExplode: false),
+            "fields[appClipDefaultExperiences]": (wrappedValue: fieldsAppClipDefaultExperiences?.encodeToJSON(), isExplode: false),
+            "fields[appStoreVersionExperiments]": (wrappedValue: fieldsAppStoreVersionExperiments?.encodeToJSON(), isExplode: false),
+            "fields[alternativeDistributionPackages]": (wrappedValue: fieldsAlternativeDistributionPackages?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "limit[appStoreVersionLocalizations]": (wrappedValue: limitAppStoreVersionLocalizations?.encodeToJSON(), isExplode: true),
             "limit[appStoreVersionExperiments]": (wrappedValue: limitAppStoreVersionExperiments?.encodeToJSON(), isExplode: true),
             "limit[appStoreVersionExperimentsV2]": (wrappedValue: limitAppStoreVersionExperimentsV2?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -2375,103 +2295,16 @@ open class AppsAPI {
     }
 
     /**
-     * enum for parameter fieldsTerritories
-     */
-    public enum FieldsTerritories_appsAvailableTerritoriesGetToManyRelated: String, CaseIterable {
-        case currency = "currency"
-    }
-
-    /**
-
-     - parameter id: (path) the id of the requested resource 
-     - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
-     - parameter limit: (query) maximum resources per page (optional)
-     - returns: TerritoriesResponse
-     */
-    @available(*, deprecated, message: "This operation is deprecated.")
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appsAvailableTerritoriesGetToManyRelated(id: String, fieldsTerritories: [FieldsTerritories_appsAvailableTerritoriesGetToManyRelated]? = nil, limit: Int? = nil) async throws -> TerritoriesResponse {
-        return try await appsAvailableTerritoriesGetToManyRelatedWithRequestBuilder(id: id, fieldsTerritories: fieldsTerritories, limit: limit).execute().body
-    }
-
-    /**
-     - parameter urlString: next or first url from App Store Connect API
-     - returns: TerritoriesResponse
-     */
-    @available(*, deprecated, message: "This operation is deprecated.")
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appsAvailableTerritoriesGetToManyRelated(urlString: String) async throws -> TerritoriesResponse {
-        return try await appsAvailableTerritoriesGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
-    }
-
-    /**
-     - GET /v1/apps/{id}/availableTerritories
-     - Bearer Token:
-       - type: http
-       - name: itc-bearer-token
-     - parameter id: (path) the id of the requested resource 
-     - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
-     - parameter limit: (query) maximum resources per page (optional)
-     - returns: RequestBuilder<TerritoriesResponse> 
-     */
-    @available(*, deprecated, message: "This operation is deprecated.")
-    open class func appsAvailableTerritoriesGetToManyRelatedWithRequestBuilder(id: String, fieldsTerritories: [FieldsTerritories_appsAvailableTerritoriesGetToManyRelated]? = nil, limit: Int? = nil) -> RequestBuilder<TerritoriesResponse> {
-        var localVariablePath = "/v1/apps/{id}/availableTerritories"
-        let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
-        let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters: [String: Any]? = nil
-
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-        ])
-
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
-
-        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
-
-        let localVariableRequestBuilder: RequestBuilder<TerritoriesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
-    }
-
-    /**
-     - GET /v1/apps/{id}/availableTerritories
-     - Bearer Token:
-       - type: http
-       - name: itc-bearer-token
-     - parameter urlString: next or first url from App Store Connect API
-     - returns: RequestBuilder<TerritoriesResponse> 
-     */
-    @available(*, deprecated, message: "This operation is deprecated.")
-    open class func appsAvailableTerritoriesGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<TerritoriesResponse> {
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
-
-        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
-
-        let localVariableRequestBuilder: RequestBuilder<TerritoriesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
-    }
-
-    /**
      * enum for parameter fieldsBetaAppLocalizations
      */
     public enum FieldsBetaAppLocalizations_appsBetaAppLocalizationsGetToManyRelated: String, CaseIterable {
-        case app = "app"
-        case description = "description"
         case feedbackemail = "feedbackEmail"
-        case locale = "locale"
         case marketingurl = "marketingUrl"
         case privacypolicyurl = "privacyPolicyUrl"
         case tvosprivacypolicy = "tvOsPrivacyPolicy"
+        case description = "description"
+        case locale = "locale"
+        case app = "app"
     }
 
     /**
@@ -2554,15 +2387,15 @@ open class AppsAPI {
      * enum for parameter fieldsBetaAppReviewDetails
      */
     public enum FieldsBetaAppReviewDetails_appsBetaAppReviewDetailGetToOneRelated: String, CaseIterable {
-        case app = "app"
-        case contactemail = "contactEmail"
         case contactfirstname = "contactFirstName"
         case contactlastname = "contactLastName"
         case contactphone = "contactPhone"
+        case contactemail = "contactEmail"
         case demoaccountname = "demoAccountName"
         case demoaccountpassword = "demoAccountPassword"
         case demoaccountrequired = "demoAccountRequired"
         case notes = "notes"
+        case app = "app"
     }
 
     /**
@@ -2642,20 +2475,20 @@ open class AppsAPI {
      * enum for parameter fieldsBetaGroups
      */
     public enum FieldsBetaGroups_appsBetaGroupsGetToManyRelated: String, CaseIterable {
-        case app = "app"
-        case betatesters = "betaTesters"
-        case builds = "builds"
-        case createddate = "createdDate"
-        case feedbackenabled = "feedbackEnabled"
-        case hasaccesstoallbuilds = "hasAccessToAllBuilds"
-        case iosbuildsavailableforapplesiliconmac = "iosBuildsAvailableForAppleSiliconMac"
-        case isinternalgroup = "isInternalGroup"
         case name = "name"
-        case publiclink = "publicLink"
+        case createddate = "createdDate"
+        case isinternalgroup = "isInternalGroup"
+        case hasaccesstoallbuilds = "hasAccessToAllBuilds"
         case publiclinkenabled = "publicLinkEnabled"
         case publiclinkid = "publicLinkId"
-        case publiclinklimit = "publicLinkLimit"
         case publiclinklimitenabled = "publicLinkLimitEnabled"
+        case publiclinklimit = "publicLinkLimit"
+        case publiclink = "publicLink"
+        case feedbackenabled = "feedbackEnabled"
+        case iosbuildsavailableforapplesiliconmac = "iosBuildsAvailableForAppleSiliconMac"
+        case app = "app"
+        case builds = "builds"
+        case betatesters = "betaTesters"
     }
 
     /**
@@ -2816,13 +2649,6 @@ open class AppsAPI {
     }
 
     /**
-     * enum for parameter groupBy
-     */
-    public enum GroupBy_appsBetaTesterUsagesGetMetrics: String, CaseIterable {
-        case betatesters = "betaTesters"
-    }
-
-    /**
      * enum for parameter period
      */
     public enum Period_appsBetaTesterUsagesGetMetrics: String, CaseIterable {
@@ -2833,17 +2659,24 @@ open class AppsAPI {
     }
 
     /**
+     * enum for parameter groupBy
+     */
+    public enum GroupBy_appsBetaTesterUsagesGetMetrics: String, CaseIterable {
+        case betatesters = "betaTesters"
+    }
+
+    /**
 
      - parameter id: (path) the id of the requested resource 
-     - parameter limit: (query) maximum number of groups to return per page (optional)
+     - parameter period: (query) the duration of the reporting period (optional)
      - parameter groupBy: (query) the dimension by which to group the results (optional)
      - parameter filterBetaTesters: (query) filter by &#39;betaTesters&#39; relationship dimension (optional)
-     - parameter period: (query) the duration of the reporting period (optional)
+     - parameter limit: (query) maximum number of groups to return per page (optional)
      - returns: AppsBetaTesterUsagesV1MetricResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appsBetaTesterUsagesGetMetrics(id: String, limit: Int? = nil, groupBy: [GroupBy_appsBetaTesterUsagesGetMetrics]? = nil, filterBetaTesters: String? = nil, period: Period_appsBetaTesterUsagesGetMetrics? = nil) async throws -> AppsBetaTesterUsagesV1MetricResponse {
-        return try await appsBetaTesterUsagesGetMetricsWithRequestBuilder(id: id, limit: limit, groupBy: groupBy, filterBetaTesters: filterBetaTesters, period: period).execute().body
+    open class func appsBetaTesterUsagesGetMetrics(id: String, period: Period_appsBetaTesterUsagesGetMetrics? = nil, groupBy: [GroupBy_appsBetaTesterUsagesGetMetrics]? = nil, filterBetaTesters: String? = nil, limit: Int? = nil) async throws -> AppsBetaTesterUsagesV1MetricResponse {
+        return try await appsBetaTesterUsagesGetMetricsWithRequestBuilder(id: id, period: period, groupBy: groupBy, filterBetaTesters: filterBetaTesters, limit: limit).execute().body
     }
 
     /**
@@ -2861,13 +2694,13 @@ open class AppsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
-     - parameter limit: (query) maximum number of groups to return per page (optional)
+     - parameter period: (query) the duration of the reporting period (optional)
      - parameter groupBy: (query) the dimension by which to group the results (optional)
      - parameter filterBetaTesters: (query) filter by &#39;betaTesters&#39; relationship dimension (optional)
-     - parameter period: (query) the duration of the reporting period (optional)
+     - parameter limit: (query) maximum number of groups to return per page (optional)
      - returns: RequestBuilder<AppsBetaTesterUsagesV1MetricResponse> 
      */
-    open class func appsBetaTesterUsagesGetMetricsWithRequestBuilder(id: String, limit: Int? = nil, groupBy: [GroupBy_appsBetaTesterUsagesGetMetrics]? = nil, filterBetaTesters: String? = nil, period: Period_appsBetaTesterUsagesGetMetrics? = nil) -> RequestBuilder<AppsBetaTesterUsagesV1MetricResponse> {
+    open class func appsBetaTesterUsagesGetMetricsWithRequestBuilder(id: String, period: Period_appsBetaTesterUsagesGetMetrics? = nil, groupBy: [GroupBy_appsBetaTesterUsagesGetMetrics]? = nil, filterBetaTesters: String? = nil, limit: Int? = nil) -> RequestBuilder<AppsBetaTesterUsagesV1MetricResponse> {
         var localVariablePath = "/v1/apps/{id}/metrics/betaTesterUsages"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -2877,10 +2710,10 @@ open class AppsAPI {
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "period": (wrappedValue: period?.encodeToJSON(), isExplode: false),
             "groupBy": (wrappedValue: groupBy?.encodeToJSON(), isExplode: false),
             "filter[betaTesters]": (wrappedValue: filterBetaTesters?.encodeToJSON(), isExplode: false),
-            "period": (wrappedValue: period?.encodeToJSON(), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -2988,30 +2821,30 @@ open class AppsAPI {
      * enum for parameter fieldsBuilds
      */
     public enum FieldsBuilds_appsBuildsGetToManyRelated: String, CaseIterable {
-        case app = "app"
-        case appencryptiondeclaration = "appEncryptionDeclaration"
-        case appstoreversion = "appStoreVersion"
-        case betaappreviewsubmission = "betaAppReviewSubmission"
-        case betabuildlocalizations = "betaBuildLocalizations"
-        case betagroups = "betaGroups"
-        case buildaudiencetype = "buildAudienceType"
-        case buildbetadetail = "buildBetaDetail"
-        case buildbundles = "buildBundles"
-        case computedminmacosversion = "computedMinMacOsVersion"
-        case diagnosticsignatures = "diagnosticSignatures"
+        case version = "version"
+        case uploadeddate = "uploadedDate"
         case expirationdate = "expirationDate"
         case expired = "expired"
-        case iconassettoken = "iconAssetToken"
-        case icons = "icons"
-        case individualtesters = "individualTesters"
-        case lsminimumsystemversion = "lsMinimumSystemVersion"
         case minosversion = "minOsVersion"
-        case perfpowermetrics = "perfPowerMetrics"
-        case prereleaseversion = "preReleaseVersion"
+        case lsminimumsystemversion = "lsMinimumSystemVersion"
+        case computedminmacosversion = "computedMinMacOsVersion"
+        case iconassettoken = "iconAssetToken"
         case processingstate = "processingState"
-        case uploadeddate = "uploadedDate"
+        case buildaudiencetype = "buildAudienceType"
         case usesnonexemptencryption = "usesNonExemptEncryption"
-        case version = "version"
+        case prereleaseversion = "preReleaseVersion"
+        case individualtesters = "individualTesters"
+        case betagroups = "betaGroups"
+        case betabuildlocalizations = "betaBuildLocalizations"
+        case appencryptiondeclaration = "appEncryptionDeclaration"
+        case betaappreviewsubmission = "betaAppReviewSubmission"
+        case app = "app"
+        case buildbetadetail = "buildBetaDetail"
+        case appstoreversion = "appStoreVersion"
+        case icons = "icons"
+        case buildbundles = "buildBundles"
+        case perfpowermetrics = "perfPowerMetrics"
+        case diagnosticsignatures = "diagnosticSignatures"
     }
 
     /**
@@ -3094,96 +2927,92 @@ open class AppsAPI {
      * enum for parameter fieldsCiProducts
      */
     public enum FieldsCiProducts_appsCiProductGetToOneRelated: String, CaseIterable {
-        case additionalrepositories = "additionalRepositories"
-        case app = "app"
-        case buildruns = "buildRuns"
-        case bundleid = "bundleId"
-        case createddate = "createdDate"
         case name = "name"
-        case primaryrepositories = "primaryRepositories"
+        case createddate = "createdDate"
         case producttype = "productType"
+        case app = "app"
+        case bundleid = "bundleId"
         case workflows = "workflows"
+        case primaryrepositories = "primaryRepositories"
+        case additionalrepositories = "additionalRepositories"
+        case buildruns = "buildRuns"
     }
 
     /**
      * enum for parameter fieldsApps
      */
     public enum FieldsApps_appsCiProductGetToOneRelated: String, CaseIterable {
+        case name = "name"
+        case bundleid = "bundleId"
+        case sku = "sku"
+        case primarylocale = "primaryLocale"
+        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
+        case subscriptionstatusurl = "subscriptionStatusUrl"
+        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
+        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
+        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
+        case contentrightsdeclaration = "contentRightsDeclaration"
+        case streamlinedpurchasingenabled = "streamlinedPurchasingEnabled"
+        case appencryptiondeclarations = "appEncryptionDeclarations"
+        case ciproduct = "ciProduct"
+        case betatesters = "betaTesters"
+        case betagroups = "betaGroups"
+        case appstoreversions = "appStoreVersions"
+        case prereleaseversions = "preReleaseVersions"
+        case betaapplocalizations = "betaAppLocalizations"
+        case builds = "builds"
+        case betalicenseagreement = "betaLicenseAgreement"
+        case betaappreviewdetail = "betaAppReviewDetail"
+        case appinfos = "appInfos"
+        case appclips = "appClips"
+        case apppricepoints = "appPricePoints"
+        case enduserlicenseagreement = "endUserLicenseAgreement"
+        case apppriceschedule = "appPriceSchedule"
+        case appavailabilityv2 = "appAvailabilityV2"
+        case inapppurchases = "inAppPurchases"
+        case subscriptiongroups = "subscriptionGroups"
+        case gamecenterenabledversions = "gameCenterEnabledVersions"
+        case perfpowermetrics = "perfPowerMetrics"
+        case appcustomproductpages = "appCustomProductPages"
+        case inapppurchasesv2 = "inAppPurchasesV2"
+        case promotedpurchases = "promotedPurchases"
+        case appevents = "appEvents"
+        case reviewsubmissions = "reviewSubmissions"
+        case subscriptiongraceperiod = "subscriptionGracePeriod"
+        case customerreviews = "customerReviews"
+        case gamecenterdetail = "gameCenterDetail"
+        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
         case alternativedistributionkey = "alternativeDistributionKey"
         case analyticsreportrequests = "analyticsReportRequests"
-        case appavailability = "appAvailability"
-        case appclips = "appClips"
-        case appcustomproductpages = "appCustomProductPages"
-        case appencryptiondeclarations = "appEncryptionDeclarations"
-        case appevents = "appEvents"
-        case appinfos = "appInfos"
-        case apppricepoints = "appPricePoints"
-        case apppriceschedule = "appPriceSchedule"
-        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
-        case appstoreversions = "appStoreVersions"
-        case availableinnewterritories = "availableInNewTerritories"
-        case availableterritories = "availableTerritories"
-        case betaapplocalizations = "betaAppLocalizations"
-        case betaappreviewdetail = "betaAppReviewDetail"
-        case betagroups = "betaGroups"
-        case betalicenseagreement = "betaLicenseAgreement"
-        case betatesters = "betaTesters"
-        case builds = "builds"
-        case bundleid = "bundleId"
-        case ciproduct = "ciProduct"
-        case contentrightsdeclaration = "contentRightsDeclaration"
-        case customerreviews = "customerReviews"
-        case enduserlicenseagreement = "endUserLicenseAgreement"
-        case gamecenterdetail = "gameCenterDetail"
-        case gamecenterenabledversions = "gameCenterEnabledVersions"
-        case inapppurchases = "inAppPurchases"
-        case inapppurchasesv2 = "inAppPurchasesV2"
-        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
         case marketplacesearchdetail = "marketplaceSearchDetail"
-        case name = "name"
-        case perfpowermetrics = "perfPowerMetrics"
-        case preorder = "preOrder"
-        case prereleaseversions = "preReleaseVersions"
-        case pricepoints = "pricePoints"
-        case prices = "prices"
-        case primarylocale = "primaryLocale"
-        case promotedpurchases = "promotedPurchases"
-        case reviewsubmissions = "reviewSubmissions"
-        case sku = "sku"
-        case subscriptiongraceperiod = "subscriptionGracePeriod"
-        case subscriptiongroups = "subscriptionGroups"
-        case subscriptionstatusurl = "subscriptionStatusUrl"
-        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
-        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
-        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
-    }
-
-    /**
-     * enum for parameter fieldsScmRepositories
-     */
-    public enum FieldsScmRepositories_appsCiProductGetToOneRelated: String, CaseIterable {
-        case defaultbranch = "defaultBranch"
-        case gitreferences = "gitReferences"
-        case httpcloneurl = "httpCloneUrl"
-        case lastaccesseddate = "lastAccessedDate"
-        case ownername = "ownerName"
-        case pullrequests = "pullRequests"
-        case repositoryname = "repositoryName"
-        case scmprovider = "scmProvider"
-        case sshcloneurl = "sshCloneUrl"
     }
 
     /**
      * enum for parameter fieldsBundleIds
      */
     public enum FieldsBundleIds_appsCiProductGetToOneRelated: String, CaseIterable {
-        case app = "app"
-        case bundleidcapabilities = "bundleIdCapabilities"
-        case identifier = "identifier"
         case name = "name"
         case platform = "platform"
-        case profiles = "profiles"
+        case identifier = "identifier"
         case seedid = "seedId"
+        case profiles = "profiles"
+        case bundleidcapabilities = "bundleIdCapabilities"
+        case app = "app"
+    }
+
+    /**
+     * enum for parameter fieldsScmRepositories
+     */
+    public enum FieldsScmRepositories_appsCiProductGetToOneRelated: String, CaseIterable {
+        case lastaccesseddate = "lastAccessedDate"
+        case httpcloneurl = "httpCloneUrl"
+        case sshcloneurl = "sshCloneUrl"
+        case ownername = "ownerName"
+        case repositoryname = "repositoryName"
+        case scmprovider = "scmProvider"
+        case defaultbranch = "defaultBranch"
+        case gitreferences = "gitReferences"
+        case pullrequests = "pullRequests"
     }
 
     /**
@@ -3200,15 +3029,15 @@ open class AppsAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsCiProducts: (query) the fields to include for returned resources of type ciProducts (optional)
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
-     - parameter fieldsScmRepositories: (query) the fields to include for returned resources of type scmRepositories (optional)
      - parameter fieldsBundleIds: (query) the fields to include for returned resources of type bundleIds (optional)
-     - parameter limitPrimaryRepositories: (query) maximum number of related primaryRepositories returned (when they are included) (optional)
+     - parameter fieldsScmRepositories: (query) the fields to include for returned resources of type scmRepositories (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitPrimaryRepositories: (query) maximum number of related primaryRepositories returned (when they are included) (optional)
      - returns: CiProductResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appsCiProductGetToOneRelated(id: String, fieldsCiProducts: [FieldsCiProducts_appsCiProductGetToOneRelated]? = nil, fieldsApps: [FieldsApps_appsCiProductGetToOneRelated]? = nil, fieldsScmRepositories: [FieldsScmRepositories_appsCiProductGetToOneRelated]? = nil, fieldsBundleIds: [FieldsBundleIds_appsCiProductGetToOneRelated]? = nil, limitPrimaryRepositories: Int? = nil, include: [Include_appsCiProductGetToOneRelated]? = nil) async throws -> CiProductResponse {
-        return try await appsCiProductGetToOneRelatedWithRequestBuilder(id: id, fieldsCiProducts: fieldsCiProducts, fieldsApps: fieldsApps, fieldsScmRepositories: fieldsScmRepositories, fieldsBundleIds: fieldsBundleIds, limitPrimaryRepositories: limitPrimaryRepositories, include: include).execute().body
+    open class func appsCiProductGetToOneRelated(id: String, fieldsCiProducts: [FieldsCiProducts_appsCiProductGetToOneRelated]? = nil, fieldsApps: [FieldsApps_appsCiProductGetToOneRelated]? = nil, fieldsBundleIds: [FieldsBundleIds_appsCiProductGetToOneRelated]? = nil, fieldsScmRepositories: [FieldsScmRepositories_appsCiProductGetToOneRelated]? = nil, include: [Include_appsCiProductGetToOneRelated]? = nil, limitPrimaryRepositories: Int? = nil) async throws -> CiProductResponse {
+        return try await appsCiProductGetToOneRelatedWithRequestBuilder(id: id, fieldsCiProducts: fieldsCiProducts, fieldsApps: fieldsApps, fieldsBundleIds: fieldsBundleIds, fieldsScmRepositories: fieldsScmRepositories, include: include, limitPrimaryRepositories: limitPrimaryRepositories).execute().body
     }
 
     /**
@@ -3228,13 +3057,13 @@ open class AppsAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsCiProducts: (query) the fields to include for returned resources of type ciProducts (optional)
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
-     - parameter fieldsScmRepositories: (query) the fields to include for returned resources of type scmRepositories (optional)
      - parameter fieldsBundleIds: (query) the fields to include for returned resources of type bundleIds (optional)
-     - parameter limitPrimaryRepositories: (query) maximum number of related primaryRepositories returned (when they are included) (optional)
+     - parameter fieldsScmRepositories: (query) the fields to include for returned resources of type scmRepositories (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitPrimaryRepositories: (query) maximum number of related primaryRepositories returned (when they are included) (optional)
      - returns: RequestBuilder<CiProductResponse> 
      */
-    open class func appsCiProductGetToOneRelatedWithRequestBuilder(id: String, fieldsCiProducts: [FieldsCiProducts_appsCiProductGetToOneRelated]? = nil, fieldsApps: [FieldsApps_appsCiProductGetToOneRelated]? = nil, fieldsScmRepositories: [FieldsScmRepositories_appsCiProductGetToOneRelated]? = nil, fieldsBundleIds: [FieldsBundleIds_appsCiProductGetToOneRelated]? = nil, limitPrimaryRepositories: Int? = nil, include: [Include_appsCiProductGetToOneRelated]? = nil) -> RequestBuilder<CiProductResponse> {
+    open class func appsCiProductGetToOneRelatedWithRequestBuilder(id: String, fieldsCiProducts: [FieldsCiProducts_appsCiProductGetToOneRelated]? = nil, fieldsApps: [FieldsApps_appsCiProductGetToOneRelated]? = nil, fieldsBundleIds: [FieldsBundleIds_appsCiProductGetToOneRelated]? = nil, fieldsScmRepositories: [FieldsScmRepositories_appsCiProductGetToOneRelated]? = nil, include: [Include_appsCiProductGetToOneRelated]? = nil, limitPrimaryRepositories: Int? = nil) -> RequestBuilder<CiProductResponse> {
         var localVariablePath = "/v1/apps/{id}/ciProduct"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -3246,10 +3075,10 @@ open class AppsAPI {
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[ciProducts]": (wrappedValue: fieldsCiProducts?.encodeToJSON(), isExplode: false),
             "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
-            "fields[scmRepositories]": (wrappedValue: fieldsScmRepositories?.encodeToJSON(), isExplode: false),
             "fields[bundleIds]": (wrappedValue: fieldsBundleIds?.encodeToJSON(), isExplode: false),
-            "limit[primaryRepositories]": (wrappedValue: limitPrimaryRepositories?.encodeToJSON(), isExplode: true),
+            "fields[scmRepositories]": (wrappedValue: fieldsScmRepositories?.encodeToJSON(), isExplode: false),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "limit[primaryRepositories]": (wrappedValue: limitPrimaryRepositories?.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -3525,33 +3354,33 @@ open class AppsAPI {
      * enum for parameter sort
      */
     public enum Sort_appsCustomerReviewsGetToManyRelated: String, CaseIterable {
-        case createddate = "createdDate"
-        case createddate2 = "-createdDate"
         case rating = "rating"
         case rating2 = "-rating"
+        case createddate = "createdDate"
+        case createddate2 = "-createdDate"
     }
 
     /**
      * enum for parameter fieldsCustomerReviews
      */
     public enum FieldsCustomerReviews_appsCustomerReviewsGetToManyRelated: String, CaseIterable {
-        case body = "body"
-        case createddate = "createdDate"
         case rating = "rating"
-        case response = "response"
-        case reviewernickname = "reviewerNickname"
-        case territory = "territory"
         case title = "title"
+        case body = "body"
+        case reviewernickname = "reviewerNickname"
+        case createddate = "createdDate"
+        case territory = "territory"
+        case response = "response"
     }
 
     /**
      * enum for parameter fieldsCustomerReviewResponses
      */
     public enum FieldsCustomerReviewResponses_appsCustomerReviewsGetToManyRelated: String, CaseIterable {
-        case lastmodifieddate = "lastModifiedDate"
         case responsebody = "responseBody"
-        case review = "review"
+        case lastmodifieddate = "lastModifiedDate"
         case state = "state"
+        case review = "review"
     }
 
     /**
@@ -3564,8 +3393,8 @@ open class AppsAPI {
     /**
 
      - parameter id: (path) the id of the requested resource 
-     - parameter filterRating: (query) filter by attribute &#39;rating&#39; (optional)
      - parameter filterTerritory: (query) filter by attribute &#39;territory&#39; (optional)
+     - parameter filterRating: (query) filter by attribute &#39;rating&#39; (optional)
      - parameter existsPublishedResponse: (query) filter by publishedResponse (optional)
      - parameter sort: (query) comma-separated list of sort expressions; resources will be sorted as specified (optional)
      - parameter fieldsCustomerReviews: (query) the fields to include for returned resources of type customerReviews (optional)
@@ -3575,8 +3404,8 @@ open class AppsAPI {
      - returns: CustomerReviewsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appsCustomerReviewsGetToManyRelated(id: String, filterRating: [String]? = nil, filterTerritory: [FilterTerritory_appsCustomerReviewsGetToManyRelated]? = nil, existsPublishedResponse: Bool? = nil, sort: [Sort_appsCustomerReviewsGetToManyRelated]? = nil, fieldsCustomerReviews: [FieldsCustomerReviews_appsCustomerReviewsGetToManyRelated]? = nil, fieldsCustomerReviewResponses: [FieldsCustomerReviewResponses_appsCustomerReviewsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appsCustomerReviewsGetToManyRelated]? = nil) async throws -> CustomerReviewsResponse {
-        return try await appsCustomerReviewsGetToManyRelatedWithRequestBuilder(id: id, filterRating: filterRating, filterTerritory: filterTerritory, existsPublishedResponse: existsPublishedResponse, sort: sort, fieldsCustomerReviews: fieldsCustomerReviews, fieldsCustomerReviewResponses: fieldsCustomerReviewResponses, limit: limit, include: include).execute().body
+    open class func appsCustomerReviewsGetToManyRelated(id: String, filterTerritory: [FilterTerritory_appsCustomerReviewsGetToManyRelated]? = nil, filterRating: [String]? = nil, existsPublishedResponse: Bool? = nil, sort: [Sort_appsCustomerReviewsGetToManyRelated]? = nil, fieldsCustomerReviews: [FieldsCustomerReviews_appsCustomerReviewsGetToManyRelated]? = nil, fieldsCustomerReviewResponses: [FieldsCustomerReviewResponses_appsCustomerReviewsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appsCustomerReviewsGetToManyRelated]? = nil) async throws -> CustomerReviewsResponse {
+        return try await appsCustomerReviewsGetToManyRelatedWithRequestBuilder(id: id, filterTerritory: filterTerritory, filterRating: filterRating, existsPublishedResponse: existsPublishedResponse, sort: sort, fieldsCustomerReviews: fieldsCustomerReviews, fieldsCustomerReviewResponses: fieldsCustomerReviewResponses, limit: limit, include: include).execute().body
     }
 
     /**
@@ -3594,8 +3423,8 @@ open class AppsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
-     - parameter filterRating: (query) filter by attribute &#39;rating&#39; (optional)
      - parameter filterTerritory: (query) filter by attribute &#39;territory&#39; (optional)
+     - parameter filterRating: (query) filter by attribute &#39;rating&#39; (optional)
      - parameter existsPublishedResponse: (query) filter by publishedResponse (optional)
      - parameter sort: (query) comma-separated list of sort expressions; resources will be sorted as specified (optional)
      - parameter fieldsCustomerReviews: (query) the fields to include for returned resources of type customerReviews (optional)
@@ -3604,7 +3433,7 @@ open class AppsAPI {
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: RequestBuilder<CustomerReviewsResponse> 
      */
-    open class func appsCustomerReviewsGetToManyRelatedWithRequestBuilder(id: String, filterRating: [String]? = nil, filterTerritory: [FilterTerritory_appsCustomerReviewsGetToManyRelated]? = nil, existsPublishedResponse: Bool? = nil, sort: [Sort_appsCustomerReviewsGetToManyRelated]? = nil, fieldsCustomerReviews: [FieldsCustomerReviews_appsCustomerReviewsGetToManyRelated]? = nil, fieldsCustomerReviewResponses: [FieldsCustomerReviewResponses_appsCustomerReviewsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appsCustomerReviewsGetToManyRelated]? = nil) -> RequestBuilder<CustomerReviewsResponse> {
+    open class func appsCustomerReviewsGetToManyRelatedWithRequestBuilder(id: String, filterTerritory: [FilterTerritory_appsCustomerReviewsGetToManyRelated]? = nil, filterRating: [String]? = nil, existsPublishedResponse: Bool? = nil, sort: [Sort_appsCustomerReviewsGetToManyRelated]? = nil, fieldsCustomerReviews: [FieldsCustomerReviews_appsCustomerReviewsGetToManyRelated]? = nil, fieldsCustomerReviewResponses: [FieldsCustomerReviewResponses_appsCustomerReviewsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appsCustomerReviewsGetToManyRelated]? = nil) -> RequestBuilder<CustomerReviewsResponse> {
         var localVariablePath = "/v1/apps/{id}/customerReviews"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -3614,8 +3443,8 @@ open class AppsAPI {
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[rating]": (wrappedValue: filterRating?.encodeToJSON(), isExplode: false),
             "filter[territory]": (wrappedValue: filterTerritory?.encodeToJSON(), isExplode: false),
+            "filter[rating]": (wrappedValue: filterRating?.encodeToJSON(), isExplode: false),
             "exists[publishedResponse]": (wrappedValue: existsPublishedResponse?.encodeToJSON(), isExplode: false),
             "sort": (wrappedValue: sort?.encodeToJSON(), isExplode: false),
             "fields[customerReviews]": (wrappedValue: fieldsCustomerReviews?.encodeToJSON(), isExplode: false),
@@ -3738,191 +3567,187 @@ open class AppsAPI {
     }
 
     /**
-     * enum for parameter fieldsGameCenterAchievementReleases
-     */
-    public enum FieldsGameCenterAchievementReleases_appsGameCenterDetailGetToOneRelated: String, CaseIterable {
-        case gamecenterachievement = "gameCenterAchievement"
-        case gamecenterdetail = "gameCenterDetail"
-        case live = "live"
-    }
-
-    /**
-     * enum for parameter fieldsGameCenterLeaderboardSetReleases
-     */
-    public enum FieldsGameCenterLeaderboardSetReleases_appsGameCenterDetailGetToOneRelated: String, CaseIterable {
-        case gamecenterdetail = "gameCenterDetail"
-        case gamecenterleaderboardset = "gameCenterLeaderboardSet"
-        case live = "live"
-    }
-
-    /**
-     * enum for parameter fieldsGameCenterLeaderboardSets
-     */
-    public enum FieldsGameCenterLeaderboardSets_appsGameCenterDetailGetToOneRelated: String, CaseIterable {
-        case gamecenterdetail = "gameCenterDetail"
-        case gamecentergroup = "gameCenterGroup"
-        case gamecenterleaderboards = "gameCenterLeaderboards"
-        case groupleaderboardset = "groupLeaderboardSet"
-        case localizations = "localizations"
-        case referencename = "referenceName"
-        case releases = "releases"
-        case vendoridentifier = "vendorIdentifier"
-    }
-
-    /**
-     * enum for parameter fieldsGameCenterGroups
-     */
-    public enum FieldsGameCenterGroups_appsGameCenterDetailGetToOneRelated: String, CaseIterable {
-        case gamecenterachievements = "gameCenterAchievements"
-        case gamecenterdetails = "gameCenterDetails"
-        case gamecenterleaderboardsets = "gameCenterLeaderboardSets"
-        case gamecenterleaderboards = "gameCenterLeaderboards"
-        case referencename = "referenceName"
-    }
-
-    /**
      * enum for parameter fieldsGameCenterDetails
      */
     public enum FieldsGameCenterDetails_appsGameCenterDetailGetToOneRelated: String, CaseIterable {
-        case achievementreleases = "achievementReleases"
-        case app = "app"
         case arcadeenabled = "arcadeEnabled"
         case challengeenabled = "challengeEnabled"
-        case defaultgroupleaderboard = "defaultGroupLeaderboard"
-        case defaultleaderboard = "defaultLeaderboard"
-        case gamecenterachievements = "gameCenterAchievements"
+        case app = "app"
         case gamecenterappversions = "gameCenterAppVersions"
         case gamecentergroup = "gameCenterGroup"
-        case gamecenterleaderboardsets = "gameCenterLeaderboardSets"
         case gamecenterleaderboards = "gameCenterLeaderboards"
+        case gamecenterleaderboardsets = "gameCenterLeaderboardSets"
+        case gamecenterachievements = "gameCenterAchievements"
+        case defaultleaderboard = "defaultLeaderboard"
+        case defaultgroupleaderboard = "defaultGroupLeaderboard"
+        case achievementreleases = "achievementReleases"
         case leaderboardreleases = "leaderboardReleases"
         case leaderboardsetreleases = "leaderboardSetReleases"
-    }
-
-    /**
-     * enum for parameter fieldsGameCenterLeaderboards
-     */
-    public enum FieldsGameCenterLeaderboards_appsGameCenterDetailGetToOneRelated: String, CaseIterable {
-        case archived = "archived"
-        case defaultformatter = "defaultFormatter"
-        case gamecenterdetail = "gameCenterDetail"
-        case gamecentergroup = "gameCenterGroup"
-        case gamecenterleaderboardsets = "gameCenterLeaderboardSets"
-        case groupleaderboard = "groupLeaderboard"
-        case localizations = "localizations"
-        case recurrenceduration = "recurrenceDuration"
-        case recurrencerule = "recurrenceRule"
-        case recurrencestartdate = "recurrenceStartDate"
-        case referencename = "referenceName"
-        case releases = "releases"
-        case scorerangeend = "scoreRangeEnd"
-        case scorerangestart = "scoreRangeStart"
-        case scoresorttype = "scoreSortType"
-        case submissiontype = "submissionType"
-        case vendoridentifier = "vendorIdentifier"
-    }
-
-    /**
-     * enum for parameter fieldsGameCenterAppVersions
-     */
-    public enum FieldsGameCenterAppVersions_appsGameCenterDetailGetToOneRelated: String, CaseIterable {
-        case appstoreversion = "appStoreVersion"
-        case compatibilityversions = "compatibilityVersions"
-        case enabled = "enabled"
-    }
-
-    /**
-     * enum for parameter fieldsGameCenterAchievements
-     */
-    public enum FieldsGameCenterAchievements_appsGameCenterDetailGetToOneRelated: String, CaseIterable {
-        case archived = "archived"
-        case gamecenterdetail = "gameCenterDetail"
-        case gamecentergroup = "gameCenterGroup"
-        case groupachievement = "groupAchievement"
-        case localizations = "localizations"
-        case points = "points"
-        case referencename = "referenceName"
-        case releases = "releases"
-        case repeatable = "repeatable"
-        case showbeforeearned = "showBeforeEarned"
-        case vendoridentifier = "vendorIdentifier"
     }
 
     /**
      * enum for parameter fieldsApps
      */
     public enum FieldsApps_appsGameCenterDetailGetToOneRelated: String, CaseIterable {
+        case name = "name"
+        case bundleid = "bundleId"
+        case sku = "sku"
+        case primarylocale = "primaryLocale"
+        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
+        case subscriptionstatusurl = "subscriptionStatusUrl"
+        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
+        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
+        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
+        case contentrightsdeclaration = "contentRightsDeclaration"
+        case streamlinedpurchasingenabled = "streamlinedPurchasingEnabled"
+        case appencryptiondeclarations = "appEncryptionDeclarations"
+        case ciproduct = "ciProduct"
+        case betatesters = "betaTesters"
+        case betagroups = "betaGroups"
+        case appstoreversions = "appStoreVersions"
+        case prereleaseversions = "preReleaseVersions"
+        case betaapplocalizations = "betaAppLocalizations"
+        case builds = "builds"
+        case betalicenseagreement = "betaLicenseAgreement"
+        case betaappreviewdetail = "betaAppReviewDetail"
+        case appinfos = "appInfos"
+        case appclips = "appClips"
+        case apppricepoints = "appPricePoints"
+        case enduserlicenseagreement = "endUserLicenseAgreement"
+        case apppriceschedule = "appPriceSchedule"
+        case appavailabilityv2 = "appAvailabilityV2"
+        case inapppurchases = "inAppPurchases"
+        case subscriptiongroups = "subscriptionGroups"
+        case gamecenterenabledversions = "gameCenterEnabledVersions"
+        case perfpowermetrics = "perfPowerMetrics"
+        case appcustomproductpages = "appCustomProductPages"
+        case inapppurchasesv2 = "inAppPurchasesV2"
+        case promotedpurchases = "promotedPurchases"
+        case appevents = "appEvents"
+        case reviewsubmissions = "reviewSubmissions"
+        case subscriptiongraceperiod = "subscriptionGracePeriod"
+        case customerreviews = "customerReviews"
+        case gamecenterdetail = "gameCenterDetail"
+        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
         case alternativedistributionkey = "alternativeDistributionKey"
         case analyticsreportrequests = "analyticsReportRequests"
-        case appavailability = "appAvailability"
-        case appclips = "appClips"
-        case appcustomproductpages = "appCustomProductPages"
-        case appencryptiondeclarations = "appEncryptionDeclarations"
-        case appevents = "appEvents"
-        case appinfos = "appInfos"
-        case apppricepoints = "appPricePoints"
-        case apppriceschedule = "appPriceSchedule"
-        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
-        case appstoreversions = "appStoreVersions"
-        case availableinnewterritories = "availableInNewTerritories"
-        case availableterritories = "availableTerritories"
-        case betaapplocalizations = "betaAppLocalizations"
-        case betaappreviewdetail = "betaAppReviewDetail"
-        case betagroups = "betaGroups"
-        case betalicenseagreement = "betaLicenseAgreement"
-        case betatesters = "betaTesters"
-        case builds = "builds"
-        case bundleid = "bundleId"
-        case ciproduct = "ciProduct"
-        case contentrightsdeclaration = "contentRightsDeclaration"
-        case customerreviews = "customerReviews"
-        case enduserlicenseagreement = "endUserLicenseAgreement"
-        case gamecenterdetail = "gameCenterDetail"
-        case gamecenterenabledversions = "gameCenterEnabledVersions"
-        case inapppurchases = "inAppPurchases"
-        case inapppurchasesv2 = "inAppPurchasesV2"
-        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
         case marketplacesearchdetail = "marketplaceSearchDetail"
-        case name = "name"
-        case perfpowermetrics = "perfPowerMetrics"
-        case preorder = "preOrder"
-        case prereleaseversions = "preReleaseVersions"
-        case pricepoints = "pricePoints"
-        case prices = "prices"
-        case primarylocale = "primaryLocale"
-        case promotedpurchases = "promotedPurchases"
-        case reviewsubmissions = "reviewSubmissions"
-        case sku = "sku"
-        case subscriptiongraceperiod = "subscriptionGracePeriod"
-        case subscriptiongroups = "subscriptionGroups"
-        case subscriptionstatusurl = "subscriptionStatusUrl"
-        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
-        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
-        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
+    }
+
+    /**
+     * enum for parameter fieldsGameCenterAppVersions
+     */
+    public enum FieldsGameCenterAppVersions_appsGameCenterDetailGetToOneRelated: String, CaseIterable {
+        case enabled = "enabled"
+        case compatibilityversions = "compatibilityVersions"
+        case appstoreversion = "appStoreVersion"
+    }
+
+    /**
+     * enum for parameter fieldsGameCenterGroups
+     */
+    public enum FieldsGameCenterGroups_appsGameCenterDetailGetToOneRelated: String, CaseIterable {
+        case referencename = "referenceName"
+        case gamecenterdetails = "gameCenterDetails"
+        case gamecenterleaderboards = "gameCenterLeaderboards"
+        case gamecenterleaderboardsets = "gameCenterLeaderboardSets"
+        case gamecenterachievements = "gameCenterAchievements"
+    }
+
+    /**
+     * enum for parameter fieldsGameCenterLeaderboards
+     */
+    public enum FieldsGameCenterLeaderboards_appsGameCenterDetailGetToOneRelated: String, CaseIterable {
+        case defaultformatter = "defaultFormatter"
+        case referencename = "referenceName"
+        case vendoridentifier = "vendorIdentifier"
+        case submissiontype = "submissionType"
+        case scoresorttype = "scoreSortType"
+        case scorerangestart = "scoreRangeStart"
+        case scorerangeend = "scoreRangeEnd"
+        case recurrencestartdate = "recurrenceStartDate"
+        case recurrenceduration = "recurrenceDuration"
+        case recurrencerule = "recurrenceRule"
+        case archived = "archived"
+        case gamecenterdetail = "gameCenterDetail"
+        case gamecentergroup = "gameCenterGroup"
+        case groupleaderboard = "groupLeaderboard"
+        case gamecenterleaderboardsets = "gameCenterLeaderboardSets"
+        case localizations = "localizations"
+        case releases = "releases"
+    }
+
+    /**
+     * enum for parameter fieldsGameCenterLeaderboardSets
+     */
+    public enum FieldsGameCenterLeaderboardSets_appsGameCenterDetailGetToOneRelated: String, CaseIterable {
+        case referencename = "referenceName"
+        case vendoridentifier = "vendorIdentifier"
+        case gamecenterdetail = "gameCenterDetail"
+        case gamecentergroup = "gameCenterGroup"
+        case groupleaderboardset = "groupLeaderboardSet"
+        case localizations = "localizations"
+        case gamecenterleaderboards = "gameCenterLeaderboards"
+        case releases = "releases"
+    }
+
+    /**
+     * enum for parameter fieldsGameCenterAchievements
+     */
+    public enum FieldsGameCenterAchievements_appsGameCenterDetailGetToOneRelated: String, CaseIterable {
+        case referencename = "referenceName"
+        case vendoridentifier = "vendorIdentifier"
+        case points = "points"
+        case showbeforeearned = "showBeforeEarned"
+        case repeatable = "repeatable"
+        case archived = "archived"
+        case gamecenterdetail = "gameCenterDetail"
+        case gamecentergroup = "gameCenterGroup"
+        case groupachievement = "groupAchievement"
+        case localizations = "localizations"
+        case releases = "releases"
+    }
+
+    /**
+     * enum for parameter fieldsGameCenterAchievementReleases
+     */
+    public enum FieldsGameCenterAchievementReleases_appsGameCenterDetailGetToOneRelated: String, CaseIterable {
+        case live = "live"
+        case gamecenterdetail = "gameCenterDetail"
+        case gamecenterachievement = "gameCenterAchievement"
     }
 
     /**
      * enum for parameter fieldsGameCenterLeaderboardReleases
      */
     public enum FieldsGameCenterLeaderboardReleases_appsGameCenterDetailGetToOneRelated: String, CaseIterable {
+        case live = "live"
         case gamecenterdetail = "gameCenterDetail"
         case gamecenterleaderboard = "gameCenterLeaderboard"
+    }
+
+    /**
+     * enum for parameter fieldsGameCenterLeaderboardSetReleases
+     */
+    public enum FieldsGameCenterLeaderboardSetReleases_appsGameCenterDetailGetToOneRelated: String, CaseIterable {
         case live = "live"
+        case gamecenterdetail = "gameCenterDetail"
+        case gamecenterleaderboardset = "gameCenterLeaderboardSet"
     }
 
     /**
      * enum for parameter include
      */
     public enum Include_appsGameCenterDetailGetToOneRelated: String, CaseIterable {
-        case achievementreleases = "achievementReleases"
         case app = "app"
-        case defaultgroupleaderboard = "defaultGroupLeaderboard"
-        case defaultleaderboard = "defaultLeaderboard"
-        case gamecenterachievements = "gameCenterAchievements"
         case gamecenterappversions = "gameCenterAppVersions"
         case gamecentergroup = "gameCenterGroup"
-        case gamecenterleaderboardsets = "gameCenterLeaderboardSets"
         case gamecenterleaderboards = "gameCenterLeaderboards"
+        case gamecenterleaderboardsets = "gameCenterLeaderboardSets"
+        case gamecenterachievements = "gameCenterAchievements"
+        case defaultleaderboard = "defaultLeaderboard"
+        case defaultgroupleaderboard = "defaultGroupLeaderboard"
+        case achievementreleases = "achievementReleases"
         case leaderboardreleases = "leaderboardReleases"
         case leaderboardsetreleases = "leaderboardSetReleases"
     }
@@ -3930,16 +3755,17 @@ open class AppsAPI {
     /**
 
      - parameter id: (path) the id of the requested resource 
-     - parameter fieldsGameCenterAchievementReleases: (query) the fields to include for returned resources of type gameCenterAchievementReleases (optional)
-     - parameter fieldsGameCenterLeaderboardSetReleases: (query) the fields to include for returned resources of type gameCenterLeaderboardSetReleases (optional)
-     - parameter fieldsGameCenterLeaderboardSets: (query) the fields to include for returned resources of type gameCenterLeaderboardSets (optional)
-     - parameter fieldsGameCenterGroups: (query) the fields to include for returned resources of type gameCenterGroups (optional)
      - parameter fieldsGameCenterDetails: (query) the fields to include for returned resources of type gameCenterDetails (optional)
-     - parameter fieldsGameCenterLeaderboards: (query) the fields to include for returned resources of type gameCenterLeaderboards (optional)
-     - parameter fieldsGameCenterAppVersions: (query) the fields to include for returned resources of type gameCenterAppVersions (optional)
-     - parameter fieldsGameCenterAchievements: (query) the fields to include for returned resources of type gameCenterAchievements (optional)
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
+     - parameter fieldsGameCenterAppVersions: (query) the fields to include for returned resources of type gameCenterAppVersions (optional)
+     - parameter fieldsGameCenterGroups: (query) the fields to include for returned resources of type gameCenterGroups (optional)
+     - parameter fieldsGameCenterLeaderboards: (query) the fields to include for returned resources of type gameCenterLeaderboards (optional)
+     - parameter fieldsGameCenterLeaderboardSets: (query) the fields to include for returned resources of type gameCenterLeaderboardSets (optional)
+     - parameter fieldsGameCenterAchievements: (query) the fields to include for returned resources of type gameCenterAchievements (optional)
+     - parameter fieldsGameCenterAchievementReleases: (query) the fields to include for returned resources of type gameCenterAchievementReleases (optional)
      - parameter fieldsGameCenterLeaderboardReleases: (query) the fields to include for returned resources of type gameCenterLeaderboardReleases (optional)
+     - parameter fieldsGameCenterLeaderboardSetReleases: (query) the fields to include for returned resources of type gameCenterLeaderboardSetReleases (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitGameCenterAppVersions: (query) maximum number of related gameCenterAppVersions returned (when they are included) (optional)
      - parameter limitGameCenterLeaderboards: (query) maximum number of related gameCenterLeaderboards returned (when they are included) (optional)
      - parameter limitGameCenterLeaderboardSets: (query) maximum number of related gameCenterLeaderboardSets returned (when they are included) (optional)
@@ -3947,12 +3773,11 @@ open class AppsAPI {
      - parameter limitAchievementReleases: (query) maximum number of related achievementReleases returned (when they are included) (optional)
      - parameter limitLeaderboardReleases: (query) maximum number of related leaderboardReleases returned (when they are included) (optional)
      - parameter limitLeaderboardSetReleases: (query) maximum number of related leaderboardSetReleases returned (when they are included) (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: GameCenterDetailResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appsGameCenterDetailGetToOneRelated(id: String, fieldsGameCenterAchievementReleases: [FieldsGameCenterAchievementReleases_appsGameCenterDetailGetToOneRelated]? = nil, fieldsGameCenterLeaderboardSetReleases: [FieldsGameCenterLeaderboardSetReleases_appsGameCenterDetailGetToOneRelated]? = nil, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_appsGameCenterDetailGetToOneRelated]? = nil, fieldsGameCenterGroups: [FieldsGameCenterGroups_appsGameCenterDetailGetToOneRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_appsGameCenterDetailGetToOneRelated]? = nil, fieldsGameCenterLeaderboards: [FieldsGameCenterLeaderboards_appsGameCenterDetailGetToOneRelated]? = nil, fieldsGameCenterAppVersions: [FieldsGameCenterAppVersions_appsGameCenterDetailGetToOneRelated]? = nil, fieldsGameCenterAchievements: [FieldsGameCenterAchievements_appsGameCenterDetailGetToOneRelated]? = nil, fieldsApps: [FieldsApps_appsGameCenterDetailGetToOneRelated]? = nil, fieldsGameCenterLeaderboardReleases: [FieldsGameCenterLeaderboardReleases_appsGameCenterDetailGetToOneRelated]? = nil, limitGameCenterAppVersions: Int? = nil, limitGameCenterLeaderboards: Int? = nil, limitGameCenterLeaderboardSets: Int? = nil, limitGameCenterAchievements: Int? = nil, limitAchievementReleases: Int? = nil, limitLeaderboardReleases: Int? = nil, limitLeaderboardSetReleases: Int? = nil, include: [Include_appsGameCenterDetailGetToOneRelated]? = nil) async throws -> GameCenterDetailResponse {
-        return try await appsGameCenterDetailGetToOneRelatedWithRequestBuilder(id: id, fieldsGameCenterAchievementReleases: fieldsGameCenterAchievementReleases, fieldsGameCenterLeaderboardSetReleases: fieldsGameCenterLeaderboardSetReleases, fieldsGameCenterLeaderboardSets: fieldsGameCenterLeaderboardSets, fieldsGameCenterGroups: fieldsGameCenterGroups, fieldsGameCenterDetails: fieldsGameCenterDetails, fieldsGameCenterLeaderboards: fieldsGameCenterLeaderboards, fieldsGameCenterAppVersions: fieldsGameCenterAppVersions, fieldsGameCenterAchievements: fieldsGameCenterAchievements, fieldsApps: fieldsApps, fieldsGameCenterLeaderboardReleases: fieldsGameCenterLeaderboardReleases, limitGameCenterAppVersions: limitGameCenterAppVersions, limitGameCenterLeaderboards: limitGameCenterLeaderboards, limitGameCenterLeaderboardSets: limitGameCenterLeaderboardSets, limitGameCenterAchievements: limitGameCenterAchievements, limitAchievementReleases: limitAchievementReleases, limitLeaderboardReleases: limitLeaderboardReleases, limitLeaderboardSetReleases: limitLeaderboardSetReleases, include: include).execute().body
+    open class func appsGameCenterDetailGetToOneRelated(id: String, fieldsGameCenterDetails: [FieldsGameCenterDetails_appsGameCenterDetailGetToOneRelated]? = nil, fieldsApps: [FieldsApps_appsGameCenterDetailGetToOneRelated]? = nil, fieldsGameCenterAppVersions: [FieldsGameCenterAppVersions_appsGameCenterDetailGetToOneRelated]? = nil, fieldsGameCenterGroups: [FieldsGameCenterGroups_appsGameCenterDetailGetToOneRelated]? = nil, fieldsGameCenterLeaderboards: [FieldsGameCenterLeaderboards_appsGameCenterDetailGetToOneRelated]? = nil, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_appsGameCenterDetailGetToOneRelated]? = nil, fieldsGameCenterAchievements: [FieldsGameCenterAchievements_appsGameCenterDetailGetToOneRelated]? = nil, fieldsGameCenterAchievementReleases: [FieldsGameCenterAchievementReleases_appsGameCenterDetailGetToOneRelated]? = nil, fieldsGameCenterLeaderboardReleases: [FieldsGameCenterLeaderboardReleases_appsGameCenterDetailGetToOneRelated]? = nil, fieldsGameCenterLeaderboardSetReleases: [FieldsGameCenterLeaderboardSetReleases_appsGameCenterDetailGetToOneRelated]? = nil, include: [Include_appsGameCenterDetailGetToOneRelated]? = nil, limitGameCenterAppVersions: Int? = nil, limitGameCenterLeaderboards: Int? = nil, limitGameCenterLeaderboardSets: Int? = nil, limitGameCenterAchievements: Int? = nil, limitAchievementReleases: Int? = nil, limitLeaderboardReleases: Int? = nil, limitLeaderboardSetReleases: Int? = nil) async throws -> GameCenterDetailResponse {
+        return try await appsGameCenterDetailGetToOneRelatedWithRequestBuilder(id: id, fieldsGameCenterDetails: fieldsGameCenterDetails, fieldsApps: fieldsApps, fieldsGameCenterAppVersions: fieldsGameCenterAppVersions, fieldsGameCenterGroups: fieldsGameCenterGroups, fieldsGameCenterLeaderboards: fieldsGameCenterLeaderboards, fieldsGameCenterLeaderboardSets: fieldsGameCenterLeaderboardSets, fieldsGameCenterAchievements: fieldsGameCenterAchievements, fieldsGameCenterAchievementReleases: fieldsGameCenterAchievementReleases, fieldsGameCenterLeaderboardReleases: fieldsGameCenterLeaderboardReleases, fieldsGameCenterLeaderboardSetReleases: fieldsGameCenterLeaderboardSetReleases, include: include, limitGameCenterAppVersions: limitGameCenterAppVersions, limitGameCenterLeaderboards: limitGameCenterLeaderboards, limitGameCenterLeaderboardSets: limitGameCenterLeaderboardSets, limitGameCenterAchievements: limitGameCenterAchievements, limitAchievementReleases: limitAchievementReleases, limitLeaderboardReleases: limitLeaderboardReleases, limitLeaderboardSetReleases: limitLeaderboardSetReleases).execute().body
     }
 
     /**
@@ -3970,16 +3795,17 @@ open class AppsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
-     - parameter fieldsGameCenterAchievementReleases: (query) the fields to include for returned resources of type gameCenterAchievementReleases (optional)
-     - parameter fieldsGameCenterLeaderboardSetReleases: (query) the fields to include for returned resources of type gameCenterLeaderboardSetReleases (optional)
-     - parameter fieldsGameCenterLeaderboardSets: (query) the fields to include for returned resources of type gameCenterLeaderboardSets (optional)
-     - parameter fieldsGameCenterGroups: (query) the fields to include for returned resources of type gameCenterGroups (optional)
      - parameter fieldsGameCenterDetails: (query) the fields to include for returned resources of type gameCenterDetails (optional)
-     - parameter fieldsGameCenterLeaderboards: (query) the fields to include for returned resources of type gameCenterLeaderboards (optional)
-     - parameter fieldsGameCenterAppVersions: (query) the fields to include for returned resources of type gameCenterAppVersions (optional)
-     - parameter fieldsGameCenterAchievements: (query) the fields to include for returned resources of type gameCenterAchievements (optional)
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
+     - parameter fieldsGameCenterAppVersions: (query) the fields to include for returned resources of type gameCenterAppVersions (optional)
+     - parameter fieldsGameCenterGroups: (query) the fields to include for returned resources of type gameCenterGroups (optional)
+     - parameter fieldsGameCenterLeaderboards: (query) the fields to include for returned resources of type gameCenterLeaderboards (optional)
+     - parameter fieldsGameCenterLeaderboardSets: (query) the fields to include for returned resources of type gameCenterLeaderboardSets (optional)
+     - parameter fieldsGameCenterAchievements: (query) the fields to include for returned resources of type gameCenterAchievements (optional)
+     - parameter fieldsGameCenterAchievementReleases: (query) the fields to include for returned resources of type gameCenterAchievementReleases (optional)
      - parameter fieldsGameCenterLeaderboardReleases: (query) the fields to include for returned resources of type gameCenterLeaderboardReleases (optional)
+     - parameter fieldsGameCenterLeaderboardSetReleases: (query) the fields to include for returned resources of type gameCenterLeaderboardSetReleases (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitGameCenterAppVersions: (query) maximum number of related gameCenterAppVersions returned (when they are included) (optional)
      - parameter limitGameCenterLeaderboards: (query) maximum number of related gameCenterLeaderboards returned (when they are included) (optional)
      - parameter limitGameCenterLeaderboardSets: (query) maximum number of related gameCenterLeaderboardSets returned (when they are included) (optional)
@@ -3987,10 +3813,9 @@ open class AppsAPI {
      - parameter limitAchievementReleases: (query) maximum number of related achievementReleases returned (when they are included) (optional)
      - parameter limitLeaderboardReleases: (query) maximum number of related leaderboardReleases returned (when they are included) (optional)
      - parameter limitLeaderboardSetReleases: (query) maximum number of related leaderboardSetReleases returned (when they are included) (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: RequestBuilder<GameCenterDetailResponse> 
      */
-    open class func appsGameCenterDetailGetToOneRelatedWithRequestBuilder(id: String, fieldsGameCenterAchievementReleases: [FieldsGameCenterAchievementReleases_appsGameCenterDetailGetToOneRelated]? = nil, fieldsGameCenterLeaderboardSetReleases: [FieldsGameCenterLeaderboardSetReleases_appsGameCenterDetailGetToOneRelated]? = nil, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_appsGameCenterDetailGetToOneRelated]? = nil, fieldsGameCenterGroups: [FieldsGameCenterGroups_appsGameCenterDetailGetToOneRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_appsGameCenterDetailGetToOneRelated]? = nil, fieldsGameCenterLeaderboards: [FieldsGameCenterLeaderboards_appsGameCenterDetailGetToOneRelated]? = nil, fieldsGameCenterAppVersions: [FieldsGameCenterAppVersions_appsGameCenterDetailGetToOneRelated]? = nil, fieldsGameCenterAchievements: [FieldsGameCenterAchievements_appsGameCenterDetailGetToOneRelated]? = nil, fieldsApps: [FieldsApps_appsGameCenterDetailGetToOneRelated]? = nil, fieldsGameCenterLeaderboardReleases: [FieldsGameCenterLeaderboardReleases_appsGameCenterDetailGetToOneRelated]? = nil, limitGameCenterAppVersions: Int? = nil, limitGameCenterLeaderboards: Int? = nil, limitGameCenterLeaderboardSets: Int? = nil, limitGameCenterAchievements: Int? = nil, limitAchievementReleases: Int? = nil, limitLeaderboardReleases: Int? = nil, limitLeaderboardSetReleases: Int? = nil, include: [Include_appsGameCenterDetailGetToOneRelated]? = nil) -> RequestBuilder<GameCenterDetailResponse> {
+    open class func appsGameCenterDetailGetToOneRelatedWithRequestBuilder(id: String, fieldsGameCenterDetails: [FieldsGameCenterDetails_appsGameCenterDetailGetToOneRelated]? = nil, fieldsApps: [FieldsApps_appsGameCenterDetailGetToOneRelated]? = nil, fieldsGameCenterAppVersions: [FieldsGameCenterAppVersions_appsGameCenterDetailGetToOneRelated]? = nil, fieldsGameCenterGroups: [FieldsGameCenterGroups_appsGameCenterDetailGetToOneRelated]? = nil, fieldsGameCenterLeaderboards: [FieldsGameCenterLeaderboards_appsGameCenterDetailGetToOneRelated]? = nil, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_appsGameCenterDetailGetToOneRelated]? = nil, fieldsGameCenterAchievements: [FieldsGameCenterAchievements_appsGameCenterDetailGetToOneRelated]? = nil, fieldsGameCenterAchievementReleases: [FieldsGameCenterAchievementReleases_appsGameCenterDetailGetToOneRelated]? = nil, fieldsGameCenterLeaderboardReleases: [FieldsGameCenterLeaderboardReleases_appsGameCenterDetailGetToOneRelated]? = nil, fieldsGameCenterLeaderboardSetReleases: [FieldsGameCenterLeaderboardSetReleases_appsGameCenterDetailGetToOneRelated]? = nil, include: [Include_appsGameCenterDetailGetToOneRelated]? = nil, limitGameCenterAppVersions: Int? = nil, limitGameCenterLeaderboards: Int? = nil, limitGameCenterLeaderboardSets: Int? = nil, limitGameCenterAchievements: Int? = nil, limitAchievementReleases: Int? = nil, limitLeaderboardReleases: Int? = nil, limitLeaderboardSetReleases: Int? = nil) -> RequestBuilder<GameCenterDetailResponse> {
         var localVariablePath = "/v1/apps/{id}/gameCenterDetail"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -4000,16 +3825,17 @@ open class AppsAPI {
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[gameCenterAchievementReleases]": (wrappedValue: fieldsGameCenterAchievementReleases?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterLeaderboardSetReleases]": (wrappedValue: fieldsGameCenterLeaderboardSetReleases?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterLeaderboardSets]": (wrappedValue: fieldsGameCenterLeaderboardSets?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterGroups]": (wrappedValue: fieldsGameCenterGroups?.encodeToJSON(), isExplode: false),
             "fields[gameCenterDetails]": (wrappedValue: fieldsGameCenterDetails?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterLeaderboards]": (wrappedValue: fieldsGameCenterLeaderboards?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterAppVersions]": (wrappedValue: fieldsGameCenterAppVersions?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterAchievements]": (wrappedValue: fieldsGameCenterAchievements?.encodeToJSON(), isExplode: false),
             "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
+            "fields[gameCenterAppVersions]": (wrappedValue: fieldsGameCenterAppVersions?.encodeToJSON(), isExplode: false),
+            "fields[gameCenterGroups]": (wrappedValue: fieldsGameCenterGroups?.encodeToJSON(), isExplode: false),
+            "fields[gameCenterLeaderboards]": (wrappedValue: fieldsGameCenterLeaderboards?.encodeToJSON(), isExplode: false),
+            "fields[gameCenterLeaderboardSets]": (wrappedValue: fieldsGameCenterLeaderboardSets?.encodeToJSON(), isExplode: false),
+            "fields[gameCenterAchievements]": (wrappedValue: fieldsGameCenterAchievements?.encodeToJSON(), isExplode: false),
+            "fields[gameCenterAchievementReleases]": (wrappedValue: fieldsGameCenterAchievementReleases?.encodeToJSON(), isExplode: false),
             "fields[gameCenterLeaderboardReleases]": (wrappedValue: fieldsGameCenterLeaderboardReleases?.encodeToJSON(), isExplode: false),
+            "fields[gameCenterLeaderboardSetReleases]": (wrappedValue: fieldsGameCenterLeaderboardSetReleases?.encodeToJSON(), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "limit[gameCenterAppVersions]": (wrappedValue: limitGameCenterAppVersions?.encodeToJSON(), isExplode: true),
             "limit[gameCenterLeaderboards]": (wrappedValue: limitGameCenterLeaderboards?.encodeToJSON(), isExplode: true),
             "limit[gameCenterLeaderboardSets]": (wrappedValue: limitGameCenterLeaderboardSets?.encodeToJSON(), isExplode: true),
@@ -4017,7 +3843,6 @@ open class AppsAPI {
             "limit[achievementReleases]": (wrappedValue: limitAchievementReleases?.encodeToJSON(), isExplode: true),
             "limit[leaderboardReleases]": (wrappedValue: limitLeaderboardReleases?.encodeToJSON(), isExplode: true),
             "limit[leaderboardSetReleases]": (wrappedValue: limitLeaderboardSetReleases?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -4073,72 +3898,68 @@ open class AppsAPI {
      * enum for parameter fieldsGameCenterEnabledVersions
      */
     public enum FieldsGameCenterEnabledVersions_appsGameCenterEnabledVersionsGetToManyRelated: String, CaseIterable {
-        case app = "app"
-        case compatibleversions = "compatibleVersions"
-        case iconasset = "iconAsset"
         case platform = "platform"
         case versionstring = "versionString"
+        case iconasset = "iconAsset"
+        case compatibleversions = "compatibleVersions"
+        case app = "app"
     }
 
     /**
      * enum for parameter fieldsApps
      */
     public enum FieldsApps_appsGameCenterEnabledVersionsGetToManyRelated: String, CaseIterable {
+        case name = "name"
+        case bundleid = "bundleId"
+        case sku = "sku"
+        case primarylocale = "primaryLocale"
+        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
+        case subscriptionstatusurl = "subscriptionStatusUrl"
+        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
+        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
+        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
+        case contentrightsdeclaration = "contentRightsDeclaration"
+        case streamlinedpurchasingenabled = "streamlinedPurchasingEnabled"
+        case appencryptiondeclarations = "appEncryptionDeclarations"
+        case ciproduct = "ciProduct"
+        case betatesters = "betaTesters"
+        case betagroups = "betaGroups"
+        case appstoreversions = "appStoreVersions"
+        case prereleaseversions = "preReleaseVersions"
+        case betaapplocalizations = "betaAppLocalizations"
+        case builds = "builds"
+        case betalicenseagreement = "betaLicenseAgreement"
+        case betaappreviewdetail = "betaAppReviewDetail"
+        case appinfos = "appInfos"
+        case appclips = "appClips"
+        case apppricepoints = "appPricePoints"
+        case enduserlicenseagreement = "endUserLicenseAgreement"
+        case apppriceschedule = "appPriceSchedule"
+        case appavailabilityv2 = "appAvailabilityV2"
+        case inapppurchases = "inAppPurchases"
+        case subscriptiongroups = "subscriptionGroups"
+        case gamecenterenabledversions = "gameCenterEnabledVersions"
+        case perfpowermetrics = "perfPowerMetrics"
+        case appcustomproductpages = "appCustomProductPages"
+        case inapppurchasesv2 = "inAppPurchasesV2"
+        case promotedpurchases = "promotedPurchases"
+        case appevents = "appEvents"
+        case reviewsubmissions = "reviewSubmissions"
+        case subscriptiongraceperiod = "subscriptionGracePeriod"
+        case customerreviews = "customerReviews"
+        case gamecenterdetail = "gameCenterDetail"
+        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
         case alternativedistributionkey = "alternativeDistributionKey"
         case analyticsreportrequests = "analyticsReportRequests"
-        case appavailability = "appAvailability"
-        case appclips = "appClips"
-        case appcustomproductpages = "appCustomProductPages"
-        case appencryptiondeclarations = "appEncryptionDeclarations"
-        case appevents = "appEvents"
-        case appinfos = "appInfos"
-        case apppricepoints = "appPricePoints"
-        case apppriceschedule = "appPriceSchedule"
-        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
-        case appstoreversions = "appStoreVersions"
-        case availableinnewterritories = "availableInNewTerritories"
-        case availableterritories = "availableTerritories"
-        case betaapplocalizations = "betaAppLocalizations"
-        case betaappreviewdetail = "betaAppReviewDetail"
-        case betagroups = "betaGroups"
-        case betalicenseagreement = "betaLicenseAgreement"
-        case betatesters = "betaTesters"
-        case builds = "builds"
-        case bundleid = "bundleId"
-        case ciproduct = "ciProduct"
-        case contentrightsdeclaration = "contentRightsDeclaration"
-        case customerreviews = "customerReviews"
-        case enduserlicenseagreement = "endUserLicenseAgreement"
-        case gamecenterdetail = "gameCenterDetail"
-        case gamecenterenabledversions = "gameCenterEnabledVersions"
-        case inapppurchases = "inAppPurchases"
-        case inapppurchasesv2 = "inAppPurchasesV2"
-        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
         case marketplacesearchdetail = "marketplaceSearchDetail"
-        case name = "name"
-        case perfpowermetrics = "perfPowerMetrics"
-        case preorder = "preOrder"
-        case prereleaseversions = "preReleaseVersions"
-        case pricepoints = "pricePoints"
-        case prices = "prices"
-        case primarylocale = "primaryLocale"
-        case promotedpurchases = "promotedPurchases"
-        case reviewsubmissions = "reviewSubmissions"
-        case sku = "sku"
-        case subscriptiongraceperiod = "subscriptionGracePeriod"
-        case subscriptiongroups = "subscriptionGroups"
-        case subscriptionstatusurl = "subscriptionStatusUrl"
-        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
-        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
-        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
     }
 
     /**
      * enum for parameter include
      */
     public enum Include_appsGameCenterEnabledVersionsGetToManyRelated: String, CaseIterable {
-        case app = "app"
         case compatibleversions = "compatibleVersions"
+        case app = "app"
     }
 
     /**
@@ -4151,14 +3972,14 @@ open class AppsAPI {
      - parameter fieldsGameCenterEnabledVersions: (query) the fields to include for returned resources of type gameCenterEnabledVersions (optional)
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
      - parameter limit: (query) maximum resources per page (optional)
-     - parameter limitCompatibleVersions: (query) maximum number of related compatibleVersions returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitCompatibleVersions: (query) maximum number of related compatibleVersions returned (when they are included) (optional)
      - returns: GameCenterEnabledVersionsResponse
      */
     @available(*, deprecated, message: "This operation is deprecated.")
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appsGameCenterEnabledVersionsGetToManyRelated(id: String, filterPlatform: [FilterPlatform_appsGameCenterEnabledVersionsGetToManyRelated]? = nil, filterVersionString: [String]? = nil, filterId: [String]? = nil, sort: [Sort_appsGameCenterEnabledVersionsGetToManyRelated]? = nil, fieldsGameCenterEnabledVersions: [FieldsGameCenterEnabledVersions_appsGameCenterEnabledVersionsGetToManyRelated]? = nil, fieldsApps: [FieldsApps_appsGameCenterEnabledVersionsGetToManyRelated]? = nil, limit: Int? = nil, limitCompatibleVersions: Int? = nil, include: [Include_appsGameCenterEnabledVersionsGetToManyRelated]? = nil) async throws -> GameCenterEnabledVersionsResponse {
-        return try await appsGameCenterEnabledVersionsGetToManyRelatedWithRequestBuilder(id: id, filterPlatform: filterPlatform, filterVersionString: filterVersionString, filterId: filterId, sort: sort, fieldsGameCenterEnabledVersions: fieldsGameCenterEnabledVersions, fieldsApps: fieldsApps, limit: limit, limitCompatibleVersions: limitCompatibleVersions, include: include).execute().body
+    open class func appsGameCenterEnabledVersionsGetToManyRelated(id: String, filterPlatform: [FilterPlatform_appsGameCenterEnabledVersionsGetToManyRelated]? = nil, filterVersionString: [String]? = nil, filterId: [String]? = nil, sort: [Sort_appsGameCenterEnabledVersionsGetToManyRelated]? = nil, fieldsGameCenterEnabledVersions: [FieldsGameCenterEnabledVersions_appsGameCenterEnabledVersionsGetToManyRelated]? = nil, fieldsApps: [FieldsApps_appsGameCenterEnabledVersionsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appsGameCenterEnabledVersionsGetToManyRelated]? = nil, limitCompatibleVersions: Int? = nil) async throws -> GameCenterEnabledVersionsResponse {
+        return try await appsGameCenterEnabledVersionsGetToManyRelatedWithRequestBuilder(id: id, filterPlatform: filterPlatform, filterVersionString: filterVersionString, filterId: filterId, sort: sort, fieldsGameCenterEnabledVersions: fieldsGameCenterEnabledVersions, fieldsApps: fieldsApps, limit: limit, include: include, limitCompatibleVersions: limitCompatibleVersions).execute().body
     }
 
     /**
@@ -4184,12 +4005,12 @@ open class AppsAPI {
      - parameter fieldsGameCenterEnabledVersions: (query) the fields to include for returned resources of type gameCenterEnabledVersions (optional)
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
      - parameter limit: (query) maximum resources per page (optional)
-     - parameter limitCompatibleVersions: (query) maximum number of related compatibleVersions returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitCompatibleVersions: (query) maximum number of related compatibleVersions returned (when they are included) (optional)
      - returns: RequestBuilder<GameCenterEnabledVersionsResponse> 
      */
     @available(*, deprecated, message: "This operation is deprecated.")
-    open class func appsGameCenterEnabledVersionsGetToManyRelatedWithRequestBuilder(id: String, filterPlatform: [FilterPlatform_appsGameCenterEnabledVersionsGetToManyRelated]? = nil, filterVersionString: [String]? = nil, filterId: [String]? = nil, sort: [Sort_appsGameCenterEnabledVersionsGetToManyRelated]? = nil, fieldsGameCenterEnabledVersions: [FieldsGameCenterEnabledVersions_appsGameCenterEnabledVersionsGetToManyRelated]? = nil, fieldsApps: [FieldsApps_appsGameCenterEnabledVersionsGetToManyRelated]? = nil, limit: Int? = nil, limitCompatibleVersions: Int? = nil, include: [Include_appsGameCenterEnabledVersionsGetToManyRelated]? = nil) -> RequestBuilder<GameCenterEnabledVersionsResponse> {
+    open class func appsGameCenterEnabledVersionsGetToManyRelatedWithRequestBuilder(id: String, filterPlatform: [FilterPlatform_appsGameCenterEnabledVersionsGetToManyRelated]? = nil, filterVersionString: [String]? = nil, filterId: [String]? = nil, sort: [Sort_appsGameCenterEnabledVersionsGetToManyRelated]? = nil, fieldsGameCenterEnabledVersions: [FieldsGameCenterEnabledVersions_appsGameCenterEnabledVersionsGetToManyRelated]? = nil, fieldsApps: [FieldsApps_appsGameCenterEnabledVersionsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appsGameCenterEnabledVersionsGetToManyRelated]? = nil, limitCompatibleVersions: Int? = nil) -> RequestBuilder<GameCenterEnabledVersionsResponse> {
         var localVariablePath = "/v1/apps/{id}/gameCenterEnabledVersions"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -4206,8 +4027,8 @@ open class AppsAPI {
             "fields[gameCenterEnabledVersions]": (wrappedValue: fieldsGameCenterEnabledVersions?.encodeToJSON(), isExplode: false),
             "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "limit[compatibleVersions]": (wrappedValue: limitCompatibleVersions?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "limit[compatibleVersions]": (wrappedValue: limitCompatibleVersions?.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -4269,6 +4090,16 @@ open class AppsAPI {
     }
 
     /**
+     * enum for parameter filterAppStoreVersionsPlatform
+     */
+    public enum FilterAppStoreVersionsPlatform_appsGetCollection: String, CaseIterable {
+        case ios = "IOS"
+        case macOs = "MAC_OS"
+        case tvOs = "TV_OS"
+        case visionOs = "VISION_OS"
+    }
+
+    /**
      * enum for parameter filterAppStoreVersionsAppVersionState
      */
     public enum FilterAppStoreVersionsAppVersionState_appsGetCollection: String, CaseIterable {
@@ -4290,9 +4121,22 @@ open class AppsAPI {
     }
 
     /**
-     * enum for parameter filterAppStoreVersionsPlatform
+     * enum for parameter filterReviewSubmissionsState
      */
-    public enum FilterAppStoreVersionsPlatform_appsGetCollection: String, CaseIterable {
+    public enum FilterReviewSubmissionsState_appsGetCollection: String, CaseIterable {
+        case readyForReview = "READY_FOR_REVIEW"
+        case waitingForReview = "WAITING_FOR_REVIEW"
+        case inReview = "IN_REVIEW"
+        case unresolvedIssues = "UNRESOLVED_ISSUES"
+        case canceling = "CANCELING"
+        case completing = "COMPLETING"
+        case complete = "COMPLETE"
+    }
+
+    /**
+     * enum for parameter filterReviewSubmissionsPlatform
+     */
+    public enum FilterReviewSubmissionsPlatform_appsGetCollection: String, CaseIterable {
         case ios = "IOS"
         case macOs = "MAC_OS"
         case tvOs = "TV_OS"
@@ -4303,10 +4147,10 @@ open class AppsAPI {
      * enum for parameter sort
      */
     public enum Sort_appsGetCollection: String, CaseIterable {
-        case bundleid = "bundleId"
-        case bundleid2 = "-bundleId"
         case name = "name"
         case name2 = "-name"
+        case bundleid = "bundleId"
+        case bundleid2 = "-bundleId"
         case sku = "sku"
         case sku2 = "-sku"
     }
@@ -4315,271 +4159,190 @@ open class AppsAPI {
      * enum for parameter fieldsApps
      */
     public enum FieldsApps_appsGetCollection: String, CaseIterable {
+        case name = "name"
+        case bundleid = "bundleId"
+        case sku = "sku"
+        case primarylocale = "primaryLocale"
+        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
+        case subscriptionstatusurl = "subscriptionStatusUrl"
+        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
+        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
+        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
+        case contentrightsdeclaration = "contentRightsDeclaration"
+        case streamlinedpurchasingenabled = "streamlinedPurchasingEnabled"
+        case appencryptiondeclarations = "appEncryptionDeclarations"
+        case ciproduct = "ciProduct"
+        case betatesters = "betaTesters"
+        case betagroups = "betaGroups"
+        case appstoreversions = "appStoreVersions"
+        case prereleaseversions = "preReleaseVersions"
+        case betaapplocalizations = "betaAppLocalizations"
+        case builds = "builds"
+        case betalicenseagreement = "betaLicenseAgreement"
+        case betaappreviewdetail = "betaAppReviewDetail"
+        case appinfos = "appInfos"
+        case appclips = "appClips"
+        case apppricepoints = "appPricePoints"
+        case enduserlicenseagreement = "endUserLicenseAgreement"
+        case apppriceschedule = "appPriceSchedule"
+        case appavailabilityv2 = "appAvailabilityV2"
+        case inapppurchases = "inAppPurchases"
+        case subscriptiongroups = "subscriptionGroups"
+        case gamecenterenabledversions = "gameCenterEnabledVersions"
+        case perfpowermetrics = "perfPowerMetrics"
+        case appcustomproductpages = "appCustomProductPages"
+        case inapppurchasesv2 = "inAppPurchasesV2"
+        case promotedpurchases = "promotedPurchases"
+        case appevents = "appEvents"
+        case reviewsubmissions = "reviewSubmissions"
+        case subscriptiongraceperiod = "subscriptionGracePeriod"
+        case customerreviews = "customerReviews"
+        case gamecenterdetail = "gameCenterDetail"
+        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
         case alternativedistributionkey = "alternativeDistributionKey"
         case analyticsreportrequests = "analyticsReportRequests"
-        case appavailability = "appAvailability"
-        case appclips = "appClips"
-        case appcustomproductpages = "appCustomProductPages"
-        case appencryptiondeclarations = "appEncryptionDeclarations"
-        case appevents = "appEvents"
-        case appinfos = "appInfos"
-        case apppricepoints = "appPricePoints"
-        case apppriceschedule = "appPriceSchedule"
-        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
-        case appstoreversions = "appStoreVersions"
-        case availableinnewterritories = "availableInNewTerritories"
-        case availableterritories = "availableTerritories"
-        case betaapplocalizations = "betaAppLocalizations"
-        case betaappreviewdetail = "betaAppReviewDetail"
-        case betagroups = "betaGroups"
-        case betalicenseagreement = "betaLicenseAgreement"
-        case betatesters = "betaTesters"
-        case builds = "builds"
-        case bundleid = "bundleId"
-        case ciproduct = "ciProduct"
-        case contentrightsdeclaration = "contentRightsDeclaration"
-        case customerreviews = "customerReviews"
-        case enduserlicenseagreement = "endUserLicenseAgreement"
-        case gamecenterdetail = "gameCenterDetail"
-        case gamecenterenabledversions = "gameCenterEnabledVersions"
-        case inapppurchases = "inAppPurchases"
-        case inapppurchasesv2 = "inAppPurchasesV2"
-        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
         case marketplacesearchdetail = "marketplaceSearchDetail"
-        case name = "name"
-        case perfpowermetrics = "perfPowerMetrics"
-        case preorder = "preOrder"
-        case prereleaseversions = "preReleaseVersions"
-        case pricepoints = "pricePoints"
-        case prices = "prices"
-        case primarylocale = "primaryLocale"
-        case promotedpurchases = "promotedPurchases"
-        case reviewsubmissions = "reviewSubmissions"
-        case sku = "sku"
-        case subscriptiongraceperiod = "subscriptionGracePeriod"
-        case subscriptiongroups = "subscriptionGroups"
-        case subscriptionstatusurl = "subscriptionStatusUrl"
-        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
-        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
-        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
     }
 
     /**
-     * enum for parameter include
+     * enum for parameter fieldsAppEncryptionDeclarations
      */
-    public enum Include_appsGetCollection: String, CaseIterable {
-        case appclips = "appClips"
-        case appcustomproductpages = "appCustomProductPages"
-        case appencryptiondeclarations = "appEncryptionDeclarations"
-        case appevents = "appEvents"
-        case appinfos = "appInfos"
-        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
-        case appstoreversions = "appStoreVersions"
-        case availableterritories = "availableTerritories"
-        case betaapplocalizations = "betaAppLocalizations"
-        case betaappreviewdetail = "betaAppReviewDetail"
-        case betagroups = "betaGroups"
-        case betalicenseagreement = "betaLicenseAgreement"
+    public enum FieldsAppEncryptionDeclarations_appsGetCollection: String, CaseIterable {
+        case appdescription = "appDescription"
+        case createddate = "createdDate"
+        case usesencryption = "usesEncryption"
+        case exempt = "exempt"
+        case containsproprietarycryptography = "containsProprietaryCryptography"
+        case containsthirdpartycryptography = "containsThirdPartyCryptography"
+        case availableonfrenchstore = "availableOnFrenchStore"
+        case platform = "platform"
+        case uploadeddate = "uploadedDate"
+        case documenturl = "documentUrl"
+        case documentname = "documentName"
+        case documenttype = "documentType"
+        case appencryptiondeclarationstate = "appEncryptionDeclarationState"
+        case codevalue = "codeValue"
+        case app = "app"
         case builds = "builds"
-        case ciproduct = "ciProduct"
-        case enduserlicenseagreement = "endUserLicenseAgreement"
-        case gamecenterdetail = "gameCenterDetail"
-        case gamecenterenabledversions = "gameCenterEnabledVersions"
-        case inapppurchases = "inAppPurchases"
-        case inapppurchasesv2 = "inAppPurchasesV2"
-        case preorder = "preOrder"
-        case prereleaseversions = "preReleaseVersions"
-        case prices = "prices"
-        case promotedpurchases = "promotedPurchases"
-        case reviewsubmissions = "reviewSubmissions"
-        case subscriptiongraceperiod = "subscriptionGracePeriod"
-        case subscriptiongroups = "subscriptionGroups"
-    }
-
-    /**
-     * enum for parameter fieldsBetaAppReviewDetails
-     */
-    public enum FieldsBetaAppReviewDetails_appsGetCollection: String, CaseIterable {
-        case app = "app"
-        case contactemail = "contactEmail"
-        case contactfirstname = "contactFirstName"
-        case contactlastname = "contactLastName"
-        case contactphone = "contactPhone"
-        case demoaccountname = "demoAccountName"
-        case demoaccountpassword = "demoAccountPassword"
-        case demoaccountrequired = "demoAccountRequired"
-        case notes = "notes"
-    }
-
-    /**
-     * enum for parameter fieldsGameCenterDetails
-     */
-    public enum FieldsGameCenterDetails_appsGetCollection: String, CaseIterable {
-        case achievementreleases = "achievementReleases"
-        case app = "app"
-        case arcadeenabled = "arcadeEnabled"
-        case challengeenabled = "challengeEnabled"
-        case defaultgroupleaderboard = "defaultGroupLeaderboard"
-        case defaultleaderboard = "defaultLeaderboard"
-        case gamecenterachievements = "gameCenterAchievements"
-        case gamecenterappversions = "gameCenterAppVersions"
-        case gamecentergroup = "gameCenterGroup"
-        case gamecenterleaderboardsets = "gameCenterLeaderboardSets"
-        case gamecenterleaderboards = "gameCenterLeaderboards"
-        case leaderboardreleases = "leaderboardReleases"
-        case leaderboardsetreleases = "leaderboardSetReleases"
-    }
-
-    /**
-     * enum for parameter fieldsAppPriceSchedules
-     */
-    public enum FieldsAppPriceSchedules_appsGetCollection: String, CaseIterable {
-        case app = "app"
-        case automaticprices = "automaticPrices"
-        case baseterritory = "baseTerritory"
-        case manualprices = "manualPrices"
+        case appencryptiondeclarationdocument = "appEncryptionDeclarationDocument"
     }
 
     /**
      * enum for parameter fieldsCiProducts
      */
     public enum FieldsCiProducts_appsGetCollection: String, CaseIterable {
-        case additionalrepositories = "additionalRepositories"
-        case app = "app"
-        case buildruns = "buildRuns"
-        case bundleid = "bundleId"
-        case createddate = "createdDate"
         case name = "name"
-        case primaryrepositories = "primaryRepositories"
+        case createddate = "createdDate"
         case producttype = "productType"
+        case app = "app"
+        case bundleid = "bundleId"
         case workflows = "workflows"
-    }
-
-    /**
-     * enum for parameter fieldsAlternativeDistributionKeys
-     */
-    public enum FieldsAlternativeDistributionKeys_appsGetCollection: String, CaseIterable {
-        case app = "app"
-        case publickey = "publicKey"
-    }
-
-    /**
-     * enum for parameter fieldsReviewSubmissions
-     */
-    public enum FieldsReviewSubmissions_appsGetCollection: String, CaseIterable {
-        case app = "app"
-        case appstoreversionforreview = "appStoreVersionForReview"
-        case canceled = "canceled"
-        case items = "items"
-        case lastupdatedbyactor = "lastUpdatedByActor"
-        case platform = "platform"
-        case state = "state"
-        case submitted = "submitted"
-        case submittedbyactor = "submittedByActor"
-        case submitteddate = "submittedDate"
+        case primaryrepositories = "primaryRepositories"
+        case additionalrepositories = "additionalRepositories"
+        case buildruns = "buildRuns"
     }
 
     /**
      * enum for parameter fieldsBetaGroups
      */
     public enum FieldsBetaGroups_appsGetCollection: String, CaseIterable {
-        case app = "app"
-        case betatesters = "betaTesters"
-        case builds = "builds"
-        case createddate = "createdDate"
-        case feedbackenabled = "feedbackEnabled"
-        case hasaccesstoallbuilds = "hasAccessToAllBuilds"
-        case iosbuildsavailableforapplesiliconmac = "iosBuildsAvailableForAppleSiliconMac"
-        case isinternalgroup = "isInternalGroup"
         case name = "name"
-        case publiclink = "publicLink"
+        case createddate = "createdDate"
+        case isinternalgroup = "isInternalGroup"
+        case hasaccesstoallbuilds = "hasAccessToAllBuilds"
         case publiclinkenabled = "publicLinkEnabled"
         case publiclinkid = "publicLinkId"
-        case publiclinklimit = "publicLinkLimit"
         case publiclinklimitenabled = "publicLinkLimitEnabled"
-    }
-
-    /**
-     * enum for parameter fieldsPromotedPurchases
-     */
-    public enum FieldsPromotedPurchases_appsGetCollection: String, CaseIterable {
+        case publiclinklimit = "publicLinkLimit"
+        case publiclink = "publicLink"
+        case feedbackenabled = "feedbackEnabled"
+        case iosbuildsavailableforapplesiliconmac = "iosBuildsAvailableForAppleSiliconMac"
         case app = "app"
-        case enabled = "enabled"
-        case inapppurchasev2 = "inAppPurchaseV2"
-        case promotionimages = "promotionImages"
-        case state = "state"
-        case subscription = "subscription"
-        case visibleforallusers = "visibleForAllUsers"
+        case builds = "builds"
+        case betatesters = "betaTesters"
     }
 
     /**
-     * enum for parameter fieldsAppAvailabilities
+     * enum for parameter fieldsAppStoreVersions
      */
-    public enum FieldsAppAvailabilities_appsGetCollection: String, CaseIterable {
-        case app = "app"
-        case availableinnewterritories = "availableInNewTerritories"
-        case availableterritories = "availableTerritories"
-    }
-
-    /**
-     * enum for parameter fieldsCustomerReviews
-     */
-    public enum FieldsCustomerReviews_appsGetCollection: String, CaseIterable {
-        case body = "body"
+    public enum FieldsAppStoreVersions_appsGetCollection: String, CaseIterable {
+        case platform = "platform"
+        case versionstring = "versionString"
+        case appstorestate = "appStoreState"
+        case appversionstate = "appVersionState"
+        case copyright = "copyright"
+        case reviewtype = "reviewType"
+        case releasetype = "releaseType"
+        case earliestreleasedate = "earliestReleaseDate"
+        case downloadable = "downloadable"
         case createddate = "createdDate"
-        case rating = "rating"
-        case response = "response"
-        case reviewernickname = "reviewerNickname"
-        case territory = "territory"
-        case title = "title"
+        case app = "app"
+        case ageratingdeclaration = "ageRatingDeclaration"
+        case appstoreversionlocalizations = "appStoreVersionLocalizations"
+        case build = "build"
+        case appstoreversionphasedrelease = "appStoreVersionPhasedRelease"
+        case gamecenterappversion = "gameCenterAppVersion"
+        case routingappcoverage = "routingAppCoverage"
+        case appstorereviewdetail = "appStoreReviewDetail"
+        case appstoreversionsubmission = "appStoreVersionSubmission"
+        case appclipdefaultexperience = "appClipDefaultExperience"
+        case appstoreversionexperiments = "appStoreVersionExperiments"
+        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
+        case customerreviews = "customerReviews"
+        case alternativedistributionpackage = "alternativeDistributionPackage"
     }
 
     /**
-     * enum for parameter fieldsAppEvents
+     * enum for parameter fieldsPreReleaseVersions
      */
-    public enum FieldsAppEvents_appsGetCollection: String, CaseIterable {
+    public enum FieldsPreReleaseVersions_appsGetCollection: String, CaseIterable {
+        case version = "version"
+        case platform = "platform"
+        case builds = "builds"
         case app = "app"
-        case archivedterritoryschedules = "archivedTerritorySchedules"
-        case badge = "badge"
-        case deeplink = "deepLink"
-        case eventstate = "eventState"
-        case localizations = "localizations"
-        case primarylocale = "primaryLocale"
-        case priority = "priority"
-        case purchaserequirement = "purchaseRequirement"
-        case purpose = "purpose"
-        case referencename = "referenceName"
-        case territoryschedules = "territorySchedules"
+    }
+
+    /**
+     * enum for parameter fieldsBetaAppLocalizations
+     */
+    public enum FieldsBetaAppLocalizations_appsGetCollection: String, CaseIterable {
+        case feedbackemail = "feedbackEmail"
+        case marketingurl = "marketingUrl"
+        case privacypolicyurl = "privacyPolicyUrl"
+        case tvosprivacypolicy = "tvOsPrivacyPolicy"
+        case description = "description"
+        case locale = "locale"
+        case app = "app"
     }
 
     /**
      * enum for parameter fieldsBuilds
      */
     public enum FieldsBuilds_appsGetCollection: String, CaseIterable {
-        case app = "app"
-        case appencryptiondeclaration = "appEncryptionDeclaration"
-        case appstoreversion = "appStoreVersion"
-        case betaappreviewsubmission = "betaAppReviewSubmission"
-        case betabuildlocalizations = "betaBuildLocalizations"
-        case betagroups = "betaGroups"
-        case buildaudiencetype = "buildAudienceType"
-        case buildbetadetail = "buildBetaDetail"
-        case buildbundles = "buildBundles"
-        case computedminmacosversion = "computedMinMacOsVersion"
-        case diagnosticsignatures = "diagnosticSignatures"
+        case version = "version"
+        case uploadeddate = "uploadedDate"
         case expirationdate = "expirationDate"
         case expired = "expired"
-        case iconassettoken = "iconAssetToken"
-        case icons = "icons"
-        case individualtesters = "individualTesters"
-        case lsminimumsystemversion = "lsMinimumSystemVersion"
         case minosversion = "minOsVersion"
-        case perfpowermetrics = "perfPowerMetrics"
-        case prereleaseversion = "preReleaseVersion"
+        case lsminimumsystemversion = "lsMinimumSystemVersion"
+        case computedminmacosversion = "computedMinMacOsVersion"
+        case iconassettoken = "iconAssetToken"
         case processingstate = "processingState"
-        case uploadeddate = "uploadedDate"
+        case buildaudiencetype = "buildAudienceType"
         case usesnonexemptencryption = "usesNonExemptEncryption"
-        case version = "version"
+        case prereleaseversion = "preReleaseVersion"
+        case individualtesters = "individualTesters"
+        case betagroups = "betaGroups"
+        case betabuildlocalizations = "betaBuildLocalizations"
+        case appencryptiondeclaration = "appEncryptionDeclaration"
+        case betaappreviewsubmission = "betaAppReviewSubmission"
+        case app = "app"
+        case buildbetadetail = "buildBetaDetail"
+        case appstoreversion = "appStoreVersion"
+        case icons = "icons"
+        case buildbundles = "buildBundles"
+        case perfpowermetrics = "perfPowerMetrics"
+        case diagnosticsignatures = "diagnosticSignatures"
     }
 
     /**
@@ -4591,176 +4354,52 @@ open class AppsAPI {
     }
 
     /**
-     * enum for parameter fieldsMarketplaceSearchDetails
+     * enum for parameter fieldsBetaAppReviewDetails
      */
-    public enum FieldsMarketplaceSearchDetails_appsGetCollection: String, CaseIterable {
+    public enum FieldsBetaAppReviewDetails_appsGetCollection: String, CaseIterable {
+        case contactfirstname = "contactFirstName"
+        case contactlastname = "contactLastName"
+        case contactphone = "contactPhone"
+        case contactemail = "contactEmail"
+        case demoaccountname = "demoAccountName"
+        case demoaccountpassword = "demoAccountPassword"
+        case demoaccountrequired = "demoAccountRequired"
+        case notes = "notes"
         case app = "app"
-        case catalogurl = "catalogUrl"
-    }
-
-    /**
-     * enum for parameter fieldsAppClips
-     */
-    public enum FieldsAppClips_appsGetCollection: String, CaseIterable {
-        case app = "app"
-        case appclipadvancedexperiences = "appClipAdvancedExperiences"
-        case appclipdefaultexperiences = "appClipDefaultExperiences"
-        case bundleid = "bundleId"
     }
 
     /**
      * enum for parameter fieldsAppInfos
      */
     public enum FieldsAppInfos_appsGetCollection: String, CaseIterable {
-        case ageratingdeclaration = "ageRatingDeclaration"
-        case app = "app"
-        case appinfolocalizations = "appInfoLocalizations"
-        case appstoreagerating = "appStoreAgeRating"
         case appstorestate = "appStoreState"
+        case state = "state"
+        case appstoreagerating = "appStoreAgeRating"
+        case australiaagerating = "australiaAgeRating"
         case brazilagerating = "brazilAgeRating"
         case brazilageratingv2 = "brazilAgeRatingV2"
+        case franceagerating = "franceAgeRating"
+        case koreaagerating = "koreaAgeRating"
         case kidsageband = "kidsAgeBand"
+        case app = "app"
+        case ageratingdeclaration = "ageRatingDeclaration"
+        case appinfolocalizations = "appInfoLocalizations"
         case primarycategory = "primaryCategory"
         case primarysubcategoryone = "primarySubcategoryOne"
         case primarysubcategorytwo = "primarySubcategoryTwo"
         case secondarycategory = "secondaryCategory"
         case secondarysubcategoryone = "secondarySubcategoryOne"
         case secondarysubcategorytwo = "secondarySubcategoryTwo"
-        case state = "state"
     }
 
     /**
-     * enum for parameter fieldsBetaAppLocalizations
+     * enum for parameter fieldsAppClips
      */
-    public enum FieldsBetaAppLocalizations_appsGetCollection: String, CaseIterable {
+    public enum FieldsAppClips_appsGetCollection: String, CaseIterable {
+        case bundleid = "bundleId"
         case app = "app"
-        case description = "description"
-        case feedbackemail = "feedbackEmail"
-        case locale = "locale"
-        case marketingurl = "marketingUrl"
-        case privacypolicyurl = "privacyPolicyUrl"
-        case tvosprivacypolicy = "tvOsPrivacyPolicy"
-    }
-
-    /**
-     * enum for parameter fieldsAppPricePoints
-     */
-    public enum FieldsAppPricePoints_appsGetCollection: String, CaseIterable {
-        case app = "app"
-        case customerprice = "customerPrice"
-        case equalizations = "equalizations"
-        case pricetier = "priceTier"
-        case proceeds = "proceeds"
-        case territory = "territory"
-    }
-
-    /**
-     * enum for parameter fieldsInAppPurchases
-     */
-    public enum FieldsInAppPurchases_appsGetCollection: String, CaseIterable {
-        case app = "app"
-        case appstorereviewscreenshot = "appStoreReviewScreenshot"
-        case apps = "apps"
-        case content = "content"
-        case contenthosting = "contentHosting"
-        case familysharable = "familySharable"
-        case iappriceschedule = "iapPriceSchedule"
-        case inapppurchaseavailability = "inAppPurchaseAvailability"
-        case inapppurchaselocalizations = "inAppPurchaseLocalizations"
-        case inapppurchasetype = "inAppPurchaseType"
-        case name = "name"
-        case pricepoints = "pricePoints"
-        case productid = "productId"
-        case promotedpurchase = "promotedPurchase"
-        case referencename = "referenceName"
-        case reviewnote = "reviewNote"
-        case state = "state"
-    }
-
-    /**
-     * enum for parameter fieldsPreReleaseVersions
-     */
-    public enum FieldsPreReleaseVersions_appsGetCollection: String, CaseIterable {
-        case app = "app"
-        case builds = "builds"
-        case platform = "platform"
-        case version = "version"
-    }
-
-    /**
-     * enum for parameter fieldsSubscriptionGroups
-     */
-    public enum FieldsSubscriptionGroups_appsGetCollection: String, CaseIterable {
-        case app = "app"
-        case referencename = "referenceName"
-        case subscriptiongrouplocalizations = "subscriptionGroupLocalizations"
-        case subscriptions = "subscriptions"
-    }
-
-    /**
-     * enum for parameter fieldsAnalyticsReportRequests
-     */
-    public enum FieldsAnalyticsReportRequests_appsGetCollection: String, CaseIterable {
-        case accesstype = "accessType"
-        case app = "app"
-        case reports = "reports"
-        case stoppedduetoinactivity = "stoppedDueToInactivity"
-    }
-
-    /**
-     * enum for parameter fieldsAppPrices
-     */
-    public enum FieldsAppPrices_appsGetCollection: String, CaseIterable {
-        case app = "app"
-        case pricetier = "priceTier"
-    }
-
-    /**
-     * enum for parameter fieldsAppPreOrders
-     */
-    public enum FieldsAppPreOrders_appsGetCollection: String, CaseIterable {
-        case app = "app"
-        case appreleasedate = "appReleaseDate"
-        case preorderavailabledate = "preOrderAvailableDate"
-    }
-
-    /**
-     * enum for parameter fieldsAppStoreVersionExperiments
-     */
-    public enum FieldsAppStoreVersionExperiments_appsGetCollection: String, CaseIterable {
-        case app = "app"
-        case appstoreversionexperimenttreatments = "appStoreVersionExperimentTreatments"
-        case controlversions = "controlVersions"
-        case enddate = "endDate"
-        case latestcontrolversion = "latestControlVersion"
-        case name = "name"
-        case platform = "platform"
-        case reviewrequired = "reviewRequired"
-        case startdate = "startDate"
-        case started = "started"
-        case state = "state"
-        case trafficproportion = "trafficProportion"
-    }
-
-    /**
-     * enum for parameter fieldsGameCenterEnabledVersions
-     */
-    public enum FieldsGameCenterEnabledVersions_appsGetCollection: String, CaseIterable {
-        case app = "app"
-        case compatibleversions = "compatibleVersions"
-        case iconasset = "iconAsset"
-        case platform = "platform"
-        case versionstring = "versionString"
-    }
-
-    /**
-     * enum for parameter fieldsSubscriptionGracePeriods
-     */
-    public enum FieldsSubscriptionGracePeriods_appsGetCollection: String, CaseIterable {
-        case duration = "duration"
-        case optin = "optIn"
-        case renewaltype = "renewalType"
-        case sandboxoptin = "sandboxOptIn"
+        case appclipdefaultexperiences = "appClipDefaultExperiences"
+        case appclipadvancedexperiences = "appClipAdvancedExperiences"
     }
 
     /**
@@ -4773,134 +4412,216 @@ open class AppsAPI {
     }
 
     /**
-     * enum for parameter fieldsAppStoreVersions
+     * enum for parameter fieldsInAppPurchases
      */
-    public enum FieldsAppStoreVersions_appsGetCollection: String, CaseIterable {
-        case ageratingdeclaration = "ageRatingDeclaration"
-        case alternativedistributionpackage = "alternativeDistributionPackage"
-        case app = "app"
-        case appclipdefaultexperience = "appClipDefaultExperience"
-        case appstorereviewdetail = "appStoreReviewDetail"
-        case appstorestate = "appStoreState"
-        case appstoreversionexperiments = "appStoreVersionExperiments"
-        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
-        case appstoreversionlocalizations = "appStoreVersionLocalizations"
-        case appstoreversionphasedrelease = "appStoreVersionPhasedRelease"
-        case appstoreversionsubmission = "appStoreVersionSubmission"
-        case appversionstate = "appVersionState"
-        case build = "build"
-        case copyright = "copyright"
-        case createddate = "createdDate"
-        case customerreviews = "customerReviews"
-        case downloadable = "downloadable"
-        case earliestreleasedate = "earliestReleaseDate"
+    public enum FieldsInAppPurchases_appsGetCollection: String, CaseIterable {
+        case referencename = "referenceName"
+        case productid = "productId"
+        case inapppurchasetype = "inAppPurchaseType"
+        case state = "state"
+        case apps = "apps"
+        case name = "name"
+        case reviewnote = "reviewNote"
+        case familysharable = "familySharable"
+        case contenthosting = "contentHosting"
+        case inapppurchaselocalizations = "inAppPurchaseLocalizations"
+        case pricepoints = "pricePoints"
+        case content = "content"
+        case appstorereviewscreenshot = "appStoreReviewScreenshot"
+        case promotedpurchase = "promotedPurchase"
+        case iappriceschedule = "iapPriceSchedule"
+        case inapppurchaseavailability = "inAppPurchaseAvailability"
+        case images = "images"
+    }
+
+    /**
+     * enum for parameter fieldsSubscriptionGroups
+     */
+    public enum FieldsSubscriptionGroups_appsGetCollection: String, CaseIterable {
+        case referencename = "referenceName"
+        case subscriptions = "subscriptions"
+        case subscriptiongrouplocalizations = "subscriptionGroupLocalizations"
+    }
+
+    /**
+     * enum for parameter fieldsGameCenterEnabledVersions
+     */
+    public enum FieldsGameCenterEnabledVersions_appsGetCollection: String, CaseIterable {
         case platform = "platform"
-        case releasetype = "releaseType"
-        case reviewtype = "reviewType"
-        case routingappcoverage = "routingAppCoverage"
         case versionstring = "versionString"
+        case iconasset = "iconAsset"
+        case compatibleversions = "compatibleVersions"
+        case app = "app"
     }
 
     /**
      * enum for parameter fieldsAppCustomProductPages
      */
     public enum FieldsAppCustomProductPages_appsGetCollection: String, CaseIterable {
-        case app = "app"
-        case appcustomproductpageversions = "appCustomProductPageVersions"
-        case appstoreversiontemplate = "appStoreVersionTemplate"
-        case customproductpagetemplate = "customProductPageTemplate"
         case name = "name"
         case url = "url"
         case visible = "visible"
-    }
-
-    /**
-     * enum for parameter fieldsAppEncryptionDeclarations
-     */
-    public enum FieldsAppEncryptionDeclarations_appsGetCollection: String, CaseIterable {
         case app = "app"
-        case appdescription = "appDescription"
-        case appencryptiondeclarationdocument = "appEncryptionDeclarationDocument"
-        case appencryptiondeclarationstate = "appEncryptionDeclarationState"
-        case availableonfrenchstore = "availableOnFrenchStore"
+        case appcustomproductpageversions = "appCustomProductPageVersions"
+    }
+
+    /**
+     * enum for parameter fieldsPromotedPurchases
+     */
+    public enum FieldsPromotedPurchases_appsGetCollection: String, CaseIterable {
+        case visibleforallusers = "visibleForAllUsers"
+        case enabled = "enabled"
+        case state = "state"
+        case inapppurchasev2 = "inAppPurchaseV2"
+        case subscription = "subscription"
+        case promotionimages = "promotionImages"
+    }
+
+    /**
+     * enum for parameter fieldsAppEvents
+     */
+    public enum FieldsAppEvents_appsGetCollection: String, CaseIterable {
+        case referencename = "referenceName"
+        case badge = "badge"
+        case eventstate = "eventState"
+        case deeplink = "deepLink"
+        case purchaserequirement = "purchaseRequirement"
+        case primarylocale = "primaryLocale"
+        case priority = "priority"
+        case purpose = "purpose"
+        case territoryschedules = "territorySchedules"
+        case archivedterritoryschedules = "archivedTerritorySchedules"
+        case localizations = "localizations"
+    }
+
+    /**
+     * enum for parameter fieldsReviewSubmissions
+     */
+    public enum FieldsReviewSubmissions_appsGetCollection: String, CaseIterable {
+        case platform = "platform"
+        case submitteddate = "submittedDate"
+        case state = "state"
+        case app = "app"
+        case items = "items"
+        case appstoreversionforreview = "appStoreVersionForReview"
+        case submittedbyactor = "submittedByActor"
+        case lastupdatedbyactor = "lastUpdatedByActor"
+    }
+
+    /**
+     * enum for parameter fieldsSubscriptionGracePeriods
+     */
+    public enum FieldsSubscriptionGracePeriods_appsGetCollection: String, CaseIterable {
+        case optin = "optIn"
+        case sandboxoptin = "sandboxOptIn"
+        case duration = "duration"
+        case renewaltype = "renewalType"
+    }
+
+    /**
+     * enum for parameter fieldsGameCenterDetails
+     */
+    public enum FieldsGameCenterDetails_appsGetCollection: String, CaseIterable {
+        case arcadeenabled = "arcadeEnabled"
+        case challengeenabled = "challengeEnabled"
+        case app = "app"
+        case gamecenterappversions = "gameCenterAppVersions"
+        case gamecentergroup = "gameCenterGroup"
+        case gamecenterleaderboards = "gameCenterLeaderboards"
+        case gamecenterleaderboardsets = "gameCenterLeaderboardSets"
+        case gamecenterachievements = "gameCenterAchievements"
+        case defaultleaderboard = "defaultLeaderboard"
+        case defaultgroupleaderboard = "defaultGroupLeaderboard"
+        case achievementreleases = "achievementReleases"
+        case leaderboardreleases = "leaderboardReleases"
+        case leaderboardsetreleases = "leaderboardSetReleases"
+    }
+
+    /**
+     * enum for parameter fieldsAppStoreVersionExperiments
+     */
+    public enum FieldsAppStoreVersionExperiments_appsGetCollection: String, CaseIterable {
+        case name = "name"
+        case platform = "platform"
+        case trafficproportion = "trafficProportion"
+        case state = "state"
+        case reviewrequired = "reviewRequired"
+        case startdate = "startDate"
+        case enddate = "endDate"
+        case app = "app"
+        case latestcontrolversion = "latestControlVersion"
+        case controlversions = "controlVersions"
+        case appstoreversionexperimenttreatments = "appStoreVersionExperimentTreatments"
+    }
+
+    /**
+     * enum for parameter include
+     */
+    public enum Include_appsGetCollection: String, CaseIterable {
+        case appencryptiondeclarations = "appEncryptionDeclarations"
+        case ciproduct = "ciProduct"
+        case betagroups = "betaGroups"
+        case appstoreversions = "appStoreVersions"
+        case prereleaseversions = "preReleaseVersions"
+        case betaapplocalizations = "betaAppLocalizations"
         case builds = "builds"
-        case codevalue = "codeValue"
-        case containsproprietarycryptography = "containsProprietaryCryptography"
-        case containsthirdpartycryptography = "containsThirdPartyCryptography"
-        case createddate = "createdDate"
-        case documentname = "documentName"
-        case documenttype = "documentType"
-        case documenturl = "documentUrl"
-        case exempt = "exempt"
-        case platform = "platform"
-        case uploadeddate = "uploadedDate"
-        case usesencryption = "usesEncryption"
-    }
-
-    /**
-     * enum for parameter fieldsTerritories
-     */
-    public enum FieldsTerritories_appsGetCollection: String, CaseIterable {
-        case currency = "currency"
-    }
-
-    /**
-     * enum for parameter fieldsPerfPowerMetrics
-     */
-    public enum FieldsPerfPowerMetrics_appsGetCollection: String, CaseIterable {
-        case devicetype = "deviceType"
-        case metrictype = "metricType"
-        case platform = "platform"
+        case betalicenseagreement = "betaLicenseAgreement"
+        case betaappreviewdetail = "betaAppReviewDetail"
+        case appinfos = "appInfos"
+        case appclips = "appClips"
+        case enduserlicenseagreement = "endUserLicenseAgreement"
+        case inapppurchases = "inAppPurchases"
+        case subscriptiongroups = "subscriptionGroups"
+        case gamecenterenabledversions = "gameCenterEnabledVersions"
+        case appcustomproductpages = "appCustomProductPages"
+        case inapppurchasesv2 = "inAppPurchasesV2"
+        case promotedpurchases = "promotedPurchases"
+        case appevents = "appEvents"
+        case reviewsubmissions = "reviewSubmissions"
+        case subscriptiongraceperiod = "subscriptionGracePeriod"
+        case gamecenterdetail = "gameCenterDetail"
+        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
     }
 
     /**
 
-     - parameter filterAppStoreVersionsAppStoreState: (query) filter by attribute &#39;appStoreVersions.appStoreState&#39; (optional)
-     - parameter filterAppStoreVersionsAppVersionState: (query) filter by attribute &#39;appStoreVersions.appVersionState&#39; (optional)
-     - parameter filterAppStoreVersionsPlatform: (query) filter by attribute &#39;appStoreVersions.platform&#39; (optional)
-     - parameter filterBundleId: (query) filter by attribute &#39;bundleId&#39; (optional)
      - parameter filterName: (query) filter by attribute &#39;name&#39; (optional)
+     - parameter filterBundleId: (query) filter by attribute &#39;bundleId&#39; (optional)
      - parameter filterSku: (query) filter by attribute &#39;sku&#39; (optional)
+     - parameter filterAppStoreVersionsAppStoreState: (query) filter by attribute &#39;appStoreVersions.appStoreState&#39; (optional)
+     - parameter filterAppStoreVersionsPlatform: (query) filter by attribute &#39;appStoreVersions.platform&#39; (optional)
+     - parameter filterAppStoreVersionsAppVersionState: (query) filter by attribute &#39;appStoreVersions.appVersionState&#39; (optional)
+     - parameter filterReviewSubmissionsState: (query) filter by attribute &#39;reviewSubmissions.state&#39; (optional)
+     - parameter filterReviewSubmissionsPlatform: (query) filter by attribute &#39;reviewSubmissions.platform&#39; (optional)
      - parameter filterAppStoreVersions: (query) filter by id(s) of related &#39;appStoreVersions&#39; (optional)
      - parameter filterId: (query) filter by id(s) (optional)
      - parameter existsGameCenterEnabledVersions: (query) filter by existence or non-existence of related &#39;gameCenterEnabledVersions&#39; (optional)
      - parameter sort: (query) comma-separated list of sort expressions; resources will be sorted as specified (optional)
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
-     - parameter limit: (query) maximum resources per page (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
-     - parameter fieldsBetaAppReviewDetails: (query) the fields to include for returned resources of type betaAppReviewDetails (optional)
-     - parameter fieldsGameCenterDetails: (query) the fields to include for returned resources of type gameCenterDetails (optional)
-     - parameter fieldsAppPriceSchedules: (query) the fields to include for returned resources of type appPriceSchedules (optional)
+     - parameter fieldsAppEncryptionDeclarations: (query) the fields to include for returned resources of type appEncryptionDeclarations (optional)
      - parameter fieldsCiProducts: (query) the fields to include for returned resources of type ciProducts (optional)
-     - parameter fieldsAlternativeDistributionKeys: (query) the fields to include for returned resources of type alternativeDistributionKeys (optional)
-     - parameter fieldsReviewSubmissions: (query) the fields to include for returned resources of type reviewSubmissions (optional)
      - parameter fieldsBetaGroups: (query) the fields to include for returned resources of type betaGroups (optional)
-     - parameter fieldsPromotedPurchases: (query) the fields to include for returned resources of type promotedPurchases (optional)
-     - parameter fieldsAppAvailabilities: (query) the fields to include for returned resources of type appAvailabilities (optional)
-     - parameter fieldsCustomerReviews: (query) the fields to include for returned resources of type customerReviews (optional)
-     - parameter fieldsAppEvents: (query) the fields to include for returned resources of type appEvents (optional)
+     - parameter fieldsAppStoreVersions: (query) the fields to include for returned resources of type appStoreVersions (optional)
+     - parameter fieldsPreReleaseVersions: (query) the fields to include for returned resources of type preReleaseVersions (optional)
+     - parameter fieldsBetaAppLocalizations: (query) the fields to include for returned resources of type betaAppLocalizations (optional)
      - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
      - parameter fieldsBetaLicenseAgreements: (query) the fields to include for returned resources of type betaLicenseAgreements (optional)
-     - parameter fieldsMarketplaceSearchDetails: (query) the fields to include for returned resources of type marketplaceSearchDetails (optional)
-     - parameter fieldsAppClips: (query) the fields to include for returned resources of type appClips (optional)
+     - parameter fieldsBetaAppReviewDetails: (query) the fields to include for returned resources of type betaAppReviewDetails (optional)
      - parameter fieldsAppInfos: (query) the fields to include for returned resources of type appInfos (optional)
-     - parameter fieldsBetaAppLocalizations: (query) the fields to include for returned resources of type betaAppLocalizations (optional)
-     - parameter fieldsAppPricePoints: (query) the fields to include for returned resources of type appPricePoints (optional)
-     - parameter fieldsInAppPurchases: (query) the fields to include for returned resources of type inAppPurchases (optional)
-     - parameter fieldsPreReleaseVersions: (query) the fields to include for returned resources of type preReleaseVersions (optional)
-     - parameter fieldsSubscriptionGroups: (query) the fields to include for returned resources of type subscriptionGroups (optional)
-     - parameter fieldsAnalyticsReportRequests: (query) the fields to include for returned resources of type analyticsReportRequests (optional)
-     - parameter fieldsAppPrices: (query) the fields to include for returned resources of type appPrices (optional)
-     - parameter fieldsAppPreOrders: (query) the fields to include for returned resources of type appPreOrders (optional)
-     - parameter fieldsAppStoreVersionExperiments: (query) the fields to include for returned resources of type appStoreVersionExperiments (optional)
-     - parameter fieldsGameCenterEnabledVersions: (query) the fields to include for returned resources of type gameCenterEnabledVersions (optional)
-     - parameter fieldsSubscriptionGracePeriods: (query) the fields to include for returned resources of type subscriptionGracePeriods (optional)
+     - parameter fieldsAppClips: (query) the fields to include for returned resources of type appClips (optional)
      - parameter fieldsEndUserLicenseAgreements: (query) the fields to include for returned resources of type endUserLicenseAgreements (optional)
-     - parameter fieldsAppStoreVersions: (query) the fields to include for returned resources of type appStoreVersions (optional)
+     - parameter fieldsInAppPurchases: (query) the fields to include for returned resources of type inAppPurchases (optional)
+     - parameter fieldsSubscriptionGroups: (query) the fields to include for returned resources of type subscriptionGroups (optional)
+     - parameter fieldsGameCenterEnabledVersions: (query) the fields to include for returned resources of type gameCenterEnabledVersions (optional)
      - parameter fieldsAppCustomProductPages: (query) the fields to include for returned resources of type appCustomProductPages (optional)
-     - parameter fieldsAppEncryptionDeclarations: (query) the fields to include for returned resources of type appEncryptionDeclarations (optional)
-     - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
-     - parameter fieldsPerfPowerMetrics: (query) the fields to include for returned resources of type perfPowerMetrics (optional)
+     - parameter fieldsPromotedPurchases: (query) the fields to include for returned resources of type promotedPurchases (optional)
+     - parameter fieldsAppEvents: (query) the fields to include for returned resources of type appEvents (optional)
+     - parameter fieldsReviewSubmissions: (query) the fields to include for returned resources of type reviewSubmissions (optional)
+     - parameter fieldsSubscriptionGracePeriods: (query) the fields to include for returned resources of type subscriptionGracePeriods (optional)
+     - parameter fieldsGameCenterDetails: (query) the fields to include for returned resources of type gameCenterDetails (optional)
+     - parameter fieldsAppStoreVersionExperiments: (query) the fields to include for returned resources of type appStoreVersionExperiments (optional)
+     - parameter limit: (query) maximum resources per page (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAppClips: (query) maximum number of related appClips returned (when they are included) (optional)
      - parameter limitAppCustomProductPages: (query) maximum number of related appCustomProductPages returned (when they are included) (optional)
      - parameter limitAppEncryptionDeclarations: (query) maximum number of related appEncryptionDeclarations returned (when they are included) (optional)
@@ -4908,7 +4629,6 @@ open class AppsAPI {
      - parameter limitAppInfos: (query) maximum number of related appInfos returned (when they are included) (optional)
      - parameter limitAppStoreVersionExperimentsV2: (query) maximum number of related appStoreVersionExperimentsV2 returned (when they are included) (optional)
      - parameter limitAppStoreVersions: (query) maximum number of related appStoreVersions returned (when they are included) (optional)
-     - parameter limitAvailableTerritories: (query) maximum number of related availableTerritories returned (when they are included) (optional)
      - parameter limitBetaAppLocalizations: (query) maximum number of related betaAppLocalizations returned (when they are included) (optional)
      - parameter limitBetaGroups: (query) maximum number of related betaGroups returned (when they are included) (optional)
      - parameter limitBuilds: (query) maximum number of related builds returned (when they are included) (optional)
@@ -4916,15 +4636,14 @@ open class AppsAPI {
      - parameter limitInAppPurchases: (query) maximum number of related inAppPurchases returned (when they are included) (optional)
      - parameter limitInAppPurchasesV2: (query) maximum number of related inAppPurchasesV2 returned (when they are included) (optional)
      - parameter limitPreReleaseVersions: (query) maximum number of related preReleaseVersions returned (when they are included) (optional)
-     - parameter limitPrices: (query) maximum number of related prices returned (when they are included) (optional)
      - parameter limitPromotedPurchases: (query) maximum number of related promotedPurchases returned (when they are included) (optional)
      - parameter limitReviewSubmissions: (query) maximum number of related reviewSubmissions returned (when they are included) (optional)
      - parameter limitSubscriptionGroups: (query) maximum number of related subscriptionGroups returned (when they are included) (optional)
      - returns: AppsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appsGetCollection(filterAppStoreVersionsAppStoreState: [FilterAppStoreVersionsAppStoreState_appsGetCollection]? = nil, filterAppStoreVersionsAppVersionState: [FilterAppStoreVersionsAppVersionState_appsGetCollection]? = nil, filterAppStoreVersionsPlatform: [FilterAppStoreVersionsPlatform_appsGetCollection]? = nil, filterBundleId: [String]? = nil, filterName: [String]? = nil, filterSku: [String]? = nil, filterAppStoreVersions: [String]? = nil, filterId: [String]? = nil, existsGameCenterEnabledVersions: Bool? = nil, sort: [Sort_appsGetCollection]? = nil, fieldsApps: [FieldsApps_appsGetCollection]? = nil, limit: Int? = nil, include: [Include_appsGetCollection]? = nil, fieldsBetaAppReviewDetails: [FieldsBetaAppReviewDetails_appsGetCollection]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_appsGetCollection]? = nil, fieldsAppPriceSchedules: [FieldsAppPriceSchedules_appsGetCollection]? = nil, fieldsCiProducts: [FieldsCiProducts_appsGetCollection]? = nil, fieldsAlternativeDistributionKeys: [FieldsAlternativeDistributionKeys_appsGetCollection]? = nil, fieldsReviewSubmissions: [FieldsReviewSubmissions_appsGetCollection]? = nil, fieldsBetaGroups: [FieldsBetaGroups_appsGetCollection]? = nil, fieldsPromotedPurchases: [FieldsPromotedPurchases_appsGetCollection]? = nil, fieldsAppAvailabilities: [FieldsAppAvailabilities_appsGetCollection]? = nil, fieldsCustomerReviews: [FieldsCustomerReviews_appsGetCollection]? = nil, fieldsAppEvents: [FieldsAppEvents_appsGetCollection]? = nil, fieldsBuilds: [FieldsBuilds_appsGetCollection]? = nil, fieldsBetaLicenseAgreements: [FieldsBetaLicenseAgreements_appsGetCollection]? = nil, fieldsMarketplaceSearchDetails: [FieldsMarketplaceSearchDetails_appsGetCollection]? = nil, fieldsAppClips: [FieldsAppClips_appsGetCollection]? = nil, fieldsAppInfos: [FieldsAppInfos_appsGetCollection]? = nil, fieldsBetaAppLocalizations: [FieldsBetaAppLocalizations_appsGetCollection]? = nil, fieldsAppPricePoints: [FieldsAppPricePoints_appsGetCollection]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_appsGetCollection]? = nil, fieldsPreReleaseVersions: [FieldsPreReleaseVersions_appsGetCollection]? = nil, fieldsSubscriptionGroups: [FieldsSubscriptionGroups_appsGetCollection]? = nil, fieldsAnalyticsReportRequests: [FieldsAnalyticsReportRequests_appsGetCollection]? = nil, fieldsAppPrices: [FieldsAppPrices_appsGetCollection]? = nil, fieldsAppPreOrders: [FieldsAppPreOrders_appsGetCollection]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_appsGetCollection]? = nil, fieldsGameCenterEnabledVersions: [FieldsGameCenterEnabledVersions_appsGetCollection]? = nil, fieldsSubscriptionGracePeriods: [FieldsSubscriptionGracePeriods_appsGetCollection]? = nil, fieldsEndUserLicenseAgreements: [FieldsEndUserLicenseAgreements_appsGetCollection]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_appsGetCollection]? = nil, fieldsAppCustomProductPages: [FieldsAppCustomProductPages_appsGetCollection]? = nil, fieldsAppEncryptionDeclarations: [FieldsAppEncryptionDeclarations_appsGetCollection]? = nil, fieldsTerritories: [FieldsTerritories_appsGetCollection]? = nil, fieldsPerfPowerMetrics: [FieldsPerfPowerMetrics_appsGetCollection]? = nil, limitAppClips: Int? = nil, limitAppCustomProductPages: Int? = nil, limitAppEncryptionDeclarations: Int? = nil, limitAppEvents: Int? = nil, limitAppInfos: Int? = nil, limitAppStoreVersionExperimentsV2: Int? = nil, limitAppStoreVersions: Int? = nil, limitAvailableTerritories: Int? = nil, limitBetaAppLocalizations: Int? = nil, limitBetaGroups: Int? = nil, limitBuilds: Int? = nil, limitGameCenterEnabledVersions: Int? = nil, limitInAppPurchases: Int? = nil, limitInAppPurchasesV2: Int? = nil, limitPreReleaseVersions: Int? = nil, limitPrices: Int? = nil, limitPromotedPurchases: Int? = nil, limitReviewSubmissions: Int? = nil, limitSubscriptionGroups: Int? = nil) async throws -> AppsResponse {
-        return try await appsGetCollectionWithRequestBuilder(filterAppStoreVersionsAppStoreState: filterAppStoreVersionsAppStoreState, filterAppStoreVersionsAppVersionState: filterAppStoreVersionsAppVersionState, filterAppStoreVersionsPlatform: filterAppStoreVersionsPlatform, filterBundleId: filterBundleId, filterName: filterName, filterSku: filterSku, filterAppStoreVersions: filterAppStoreVersions, filterId: filterId, existsGameCenterEnabledVersions: existsGameCenterEnabledVersions, sort: sort, fieldsApps: fieldsApps, limit: limit, include: include, fieldsBetaAppReviewDetails: fieldsBetaAppReviewDetails, fieldsGameCenterDetails: fieldsGameCenterDetails, fieldsAppPriceSchedules: fieldsAppPriceSchedules, fieldsCiProducts: fieldsCiProducts, fieldsAlternativeDistributionKeys: fieldsAlternativeDistributionKeys, fieldsReviewSubmissions: fieldsReviewSubmissions, fieldsBetaGroups: fieldsBetaGroups, fieldsPromotedPurchases: fieldsPromotedPurchases, fieldsAppAvailabilities: fieldsAppAvailabilities, fieldsCustomerReviews: fieldsCustomerReviews, fieldsAppEvents: fieldsAppEvents, fieldsBuilds: fieldsBuilds, fieldsBetaLicenseAgreements: fieldsBetaLicenseAgreements, fieldsMarketplaceSearchDetails: fieldsMarketplaceSearchDetails, fieldsAppClips: fieldsAppClips, fieldsAppInfos: fieldsAppInfos, fieldsBetaAppLocalizations: fieldsBetaAppLocalizations, fieldsAppPricePoints: fieldsAppPricePoints, fieldsInAppPurchases: fieldsInAppPurchases, fieldsPreReleaseVersions: fieldsPreReleaseVersions, fieldsSubscriptionGroups: fieldsSubscriptionGroups, fieldsAnalyticsReportRequests: fieldsAnalyticsReportRequests, fieldsAppPrices: fieldsAppPrices, fieldsAppPreOrders: fieldsAppPreOrders, fieldsAppStoreVersionExperiments: fieldsAppStoreVersionExperiments, fieldsGameCenterEnabledVersions: fieldsGameCenterEnabledVersions, fieldsSubscriptionGracePeriods: fieldsSubscriptionGracePeriods, fieldsEndUserLicenseAgreements: fieldsEndUserLicenseAgreements, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsAppCustomProductPages: fieldsAppCustomProductPages, fieldsAppEncryptionDeclarations: fieldsAppEncryptionDeclarations, fieldsTerritories: fieldsTerritories, fieldsPerfPowerMetrics: fieldsPerfPowerMetrics, limitAppClips: limitAppClips, limitAppCustomProductPages: limitAppCustomProductPages, limitAppEncryptionDeclarations: limitAppEncryptionDeclarations, limitAppEvents: limitAppEvents, limitAppInfos: limitAppInfos, limitAppStoreVersionExperimentsV2: limitAppStoreVersionExperimentsV2, limitAppStoreVersions: limitAppStoreVersions, limitAvailableTerritories: limitAvailableTerritories, limitBetaAppLocalizations: limitBetaAppLocalizations, limitBetaGroups: limitBetaGroups, limitBuilds: limitBuilds, limitGameCenterEnabledVersions: limitGameCenterEnabledVersions, limitInAppPurchases: limitInAppPurchases, limitInAppPurchasesV2: limitInAppPurchasesV2, limitPreReleaseVersions: limitPreReleaseVersions, limitPrices: limitPrices, limitPromotedPurchases: limitPromotedPurchases, limitReviewSubmissions: limitReviewSubmissions, limitSubscriptionGroups: limitSubscriptionGroups).execute().body
+    open class func appsGetCollection(filterName: [String]? = nil, filterBundleId: [String]? = nil, filterSku: [String]? = nil, filterAppStoreVersionsAppStoreState: [FilterAppStoreVersionsAppStoreState_appsGetCollection]? = nil, filterAppStoreVersionsPlatform: [FilterAppStoreVersionsPlatform_appsGetCollection]? = nil, filterAppStoreVersionsAppVersionState: [FilterAppStoreVersionsAppVersionState_appsGetCollection]? = nil, filterReviewSubmissionsState: [FilterReviewSubmissionsState_appsGetCollection]? = nil, filterReviewSubmissionsPlatform: [FilterReviewSubmissionsPlatform_appsGetCollection]? = nil, filterAppStoreVersions: [String]? = nil, filterId: [String]? = nil, existsGameCenterEnabledVersions: Bool? = nil, sort: [Sort_appsGetCollection]? = nil, fieldsApps: [FieldsApps_appsGetCollection]? = nil, fieldsAppEncryptionDeclarations: [FieldsAppEncryptionDeclarations_appsGetCollection]? = nil, fieldsCiProducts: [FieldsCiProducts_appsGetCollection]? = nil, fieldsBetaGroups: [FieldsBetaGroups_appsGetCollection]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_appsGetCollection]? = nil, fieldsPreReleaseVersions: [FieldsPreReleaseVersions_appsGetCollection]? = nil, fieldsBetaAppLocalizations: [FieldsBetaAppLocalizations_appsGetCollection]? = nil, fieldsBuilds: [FieldsBuilds_appsGetCollection]? = nil, fieldsBetaLicenseAgreements: [FieldsBetaLicenseAgreements_appsGetCollection]? = nil, fieldsBetaAppReviewDetails: [FieldsBetaAppReviewDetails_appsGetCollection]? = nil, fieldsAppInfos: [FieldsAppInfos_appsGetCollection]? = nil, fieldsAppClips: [FieldsAppClips_appsGetCollection]? = nil, fieldsEndUserLicenseAgreements: [FieldsEndUserLicenseAgreements_appsGetCollection]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_appsGetCollection]? = nil, fieldsSubscriptionGroups: [FieldsSubscriptionGroups_appsGetCollection]? = nil, fieldsGameCenterEnabledVersions: [FieldsGameCenterEnabledVersions_appsGetCollection]? = nil, fieldsAppCustomProductPages: [FieldsAppCustomProductPages_appsGetCollection]? = nil, fieldsPromotedPurchases: [FieldsPromotedPurchases_appsGetCollection]? = nil, fieldsAppEvents: [FieldsAppEvents_appsGetCollection]? = nil, fieldsReviewSubmissions: [FieldsReviewSubmissions_appsGetCollection]? = nil, fieldsSubscriptionGracePeriods: [FieldsSubscriptionGracePeriods_appsGetCollection]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_appsGetCollection]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_appsGetCollection]? = nil, limit: Int? = nil, include: [Include_appsGetCollection]? = nil, limitAppClips: Int? = nil, limitAppCustomProductPages: Int? = nil, limitAppEncryptionDeclarations: Int? = nil, limitAppEvents: Int? = nil, limitAppInfos: Int? = nil, limitAppStoreVersionExperimentsV2: Int? = nil, limitAppStoreVersions: Int? = nil, limitBetaAppLocalizations: Int? = nil, limitBetaGroups: Int? = nil, limitBuilds: Int? = nil, limitGameCenterEnabledVersions: Int? = nil, limitInAppPurchases: Int? = nil, limitInAppPurchasesV2: Int? = nil, limitPreReleaseVersions: Int? = nil, limitPromotedPurchases: Int? = nil, limitReviewSubmissions: Int? = nil, limitSubscriptionGroups: Int? = nil) async throws -> AppsResponse {
+        return try await appsGetCollectionWithRequestBuilder(filterName: filterName, filterBundleId: filterBundleId, filterSku: filterSku, filterAppStoreVersionsAppStoreState: filterAppStoreVersionsAppStoreState, filterAppStoreVersionsPlatform: filterAppStoreVersionsPlatform, filterAppStoreVersionsAppVersionState: filterAppStoreVersionsAppVersionState, filterReviewSubmissionsState: filterReviewSubmissionsState, filterReviewSubmissionsPlatform: filterReviewSubmissionsPlatform, filterAppStoreVersions: filterAppStoreVersions, filterId: filterId, existsGameCenterEnabledVersions: existsGameCenterEnabledVersions, sort: sort, fieldsApps: fieldsApps, fieldsAppEncryptionDeclarations: fieldsAppEncryptionDeclarations, fieldsCiProducts: fieldsCiProducts, fieldsBetaGroups: fieldsBetaGroups, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsPreReleaseVersions: fieldsPreReleaseVersions, fieldsBetaAppLocalizations: fieldsBetaAppLocalizations, fieldsBuilds: fieldsBuilds, fieldsBetaLicenseAgreements: fieldsBetaLicenseAgreements, fieldsBetaAppReviewDetails: fieldsBetaAppReviewDetails, fieldsAppInfos: fieldsAppInfos, fieldsAppClips: fieldsAppClips, fieldsEndUserLicenseAgreements: fieldsEndUserLicenseAgreements, fieldsInAppPurchases: fieldsInAppPurchases, fieldsSubscriptionGroups: fieldsSubscriptionGroups, fieldsGameCenterEnabledVersions: fieldsGameCenterEnabledVersions, fieldsAppCustomProductPages: fieldsAppCustomProductPages, fieldsPromotedPurchases: fieldsPromotedPurchases, fieldsAppEvents: fieldsAppEvents, fieldsReviewSubmissions: fieldsReviewSubmissions, fieldsSubscriptionGracePeriods: fieldsSubscriptionGracePeriods, fieldsGameCenterDetails: fieldsGameCenterDetails, fieldsAppStoreVersionExperiments: fieldsAppStoreVersionExperiments, limit: limit, include: include, limitAppClips: limitAppClips, limitAppCustomProductPages: limitAppCustomProductPages, limitAppEncryptionDeclarations: limitAppEncryptionDeclarations, limitAppEvents: limitAppEvents, limitAppInfos: limitAppInfos, limitAppStoreVersionExperimentsV2: limitAppStoreVersionExperimentsV2, limitAppStoreVersions: limitAppStoreVersions, limitBetaAppLocalizations: limitBetaAppLocalizations, limitBetaGroups: limitBetaGroups, limitBuilds: limitBuilds, limitGameCenterEnabledVersions: limitGameCenterEnabledVersions, limitInAppPurchases: limitInAppPurchases, limitInAppPurchasesV2: limitInAppPurchasesV2, limitPreReleaseVersions: limitPreReleaseVersions, limitPromotedPurchases: limitPromotedPurchases, limitReviewSubmissions: limitReviewSubmissions, limitSubscriptionGroups: limitSubscriptionGroups).execute().body
     }
 
     /**
@@ -4941,52 +4660,43 @@ open class AppsAPI {
      - Bearer Token:
        - type: http
        - name: itc-bearer-token
-     - parameter filterAppStoreVersionsAppStoreState: (query) filter by attribute &#39;appStoreVersions.appStoreState&#39; (optional)
-     - parameter filterAppStoreVersionsAppVersionState: (query) filter by attribute &#39;appStoreVersions.appVersionState&#39; (optional)
-     - parameter filterAppStoreVersionsPlatform: (query) filter by attribute &#39;appStoreVersions.platform&#39; (optional)
-     - parameter filterBundleId: (query) filter by attribute &#39;bundleId&#39; (optional)
      - parameter filterName: (query) filter by attribute &#39;name&#39; (optional)
+     - parameter filterBundleId: (query) filter by attribute &#39;bundleId&#39; (optional)
      - parameter filterSku: (query) filter by attribute &#39;sku&#39; (optional)
+     - parameter filterAppStoreVersionsAppStoreState: (query) filter by attribute &#39;appStoreVersions.appStoreState&#39; (optional)
+     - parameter filterAppStoreVersionsPlatform: (query) filter by attribute &#39;appStoreVersions.platform&#39; (optional)
+     - parameter filterAppStoreVersionsAppVersionState: (query) filter by attribute &#39;appStoreVersions.appVersionState&#39; (optional)
+     - parameter filterReviewSubmissionsState: (query) filter by attribute &#39;reviewSubmissions.state&#39; (optional)
+     - parameter filterReviewSubmissionsPlatform: (query) filter by attribute &#39;reviewSubmissions.platform&#39; (optional)
      - parameter filterAppStoreVersions: (query) filter by id(s) of related &#39;appStoreVersions&#39; (optional)
      - parameter filterId: (query) filter by id(s) (optional)
      - parameter existsGameCenterEnabledVersions: (query) filter by existence or non-existence of related &#39;gameCenterEnabledVersions&#39; (optional)
      - parameter sort: (query) comma-separated list of sort expressions; resources will be sorted as specified (optional)
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
-     - parameter limit: (query) maximum resources per page (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
-     - parameter fieldsBetaAppReviewDetails: (query) the fields to include for returned resources of type betaAppReviewDetails (optional)
-     - parameter fieldsGameCenterDetails: (query) the fields to include for returned resources of type gameCenterDetails (optional)
-     - parameter fieldsAppPriceSchedules: (query) the fields to include for returned resources of type appPriceSchedules (optional)
+     - parameter fieldsAppEncryptionDeclarations: (query) the fields to include for returned resources of type appEncryptionDeclarations (optional)
      - parameter fieldsCiProducts: (query) the fields to include for returned resources of type ciProducts (optional)
-     - parameter fieldsAlternativeDistributionKeys: (query) the fields to include for returned resources of type alternativeDistributionKeys (optional)
-     - parameter fieldsReviewSubmissions: (query) the fields to include for returned resources of type reviewSubmissions (optional)
      - parameter fieldsBetaGroups: (query) the fields to include for returned resources of type betaGroups (optional)
-     - parameter fieldsPromotedPurchases: (query) the fields to include for returned resources of type promotedPurchases (optional)
-     - parameter fieldsAppAvailabilities: (query) the fields to include for returned resources of type appAvailabilities (optional)
-     - parameter fieldsCustomerReviews: (query) the fields to include for returned resources of type customerReviews (optional)
-     - parameter fieldsAppEvents: (query) the fields to include for returned resources of type appEvents (optional)
+     - parameter fieldsAppStoreVersions: (query) the fields to include for returned resources of type appStoreVersions (optional)
+     - parameter fieldsPreReleaseVersions: (query) the fields to include for returned resources of type preReleaseVersions (optional)
+     - parameter fieldsBetaAppLocalizations: (query) the fields to include for returned resources of type betaAppLocalizations (optional)
      - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
      - parameter fieldsBetaLicenseAgreements: (query) the fields to include for returned resources of type betaLicenseAgreements (optional)
-     - parameter fieldsMarketplaceSearchDetails: (query) the fields to include for returned resources of type marketplaceSearchDetails (optional)
-     - parameter fieldsAppClips: (query) the fields to include for returned resources of type appClips (optional)
+     - parameter fieldsBetaAppReviewDetails: (query) the fields to include for returned resources of type betaAppReviewDetails (optional)
      - parameter fieldsAppInfos: (query) the fields to include for returned resources of type appInfos (optional)
-     - parameter fieldsBetaAppLocalizations: (query) the fields to include for returned resources of type betaAppLocalizations (optional)
-     - parameter fieldsAppPricePoints: (query) the fields to include for returned resources of type appPricePoints (optional)
-     - parameter fieldsInAppPurchases: (query) the fields to include for returned resources of type inAppPurchases (optional)
-     - parameter fieldsPreReleaseVersions: (query) the fields to include for returned resources of type preReleaseVersions (optional)
-     - parameter fieldsSubscriptionGroups: (query) the fields to include for returned resources of type subscriptionGroups (optional)
-     - parameter fieldsAnalyticsReportRequests: (query) the fields to include for returned resources of type analyticsReportRequests (optional)
-     - parameter fieldsAppPrices: (query) the fields to include for returned resources of type appPrices (optional)
-     - parameter fieldsAppPreOrders: (query) the fields to include for returned resources of type appPreOrders (optional)
-     - parameter fieldsAppStoreVersionExperiments: (query) the fields to include for returned resources of type appStoreVersionExperiments (optional)
-     - parameter fieldsGameCenterEnabledVersions: (query) the fields to include for returned resources of type gameCenterEnabledVersions (optional)
-     - parameter fieldsSubscriptionGracePeriods: (query) the fields to include for returned resources of type subscriptionGracePeriods (optional)
+     - parameter fieldsAppClips: (query) the fields to include for returned resources of type appClips (optional)
      - parameter fieldsEndUserLicenseAgreements: (query) the fields to include for returned resources of type endUserLicenseAgreements (optional)
-     - parameter fieldsAppStoreVersions: (query) the fields to include for returned resources of type appStoreVersions (optional)
+     - parameter fieldsInAppPurchases: (query) the fields to include for returned resources of type inAppPurchases (optional)
+     - parameter fieldsSubscriptionGroups: (query) the fields to include for returned resources of type subscriptionGroups (optional)
+     - parameter fieldsGameCenterEnabledVersions: (query) the fields to include for returned resources of type gameCenterEnabledVersions (optional)
      - parameter fieldsAppCustomProductPages: (query) the fields to include for returned resources of type appCustomProductPages (optional)
-     - parameter fieldsAppEncryptionDeclarations: (query) the fields to include for returned resources of type appEncryptionDeclarations (optional)
-     - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
-     - parameter fieldsPerfPowerMetrics: (query) the fields to include for returned resources of type perfPowerMetrics (optional)
+     - parameter fieldsPromotedPurchases: (query) the fields to include for returned resources of type promotedPurchases (optional)
+     - parameter fieldsAppEvents: (query) the fields to include for returned resources of type appEvents (optional)
+     - parameter fieldsReviewSubmissions: (query) the fields to include for returned resources of type reviewSubmissions (optional)
+     - parameter fieldsSubscriptionGracePeriods: (query) the fields to include for returned resources of type subscriptionGracePeriods (optional)
+     - parameter fieldsGameCenterDetails: (query) the fields to include for returned resources of type gameCenterDetails (optional)
+     - parameter fieldsAppStoreVersionExperiments: (query) the fields to include for returned resources of type appStoreVersionExperiments (optional)
+     - parameter limit: (query) maximum resources per page (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAppClips: (query) maximum number of related appClips returned (when they are included) (optional)
      - parameter limitAppCustomProductPages: (query) maximum number of related appCustomProductPages returned (when they are included) (optional)
      - parameter limitAppEncryptionDeclarations: (query) maximum number of related appEncryptionDeclarations returned (when they are included) (optional)
@@ -4994,7 +4704,6 @@ open class AppsAPI {
      - parameter limitAppInfos: (query) maximum number of related appInfos returned (when they are included) (optional)
      - parameter limitAppStoreVersionExperimentsV2: (query) maximum number of related appStoreVersionExperimentsV2 returned (when they are included) (optional)
      - parameter limitAppStoreVersions: (query) maximum number of related appStoreVersions returned (when they are included) (optional)
-     - parameter limitAvailableTerritories: (query) maximum number of related availableTerritories returned (when they are included) (optional)
      - parameter limitBetaAppLocalizations: (query) maximum number of related betaAppLocalizations returned (when they are included) (optional)
      - parameter limitBetaGroups: (query) maximum number of related betaGroups returned (when they are included) (optional)
      - parameter limitBuilds: (query) maximum number of related builds returned (when they are included) (optional)
@@ -5002,65 +4711,55 @@ open class AppsAPI {
      - parameter limitInAppPurchases: (query) maximum number of related inAppPurchases returned (when they are included) (optional)
      - parameter limitInAppPurchasesV2: (query) maximum number of related inAppPurchasesV2 returned (when they are included) (optional)
      - parameter limitPreReleaseVersions: (query) maximum number of related preReleaseVersions returned (when they are included) (optional)
-     - parameter limitPrices: (query) maximum number of related prices returned (when they are included) (optional)
      - parameter limitPromotedPurchases: (query) maximum number of related promotedPurchases returned (when they are included) (optional)
      - parameter limitReviewSubmissions: (query) maximum number of related reviewSubmissions returned (when they are included) (optional)
      - parameter limitSubscriptionGroups: (query) maximum number of related subscriptionGroups returned (when they are included) (optional)
      - returns: RequestBuilder<AppsResponse> 
      */
-    open class func appsGetCollectionWithRequestBuilder(filterAppStoreVersionsAppStoreState: [FilterAppStoreVersionsAppStoreState_appsGetCollection]? = nil, filterAppStoreVersionsAppVersionState: [FilterAppStoreVersionsAppVersionState_appsGetCollection]? = nil, filterAppStoreVersionsPlatform: [FilterAppStoreVersionsPlatform_appsGetCollection]? = nil, filterBundleId: [String]? = nil, filterName: [String]? = nil, filterSku: [String]? = nil, filterAppStoreVersions: [String]? = nil, filterId: [String]? = nil, existsGameCenterEnabledVersions: Bool? = nil, sort: [Sort_appsGetCollection]? = nil, fieldsApps: [FieldsApps_appsGetCollection]? = nil, limit: Int? = nil, include: [Include_appsGetCollection]? = nil, fieldsBetaAppReviewDetails: [FieldsBetaAppReviewDetails_appsGetCollection]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_appsGetCollection]? = nil, fieldsAppPriceSchedules: [FieldsAppPriceSchedules_appsGetCollection]? = nil, fieldsCiProducts: [FieldsCiProducts_appsGetCollection]? = nil, fieldsAlternativeDistributionKeys: [FieldsAlternativeDistributionKeys_appsGetCollection]? = nil, fieldsReviewSubmissions: [FieldsReviewSubmissions_appsGetCollection]? = nil, fieldsBetaGroups: [FieldsBetaGroups_appsGetCollection]? = nil, fieldsPromotedPurchases: [FieldsPromotedPurchases_appsGetCollection]? = nil, fieldsAppAvailabilities: [FieldsAppAvailabilities_appsGetCollection]? = nil, fieldsCustomerReviews: [FieldsCustomerReviews_appsGetCollection]? = nil, fieldsAppEvents: [FieldsAppEvents_appsGetCollection]? = nil, fieldsBuilds: [FieldsBuilds_appsGetCollection]? = nil, fieldsBetaLicenseAgreements: [FieldsBetaLicenseAgreements_appsGetCollection]? = nil, fieldsMarketplaceSearchDetails: [FieldsMarketplaceSearchDetails_appsGetCollection]? = nil, fieldsAppClips: [FieldsAppClips_appsGetCollection]? = nil, fieldsAppInfos: [FieldsAppInfos_appsGetCollection]? = nil, fieldsBetaAppLocalizations: [FieldsBetaAppLocalizations_appsGetCollection]? = nil, fieldsAppPricePoints: [FieldsAppPricePoints_appsGetCollection]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_appsGetCollection]? = nil, fieldsPreReleaseVersions: [FieldsPreReleaseVersions_appsGetCollection]? = nil, fieldsSubscriptionGroups: [FieldsSubscriptionGroups_appsGetCollection]? = nil, fieldsAnalyticsReportRequests: [FieldsAnalyticsReportRequests_appsGetCollection]? = nil, fieldsAppPrices: [FieldsAppPrices_appsGetCollection]? = nil, fieldsAppPreOrders: [FieldsAppPreOrders_appsGetCollection]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_appsGetCollection]? = nil, fieldsGameCenterEnabledVersions: [FieldsGameCenterEnabledVersions_appsGetCollection]? = nil, fieldsSubscriptionGracePeriods: [FieldsSubscriptionGracePeriods_appsGetCollection]? = nil, fieldsEndUserLicenseAgreements: [FieldsEndUserLicenseAgreements_appsGetCollection]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_appsGetCollection]? = nil, fieldsAppCustomProductPages: [FieldsAppCustomProductPages_appsGetCollection]? = nil, fieldsAppEncryptionDeclarations: [FieldsAppEncryptionDeclarations_appsGetCollection]? = nil, fieldsTerritories: [FieldsTerritories_appsGetCollection]? = nil, fieldsPerfPowerMetrics: [FieldsPerfPowerMetrics_appsGetCollection]? = nil, limitAppClips: Int? = nil, limitAppCustomProductPages: Int? = nil, limitAppEncryptionDeclarations: Int? = nil, limitAppEvents: Int? = nil, limitAppInfos: Int? = nil, limitAppStoreVersionExperimentsV2: Int? = nil, limitAppStoreVersions: Int? = nil, limitAvailableTerritories: Int? = nil, limitBetaAppLocalizations: Int? = nil, limitBetaGroups: Int? = nil, limitBuilds: Int? = nil, limitGameCenterEnabledVersions: Int? = nil, limitInAppPurchases: Int? = nil, limitInAppPurchasesV2: Int? = nil, limitPreReleaseVersions: Int? = nil, limitPrices: Int? = nil, limitPromotedPurchases: Int? = nil, limitReviewSubmissions: Int? = nil, limitSubscriptionGroups: Int? = nil) -> RequestBuilder<AppsResponse> {
+    open class func appsGetCollectionWithRequestBuilder(filterName: [String]? = nil, filterBundleId: [String]? = nil, filterSku: [String]? = nil, filterAppStoreVersionsAppStoreState: [FilterAppStoreVersionsAppStoreState_appsGetCollection]? = nil, filterAppStoreVersionsPlatform: [FilterAppStoreVersionsPlatform_appsGetCollection]? = nil, filterAppStoreVersionsAppVersionState: [FilterAppStoreVersionsAppVersionState_appsGetCollection]? = nil, filterReviewSubmissionsState: [FilterReviewSubmissionsState_appsGetCollection]? = nil, filterReviewSubmissionsPlatform: [FilterReviewSubmissionsPlatform_appsGetCollection]? = nil, filterAppStoreVersions: [String]? = nil, filterId: [String]? = nil, existsGameCenterEnabledVersions: Bool? = nil, sort: [Sort_appsGetCollection]? = nil, fieldsApps: [FieldsApps_appsGetCollection]? = nil, fieldsAppEncryptionDeclarations: [FieldsAppEncryptionDeclarations_appsGetCollection]? = nil, fieldsCiProducts: [FieldsCiProducts_appsGetCollection]? = nil, fieldsBetaGroups: [FieldsBetaGroups_appsGetCollection]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_appsGetCollection]? = nil, fieldsPreReleaseVersions: [FieldsPreReleaseVersions_appsGetCollection]? = nil, fieldsBetaAppLocalizations: [FieldsBetaAppLocalizations_appsGetCollection]? = nil, fieldsBuilds: [FieldsBuilds_appsGetCollection]? = nil, fieldsBetaLicenseAgreements: [FieldsBetaLicenseAgreements_appsGetCollection]? = nil, fieldsBetaAppReviewDetails: [FieldsBetaAppReviewDetails_appsGetCollection]? = nil, fieldsAppInfos: [FieldsAppInfos_appsGetCollection]? = nil, fieldsAppClips: [FieldsAppClips_appsGetCollection]? = nil, fieldsEndUserLicenseAgreements: [FieldsEndUserLicenseAgreements_appsGetCollection]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_appsGetCollection]? = nil, fieldsSubscriptionGroups: [FieldsSubscriptionGroups_appsGetCollection]? = nil, fieldsGameCenterEnabledVersions: [FieldsGameCenterEnabledVersions_appsGetCollection]? = nil, fieldsAppCustomProductPages: [FieldsAppCustomProductPages_appsGetCollection]? = nil, fieldsPromotedPurchases: [FieldsPromotedPurchases_appsGetCollection]? = nil, fieldsAppEvents: [FieldsAppEvents_appsGetCollection]? = nil, fieldsReviewSubmissions: [FieldsReviewSubmissions_appsGetCollection]? = nil, fieldsSubscriptionGracePeriods: [FieldsSubscriptionGracePeriods_appsGetCollection]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_appsGetCollection]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_appsGetCollection]? = nil, limit: Int? = nil, include: [Include_appsGetCollection]? = nil, limitAppClips: Int? = nil, limitAppCustomProductPages: Int? = nil, limitAppEncryptionDeclarations: Int? = nil, limitAppEvents: Int? = nil, limitAppInfos: Int? = nil, limitAppStoreVersionExperimentsV2: Int? = nil, limitAppStoreVersions: Int? = nil, limitBetaAppLocalizations: Int? = nil, limitBetaGroups: Int? = nil, limitBuilds: Int? = nil, limitGameCenterEnabledVersions: Int? = nil, limitInAppPurchases: Int? = nil, limitInAppPurchasesV2: Int? = nil, limitPreReleaseVersions: Int? = nil, limitPromotedPurchases: Int? = nil, limitReviewSubmissions: Int? = nil, limitSubscriptionGroups: Int? = nil) -> RequestBuilder<AppsResponse> {
         let localVariablePath = "/v1/apps"
         let localVariableURLString = ASCAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[appStoreVersions.appStoreState]": (wrappedValue: filterAppStoreVersionsAppStoreState?.encodeToJSON(), isExplode: false),
-            "filter[appStoreVersions.appVersionState]": (wrappedValue: filterAppStoreVersionsAppVersionState?.encodeToJSON(), isExplode: false),
-            "filter[appStoreVersions.platform]": (wrappedValue: filterAppStoreVersionsPlatform?.encodeToJSON(), isExplode: false),
-            "filter[bundleId]": (wrappedValue: filterBundleId?.encodeToJSON(), isExplode: false),
             "filter[name]": (wrappedValue: filterName?.encodeToJSON(), isExplode: false),
+            "filter[bundleId]": (wrappedValue: filterBundleId?.encodeToJSON(), isExplode: false),
             "filter[sku]": (wrappedValue: filterSku?.encodeToJSON(), isExplode: false),
+            "filter[appStoreVersions.appStoreState]": (wrappedValue: filterAppStoreVersionsAppStoreState?.encodeToJSON(), isExplode: false),
+            "filter[appStoreVersions.platform]": (wrappedValue: filterAppStoreVersionsPlatform?.encodeToJSON(), isExplode: false),
+            "filter[appStoreVersions.appVersionState]": (wrappedValue: filterAppStoreVersionsAppVersionState?.encodeToJSON(), isExplode: false),
+            "filter[reviewSubmissions.state]": (wrappedValue: filterReviewSubmissionsState?.encodeToJSON(), isExplode: false),
+            "filter[reviewSubmissions.platform]": (wrappedValue: filterReviewSubmissionsPlatform?.encodeToJSON(), isExplode: false),
             "filter[appStoreVersions]": (wrappedValue: filterAppStoreVersions?.encodeToJSON(), isExplode: false),
             "filter[id]": (wrappedValue: filterId?.encodeToJSON(), isExplode: false),
             "exists[gameCenterEnabledVersions]": (wrappedValue: existsGameCenterEnabledVersions?.encodeToJSON(), isExplode: false),
             "sort": (wrappedValue: sort?.encodeToJSON(), isExplode: false),
             "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "fields[betaAppReviewDetails]": (wrappedValue: fieldsBetaAppReviewDetails?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterDetails]": (wrappedValue: fieldsGameCenterDetails?.encodeToJSON(), isExplode: false),
-            "fields[appPriceSchedules]": (wrappedValue: fieldsAppPriceSchedules?.encodeToJSON(), isExplode: false),
+            "fields[appEncryptionDeclarations]": (wrappedValue: fieldsAppEncryptionDeclarations?.encodeToJSON(), isExplode: false),
             "fields[ciProducts]": (wrappedValue: fieldsCiProducts?.encodeToJSON(), isExplode: false),
-            "fields[alternativeDistributionKeys]": (wrappedValue: fieldsAlternativeDistributionKeys?.encodeToJSON(), isExplode: false),
-            "fields[reviewSubmissions]": (wrappedValue: fieldsReviewSubmissions?.encodeToJSON(), isExplode: false),
             "fields[betaGroups]": (wrappedValue: fieldsBetaGroups?.encodeToJSON(), isExplode: false),
-            "fields[promotedPurchases]": (wrappedValue: fieldsPromotedPurchases?.encodeToJSON(), isExplode: false),
-            "fields[appAvailabilities]": (wrappedValue: fieldsAppAvailabilities?.encodeToJSON(), isExplode: false),
-            "fields[customerReviews]": (wrappedValue: fieldsCustomerReviews?.encodeToJSON(), isExplode: false),
-            "fields[appEvents]": (wrappedValue: fieldsAppEvents?.encodeToJSON(), isExplode: false),
+            "fields[appStoreVersions]": (wrappedValue: fieldsAppStoreVersions?.encodeToJSON(), isExplode: false),
+            "fields[preReleaseVersions]": (wrappedValue: fieldsPreReleaseVersions?.encodeToJSON(), isExplode: false),
+            "fields[betaAppLocalizations]": (wrappedValue: fieldsBetaAppLocalizations?.encodeToJSON(), isExplode: false),
             "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(), isExplode: false),
             "fields[betaLicenseAgreements]": (wrappedValue: fieldsBetaLicenseAgreements?.encodeToJSON(), isExplode: false),
-            "fields[marketplaceSearchDetails]": (wrappedValue: fieldsMarketplaceSearchDetails?.encodeToJSON(), isExplode: false),
-            "fields[appClips]": (wrappedValue: fieldsAppClips?.encodeToJSON(), isExplode: false),
+            "fields[betaAppReviewDetails]": (wrappedValue: fieldsBetaAppReviewDetails?.encodeToJSON(), isExplode: false),
             "fields[appInfos]": (wrappedValue: fieldsAppInfos?.encodeToJSON(), isExplode: false),
-            "fields[betaAppLocalizations]": (wrappedValue: fieldsBetaAppLocalizations?.encodeToJSON(), isExplode: false),
-            "fields[appPricePoints]": (wrappedValue: fieldsAppPricePoints?.encodeToJSON(), isExplode: false),
-            "fields[inAppPurchases]": (wrappedValue: fieldsInAppPurchases?.encodeToJSON(), isExplode: false),
-            "fields[preReleaseVersions]": (wrappedValue: fieldsPreReleaseVersions?.encodeToJSON(), isExplode: false),
-            "fields[subscriptionGroups]": (wrappedValue: fieldsSubscriptionGroups?.encodeToJSON(), isExplode: false),
-            "fields[analyticsReportRequests]": (wrappedValue: fieldsAnalyticsReportRequests?.encodeToJSON(), isExplode: false),
-            "fields[appPrices]": (wrappedValue: fieldsAppPrices?.encodeToJSON(), isExplode: false),
-            "fields[appPreOrders]": (wrappedValue: fieldsAppPreOrders?.encodeToJSON(), isExplode: false),
-            "fields[appStoreVersionExperiments]": (wrappedValue: fieldsAppStoreVersionExperiments?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterEnabledVersions]": (wrappedValue: fieldsGameCenterEnabledVersions?.encodeToJSON(), isExplode: false),
-            "fields[subscriptionGracePeriods]": (wrappedValue: fieldsSubscriptionGracePeriods?.encodeToJSON(), isExplode: false),
+            "fields[appClips]": (wrappedValue: fieldsAppClips?.encodeToJSON(), isExplode: false),
             "fields[endUserLicenseAgreements]": (wrappedValue: fieldsEndUserLicenseAgreements?.encodeToJSON(), isExplode: false),
-            "fields[appStoreVersions]": (wrappedValue: fieldsAppStoreVersions?.encodeToJSON(), isExplode: false),
+            "fields[inAppPurchases]": (wrappedValue: fieldsInAppPurchases?.encodeToJSON(), isExplode: false),
+            "fields[subscriptionGroups]": (wrappedValue: fieldsSubscriptionGroups?.encodeToJSON(), isExplode: false),
+            "fields[gameCenterEnabledVersions]": (wrappedValue: fieldsGameCenterEnabledVersions?.encodeToJSON(), isExplode: false),
             "fields[appCustomProductPages]": (wrappedValue: fieldsAppCustomProductPages?.encodeToJSON(), isExplode: false),
-            "fields[appEncryptionDeclarations]": (wrappedValue: fieldsAppEncryptionDeclarations?.encodeToJSON(), isExplode: false),
-            "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(), isExplode: false),
-            "fields[perfPowerMetrics]": (wrappedValue: fieldsPerfPowerMetrics?.encodeToJSON(), isExplode: false),
+            "fields[promotedPurchases]": (wrappedValue: fieldsPromotedPurchases?.encodeToJSON(), isExplode: false),
+            "fields[appEvents]": (wrappedValue: fieldsAppEvents?.encodeToJSON(), isExplode: false),
+            "fields[reviewSubmissions]": (wrappedValue: fieldsReviewSubmissions?.encodeToJSON(), isExplode: false),
+            "fields[subscriptionGracePeriods]": (wrappedValue: fieldsSubscriptionGracePeriods?.encodeToJSON(), isExplode: false),
+            "fields[gameCenterDetails]": (wrappedValue: fieldsGameCenterDetails?.encodeToJSON(), isExplode: false),
+            "fields[appStoreVersionExperiments]": (wrappedValue: fieldsAppStoreVersionExperiments?.encodeToJSON(), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "limit[appClips]": (wrappedValue: limitAppClips?.encodeToJSON(), isExplode: true),
             "limit[appCustomProductPages]": (wrappedValue: limitAppCustomProductPages?.encodeToJSON(), isExplode: true),
             "limit[appEncryptionDeclarations]": (wrappedValue: limitAppEncryptionDeclarations?.encodeToJSON(), isExplode: true),
@@ -5068,7 +4767,6 @@ open class AppsAPI {
             "limit[appInfos]": (wrappedValue: limitAppInfos?.encodeToJSON(), isExplode: true),
             "limit[appStoreVersionExperimentsV2]": (wrappedValue: limitAppStoreVersionExperimentsV2?.encodeToJSON(), isExplode: true),
             "limit[appStoreVersions]": (wrappedValue: limitAppStoreVersions?.encodeToJSON(), isExplode: true),
-            "limit[availableTerritories]": (wrappedValue: limitAvailableTerritories?.encodeToJSON(), isExplode: true),
             "limit[betaAppLocalizations]": (wrappedValue: limitBetaAppLocalizations?.encodeToJSON(), isExplode: true),
             "limit[betaGroups]": (wrappedValue: limitBetaGroups?.encodeToJSON(), isExplode: true),
             "limit[builds]": (wrappedValue: limitBuilds?.encodeToJSON(), isExplode: true),
@@ -5076,7 +4774,6 @@ open class AppsAPI {
             "limit[inAppPurchases]": (wrappedValue: limitInAppPurchases?.encodeToJSON(), isExplode: true),
             "limit[inAppPurchasesV2]": (wrappedValue: limitInAppPurchasesV2?.encodeToJSON(), isExplode: true),
             "limit[preReleaseVersions]": (wrappedValue: limitPreReleaseVersions?.encodeToJSON(), isExplode: true),
-            "limit[prices]": (wrappedValue: limitPrices?.encodeToJSON(), isExplode: true),
             "limit[promotedPurchases]": (wrappedValue: limitPromotedPurchases?.encodeToJSON(), isExplode: true),
             "limit[reviewSubmissions]": (wrappedValue: limitReviewSubmissions?.encodeToJSON(), isExplode: true),
             "limit[subscriptionGroups]": (wrappedValue: limitSubscriptionGroups?.encodeToJSON(), isExplode: true),
@@ -5117,271 +4814,190 @@ open class AppsAPI {
      * enum for parameter fieldsApps
      */
     public enum FieldsApps_appsGetInstance: String, CaseIterable {
+        case name = "name"
+        case bundleid = "bundleId"
+        case sku = "sku"
+        case primarylocale = "primaryLocale"
+        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
+        case subscriptionstatusurl = "subscriptionStatusUrl"
+        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
+        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
+        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
+        case contentrightsdeclaration = "contentRightsDeclaration"
+        case streamlinedpurchasingenabled = "streamlinedPurchasingEnabled"
+        case appencryptiondeclarations = "appEncryptionDeclarations"
+        case ciproduct = "ciProduct"
+        case betatesters = "betaTesters"
+        case betagroups = "betaGroups"
+        case appstoreversions = "appStoreVersions"
+        case prereleaseversions = "preReleaseVersions"
+        case betaapplocalizations = "betaAppLocalizations"
+        case builds = "builds"
+        case betalicenseagreement = "betaLicenseAgreement"
+        case betaappreviewdetail = "betaAppReviewDetail"
+        case appinfos = "appInfos"
+        case appclips = "appClips"
+        case apppricepoints = "appPricePoints"
+        case enduserlicenseagreement = "endUserLicenseAgreement"
+        case apppriceschedule = "appPriceSchedule"
+        case appavailabilityv2 = "appAvailabilityV2"
+        case inapppurchases = "inAppPurchases"
+        case subscriptiongroups = "subscriptionGroups"
+        case gamecenterenabledversions = "gameCenterEnabledVersions"
+        case perfpowermetrics = "perfPowerMetrics"
+        case appcustomproductpages = "appCustomProductPages"
+        case inapppurchasesv2 = "inAppPurchasesV2"
+        case promotedpurchases = "promotedPurchases"
+        case appevents = "appEvents"
+        case reviewsubmissions = "reviewSubmissions"
+        case subscriptiongraceperiod = "subscriptionGracePeriod"
+        case customerreviews = "customerReviews"
+        case gamecenterdetail = "gameCenterDetail"
+        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
         case alternativedistributionkey = "alternativeDistributionKey"
         case analyticsreportrequests = "analyticsReportRequests"
-        case appavailability = "appAvailability"
-        case appclips = "appClips"
-        case appcustomproductpages = "appCustomProductPages"
-        case appencryptiondeclarations = "appEncryptionDeclarations"
-        case appevents = "appEvents"
-        case appinfos = "appInfos"
-        case apppricepoints = "appPricePoints"
-        case apppriceschedule = "appPriceSchedule"
-        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
-        case appstoreversions = "appStoreVersions"
-        case availableinnewterritories = "availableInNewTerritories"
-        case availableterritories = "availableTerritories"
-        case betaapplocalizations = "betaAppLocalizations"
-        case betaappreviewdetail = "betaAppReviewDetail"
-        case betagroups = "betaGroups"
-        case betalicenseagreement = "betaLicenseAgreement"
-        case betatesters = "betaTesters"
-        case builds = "builds"
-        case bundleid = "bundleId"
-        case ciproduct = "ciProduct"
-        case contentrightsdeclaration = "contentRightsDeclaration"
-        case customerreviews = "customerReviews"
-        case enduserlicenseagreement = "endUserLicenseAgreement"
-        case gamecenterdetail = "gameCenterDetail"
-        case gamecenterenabledversions = "gameCenterEnabledVersions"
-        case inapppurchases = "inAppPurchases"
-        case inapppurchasesv2 = "inAppPurchasesV2"
-        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
         case marketplacesearchdetail = "marketplaceSearchDetail"
-        case name = "name"
-        case perfpowermetrics = "perfPowerMetrics"
-        case preorder = "preOrder"
-        case prereleaseversions = "preReleaseVersions"
-        case pricepoints = "pricePoints"
-        case prices = "prices"
-        case primarylocale = "primaryLocale"
-        case promotedpurchases = "promotedPurchases"
-        case reviewsubmissions = "reviewSubmissions"
-        case sku = "sku"
-        case subscriptiongraceperiod = "subscriptionGracePeriod"
-        case subscriptiongroups = "subscriptionGroups"
-        case subscriptionstatusurl = "subscriptionStatusUrl"
-        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
-        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
-        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
     }
 
     /**
-     * enum for parameter include
+     * enum for parameter fieldsAppEncryptionDeclarations
      */
-    public enum Include_appsGetInstance: String, CaseIterable {
-        case appclips = "appClips"
-        case appcustomproductpages = "appCustomProductPages"
-        case appencryptiondeclarations = "appEncryptionDeclarations"
-        case appevents = "appEvents"
-        case appinfos = "appInfos"
-        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
-        case appstoreversions = "appStoreVersions"
-        case availableterritories = "availableTerritories"
-        case betaapplocalizations = "betaAppLocalizations"
-        case betaappreviewdetail = "betaAppReviewDetail"
-        case betagroups = "betaGroups"
-        case betalicenseagreement = "betaLicenseAgreement"
+    public enum FieldsAppEncryptionDeclarations_appsGetInstance: String, CaseIterable {
+        case appdescription = "appDescription"
+        case createddate = "createdDate"
+        case usesencryption = "usesEncryption"
+        case exempt = "exempt"
+        case containsproprietarycryptography = "containsProprietaryCryptography"
+        case containsthirdpartycryptography = "containsThirdPartyCryptography"
+        case availableonfrenchstore = "availableOnFrenchStore"
+        case platform = "platform"
+        case uploadeddate = "uploadedDate"
+        case documenturl = "documentUrl"
+        case documentname = "documentName"
+        case documenttype = "documentType"
+        case appencryptiondeclarationstate = "appEncryptionDeclarationState"
+        case codevalue = "codeValue"
+        case app = "app"
         case builds = "builds"
-        case ciproduct = "ciProduct"
-        case enduserlicenseagreement = "endUserLicenseAgreement"
-        case gamecenterdetail = "gameCenterDetail"
-        case gamecenterenabledversions = "gameCenterEnabledVersions"
-        case inapppurchases = "inAppPurchases"
-        case inapppurchasesv2 = "inAppPurchasesV2"
-        case preorder = "preOrder"
-        case prereleaseversions = "preReleaseVersions"
-        case prices = "prices"
-        case promotedpurchases = "promotedPurchases"
-        case reviewsubmissions = "reviewSubmissions"
-        case subscriptiongraceperiod = "subscriptionGracePeriod"
-        case subscriptiongroups = "subscriptionGroups"
-    }
-
-    /**
-     * enum for parameter fieldsBetaAppReviewDetails
-     */
-    public enum FieldsBetaAppReviewDetails_appsGetInstance: String, CaseIterable {
-        case app = "app"
-        case contactemail = "contactEmail"
-        case contactfirstname = "contactFirstName"
-        case contactlastname = "contactLastName"
-        case contactphone = "contactPhone"
-        case demoaccountname = "demoAccountName"
-        case demoaccountpassword = "demoAccountPassword"
-        case demoaccountrequired = "demoAccountRequired"
-        case notes = "notes"
-    }
-
-    /**
-     * enum for parameter fieldsGameCenterDetails
-     */
-    public enum FieldsGameCenterDetails_appsGetInstance: String, CaseIterable {
-        case achievementreleases = "achievementReleases"
-        case app = "app"
-        case arcadeenabled = "arcadeEnabled"
-        case challengeenabled = "challengeEnabled"
-        case defaultgroupleaderboard = "defaultGroupLeaderboard"
-        case defaultleaderboard = "defaultLeaderboard"
-        case gamecenterachievements = "gameCenterAchievements"
-        case gamecenterappversions = "gameCenterAppVersions"
-        case gamecentergroup = "gameCenterGroup"
-        case gamecenterleaderboardsets = "gameCenterLeaderboardSets"
-        case gamecenterleaderboards = "gameCenterLeaderboards"
-        case leaderboardreleases = "leaderboardReleases"
-        case leaderboardsetreleases = "leaderboardSetReleases"
-    }
-
-    /**
-     * enum for parameter fieldsAppPriceSchedules
-     */
-    public enum FieldsAppPriceSchedules_appsGetInstance: String, CaseIterable {
-        case app = "app"
-        case automaticprices = "automaticPrices"
-        case baseterritory = "baseTerritory"
-        case manualprices = "manualPrices"
+        case appencryptiondeclarationdocument = "appEncryptionDeclarationDocument"
     }
 
     /**
      * enum for parameter fieldsCiProducts
      */
     public enum FieldsCiProducts_appsGetInstance: String, CaseIterable {
-        case additionalrepositories = "additionalRepositories"
-        case app = "app"
-        case buildruns = "buildRuns"
-        case bundleid = "bundleId"
-        case createddate = "createdDate"
         case name = "name"
-        case primaryrepositories = "primaryRepositories"
+        case createddate = "createdDate"
         case producttype = "productType"
+        case app = "app"
+        case bundleid = "bundleId"
         case workflows = "workflows"
-    }
-
-    /**
-     * enum for parameter fieldsAlternativeDistributionKeys
-     */
-    public enum FieldsAlternativeDistributionKeys_appsGetInstance: String, CaseIterable {
-        case app = "app"
-        case publickey = "publicKey"
-    }
-
-    /**
-     * enum for parameter fieldsReviewSubmissions
-     */
-    public enum FieldsReviewSubmissions_appsGetInstance: String, CaseIterable {
-        case app = "app"
-        case appstoreversionforreview = "appStoreVersionForReview"
-        case canceled = "canceled"
-        case items = "items"
-        case lastupdatedbyactor = "lastUpdatedByActor"
-        case platform = "platform"
-        case state = "state"
-        case submitted = "submitted"
-        case submittedbyactor = "submittedByActor"
-        case submitteddate = "submittedDate"
+        case primaryrepositories = "primaryRepositories"
+        case additionalrepositories = "additionalRepositories"
+        case buildruns = "buildRuns"
     }
 
     /**
      * enum for parameter fieldsBetaGroups
      */
     public enum FieldsBetaGroups_appsGetInstance: String, CaseIterable {
-        case app = "app"
-        case betatesters = "betaTesters"
-        case builds = "builds"
-        case createddate = "createdDate"
-        case feedbackenabled = "feedbackEnabled"
-        case hasaccesstoallbuilds = "hasAccessToAllBuilds"
-        case iosbuildsavailableforapplesiliconmac = "iosBuildsAvailableForAppleSiliconMac"
-        case isinternalgroup = "isInternalGroup"
         case name = "name"
-        case publiclink = "publicLink"
+        case createddate = "createdDate"
+        case isinternalgroup = "isInternalGroup"
+        case hasaccesstoallbuilds = "hasAccessToAllBuilds"
         case publiclinkenabled = "publicLinkEnabled"
         case publiclinkid = "publicLinkId"
-        case publiclinklimit = "publicLinkLimit"
         case publiclinklimitenabled = "publicLinkLimitEnabled"
-    }
-
-    /**
-     * enum for parameter fieldsPromotedPurchases
-     */
-    public enum FieldsPromotedPurchases_appsGetInstance: String, CaseIterable {
+        case publiclinklimit = "publicLinkLimit"
+        case publiclink = "publicLink"
+        case feedbackenabled = "feedbackEnabled"
+        case iosbuildsavailableforapplesiliconmac = "iosBuildsAvailableForAppleSiliconMac"
         case app = "app"
-        case enabled = "enabled"
-        case inapppurchasev2 = "inAppPurchaseV2"
-        case promotionimages = "promotionImages"
-        case state = "state"
-        case subscription = "subscription"
-        case visibleforallusers = "visibleForAllUsers"
+        case builds = "builds"
+        case betatesters = "betaTesters"
     }
 
     /**
-     * enum for parameter fieldsAppAvailabilities
+     * enum for parameter fieldsAppStoreVersions
      */
-    public enum FieldsAppAvailabilities_appsGetInstance: String, CaseIterable {
-        case app = "app"
-        case availableinnewterritories = "availableInNewTerritories"
-        case availableterritories = "availableTerritories"
-    }
-
-    /**
-     * enum for parameter fieldsCustomerReviews
-     */
-    public enum FieldsCustomerReviews_appsGetInstance: String, CaseIterable {
-        case body = "body"
+    public enum FieldsAppStoreVersions_appsGetInstance: String, CaseIterable {
+        case platform = "platform"
+        case versionstring = "versionString"
+        case appstorestate = "appStoreState"
+        case appversionstate = "appVersionState"
+        case copyright = "copyright"
+        case reviewtype = "reviewType"
+        case releasetype = "releaseType"
+        case earliestreleasedate = "earliestReleaseDate"
+        case downloadable = "downloadable"
         case createddate = "createdDate"
-        case rating = "rating"
-        case response = "response"
-        case reviewernickname = "reviewerNickname"
-        case territory = "territory"
-        case title = "title"
+        case app = "app"
+        case ageratingdeclaration = "ageRatingDeclaration"
+        case appstoreversionlocalizations = "appStoreVersionLocalizations"
+        case build = "build"
+        case appstoreversionphasedrelease = "appStoreVersionPhasedRelease"
+        case gamecenterappversion = "gameCenterAppVersion"
+        case routingappcoverage = "routingAppCoverage"
+        case appstorereviewdetail = "appStoreReviewDetail"
+        case appstoreversionsubmission = "appStoreVersionSubmission"
+        case appclipdefaultexperience = "appClipDefaultExperience"
+        case appstoreversionexperiments = "appStoreVersionExperiments"
+        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
+        case customerreviews = "customerReviews"
+        case alternativedistributionpackage = "alternativeDistributionPackage"
     }
 
     /**
-     * enum for parameter fieldsAppEvents
+     * enum for parameter fieldsPreReleaseVersions
      */
-    public enum FieldsAppEvents_appsGetInstance: String, CaseIterable {
+    public enum FieldsPreReleaseVersions_appsGetInstance: String, CaseIterable {
+        case version = "version"
+        case platform = "platform"
+        case builds = "builds"
         case app = "app"
-        case archivedterritoryschedules = "archivedTerritorySchedules"
-        case badge = "badge"
-        case deeplink = "deepLink"
-        case eventstate = "eventState"
-        case localizations = "localizations"
-        case primarylocale = "primaryLocale"
-        case priority = "priority"
-        case purchaserequirement = "purchaseRequirement"
-        case purpose = "purpose"
-        case referencename = "referenceName"
-        case territoryschedules = "territorySchedules"
+    }
+
+    /**
+     * enum for parameter fieldsBetaAppLocalizations
+     */
+    public enum FieldsBetaAppLocalizations_appsGetInstance: String, CaseIterable {
+        case feedbackemail = "feedbackEmail"
+        case marketingurl = "marketingUrl"
+        case privacypolicyurl = "privacyPolicyUrl"
+        case tvosprivacypolicy = "tvOsPrivacyPolicy"
+        case description = "description"
+        case locale = "locale"
+        case app = "app"
     }
 
     /**
      * enum for parameter fieldsBuilds
      */
     public enum FieldsBuilds_appsGetInstance: String, CaseIterable {
-        case app = "app"
-        case appencryptiondeclaration = "appEncryptionDeclaration"
-        case appstoreversion = "appStoreVersion"
-        case betaappreviewsubmission = "betaAppReviewSubmission"
-        case betabuildlocalizations = "betaBuildLocalizations"
-        case betagroups = "betaGroups"
-        case buildaudiencetype = "buildAudienceType"
-        case buildbetadetail = "buildBetaDetail"
-        case buildbundles = "buildBundles"
-        case computedminmacosversion = "computedMinMacOsVersion"
-        case diagnosticsignatures = "diagnosticSignatures"
+        case version = "version"
+        case uploadeddate = "uploadedDate"
         case expirationdate = "expirationDate"
         case expired = "expired"
-        case iconassettoken = "iconAssetToken"
-        case icons = "icons"
-        case individualtesters = "individualTesters"
-        case lsminimumsystemversion = "lsMinimumSystemVersion"
         case minosversion = "minOsVersion"
-        case perfpowermetrics = "perfPowerMetrics"
-        case prereleaseversion = "preReleaseVersion"
+        case lsminimumsystemversion = "lsMinimumSystemVersion"
+        case computedminmacosversion = "computedMinMacOsVersion"
+        case iconassettoken = "iconAssetToken"
         case processingstate = "processingState"
-        case uploadeddate = "uploadedDate"
+        case buildaudiencetype = "buildAudienceType"
         case usesnonexemptencryption = "usesNonExemptEncryption"
-        case version = "version"
+        case prereleaseversion = "preReleaseVersion"
+        case individualtesters = "individualTesters"
+        case betagroups = "betaGroups"
+        case betabuildlocalizations = "betaBuildLocalizations"
+        case appencryptiondeclaration = "appEncryptionDeclaration"
+        case betaappreviewsubmission = "betaAppReviewSubmission"
+        case app = "app"
+        case buildbetadetail = "buildBetaDetail"
+        case appstoreversion = "appStoreVersion"
+        case icons = "icons"
+        case buildbundles = "buildBundles"
+        case perfpowermetrics = "perfPowerMetrics"
+        case diagnosticsignatures = "diagnosticSignatures"
     }
 
     /**
@@ -5393,176 +5009,52 @@ open class AppsAPI {
     }
 
     /**
-     * enum for parameter fieldsMarketplaceSearchDetails
+     * enum for parameter fieldsBetaAppReviewDetails
      */
-    public enum FieldsMarketplaceSearchDetails_appsGetInstance: String, CaseIterable {
+    public enum FieldsBetaAppReviewDetails_appsGetInstance: String, CaseIterable {
+        case contactfirstname = "contactFirstName"
+        case contactlastname = "contactLastName"
+        case contactphone = "contactPhone"
+        case contactemail = "contactEmail"
+        case demoaccountname = "demoAccountName"
+        case demoaccountpassword = "demoAccountPassword"
+        case demoaccountrequired = "demoAccountRequired"
+        case notes = "notes"
         case app = "app"
-        case catalogurl = "catalogUrl"
-    }
-
-    /**
-     * enum for parameter fieldsAppClips
-     */
-    public enum FieldsAppClips_appsGetInstance: String, CaseIterable {
-        case app = "app"
-        case appclipadvancedexperiences = "appClipAdvancedExperiences"
-        case appclipdefaultexperiences = "appClipDefaultExperiences"
-        case bundleid = "bundleId"
     }
 
     /**
      * enum for parameter fieldsAppInfos
      */
     public enum FieldsAppInfos_appsGetInstance: String, CaseIterable {
-        case ageratingdeclaration = "ageRatingDeclaration"
-        case app = "app"
-        case appinfolocalizations = "appInfoLocalizations"
-        case appstoreagerating = "appStoreAgeRating"
         case appstorestate = "appStoreState"
+        case state = "state"
+        case appstoreagerating = "appStoreAgeRating"
+        case australiaagerating = "australiaAgeRating"
         case brazilagerating = "brazilAgeRating"
         case brazilageratingv2 = "brazilAgeRatingV2"
+        case franceagerating = "franceAgeRating"
+        case koreaagerating = "koreaAgeRating"
         case kidsageband = "kidsAgeBand"
+        case app = "app"
+        case ageratingdeclaration = "ageRatingDeclaration"
+        case appinfolocalizations = "appInfoLocalizations"
         case primarycategory = "primaryCategory"
         case primarysubcategoryone = "primarySubcategoryOne"
         case primarysubcategorytwo = "primarySubcategoryTwo"
         case secondarycategory = "secondaryCategory"
         case secondarysubcategoryone = "secondarySubcategoryOne"
         case secondarysubcategorytwo = "secondarySubcategoryTwo"
-        case state = "state"
     }
 
     /**
-     * enum for parameter fieldsBetaAppLocalizations
+     * enum for parameter fieldsAppClips
      */
-    public enum FieldsBetaAppLocalizations_appsGetInstance: String, CaseIterable {
+    public enum FieldsAppClips_appsGetInstance: String, CaseIterable {
+        case bundleid = "bundleId"
         case app = "app"
-        case description = "description"
-        case feedbackemail = "feedbackEmail"
-        case locale = "locale"
-        case marketingurl = "marketingUrl"
-        case privacypolicyurl = "privacyPolicyUrl"
-        case tvosprivacypolicy = "tvOsPrivacyPolicy"
-    }
-
-    /**
-     * enum for parameter fieldsAppPricePoints
-     */
-    public enum FieldsAppPricePoints_appsGetInstance: String, CaseIterable {
-        case app = "app"
-        case customerprice = "customerPrice"
-        case equalizations = "equalizations"
-        case pricetier = "priceTier"
-        case proceeds = "proceeds"
-        case territory = "territory"
-    }
-
-    /**
-     * enum for parameter fieldsInAppPurchases
-     */
-    public enum FieldsInAppPurchases_appsGetInstance: String, CaseIterable {
-        case app = "app"
-        case appstorereviewscreenshot = "appStoreReviewScreenshot"
-        case apps = "apps"
-        case content = "content"
-        case contenthosting = "contentHosting"
-        case familysharable = "familySharable"
-        case iappriceschedule = "iapPriceSchedule"
-        case inapppurchaseavailability = "inAppPurchaseAvailability"
-        case inapppurchaselocalizations = "inAppPurchaseLocalizations"
-        case inapppurchasetype = "inAppPurchaseType"
-        case name = "name"
-        case pricepoints = "pricePoints"
-        case productid = "productId"
-        case promotedpurchase = "promotedPurchase"
-        case referencename = "referenceName"
-        case reviewnote = "reviewNote"
-        case state = "state"
-    }
-
-    /**
-     * enum for parameter fieldsPreReleaseVersions
-     */
-    public enum FieldsPreReleaseVersions_appsGetInstance: String, CaseIterable {
-        case app = "app"
-        case builds = "builds"
-        case platform = "platform"
-        case version = "version"
-    }
-
-    /**
-     * enum for parameter fieldsSubscriptionGroups
-     */
-    public enum FieldsSubscriptionGroups_appsGetInstance: String, CaseIterable {
-        case app = "app"
-        case referencename = "referenceName"
-        case subscriptiongrouplocalizations = "subscriptionGroupLocalizations"
-        case subscriptions = "subscriptions"
-    }
-
-    /**
-     * enum for parameter fieldsAnalyticsReportRequests
-     */
-    public enum FieldsAnalyticsReportRequests_appsGetInstance: String, CaseIterable {
-        case accesstype = "accessType"
-        case app = "app"
-        case reports = "reports"
-        case stoppedduetoinactivity = "stoppedDueToInactivity"
-    }
-
-    /**
-     * enum for parameter fieldsAppPrices
-     */
-    public enum FieldsAppPrices_appsGetInstance: String, CaseIterable {
-        case app = "app"
-        case pricetier = "priceTier"
-    }
-
-    /**
-     * enum for parameter fieldsAppPreOrders
-     */
-    public enum FieldsAppPreOrders_appsGetInstance: String, CaseIterable {
-        case app = "app"
-        case appreleasedate = "appReleaseDate"
-        case preorderavailabledate = "preOrderAvailableDate"
-    }
-
-    /**
-     * enum for parameter fieldsAppStoreVersionExperiments
-     */
-    public enum FieldsAppStoreVersionExperiments_appsGetInstance: String, CaseIterable {
-        case app = "app"
-        case appstoreversionexperimenttreatments = "appStoreVersionExperimentTreatments"
-        case controlversions = "controlVersions"
-        case enddate = "endDate"
-        case latestcontrolversion = "latestControlVersion"
-        case name = "name"
-        case platform = "platform"
-        case reviewrequired = "reviewRequired"
-        case startdate = "startDate"
-        case started = "started"
-        case state = "state"
-        case trafficproportion = "trafficProportion"
-    }
-
-    /**
-     * enum for parameter fieldsGameCenterEnabledVersions
-     */
-    public enum FieldsGameCenterEnabledVersions_appsGetInstance: String, CaseIterable {
-        case app = "app"
-        case compatibleversions = "compatibleVersions"
-        case iconasset = "iconAsset"
-        case platform = "platform"
-        case versionstring = "versionString"
-    }
-
-    /**
-     * enum for parameter fieldsSubscriptionGracePeriods
-     */
-    public enum FieldsSubscriptionGracePeriods_appsGetInstance: String, CaseIterable {
-        case duration = "duration"
-        case optin = "optIn"
-        case renewaltype = "renewalType"
-        case sandboxoptin = "sandboxOptIn"
+        case appclipdefaultexperiences = "appClipDefaultExperiences"
+        case appclipadvancedexperiences = "appClipAdvancedExperiences"
     }
 
     /**
@@ -5575,124 +5067,204 @@ open class AppsAPI {
     }
 
     /**
-     * enum for parameter fieldsAppStoreVersions
+     * enum for parameter fieldsInAppPurchases
      */
-    public enum FieldsAppStoreVersions_appsGetInstance: String, CaseIterable {
-        case ageratingdeclaration = "ageRatingDeclaration"
-        case alternativedistributionpackage = "alternativeDistributionPackage"
-        case app = "app"
-        case appclipdefaultexperience = "appClipDefaultExperience"
-        case appstorereviewdetail = "appStoreReviewDetail"
-        case appstorestate = "appStoreState"
-        case appstoreversionexperiments = "appStoreVersionExperiments"
-        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
-        case appstoreversionlocalizations = "appStoreVersionLocalizations"
-        case appstoreversionphasedrelease = "appStoreVersionPhasedRelease"
-        case appstoreversionsubmission = "appStoreVersionSubmission"
-        case appversionstate = "appVersionState"
-        case build = "build"
-        case copyright = "copyright"
-        case createddate = "createdDate"
-        case customerreviews = "customerReviews"
-        case downloadable = "downloadable"
-        case earliestreleasedate = "earliestReleaseDate"
+    public enum FieldsInAppPurchases_appsGetInstance: String, CaseIterable {
+        case referencename = "referenceName"
+        case productid = "productId"
+        case inapppurchasetype = "inAppPurchaseType"
+        case state = "state"
+        case apps = "apps"
+        case name = "name"
+        case reviewnote = "reviewNote"
+        case familysharable = "familySharable"
+        case contenthosting = "contentHosting"
+        case inapppurchaselocalizations = "inAppPurchaseLocalizations"
+        case pricepoints = "pricePoints"
+        case content = "content"
+        case appstorereviewscreenshot = "appStoreReviewScreenshot"
+        case promotedpurchase = "promotedPurchase"
+        case iappriceschedule = "iapPriceSchedule"
+        case inapppurchaseavailability = "inAppPurchaseAvailability"
+        case images = "images"
+    }
+
+    /**
+     * enum for parameter fieldsSubscriptionGroups
+     */
+    public enum FieldsSubscriptionGroups_appsGetInstance: String, CaseIterable {
+        case referencename = "referenceName"
+        case subscriptions = "subscriptions"
+        case subscriptiongrouplocalizations = "subscriptionGroupLocalizations"
+    }
+
+    /**
+     * enum for parameter fieldsGameCenterEnabledVersions
+     */
+    public enum FieldsGameCenterEnabledVersions_appsGetInstance: String, CaseIterable {
         case platform = "platform"
-        case releasetype = "releaseType"
-        case reviewtype = "reviewType"
-        case routingappcoverage = "routingAppCoverage"
         case versionstring = "versionString"
+        case iconasset = "iconAsset"
+        case compatibleversions = "compatibleVersions"
+        case app = "app"
     }
 
     /**
      * enum for parameter fieldsAppCustomProductPages
      */
     public enum FieldsAppCustomProductPages_appsGetInstance: String, CaseIterable {
-        case app = "app"
-        case appcustomproductpageversions = "appCustomProductPageVersions"
-        case appstoreversiontemplate = "appStoreVersionTemplate"
-        case customproductpagetemplate = "customProductPageTemplate"
         case name = "name"
         case url = "url"
         case visible = "visible"
-    }
-
-    /**
-     * enum for parameter fieldsAppEncryptionDeclarations
-     */
-    public enum FieldsAppEncryptionDeclarations_appsGetInstance: String, CaseIterable {
         case app = "app"
-        case appdescription = "appDescription"
-        case appencryptiondeclarationdocument = "appEncryptionDeclarationDocument"
-        case appencryptiondeclarationstate = "appEncryptionDeclarationState"
-        case availableonfrenchstore = "availableOnFrenchStore"
+        case appcustomproductpageversions = "appCustomProductPageVersions"
+    }
+
+    /**
+     * enum for parameter fieldsPromotedPurchases
+     */
+    public enum FieldsPromotedPurchases_appsGetInstance: String, CaseIterable {
+        case visibleforallusers = "visibleForAllUsers"
+        case enabled = "enabled"
+        case state = "state"
+        case inapppurchasev2 = "inAppPurchaseV2"
+        case subscription = "subscription"
+        case promotionimages = "promotionImages"
+    }
+
+    /**
+     * enum for parameter fieldsAppEvents
+     */
+    public enum FieldsAppEvents_appsGetInstance: String, CaseIterable {
+        case referencename = "referenceName"
+        case badge = "badge"
+        case eventstate = "eventState"
+        case deeplink = "deepLink"
+        case purchaserequirement = "purchaseRequirement"
+        case primarylocale = "primaryLocale"
+        case priority = "priority"
+        case purpose = "purpose"
+        case territoryschedules = "territorySchedules"
+        case archivedterritoryschedules = "archivedTerritorySchedules"
+        case localizations = "localizations"
+    }
+
+    /**
+     * enum for parameter fieldsReviewSubmissions
+     */
+    public enum FieldsReviewSubmissions_appsGetInstance: String, CaseIterable {
+        case platform = "platform"
+        case submitteddate = "submittedDate"
+        case state = "state"
+        case app = "app"
+        case items = "items"
+        case appstoreversionforreview = "appStoreVersionForReview"
+        case submittedbyactor = "submittedByActor"
+        case lastupdatedbyactor = "lastUpdatedByActor"
+    }
+
+    /**
+     * enum for parameter fieldsSubscriptionGracePeriods
+     */
+    public enum FieldsSubscriptionGracePeriods_appsGetInstance: String, CaseIterable {
+        case optin = "optIn"
+        case sandboxoptin = "sandboxOptIn"
+        case duration = "duration"
+        case renewaltype = "renewalType"
+    }
+
+    /**
+     * enum for parameter fieldsGameCenterDetails
+     */
+    public enum FieldsGameCenterDetails_appsGetInstance: String, CaseIterable {
+        case arcadeenabled = "arcadeEnabled"
+        case challengeenabled = "challengeEnabled"
+        case app = "app"
+        case gamecenterappversions = "gameCenterAppVersions"
+        case gamecentergroup = "gameCenterGroup"
+        case gamecenterleaderboards = "gameCenterLeaderboards"
+        case gamecenterleaderboardsets = "gameCenterLeaderboardSets"
+        case gamecenterachievements = "gameCenterAchievements"
+        case defaultleaderboard = "defaultLeaderboard"
+        case defaultgroupleaderboard = "defaultGroupLeaderboard"
+        case achievementreleases = "achievementReleases"
+        case leaderboardreleases = "leaderboardReleases"
+        case leaderboardsetreleases = "leaderboardSetReleases"
+    }
+
+    /**
+     * enum for parameter fieldsAppStoreVersionExperiments
+     */
+    public enum FieldsAppStoreVersionExperiments_appsGetInstance: String, CaseIterable {
+        case name = "name"
+        case platform = "platform"
+        case trafficproportion = "trafficProportion"
+        case state = "state"
+        case reviewrequired = "reviewRequired"
+        case startdate = "startDate"
+        case enddate = "endDate"
+        case app = "app"
+        case latestcontrolversion = "latestControlVersion"
+        case controlversions = "controlVersions"
+        case appstoreversionexperimenttreatments = "appStoreVersionExperimentTreatments"
+    }
+
+    /**
+     * enum for parameter include
+     */
+    public enum Include_appsGetInstance: String, CaseIterable {
+        case appencryptiondeclarations = "appEncryptionDeclarations"
+        case ciproduct = "ciProduct"
+        case betagroups = "betaGroups"
+        case appstoreversions = "appStoreVersions"
+        case prereleaseversions = "preReleaseVersions"
+        case betaapplocalizations = "betaAppLocalizations"
         case builds = "builds"
-        case codevalue = "codeValue"
-        case containsproprietarycryptography = "containsProprietaryCryptography"
-        case containsthirdpartycryptography = "containsThirdPartyCryptography"
-        case createddate = "createdDate"
-        case documentname = "documentName"
-        case documenttype = "documentType"
-        case documenturl = "documentUrl"
-        case exempt = "exempt"
-        case platform = "platform"
-        case uploadeddate = "uploadedDate"
-        case usesencryption = "usesEncryption"
-    }
-
-    /**
-     * enum for parameter fieldsTerritories
-     */
-    public enum FieldsTerritories_appsGetInstance: String, CaseIterable {
-        case currency = "currency"
-    }
-
-    /**
-     * enum for parameter fieldsPerfPowerMetrics
-     */
-    public enum FieldsPerfPowerMetrics_appsGetInstance: String, CaseIterable {
-        case devicetype = "deviceType"
-        case metrictype = "metricType"
-        case platform = "platform"
+        case betalicenseagreement = "betaLicenseAgreement"
+        case betaappreviewdetail = "betaAppReviewDetail"
+        case appinfos = "appInfos"
+        case appclips = "appClips"
+        case enduserlicenseagreement = "endUserLicenseAgreement"
+        case inapppurchases = "inAppPurchases"
+        case subscriptiongroups = "subscriptionGroups"
+        case gamecenterenabledversions = "gameCenterEnabledVersions"
+        case appcustomproductpages = "appCustomProductPages"
+        case inapppurchasesv2 = "inAppPurchasesV2"
+        case promotedpurchases = "promotedPurchases"
+        case appevents = "appEvents"
+        case reviewsubmissions = "reviewSubmissions"
+        case subscriptiongraceperiod = "subscriptionGracePeriod"
+        case gamecenterdetail = "gameCenterDetail"
+        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
-     - parameter fieldsBetaAppReviewDetails: (query) the fields to include for returned resources of type betaAppReviewDetails (optional)
-     - parameter fieldsGameCenterDetails: (query) the fields to include for returned resources of type gameCenterDetails (optional)
-     - parameter fieldsAppPriceSchedules: (query) the fields to include for returned resources of type appPriceSchedules (optional)
+     - parameter fieldsAppEncryptionDeclarations: (query) the fields to include for returned resources of type appEncryptionDeclarations (optional)
      - parameter fieldsCiProducts: (query) the fields to include for returned resources of type ciProducts (optional)
-     - parameter fieldsAlternativeDistributionKeys: (query) the fields to include for returned resources of type alternativeDistributionKeys (optional)
-     - parameter fieldsReviewSubmissions: (query) the fields to include for returned resources of type reviewSubmissions (optional)
      - parameter fieldsBetaGroups: (query) the fields to include for returned resources of type betaGroups (optional)
-     - parameter fieldsPromotedPurchases: (query) the fields to include for returned resources of type promotedPurchases (optional)
-     - parameter fieldsAppAvailabilities: (query) the fields to include for returned resources of type appAvailabilities (optional)
-     - parameter fieldsCustomerReviews: (query) the fields to include for returned resources of type customerReviews (optional)
-     - parameter fieldsAppEvents: (query) the fields to include for returned resources of type appEvents (optional)
+     - parameter fieldsAppStoreVersions: (query) the fields to include for returned resources of type appStoreVersions (optional)
+     - parameter fieldsPreReleaseVersions: (query) the fields to include for returned resources of type preReleaseVersions (optional)
+     - parameter fieldsBetaAppLocalizations: (query) the fields to include for returned resources of type betaAppLocalizations (optional)
      - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
      - parameter fieldsBetaLicenseAgreements: (query) the fields to include for returned resources of type betaLicenseAgreements (optional)
-     - parameter fieldsMarketplaceSearchDetails: (query) the fields to include for returned resources of type marketplaceSearchDetails (optional)
-     - parameter fieldsAppClips: (query) the fields to include for returned resources of type appClips (optional)
+     - parameter fieldsBetaAppReviewDetails: (query) the fields to include for returned resources of type betaAppReviewDetails (optional)
      - parameter fieldsAppInfos: (query) the fields to include for returned resources of type appInfos (optional)
-     - parameter fieldsBetaAppLocalizations: (query) the fields to include for returned resources of type betaAppLocalizations (optional)
-     - parameter fieldsAppPricePoints: (query) the fields to include for returned resources of type appPricePoints (optional)
-     - parameter fieldsInAppPurchases: (query) the fields to include for returned resources of type inAppPurchases (optional)
-     - parameter fieldsPreReleaseVersions: (query) the fields to include for returned resources of type preReleaseVersions (optional)
-     - parameter fieldsSubscriptionGroups: (query) the fields to include for returned resources of type subscriptionGroups (optional)
-     - parameter fieldsAnalyticsReportRequests: (query) the fields to include for returned resources of type analyticsReportRequests (optional)
-     - parameter fieldsAppPrices: (query) the fields to include for returned resources of type appPrices (optional)
-     - parameter fieldsAppPreOrders: (query) the fields to include for returned resources of type appPreOrders (optional)
-     - parameter fieldsAppStoreVersionExperiments: (query) the fields to include for returned resources of type appStoreVersionExperiments (optional)
-     - parameter fieldsGameCenterEnabledVersions: (query) the fields to include for returned resources of type gameCenterEnabledVersions (optional)
-     - parameter fieldsSubscriptionGracePeriods: (query) the fields to include for returned resources of type subscriptionGracePeriods (optional)
+     - parameter fieldsAppClips: (query) the fields to include for returned resources of type appClips (optional)
      - parameter fieldsEndUserLicenseAgreements: (query) the fields to include for returned resources of type endUserLicenseAgreements (optional)
-     - parameter fieldsAppStoreVersions: (query) the fields to include for returned resources of type appStoreVersions (optional)
+     - parameter fieldsInAppPurchases: (query) the fields to include for returned resources of type inAppPurchases (optional)
+     - parameter fieldsSubscriptionGroups: (query) the fields to include for returned resources of type subscriptionGroups (optional)
+     - parameter fieldsGameCenterEnabledVersions: (query) the fields to include for returned resources of type gameCenterEnabledVersions (optional)
      - parameter fieldsAppCustomProductPages: (query) the fields to include for returned resources of type appCustomProductPages (optional)
-     - parameter fieldsAppEncryptionDeclarations: (query) the fields to include for returned resources of type appEncryptionDeclarations (optional)
-     - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
-     - parameter fieldsPerfPowerMetrics: (query) the fields to include for returned resources of type perfPowerMetrics (optional)
+     - parameter fieldsPromotedPurchases: (query) the fields to include for returned resources of type promotedPurchases (optional)
+     - parameter fieldsAppEvents: (query) the fields to include for returned resources of type appEvents (optional)
+     - parameter fieldsReviewSubmissions: (query) the fields to include for returned resources of type reviewSubmissions (optional)
+     - parameter fieldsSubscriptionGracePeriods: (query) the fields to include for returned resources of type subscriptionGracePeriods (optional)
+     - parameter fieldsGameCenterDetails: (query) the fields to include for returned resources of type gameCenterDetails (optional)
+     - parameter fieldsAppStoreVersionExperiments: (query) the fields to include for returned resources of type appStoreVersionExperiments (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAppClips: (query) maximum number of related appClips returned (when they are included) (optional)
      - parameter limitAppCustomProductPages: (query) maximum number of related appCustomProductPages returned (when they are included) (optional)
      - parameter limitAppEncryptionDeclarations: (query) maximum number of related appEncryptionDeclarations returned (when they are included) (optional)
@@ -5700,7 +5272,6 @@ open class AppsAPI {
      - parameter limitAppInfos: (query) maximum number of related appInfos returned (when they are included) (optional)
      - parameter limitAppStoreVersionExperimentsV2: (query) maximum number of related appStoreVersionExperimentsV2 returned (when they are included) (optional)
      - parameter limitAppStoreVersions: (query) maximum number of related appStoreVersions returned (when they are included) (optional)
-     - parameter limitAvailableTerritories: (query) maximum number of related availableTerritories returned (when they are included) (optional)
      - parameter limitBetaAppLocalizations: (query) maximum number of related betaAppLocalizations returned (when they are included) (optional)
      - parameter limitBetaGroups: (query) maximum number of related betaGroups returned (when they are included) (optional)
      - parameter limitBuilds: (query) maximum number of related builds returned (when they are included) (optional)
@@ -5708,15 +5279,14 @@ open class AppsAPI {
      - parameter limitInAppPurchases: (query) maximum number of related inAppPurchases returned (when they are included) (optional)
      - parameter limitInAppPurchasesV2: (query) maximum number of related inAppPurchasesV2 returned (when they are included) (optional)
      - parameter limitPreReleaseVersions: (query) maximum number of related preReleaseVersions returned (when they are included) (optional)
-     - parameter limitPrices: (query) maximum number of related prices returned (when they are included) (optional)
      - parameter limitPromotedPurchases: (query) maximum number of related promotedPurchases returned (when they are included) (optional)
      - parameter limitReviewSubmissions: (query) maximum number of related reviewSubmissions returned (when they are included) (optional)
      - parameter limitSubscriptionGroups: (query) maximum number of related subscriptionGroups returned (when they are included) (optional)
      - returns: AppResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appsGetInstance(id: String, fieldsApps: [FieldsApps_appsGetInstance]? = nil, include: [Include_appsGetInstance]? = nil, fieldsBetaAppReviewDetails: [FieldsBetaAppReviewDetails_appsGetInstance]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_appsGetInstance]? = nil, fieldsAppPriceSchedules: [FieldsAppPriceSchedules_appsGetInstance]? = nil, fieldsCiProducts: [FieldsCiProducts_appsGetInstance]? = nil, fieldsAlternativeDistributionKeys: [FieldsAlternativeDistributionKeys_appsGetInstance]? = nil, fieldsReviewSubmissions: [FieldsReviewSubmissions_appsGetInstance]? = nil, fieldsBetaGroups: [FieldsBetaGroups_appsGetInstance]? = nil, fieldsPromotedPurchases: [FieldsPromotedPurchases_appsGetInstance]? = nil, fieldsAppAvailabilities: [FieldsAppAvailabilities_appsGetInstance]? = nil, fieldsCustomerReviews: [FieldsCustomerReviews_appsGetInstance]? = nil, fieldsAppEvents: [FieldsAppEvents_appsGetInstance]? = nil, fieldsBuilds: [FieldsBuilds_appsGetInstance]? = nil, fieldsBetaLicenseAgreements: [FieldsBetaLicenseAgreements_appsGetInstance]? = nil, fieldsMarketplaceSearchDetails: [FieldsMarketplaceSearchDetails_appsGetInstance]? = nil, fieldsAppClips: [FieldsAppClips_appsGetInstance]? = nil, fieldsAppInfos: [FieldsAppInfos_appsGetInstance]? = nil, fieldsBetaAppLocalizations: [FieldsBetaAppLocalizations_appsGetInstance]? = nil, fieldsAppPricePoints: [FieldsAppPricePoints_appsGetInstance]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_appsGetInstance]? = nil, fieldsPreReleaseVersions: [FieldsPreReleaseVersions_appsGetInstance]? = nil, fieldsSubscriptionGroups: [FieldsSubscriptionGroups_appsGetInstance]? = nil, fieldsAnalyticsReportRequests: [FieldsAnalyticsReportRequests_appsGetInstance]? = nil, fieldsAppPrices: [FieldsAppPrices_appsGetInstance]? = nil, fieldsAppPreOrders: [FieldsAppPreOrders_appsGetInstance]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_appsGetInstance]? = nil, fieldsGameCenterEnabledVersions: [FieldsGameCenterEnabledVersions_appsGetInstance]? = nil, fieldsSubscriptionGracePeriods: [FieldsSubscriptionGracePeriods_appsGetInstance]? = nil, fieldsEndUserLicenseAgreements: [FieldsEndUserLicenseAgreements_appsGetInstance]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_appsGetInstance]? = nil, fieldsAppCustomProductPages: [FieldsAppCustomProductPages_appsGetInstance]? = nil, fieldsAppEncryptionDeclarations: [FieldsAppEncryptionDeclarations_appsGetInstance]? = nil, fieldsTerritories: [FieldsTerritories_appsGetInstance]? = nil, fieldsPerfPowerMetrics: [FieldsPerfPowerMetrics_appsGetInstance]? = nil, limitAppClips: Int? = nil, limitAppCustomProductPages: Int? = nil, limitAppEncryptionDeclarations: Int? = nil, limitAppEvents: Int? = nil, limitAppInfos: Int? = nil, limitAppStoreVersionExperimentsV2: Int? = nil, limitAppStoreVersions: Int? = nil, limitAvailableTerritories: Int? = nil, limitBetaAppLocalizations: Int? = nil, limitBetaGroups: Int? = nil, limitBuilds: Int? = nil, limitGameCenterEnabledVersions: Int? = nil, limitInAppPurchases: Int? = nil, limitInAppPurchasesV2: Int? = nil, limitPreReleaseVersions: Int? = nil, limitPrices: Int? = nil, limitPromotedPurchases: Int? = nil, limitReviewSubmissions: Int? = nil, limitSubscriptionGroups: Int? = nil) async throws -> AppResponse {
-        return try await appsGetInstanceWithRequestBuilder(id: id, fieldsApps: fieldsApps, include: include, fieldsBetaAppReviewDetails: fieldsBetaAppReviewDetails, fieldsGameCenterDetails: fieldsGameCenterDetails, fieldsAppPriceSchedules: fieldsAppPriceSchedules, fieldsCiProducts: fieldsCiProducts, fieldsAlternativeDistributionKeys: fieldsAlternativeDistributionKeys, fieldsReviewSubmissions: fieldsReviewSubmissions, fieldsBetaGroups: fieldsBetaGroups, fieldsPromotedPurchases: fieldsPromotedPurchases, fieldsAppAvailabilities: fieldsAppAvailabilities, fieldsCustomerReviews: fieldsCustomerReviews, fieldsAppEvents: fieldsAppEvents, fieldsBuilds: fieldsBuilds, fieldsBetaLicenseAgreements: fieldsBetaLicenseAgreements, fieldsMarketplaceSearchDetails: fieldsMarketplaceSearchDetails, fieldsAppClips: fieldsAppClips, fieldsAppInfos: fieldsAppInfos, fieldsBetaAppLocalizations: fieldsBetaAppLocalizations, fieldsAppPricePoints: fieldsAppPricePoints, fieldsInAppPurchases: fieldsInAppPurchases, fieldsPreReleaseVersions: fieldsPreReleaseVersions, fieldsSubscriptionGroups: fieldsSubscriptionGroups, fieldsAnalyticsReportRequests: fieldsAnalyticsReportRequests, fieldsAppPrices: fieldsAppPrices, fieldsAppPreOrders: fieldsAppPreOrders, fieldsAppStoreVersionExperiments: fieldsAppStoreVersionExperiments, fieldsGameCenterEnabledVersions: fieldsGameCenterEnabledVersions, fieldsSubscriptionGracePeriods: fieldsSubscriptionGracePeriods, fieldsEndUserLicenseAgreements: fieldsEndUserLicenseAgreements, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsAppCustomProductPages: fieldsAppCustomProductPages, fieldsAppEncryptionDeclarations: fieldsAppEncryptionDeclarations, fieldsTerritories: fieldsTerritories, fieldsPerfPowerMetrics: fieldsPerfPowerMetrics, limitAppClips: limitAppClips, limitAppCustomProductPages: limitAppCustomProductPages, limitAppEncryptionDeclarations: limitAppEncryptionDeclarations, limitAppEvents: limitAppEvents, limitAppInfos: limitAppInfos, limitAppStoreVersionExperimentsV2: limitAppStoreVersionExperimentsV2, limitAppStoreVersions: limitAppStoreVersions, limitAvailableTerritories: limitAvailableTerritories, limitBetaAppLocalizations: limitBetaAppLocalizations, limitBetaGroups: limitBetaGroups, limitBuilds: limitBuilds, limitGameCenterEnabledVersions: limitGameCenterEnabledVersions, limitInAppPurchases: limitInAppPurchases, limitInAppPurchasesV2: limitInAppPurchasesV2, limitPreReleaseVersions: limitPreReleaseVersions, limitPrices: limitPrices, limitPromotedPurchases: limitPromotedPurchases, limitReviewSubmissions: limitReviewSubmissions, limitSubscriptionGroups: limitSubscriptionGroups).execute().body
+    open class func appsGetInstance(id: String, fieldsApps: [FieldsApps_appsGetInstance]? = nil, fieldsAppEncryptionDeclarations: [FieldsAppEncryptionDeclarations_appsGetInstance]? = nil, fieldsCiProducts: [FieldsCiProducts_appsGetInstance]? = nil, fieldsBetaGroups: [FieldsBetaGroups_appsGetInstance]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_appsGetInstance]? = nil, fieldsPreReleaseVersions: [FieldsPreReleaseVersions_appsGetInstance]? = nil, fieldsBetaAppLocalizations: [FieldsBetaAppLocalizations_appsGetInstance]? = nil, fieldsBuilds: [FieldsBuilds_appsGetInstance]? = nil, fieldsBetaLicenseAgreements: [FieldsBetaLicenseAgreements_appsGetInstance]? = nil, fieldsBetaAppReviewDetails: [FieldsBetaAppReviewDetails_appsGetInstance]? = nil, fieldsAppInfos: [FieldsAppInfos_appsGetInstance]? = nil, fieldsAppClips: [FieldsAppClips_appsGetInstance]? = nil, fieldsEndUserLicenseAgreements: [FieldsEndUserLicenseAgreements_appsGetInstance]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_appsGetInstance]? = nil, fieldsSubscriptionGroups: [FieldsSubscriptionGroups_appsGetInstance]? = nil, fieldsGameCenterEnabledVersions: [FieldsGameCenterEnabledVersions_appsGetInstance]? = nil, fieldsAppCustomProductPages: [FieldsAppCustomProductPages_appsGetInstance]? = nil, fieldsPromotedPurchases: [FieldsPromotedPurchases_appsGetInstance]? = nil, fieldsAppEvents: [FieldsAppEvents_appsGetInstance]? = nil, fieldsReviewSubmissions: [FieldsReviewSubmissions_appsGetInstance]? = nil, fieldsSubscriptionGracePeriods: [FieldsSubscriptionGracePeriods_appsGetInstance]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_appsGetInstance]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_appsGetInstance]? = nil, include: [Include_appsGetInstance]? = nil, limitAppClips: Int? = nil, limitAppCustomProductPages: Int? = nil, limitAppEncryptionDeclarations: Int? = nil, limitAppEvents: Int? = nil, limitAppInfos: Int? = nil, limitAppStoreVersionExperimentsV2: Int? = nil, limitAppStoreVersions: Int? = nil, limitBetaAppLocalizations: Int? = nil, limitBetaGroups: Int? = nil, limitBuilds: Int? = nil, limitGameCenterEnabledVersions: Int? = nil, limitInAppPurchases: Int? = nil, limitInAppPurchasesV2: Int? = nil, limitPreReleaseVersions: Int? = nil, limitPromotedPurchases: Int? = nil, limitReviewSubmissions: Int? = nil, limitSubscriptionGroups: Int? = nil) async throws -> AppResponse {
+        return try await appsGetInstanceWithRequestBuilder(id: id, fieldsApps: fieldsApps, fieldsAppEncryptionDeclarations: fieldsAppEncryptionDeclarations, fieldsCiProducts: fieldsCiProducts, fieldsBetaGroups: fieldsBetaGroups, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsPreReleaseVersions: fieldsPreReleaseVersions, fieldsBetaAppLocalizations: fieldsBetaAppLocalizations, fieldsBuilds: fieldsBuilds, fieldsBetaLicenseAgreements: fieldsBetaLicenseAgreements, fieldsBetaAppReviewDetails: fieldsBetaAppReviewDetails, fieldsAppInfos: fieldsAppInfos, fieldsAppClips: fieldsAppClips, fieldsEndUserLicenseAgreements: fieldsEndUserLicenseAgreements, fieldsInAppPurchases: fieldsInAppPurchases, fieldsSubscriptionGroups: fieldsSubscriptionGroups, fieldsGameCenterEnabledVersions: fieldsGameCenterEnabledVersions, fieldsAppCustomProductPages: fieldsAppCustomProductPages, fieldsPromotedPurchases: fieldsPromotedPurchases, fieldsAppEvents: fieldsAppEvents, fieldsReviewSubmissions: fieldsReviewSubmissions, fieldsSubscriptionGracePeriods: fieldsSubscriptionGracePeriods, fieldsGameCenterDetails: fieldsGameCenterDetails, fieldsAppStoreVersionExperiments: fieldsAppStoreVersionExperiments, include: include, limitAppClips: limitAppClips, limitAppCustomProductPages: limitAppCustomProductPages, limitAppEncryptionDeclarations: limitAppEncryptionDeclarations, limitAppEvents: limitAppEvents, limitAppInfos: limitAppInfos, limitAppStoreVersionExperimentsV2: limitAppStoreVersionExperimentsV2, limitAppStoreVersions: limitAppStoreVersions, limitBetaAppLocalizations: limitBetaAppLocalizations, limitBetaGroups: limitBetaGroups, limitBuilds: limitBuilds, limitGameCenterEnabledVersions: limitGameCenterEnabledVersions, limitInAppPurchases: limitInAppPurchases, limitInAppPurchasesV2: limitInAppPurchasesV2, limitPreReleaseVersions: limitPreReleaseVersions, limitPromotedPurchases: limitPromotedPurchases, limitReviewSubmissions: limitReviewSubmissions, limitSubscriptionGroups: limitSubscriptionGroups).execute().body
     }
 
     /**
@@ -5735,40 +5305,29 @@ open class AppsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
-     - parameter fieldsBetaAppReviewDetails: (query) the fields to include for returned resources of type betaAppReviewDetails (optional)
-     - parameter fieldsGameCenterDetails: (query) the fields to include for returned resources of type gameCenterDetails (optional)
-     - parameter fieldsAppPriceSchedules: (query) the fields to include for returned resources of type appPriceSchedules (optional)
+     - parameter fieldsAppEncryptionDeclarations: (query) the fields to include for returned resources of type appEncryptionDeclarations (optional)
      - parameter fieldsCiProducts: (query) the fields to include for returned resources of type ciProducts (optional)
-     - parameter fieldsAlternativeDistributionKeys: (query) the fields to include for returned resources of type alternativeDistributionKeys (optional)
-     - parameter fieldsReviewSubmissions: (query) the fields to include for returned resources of type reviewSubmissions (optional)
      - parameter fieldsBetaGroups: (query) the fields to include for returned resources of type betaGroups (optional)
-     - parameter fieldsPromotedPurchases: (query) the fields to include for returned resources of type promotedPurchases (optional)
-     - parameter fieldsAppAvailabilities: (query) the fields to include for returned resources of type appAvailabilities (optional)
-     - parameter fieldsCustomerReviews: (query) the fields to include for returned resources of type customerReviews (optional)
-     - parameter fieldsAppEvents: (query) the fields to include for returned resources of type appEvents (optional)
+     - parameter fieldsAppStoreVersions: (query) the fields to include for returned resources of type appStoreVersions (optional)
+     - parameter fieldsPreReleaseVersions: (query) the fields to include for returned resources of type preReleaseVersions (optional)
+     - parameter fieldsBetaAppLocalizations: (query) the fields to include for returned resources of type betaAppLocalizations (optional)
      - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
      - parameter fieldsBetaLicenseAgreements: (query) the fields to include for returned resources of type betaLicenseAgreements (optional)
-     - parameter fieldsMarketplaceSearchDetails: (query) the fields to include for returned resources of type marketplaceSearchDetails (optional)
-     - parameter fieldsAppClips: (query) the fields to include for returned resources of type appClips (optional)
+     - parameter fieldsBetaAppReviewDetails: (query) the fields to include for returned resources of type betaAppReviewDetails (optional)
      - parameter fieldsAppInfos: (query) the fields to include for returned resources of type appInfos (optional)
-     - parameter fieldsBetaAppLocalizations: (query) the fields to include for returned resources of type betaAppLocalizations (optional)
-     - parameter fieldsAppPricePoints: (query) the fields to include for returned resources of type appPricePoints (optional)
-     - parameter fieldsInAppPurchases: (query) the fields to include for returned resources of type inAppPurchases (optional)
-     - parameter fieldsPreReleaseVersions: (query) the fields to include for returned resources of type preReleaseVersions (optional)
-     - parameter fieldsSubscriptionGroups: (query) the fields to include for returned resources of type subscriptionGroups (optional)
-     - parameter fieldsAnalyticsReportRequests: (query) the fields to include for returned resources of type analyticsReportRequests (optional)
-     - parameter fieldsAppPrices: (query) the fields to include for returned resources of type appPrices (optional)
-     - parameter fieldsAppPreOrders: (query) the fields to include for returned resources of type appPreOrders (optional)
-     - parameter fieldsAppStoreVersionExperiments: (query) the fields to include for returned resources of type appStoreVersionExperiments (optional)
-     - parameter fieldsGameCenterEnabledVersions: (query) the fields to include for returned resources of type gameCenterEnabledVersions (optional)
-     - parameter fieldsSubscriptionGracePeriods: (query) the fields to include for returned resources of type subscriptionGracePeriods (optional)
+     - parameter fieldsAppClips: (query) the fields to include for returned resources of type appClips (optional)
      - parameter fieldsEndUserLicenseAgreements: (query) the fields to include for returned resources of type endUserLicenseAgreements (optional)
-     - parameter fieldsAppStoreVersions: (query) the fields to include for returned resources of type appStoreVersions (optional)
+     - parameter fieldsInAppPurchases: (query) the fields to include for returned resources of type inAppPurchases (optional)
+     - parameter fieldsSubscriptionGroups: (query) the fields to include for returned resources of type subscriptionGroups (optional)
+     - parameter fieldsGameCenterEnabledVersions: (query) the fields to include for returned resources of type gameCenterEnabledVersions (optional)
      - parameter fieldsAppCustomProductPages: (query) the fields to include for returned resources of type appCustomProductPages (optional)
-     - parameter fieldsAppEncryptionDeclarations: (query) the fields to include for returned resources of type appEncryptionDeclarations (optional)
-     - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
-     - parameter fieldsPerfPowerMetrics: (query) the fields to include for returned resources of type perfPowerMetrics (optional)
+     - parameter fieldsPromotedPurchases: (query) the fields to include for returned resources of type promotedPurchases (optional)
+     - parameter fieldsAppEvents: (query) the fields to include for returned resources of type appEvents (optional)
+     - parameter fieldsReviewSubmissions: (query) the fields to include for returned resources of type reviewSubmissions (optional)
+     - parameter fieldsSubscriptionGracePeriods: (query) the fields to include for returned resources of type subscriptionGracePeriods (optional)
+     - parameter fieldsGameCenterDetails: (query) the fields to include for returned resources of type gameCenterDetails (optional)
+     - parameter fieldsAppStoreVersionExperiments: (query) the fields to include for returned resources of type appStoreVersionExperiments (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAppClips: (query) maximum number of related appClips returned (when they are included) (optional)
      - parameter limitAppCustomProductPages: (query) maximum number of related appCustomProductPages returned (when they are included) (optional)
      - parameter limitAppEncryptionDeclarations: (query) maximum number of related appEncryptionDeclarations returned (when they are included) (optional)
@@ -5776,7 +5335,6 @@ open class AppsAPI {
      - parameter limitAppInfos: (query) maximum number of related appInfos returned (when they are included) (optional)
      - parameter limitAppStoreVersionExperimentsV2: (query) maximum number of related appStoreVersionExperimentsV2 returned (when they are included) (optional)
      - parameter limitAppStoreVersions: (query) maximum number of related appStoreVersions returned (when they are included) (optional)
-     - parameter limitAvailableTerritories: (query) maximum number of related availableTerritories returned (when they are included) (optional)
      - parameter limitBetaAppLocalizations: (query) maximum number of related betaAppLocalizations returned (when they are included) (optional)
      - parameter limitBetaGroups: (query) maximum number of related betaGroups returned (when they are included) (optional)
      - parameter limitBuilds: (query) maximum number of related builds returned (when they are included) (optional)
@@ -5784,13 +5342,12 @@ open class AppsAPI {
      - parameter limitInAppPurchases: (query) maximum number of related inAppPurchases returned (when they are included) (optional)
      - parameter limitInAppPurchasesV2: (query) maximum number of related inAppPurchasesV2 returned (when they are included) (optional)
      - parameter limitPreReleaseVersions: (query) maximum number of related preReleaseVersions returned (when they are included) (optional)
-     - parameter limitPrices: (query) maximum number of related prices returned (when they are included) (optional)
      - parameter limitPromotedPurchases: (query) maximum number of related promotedPurchases returned (when they are included) (optional)
      - parameter limitReviewSubmissions: (query) maximum number of related reviewSubmissions returned (when they are included) (optional)
      - parameter limitSubscriptionGroups: (query) maximum number of related subscriptionGroups returned (when they are included) (optional)
      - returns: RequestBuilder<AppResponse> 
      */
-    open class func appsGetInstanceWithRequestBuilder(id: String, fieldsApps: [FieldsApps_appsGetInstance]? = nil, include: [Include_appsGetInstance]? = nil, fieldsBetaAppReviewDetails: [FieldsBetaAppReviewDetails_appsGetInstance]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_appsGetInstance]? = nil, fieldsAppPriceSchedules: [FieldsAppPriceSchedules_appsGetInstance]? = nil, fieldsCiProducts: [FieldsCiProducts_appsGetInstance]? = nil, fieldsAlternativeDistributionKeys: [FieldsAlternativeDistributionKeys_appsGetInstance]? = nil, fieldsReviewSubmissions: [FieldsReviewSubmissions_appsGetInstance]? = nil, fieldsBetaGroups: [FieldsBetaGroups_appsGetInstance]? = nil, fieldsPromotedPurchases: [FieldsPromotedPurchases_appsGetInstance]? = nil, fieldsAppAvailabilities: [FieldsAppAvailabilities_appsGetInstance]? = nil, fieldsCustomerReviews: [FieldsCustomerReviews_appsGetInstance]? = nil, fieldsAppEvents: [FieldsAppEvents_appsGetInstance]? = nil, fieldsBuilds: [FieldsBuilds_appsGetInstance]? = nil, fieldsBetaLicenseAgreements: [FieldsBetaLicenseAgreements_appsGetInstance]? = nil, fieldsMarketplaceSearchDetails: [FieldsMarketplaceSearchDetails_appsGetInstance]? = nil, fieldsAppClips: [FieldsAppClips_appsGetInstance]? = nil, fieldsAppInfos: [FieldsAppInfos_appsGetInstance]? = nil, fieldsBetaAppLocalizations: [FieldsBetaAppLocalizations_appsGetInstance]? = nil, fieldsAppPricePoints: [FieldsAppPricePoints_appsGetInstance]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_appsGetInstance]? = nil, fieldsPreReleaseVersions: [FieldsPreReleaseVersions_appsGetInstance]? = nil, fieldsSubscriptionGroups: [FieldsSubscriptionGroups_appsGetInstance]? = nil, fieldsAnalyticsReportRequests: [FieldsAnalyticsReportRequests_appsGetInstance]? = nil, fieldsAppPrices: [FieldsAppPrices_appsGetInstance]? = nil, fieldsAppPreOrders: [FieldsAppPreOrders_appsGetInstance]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_appsGetInstance]? = nil, fieldsGameCenterEnabledVersions: [FieldsGameCenterEnabledVersions_appsGetInstance]? = nil, fieldsSubscriptionGracePeriods: [FieldsSubscriptionGracePeriods_appsGetInstance]? = nil, fieldsEndUserLicenseAgreements: [FieldsEndUserLicenseAgreements_appsGetInstance]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_appsGetInstance]? = nil, fieldsAppCustomProductPages: [FieldsAppCustomProductPages_appsGetInstance]? = nil, fieldsAppEncryptionDeclarations: [FieldsAppEncryptionDeclarations_appsGetInstance]? = nil, fieldsTerritories: [FieldsTerritories_appsGetInstance]? = nil, fieldsPerfPowerMetrics: [FieldsPerfPowerMetrics_appsGetInstance]? = nil, limitAppClips: Int? = nil, limitAppCustomProductPages: Int? = nil, limitAppEncryptionDeclarations: Int? = nil, limitAppEvents: Int? = nil, limitAppInfos: Int? = nil, limitAppStoreVersionExperimentsV2: Int? = nil, limitAppStoreVersions: Int? = nil, limitAvailableTerritories: Int? = nil, limitBetaAppLocalizations: Int? = nil, limitBetaGroups: Int? = nil, limitBuilds: Int? = nil, limitGameCenterEnabledVersions: Int? = nil, limitInAppPurchases: Int? = nil, limitInAppPurchasesV2: Int? = nil, limitPreReleaseVersions: Int? = nil, limitPrices: Int? = nil, limitPromotedPurchases: Int? = nil, limitReviewSubmissions: Int? = nil, limitSubscriptionGroups: Int? = nil) -> RequestBuilder<AppResponse> {
+    open class func appsGetInstanceWithRequestBuilder(id: String, fieldsApps: [FieldsApps_appsGetInstance]? = nil, fieldsAppEncryptionDeclarations: [FieldsAppEncryptionDeclarations_appsGetInstance]? = nil, fieldsCiProducts: [FieldsCiProducts_appsGetInstance]? = nil, fieldsBetaGroups: [FieldsBetaGroups_appsGetInstance]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_appsGetInstance]? = nil, fieldsPreReleaseVersions: [FieldsPreReleaseVersions_appsGetInstance]? = nil, fieldsBetaAppLocalizations: [FieldsBetaAppLocalizations_appsGetInstance]? = nil, fieldsBuilds: [FieldsBuilds_appsGetInstance]? = nil, fieldsBetaLicenseAgreements: [FieldsBetaLicenseAgreements_appsGetInstance]? = nil, fieldsBetaAppReviewDetails: [FieldsBetaAppReviewDetails_appsGetInstance]? = nil, fieldsAppInfos: [FieldsAppInfos_appsGetInstance]? = nil, fieldsAppClips: [FieldsAppClips_appsGetInstance]? = nil, fieldsEndUserLicenseAgreements: [FieldsEndUserLicenseAgreements_appsGetInstance]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_appsGetInstance]? = nil, fieldsSubscriptionGroups: [FieldsSubscriptionGroups_appsGetInstance]? = nil, fieldsGameCenterEnabledVersions: [FieldsGameCenterEnabledVersions_appsGetInstance]? = nil, fieldsAppCustomProductPages: [FieldsAppCustomProductPages_appsGetInstance]? = nil, fieldsPromotedPurchases: [FieldsPromotedPurchases_appsGetInstance]? = nil, fieldsAppEvents: [FieldsAppEvents_appsGetInstance]? = nil, fieldsReviewSubmissions: [FieldsReviewSubmissions_appsGetInstance]? = nil, fieldsSubscriptionGracePeriods: [FieldsSubscriptionGracePeriods_appsGetInstance]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_appsGetInstance]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_appsGetInstance]? = nil, include: [Include_appsGetInstance]? = nil, limitAppClips: Int? = nil, limitAppCustomProductPages: Int? = nil, limitAppEncryptionDeclarations: Int? = nil, limitAppEvents: Int? = nil, limitAppInfos: Int? = nil, limitAppStoreVersionExperimentsV2: Int? = nil, limitAppStoreVersions: Int? = nil, limitBetaAppLocalizations: Int? = nil, limitBetaGroups: Int? = nil, limitBuilds: Int? = nil, limitGameCenterEnabledVersions: Int? = nil, limitInAppPurchases: Int? = nil, limitInAppPurchasesV2: Int? = nil, limitPreReleaseVersions: Int? = nil, limitPromotedPurchases: Int? = nil, limitReviewSubmissions: Int? = nil, limitSubscriptionGroups: Int? = nil) -> RequestBuilder<AppResponse> {
         var localVariablePath = "/v1/apps/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -5801,40 +5358,29 @@ open class AppsAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "fields[betaAppReviewDetails]": (wrappedValue: fieldsBetaAppReviewDetails?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterDetails]": (wrappedValue: fieldsGameCenterDetails?.encodeToJSON(), isExplode: false),
-            "fields[appPriceSchedules]": (wrappedValue: fieldsAppPriceSchedules?.encodeToJSON(), isExplode: false),
+            "fields[appEncryptionDeclarations]": (wrappedValue: fieldsAppEncryptionDeclarations?.encodeToJSON(), isExplode: false),
             "fields[ciProducts]": (wrappedValue: fieldsCiProducts?.encodeToJSON(), isExplode: false),
-            "fields[alternativeDistributionKeys]": (wrappedValue: fieldsAlternativeDistributionKeys?.encodeToJSON(), isExplode: false),
-            "fields[reviewSubmissions]": (wrappedValue: fieldsReviewSubmissions?.encodeToJSON(), isExplode: false),
             "fields[betaGroups]": (wrappedValue: fieldsBetaGroups?.encodeToJSON(), isExplode: false),
-            "fields[promotedPurchases]": (wrappedValue: fieldsPromotedPurchases?.encodeToJSON(), isExplode: false),
-            "fields[appAvailabilities]": (wrappedValue: fieldsAppAvailabilities?.encodeToJSON(), isExplode: false),
-            "fields[customerReviews]": (wrappedValue: fieldsCustomerReviews?.encodeToJSON(), isExplode: false),
-            "fields[appEvents]": (wrappedValue: fieldsAppEvents?.encodeToJSON(), isExplode: false),
+            "fields[appStoreVersions]": (wrappedValue: fieldsAppStoreVersions?.encodeToJSON(), isExplode: false),
+            "fields[preReleaseVersions]": (wrappedValue: fieldsPreReleaseVersions?.encodeToJSON(), isExplode: false),
+            "fields[betaAppLocalizations]": (wrappedValue: fieldsBetaAppLocalizations?.encodeToJSON(), isExplode: false),
             "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(), isExplode: false),
             "fields[betaLicenseAgreements]": (wrappedValue: fieldsBetaLicenseAgreements?.encodeToJSON(), isExplode: false),
-            "fields[marketplaceSearchDetails]": (wrappedValue: fieldsMarketplaceSearchDetails?.encodeToJSON(), isExplode: false),
-            "fields[appClips]": (wrappedValue: fieldsAppClips?.encodeToJSON(), isExplode: false),
+            "fields[betaAppReviewDetails]": (wrappedValue: fieldsBetaAppReviewDetails?.encodeToJSON(), isExplode: false),
             "fields[appInfos]": (wrappedValue: fieldsAppInfos?.encodeToJSON(), isExplode: false),
-            "fields[betaAppLocalizations]": (wrappedValue: fieldsBetaAppLocalizations?.encodeToJSON(), isExplode: false),
-            "fields[appPricePoints]": (wrappedValue: fieldsAppPricePoints?.encodeToJSON(), isExplode: false),
-            "fields[inAppPurchases]": (wrappedValue: fieldsInAppPurchases?.encodeToJSON(), isExplode: false),
-            "fields[preReleaseVersions]": (wrappedValue: fieldsPreReleaseVersions?.encodeToJSON(), isExplode: false),
-            "fields[subscriptionGroups]": (wrappedValue: fieldsSubscriptionGroups?.encodeToJSON(), isExplode: false),
-            "fields[analyticsReportRequests]": (wrappedValue: fieldsAnalyticsReportRequests?.encodeToJSON(), isExplode: false),
-            "fields[appPrices]": (wrappedValue: fieldsAppPrices?.encodeToJSON(), isExplode: false),
-            "fields[appPreOrders]": (wrappedValue: fieldsAppPreOrders?.encodeToJSON(), isExplode: false),
-            "fields[appStoreVersionExperiments]": (wrappedValue: fieldsAppStoreVersionExperiments?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterEnabledVersions]": (wrappedValue: fieldsGameCenterEnabledVersions?.encodeToJSON(), isExplode: false),
-            "fields[subscriptionGracePeriods]": (wrappedValue: fieldsSubscriptionGracePeriods?.encodeToJSON(), isExplode: false),
+            "fields[appClips]": (wrappedValue: fieldsAppClips?.encodeToJSON(), isExplode: false),
             "fields[endUserLicenseAgreements]": (wrappedValue: fieldsEndUserLicenseAgreements?.encodeToJSON(), isExplode: false),
-            "fields[appStoreVersions]": (wrappedValue: fieldsAppStoreVersions?.encodeToJSON(), isExplode: false),
+            "fields[inAppPurchases]": (wrappedValue: fieldsInAppPurchases?.encodeToJSON(), isExplode: false),
+            "fields[subscriptionGroups]": (wrappedValue: fieldsSubscriptionGroups?.encodeToJSON(), isExplode: false),
+            "fields[gameCenterEnabledVersions]": (wrappedValue: fieldsGameCenterEnabledVersions?.encodeToJSON(), isExplode: false),
             "fields[appCustomProductPages]": (wrappedValue: fieldsAppCustomProductPages?.encodeToJSON(), isExplode: false),
-            "fields[appEncryptionDeclarations]": (wrappedValue: fieldsAppEncryptionDeclarations?.encodeToJSON(), isExplode: false),
-            "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(), isExplode: false),
-            "fields[perfPowerMetrics]": (wrappedValue: fieldsPerfPowerMetrics?.encodeToJSON(), isExplode: false),
+            "fields[promotedPurchases]": (wrappedValue: fieldsPromotedPurchases?.encodeToJSON(), isExplode: false),
+            "fields[appEvents]": (wrappedValue: fieldsAppEvents?.encodeToJSON(), isExplode: false),
+            "fields[reviewSubmissions]": (wrappedValue: fieldsReviewSubmissions?.encodeToJSON(), isExplode: false),
+            "fields[subscriptionGracePeriods]": (wrappedValue: fieldsSubscriptionGracePeriods?.encodeToJSON(), isExplode: false),
+            "fields[gameCenterDetails]": (wrappedValue: fieldsGameCenterDetails?.encodeToJSON(), isExplode: false),
+            "fields[appStoreVersionExperiments]": (wrappedValue: fieldsAppStoreVersionExperiments?.encodeToJSON(), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "limit[appClips]": (wrappedValue: limitAppClips?.encodeToJSON(), isExplode: true),
             "limit[appCustomProductPages]": (wrappedValue: limitAppCustomProductPages?.encodeToJSON(), isExplode: true),
             "limit[appEncryptionDeclarations]": (wrappedValue: limitAppEncryptionDeclarations?.encodeToJSON(), isExplode: true),
@@ -5842,7 +5388,6 @@ open class AppsAPI {
             "limit[appInfos]": (wrappedValue: limitAppInfos?.encodeToJSON(), isExplode: true),
             "limit[appStoreVersionExperimentsV2]": (wrappedValue: limitAppStoreVersionExperimentsV2?.encodeToJSON(), isExplode: true),
             "limit[appStoreVersions]": (wrappedValue: limitAppStoreVersions?.encodeToJSON(), isExplode: true),
-            "limit[availableTerritories]": (wrappedValue: limitAvailableTerritories?.encodeToJSON(), isExplode: true),
             "limit[betaAppLocalizations]": (wrappedValue: limitBetaAppLocalizations?.encodeToJSON(), isExplode: true),
             "limit[betaGroups]": (wrappedValue: limitBetaGroups?.encodeToJSON(), isExplode: true),
             "limit[builds]": (wrappedValue: limitBuilds?.encodeToJSON(), isExplode: true),
@@ -5850,7 +5395,6 @@ open class AppsAPI {
             "limit[inAppPurchases]": (wrappedValue: limitInAppPurchases?.encodeToJSON(), isExplode: true),
             "limit[inAppPurchasesV2]": (wrappedValue: limitInAppPurchasesV2?.encodeToJSON(), isExplode: true),
             "limit[preReleaseVersions]": (wrappedValue: limitPreReleaseVersions?.encodeToJSON(), isExplode: true),
-            "limit[prices]": (wrappedValue: limitPrices?.encodeToJSON(), isExplode: true),
             "limit[promotedPurchases]": (wrappedValue: limitPromotedPurchases?.encodeToJSON(), isExplode: true),
             "limit[reviewSubmissions]": (wrappedValue: limitReviewSubmissions?.encodeToJSON(), isExplode: true),
             "limit[subscriptionGroups]": (wrappedValue: limitSubscriptionGroups?.encodeToJSON(), isExplode: true),
@@ -5902,76 +5446,72 @@ open class AppsAPI {
      * enum for parameter sort
      */
     public enum Sort_appsInAppPurchasesGetToManyRelated: String, CaseIterable {
-        case inapppurchasetype = "inAppPurchaseType"
-        case inapppurchasetype2 = "-inAppPurchaseType"
-        case productid = "productId"
-        case productid2 = "-productId"
         case referencename = "referenceName"
         case referencename2 = "-referenceName"
+        case productid = "productId"
+        case productid2 = "-productId"
+        case inapppurchasetype = "inAppPurchaseType"
+        case inapppurchasetype2 = "-inAppPurchaseType"
     }
 
     /**
      * enum for parameter fieldsInAppPurchases
      */
     public enum FieldsInAppPurchases_appsInAppPurchasesGetToManyRelated: String, CaseIterable {
-        case apps = "apps"
-        case inapppurchasetype = "inAppPurchaseType"
-        case productid = "productId"
         case referencename = "referenceName"
+        case productid = "productId"
+        case inapppurchasetype = "inAppPurchaseType"
         case state = "state"
+        case apps = "apps"
     }
 
     /**
      * enum for parameter fieldsApps
      */
     public enum FieldsApps_appsInAppPurchasesGetToManyRelated: String, CaseIterable {
+        case name = "name"
+        case bundleid = "bundleId"
+        case sku = "sku"
+        case primarylocale = "primaryLocale"
+        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
+        case subscriptionstatusurl = "subscriptionStatusUrl"
+        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
+        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
+        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
+        case contentrightsdeclaration = "contentRightsDeclaration"
+        case streamlinedpurchasingenabled = "streamlinedPurchasingEnabled"
+        case appencryptiondeclarations = "appEncryptionDeclarations"
+        case ciproduct = "ciProduct"
+        case betatesters = "betaTesters"
+        case betagroups = "betaGroups"
+        case appstoreversions = "appStoreVersions"
+        case prereleaseversions = "preReleaseVersions"
+        case betaapplocalizations = "betaAppLocalizations"
+        case builds = "builds"
+        case betalicenseagreement = "betaLicenseAgreement"
+        case betaappreviewdetail = "betaAppReviewDetail"
+        case appinfos = "appInfos"
+        case appclips = "appClips"
+        case apppricepoints = "appPricePoints"
+        case enduserlicenseagreement = "endUserLicenseAgreement"
+        case apppriceschedule = "appPriceSchedule"
+        case appavailabilityv2 = "appAvailabilityV2"
+        case inapppurchases = "inAppPurchases"
+        case subscriptiongroups = "subscriptionGroups"
+        case gamecenterenabledversions = "gameCenterEnabledVersions"
+        case perfpowermetrics = "perfPowerMetrics"
+        case appcustomproductpages = "appCustomProductPages"
+        case inapppurchasesv2 = "inAppPurchasesV2"
+        case promotedpurchases = "promotedPurchases"
+        case appevents = "appEvents"
+        case reviewsubmissions = "reviewSubmissions"
+        case subscriptiongraceperiod = "subscriptionGracePeriod"
+        case customerreviews = "customerReviews"
+        case gamecenterdetail = "gameCenterDetail"
+        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
         case alternativedistributionkey = "alternativeDistributionKey"
         case analyticsreportrequests = "analyticsReportRequests"
-        case appavailability = "appAvailability"
-        case appclips = "appClips"
-        case appcustomproductpages = "appCustomProductPages"
-        case appencryptiondeclarations = "appEncryptionDeclarations"
-        case appevents = "appEvents"
-        case appinfos = "appInfos"
-        case apppricepoints = "appPricePoints"
-        case apppriceschedule = "appPriceSchedule"
-        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
-        case appstoreversions = "appStoreVersions"
-        case availableinnewterritories = "availableInNewTerritories"
-        case availableterritories = "availableTerritories"
-        case betaapplocalizations = "betaAppLocalizations"
-        case betaappreviewdetail = "betaAppReviewDetail"
-        case betagroups = "betaGroups"
-        case betalicenseagreement = "betaLicenseAgreement"
-        case betatesters = "betaTesters"
-        case builds = "builds"
-        case bundleid = "bundleId"
-        case ciproduct = "ciProduct"
-        case contentrightsdeclaration = "contentRightsDeclaration"
-        case customerreviews = "customerReviews"
-        case enduserlicenseagreement = "endUserLicenseAgreement"
-        case gamecenterdetail = "gameCenterDetail"
-        case gamecenterenabledversions = "gameCenterEnabledVersions"
-        case inapppurchases = "inAppPurchases"
-        case inapppurchasesv2 = "inAppPurchasesV2"
-        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
         case marketplacesearchdetail = "marketplaceSearchDetail"
-        case name = "name"
-        case perfpowermetrics = "perfPowerMetrics"
-        case preorder = "preOrder"
-        case prereleaseversions = "preReleaseVersions"
-        case pricepoints = "pricePoints"
-        case prices = "prices"
-        case primarylocale = "primaryLocale"
-        case promotedpurchases = "promotedPurchases"
-        case reviewsubmissions = "reviewSubmissions"
-        case sku = "sku"
-        case subscriptiongraceperiod = "subscriptionGracePeriod"
-        case subscriptiongroups = "subscriptionGroups"
-        case subscriptionstatusurl = "subscriptionStatusUrl"
-        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
-        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
-        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
     }
 
     /**
@@ -5990,14 +5530,14 @@ open class AppsAPI {
      - parameter fieldsInAppPurchases: (query) the fields to include for returned resources of type inAppPurchases (optional)
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
      - parameter limit: (query) maximum resources per page (optional)
-     - parameter limitApps: (query) maximum number of related apps returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitApps: (query) maximum number of related apps returned (when they are included) (optional)
      - returns: InAppPurchasesResponse
      */
     @available(*, deprecated, message: "This operation is deprecated.")
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appsInAppPurchasesGetToManyRelated(id: String, filterInAppPurchaseType: [FilterInAppPurchaseType_appsInAppPurchasesGetToManyRelated]? = nil, filterCanBeSubmitted: [String]? = nil, sort: [Sort_appsInAppPurchasesGetToManyRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_appsInAppPurchasesGetToManyRelated]? = nil, fieldsApps: [FieldsApps_appsInAppPurchasesGetToManyRelated]? = nil, limit: Int? = nil, limitApps: Int? = nil, include: [Include_appsInAppPurchasesGetToManyRelated]? = nil) async throws -> InAppPurchasesResponse {
-        return try await appsInAppPurchasesGetToManyRelatedWithRequestBuilder(id: id, filterInAppPurchaseType: filterInAppPurchaseType, filterCanBeSubmitted: filterCanBeSubmitted, sort: sort, fieldsInAppPurchases: fieldsInAppPurchases, fieldsApps: fieldsApps, limit: limit, limitApps: limitApps, include: include).execute().body
+    open class func appsInAppPurchasesGetToManyRelated(id: String, filterInAppPurchaseType: [FilterInAppPurchaseType_appsInAppPurchasesGetToManyRelated]? = nil, filterCanBeSubmitted: [String]? = nil, sort: [Sort_appsInAppPurchasesGetToManyRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_appsInAppPurchasesGetToManyRelated]? = nil, fieldsApps: [FieldsApps_appsInAppPurchasesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appsInAppPurchasesGetToManyRelated]? = nil, limitApps: Int? = nil) async throws -> InAppPurchasesResponse {
+        return try await appsInAppPurchasesGetToManyRelatedWithRequestBuilder(id: id, filterInAppPurchaseType: filterInAppPurchaseType, filterCanBeSubmitted: filterCanBeSubmitted, sort: sort, fieldsInAppPurchases: fieldsInAppPurchases, fieldsApps: fieldsApps, limit: limit, include: include, limitApps: limitApps).execute().body
     }
 
     /**
@@ -6022,12 +5562,12 @@ open class AppsAPI {
      - parameter fieldsInAppPurchases: (query) the fields to include for returned resources of type inAppPurchases (optional)
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
      - parameter limit: (query) maximum resources per page (optional)
-     - parameter limitApps: (query) maximum number of related apps returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitApps: (query) maximum number of related apps returned (when they are included) (optional)
      - returns: RequestBuilder<InAppPurchasesResponse> 
      */
     @available(*, deprecated, message: "This operation is deprecated.")
-    open class func appsInAppPurchasesGetToManyRelatedWithRequestBuilder(id: String, filterInAppPurchaseType: [FilterInAppPurchaseType_appsInAppPurchasesGetToManyRelated]? = nil, filterCanBeSubmitted: [String]? = nil, sort: [Sort_appsInAppPurchasesGetToManyRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_appsInAppPurchasesGetToManyRelated]? = nil, fieldsApps: [FieldsApps_appsInAppPurchasesGetToManyRelated]? = nil, limit: Int? = nil, limitApps: Int? = nil, include: [Include_appsInAppPurchasesGetToManyRelated]? = nil) -> RequestBuilder<InAppPurchasesResponse> {
+    open class func appsInAppPurchasesGetToManyRelatedWithRequestBuilder(id: String, filterInAppPurchaseType: [FilterInAppPurchaseType_appsInAppPurchasesGetToManyRelated]? = nil, filterCanBeSubmitted: [String]? = nil, sort: [Sort_appsInAppPurchasesGetToManyRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_appsInAppPurchasesGetToManyRelated]? = nil, fieldsApps: [FieldsApps_appsInAppPurchasesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appsInAppPurchasesGetToManyRelated]? = nil, limitApps: Int? = nil) -> RequestBuilder<InAppPurchasesResponse> {
         var localVariablePath = "/v1/apps/{id}/inAppPurchases"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -6043,8 +5583,8 @@ open class AppsAPI {
             "fields[inAppPurchases]": (wrappedValue: fieldsInAppPurchases?.encodeToJSON(), isExplode: false),
             "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "limit[apps]": (wrappedValue: limitApps?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "limit[apps]": (wrappedValue: limitApps?.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -6080,15 +5620,6 @@ open class AppsAPI {
     }
 
     /**
-     * enum for parameter filterInAppPurchaseType
-     */
-    public enum FilterInAppPurchaseType_appsInAppPurchasesV2GetToManyRelated: String, CaseIterable {
-        case consumable = "CONSUMABLE"
-        case nonConsumable = "NON_CONSUMABLE"
-        case nonRenewingSubscription = "NON_RENEWING_SUBSCRIPTION"
-    }
-
-    /**
      * enum for parameter filterState
      */
     public enum FilterState_appsInAppPurchasesV2GetToManyRelated: String, CaseIterable {
@@ -6107,92 +5638,54 @@ open class AppsAPI {
     }
 
     /**
+     * enum for parameter filterInAppPurchaseType
+     */
+    public enum FilterInAppPurchaseType_appsInAppPurchasesV2GetToManyRelated: String, CaseIterable {
+        case consumable = "CONSUMABLE"
+        case nonConsumable = "NON_CONSUMABLE"
+        case nonRenewingSubscription = "NON_RENEWING_SUBSCRIPTION"
+    }
+
+    /**
      * enum for parameter sort
      */
     public enum Sort_appsInAppPurchasesV2GetToManyRelated: String, CaseIterable {
-        case inapppurchasetype = "inAppPurchaseType"
-        case inapppurchasetype2 = "-inAppPurchaseType"
         case name = "name"
         case name2 = "-name"
-    }
-
-    /**
-     * enum for parameter fieldsInAppPurchaseAppStoreReviewScreenshots
-     */
-    public enum FieldsInAppPurchaseAppStoreReviewScreenshots_appsInAppPurchasesV2GetToManyRelated: String, CaseIterable {
-        case assetdeliverystate = "assetDeliveryState"
-        case assettoken = "assetToken"
-        case assettype = "assetType"
-        case filename = "fileName"
-        case filesize = "fileSize"
-        case imageasset = "imageAsset"
-        case inapppurchasev2 = "inAppPurchaseV2"
-        case sourcefilechecksum = "sourceFileChecksum"
-        case uploadoperations = "uploadOperations"
-        case uploaded = "uploaded"
-    }
-
-    /**
-     * enum for parameter fieldsInAppPurchaseAvailabilities
-     */
-    public enum FieldsInAppPurchaseAvailabilities_appsInAppPurchasesV2GetToManyRelated: String, CaseIterable {
-        case availableinnewterritories = "availableInNewTerritories"
-        case availableterritories = "availableTerritories"
-        case inapppurchase = "inAppPurchase"
-    }
-
-    /**
-     * enum for parameter fieldsPromotedPurchases
-     */
-    public enum FieldsPromotedPurchases_appsInAppPurchasesV2GetToManyRelated: String, CaseIterable {
-        case app = "app"
-        case enabled = "enabled"
-        case inapppurchasev2 = "inAppPurchaseV2"
-        case promotionimages = "promotionImages"
-        case state = "state"
-        case subscription = "subscription"
-        case visibleforallusers = "visibleForAllUsers"
-    }
-
-    /**
-     * enum for parameter fieldsInAppPurchaseLocalizations
-     */
-    public enum FieldsInAppPurchaseLocalizations_appsInAppPurchasesV2GetToManyRelated: String, CaseIterable {
-        case description = "description"
-        case inapppurchasev2 = "inAppPurchaseV2"
-        case locale = "locale"
-        case name = "name"
-        case state = "state"
+        case inapppurchasetype = "inAppPurchaseType"
+        case inapppurchasetype2 = "-inAppPurchaseType"
     }
 
     /**
      * enum for parameter fieldsInAppPurchases
      */
     public enum FieldsInAppPurchases_appsInAppPurchasesV2GetToManyRelated: String, CaseIterable {
-        case app = "app"
-        case appstorereviewscreenshot = "appStoreReviewScreenshot"
-        case content = "content"
-        case contenthosting = "contentHosting"
-        case familysharable = "familySharable"
-        case iappriceschedule = "iapPriceSchedule"
-        case inapppurchaseavailability = "inAppPurchaseAvailability"
-        case inapppurchaselocalizations = "inAppPurchaseLocalizations"
-        case inapppurchasetype = "inAppPurchaseType"
         case name = "name"
         case productid = "productId"
-        case promotedpurchase = "promotedPurchase"
-        case reviewnote = "reviewNote"
+        case inapppurchasetype = "inAppPurchaseType"
         case state = "state"
+        case reviewnote = "reviewNote"
+        case familysharable = "familySharable"
+        case contenthosting = "contentHosting"
+        case inapppurchaselocalizations = "inAppPurchaseLocalizations"
+        case pricepoints = "pricePoints"
+        case content = "content"
+        case appstorereviewscreenshot = "appStoreReviewScreenshot"
+        case promotedpurchase = "promotedPurchase"
+        case iappriceschedule = "iapPriceSchedule"
+        case inapppurchaseavailability = "inAppPurchaseAvailability"
+        case images = "images"
     }
 
     /**
-     * enum for parameter fieldsInAppPurchasePriceSchedules
+     * enum for parameter fieldsInAppPurchaseLocalizations
      */
-    public enum FieldsInAppPurchasePriceSchedules_appsInAppPurchasesV2GetToManyRelated: String, CaseIterable {
-        case automaticprices = "automaticPrices"
-        case baseterritory = "baseTerritory"
-        case inapppurchase = "inAppPurchase"
-        case manualprices = "manualPrices"
+    public enum FieldsInAppPurchaseLocalizations_appsInAppPurchasesV2GetToManyRelated: String, CaseIterable {
+        case name = "name"
+        case locale = "locale"
+        case description = "description"
+        case state = "state"
+        case inapppurchasev2 = "inAppPurchaseV2"
     }
 
     /**
@@ -6201,46 +5694,107 @@ open class AppsAPI {
     public enum FieldsInAppPurchaseContents_appsInAppPurchasesV2GetToManyRelated: String, CaseIterable {
         case filename = "fileName"
         case filesize = "fileSize"
-        case inapppurchasev2 = "inAppPurchaseV2"
-        case lastmodifieddate = "lastModifiedDate"
         case url = "url"
+        case lastmodifieddate = "lastModifiedDate"
+        case inapppurchasev2 = "inAppPurchaseV2"
+    }
+
+    /**
+     * enum for parameter fieldsInAppPurchaseAppStoreReviewScreenshots
+     */
+    public enum FieldsInAppPurchaseAppStoreReviewScreenshots_appsInAppPurchasesV2GetToManyRelated: String, CaseIterable {
+        case filesize = "fileSize"
+        case filename = "fileName"
+        case sourcefilechecksum = "sourceFileChecksum"
+        case imageasset = "imageAsset"
+        case assettoken = "assetToken"
+        case assettype = "assetType"
+        case uploadoperations = "uploadOperations"
+        case assetdeliverystate = "assetDeliveryState"
+        case inapppurchasev2 = "inAppPurchaseV2"
+    }
+
+    /**
+     * enum for parameter fieldsPromotedPurchases
+     */
+    public enum FieldsPromotedPurchases_appsInAppPurchasesV2GetToManyRelated: String, CaseIterable {
+        case visibleforallusers = "visibleForAllUsers"
+        case enabled = "enabled"
+        case state = "state"
+        case inapppurchasev2 = "inAppPurchaseV2"
+        case subscription = "subscription"
+        case promotionimages = "promotionImages"
+    }
+
+    /**
+     * enum for parameter fieldsInAppPurchasePriceSchedules
+     */
+    public enum FieldsInAppPurchasePriceSchedules_appsInAppPurchasesV2GetToManyRelated: String, CaseIterable {
+        case baseterritory = "baseTerritory"
+        case manualprices = "manualPrices"
+        case automaticprices = "automaticPrices"
+    }
+
+    /**
+     * enum for parameter fieldsInAppPurchaseAvailabilities
+     */
+    public enum FieldsInAppPurchaseAvailabilities_appsInAppPurchasesV2GetToManyRelated: String, CaseIterable {
+        case availableinnewterritories = "availableInNewTerritories"
+        case availableterritories = "availableTerritories"
+    }
+
+    /**
+     * enum for parameter fieldsInAppPurchaseImages
+     */
+    public enum FieldsInAppPurchaseImages_appsInAppPurchasesV2GetToManyRelated: String, CaseIterable {
+        case filesize = "fileSize"
+        case filename = "fileName"
+        case sourcefilechecksum = "sourceFileChecksum"
+        case assettoken = "assetToken"
+        case imageasset = "imageAsset"
+        case uploadoperations = "uploadOperations"
+        case state = "state"
+        case inapppurchase = "inAppPurchase"
     }
 
     /**
      * enum for parameter include
      */
     public enum Include_appsInAppPurchasesV2GetToManyRelated: String, CaseIterable {
-        case appstorereviewscreenshot = "appStoreReviewScreenshot"
+        case inapppurchaselocalizations = "inAppPurchaseLocalizations"
         case content = "content"
+        case appstorereviewscreenshot = "appStoreReviewScreenshot"
+        case promotedpurchase = "promotedPurchase"
         case iappriceschedule = "iapPriceSchedule"
         case inapppurchaseavailability = "inAppPurchaseAvailability"
-        case inapppurchaselocalizations = "inAppPurchaseLocalizations"
-        case promotedpurchase = "promotedPurchase"
+        case images = "images"
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
-     - parameter filterInAppPurchaseType: (query) filter by attribute &#39;inAppPurchaseType&#39; (optional)
-     - parameter filterName: (query) filter by attribute &#39;name&#39; (optional)
      - parameter filterProductId: (query) filter by attribute &#39;productId&#39; (optional)
+     - parameter filterName: (query) filter by attribute &#39;name&#39; (optional)
      - parameter filterState: (query) filter by attribute &#39;state&#39; (optional)
+     - parameter filterInAppPurchaseType: (query) filter by attribute &#39;inAppPurchaseType&#39; (optional)
      - parameter sort: (query) comma-separated list of sort expressions; resources will be sorted as specified (optional)
-     - parameter fieldsInAppPurchaseAppStoreReviewScreenshots: (query) the fields to include for returned resources of type inAppPurchaseAppStoreReviewScreenshots (optional)
-     - parameter fieldsInAppPurchaseAvailabilities: (query) the fields to include for returned resources of type inAppPurchaseAvailabilities (optional)
-     - parameter fieldsPromotedPurchases: (query) the fields to include for returned resources of type promotedPurchases (optional)
-     - parameter fieldsInAppPurchaseLocalizations: (query) the fields to include for returned resources of type inAppPurchaseLocalizations (optional)
      - parameter fieldsInAppPurchases: (query) the fields to include for returned resources of type inAppPurchases (optional)
-     - parameter fieldsInAppPurchasePriceSchedules: (query) the fields to include for returned resources of type inAppPurchasePriceSchedules (optional)
+     - parameter fieldsInAppPurchaseLocalizations: (query) the fields to include for returned resources of type inAppPurchaseLocalizations (optional)
      - parameter fieldsInAppPurchaseContents: (query) the fields to include for returned resources of type inAppPurchaseContents (optional)
+     - parameter fieldsInAppPurchaseAppStoreReviewScreenshots: (query) the fields to include for returned resources of type inAppPurchaseAppStoreReviewScreenshots (optional)
+     - parameter fieldsPromotedPurchases: (query) the fields to include for returned resources of type promotedPurchases (optional)
+     - parameter fieldsInAppPurchasePriceSchedules: (query) the fields to include for returned resources of type inAppPurchasePriceSchedules (optional)
+     - parameter fieldsInAppPurchaseAvailabilities: (query) the fields to include for returned resources of type inAppPurchaseAvailabilities (optional)
+     - parameter fieldsInAppPurchaseImages: (query) the fields to include for returned resources of type inAppPurchaseImages (optional)
      - parameter limit: (query) maximum resources per page (optional)
-     - parameter limitInAppPurchaseLocalizations: (query) maximum number of related inAppPurchaseLocalizations returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitInAppPurchaseLocalizations: (query) maximum number of related inAppPurchaseLocalizations returned (when they are included) (optional)
+     - parameter limitImages: (query) maximum number of related images returned (when they are included) (optional)
      - returns: InAppPurchasesV2Response
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appsInAppPurchasesV2GetToManyRelated(id: String, filterInAppPurchaseType: [FilterInAppPurchaseType_appsInAppPurchasesV2GetToManyRelated]? = nil, filterName: [String]? = nil, filterProductId: [String]? = nil, filterState: [FilterState_appsInAppPurchasesV2GetToManyRelated]? = nil, sort: [Sort_appsInAppPurchasesV2GetToManyRelated]? = nil, fieldsInAppPurchaseAppStoreReviewScreenshots: [FieldsInAppPurchaseAppStoreReviewScreenshots_appsInAppPurchasesV2GetToManyRelated]? = nil, fieldsInAppPurchaseAvailabilities: [FieldsInAppPurchaseAvailabilities_appsInAppPurchasesV2GetToManyRelated]? = nil, fieldsPromotedPurchases: [FieldsPromotedPurchases_appsInAppPurchasesV2GetToManyRelated]? = nil, fieldsInAppPurchaseLocalizations: [FieldsInAppPurchaseLocalizations_appsInAppPurchasesV2GetToManyRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_appsInAppPurchasesV2GetToManyRelated]? = nil, fieldsInAppPurchasePriceSchedules: [FieldsInAppPurchasePriceSchedules_appsInAppPurchasesV2GetToManyRelated]? = nil, fieldsInAppPurchaseContents: [FieldsInAppPurchaseContents_appsInAppPurchasesV2GetToManyRelated]? = nil, limit: Int? = nil, limitInAppPurchaseLocalizations: Int? = nil, include: [Include_appsInAppPurchasesV2GetToManyRelated]? = nil) async throws -> InAppPurchasesV2Response {
-        return try await appsInAppPurchasesV2GetToManyRelatedWithRequestBuilder(id: id, filterInAppPurchaseType: filterInAppPurchaseType, filterName: filterName, filterProductId: filterProductId, filterState: filterState, sort: sort, fieldsInAppPurchaseAppStoreReviewScreenshots: fieldsInAppPurchaseAppStoreReviewScreenshots, fieldsInAppPurchaseAvailabilities: fieldsInAppPurchaseAvailabilities, fieldsPromotedPurchases: fieldsPromotedPurchases, fieldsInAppPurchaseLocalizations: fieldsInAppPurchaseLocalizations, fieldsInAppPurchases: fieldsInAppPurchases, fieldsInAppPurchasePriceSchedules: fieldsInAppPurchasePriceSchedules, fieldsInAppPurchaseContents: fieldsInAppPurchaseContents, limit: limit, limitInAppPurchaseLocalizations: limitInAppPurchaseLocalizations, include: include).execute().body
+    open class func appsInAppPurchasesV2GetToManyRelated(id: String, filterProductId: [String]? = nil, filterName: [String]? = nil, filterState: [FilterState_appsInAppPurchasesV2GetToManyRelated]? = nil, filterInAppPurchaseType: [FilterInAppPurchaseType_appsInAppPurchasesV2GetToManyRelated]? = nil, sort: [Sort_appsInAppPurchasesV2GetToManyRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_appsInAppPurchasesV2GetToManyRelated]? = nil, fieldsInAppPurchaseLocalizations: [FieldsInAppPurchaseLocalizations_appsInAppPurchasesV2GetToManyRelated]? = nil, fieldsInAppPurchaseContents: [FieldsInAppPurchaseContents_appsInAppPurchasesV2GetToManyRelated]? = nil, fieldsInAppPurchaseAppStoreReviewScreenshots: [FieldsInAppPurchaseAppStoreReviewScreenshots_appsInAppPurchasesV2GetToManyRelated]? = nil, fieldsPromotedPurchases: [FieldsPromotedPurchases_appsInAppPurchasesV2GetToManyRelated]? = nil, fieldsInAppPurchasePriceSchedules: [FieldsInAppPurchasePriceSchedules_appsInAppPurchasesV2GetToManyRelated]? = nil, fieldsInAppPurchaseAvailabilities: [FieldsInAppPurchaseAvailabilities_appsInAppPurchasesV2GetToManyRelated]? = nil, fieldsInAppPurchaseImages: [FieldsInAppPurchaseImages_appsInAppPurchasesV2GetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appsInAppPurchasesV2GetToManyRelated]? = nil, limitInAppPurchaseLocalizations: Int? = nil, limitImages: Int? = nil) async throws -> InAppPurchasesV2Response {
+        return try await appsInAppPurchasesV2GetToManyRelatedWithRequestBuilder(id: id, filterProductId: filterProductId, filterName: filterName, filterState: filterState, filterInAppPurchaseType: filterInAppPurchaseType, sort: sort, fieldsInAppPurchases: fieldsInAppPurchases, fieldsInAppPurchaseLocalizations: fieldsInAppPurchaseLocalizations, fieldsInAppPurchaseContents: fieldsInAppPurchaseContents, fieldsInAppPurchaseAppStoreReviewScreenshots: fieldsInAppPurchaseAppStoreReviewScreenshots, fieldsPromotedPurchases: fieldsPromotedPurchases, fieldsInAppPurchasePriceSchedules: fieldsInAppPurchasePriceSchedules, fieldsInAppPurchaseAvailabilities: fieldsInAppPurchaseAvailabilities, fieldsInAppPurchaseImages: fieldsInAppPurchaseImages, limit: limit, include: include, limitInAppPurchaseLocalizations: limitInAppPurchaseLocalizations, limitImages: limitImages).execute().body
     }
 
     /**
@@ -6258,24 +5812,26 @@ open class AppsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
-     - parameter filterInAppPurchaseType: (query) filter by attribute &#39;inAppPurchaseType&#39; (optional)
-     - parameter filterName: (query) filter by attribute &#39;name&#39; (optional)
      - parameter filterProductId: (query) filter by attribute &#39;productId&#39; (optional)
+     - parameter filterName: (query) filter by attribute &#39;name&#39; (optional)
      - parameter filterState: (query) filter by attribute &#39;state&#39; (optional)
+     - parameter filterInAppPurchaseType: (query) filter by attribute &#39;inAppPurchaseType&#39; (optional)
      - parameter sort: (query) comma-separated list of sort expressions; resources will be sorted as specified (optional)
-     - parameter fieldsInAppPurchaseAppStoreReviewScreenshots: (query) the fields to include for returned resources of type inAppPurchaseAppStoreReviewScreenshots (optional)
-     - parameter fieldsInAppPurchaseAvailabilities: (query) the fields to include for returned resources of type inAppPurchaseAvailabilities (optional)
-     - parameter fieldsPromotedPurchases: (query) the fields to include for returned resources of type promotedPurchases (optional)
-     - parameter fieldsInAppPurchaseLocalizations: (query) the fields to include for returned resources of type inAppPurchaseLocalizations (optional)
      - parameter fieldsInAppPurchases: (query) the fields to include for returned resources of type inAppPurchases (optional)
-     - parameter fieldsInAppPurchasePriceSchedules: (query) the fields to include for returned resources of type inAppPurchasePriceSchedules (optional)
+     - parameter fieldsInAppPurchaseLocalizations: (query) the fields to include for returned resources of type inAppPurchaseLocalizations (optional)
      - parameter fieldsInAppPurchaseContents: (query) the fields to include for returned resources of type inAppPurchaseContents (optional)
+     - parameter fieldsInAppPurchaseAppStoreReviewScreenshots: (query) the fields to include for returned resources of type inAppPurchaseAppStoreReviewScreenshots (optional)
+     - parameter fieldsPromotedPurchases: (query) the fields to include for returned resources of type promotedPurchases (optional)
+     - parameter fieldsInAppPurchasePriceSchedules: (query) the fields to include for returned resources of type inAppPurchasePriceSchedules (optional)
+     - parameter fieldsInAppPurchaseAvailabilities: (query) the fields to include for returned resources of type inAppPurchaseAvailabilities (optional)
+     - parameter fieldsInAppPurchaseImages: (query) the fields to include for returned resources of type inAppPurchaseImages (optional)
      - parameter limit: (query) maximum resources per page (optional)
-     - parameter limitInAppPurchaseLocalizations: (query) maximum number of related inAppPurchaseLocalizations returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitInAppPurchaseLocalizations: (query) maximum number of related inAppPurchaseLocalizations returned (when they are included) (optional)
+     - parameter limitImages: (query) maximum number of related images returned (when they are included) (optional)
      - returns: RequestBuilder<InAppPurchasesV2Response> 
      */
-    open class func appsInAppPurchasesV2GetToManyRelatedWithRequestBuilder(id: String, filterInAppPurchaseType: [FilterInAppPurchaseType_appsInAppPurchasesV2GetToManyRelated]? = nil, filterName: [String]? = nil, filterProductId: [String]? = nil, filterState: [FilterState_appsInAppPurchasesV2GetToManyRelated]? = nil, sort: [Sort_appsInAppPurchasesV2GetToManyRelated]? = nil, fieldsInAppPurchaseAppStoreReviewScreenshots: [FieldsInAppPurchaseAppStoreReviewScreenshots_appsInAppPurchasesV2GetToManyRelated]? = nil, fieldsInAppPurchaseAvailabilities: [FieldsInAppPurchaseAvailabilities_appsInAppPurchasesV2GetToManyRelated]? = nil, fieldsPromotedPurchases: [FieldsPromotedPurchases_appsInAppPurchasesV2GetToManyRelated]? = nil, fieldsInAppPurchaseLocalizations: [FieldsInAppPurchaseLocalizations_appsInAppPurchasesV2GetToManyRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_appsInAppPurchasesV2GetToManyRelated]? = nil, fieldsInAppPurchasePriceSchedules: [FieldsInAppPurchasePriceSchedules_appsInAppPurchasesV2GetToManyRelated]? = nil, fieldsInAppPurchaseContents: [FieldsInAppPurchaseContents_appsInAppPurchasesV2GetToManyRelated]? = nil, limit: Int? = nil, limitInAppPurchaseLocalizations: Int? = nil, include: [Include_appsInAppPurchasesV2GetToManyRelated]? = nil) -> RequestBuilder<InAppPurchasesV2Response> {
+    open class func appsInAppPurchasesV2GetToManyRelatedWithRequestBuilder(id: String, filterProductId: [String]? = nil, filterName: [String]? = nil, filterState: [FilterState_appsInAppPurchasesV2GetToManyRelated]? = nil, filterInAppPurchaseType: [FilterInAppPurchaseType_appsInAppPurchasesV2GetToManyRelated]? = nil, sort: [Sort_appsInAppPurchasesV2GetToManyRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_appsInAppPurchasesV2GetToManyRelated]? = nil, fieldsInAppPurchaseLocalizations: [FieldsInAppPurchaseLocalizations_appsInAppPurchasesV2GetToManyRelated]? = nil, fieldsInAppPurchaseContents: [FieldsInAppPurchaseContents_appsInAppPurchasesV2GetToManyRelated]? = nil, fieldsInAppPurchaseAppStoreReviewScreenshots: [FieldsInAppPurchaseAppStoreReviewScreenshots_appsInAppPurchasesV2GetToManyRelated]? = nil, fieldsPromotedPurchases: [FieldsPromotedPurchases_appsInAppPurchasesV2GetToManyRelated]? = nil, fieldsInAppPurchasePriceSchedules: [FieldsInAppPurchasePriceSchedules_appsInAppPurchasesV2GetToManyRelated]? = nil, fieldsInAppPurchaseAvailabilities: [FieldsInAppPurchaseAvailabilities_appsInAppPurchasesV2GetToManyRelated]? = nil, fieldsInAppPurchaseImages: [FieldsInAppPurchaseImages_appsInAppPurchasesV2GetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appsInAppPurchasesV2GetToManyRelated]? = nil, limitInAppPurchaseLocalizations: Int? = nil, limitImages: Int? = nil) -> RequestBuilder<InAppPurchasesV2Response> {
         var localVariablePath = "/v1/apps/{id}/inAppPurchasesV2"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -6285,21 +5841,23 @@ open class AppsAPI {
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[inAppPurchaseType]": (wrappedValue: filterInAppPurchaseType?.encodeToJSON(), isExplode: false),
-            "filter[name]": (wrappedValue: filterName?.encodeToJSON(), isExplode: false),
             "filter[productId]": (wrappedValue: filterProductId?.encodeToJSON(), isExplode: false),
+            "filter[name]": (wrappedValue: filterName?.encodeToJSON(), isExplode: false),
             "filter[state]": (wrappedValue: filterState?.encodeToJSON(), isExplode: false),
+            "filter[inAppPurchaseType]": (wrappedValue: filterInAppPurchaseType?.encodeToJSON(), isExplode: false),
             "sort": (wrappedValue: sort?.encodeToJSON(), isExplode: false),
-            "fields[inAppPurchaseAppStoreReviewScreenshots]": (wrappedValue: fieldsInAppPurchaseAppStoreReviewScreenshots?.encodeToJSON(), isExplode: false),
-            "fields[inAppPurchaseAvailabilities]": (wrappedValue: fieldsInAppPurchaseAvailabilities?.encodeToJSON(), isExplode: false),
-            "fields[promotedPurchases]": (wrappedValue: fieldsPromotedPurchases?.encodeToJSON(), isExplode: false),
-            "fields[inAppPurchaseLocalizations]": (wrappedValue: fieldsInAppPurchaseLocalizations?.encodeToJSON(), isExplode: false),
             "fields[inAppPurchases]": (wrappedValue: fieldsInAppPurchases?.encodeToJSON(), isExplode: false),
-            "fields[inAppPurchasePriceSchedules]": (wrappedValue: fieldsInAppPurchasePriceSchedules?.encodeToJSON(), isExplode: false),
+            "fields[inAppPurchaseLocalizations]": (wrappedValue: fieldsInAppPurchaseLocalizations?.encodeToJSON(), isExplode: false),
             "fields[inAppPurchaseContents]": (wrappedValue: fieldsInAppPurchaseContents?.encodeToJSON(), isExplode: false),
+            "fields[inAppPurchaseAppStoreReviewScreenshots]": (wrappedValue: fieldsInAppPurchaseAppStoreReviewScreenshots?.encodeToJSON(), isExplode: false),
+            "fields[promotedPurchases]": (wrappedValue: fieldsPromotedPurchases?.encodeToJSON(), isExplode: false),
+            "fields[inAppPurchasePriceSchedules]": (wrappedValue: fieldsInAppPurchasePriceSchedules?.encodeToJSON(), isExplode: false),
+            "fields[inAppPurchaseAvailabilities]": (wrappedValue: fieldsInAppPurchaseAvailabilities?.encodeToJSON(), isExplode: false),
+            "fields[inAppPurchaseImages]": (wrappedValue: fieldsInAppPurchaseImages?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "limit[inAppPurchaseLocalizations]": (wrappedValue: limitInAppPurchaseLocalizations?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "limit[inAppPurchaseLocalizations]": (wrappedValue: limitInAppPurchaseLocalizations?.encodeToJSON(), isExplode: true),
+            "limit[images]": (wrappedValue: limitImages?.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -6337,7 +5895,6 @@ open class AppsAPI {
      * enum for parameter fieldsMarketplaceSearchDetails
      */
     public enum FieldsMarketplaceSearchDetails_appsMarketplaceSearchDetailGetToOneRelated: String, CaseIterable {
-        case app = "app"
         case catalogurl = "catalogUrl"
     }
 
@@ -6415,6 +5972,13 @@ open class AppsAPI {
     }
 
     /**
+     * enum for parameter filterPlatform
+     */
+    public enum FilterPlatform_appsPerfPowerMetricsGetToManyRelated: String, CaseIterable {
+        case ios = "IOS"
+    }
+
+    /**
      * enum for parameter filterMetricType
      */
     public enum FilterMetricType_appsPerfPowerMetricsGetToManyRelated: String, CaseIterable {
@@ -6428,23 +5992,16 @@ open class AppsAPI {
     }
 
     /**
-     * enum for parameter filterPlatform
-     */
-    public enum FilterPlatform_appsPerfPowerMetricsGetToManyRelated: String, CaseIterable {
-        case ios = "IOS"
-    }
-
-    /**
 
      - parameter id: (path) the id of the requested resource 
-     - parameter filterDeviceType: (query) filter by attribute &#39;deviceType&#39; (optional)
-     - parameter filterMetricType: (query) filter by attribute &#39;metricType&#39; (optional)
      - parameter filterPlatform: (query) filter by attribute &#39;platform&#39; (optional)
+     - parameter filterMetricType: (query) filter by attribute &#39;metricType&#39; (optional)
+     - parameter filterDeviceType: (query) filter by attribute &#39;deviceType&#39; (optional)
      - returns: XcodeMetrics
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appsPerfPowerMetricsGetToManyRelated(id: String, filterDeviceType: [String]? = nil, filterMetricType: [FilterMetricType_appsPerfPowerMetricsGetToManyRelated]? = nil, filterPlatform: [FilterPlatform_appsPerfPowerMetricsGetToManyRelated]? = nil) async throws -> XcodeMetrics {
-        return try await appsPerfPowerMetricsGetToManyRelatedWithRequestBuilder(id: id, filterDeviceType: filterDeviceType, filterMetricType: filterMetricType, filterPlatform: filterPlatform).execute().body
+    open class func appsPerfPowerMetricsGetToManyRelated(id: String, filterPlatform: [FilterPlatform_appsPerfPowerMetricsGetToManyRelated]? = nil, filterMetricType: [FilterMetricType_appsPerfPowerMetricsGetToManyRelated]? = nil, filterDeviceType: [String]? = nil) async throws -> XcodeMetrics {
+        return try await appsPerfPowerMetricsGetToManyRelatedWithRequestBuilder(id: id, filterPlatform: filterPlatform, filterMetricType: filterMetricType, filterDeviceType: filterDeviceType).execute().body
     }
 
     /**
@@ -6462,12 +6019,12 @@ open class AppsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
-     - parameter filterDeviceType: (query) filter by attribute &#39;deviceType&#39; (optional)
-     - parameter filterMetricType: (query) filter by attribute &#39;metricType&#39; (optional)
      - parameter filterPlatform: (query) filter by attribute &#39;platform&#39; (optional)
+     - parameter filterMetricType: (query) filter by attribute &#39;metricType&#39; (optional)
+     - parameter filterDeviceType: (query) filter by attribute &#39;deviceType&#39; (optional)
      - returns: RequestBuilder<XcodeMetrics> 
      */
-    open class func appsPerfPowerMetricsGetToManyRelatedWithRequestBuilder(id: String, filterDeviceType: [String]? = nil, filterMetricType: [FilterMetricType_appsPerfPowerMetricsGetToManyRelated]? = nil, filterPlatform: [FilterPlatform_appsPerfPowerMetricsGetToManyRelated]? = nil) -> RequestBuilder<XcodeMetrics> {
+    open class func appsPerfPowerMetricsGetToManyRelatedWithRequestBuilder(id: String, filterPlatform: [FilterPlatform_appsPerfPowerMetricsGetToManyRelated]? = nil, filterMetricType: [FilterMetricType_appsPerfPowerMetricsGetToManyRelated]? = nil, filterDeviceType: [String]? = nil) -> RequestBuilder<XcodeMetrics> {
         var localVariablePath = "/v1/apps/{id}/perfPowerMetrics"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -6477,9 +6034,9 @@ open class AppsAPI {
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[deviceType]": (wrappedValue: filterDeviceType?.encodeToJSON(), isExplode: false),
-            "filter[metricType]": (wrappedValue: filterMetricType?.encodeToJSON(), isExplode: false),
             "filter[platform]": (wrappedValue: filterPlatform?.encodeToJSON(), isExplode: false),
+            "filter[metricType]": (wrappedValue: filterMetricType?.encodeToJSON(), isExplode: false),
+            "filter[deviceType]": (wrappedValue: filterDeviceType?.encodeToJSON(), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -6514,99 +6071,13 @@ open class AppsAPI {
     }
 
     /**
-     * enum for parameter fieldsAppPreOrders
-     */
-    public enum FieldsAppPreOrders_appsPreOrderGetToOneRelated: String, CaseIterable {
-        case app = "app"
-        case appreleasedate = "appReleaseDate"
-        case preorderavailabledate = "preOrderAvailableDate"
-    }
-
-    /**
-
-     - parameter id: (path) the id of the requested resource 
-     - parameter fieldsAppPreOrders: (query) the fields to include for returned resources of type appPreOrders (optional)
-     - returns: AppPreOrderWithoutIncludesResponse
-     */
-    @available(*, deprecated, message: "This operation is deprecated.")
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appsPreOrderGetToOneRelated(id: String, fieldsAppPreOrders: [FieldsAppPreOrders_appsPreOrderGetToOneRelated]? = nil) async throws -> AppPreOrderWithoutIncludesResponse {
-        return try await appsPreOrderGetToOneRelatedWithRequestBuilder(id: id, fieldsAppPreOrders: fieldsAppPreOrders).execute().body
-    }
-
-    /**
-     - parameter urlString: next or first url from App Store Connect API
-     - returns: AppPreOrderWithoutIncludesResponse
-     */
-    @available(*, deprecated, message: "This operation is deprecated.")
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appsPreOrderGetToOneRelated(urlString: String) async throws -> AppPreOrderWithoutIncludesResponse {
-        return try await appsPreOrderGetToOneRelatedWithRequestBuilder(urlString: urlString).execute().body
-    }
-
-    /**
-     - GET /v1/apps/{id}/preOrder
-     - Bearer Token:
-       - type: http
-       - name: itc-bearer-token
-     - parameter id: (path) the id of the requested resource 
-     - parameter fieldsAppPreOrders: (query) the fields to include for returned resources of type appPreOrders (optional)
-     - returns: RequestBuilder<AppPreOrderWithoutIncludesResponse> 
-     */
-    @available(*, deprecated, message: "This operation is deprecated.")
-    open class func appsPreOrderGetToOneRelatedWithRequestBuilder(id: String, fieldsAppPreOrders: [FieldsAppPreOrders_appsPreOrderGetToOneRelated]? = nil) -> RequestBuilder<AppPreOrderWithoutIncludesResponse> {
-        var localVariablePath = "/v1/apps/{id}/preOrder"
-        let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
-        let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters: [String: Any]? = nil
-
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[appPreOrders]": (wrappedValue: fieldsAppPreOrders?.encodeToJSON(), isExplode: false),
-        ])
-
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
-
-        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
-
-        let localVariableRequestBuilder: RequestBuilder<AppPreOrderWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
-    }
-
-    /**
-     - GET /v1/apps/{id}/preOrder
-     - Bearer Token:
-       - type: http
-       - name: itc-bearer-token
-     - parameter urlString: next or first url from App Store Connect API
-     - returns: RequestBuilder<AppPreOrderWithoutIncludesResponse> 
-     */
-    @available(*, deprecated, message: "This operation is deprecated.")
-    open class func appsPreOrderGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppPreOrderWithoutIncludesResponse> {
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
-
-        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
-
-        let localVariableRequestBuilder: RequestBuilder<AppPreOrderWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
-    }
-
-    /**
      * enum for parameter fieldsPreReleaseVersions
      */
     public enum FieldsPreReleaseVersions_appsPreReleaseVersionsGetToManyRelated: String, CaseIterable {
-        case app = "app"
-        case builds = "builds"
-        case platform = "platform"
         case version = "version"
+        case platform = "platform"
+        case builds = "builds"
+        case app = "app"
     }
 
     /**
@@ -6686,426 +6157,76 @@ open class AppsAPI {
     }
 
     /**
-     * enum for parameter fieldsAppPriceTiers
-     */
-    public enum FieldsAppPriceTiers_appsPricePointsGetToManyRelated: String, CaseIterable {
-        case pricepoints = "pricePoints"
-    }
-
-    /**
-     * enum for parameter fieldsAppPricePoints
-     */
-    public enum FieldsAppPricePoints_appsPricePointsGetToManyRelated: String, CaseIterable {
-        case app = "app"
-        case customerprice = "customerPrice"
-        case pricetier = "priceTier"
-        case proceeds = "proceeds"
-        case territory = "territory"
-    }
-
-    /**
-     * enum for parameter fieldsApps
-     */
-    public enum FieldsApps_appsPricePointsGetToManyRelated: String, CaseIterable {
-        case alternativedistributionkey = "alternativeDistributionKey"
-        case analyticsreportrequests = "analyticsReportRequests"
-        case appavailability = "appAvailability"
-        case appclips = "appClips"
-        case appcustomproductpages = "appCustomProductPages"
-        case appencryptiondeclarations = "appEncryptionDeclarations"
-        case appevents = "appEvents"
-        case appinfos = "appInfos"
-        case apppricepoints = "appPricePoints"
-        case apppriceschedule = "appPriceSchedule"
-        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
-        case appstoreversions = "appStoreVersions"
-        case availableinnewterritories = "availableInNewTerritories"
-        case availableterritories = "availableTerritories"
-        case betaapplocalizations = "betaAppLocalizations"
-        case betaappreviewdetail = "betaAppReviewDetail"
-        case betagroups = "betaGroups"
-        case betalicenseagreement = "betaLicenseAgreement"
-        case betatesters = "betaTesters"
-        case builds = "builds"
-        case bundleid = "bundleId"
-        case ciproduct = "ciProduct"
-        case contentrightsdeclaration = "contentRightsDeclaration"
-        case customerreviews = "customerReviews"
-        case enduserlicenseagreement = "endUserLicenseAgreement"
-        case gamecenterdetail = "gameCenterDetail"
-        case gamecenterenabledversions = "gameCenterEnabledVersions"
-        case inapppurchases = "inAppPurchases"
-        case inapppurchasesv2 = "inAppPurchasesV2"
-        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
-        case marketplacesearchdetail = "marketplaceSearchDetail"
-        case name = "name"
-        case perfpowermetrics = "perfPowerMetrics"
-        case preorder = "preOrder"
-        case prereleaseversions = "preReleaseVersions"
-        case pricepoints = "pricePoints"
-        case prices = "prices"
-        case primarylocale = "primaryLocale"
-        case promotedpurchases = "promotedPurchases"
-        case reviewsubmissions = "reviewSubmissions"
-        case sku = "sku"
-        case subscriptiongraceperiod = "subscriptionGracePeriod"
-        case subscriptiongroups = "subscriptionGroups"
-        case subscriptionstatusurl = "subscriptionStatusUrl"
-        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
-        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
-        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
-    }
-
-    /**
-     * enum for parameter fieldsTerritories
-     */
-    public enum FieldsTerritories_appsPricePointsGetToManyRelated: String, CaseIterable {
-        case currency = "currency"
-    }
-
-    /**
-     * enum for parameter include
-     */
-    public enum Include_appsPricePointsGetToManyRelated: String, CaseIterable {
-        case app = "app"
-        case pricetier = "priceTier"
-        case territory = "territory"
-    }
-
-    /**
-
-     - parameter id: (path) the id of the requested resource 
-     - parameter filterPriceTier: (query) filter by id(s) of related &#39;priceTier&#39; (optional)
-     - parameter filterTerritory: (query) filter by id(s) of related &#39;territory&#39; (optional)
-     - parameter fieldsAppPriceTiers: (query) the fields to include for returned resources of type appPriceTiers (optional)
-     - parameter fieldsAppPricePoints: (query) the fields to include for returned resources of type appPricePoints (optional)
-     - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
-     - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
-     - parameter limit: (query) maximum resources per page (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
-     - returns: AppPricePointsV2Response
-     */
-    @available(*, deprecated, message: "This operation is deprecated.")
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appsPricePointsGetToManyRelated(id: String, filterPriceTier: [String]? = nil, filterTerritory: [String]? = nil, fieldsAppPriceTiers: [FieldsAppPriceTiers_appsPricePointsGetToManyRelated]? = nil, fieldsAppPricePoints: [FieldsAppPricePoints_appsPricePointsGetToManyRelated]? = nil, fieldsApps: [FieldsApps_appsPricePointsGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_appsPricePointsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appsPricePointsGetToManyRelated]? = nil) async throws -> AppPricePointsV2Response {
-        return try await appsPricePointsGetToManyRelatedWithRequestBuilder(id: id, filterPriceTier: filterPriceTier, filterTerritory: filterTerritory, fieldsAppPriceTiers: fieldsAppPriceTiers, fieldsAppPricePoints: fieldsAppPricePoints, fieldsApps: fieldsApps, fieldsTerritories: fieldsTerritories, limit: limit, include: include).execute().body
-    }
-
-    /**
-     - parameter urlString: next or first url from App Store Connect API
-     - returns: AppPricePointsV2Response
-     */
-    @available(*, deprecated, message: "This operation is deprecated.")
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appsPricePointsGetToManyRelated(urlString: String) async throws -> AppPricePointsV2Response {
-        return try await appsPricePointsGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
-    }
-
-    /**
-     - GET /v1/apps/{id}/pricePoints
-     - Bearer Token:
-       - type: http
-       - name: itc-bearer-token
-     - parameter id: (path) the id of the requested resource 
-     - parameter filterPriceTier: (query) filter by id(s) of related &#39;priceTier&#39; (optional)
-     - parameter filterTerritory: (query) filter by id(s) of related &#39;territory&#39; (optional)
-     - parameter fieldsAppPriceTiers: (query) the fields to include for returned resources of type appPriceTiers (optional)
-     - parameter fieldsAppPricePoints: (query) the fields to include for returned resources of type appPricePoints (optional)
-     - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
-     - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
-     - parameter limit: (query) maximum resources per page (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
-     - returns: RequestBuilder<AppPricePointsV2Response> 
-     */
-    @available(*, deprecated, message: "This operation is deprecated.")
-    open class func appsPricePointsGetToManyRelatedWithRequestBuilder(id: String, filterPriceTier: [String]? = nil, filterTerritory: [String]? = nil, fieldsAppPriceTiers: [FieldsAppPriceTiers_appsPricePointsGetToManyRelated]? = nil, fieldsAppPricePoints: [FieldsAppPricePoints_appsPricePointsGetToManyRelated]? = nil, fieldsApps: [FieldsApps_appsPricePointsGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_appsPricePointsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appsPricePointsGetToManyRelated]? = nil) -> RequestBuilder<AppPricePointsV2Response> {
-        var localVariablePath = "/v1/apps/{id}/pricePoints"
-        let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
-        let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters: [String: Any]? = nil
-
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[priceTier]": (wrappedValue: filterPriceTier?.encodeToJSON(), isExplode: false),
-            "filter[territory]": (wrappedValue: filterTerritory?.encodeToJSON(), isExplode: false),
-            "fields[appPriceTiers]": (wrappedValue: fieldsAppPriceTiers?.encodeToJSON(), isExplode: false),
-            "fields[appPricePoints]": (wrappedValue: fieldsAppPricePoints?.encodeToJSON(), isExplode: false),
-            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
-            "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-        ])
-
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
-
-        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
-
-        let localVariableRequestBuilder: RequestBuilder<AppPricePointsV2Response>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
-    }
-
-    /**
-     - GET /v1/apps/{id}/pricePoints
-     - Bearer Token:
-       - type: http
-       - name: itc-bearer-token
-     - parameter urlString: next or first url from App Store Connect API
-     - returns: RequestBuilder<AppPricePointsV2Response> 
-     */
-    @available(*, deprecated, message: "This operation is deprecated.")
-    open class func appsPricePointsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppPricePointsV2Response> {
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
-
-        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
-
-        let localVariableRequestBuilder: RequestBuilder<AppPricePointsV2Response>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
-    }
-
-    /**
-     * enum for parameter fieldsAppPriceTiers
-     */
-    public enum FieldsAppPriceTiers_appsPricesGetToManyRelated: String, CaseIterable {
-        case pricepoints = "pricePoints"
-    }
-
-    /**
-     * enum for parameter fieldsApps
-     */
-    public enum FieldsApps_appsPricesGetToManyRelated: String, CaseIterable {
-        case alternativedistributionkey = "alternativeDistributionKey"
-        case analyticsreportrequests = "analyticsReportRequests"
-        case appavailability = "appAvailability"
-        case appclips = "appClips"
-        case appcustomproductpages = "appCustomProductPages"
-        case appencryptiondeclarations = "appEncryptionDeclarations"
-        case appevents = "appEvents"
-        case appinfos = "appInfos"
-        case apppricepoints = "appPricePoints"
-        case apppriceschedule = "appPriceSchedule"
-        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
-        case appstoreversions = "appStoreVersions"
-        case availableinnewterritories = "availableInNewTerritories"
-        case availableterritories = "availableTerritories"
-        case betaapplocalizations = "betaAppLocalizations"
-        case betaappreviewdetail = "betaAppReviewDetail"
-        case betagroups = "betaGroups"
-        case betalicenseagreement = "betaLicenseAgreement"
-        case betatesters = "betaTesters"
-        case builds = "builds"
-        case bundleid = "bundleId"
-        case ciproduct = "ciProduct"
-        case contentrightsdeclaration = "contentRightsDeclaration"
-        case customerreviews = "customerReviews"
-        case enduserlicenseagreement = "endUserLicenseAgreement"
-        case gamecenterdetail = "gameCenterDetail"
-        case gamecenterenabledversions = "gameCenterEnabledVersions"
-        case inapppurchases = "inAppPurchases"
-        case inapppurchasesv2 = "inAppPurchasesV2"
-        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
-        case marketplacesearchdetail = "marketplaceSearchDetail"
-        case name = "name"
-        case perfpowermetrics = "perfPowerMetrics"
-        case preorder = "preOrder"
-        case prereleaseversions = "preReleaseVersions"
-        case pricepoints = "pricePoints"
-        case prices = "prices"
-        case primarylocale = "primaryLocale"
-        case promotedpurchases = "promotedPurchases"
-        case reviewsubmissions = "reviewSubmissions"
-        case sku = "sku"
-        case subscriptiongraceperiod = "subscriptionGracePeriod"
-        case subscriptiongroups = "subscriptionGroups"
-        case subscriptionstatusurl = "subscriptionStatusUrl"
-        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
-        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
-        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
-    }
-
-    /**
-     * enum for parameter fieldsAppPrices
-     */
-    public enum FieldsAppPrices_appsPricesGetToManyRelated: String, CaseIterable {
-        case app = "app"
-        case pricetier = "priceTier"
-    }
-
-    /**
-     * enum for parameter include
-     */
-    public enum Include_appsPricesGetToManyRelated: String, CaseIterable {
-        case app = "app"
-        case pricetier = "priceTier"
-    }
-
-    /**
-
-     - parameter id: (path) the id of the requested resource 
-     - parameter fieldsAppPriceTiers: (query) the fields to include for returned resources of type appPriceTiers (optional)
-     - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
-     - parameter fieldsAppPrices: (query) the fields to include for returned resources of type appPrices (optional)
-     - parameter limit: (query) maximum resources per page (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
-     - returns: AppPricesResponse
-     */
-    @available(*, deprecated, message: "This operation is deprecated.")
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appsPricesGetToManyRelated(id: String, fieldsAppPriceTiers: [FieldsAppPriceTiers_appsPricesGetToManyRelated]? = nil, fieldsApps: [FieldsApps_appsPricesGetToManyRelated]? = nil, fieldsAppPrices: [FieldsAppPrices_appsPricesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appsPricesGetToManyRelated]? = nil) async throws -> AppPricesResponse {
-        return try await appsPricesGetToManyRelatedWithRequestBuilder(id: id, fieldsAppPriceTiers: fieldsAppPriceTiers, fieldsApps: fieldsApps, fieldsAppPrices: fieldsAppPrices, limit: limit, include: include).execute().body
-    }
-
-    /**
-     - parameter urlString: next or first url from App Store Connect API
-     - returns: AppPricesResponse
-     */
-    @available(*, deprecated, message: "This operation is deprecated.")
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appsPricesGetToManyRelated(urlString: String) async throws -> AppPricesResponse {
-        return try await appsPricesGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
-    }
-
-    /**
-     - GET /v1/apps/{id}/prices
-     - Bearer Token:
-       - type: http
-       - name: itc-bearer-token
-     - parameter id: (path) the id of the requested resource 
-     - parameter fieldsAppPriceTiers: (query) the fields to include for returned resources of type appPriceTiers (optional)
-     - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
-     - parameter fieldsAppPrices: (query) the fields to include for returned resources of type appPrices (optional)
-     - parameter limit: (query) maximum resources per page (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
-     - returns: RequestBuilder<AppPricesResponse> 
-     */
-    @available(*, deprecated, message: "This operation is deprecated.")
-    open class func appsPricesGetToManyRelatedWithRequestBuilder(id: String, fieldsAppPriceTiers: [FieldsAppPriceTiers_appsPricesGetToManyRelated]? = nil, fieldsApps: [FieldsApps_appsPricesGetToManyRelated]? = nil, fieldsAppPrices: [FieldsAppPrices_appsPricesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appsPricesGetToManyRelated]? = nil) -> RequestBuilder<AppPricesResponse> {
-        var localVariablePath = "/v1/apps/{id}/prices"
-        let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
-        let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters: [String: Any]? = nil
-
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[appPriceTiers]": (wrappedValue: fieldsAppPriceTiers?.encodeToJSON(), isExplode: false),
-            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
-            "fields[appPrices]": (wrappedValue: fieldsAppPrices?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-        ])
-
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
-
-        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
-
-        let localVariableRequestBuilder: RequestBuilder<AppPricesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
-    }
-
-    /**
-     - GET /v1/apps/{id}/prices
-     - Bearer Token:
-       - type: http
-       - name: itc-bearer-token
-     - parameter urlString: next or first url from App Store Connect API
-     - returns: RequestBuilder<AppPricesResponse> 
-     */
-    @available(*, deprecated, message: "This operation is deprecated.")
-    open class func appsPricesGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppPricesResponse> {
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
-
-        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
-
-        let localVariableRequestBuilder: RequestBuilder<AppPricesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
-    }
-
-    /**
      * enum for parameter fieldsPromotedPurchases
      */
     public enum FieldsPromotedPurchases_appsPromotedPurchasesGetToManyRelated: String, CaseIterable {
-        case app = "app"
-        case enabled = "enabled"
-        case inapppurchasev2 = "inAppPurchaseV2"
-        case promotionimages = "promotionImages"
-        case state = "state"
-        case subscription = "subscription"
         case visibleforallusers = "visibleForAllUsers"
-    }
-
-    /**
-     * enum for parameter fieldsSubscriptions
-     */
-    public enum FieldsSubscriptions_appsPromotedPurchasesGetToManyRelated: String, CaseIterable {
-        case appstorereviewscreenshot = "appStoreReviewScreenshot"
-        case familysharable = "familySharable"
-        case group = "group"
-        case grouplevel = "groupLevel"
-        case introductoryoffers = "introductoryOffers"
-        case name = "name"
-        case offercodes = "offerCodes"
-        case pricepoints = "pricePoints"
-        case prices = "prices"
-        case productid = "productId"
-        case promotedpurchase = "promotedPurchase"
-        case promotionaloffers = "promotionalOffers"
-        case reviewnote = "reviewNote"
+        case enabled = "enabled"
         case state = "state"
-        case subscriptionavailability = "subscriptionAvailability"
-        case subscriptionlocalizations = "subscriptionLocalizations"
-        case subscriptionperiod = "subscriptionPeriod"
+        case inapppurchasev2 = "inAppPurchaseV2"
+        case subscription = "subscription"
+        case promotionimages = "promotionImages"
     }
 
     /**
      * enum for parameter fieldsInAppPurchases
      */
     public enum FieldsInAppPurchases_appsPromotedPurchasesGetToManyRelated: String, CaseIterable {
-        case app = "app"
-        case appstorereviewscreenshot = "appStoreReviewScreenshot"
-        case content = "content"
-        case contenthosting = "contentHosting"
+        case name = "name"
+        case productid = "productId"
+        case inapppurchasetype = "inAppPurchaseType"
+        case state = "state"
+        case reviewnote = "reviewNote"
         case familysharable = "familySharable"
+        case contenthosting = "contentHosting"
+        case inapppurchaselocalizations = "inAppPurchaseLocalizations"
+        case pricepoints = "pricePoints"
+        case content = "content"
+        case appstorereviewscreenshot = "appStoreReviewScreenshot"
+        case promotedpurchase = "promotedPurchase"
         case iappriceschedule = "iapPriceSchedule"
         case inapppurchaseavailability = "inAppPurchaseAvailability"
-        case inapppurchaselocalizations = "inAppPurchaseLocalizations"
-        case inapppurchasetype = "inAppPurchaseType"
+        case images = "images"
+    }
+
+    /**
+     * enum for parameter fieldsSubscriptions
+     */
+    public enum FieldsSubscriptions_appsPromotedPurchasesGetToManyRelated: String, CaseIterable {
         case name = "name"
-        case pricepoints = "pricePoints"
         case productid = "productId"
-        case promotedpurchase = "promotedPurchase"
-        case reviewnote = "reviewNote"
+        case familysharable = "familySharable"
         case state = "state"
+        case subscriptionperiod = "subscriptionPeriod"
+        case reviewnote = "reviewNote"
+        case grouplevel = "groupLevel"
+        case subscriptionlocalizations = "subscriptionLocalizations"
+        case appstorereviewscreenshot = "appStoreReviewScreenshot"
+        case group = "group"
+        case introductoryoffers = "introductoryOffers"
+        case promotionaloffers = "promotionalOffers"
+        case offercodes = "offerCodes"
+        case prices = "prices"
+        case pricepoints = "pricePoints"
+        case promotedpurchase = "promotedPurchase"
+        case subscriptionavailability = "subscriptionAvailability"
+        case winbackoffers = "winBackOffers"
+        case images = "images"
     }
 
     /**
      * enum for parameter fieldsPromotedPurchaseImages
      */
     public enum FieldsPromotedPurchaseImages_appsPromotedPurchasesGetToManyRelated: String, CaseIterable {
-        case assettoken = "assetToken"
-        case assettype = "assetType"
-        case filename = "fileName"
         case filesize = "fileSize"
-        case imageasset = "imageAsset"
-        case promotedpurchase = "promotedPurchase"
+        case filename = "fileName"
         case sourcefilechecksum = "sourceFileChecksum"
-        case state = "state"
+        case assettoken = "assetToken"
+        case imageasset = "imageAsset"
+        case assettype = "assetType"
         case uploadoperations = "uploadOperations"
-        case uploaded = "uploaded"
+        case state = "state"
+        case promotedpurchase = "promotedPurchase"
     }
 
     /**
@@ -7113,25 +6234,25 @@ open class AppsAPI {
      */
     public enum Include_appsPromotedPurchasesGetToManyRelated: String, CaseIterable {
         case inapppurchasev2 = "inAppPurchaseV2"
-        case promotionimages = "promotionImages"
         case subscription = "subscription"
+        case promotionimages = "promotionImages"
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsPromotedPurchases: (query) the fields to include for returned resources of type promotedPurchases (optional)
-     - parameter fieldsSubscriptions: (query) the fields to include for returned resources of type subscriptions (optional)
      - parameter fieldsInAppPurchases: (query) the fields to include for returned resources of type inAppPurchases (optional)
+     - parameter fieldsSubscriptions: (query) the fields to include for returned resources of type subscriptions (optional)
      - parameter fieldsPromotedPurchaseImages: (query) the fields to include for returned resources of type promotedPurchaseImages (optional)
      - parameter limit: (query) maximum resources per page (optional)
-     - parameter limitPromotionImages: (query) maximum number of related promotionImages returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitPromotionImages: (query) maximum number of related promotionImages returned (when they are included) (optional)
      - returns: PromotedPurchasesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appsPromotedPurchasesGetToManyRelated(id: String, fieldsPromotedPurchases: [FieldsPromotedPurchases_appsPromotedPurchasesGetToManyRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_appsPromotedPurchasesGetToManyRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_appsPromotedPurchasesGetToManyRelated]? = nil, fieldsPromotedPurchaseImages: [FieldsPromotedPurchaseImages_appsPromotedPurchasesGetToManyRelated]? = nil, limit: Int? = nil, limitPromotionImages: Int? = nil, include: [Include_appsPromotedPurchasesGetToManyRelated]? = nil) async throws -> PromotedPurchasesResponse {
-        return try await appsPromotedPurchasesGetToManyRelatedWithRequestBuilder(id: id, fieldsPromotedPurchases: fieldsPromotedPurchases, fieldsSubscriptions: fieldsSubscriptions, fieldsInAppPurchases: fieldsInAppPurchases, fieldsPromotedPurchaseImages: fieldsPromotedPurchaseImages, limit: limit, limitPromotionImages: limitPromotionImages, include: include).execute().body
+    open class func appsPromotedPurchasesGetToManyRelated(id: String, fieldsPromotedPurchases: [FieldsPromotedPurchases_appsPromotedPurchasesGetToManyRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_appsPromotedPurchasesGetToManyRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_appsPromotedPurchasesGetToManyRelated]? = nil, fieldsPromotedPurchaseImages: [FieldsPromotedPurchaseImages_appsPromotedPurchasesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appsPromotedPurchasesGetToManyRelated]? = nil, limitPromotionImages: Int? = nil) async throws -> PromotedPurchasesResponse {
+        return try await appsPromotedPurchasesGetToManyRelatedWithRequestBuilder(id: id, fieldsPromotedPurchases: fieldsPromotedPurchases, fieldsInAppPurchases: fieldsInAppPurchases, fieldsSubscriptions: fieldsSubscriptions, fieldsPromotedPurchaseImages: fieldsPromotedPurchaseImages, limit: limit, include: include, limitPromotionImages: limitPromotionImages).execute().body
     }
 
     /**
@@ -7150,15 +6271,15 @@ open class AppsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsPromotedPurchases: (query) the fields to include for returned resources of type promotedPurchases (optional)
-     - parameter fieldsSubscriptions: (query) the fields to include for returned resources of type subscriptions (optional)
      - parameter fieldsInAppPurchases: (query) the fields to include for returned resources of type inAppPurchases (optional)
+     - parameter fieldsSubscriptions: (query) the fields to include for returned resources of type subscriptions (optional)
      - parameter fieldsPromotedPurchaseImages: (query) the fields to include for returned resources of type promotedPurchaseImages (optional)
      - parameter limit: (query) maximum resources per page (optional)
-     - parameter limitPromotionImages: (query) maximum number of related promotionImages returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitPromotionImages: (query) maximum number of related promotionImages returned (when they are included) (optional)
      - returns: RequestBuilder<PromotedPurchasesResponse> 
      */
-    open class func appsPromotedPurchasesGetToManyRelatedWithRequestBuilder(id: String, fieldsPromotedPurchases: [FieldsPromotedPurchases_appsPromotedPurchasesGetToManyRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_appsPromotedPurchasesGetToManyRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_appsPromotedPurchasesGetToManyRelated]? = nil, fieldsPromotedPurchaseImages: [FieldsPromotedPurchaseImages_appsPromotedPurchasesGetToManyRelated]? = nil, limit: Int? = nil, limitPromotionImages: Int? = nil, include: [Include_appsPromotedPurchasesGetToManyRelated]? = nil) -> RequestBuilder<PromotedPurchasesResponse> {
+    open class func appsPromotedPurchasesGetToManyRelatedWithRequestBuilder(id: String, fieldsPromotedPurchases: [FieldsPromotedPurchases_appsPromotedPurchasesGetToManyRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_appsPromotedPurchasesGetToManyRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_appsPromotedPurchasesGetToManyRelated]? = nil, fieldsPromotedPurchaseImages: [FieldsPromotedPurchaseImages_appsPromotedPurchasesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appsPromotedPurchasesGetToManyRelated]? = nil, limitPromotionImages: Int? = nil) -> RequestBuilder<PromotedPurchasesResponse> {
         var localVariablePath = "/v1/apps/{id}/promotedPurchases"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -7169,12 +6290,12 @@ open class AppsAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[promotedPurchases]": (wrappedValue: fieldsPromotedPurchases?.encodeToJSON(), isExplode: false),
-            "fields[subscriptions]": (wrappedValue: fieldsSubscriptions?.encodeToJSON(), isExplode: false),
             "fields[inAppPurchases]": (wrappedValue: fieldsInAppPurchases?.encodeToJSON(), isExplode: false),
+            "fields[subscriptions]": (wrappedValue: fieldsSubscriptions?.encodeToJSON(), isExplode: false),
             "fields[promotedPurchaseImages]": (wrappedValue: fieldsPromotedPurchaseImages?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "limit[promotionImages]": (wrappedValue: limitPromotionImages?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "limit[promotionImages]": (wrappedValue: limitPromotionImages?.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -7375,18 +6496,108 @@ open class AppsAPI {
     }
 
     /**
+     * enum for parameter fieldsReviewSubmissions
+     */
+    public enum FieldsReviewSubmissions_appsReviewSubmissionsGetToManyRelated: String, CaseIterable {
+        case platform = "platform"
+        case submitteddate = "submittedDate"
+        case state = "state"
+        case app = "app"
+        case items = "items"
+        case appstoreversionforreview = "appStoreVersionForReview"
+        case submittedbyactor = "submittedByActor"
+        case lastupdatedbyactor = "lastUpdatedByActor"
+    }
+
+    /**
+     * enum for parameter fieldsApps
+     */
+    public enum FieldsApps_appsReviewSubmissionsGetToManyRelated: String, CaseIterable {
+        case name = "name"
+        case bundleid = "bundleId"
+        case sku = "sku"
+        case primarylocale = "primaryLocale"
+        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
+        case subscriptionstatusurl = "subscriptionStatusUrl"
+        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
+        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
+        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
+        case contentrightsdeclaration = "contentRightsDeclaration"
+        case streamlinedpurchasingenabled = "streamlinedPurchasingEnabled"
+        case appencryptiondeclarations = "appEncryptionDeclarations"
+        case ciproduct = "ciProduct"
+        case betatesters = "betaTesters"
+        case betagroups = "betaGroups"
+        case appstoreversions = "appStoreVersions"
+        case prereleaseversions = "preReleaseVersions"
+        case betaapplocalizations = "betaAppLocalizations"
+        case builds = "builds"
+        case betalicenseagreement = "betaLicenseAgreement"
+        case betaappreviewdetail = "betaAppReviewDetail"
+        case appinfos = "appInfos"
+        case appclips = "appClips"
+        case apppricepoints = "appPricePoints"
+        case enduserlicenseagreement = "endUserLicenseAgreement"
+        case apppriceschedule = "appPriceSchedule"
+        case appavailabilityv2 = "appAvailabilityV2"
+        case inapppurchases = "inAppPurchases"
+        case subscriptiongroups = "subscriptionGroups"
+        case gamecenterenabledversions = "gameCenterEnabledVersions"
+        case perfpowermetrics = "perfPowerMetrics"
+        case appcustomproductpages = "appCustomProductPages"
+        case inapppurchasesv2 = "inAppPurchasesV2"
+        case promotedpurchases = "promotedPurchases"
+        case appevents = "appEvents"
+        case reviewsubmissions = "reviewSubmissions"
+        case subscriptiongraceperiod = "subscriptionGracePeriod"
+        case customerreviews = "customerReviews"
+        case gamecenterdetail = "gameCenterDetail"
+        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
+        case alternativedistributionkey = "alternativeDistributionKey"
+        case analyticsreportrequests = "analyticsReportRequests"
+        case marketplacesearchdetail = "marketplaceSearchDetail"
+    }
+
+    /**
      * enum for parameter fieldsReviewSubmissionItems
      */
     public enum FieldsReviewSubmissionItems_appsReviewSubmissionsGetToManyRelated: String, CaseIterable {
-        case appcustomproductpageversion = "appCustomProductPageVersion"
-        case appevent = "appEvent"
+        case state = "state"
         case appstoreversion = "appStoreVersion"
+        case appcustomproductpageversion = "appCustomProductPageVersion"
         case appstoreversionexperiment = "appStoreVersionExperiment"
         case appstoreversionexperimentv2 = "appStoreVersionExperimentV2"
-        case removed = "removed"
-        case resolved = "resolved"
-        case reviewsubmission = "reviewSubmission"
-        case state = "state"
+        case appevent = "appEvent"
+    }
+
+    /**
+     * enum for parameter fieldsAppStoreVersions
+     */
+    public enum FieldsAppStoreVersions_appsReviewSubmissionsGetToManyRelated: String, CaseIterable {
+        case platform = "platform"
+        case versionstring = "versionString"
+        case appstorestate = "appStoreState"
+        case appversionstate = "appVersionState"
+        case copyright = "copyright"
+        case reviewtype = "reviewType"
+        case releasetype = "releaseType"
+        case earliestreleasedate = "earliestReleaseDate"
+        case downloadable = "downloadable"
+        case createddate = "createdDate"
+        case app = "app"
+        case ageratingdeclaration = "ageRatingDeclaration"
+        case appstoreversionlocalizations = "appStoreVersionLocalizations"
+        case build = "build"
+        case appstoreversionphasedrelease = "appStoreVersionPhasedRelease"
+        case gamecenterappversion = "gameCenterAppVersion"
+        case routingappcoverage = "routingAppCoverage"
+        case appstorereviewdetail = "appStoreReviewDetail"
+        case appstoreversionsubmission = "appStoreVersionSubmission"
+        case appclipdefaultexperience = "appClipDefaultExperience"
+        case appstoreversionexperiments = "appStoreVersionExperiments"
+        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
+        case customerreviews = "customerReviews"
+        case alternativedistributionpackage = "alternativeDistributionPackage"
     }
 
     /**
@@ -7394,108 +6605,10 @@ open class AppsAPI {
      */
     public enum FieldsActors_appsReviewSubmissionsGetToManyRelated: String, CaseIterable {
         case actortype = "actorType"
-        case apikeyid = "apiKeyId"
-        case useremail = "userEmail"
         case userfirstname = "userFirstName"
         case userlastname = "userLastName"
-    }
-
-    /**
-     * enum for parameter fieldsAppStoreVersions
-     */
-    public enum FieldsAppStoreVersions_appsReviewSubmissionsGetToManyRelated: String, CaseIterable {
-        case ageratingdeclaration = "ageRatingDeclaration"
-        case alternativedistributionpackage = "alternativeDistributionPackage"
-        case app = "app"
-        case appclipdefaultexperience = "appClipDefaultExperience"
-        case appstorereviewdetail = "appStoreReviewDetail"
-        case appstorestate = "appStoreState"
-        case appstoreversionexperiments = "appStoreVersionExperiments"
-        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
-        case appstoreversionlocalizations = "appStoreVersionLocalizations"
-        case appstoreversionphasedrelease = "appStoreVersionPhasedRelease"
-        case appstoreversionsubmission = "appStoreVersionSubmission"
-        case appversionstate = "appVersionState"
-        case build = "build"
-        case copyright = "copyright"
-        case createddate = "createdDate"
-        case customerreviews = "customerReviews"
-        case downloadable = "downloadable"
-        case earliestreleasedate = "earliestReleaseDate"
-        case platform = "platform"
-        case releasetype = "releaseType"
-        case reviewtype = "reviewType"
-        case routingappcoverage = "routingAppCoverage"
-        case versionstring = "versionString"
-    }
-
-    /**
-     * enum for parameter fieldsApps
-     */
-    public enum FieldsApps_appsReviewSubmissionsGetToManyRelated: String, CaseIterable {
-        case alternativedistributionkey = "alternativeDistributionKey"
-        case analyticsreportrequests = "analyticsReportRequests"
-        case appavailability = "appAvailability"
-        case appclips = "appClips"
-        case appcustomproductpages = "appCustomProductPages"
-        case appencryptiondeclarations = "appEncryptionDeclarations"
-        case appevents = "appEvents"
-        case appinfos = "appInfos"
-        case apppricepoints = "appPricePoints"
-        case apppriceschedule = "appPriceSchedule"
-        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
-        case appstoreversions = "appStoreVersions"
-        case availableinnewterritories = "availableInNewTerritories"
-        case availableterritories = "availableTerritories"
-        case betaapplocalizations = "betaAppLocalizations"
-        case betaappreviewdetail = "betaAppReviewDetail"
-        case betagroups = "betaGroups"
-        case betalicenseagreement = "betaLicenseAgreement"
-        case betatesters = "betaTesters"
-        case builds = "builds"
-        case bundleid = "bundleId"
-        case ciproduct = "ciProduct"
-        case contentrightsdeclaration = "contentRightsDeclaration"
-        case customerreviews = "customerReviews"
-        case enduserlicenseagreement = "endUserLicenseAgreement"
-        case gamecenterdetail = "gameCenterDetail"
-        case gamecenterenabledversions = "gameCenterEnabledVersions"
-        case inapppurchases = "inAppPurchases"
-        case inapppurchasesv2 = "inAppPurchasesV2"
-        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
-        case marketplacesearchdetail = "marketplaceSearchDetail"
-        case name = "name"
-        case perfpowermetrics = "perfPowerMetrics"
-        case preorder = "preOrder"
-        case prereleaseversions = "preReleaseVersions"
-        case pricepoints = "pricePoints"
-        case prices = "prices"
-        case primarylocale = "primaryLocale"
-        case promotedpurchases = "promotedPurchases"
-        case reviewsubmissions = "reviewSubmissions"
-        case sku = "sku"
-        case subscriptiongraceperiod = "subscriptionGracePeriod"
-        case subscriptiongroups = "subscriptionGroups"
-        case subscriptionstatusurl = "subscriptionStatusUrl"
-        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
-        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
-        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
-    }
-
-    /**
-     * enum for parameter fieldsReviewSubmissions
-     */
-    public enum FieldsReviewSubmissions_appsReviewSubmissionsGetToManyRelated: String, CaseIterable {
-        case app = "app"
-        case appstoreversionforreview = "appStoreVersionForReview"
-        case canceled = "canceled"
-        case items = "items"
-        case lastupdatedbyactor = "lastUpdatedByActor"
-        case platform = "platform"
-        case state = "state"
-        case submitted = "submitted"
-        case submittedbyactor = "submittedByActor"
-        case submitteddate = "submittedDate"
+        case useremail = "userEmail"
+        case apikeyid = "apiKeyId"
     }
 
     /**
@@ -7503,10 +6616,10 @@ open class AppsAPI {
      */
     public enum Include_appsReviewSubmissionsGetToManyRelated: String, CaseIterable {
         case app = "app"
-        case appstoreversionforreview = "appStoreVersionForReview"
         case items = "items"
-        case lastupdatedbyactor = "lastUpdatedByActor"
+        case appstoreversionforreview = "appStoreVersionForReview"
         case submittedbyactor = "submittedByActor"
+        case lastupdatedbyactor = "lastUpdatedByActor"
     }
 
     /**
@@ -7514,19 +6627,19 @@ open class AppsAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter filterPlatform: (query) filter by attribute &#39;platform&#39; (optional)
      - parameter filterState: (query) filter by attribute &#39;state&#39; (optional)
-     - parameter fieldsReviewSubmissionItems: (query) the fields to include for returned resources of type reviewSubmissionItems (optional)
-     - parameter fieldsActors: (query) the fields to include for returned resources of type actors (optional)
-     - parameter fieldsAppStoreVersions: (query) the fields to include for returned resources of type appStoreVersions (optional)
-     - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
      - parameter fieldsReviewSubmissions: (query) the fields to include for returned resources of type reviewSubmissions (optional)
+     - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
+     - parameter fieldsReviewSubmissionItems: (query) the fields to include for returned resources of type reviewSubmissionItems (optional)
+     - parameter fieldsAppStoreVersions: (query) the fields to include for returned resources of type appStoreVersions (optional)
+     - parameter fieldsActors: (query) the fields to include for returned resources of type actors (optional)
      - parameter limit: (query) maximum resources per page (optional)
-     - parameter limitItems: (query) maximum number of related items returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitItems: (query) maximum number of related items returned (when they are included) (optional)
      - returns: ReviewSubmissionsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appsReviewSubmissionsGetToManyRelated(id: String, filterPlatform: [FilterPlatform_appsReviewSubmissionsGetToManyRelated]? = nil, filterState: [FilterState_appsReviewSubmissionsGetToManyRelated]? = nil, fieldsReviewSubmissionItems: [FieldsReviewSubmissionItems_appsReviewSubmissionsGetToManyRelated]? = nil, fieldsActors: [FieldsActors_appsReviewSubmissionsGetToManyRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_appsReviewSubmissionsGetToManyRelated]? = nil, fieldsApps: [FieldsApps_appsReviewSubmissionsGetToManyRelated]? = nil, fieldsReviewSubmissions: [FieldsReviewSubmissions_appsReviewSubmissionsGetToManyRelated]? = nil, limit: Int? = nil, limitItems: Int? = nil, include: [Include_appsReviewSubmissionsGetToManyRelated]? = nil) async throws -> ReviewSubmissionsResponse {
-        return try await appsReviewSubmissionsGetToManyRelatedWithRequestBuilder(id: id, filterPlatform: filterPlatform, filterState: filterState, fieldsReviewSubmissionItems: fieldsReviewSubmissionItems, fieldsActors: fieldsActors, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsApps: fieldsApps, fieldsReviewSubmissions: fieldsReviewSubmissions, limit: limit, limitItems: limitItems, include: include).execute().body
+    open class func appsReviewSubmissionsGetToManyRelated(id: String, filterPlatform: [FilterPlatform_appsReviewSubmissionsGetToManyRelated]? = nil, filterState: [FilterState_appsReviewSubmissionsGetToManyRelated]? = nil, fieldsReviewSubmissions: [FieldsReviewSubmissions_appsReviewSubmissionsGetToManyRelated]? = nil, fieldsApps: [FieldsApps_appsReviewSubmissionsGetToManyRelated]? = nil, fieldsReviewSubmissionItems: [FieldsReviewSubmissionItems_appsReviewSubmissionsGetToManyRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_appsReviewSubmissionsGetToManyRelated]? = nil, fieldsActors: [FieldsActors_appsReviewSubmissionsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appsReviewSubmissionsGetToManyRelated]? = nil, limitItems: Int? = nil) async throws -> ReviewSubmissionsResponse {
+        return try await appsReviewSubmissionsGetToManyRelatedWithRequestBuilder(id: id, filterPlatform: filterPlatform, filterState: filterState, fieldsReviewSubmissions: fieldsReviewSubmissions, fieldsApps: fieldsApps, fieldsReviewSubmissionItems: fieldsReviewSubmissionItems, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsActors: fieldsActors, limit: limit, include: include, limitItems: limitItems).execute().body
     }
 
     /**
@@ -7546,17 +6659,17 @@ open class AppsAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter filterPlatform: (query) filter by attribute &#39;platform&#39; (optional)
      - parameter filterState: (query) filter by attribute &#39;state&#39; (optional)
-     - parameter fieldsReviewSubmissionItems: (query) the fields to include for returned resources of type reviewSubmissionItems (optional)
-     - parameter fieldsActors: (query) the fields to include for returned resources of type actors (optional)
-     - parameter fieldsAppStoreVersions: (query) the fields to include for returned resources of type appStoreVersions (optional)
-     - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
      - parameter fieldsReviewSubmissions: (query) the fields to include for returned resources of type reviewSubmissions (optional)
+     - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
+     - parameter fieldsReviewSubmissionItems: (query) the fields to include for returned resources of type reviewSubmissionItems (optional)
+     - parameter fieldsAppStoreVersions: (query) the fields to include for returned resources of type appStoreVersions (optional)
+     - parameter fieldsActors: (query) the fields to include for returned resources of type actors (optional)
      - parameter limit: (query) maximum resources per page (optional)
-     - parameter limitItems: (query) maximum number of related items returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitItems: (query) maximum number of related items returned (when they are included) (optional)
      - returns: RequestBuilder<ReviewSubmissionsResponse> 
      */
-    open class func appsReviewSubmissionsGetToManyRelatedWithRequestBuilder(id: String, filterPlatform: [FilterPlatform_appsReviewSubmissionsGetToManyRelated]? = nil, filterState: [FilterState_appsReviewSubmissionsGetToManyRelated]? = nil, fieldsReviewSubmissionItems: [FieldsReviewSubmissionItems_appsReviewSubmissionsGetToManyRelated]? = nil, fieldsActors: [FieldsActors_appsReviewSubmissionsGetToManyRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_appsReviewSubmissionsGetToManyRelated]? = nil, fieldsApps: [FieldsApps_appsReviewSubmissionsGetToManyRelated]? = nil, fieldsReviewSubmissions: [FieldsReviewSubmissions_appsReviewSubmissionsGetToManyRelated]? = nil, limit: Int? = nil, limitItems: Int? = nil, include: [Include_appsReviewSubmissionsGetToManyRelated]? = nil) -> RequestBuilder<ReviewSubmissionsResponse> {
+    open class func appsReviewSubmissionsGetToManyRelatedWithRequestBuilder(id: String, filterPlatform: [FilterPlatform_appsReviewSubmissionsGetToManyRelated]? = nil, filterState: [FilterState_appsReviewSubmissionsGetToManyRelated]? = nil, fieldsReviewSubmissions: [FieldsReviewSubmissions_appsReviewSubmissionsGetToManyRelated]? = nil, fieldsApps: [FieldsApps_appsReviewSubmissionsGetToManyRelated]? = nil, fieldsReviewSubmissionItems: [FieldsReviewSubmissionItems_appsReviewSubmissionsGetToManyRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_appsReviewSubmissionsGetToManyRelated]? = nil, fieldsActors: [FieldsActors_appsReviewSubmissionsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appsReviewSubmissionsGetToManyRelated]? = nil, limitItems: Int? = nil) -> RequestBuilder<ReviewSubmissionsResponse> {
         var localVariablePath = "/v1/apps/{id}/reviewSubmissions"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -7568,14 +6681,14 @@ open class AppsAPI {
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "filter[platform]": (wrappedValue: filterPlatform?.encodeToJSON(), isExplode: false),
             "filter[state]": (wrappedValue: filterState?.encodeToJSON(), isExplode: false),
-            "fields[reviewSubmissionItems]": (wrappedValue: fieldsReviewSubmissionItems?.encodeToJSON(), isExplode: false),
-            "fields[actors]": (wrappedValue: fieldsActors?.encodeToJSON(), isExplode: false),
-            "fields[appStoreVersions]": (wrappedValue: fieldsAppStoreVersions?.encodeToJSON(), isExplode: false),
-            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
             "fields[reviewSubmissions]": (wrappedValue: fieldsReviewSubmissions?.encodeToJSON(), isExplode: false),
+            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
+            "fields[reviewSubmissionItems]": (wrappedValue: fieldsReviewSubmissionItems?.encodeToJSON(), isExplode: false),
+            "fields[appStoreVersions]": (wrappedValue: fieldsAppStoreVersions?.encodeToJSON(), isExplode: false),
+            "fields[actors]": (wrappedValue: fieldsActors?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "limit[items]": (wrappedValue: limitItems?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "limit[items]": (wrappedValue: limitItems?.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -7613,10 +6726,10 @@ open class AppsAPI {
      * enum for parameter fieldsSubscriptionGracePeriods
      */
     public enum FieldsSubscriptionGracePeriods_appsSubscriptionGracePeriodGetToOneRelated: String, CaseIterable {
-        case duration = "duration"
         case optin = "optIn"
-        case renewaltype = "renewalType"
         case sandboxoptin = "sandboxOptIn"
+        case duration = "duration"
+        case renewaltype = "renewalType"
     }
 
     /**
@@ -7717,45 +6830,46 @@ open class AppsAPI {
     }
 
     /**
-     * enum for parameter fieldsSubscriptions
-     */
-    public enum FieldsSubscriptions_appsSubscriptionGroupsGetToManyRelated: String, CaseIterable {
-        case appstorereviewscreenshot = "appStoreReviewScreenshot"
-        case familysharable = "familySharable"
-        case group = "group"
-        case grouplevel = "groupLevel"
-        case introductoryoffers = "introductoryOffers"
-        case name = "name"
-        case offercodes = "offerCodes"
-        case pricepoints = "pricePoints"
-        case prices = "prices"
-        case productid = "productId"
-        case promotedpurchase = "promotedPurchase"
-        case promotionaloffers = "promotionalOffers"
-        case reviewnote = "reviewNote"
-        case state = "state"
-        case subscriptionavailability = "subscriptionAvailability"
-        case subscriptionlocalizations = "subscriptionLocalizations"
-        case subscriptionperiod = "subscriptionPeriod"
-    }
-
-    /**
      * enum for parameter fieldsSubscriptionGroups
      */
     public enum FieldsSubscriptionGroups_appsSubscriptionGroupsGetToManyRelated: String, CaseIterable {
-        case app = "app"
         case referencename = "referenceName"
-        case subscriptiongrouplocalizations = "subscriptionGroupLocalizations"
         case subscriptions = "subscriptions"
+        case subscriptiongrouplocalizations = "subscriptionGroupLocalizations"
+    }
+
+    /**
+     * enum for parameter fieldsSubscriptions
+     */
+    public enum FieldsSubscriptions_appsSubscriptionGroupsGetToManyRelated: String, CaseIterable {
+        case name = "name"
+        case productid = "productId"
+        case familysharable = "familySharable"
+        case state = "state"
+        case subscriptionperiod = "subscriptionPeriod"
+        case reviewnote = "reviewNote"
+        case grouplevel = "groupLevel"
+        case subscriptionlocalizations = "subscriptionLocalizations"
+        case appstorereviewscreenshot = "appStoreReviewScreenshot"
+        case group = "group"
+        case introductoryoffers = "introductoryOffers"
+        case promotionaloffers = "promotionalOffers"
+        case offercodes = "offerCodes"
+        case prices = "prices"
+        case pricepoints = "pricePoints"
+        case promotedpurchase = "promotedPurchase"
+        case subscriptionavailability = "subscriptionAvailability"
+        case winbackoffers = "winBackOffers"
+        case images = "images"
     }
 
     /**
      * enum for parameter fieldsSubscriptionGroupLocalizations
      */
     public enum FieldsSubscriptionGroupLocalizations_appsSubscriptionGroupsGetToManyRelated: String, CaseIterable {
+        case name = "name"
         case customappname = "customAppName"
         case locale = "locale"
-        case name = "name"
         case state = "state"
         case subscriptiongroup = "subscriptionGroup"
     }
@@ -7764,8 +6878,8 @@ open class AppsAPI {
      * enum for parameter include
      */
     public enum Include_appsSubscriptionGroupsGetToManyRelated: String, CaseIterable {
-        case subscriptiongrouplocalizations = "subscriptionGroupLocalizations"
         case subscriptions = "subscriptions"
+        case subscriptiongrouplocalizations = "subscriptionGroupLocalizations"
     }
 
     /**
@@ -7774,18 +6888,18 @@ open class AppsAPI {
      - parameter filterReferenceName: (query) filter by attribute &#39;referenceName&#39; (optional)
      - parameter filterSubscriptionsState: (query) filter by attribute &#39;subscriptions.state&#39; (optional)
      - parameter sort: (query) comma-separated list of sort expressions; resources will be sorted as specified (optional)
-     - parameter fieldsSubscriptions: (query) the fields to include for returned resources of type subscriptions (optional)
      - parameter fieldsSubscriptionGroups: (query) the fields to include for returned resources of type subscriptionGroups (optional)
+     - parameter fieldsSubscriptions: (query) the fields to include for returned resources of type subscriptions (optional)
      - parameter fieldsSubscriptionGroupLocalizations: (query) the fields to include for returned resources of type subscriptionGroupLocalizations (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitSubscriptions: (query) maximum number of related subscriptions returned (when they are included) (optional)
      - parameter limitSubscriptionGroupLocalizations: (query) maximum number of related subscriptionGroupLocalizations returned (when they are included) (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: SubscriptionGroupsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appsSubscriptionGroupsGetToManyRelated(id: String, filterReferenceName: [String]? = nil, filterSubscriptionsState: [FilterSubscriptionsState_appsSubscriptionGroupsGetToManyRelated]? = nil, sort: [Sort_appsSubscriptionGroupsGetToManyRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_appsSubscriptionGroupsGetToManyRelated]? = nil, fieldsSubscriptionGroups: [FieldsSubscriptionGroups_appsSubscriptionGroupsGetToManyRelated]? = nil, fieldsSubscriptionGroupLocalizations: [FieldsSubscriptionGroupLocalizations_appsSubscriptionGroupsGetToManyRelated]? = nil, limit: Int? = nil, limitSubscriptions: Int? = nil, limitSubscriptionGroupLocalizations: Int? = nil, include: [Include_appsSubscriptionGroupsGetToManyRelated]? = nil) async throws -> SubscriptionGroupsResponse {
-        return try await appsSubscriptionGroupsGetToManyRelatedWithRequestBuilder(id: id, filterReferenceName: filterReferenceName, filterSubscriptionsState: filterSubscriptionsState, sort: sort, fieldsSubscriptions: fieldsSubscriptions, fieldsSubscriptionGroups: fieldsSubscriptionGroups, fieldsSubscriptionGroupLocalizations: fieldsSubscriptionGroupLocalizations, limit: limit, limitSubscriptions: limitSubscriptions, limitSubscriptionGroupLocalizations: limitSubscriptionGroupLocalizations, include: include).execute().body
+    open class func appsSubscriptionGroupsGetToManyRelated(id: String, filterReferenceName: [String]? = nil, filterSubscriptionsState: [FilterSubscriptionsState_appsSubscriptionGroupsGetToManyRelated]? = nil, sort: [Sort_appsSubscriptionGroupsGetToManyRelated]? = nil, fieldsSubscriptionGroups: [FieldsSubscriptionGroups_appsSubscriptionGroupsGetToManyRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_appsSubscriptionGroupsGetToManyRelated]? = nil, fieldsSubscriptionGroupLocalizations: [FieldsSubscriptionGroupLocalizations_appsSubscriptionGroupsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appsSubscriptionGroupsGetToManyRelated]? = nil, limitSubscriptions: Int? = nil, limitSubscriptionGroupLocalizations: Int? = nil) async throws -> SubscriptionGroupsResponse {
+        return try await appsSubscriptionGroupsGetToManyRelatedWithRequestBuilder(id: id, filterReferenceName: filterReferenceName, filterSubscriptionsState: filterSubscriptionsState, sort: sort, fieldsSubscriptionGroups: fieldsSubscriptionGroups, fieldsSubscriptions: fieldsSubscriptions, fieldsSubscriptionGroupLocalizations: fieldsSubscriptionGroupLocalizations, limit: limit, include: include, limitSubscriptions: limitSubscriptions, limitSubscriptionGroupLocalizations: limitSubscriptionGroupLocalizations).execute().body
     }
 
     /**
@@ -7806,16 +6920,16 @@ open class AppsAPI {
      - parameter filterReferenceName: (query) filter by attribute &#39;referenceName&#39; (optional)
      - parameter filterSubscriptionsState: (query) filter by attribute &#39;subscriptions.state&#39; (optional)
      - parameter sort: (query) comma-separated list of sort expressions; resources will be sorted as specified (optional)
-     - parameter fieldsSubscriptions: (query) the fields to include for returned resources of type subscriptions (optional)
      - parameter fieldsSubscriptionGroups: (query) the fields to include for returned resources of type subscriptionGroups (optional)
+     - parameter fieldsSubscriptions: (query) the fields to include for returned resources of type subscriptions (optional)
      - parameter fieldsSubscriptionGroupLocalizations: (query) the fields to include for returned resources of type subscriptionGroupLocalizations (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitSubscriptions: (query) maximum number of related subscriptions returned (when they are included) (optional)
      - parameter limitSubscriptionGroupLocalizations: (query) maximum number of related subscriptionGroupLocalizations returned (when they are included) (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: RequestBuilder<SubscriptionGroupsResponse> 
      */
-    open class func appsSubscriptionGroupsGetToManyRelatedWithRequestBuilder(id: String, filterReferenceName: [String]? = nil, filterSubscriptionsState: [FilterSubscriptionsState_appsSubscriptionGroupsGetToManyRelated]? = nil, sort: [Sort_appsSubscriptionGroupsGetToManyRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_appsSubscriptionGroupsGetToManyRelated]? = nil, fieldsSubscriptionGroups: [FieldsSubscriptionGroups_appsSubscriptionGroupsGetToManyRelated]? = nil, fieldsSubscriptionGroupLocalizations: [FieldsSubscriptionGroupLocalizations_appsSubscriptionGroupsGetToManyRelated]? = nil, limit: Int? = nil, limitSubscriptions: Int? = nil, limitSubscriptionGroupLocalizations: Int? = nil, include: [Include_appsSubscriptionGroupsGetToManyRelated]? = nil) -> RequestBuilder<SubscriptionGroupsResponse> {
+    open class func appsSubscriptionGroupsGetToManyRelatedWithRequestBuilder(id: String, filterReferenceName: [String]? = nil, filterSubscriptionsState: [FilterSubscriptionsState_appsSubscriptionGroupsGetToManyRelated]? = nil, sort: [Sort_appsSubscriptionGroupsGetToManyRelated]? = nil, fieldsSubscriptionGroups: [FieldsSubscriptionGroups_appsSubscriptionGroupsGetToManyRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_appsSubscriptionGroupsGetToManyRelated]? = nil, fieldsSubscriptionGroupLocalizations: [FieldsSubscriptionGroupLocalizations_appsSubscriptionGroupsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appsSubscriptionGroupsGetToManyRelated]? = nil, limitSubscriptions: Int? = nil, limitSubscriptionGroupLocalizations: Int? = nil) -> RequestBuilder<SubscriptionGroupsResponse> {
         var localVariablePath = "/v1/apps/{id}/subscriptionGroups"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -7828,13 +6942,13 @@ open class AppsAPI {
             "filter[referenceName]": (wrappedValue: filterReferenceName?.encodeToJSON(), isExplode: false),
             "filter[subscriptions.state]": (wrappedValue: filterSubscriptionsState?.encodeToJSON(), isExplode: false),
             "sort": (wrappedValue: sort?.encodeToJSON(), isExplode: false),
-            "fields[subscriptions]": (wrappedValue: fieldsSubscriptions?.encodeToJSON(), isExplode: false),
             "fields[subscriptionGroups]": (wrappedValue: fieldsSubscriptionGroups?.encodeToJSON(), isExplode: false),
+            "fields[subscriptions]": (wrappedValue: fieldsSubscriptions?.encodeToJSON(), isExplode: false),
             "fields[subscriptionGroupLocalizations]": (wrappedValue: fieldsSubscriptionGroupLocalizations?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "limit[subscriptions]": (wrappedValue: limitSubscriptions?.encodeToJSON(), isExplode: true),
             "limit[subscriptionGroupLocalizations]": (wrappedValue: limitSubscriptionGroupLocalizations?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [

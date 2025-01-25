@@ -149,17 +149,18 @@ open class AppPreviewsAPI {
      * enum for parameter fieldsAppPreviews
      */
     public enum FieldsAppPreviews_appPreviewsGetInstance: String, CaseIterable {
-        case apppreviewset = "appPreviewSet"
-        case assetdeliverystate = "assetDeliveryState"
-        case filename = "fileName"
         case filesize = "fileSize"
-        case mimetype = "mimeType"
-        case previewframetimecode = "previewFrameTimeCode"
-        case previewimage = "previewImage"
+        case filename = "fileName"
         case sourcefilechecksum = "sourceFileChecksum"
-        case uploadoperations = "uploadOperations"
-        case uploaded = "uploaded"
+        case previewframetimecode = "previewFrameTimeCode"
+        case mimetype = "mimeType"
         case videourl = "videoUrl"
+        case previewframeimage = "previewFrameImage"
+        case previewimage = "previewImage"
+        case uploadoperations = "uploadOperations"
+        case assetdeliverystate = "assetDeliveryState"
+        case videodeliverystate = "videoDeliveryState"
+        case apppreviewset = "appPreviewSet"
     }
 
     /**

@@ -60,7 +60,7 @@ Name | Type | Description  | Notes
 
 # **reviewSubmissionsGetCollection**
 ```swift
-    open class func reviewSubmissionsGetCollection(filterApp: [String], filterPlatform: [FilterPlatform_reviewSubmissionsGetCollection]? = nil, filterState: [FilterState_reviewSubmissionsGetCollection]? = nil, fieldsReviewSubmissions: [FieldsReviewSubmissions_reviewSubmissionsGetCollection]? = nil, limit: Int? = nil, include: [Include_reviewSubmissionsGetCollection]? = nil, fieldsReviewSubmissionItems: [FieldsReviewSubmissionItems_reviewSubmissionsGetCollection]? = nil, limitItems: Int? = nil, completion: @escaping (_ data: ReviewSubmissionsResponse?, _ error: Error?) -> Void)
+    open class func reviewSubmissionsGetCollection(filterApp: [String], filterPlatform: [FilterPlatform_reviewSubmissionsGetCollection]? = nil, filterState: [FilterState_reviewSubmissionsGetCollection]? = nil, fieldsReviewSubmissions: [FieldsReviewSubmissions_reviewSubmissionsGetCollection]? = nil, fieldsReviewSubmissionItems: [FieldsReviewSubmissionItems_reviewSubmissionsGetCollection]? = nil, limit: Int? = nil, include: [Include_reviewSubmissionsGetCollection]? = nil, limitItems: Int? = nil, completion: @escaping (_ data: ReviewSubmissionsResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -74,12 +74,12 @@ let filterApp = ["inner_example"] // [String] | filter by id(s) of related 'app'
 let filterPlatform = ["filterPlatform_example"] // [String] | filter by attribute 'platform' (optional)
 let filterState = ["filterState_example"] // [String] | filter by attribute 'state' (optional)
 let fieldsReviewSubmissions = ["fieldsReviewSubmissions_example"] // [String] | the fields to include for returned resources of type reviewSubmissions (optional)
+let fieldsReviewSubmissionItems = ["fieldsReviewSubmissionItems_example"] // [String] | the fields to include for returned resources of type reviewSubmissionItems (optional)
 let limit = 987 // Int | maximum resources per page (optional)
 let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
-let fieldsReviewSubmissionItems = ["fieldsReviewSubmissionItems_example"] // [String] | the fields to include for returned resources of type reviewSubmissionItems (optional)
 let limitItems = 987 // Int | maximum number of related items returned (when they are included) (optional)
 
-ReviewSubmissionsAPI.reviewSubmissionsGetCollection(filterApp: filterApp, filterPlatform: filterPlatform, filterState: filterState, fieldsReviewSubmissions: fieldsReviewSubmissions, limit: limit, include: include, fieldsReviewSubmissionItems: fieldsReviewSubmissionItems, limitItems: limitItems) { (response, error) in
+ReviewSubmissionsAPI.reviewSubmissionsGetCollection(filterApp: filterApp, filterPlatform: filterPlatform, filterState: filterState, fieldsReviewSubmissions: fieldsReviewSubmissions, fieldsReviewSubmissionItems: fieldsReviewSubmissionItems, limit: limit, include: include, limitItems: limitItems) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -99,9 +99,9 @@ Name | Type | Description  | Notes
  **filterPlatform** | [**[String]**](String.md) | filter by attribute &#39;platform&#39; | [optional] 
  **filterState** | [**[String]**](String.md) | filter by attribute &#39;state&#39; | [optional] 
  **fieldsReviewSubmissions** | [**[String]**](String.md) | the fields to include for returned resources of type reviewSubmissions | [optional] 
+ **fieldsReviewSubmissionItems** | [**[String]**](String.md) | the fields to include for returned resources of type reviewSubmissionItems | [optional] 
  **limit** | **Int** | maximum resources per page | [optional] 
  **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
- **fieldsReviewSubmissionItems** | [**[String]**](String.md) | the fields to include for returned resources of type reviewSubmissionItems | [optional] 
  **limitItems** | **Int** | maximum number of related items returned (when they are included) | [optional] 
 
 ### Return type
@@ -121,7 +121,7 @@ Name | Type | Description  | Notes
 
 # **reviewSubmissionsGetInstance**
 ```swift
-    open class func reviewSubmissionsGetInstance(id: String, fieldsReviewSubmissions: [FieldsReviewSubmissions_reviewSubmissionsGetInstance]? = nil, include: [Include_reviewSubmissionsGetInstance]? = nil, fieldsReviewSubmissionItems: [FieldsReviewSubmissionItems_reviewSubmissionsGetInstance]? = nil, limitItems: Int? = nil, completion: @escaping (_ data: ReviewSubmissionResponse?, _ error: Error?) -> Void)
+    open class func reviewSubmissionsGetInstance(id: String, fieldsReviewSubmissions: [FieldsReviewSubmissions_reviewSubmissionsGetInstance]? = nil, fieldsReviewSubmissionItems: [FieldsReviewSubmissionItems_reviewSubmissionsGetInstance]? = nil, include: [Include_reviewSubmissionsGetInstance]? = nil, limitItems: Int? = nil, completion: @escaping (_ data: ReviewSubmissionResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -133,11 +133,11 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let fieldsReviewSubmissions = ["fieldsReviewSubmissions_example"] // [String] | the fields to include for returned resources of type reviewSubmissions (optional)
-let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let fieldsReviewSubmissionItems = ["fieldsReviewSubmissionItems_example"] // [String] | the fields to include for returned resources of type reviewSubmissionItems (optional)
+let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let limitItems = 987 // Int | maximum number of related items returned (when they are included) (optional)
 
-ReviewSubmissionsAPI.reviewSubmissionsGetInstance(id: id, fieldsReviewSubmissions: fieldsReviewSubmissions, include: include, fieldsReviewSubmissionItems: fieldsReviewSubmissionItems, limitItems: limitItems) { (response, error) in
+ReviewSubmissionsAPI.reviewSubmissionsGetInstance(id: id, fieldsReviewSubmissions: fieldsReviewSubmissions, fieldsReviewSubmissionItems: fieldsReviewSubmissionItems, include: include, limitItems: limitItems) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -155,8 +155,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **fieldsReviewSubmissions** | [**[String]**](String.md) | the fields to include for returned resources of type reviewSubmissions | [optional] 
- **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **fieldsReviewSubmissionItems** | [**[String]**](String.md) | the fields to include for returned resources of type reviewSubmissionItems | [optional] 
+ **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **limitItems** | **Int** | maximum number of related items returned (when they are included) | [optional] 
 
 ### Return type
@@ -176,7 +176,7 @@ Name | Type | Description  | Notes
 
 # **reviewSubmissionsItemsGetToManyRelated**
 ```swift
-    open class func reviewSubmissionsItemsGetToManyRelated(id: String, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_reviewSubmissionsItemsGetToManyRelated]? = nil, fieldsReviewSubmissionItems: [FieldsReviewSubmissionItems_reviewSubmissionsItemsGetToManyRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_reviewSubmissionsItemsGetToManyRelated]? = nil, fieldsAppCustomProductPageVersions: [FieldsAppCustomProductPageVersions_reviewSubmissionsItemsGetToManyRelated]? = nil, fieldsAppEvents: [FieldsAppEvents_reviewSubmissionsItemsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_reviewSubmissionsItemsGetToManyRelated]? = nil, completion: @escaping (_ data: ReviewSubmissionItemsResponse?, _ error: Error?) -> Void)
+    open class func reviewSubmissionsItemsGetToManyRelated(id: String, fieldsReviewSubmissionItems: [FieldsReviewSubmissionItems_reviewSubmissionsItemsGetToManyRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_reviewSubmissionsItemsGetToManyRelated]? = nil, fieldsAppCustomProductPageVersions: [FieldsAppCustomProductPageVersions_reviewSubmissionsItemsGetToManyRelated]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_reviewSubmissionsItemsGetToManyRelated]? = nil, fieldsAppEvents: [FieldsAppEvents_reviewSubmissionsItemsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_reviewSubmissionsItemsGetToManyRelated]? = nil, completion: @escaping (_ data: ReviewSubmissionItemsResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -187,15 +187,15 @@ Name | Type | Description  | Notes
 import ASC
 
 let id = "id_example" // String | the id of the requested resource
-let fieldsAppStoreVersionExperiments = ["fieldsAppStoreVersionExperiments_example"] // [String] | the fields to include for returned resources of type appStoreVersionExperiments (optional)
 let fieldsReviewSubmissionItems = ["fieldsReviewSubmissionItems_example"] // [String] | the fields to include for returned resources of type reviewSubmissionItems (optional)
 let fieldsAppStoreVersions = ["fieldsAppStoreVersions_example"] // [String] | the fields to include for returned resources of type appStoreVersions (optional)
 let fieldsAppCustomProductPageVersions = ["fieldsAppCustomProductPageVersions_example"] // [String] | the fields to include for returned resources of type appCustomProductPageVersions (optional)
+let fieldsAppStoreVersionExperiments = ["fieldsAppStoreVersionExperiments_example"] // [String] | the fields to include for returned resources of type appStoreVersionExperiments (optional)
 let fieldsAppEvents = ["fieldsAppEvents_example"] // [String] | the fields to include for returned resources of type appEvents (optional)
 let limit = 987 // Int | maximum resources per page (optional)
 let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 
-ReviewSubmissionsAPI.reviewSubmissionsItemsGetToManyRelated(id: id, fieldsAppStoreVersionExperiments: fieldsAppStoreVersionExperiments, fieldsReviewSubmissionItems: fieldsReviewSubmissionItems, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsAppCustomProductPageVersions: fieldsAppCustomProductPageVersions, fieldsAppEvents: fieldsAppEvents, limit: limit, include: include) { (response, error) in
+ReviewSubmissionsAPI.reviewSubmissionsItemsGetToManyRelated(id: id, fieldsReviewSubmissionItems: fieldsReviewSubmissionItems, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsAppCustomProductPageVersions: fieldsAppCustomProductPageVersions, fieldsAppStoreVersionExperiments: fieldsAppStoreVersionExperiments, fieldsAppEvents: fieldsAppEvents, limit: limit, include: include) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -212,10 +212,10 @@ ReviewSubmissionsAPI.reviewSubmissionsItemsGetToManyRelated(id: id, fieldsAppSto
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
- **fieldsAppStoreVersionExperiments** | [**[String]**](String.md) | the fields to include for returned resources of type appStoreVersionExperiments | [optional] 
  **fieldsReviewSubmissionItems** | [**[String]**](String.md) | the fields to include for returned resources of type reviewSubmissionItems | [optional] 
  **fieldsAppStoreVersions** | [**[String]**](String.md) | the fields to include for returned resources of type appStoreVersions | [optional] 
  **fieldsAppCustomProductPageVersions** | [**[String]**](String.md) | the fields to include for returned resources of type appCustomProductPageVersions | [optional] 
+ **fieldsAppStoreVersionExperiments** | [**[String]**](String.md) | the fields to include for returned resources of type appStoreVersionExperiments | [optional] 
  **fieldsAppEvents** | [**[String]**](String.md) | the fields to include for returned resources of type appEvents | [optional] 
  **limit** | **Int** | maximum resources per page | [optional] 
  **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 

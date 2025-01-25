@@ -16,26 +16,26 @@ open class GameCenterDetailsAPI {
      * enum for parameter fieldsGameCenterAchievementReleases
      */
     public enum FieldsGameCenterAchievementReleases_gameCenterDetailsAchievementReleasesGetToManyRelated: String, CaseIterable {
-        case gamecenterachievement = "gameCenterAchievement"
-        case gamecenterdetail = "gameCenterDetail"
         case live = "live"
+        case gamecenterdetail = "gameCenterDetail"
+        case gamecenterachievement = "gameCenterAchievement"
     }
 
     /**
      * enum for parameter fieldsGameCenterDetails
      */
     public enum FieldsGameCenterDetails_gameCenterDetailsAchievementReleasesGetToManyRelated: String, CaseIterable {
-        case achievementreleases = "achievementReleases"
-        case app = "app"
         case arcadeenabled = "arcadeEnabled"
         case challengeenabled = "challengeEnabled"
-        case defaultgroupleaderboard = "defaultGroupLeaderboard"
-        case defaultleaderboard = "defaultLeaderboard"
-        case gamecenterachievements = "gameCenterAchievements"
+        case app = "app"
         case gamecenterappversions = "gameCenterAppVersions"
         case gamecentergroup = "gameCenterGroup"
-        case gamecenterleaderboardsets = "gameCenterLeaderboardSets"
         case gamecenterleaderboards = "gameCenterLeaderboards"
+        case gamecenterleaderboardsets = "gameCenterLeaderboardSets"
+        case gamecenterachievements = "gameCenterAchievements"
+        case defaultleaderboard = "defaultLeaderboard"
+        case defaultgroupleaderboard = "defaultGroupLeaderboard"
+        case achievementreleases = "achievementReleases"
         case leaderboardreleases = "leaderboardReleases"
         case leaderboardsetreleases = "leaderboardSetReleases"
     }
@@ -44,25 +44,25 @@ open class GameCenterDetailsAPI {
      * enum for parameter fieldsGameCenterAchievements
      */
     public enum FieldsGameCenterAchievements_gameCenterDetailsAchievementReleasesGetToManyRelated: String, CaseIterable {
+        case referencename = "referenceName"
+        case vendoridentifier = "vendorIdentifier"
+        case points = "points"
+        case showbeforeearned = "showBeforeEarned"
+        case repeatable = "repeatable"
         case archived = "archived"
         case gamecenterdetail = "gameCenterDetail"
         case gamecentergroup = "gameCenterGroup"
         case groupachievement = "groupAchievement"
         case localizations = "localizations"
-        case points = "points"
-        case referencename = "referenceName"
         case releases = "releases"
-        case repeatable = "repeatable"
-        case showbeforeearned = "showBeforeEarned"
-        case vendoridentifier = "vendorIdentifier"
     }
 
     /**
      * enum for parameter include
      */
     public enum Include_gameCenterDetailsAchievementReleasesGetToManyRelated: String, CaseIterable {
-        case gamecenterachievement = "gameCenterAchievement"
         case gamecenterdetail = "gameCenterDetail"
+        case gamecenterachievement = "gameCenterAchievement"
     }
 
     /**
@@ -185,10 +185,10 @@ open class GameCenterDetailsAPI {
      * enum for parameter sort
      */
     public enum Sort_gameCenterDetailsClassicMatchmakingRequestsGetMetrics: String, CaseIterable {
-        case averagesecondsinqueue = "averageSecondsInQueue"
-        case averagesecondsinqueue2 = "-averageSecondsInQueue"
         case count = "count"
         case count2 = "-count"
+        case averagesecondsinqueue = "averageSecondsInQueue"
+        case averagesecondsinqueue2 = "-averageSecondsInQueue"
         case p50secondsinqueue = "p50SecondsInQueue"
         case p50secondsinqueue2 = "-p50SecondsInQueue"
         case p95secondsinqueue = "p95SecondsInQueue"
@@ -199,15 +199,15 @@ open class GameCenterDetailsAPI {
 
      - parameter id: (path) the id of the requested resource 
      - parameter granularity: (query) the granularity of the per-group dataset 
-     - parameter limit: (query) maximum number of groups to return per page (optional)
      - parameter groupBy: (query) the dimension by which to group the results (optional)
      - parameter filterResult: (query) filter by &#39;result&#39; attribute dimension (optional)
      - parameter sort: (query) comma-separated list of sort expressions; metrics will be sorted as specified (optional)
+     - parameter limit: (query) maximum number of groups to return per page (optional)
      - returns: GameCenterMatchmakingAppRequestsV1MetricResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterDetailsClassicMatchmakingRequestsGetMetrics(id: String, granularity: Granularity_gameCenterDetailsClassicMatchmakingRequestsGetMetrics, limit: Int? = nil, groupBy: [GroupBy_gameCenterDetailsClassicMatchmakingRequestsGetMetrics]? = nil, filterResult: FilterResult_gameCenterDetailsClassicMatchmakingRequestsGetMetrics? = nil, sort: [Sort_gameCenterDetailsClassicMatchmakingRequestsGetMetrics]? = nil) async throws -> GameCenterMatchmakingAppRequestsV1MetricResponse {
-        return try await gameCenterDetailsClassicMatchmakingRequestsGetMetricsWithRequestBuilder(id: id, granularity: granularity, limit: limit, groupBy: groupBy, filterResult: filterResult, sort: sort).execute().body
+    open class func gameCenterDetailsClassicMatchmakingRequestsGetMetrics(id: String, granularity: Granularity_gameCenterDetailsClassicMatchmakingRequestsGetMetrics, groupBy: [GroupBy_gameCenterDetailsClassicMatchmakingRequestsGetMetrics]? = nil, filterResult: FilterResult_gameCenterDetailsClassicMatchmakingRequestsGetMetrics? = nil, sort: [Sort_gameCenterDetailsClassicMatchmakingRequestsGetMetrics]? = nil, limit: Int? = nil) async throws -> GameCenterMatchmakingAppRequestsV1MetricResponse {
+        return try await gameCenterDetailsClassicMatchmakingRequestsGetMetricsWithRequestBuilder(id: id, granularity: granularity, groupBy: groupBy, filterResult: filterResult, sort: sort, limit: limit).execute().body
     }
 
     /**
@@ -226,13 +226,13 @@ open class GameCenterDetailsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter granularity: (query) the granularity of the per-group dataset 
-     - parameter limit: (query) maximum number of groups to return per page (optional)
      - parameter groupBy: (query) the dimension by which to group the results (optional)
      - parameter filterResult: (query) filter by &#39;result&#39; attribute dimension (optional)
      - parameter sort: (query) comma-separated list of sort expressions; metrics will be sorted as specified (optional)
+     - parameter limit: (query) maximum number of groups to return per page (optional)
      - returns: RequestBuilder<GameCenterMatchmakingAppRequestsV1MetricResponse> 
      */
-    open class func gameCenterDetailsClassicMatchmakingRequestsGetMetricsWithRequestBuilder(id: String, granularity: Granularity_gameCenterDetailsClassicMatchmakingRequestsGetMetrics, limit: Int? = nil, groupBy: [GroupBy_gameCenterDetailsClassicMatchmakingRequestsGetMetrics]? = nil, filterResult: FilterResult_gameCenterDetailsClassicMatchmakingRequestsGetMetrics? = nil, sort: [Sort_gameCenterDetailsClassicMatchmakingRequestsGetMetrics]? = nil) -> RequestBuilder<GameCenterMatchmakingAppRequestsV1MetricResponse> {
+    open class func gameCenterDetailsClassicMatchmakingRequestsGetMetricsWithRequestBuilder(id: String, granularity: Granularity_gameCenterDetailsClassicMatchmakingRequestsGetMetrics, groupBy: [GroupBy_gameCenterDetailsClassicMatchmakingRequestsGetMetrics]? = nil, filterResult: FilterResult_gameCenterDetailsClassicMatchmakingRequestsGetMetrics? = nil, sort: [Sort_gameCenterDetailsClassicMatchmakingRequestsGetMetrics]? = nil, limit: Int? = nil) -> RequestBuilder<GameCenterMatchmakingAppRequestsV1MetricResponse> {
         var localVariablePath = "/v1/gameCenterDetails/{id}/metrics/classicMatchmakingRequests"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -242,11 +242,11 @@ open class GameCenterDetailsAPI {
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
             "granularity": (wrappedValue: granularity.encodeToJSON(), isExplode: false),
             "groupBy": (wrappedValue: groupBy?.encodeToJSON(), isExplode: false),
             "filter[result]": (wrappedValue: filterResult?.encodeToJSON(), isExplode: false),
             "sort": (wrappedValue: sort?.encodeToJSON(), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -346,71 +346,71 @@ open class GameCenterDetailsAPI {
     }
 
     /**
-     * enum for parameter fieldsGameCenterAchievementReleases
+     * enum for parameter fieldsGameCenterAchievements
      */
-    public enum FieldsGameCenterAchievementReleases_gameCenterDetailsGameCenterAchievementsGetToManyRelated: String, CaseIterable {
-        case gamecenterachievement = "gameCenterAchievement"
-        case gamecenterdetail = "gameCenterDetail"
-        case live = "live"
-    }
-
-    /**
-     * enum for parameter fieldsGameCenterGroups
-     */
-    public enum FieldsGameCenterGroups_gameCenterDetailsGameCenterAchievementsGetToManyRelated: String, CaseIterable {
-        case gamecenterachievements = "gameCenterAchievements"
-        case gamecenterdetails = "gameCenterDetails"
-        case gamecenterleaderboardsets = "gameCenterLeaderboardSets"
-        case gamecenterleaderboards = "gameCenterLeaderboards"
+    public enum FieldsGameCenterAchievements_gameCenterDetailsGameCenterAchievementsGetToManyRelated: String, CaseIterable {
         case referencename = "referenceName"
+        case vendoridentifier = "vendorIdentifier"
+        case points = "points"
+        case showbeforeearned = "showBeforeEarned"
+        case repeatable = "repeatable"
+        case archived = "archived"
+        case gamecenterdetail = "gameCenterDetail"
+        case gamecentergroup = "gameCenterGroup"
+        case groupachievement = "groupAchievement"
+        case localizations = "localizations"
+        case releases = "releases"
     }
 
     /**
      * enum for parameter fieldsGameCenterDetails
      */
     public enum FieldsGameCenterDetails_gameCenterDetailsGameCenterAchievementsGetToManyRelated: String, CaseIterable {
-        case achievementreleases = "achievementReleases"
-        case app = "app"
         case arcadeenabled = "arcadeEnabled"
         case challengeenabled = "challengeEnabled"
-        case defaultgroupleaderboard = "defaultGroupLeaderboard"
-        case defaultleaderboard = "defaultLeaderboard"
-        case gamecenterachievements = "gameCenterAchievements"
+        case app = "app"
         case gamecenterappversions = "gameCenterAppVersions"
         case gamecentergroup = "gameCenterGroup"
-        case gamecenterleaderboardsets = "gameCenterLeaderboardSets"
         case gamecenterleaderboards = "gameCenterLeaderboards"
+        case gamecenterleaderboardsets = "gameCenterLeaderboardSets"
+        case gamecenterachievements = "gameCenterAchievements"
+        case defaultleaderboard = "defaultLeaderboard"
+        case defaultgroupleaderboard = "defaultGroupLeaderboard"
+        case achievementreleases = "achievementReleases"
         case leaderboardreleases = "leaderboardReleases"
         case leaderboardsetreleases = "leaderboardSetReleases"
+    }
+
+    /**
+     * enum for parameter fieldsGameCenterGroups
+     */
+    public enum FieldsGameCenterGroups_gameCenterDetailsGameCenterAchievementsGetToManyRelated: String, CaseIterable {
+        case referencename = "referenceName"
+        case gamecenterdetails = "gameCenterDetails"
+        case gamecenterleaderboards = "gameCenterLeaderboards"
+        case gamecenterleaderboardsets = "gameCenterLeaderboardSets"
+        case gamecenterachievements = "gameCenterAchievements"
     }
 
     /**
      * enum for parameter fieldsGameCenterAchievementLocalizations
      */
     public enum FieldsGameCenterAchievementLocalizations_gameCenterDetailsGameCenterAchievementsGetToManyRelated: String, CaseIterable {
-        case afterearneddescription = "afterEarnedDescription"
-        case beforeearneddescription = "beforeEarnedDescription"
-        case gamecenterachievement = "gameCenterAchievement"
-        case gamecenterachievementimage = "gameCenterAchievementImage"
         case locale = "locale"
         case name = "name"
+        case beforeearneddescription = "beforeEarnedDescription"
+        case afterearneddescription = "afterEarnedDescription"
+        case gamecenterachievement = "gameCenterAchievement"
+        case gamecenterachievementimage = "gameCenterAchievementImage"
     }
 
     /**
-     * enum for parameter fieldsGameCenterAchievements
+     * enum for parameter fieldsGameCenterAchievementReleases
      */
-    public enum FieldsGameCenterAchievements_gameCenterDetailsGameCenterAchievementsGetToManyRelated: String, CaseIterable {
-        case archived = "archived"
+    public enum FieldsGameCenterAchievementReleases_gameCenterDetailsGameCenterAchievementsGetToManyRelated: String, CaseIterable {
+        case live = "live"
         case gamecenterdetail = "gameCenterDetail"
-        case gamecentergroup = "gameCenterGroup"
-        case groupachievement = "groupAchievement"
-        case localizations = "localizations"
-        case points = "points"
-        case referencename = "referenceName"
-        case releases = "releases"
-        case repeatable = "repeatable"
-        case showbeforeearned = "showBeforeEarned"
-        case vendoridentifier = "vendorIdentifier"
+        case gamecenterachievement = "gameCenterAchievement"
     }
 
     /**
@@ -427,23 +427,23 @@ open class GameCenterDetailsAPI {
     /**
 
      - parameter id: (path) the id of the requested resource 
-     - parameter filterArchived: (query) filter by attribute &#39;archived&#39; (optional)
      - parameter filterReferenceName: (query) filter by attribute &#39;referenceName&#39; (optional)
+     - parameter filterArchived: (query) filter by attribute &#39;archived&#39; (optional)
      - parameter filterId: (query) filter by id(s) (optional)
-     - parameter fieldsGameCenterAchievementReleases: (query) the fields to include for returned resources of type gameCenterAchievementReleases (optional)
-     - parameter fieldsGameCenterGroups: (query) the fields to include for returned resources of type gameCenterGroups (optional)
-     - parameter fieldsGameCenterDetails: (query) the fields to include for returned resources of type gameCenterDetails (optional)
-     - parameter fieldsGameCenterAchievementLocalizations: (query) the fields to include for returned resources of type gameCenterAchievementLocalizations (optional)
      - parameter fieldsGameCenterAchievements: (query) the fields to include for returned resources of type gameCenterAchievements (optional)
+     - parameter fieldsGameCenterDetails: (query) the fields to include for returned resources of type gameCenterDetails (optional)
+     - parameter fieldsGameCenterGroups: (query) the fields to include for returned resources of type gameCenterGroups (optional)
+     - parameter fieldsGameCenterAchievementLocalizations: (query) the fields to include for returned resources of type gameCenterAchievementLocalizations (optional)
+     - parameter fieldsGameCenterAchievementReleases: (query) the fields to include for returned resources of type gameCenterAchievementReleases (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitLocalizations: (query) maximum number of related localizations returned (when they are included) (optional)
      - parameter limitReleases: (query) maximum number of related releases returned (when they are included) (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: GameCenterAchievementsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterDetailsGameCenterAchievementsGetToManyRelated(id: String, filterArchived: [String]? = nil, filterReferenceName: [String]? = nil, filterId: [String]? = nil, fieldsGameCenterAchievementReleases: [FieldsGameCenterAchievementReleases_gameCenterDetailsGameCenterAchievementsGetToManyRelated]? = nil, fieldsGameCenterGroups: [FieldsGameCenterGroups_gameCenterDetailsGameCenterAchievementsGetToManyRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterDetailsGameCenterAchievementsGetToManyRelated]? = nil, fieldsGameCenterAchievementLocalizations: [FieldsGameCenterAchievementLocalizations_gameCenterDetailsGameCenterAchievementsGetToManyRelated]? = nil, fieldsGameCenterAchievements: [FieldsGameCenterAchievements_gameCenterDetailsGameCenterAchievementsGetToManyRelated]? = nil, limit: Int? = nil, limitLocalizations: Int? = nil, limitReleases: Int? = nil, include: [Include_gameCenterDetailsGameCenterAchievementsGetToManyRelated]? = nil) async throws -> GameCenterAchievementsResponse {
-        return try await gameCenterDetailsGameCenterAchievementsGetToManyRelatedWithRequestBuilder(id: id, filterArchived: filterArchived, filterReferenceName: filterReferenceName, filterId: filterId, fieldsGameCenterAchievementReleases: fieldsGameCenterAchievementReleases, fieldsGameCenterGroups: fieldsGameCenterGroups, fieldsGameCenterDetails: fieldsGameCenterDetails, fieldsGameCenterAchievementLocalizations: fieldsGameCenterAchievementLocalizations, fieldsGameCenterAchievements: fieldsGameCenterAchievements, limit: limit, limitLocalizations: limitLocalizations, limitReleases: limitReleases, include: include).execute().body
+    open class func gameCenterDetailsGameCenterAchievementsGetToManyRelated(id: String, filterReferenceName: [String]? = nil, filterArchived: [String]? = nil, filterId: [String]? = nil, fieldsGameCenterAchievements: [FieldsGameCenterAchievements_gameCenterDetailsGameCenterAchievementsGetToManyRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterDetailsGameCenterAchievementsGetToManyRelated]? = nil, fieldsGameCenterGroups: [FieldsGameCenterGroups_gameCenterDetailsGameCenterAchievementsGetToManyRelated]? = nil, fieldsGameCenterAchievementLocalizations: [FieldsGameCenterAchievementLocalizations_gameCenterDetailsGameCenterAchievementsGetToManyRelated]? = nil, fieldsGameCenterAchievementReleases: [FieldsGameCenterAchievementReleases_gameCenterDetailsGameCenterAchievementsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_gameCenterDetailsGameCenterAchievementsGetToManyRelated]? = nil, limitLocalizations: Int? = nil, limitReleases: Int? = nil) async throws -> GameCenterAchievementsResponse {
+        return try await gameCenterDetailsGameCenterAchievementsGetToManyRelatedWithRequestBuilder(id: id, filterReferenceName: filterReferenceName, filterArchived: filterArchived, filterId: filterId, fieldsGameCenterAchievements: fieldsGameCenterAchievements, fieldsGameCenterDetails: fieldsGameCenterDetails, fieldsGameCenterGroups: fieldsGameCenterGroups, fieldsGameCenterAchievementLocalizations: fieldsGameCenterAchievementLocalizations, fieldsGameCenterAchievementReleases: fieldsGameCenterAchievementReleases, limit: limit, include: include, limitLocalizations: limitLocalizations, limitReleases: limitReleases).execute().body
     }
 
     /**
@@ -461,21 +461,21 @@ open class GameCenterDetailsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
-     - parameter filterArchived: (query) filter by attribute &#39;archived&#39; (optional)
      - parameter filterReferenceName: (query) filter by attribute &#39;referenceName&#39; (optional)
+     - parameter filterArchived: (query) filter by attribute &#39;archived&#39; (optional)
      - parameter filterId: (query) filter by id(s) (optional)
-     - parameter fieldsGameCenterAchievementReleases: (query) the fields to include for returned resources of type gameCenterAchievementReleases (optional)
-     - parameter fieldsGameCenterGroups: (query) the fields to include for returned resources of type gameCenterGroups (optional)
-     - parameter fieldsGameCenterDetails: (query) the fields to include for returned resources of type gameCenterDetails (optional)
-     - parameter fieldsGameCenterAchievementLocalizations: (query) the fields to include for returned resources of type gameCenterAchievementLocalizations (optional)
      - parameter fieldsGameCenterAchievements: (query) the fields to include for returned resources of type gameCenterAchievements (optional)
+     - parameter fieldsGameCenterDetails: (query) the fields to include for returned resources of type gameCenterDetails (optional)
+     - parameter fieldsGameCenterGroups: (query) the fields to include for returned resources of type gameCenterGroups (optional)
+     - parameter fieldsGameCenterAchievementLocalizations: (query) the fields to include for returned resources of type gameCenterAchievementLocalizations (optional)
+     - parameter fieldsGameCenterAchievementReleases: (query) the fields to include for returned resources of type gameCenterAchievementReleases (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitLocalizations: (query) maximum number of related localizations returned (when they are included) (optional)
      - parameter limitReleases: (query) maximum number of related releases returned (when they are included) (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: RequestBuilder<GameCenterAchievementsResponse> 
      */
-    open class func gameCenterDetailsGameCenterAchievementsGetToManyRelatedWithRequestBuilder(id: String, filterArchived: [String]? = nil, filterReferenceName: [String]? = nil, filterId: [String]? = nil, fieldsGameCenterAchievementReleases: [FieldsGameCenterAchievementReleases_gameCenterDetailsGameCenterAchievementsGetToManyRelated]? = nil, fieldsGameCenterGroups: [FieldsGameCenterGroups_gameCenterDetailsGameCenterAchievementsGetToManyRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterDetailsGameCenterAchievementsGetToManyRelated]? = nil, fieldsGameCenterAchievementLocalizations: [FieldsGameCenterAchievementLocalizations_gameCenterDetailsGameCenterAchievementsGetToManyRelated]? = nil, fieldsGameCenterAchievements: [FieldsGameCenterAchievements_gameCenterDetailsGameCenterAchievementsGetToManyRelated]? = nil, limit: Int? = nil, limitLocalizations: Int? = nil, limitReleases: Int? = nil, include: [Include_gameCenterDetailsGameCenterAchievementsGetToManyRelated]? = nil) -> RequestBuilder<GameCenterAchievementsResponse> {
+    open class func gameCenterDetailsGameCenterAchievementsGetToManyRelatedWithRequestBuilder(id: String, filterReferenceName: [String]? = nil, filterArchived: [String]? = nil, filterId: [String]? = nil, fieldsGameCenterAchievements: [FieldsGameCenterAchievements_gameCenterDetailsGameCenterAchievementsGetToManyRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterDetailsGameCenterAchievementsGetToManyRelated]? = nil, fieldsGameCenterGroups: [FieldsGameCenterGroups_gameCenterDetailsGameCenterAchievementsGetToManyRelated]? = nil, fieldsGameCenterAchievementLocalizations: [FieldsGameCenterAchievementLocalizations_gameCenterDetailsGameCenterAchievementsGetToManyRelated]? = nil, fieldsGameCenterAchievementReleases: [FieldsGameCenterAchievementReleases_gameCenterDetailsGameCenterAchievementsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_gameCenterDetailsGameCenterAchievementsGetToManyRelated]? = nil, limitLocalizations: Int? = nil, limitReleases: Int? = nil) -> RequestBuilder<GameCenterAchievementsResponse> {
         var localVariablePath = "/v1/gameCenterDetails/{id}/gameCenterAchievements"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -485,18 +485,18 @@ open class GameCenterDetailsAPI {
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[archived]": (wrappedValue: filterArchived?.encodeToJSON(), isExplode: false),
             "filter[referenceName]": (wrappedValue: filterReferenceName?.encodeToJSON(), isExplode: false),
+            "filter[archived]": (wrappedValue: filterArchived?.encodeToJSON(), isExplode: false),
             "filter[id]": (wrappedValue: filterId?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterAchievementReleases]": (wrappedValue: fieldsGameCenterAchievementReleases?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterGroups]": (wrappedValue: fieldsGameCenterGroups?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterDetails]": (wrappedValue: fieldsGameCenterDetails?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterAchievementLocalizations]": (wrappedValue: fieldsGameCenterAchievementLocalizations?.encodeToJSON(), isExplode: false),
             "fields[gameCenterAchievements]": (wrappedValue: fieldsGameCenterAchievements?.encodeToJSON(), isExplode: false),
+            "fields[gameCenterDetails]": (wrappedValue: fieldsGameCenterDetails?.encodeToJSON(), isExplode: false),
+            "fields[gameCenterGroups]": (wrappedValue: fieldsGameCenterGroups?.encodeToJSON(), isExplode: false),
+            "fields[gameCenterAchievementLocalizations]": (wrappedValue: fieldsGameCenterAchievementLocalizations?.encodeToJSON(), isExplode: false),
+            "fields[gameCenterAchievementReleases]": (wrappedValue: fieldsGameCenterAchievementReleases?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "limit[localizations]": (wrappedValue: limitLocalizations?.encodeToJSON(), isExplode: true),
             "limit[releases]": (wrappedValue: limitReleases?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -674,65 +674,66 @@ open class GameCenterDetailsAPI {
     }
 
     /**
-     * enum for parameter fieldsAppStoreVersions
-     */
-    public enum FieldsAppStoreVersions_gameCenterDetailsGameCenterAppVersionsGetToManyRelated: String, CaseIterable {
-        case ageratingdeclaration = "ageRatingDeclaration"
-        case alternativedistributionpackage = "alternativeDistributionPackage"
-        case app = "app"
-        case appclipdefaultexperience = "appClipDefaultExperience"
-        case appstorereviewdetail = "appStoreReviewDetail"
-        case appstorestate = "appStoreState"
-        case appstoreversionexperiments = "appStoreVersionExperiments"
-        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
-        case appstoreversionlocalizations = "appStoreVersionLocalizations"
-        case appstoreversionphasedrelease = "appStoreVersionPhasedRelease"
-        case appstoreversionsubmission = "appStoreVersionSubmission"
-        case appversionstate = "appVersionState"
-        case build = "build"
-        case copyright = "copyright"
-        case createddate = "createdDate"
-        case customerreviews = "customerReviews"
-        case downloadable = "downloadable"
-        case earliestreleasedate = "earliestReleaseDate"
-        case platform = "platform"
-        case releasetype = "releaseType"
-        case reviewtype = "reviewType"
-        case routingappcoverage = "routingAppCoverage"
-        case versionstring = "versionString"
-    }
-
-    /**
      * enum for parameter fieldsGameCenterAppVersions
      */
     public enum FieldsGameCenterAppVersions_gameCenterDetailsGameCenterAppVersionsGetToManyRelated: String, CaseIterable {
-        case appstoreversion = "appStoreVersion"
-        case compatibilityversions = "compatibilityVersions"
         case enabled = "enabled"
+        case compatibilityversions = "compatibilityVersions"
+        case appstoreversion = "appStoreVersion"
+    }
+
+    /**
+     * enum for parameter fieldsAppStoreVersions
+     */
+    public enum FieldsAppStoreVersions_gameCenterDetailsGameCenterAppVersionsGetToManyRelated: String, CaseIterable {
+        case platform = "platform"
+        case versionstring = "versionString"
+        case appstorestate = "appStoreState"
+        case appversionstate = "appVersionState"
+        case copyright = "copyright"
+        case reviewtype = "reviewType"
+        case releasetype = "releaseType"
+        case earliestreleasedate = "earliestReleaseDate"
+        case downloadable = "downloadable"
+        case createddate = "createdDate"
+        case app = "app"
+        case ageratingdeclaration = "ageRatingDeclaration"
+        case appstoreversionlocalizations = "appStoreVersionLocalizations"
+        case build = "build"
+        case appstoreversionphasedrelease = "appStoreVersionPhasedRelease"
+        case gamecenterappversion = "gameCenterAppVersion"
+        case routingappcoverage = "routingAppCoverage"
+        case appstorereviewdetail = "appStoreReviewDetail"
+        case appstoreversionsubmission = "appStoreVersionSubmission"
+        case appclipdefaultexperience = "appClipDefaultExperience"
+        case appstoreversionexperiments = "appStoreVersionExperiments"
+        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
+        case customerreviews = "customerReviews"
+        case alternativedistributionpackage = "alternativeDistributionPackage"
     }
 
     /**
      * enum for parameter include
      */
     public enum Include_gameCenterDetailsGameCenterAppVersionsGetToManyRelated: String, CaseIterable {
-        case appstoreversion = "appStoreVersion"
         case compatibilityversions = "compatibilityVersions"
+        case appstoreversion = "appStoreVersion"
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter filterEnabled: (query) filter by attribute &#39;enabled&#39; (optional)
-     - parameter fieldsAppStoreVersions: (query) the fields to include for returned resources of type appStoreVersions (optional)
      - parameter fieldsGameCenterAppVersions: (query) the fields to include for returned resources of type gameCenterAppVersions (optional)
+     - parameter fieldsAppStoreVersions: (query) the fields to include for returned resources of type appStoreVersions (optional)
      - parameter limit: (query) maximum resources per page (optional)
-     - parameter limitCompatibilityVersions: (query) maximum number of related compatibilityVersions returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitCompatibilityVersions: (query) maximum number of related compatibilityVersions returned (when they are included) (optional)
      - returns: GameCenterAppVersionsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterDetailsGameCenterAppVersionsGetToManyRelated(id: String, filterEnabled: [String]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_gameCenterDetailsGameCenterAppVersionsGetToManyRelated]? = nil, fieldsGameCenterAppVersions: [FieldsGameCenterAppVersions_gameCenterDetailsGameCenterAppVersionsGetToManyRelated]? = nil, limit: Int? = nil, limitCompatibilityVersions: Int? = nil, include: [Include_gameCenterDetailsGameCenterAppVersionsGetToManyRelated]? = nil) async throws -> GameCenterAppVersionsResponse {
-        return try await gameCenterDetailsGameCenterAppVersionsGetToManyRelatedWithRequestBuilder(id: id, filterEnabled: filterEnabled, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsGameCenterAppVersions: fieldsGameCenterAppVersions, limit: limit, limitCompatibilityVersions: limitCompatibilityVersions, include: include).execute().body
+    open class func gameCenterDetailsGameCenterAppVersionsGetToManyRelated(id: String, filterEnabled: [String]? = nil, fieldsGameCenterAppVersions: [FieldsGameCenterAppVersions_gameCenterDetailsGameCenterAppVersionsGetToManyRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_gameCenterDetailsGameCenterAppVersionsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_gameCenterDetailsGameCenterAppVersionsGetToManyRelated]? = nil, limitCompatibilityVersions: Int? = nil) async throws -> GameCenterAppVersionsResponse {
+        return try await gameCenterDetailsGameCenterAppVersionsGetToManyRelatedWithRequestBuilder(id: id, filterEnabled: filterEnabled, fieldsGameCenterAppVersions: fieldsGameCenterAppVersions, fieldsAppStoreVersions: fieldsAppStoreVersions, limit: limit, include: include, limitCompatibilityVersions: limitCompatibilityVersions).execute().body
     }
 
     /**
@@ -751,14 +752,14 @@ open class GameCenterDetailsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter filterEnabled: (query) filter by attribute &#39;enabled&#39; (optional)
-     - parameter fieldsAppStoreVersions: (query) the fields to include for returned resources of type appStoreVersions (optional)
      - parameter fieldsGameCenterAppVersions: (query) the fields to include for returned resources of type gameCenterAppVersions (optional)
+     - parameter fieldsAppStoreVersions: (query) the fields to include for returned resources of type appStoreVersions (optional)
      - parameter limit: (query) maximum resources per page (optional)
-     - parameter limitCompatibilityVersions: (query) maximum number of related compatibilityVersions returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitCompatibilityVersions: (query) maximum number of related compatibilityVersions returned (when they are included) (optional)
      - returns: RequestBuilder<GameCenterAppVersionsResponse> 
      */
-    open class func gameCenterDetailsGameCenterAppVersionsGetToManyRelatedWithRequestBuilder(id: String, filterEnabled: [String]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_gameCenterDetailsGameCenterAppVersionsGetToManyRelated]? = nil, fieldsGameCenterAppVersions: [FieldsGameCenterAppVersions_gameCenterDetailsGameCenterAppVersionsGetToManyRelated]? = nil, limit: Int? = nil, limitCompatibilityVersions: Int? = nil, include: [Include_gameCenterDetailsGameCenterAppVersionsGetToManyRelated]? = nil) -> RequestBuilder<GameCenterAppVersionsResponse> {
+    open class func gameCenterDetailsGameCenterAppVersionsGetToManyRelatedWithRequestBuilder(id: String, filterEnabled: [String]? = nil, fieldsGameCenterAppVersions: [FieldsGameCenterAppVersions_gameCenterDetailsGameCenterAppVersionsGetToManyRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_gameCenterDetailsGameCenterAppVersionsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_gameCenterDetailsGameCenterAppVersionsGetToManyRelated]? = nil, limitCompatibilityVersions: Int? = nil) -> RequestBuilder<GameCenterAppVersionsResponse> {
         var localVariablePath = "/v1/gameCenterDetails/{id}/gameCenterAppVersions"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -769,11 +770,11 @@ open class GameCenterDetailsAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "filter[enabled]": (wrappedValue: filterEnabled?.encodeToJSON(), isExplode: false),
-            "fields[appStoreVersions]": (wrappedValue: fieldsAppStoreVersions?.encodeToJSON(), isExplode: false),
             "fields[gameCenterAppVersions]": (wrappedValue: fieldsGameCenterAppVersions?.encodeToJSON(), isExplode: false),
+            "fields[appStoreVersions]": (wrappedValue: fieldsAppStoreVersions?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "limit[compatibilityVersions]": (wrappedValue: limitCompatibilityVersions?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "limit[compatibilityVersions]": (wrappedValue: limitCompatibilityVersions?.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -808,45 +809,31 @@ open class GameCenterDetailsAPI {
     }
 
     /**
-     * enum for parameter fieldsGameCenterLeaderboardSets
-     */
-    public enum FieldsGameCenterLeaderboardSets_gameCenterDetailsGameCenterGroupGetToOneRelated: String, CaseIterable {
-        case gamecenterdetail = "gameCenterDetail"
-        case gamecentergroup = "gameCenterGroup"
-        case gamecenterleaderboards = "gameCenterLeaderboards"
-        case groupleaderboardset = "groupLeaderboardSet"
-        case localizations = "localizations"
-        case referencename = "referenceName"
-        case releases = "releases"
-        case vendoridentifier = "vendorIdentifier"
-    }
-
-    /**
      * enum for parameter fieldsGameCenterGroups
      */
     public enum FieldsGameCenterGroups_gameCenterDetailsGameCenterGroupGetToOneRelated: String, CaseIterable {
-        case gamecenterachievements = "gameCenterAchievements"
-        case gamecenterdetails = "gameCenterDetails"
-        case gamecenterleaderboardsets = "gameCenterLeaderboardSets"
-        case gamecenterleaderboards = "gameCenterLeaderboards"
         case referencename = "referenceName"
+        case gamecenterdetails = "gameCenterDetails"
+        case gamecenterleaderboards = "gameCenterLeaderboards"
+        case gamecenterleaderboardsets = "gameCenterLeaderboardSets"
+        case gamecenterachievements = "gameCenterAchievements"
     }
 
     /**
      * enum for parameter fieldsGameCenterDetails
      */
     public enum FieldsGameCenterDetails_gameCenterDetailsGameCenterGroupGetToOneRelated: String, CaseIterable {
-        case achievementreleases = "achievementReleases"
-        case app = "app"
         case arcadeenabled = "arcadeEnabled"
         case challengeenabled = "challengeEnabled"
-        case defaultgroupleaderboard = "defaultGroupLeaderboard"
-        case defaultleaderboard = "defaultLeaderboard"
-        case gamecenterachievements = "gameCenterAchievements"
+        case app = "app"
         case gamecenterappversions = "gameCenterAppVersions"
         case gamecentergroup = "gameCenterGroup"
-        case gamecenterleaderboardsets = "gameCenterLeaderboardSets"
         case gamecenterleaderboards = "gameCenterLeaderboards"
+        case gamecenterleaderboardsets = "gameCenterLeaderboardSets"
+        case gamecenterachievements = "gameCenterAchievements"
+        case defaultleaderboard = "defaultLeaderboard"
+        case defaultgroupleaderboard = "defaultGroupLeaderboard"
+        case achievementreleases = "achievementReleases"
         case leaderboardreleases = "leaderboardReleases"
         case leaderboardsetreleases = "leaderboardSetReleases"
     }
@@ -855,70 +842,84 @@ open class GameCenterDetailsAPI {
      * enum for parameter fieldsGameCenterLeaderboards
      */
     public enum FieldsGameCenterLeaderboards_gameCenterDetailsGameCenterGroupGetToOneRelated: String, CaseIterable {
-        case archived = "archived"
         case defaultformatter = "defaultFormatter"
-        case gamecenterdetail = "gameCenterDetail"
-        case gamecentergroup = "gameCenterGroup"
-        case gamecenterleaderboardsets = "gameCenterLeaderboardSets"
-        case groupleaderboard = "groupLeaderboard"
-        case localizations = "localizations"
+        case referencename = "referenceName"
+        case vendoridentifier = "vendorIdentifier"
+        case submissiontype = "submissionType"
+        case scoresorttype = "scoreSortType"
+        case scorerangestart = "scoreRangeStart"
+        case scorerangeend = "scoreRangeEnd"
+        case recurrencestartdate = "recurrenceStartDate"
         case recurrenceduration = "recurrenceDuration"
         case recurrencerule = "recurrenceRule"
-        case recurrencestartdate = "recurrenceStartDate"
-        case referencename = "referenceName"
+        case archived = "archived"
+        case gamecenterdetail = "gameCenterDetail"
+        case gamecentergroup = "gameCenterGroup"
+        case groupleaderboard = "groupLeaderboard"
+        case gamecenterleaderboardsets = "gameCenterLeaderboardSets"
+        case localizations = "localizations"
         case releases = "releases"
-        case scorerangeend = "scoreRangeEnd"
-        case scorerangestart = "scoreRangeStart"
-        case scoresorttype = "scoreSortType"
-        case submissiontype = "submissionType"
+    }
+
+    /**
+     * enum for parameter fieldsGameCenterLeaderboardSets
+     */
+    public enum FieldsGameCenterLeaderboardSets_gameCenterDetailsGameCenterGroupGetToOneRelated: String, CaseIterable {
+        case referencename = "referenceName"
         case vendoridentifier = "vendorIdentifier"
+        case gamecenterdetail = "gameCenterDetail"
+        case gamecentergroup = "gameCenterGroup"
+        case groupleaderboardset = "groupLeaderboardSet"
+        case localizations = "localizations"
+        case gamecenterleaderboards = "gameCenterLeaderboards"
+        case releases = "releases"
     }
 
     /**
      * enum for parameter fieldsGameCenterAchievements
      */
     public enum FieldsGameCenterAchievements_gameCenterDetailsGameCenterGroupGetToOneRelated: String, CaseIterable {
+        case referencename = "referenceName"
+        case vendoridentifier = "vendorIdentifier"
+        case points = "points"
+        case showbeforeearned = "showBeforeEarned"
+        case repeatable = "repeatable"
         case archived = "archived"
         case gamecenterdetail = "gameCenterDetail"
         case gamecentergroup = "gameCenterGroup"
         case groupachievement = "groupAchievement"
         case localizations = "localizations"
-        case points = "points"
-        case referencename = "referenceName"
         case releases = "releases"
-        case repeatable = "repeatable"
-        case showbeforeearned = "showBeforeEarned"
-        case vendoridentifier = "vendorIdentifier"
     }
 
     /**
      * enum for parameter include
      */
     public enum Include_gameCenterDetailsGameCenterGroupGetToOneRelated: String, CaseIterable {
-        case gamecenterachievements = "gameCenterAchievements"
         case gamecenterdetails = "gameCenterDetails"
-        case gamecenterleaderboardsets = "gameCenterLeaderboardSets"
         case gamecenterleaderboards = "gameCenterLeaderboards"
+        case gamecenterleaderboardsets = "gameCenterLeaderboardSets"
+        case gamecenterachievements = "gameCenterAchievements"
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
-     - parameter fieldsGameCenterLeaderboardSets: (query) the fields to include for returned resources of type gameCenterLeaderboardSets (optional)
      - parameter fieldsGameCenterGroups: (query) the fields to include for returned resources of type gameCenterGroups (optional)
      - parameter fieldsGameCenterDetails: (query) the fields to include for returned resources of type gameCenterDetails (optional)
      - parameter fieldsGameCenterLeaderboards: (query) the fields to include for returned resources of type gameCenterLeaderboards (optional)
+     - parameter fieldsGameCenterLeaderboardSets: (query) the fields to include for returned resources of type gameCenterLeaderboardSets (optional)
      - parameter fieldsGameCenterAchievements: (query) the fields to include for returned resources of type gameCenterAchievements (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitGameCenterDetails: (query) maximum number of related gameCenterDetails returned (when they are included) (optional)
      - parameter limitGameCenterLeaderboards: (query) maximum number of related gameCenterLeaderboards returned (when they are included) (optional)
      - parameter limitGameCenterLeaderboardSets: (query) maximum number of related gameCenterLeaderboardSets returned (when they are included) (optional)
      - parameter limitGameCenterAchievements: (query) maximum number of related gameCenterAchievements returned (when they are included) (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: GameCenterGroupResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterDetailsGameCenterGroupGetToOneRelated(id: String, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_gameCenterDetailsGameCenterGroupGetToOneRelated]? = nil, fieldsGameCenterGroups: [FieldsGameCenterGroups_gameCenterDetailsGameCenterGroupGetToOneRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterDetailsGameCenterGroupGetToOneRelated]? = nil, fieldsGameCenterLeaderboards: [FieldsGameCenterLeaderboards_gameCenterDetailsGameCenterGroupGetToOneRelated]? = nil, fieldsGameCenterAchievements: [FieldsGameCenterAchievements_gameCenterDetailsGameCenterGroupGetToOneRelated]? = nil, limitGameCenterDetails: Int? = nil, limitGameCenterLeaderboards: Int? = nil, limitGameCenterLeaderboardSets: Int? = nil, limitGameCenterAchievements: Int? = nil, include: [Include_gameCenterDetailsGameCenterGroupGetToOneRelated]? = nil) async throws -> GameCenterGroupResponse {
-        return try await gameCenterDetailsGameCenterGroupGetToOneRelatedWithRequestBuilder(id: id, fieldsGameCenterLeaderboardSets: fieldsGameCenterLeaderboardSets, fieldsGameCenterGroups: fieldsGameCenterGroups, fieldsGameCenterDetails: fieldsGameCenterDetails, fieldsGameCenterLeaderboards: fieldsGameCenterLeaderboards, fieldsGameCenterAchievements: fieldsGameCenterAchievements, limitGameCenterDetails: limitGameCenterDetails, limitGameCenterLeaderboards: limitGameCenterLeaderboards, limitGameCenterLeaderboardSets: limitGameCenterLeaderboardSets, limitGameCenterAchievements: limitGameCenterAchievements, include: include).execute().body
+    open class func gameCenterDetailsGameCenterGroupGetToOneRelated(id: String, fieldsGameCenterGroups: [FieldsGameCenterGroups_gameCenterDetailsGameCenterGroupGetToOneRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterDetailsGameCenterGroupGetToOneRelated]? = nil, fieldsGameCenterLeaderboards: [FieldsGameCenterLeaderboards_gameCenterDetailsGameCenterGroupGetToOneRelated]? = nil, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_gameCenterDetailsGameCenterGroupGetToOneRelated]? = nil, fieldsGameCenterAchievements: [FieldsGameCenterAchievements_gameCenterDetailsGameCenterGroupGetToOneRelated]? = nil, include: [Include_gameCenterDetailsGameCenterGroupGetToOneRelated]? = nil, limitGameCenterDetails: Int? = nil, limitGameCenterLeaderboards: Int? = nil, limitGameCenterLeaderboardSets: Int? = nil, limitGameCenterAchievements: Int? = nil) async throws -> GameCenterGroupResponse {
+        return try await gameCenterDetailsGameCenterGroupGetToOneRelatedWithRequestBuilder(id: id, fieldsGameCenterGroups: fieldsGameCenterGroups, fieldsGameCenterDetails: fieldsGameCenterDetails, fieldsGameCenterLeaderboards: fieldsGameCenterLeaderboards, fieldsGameCenterLeaderboardSets: fieldsGameCenterLeaderboardSets, fieldsGameCenterAchievements: fieldsGameCenterAchievements, include: include, limitGameCenterDetails: limitGameCenterDetails, limitGameCenterLeaderboards: limitGameCenterLeaderboards, limitGameCenterLeaderboardSets: limitGameCenterLeaderboardSets, limitGameCenterAchievements: limitGameCenterAchievements).execute().body
     }
 
     /**
@@ -936,19 +937,19 @@ open class GameCenterDetailsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
-     - parameter fieldsGameCenterLeaderboardSets: (query) the fields to include for returned resources of type gameCenterLeaderboardSets (optional)
      - parameter fieldsGameCenterGroups: (query) the fields to include for returned resources of type gameCenterGroups (optional)
      - parameter fieldsGameCenterDetails: (query) the fields to include for returned resources of type gameCenterDetails (optional)
      - parameter fieldsGameCenterLeaderboards: (query) the fields to include for returned resources of type gameCenterLeaderboards (optional)
+     - parameter fieldsGameCenterLeaderboardSets: (query) the fields to include for returned resources of type gameCenterLeaderboardSets (optional)
      - parameter fieldsGameCenterAchievements: (query) the fields to include for returned resources of type gameCenterAchievements (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitGameCenterDetails: (query) maximum number of related gameCenterDetails returned (when they are included) (optional)
      - parameter limitGameCenterLeaderboards: (query) maximum number of related gameCenterLeaderboards returned (when they are included) (optional)
      - parameter limitGameCenterLeaderboardSets: (query) maximum number of related gameCenterLeaderboardSets returned (when they are included) (optional)
      - parameter limitGameCenterAchievements: (query) maximum number of related gameCenterAchievements returned (when they are included) (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: RequestBuilder<GameCenterGroupResponse> 
      */
-    open class func gameCenterDetailsGameCenterGroupGetToOneRelatedWithRequestBuilder(id: String, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_gameCenterDetailsGameCenterGroupGetToOneRelated]? = nil, fieldsGameCenterGroups: [FieldsGameCenterGroups_gameCenterDetailsGameCenterGroupGetToOneRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterDetailsGameCenterGroupGetToOneRelated]? = nil, fieldsGameCenterLeaderboards: [FieldsGameCenterLeaderboards_gameCenterDetailsGameCenterGroupGetToOneRelated]? = nil, fieldsGameCenterAchievements: [FieldsGameCenterAchievements_gameCenterDetailsGameCenterGroupGetToOneRelated]? = nil, limitGameCenterDetails: Int? = nil, limitGameCenterLeaderboards: Int? = nil, limitGameCenterLeaderboardSets: Int? = nil, limitGameCenterAchievements: Int? = nil, include: [Include_gameCenterDetailsGameCenterGroupGetToOneRelated]? = nil) -> RequestBuilder<GameCenterGroupResponse> {
+    open class func gameCenterDetailsGameCenterGroupGetToOneRelatedWithRequestBuilder(id: String, fieldsGameCenterGroups: [FieldsGameCenterGroups_gameCenterDetailsGameCenterGroupGetToOneRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterDetailsGameCenterGroupGetToOneRelated]? = nil, fieldsGameCenterLeaderboards: [FieldsGameCenterLeaderboards_gameCenterDetailsGameCenterGroupGetToOneRelated]? = nil, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_gameCenterDetailsGameCenterGroupGetToOneRelated]? = nil, fieldsGameCenterAchievements: [FieldsGameCenterAchievements_gameCenterDetailsGameCenterGroupGetToOneRelated]? = nil, include: [Include_gameCenterDetailsGameCenterGroupGetToOneRelated]? = nil, limitGameCenterDetails: Int? = nil, limitGameCenterLeaderboards: Int? = nil, limitGameCenterLeaderboardSets: Int? = nil, limitGameCenterAchievements: Int? = nil) -> RequestBuilder<GameCenterGroupResponse> {
         var localVariablePath = "/v1/gameCenterDetails/{id}/gameCenterGroup"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -958,16 +959,16 @@ open class GameCenterDetailsAPI {
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[gameCenterLeaderboardSets]": (wrappedValue: fieldsGameCenterLeaderboardSets?.encodeToJSON(), isExplode: false),
             "fields[gameCenterGroups]": (wrappedValue: fieldsGameCenterGroups?.encodeToJSON(), isExplode: false),
             "fields[gameCenterDetails]": (wrappedValue: fieldsGameCenterDetails?.encodeToJSON(), isExplode: false),
             "fields[gameCenterLeaderboards]": (wrappedValue: fieldsGameCenterLeaderboards?.encodeToJSON(), isExplode: false),
+            "fields[gameCenterLeaderboardSets]": (wrappedValue: fieldsGameCenterLeaderboardSets?.encodeToJSON(), isExplode: false),
             "fields[gameCenterAchievements]": (wrappedValue: fieldsGameCenterAchievements?.encodeToJSON(), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "limit[gameCenterDetails]": (wrappedValue: limitGameCenterDetails?.encodeToJSON(), isExplode: true),
             "limit[gameCenterLeaderboards]": (wrappedValue: limitGameCenterLeaderboards?.encodeToJSON(), isExplode: true),
             "limit[gameCenterLeaderboardSets]": (wrappedValue: limitGameCenterLeaderboardSets?.encodeToJSON(), isExplode: true),
             "limit[gameCenterAchievements]": (wrappedValue: limitGameCenterAchievements?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -1002,89 +1003,89 @@ open class GameCenterDetailsAPI {
     }
 
     /**
-     * enum for parameter fieldsGameCenterLeaderboardSetLocalizations
-     */
-    public enum FieldsGameCenterLeaderboardSetLocalizations_gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelated: String, CaseIterable {
-        case gamecenterleaderboardset = "gameCenterLeaderboardSet"
-        case gamecenterleaderboardsetimage = "gameCenterLeaderboardSetImage"
-        case locale = "locale"
-        case name = "name"
-    }
-
-    /**
-     * enum for parameter fieldsGameCenterLeaderboardSetReleases
-     */
-    public enum FieldsGameCenterLeaderboardSetReleases_gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelated: String, CaseIterable {
-        case gamecenterdetail = "gameCenterDetail"
-        case gamecenterleaderboardset = "gameCenterLeaderboardSet"
-        case live = "live"
-    }
-
-    /**
      * enum for parameter fieldsGameCenterLeaderboardSets
      */
     public enum FieldsGameCenterLeaderboardSets_gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelated: String, CaseIterable {
+        case referencename = "referenceName"
+        case vendoridentifier = "vendorIdentifier"
         case gamecenterdetail = "gameCenterDetail"
         case gamecentergroup = "gameCenterGroup"
-        case gamecenterleaderboards = "gameCenterLeaderboards"
         case groupleaderboardset = "groupLeaderboardSet"
         case localizations = "localizations"
-        case referencename = "referenceName"
-        case releases = "releases"
-        case vendoridentifier = "vendorIdentifier"
-    }
-
-    /**
-     * enum for parameter fieldsGameCenterGroups
-     */
-    public enum FieldsGameCenterGroups_gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelated: String, CaseIterable {
-        case gamecenterachievements = "gameCenterAchievements"
-        case gamecenterdetails = "gameCenterDetails"
-        case gamecenterleaderboardsets = "gameCenterLeaderboardSets"
         case gamecenterleaderboards = "gameCenterLeaderboards"
-        case referencename = "referenceName"
+        case releases = "releases"
     }
 
     /**
      * enum for parameter fieldsGameCenterDetails
      */
     public enum FieldsGameCenterDetails_gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelated: String, CaseIterable {
-        case achievementreleases = "achievementReleases"
-        case app = "app"
         case arcadeenabled = "arcadeEnabled"
         case challengeenabled = "challengeEnabled"
-        case defaultgroupleaderboard = "defaultGroupLeaderboard"
-        case defaultleaderboard = "defaultLeaderboard"
-        case gamecenterachievements = "gameCenterAchievements"
+        case app = "app"
         case gamecenterappversions = "gameCenterAppVersions"
         case gamecentergroup = "gameCenterGroup"
-        case gamecenterleaderboardsets = "gameCenterLeaderboardSets"
         case gamecenterleaderboards = "gameCenterLeaderboards"
+        case gamecenterleaderboardsets = "gameCenterLeaderboardSets"
+        case gamecenterachievements = "gameCenterAchievements"
+        case defaultleaderboard = "defaultLeaderboard"
+        case defaultgroupleaderboard = "defaultGroupLeaderboard"
+        case achievementreleases = "achievementReleases"
         case leaderboardreleases = "leaderboardReleases"
         case leaderboardsetreleases = "leaderboardSetReleases"
+    }
+
+    /**
+     * enum for parameter fieldsGameCenterGroups
+     */
+    public enum FieldsGameCenterGroups_gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelated: String, CaseIterable {
+        case referencename = "referenceName"
+        case gamecenterdetails = "gameCenterDetails"
+        case gamecenterleaderboards = "gameCenterLeaderboards"
+        case gamecenterleaderboardsets = "gameCenterLeaderboardSets"
+        case gamecenterachievements = "gameCenterAchievements"
+    }
+
+    /**
+     * enum for parameter fieldsGameCenterLeaderboardSetLocalizations
+     */
+    public enum FieldsGameCenterLeaderboardSetLocalizations_gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelated: String, CaseIterable {
+        case locale = "locale"
+        case name = "name"
+        case gamecenterleaderboardset = "gameCenterLeaderboardSet"
+        case gamecenterleaderboardsetimage = "gameCenterLeaderboardSetImage"
     }
 
     /**
      * enum for parameter fieldsGameCenterLeaderboards
      */
     public enum FieldsGameCenterLeaderboards_gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelated: String, CaseIterable {
-        case archived = "archived"
         case defaultformatter = "defaultFormatter"
-        case gamecenterdetail = "gameCenterDetail"
-        case gamecentergroup = "gameCenterGroup"
-        case gamecenterleaderboardsets = "gameCenterLeaderboardSets"
-        case groupleaderboard = "groupLeaderboard"
-        case localizations = "localizations"
+        case referencename = "referenceName"
+        case vendoridentifier = "vendorIdentifier"
+        case submissiontype = "submissionType"
+        case scoresorttype = "scoreSortType"
+        case scorerangestart = "scoreRangeStart"
+        case scorerangeend = "scoreRangeEnd"
+        case recurrencestartdate = "recurrenceStartDate"
         case recurrenceduration = "recurrenceDuration"
         case recurrencerule = "recurrenceRule"
-        case recurrencestartdate = "recurrenceStartDate"
-        case referencename = "referenceName"
+        case archived = "archived"
+        case gamecenterdetail = "gameCenterDetail"
+        case gamecentergroup = "gameCenterGroup"
+        case groupleaderboard = "groupLeaderboard"
+        case gamecenterleaderboardsets = "gameCenterLeaderboardSets"
+        case localizations = "localizations"
         case releases = "releases"
-        case scorerangeend = "scoreRangeEnd"
-        case scorerangestart = "scoreRangeStart"
-        case scoresorttype = "scoreSortType"
-        case submissiontype = "submissionType"
-        case vendoridentifier = "vendorIdentifier"
+    }
+
+    /**
+     * enum for parameter fieldsGameCenterLeaderboardSetReleases
+     */
+    public enum FieldsGameCenterLeaderboardSetReleases_gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelated: String, CaseIterable {
+        case live = "live"
+        case gamecenterdetail = "gameCenterDetail"
+        case gamecenterleaderboardset = "gameCenterLeaderboardSet"
     }
 
     /**
@@ -1093,9 +1094,9 @@ open class GameCenterDetailsAPI {
     public enum Include_gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelated: String, CaseIterable {
         case gamecenterdetail = "gameCenterDetail"
         case gamecentergroup = "gameCenterGroup"
-        case gamecenterleaderboards = "gameCenterLeaderboards"
         case groupleaderboardset = "groupLeaderboardSet"
         case localizations = "localizations"
+        case gamecenterleaderboards = "gameCenterLeaderboards"
         case releases = "releases"
     }
 
@@ -1104,22 +1105,22 @@ open class GameCenterDetailsAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter filterReferenceName: (query) filter by attribute &#39;referenceName&#39; (optional)
      - parameter filterId: (query) filter by id(s) (optional)
-     - parameter fieldsGameCenterLeaderboardSetLocalizations: (query) the fields to include for returned resources of type gameCenterLeaderboardSetLocalizations (optional)
-     - parameter fieldsGameCenterLeaderboardSetReleases: (query) the fields to include for returned resources of type gameCenterLeaderboardSetReleases (optional)
      - parameter fieldsGameCenterLeaderboardSets: (query) the fields to include for returned resources of type gameCenterLeaderboardSets (optional)
-     - parameter fieldsGameCenterGroups: (query) the fields to include for returned resources of type gameCenterGroups (optional)
      - parameter fieldsGameCenterDetails: (query) the fields to include for returned resources of type gameCenterDetails (optional)
+     - parameter fieldsGameCenterGroups: (query) the fields to include for returned resources of type gameCenterGroups (optional)
+     - parameter fieldsGameCenterLeaderboardSetLocalizations: (query) the fields to include for returned resources of type gameCenterLeaderboardSetLocalizations (optional)
      - parameter fieldsGameCenterLeaderboards: (query) the fields to include for returned resources of type gameCenterLeaderboards (optional)
+     - parameter fieldsGameCenterLeaderboardSetReleases: (query) the fields to include for returned resources of type gameCenterLeaderboardSetReleases (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitLocalizations: (query) maximum number of related localizations returned (when they are included) (optional)
      - parameter limitGameCenterLeaderboards: (query) maximum number of related gameCenterLeaderboards returned (when they are included) (optional)
      - parameter limitReleases: (query) maximum number of related releases returned (when they are included) (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: GameCenterLeaderboardSetsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelated(id: String, filterReferenceName: [String]? = nil, filterId: [String]? = nil, fieldsGameCenterLeaderboardSetLocalizations: [FieldsGameCenterLeaderboardSetLocalizations_gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelated]? = nil, fieldsGameCenterLeaderboardSetReleases: [FieldsGameCenterLeaderboardSetReleases_gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelated]? = nil, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelated]? = nil, fieldsGameCenterGroups: [FieldsGameCenterGroups_gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelated]? = nil, fieldsGameCenterLeaderboards: [FieldsGameCenterLeaderboards_gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelated]? = nil, limit: Int? = nil, limitLocalizations: Int? = nil, limitGameCenterLeaderboards: Int? = nil, limitReleases: Int? = nil, include: [Include_gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelated]? = nil) async throws -> GameCenterLeaderboardSetsResponse {
-        return try await gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelatedWithRequestBuilder(id: id, filterReferenceName: filterReferenceName, filterId: filterId, fieldsGameCenterLeaderboardSetLocalizations: fieldsGameCenterLeaderboardSetLocalizations, fieldsGameCenterLeaderboardSetReleases: fieldsGameCenterLeaderboardSetReleases, fieldsGameCenterLeaderboardSets: fieldsGameCenterLeaderboardSets, fieldsGameCenterGroups: fieldsGameCenterGroups, fieldsGameCenterDetails: fieldsGameCenterDetails, fieldsGameCenterLeaderboards: fieldsGameCenterLeaderboards, limit: limit, limitLocalizations: limitLocalizations, limitGameCenterLeaderboards: limitGameCenterLeaderboards, limitReleases: limitReleases, include: include).execute().body
+    open class func gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelated(id: String, filterReferenceName: [String]? = nil, filterId: [String]? = nil, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelated]? = nil, fieldsGameCenterGroups: [FieldsGameCenterGroups_gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelated]? = nil, fieldsGameCenterLeaderboardSetLocalizations: [FieldsGameCenterLeaderboardSetLocalizations_gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelated]? = nil, fieldsGameCenterLeaderboards: [FieldsGameCenterLeaderboards_gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelated]? = nil, fieldsGameCenterLeaderboardSetReleases: [FieldsGameCenterLeaderboardSetReleases_gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelated]? = nil, limitLocalizations: Int? = nil, limitGameCenterLeaderboards: Int? = nil, limitReleases: Int? = nil) async throws -> GameCenterLeaderboardSetsResponse {
+        return try await gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelatedWithRequestBuilder(id: id, filterReferenceName: filterReferenceName, filterId: filterId, fieldsGameCenterLeaderboardSets: fieldsGameCenterLeaderboardSets, fieldsGameCenterDetails: fieldsGameCenterDetails, fieldsGameCenterGroups: fieldsGameCenterGroups, fieldsGameCenterLeaderboardSetLocalizations: fieldsGameCenterLeaderboardSetLocalizations, fieldsGameCenterLeaderboards: fieldsGameCenterLeaderboards, fieldsGameCenterLeaderboardSetReleases: fieldsGameCenterLeaderboardSetReleases, limit: limit, include: include, limitLocalizations: limitLocalizations, limitGameCenterLeaderboards: limitGameCenterLeaderboards, limitReleases: limitReleases).execute().body
     }
 
     /**
@@ -1139,20 +1140,20 @@ open class GameCenterDetailsAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter filterReferenceName: (query) filter by attribute &#39;referenceName&#39; (optional)
      - parameter filterId: (query) filter by id(s) (optional)
-     - parameter fieldsGameCenterLeaderboardSetLocalizations: (query) the fields to include for returned resources of type gameCenterLeaderboardSetLocalizations (optional)
-     - parameter fieldsGameCenterLeaderboardSetReleases: (query) the fields to include for returned resources of type gameCenterLeaderboardSetReleases (optional)
      - parameter fieldsGameCenterLeaderboardSets: (query) the fields to include for returned resources of type gameCenterLeaderboardSets (optional)
-     - parameter fieldsGameCenterGroups: (query) the fields to include for returned resources of type gameCenterGroups (optional)
      - parameter fieldsGameCenterDetails: (query) the fields to include for returned resources of type gameCenterDetails (optional)
+     - parameter fieldsGameCenterGroups: (query) the fields to include for returned resources of type gameCenterGroups (optional)
+     - parameter fieldsGameCenterLeaderboardSetLocalizations: (query) the fields to include for returned resources of type gameCenterLeaderboardSetLocalizations (optional)
      - parameter fieldsGameCenterLeaderboards: (query) the fields to include for returned resources of type gameCenterLeaderboards (optional)
+     - parameter fieldsGameCenterLeaderboardSetReleases: (query) the fields to include for returned resources of type gameCenterLeaderboardSetReleases (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitLocalizations: (query) maximum number of related localizations returned (when they are included) (optional)
      - parameter limitGameCenterLeaderboards: (query) maximum number of related gameCenterLeaderboards returned (when they are included) (optional)
      - parameter limitReleases: (query) maximum number of related releases returned (when they are included) (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: RequestBuilder<GameCenterLeaderboardSetsResponse> 
      */
-    open class func gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelatedWithRequestBuilder(id: String, filterReferenceName: [String]? = nil, filterId: [String]? = nil, fieldsGameCenterLeaderboardSetLocalizations: [FieldsGameCenterLeaderboardSetLocalizations_gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelated]? = nil, fieldsGameCenterLeaderboardSetReleases: [FieldsGameCenterLeaderboardSetReleases_gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelated]? = nil, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelated]? = nil, fieldsGameCenterGroups: [FieldsGameCenterGroups_gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelated]? = nil, fieldsGameCenterLeaderboards: [FieldsGameCenterLeaderboards_gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelated]? = nil, limit: Int? = nil, limitLocalizations: Int? = nil, limitGameCenterLeaderboards: Int? = nil, limitReleases: Int? = nil, include: [Include_gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelated]? = nil) -> RequestBuilder<GameCenterLeaderboardSetsResponse> {
+    open class func gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelatedWithRequestBuilder(id: String, filterReferenceName: [String]? = nil, filterId: [String]? = nil, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelated]? = nil, fieldsGameCenterGroups: [FieldsGameCenterGroups_gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelated]? = nil, fieldsGameCenterLeaderboardSetLocalizations: [FieldsGameCenterLeaderboardSetLocalizations_gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelated]? = nil, fieldsGameCenterLeaderboards: [FieldsGameCenterLeaderboards_gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelated]? = nil, fieldsGameCenterLeaderboardSetReleases: [FieldsGameCenterLeaderboardSetReleases_gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_gameCenterDetailsGameCenterLeaderboardSetsGetToManyRelated]? = nil, limitLocalizations: Int? = nil, limitGameCenterLeaderboards: Int? = nil, limitReleases: Int? = nil) -> RequestBuilder<GameCenterLeaderboardSetsResponse> {
         var localVariablePath = "/v1/gameCenterDetails/{id}/gameCenterLeaderboardSets"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -1164,17 +1165,17 @@ open class GameCenterDetailsAPI {
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "filter[referenceName]": (wrappedValue: filterReferenceName?.encodeToJSON(), isExplode: false),
             "filter[id]": (wrappedValue: filterId?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterLeaderboardSetLocalizations]": (wrappedValue: fieldsGameCenterLeaderboardSetLocalizations?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterLeaderboardSetReleases]": (wrappedValue: fieldsGameCenterLeaderboardSetReleases?.encodeToJSON(), isExplode: false),
             "fields[gameCenterLeaderboardSets]": (wrappedValue: fieldsGameCenterLeaderboardSets?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterGroups]": (wrappedValue: fieldsGameCenterGroups?.encodeToJSON(), isExplode: false),
             "fields[gameCenterDetails]": (wrappedValue: fieldsGameCenterDetails?.encodeToJSON(), isExplode: false),
+            "fields[gameCenterGroups]": (wrappedValue: fieldsGameCenterGroups?.encodeToJSON(), isExplode: false),
+            "fields[gameCenterLeaderboardSetLocalizations]": (wrappedValue: fieldsGameCenterLeaderboardSetLocalizations?.encodeToJSON(), isExplode: false),
             "fields[gameCenterLeaderboards]": (wrappedValue: fieldsGameCenterLeaderboards?.encodeToJSON(), isExplode: false),
+            "fields[gameCenterLeaderboardSetReleases]": (wrappedValue: fieldsGameCenterLeaderboardSetReleases?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "limit[localizations]": (wrappedValue: limitLocalizations?.encodeToJSON(), isExplode: true),
             "limit[gameCenterLeaderboards]": (wrappedValue: limitGameCenterLeaderboards?.encodeToJSON(), isExplode: true),
             "limit[releases]": (wrappedValue: limitReleases?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -1352,92 +1353,92 @@ open class GameCenterDetailsAPI {
     }
 
     /**
-     * enum for parameter fieldsGameCenterLeaderboardLocalizations
+     * enum for parameter fieldsGameCenterLeaderboards
      */
-    public enum FieldsGameCenterLeaderboardLocalizations_gameCenterDetailsGameCenterLeaderboardsGetToManyRelated: String, CaseIterable {
-        case formatteroverride = "formatterOverride"
-        case formattersuffix = "formatterSuffix"
-        case formattersuffixsingular = "formatterSuffixSingular"
-        case gamecenterleaderboard = "gameCenterLeaderboard"
-        case gamecenterleaderboardimage = "gameCenterLeaderboardImage"
-        case locale = "locale"
-        case name = "name"
-    }
-
-    /**
-     * enum for parameter fieldsGameCenterLeaderboardSets
-     */
-    public enum FieldsGameCenterLeaderboardSets_gameCenterDetailsGameCenterLeaderboardsGetToManyRelated: String, CaseIterable {
+    public enum FieldsGameCenterLeaderboards_gameCenterDetailsGameCenterLeaderboardsGetToManyRelated: String, CaseIterable {
+        case defaultformatter = "defaultFormatter"
+        case referencename = "referenceName"
+        case vendoridentifier = "vendorIdentifier"
+        case submissiontype = "submissionType"
+        case scoresorttype = "scoreSortType"
+        case scorerangestart = "scoreRangeStart"
+        case scorerangeend = "scoreRangeEnd"
+        case recurrencestartdate = "recurrenceStartDate"
+        case recurrenceduration = "recurrenceDuration"
+        case recurrencerule = "recurrenceRule"
+        case archived = "archived"
         case gamecenterdetail = "gameCenterDetail"
         case gamecentergroup = "gameCenterGroup"
-        case gamecenterleaderboards = "gameCenterLeaderboards"
-        case groupleaderboardset = "groupLeaderboardSet"
-        case localizations = "localizations"
-        case referencename = "referenceName"
-        case releases = "releases"
-        case vendoridentifier = "vendorIdentifier"
-    }
-
-    /**
-     * enum for parameter fieldsGameCenterGroups
-     */
-    public enum FieldsGameCenterGroups_gameCenterDetailsGameCenterLeaderboardsGetToManyRelated: String, CaseIterable {
-        case gamecenterachievements = "gameCenterAchievements"
-        case gamecenterdetails = "gameCenterDetails"
+        case groupleaderboard = "groupLeaderboard"
         case gamecenterleaderboardsets = "gameCenterLeaderboardSets"
-        case gamecenterleaderboards = "gameCenterLeaderboards"
-        case referencename = "referenceName"
+        case localizations = "localizations"
+        case releases = "releases"
     }
 
     /**
      * enum for parameter fieldsGameCenterDetails
      */
     public enum FieldsGameCenterDetails_gameCenterDetailsGameCenterLeaderboardsGetToManyRelated: String, CaseIterable {
-        case achievementreleases = "achievementReleases"
-        case app = "app"
         case arcadeenabled = "arcadeEnabled"
         case challengeenabled = "challengeEnabled"
-        case defaultgroupleaderboard = "defaultGroupLeaderboard"
-        case defaultleaderboard = "defaultLeaderboard"
-        case gamecenterachievements = "gameCenterAchievements"
+        case app = "app"
         case gamecenterappversions = "gameCenterAppVersions"
         case gamecentergroup = "gameCenterGroup"
-        case gamecenterleaderboardsets = "gameCenterLeaderboardSets"
         case gamecenterleaderboards = "gameCenterLeaderboards"
+        case gamecenterleaderboardsets = "gameCenterLeaderboardSets"
+        case gamecenterachievements = "gameCenterAchievements"
+        case defaultleaderboard = "defaultLeaderboard"
+        case defaultgroupleaderboard = "defaultGroupLeaderboard"
+        case achievementreleases = "achievementReleases"
         case leaderboardreleases = "leaderboardReleases"
         case leaderboardsetreleases = "leaderboardSetReleases"
     }
 
     /**
-     * enum for parameter fieldsGameCenterLeaderboards
+     * enum for parameter fieldsGameCenterGroups
      */
-    public enum FieldsGameCenterLeaderboards_gameCenterDetailsGameCenterLeaderboardsGetToManyRelated: String, CaseIterable {
-        case archived = "archived"
-        case defaultformatter = "defaultFormatter"
+    public enum FieldsGameCenterGroups_gameCenterDetailsGameCenterLeaderboardsGetToManyRelated: String, CaseIterable {
+        case referencename = "referenceName"
+        case gamecenterdetails = "gameCenterDetails"
+        case gamecenterleaderboards = "gameCenterLeaderboards"
+        case gamecenterleaderboardsets = "gameCenterLeaderboardSets"
+        case gamecenterachievements = "gameCenterAchievements"
+    }
+
+    /**
+     * enum for parameter fieldsGameCenterLeaderboardSets
+     */
+    public enum FieldsGameCenterLeaderboardSets_gameCenterDetailsGameCenterLeaderboardsGetToManyRelated: String, CaseIterable {
+        case referencename = "referenceName"
+        case vendoridentifier = "vendorIdentifier"
         case gamecenterdetail = "gameCenterDetail"
         case gamecentergroup = "gameCenterGroup"
-        case gamecenterleaderboardsets = "gameCenterLeaderboardSets"
-        case groupleaderboard = "groupLeaderboard"
+        case groupleaderboardset = "groupLeaderboardSet"
         case localizations = "localizations"
-        case recurrenceduration = "recurrenceDuration"
-        case recurrencerule = "recurrenceRule"
-        case recurrencestartdate = "recurrenceStartDate"
-        case referencename = "referenceName"
+        case gamecenterleaderboards = "gameCenterLeaderboards"
         case releases = "releases"
-        case scorerangeend = "scoreRangeEnd"
-        case scorerangestart = "scoreRangeStart"
-        case scoresorttype = "scoreSortType"
-        case submissiontype = "submissionType"
-        case vendoridentifier = "vendorIdentifier"
+    }
+
+    /**
+     * enum for parameter fieldsGameCenterLeaderboardLocalizations
+     */
+    public enum FieldsGameCenterLeaderboardLocalizations_gameCenterDetailsGameCenterLeaderboardsGetToManyRelated: String, CaseIterable {
+        case locale = "locale"
+        case name = "name"
+        case formatteroverride = "formatterOverride"
+        case formattersuffix = "formatterSuffix"
+        case formattersuffixsingular = "formatterSuffixSingular"
+        case gamecenterleaderboard = "gameCenterLeaderboard"
+        case gamecenterleaderboardimage = "gameCenterLeaderboardImage"
     }
 
     /**
      * enum for parameter fieldsGameCenterLeaderboardReleases
      */
     public enum FieldsGameCenterLeaderboardReleases_gameCenterDetailsGameCenterLeaderboardsGetToManyRelated: String, CaseIterable {
+        case live = "live"
         case gamecenterdetail = "gameCenterDetail"
         case gamecenterleaderboard = "gameCenterLeaderboard"
-        case live = "live"
     }
 
     /**
@@ -1446,8 +1447,8 @@ open class GameCenterDetailsAPI {
     public enum Include_gameCenterDetailsGameCenterLeaderboardsGetToManyRelated: String, CaseIterable {
         case gamecenterdetail = "gameCenterDetail"
         case gamecentergroup = "gameCenterGroup"
-        case gamecenterleaderboardsets = "gameCenterLeaderboardSets"
         case groupleaderboard = "groupLeaderboard"
+        case gamecenterleaderboardsets = "gameCenterLeaderboardSets"
         case localizations = "localizations"
         case releases = "releases"
     }
@@ -1455,25 +1456,25 @@ open class GameCenterDetailsAPI {
     /**
 
      - parameter id: (path) the id of the requested resource 
-     - parameter filterArchived: (query) filter by attribute &#39;archived&#39; (optional)
      - parameter filterReferenceName: (query) filter by attribute &#39;referenceName&#39; (optional)
+     - parameter filterArchived: (query) filter by attribute &#39;archived&#39; (optional)
      - parameter filterId: (query) filter by id(s) (optional)
-     - parameter fieldsGameCenterLeaderboardLocalizations: (query) the fields to include for returned resources of type gameCenterLeaderboardLocalizations (optional)
-     - parameter fieldsGameCenterLeaderboardSets: (query) the fields to include for returned resources of type gameCenterLeaderboardSets (optional)
-     - parameter fieldsGameCenterGroups: (query) the fields to include for returned resources of type gameCenterGroups (optional)
-     - parameter fieldsGameCenterDetails: (query) the fields to include for returned resources of type gameCenterDetails (optional)
      - parameter fieldsGameCenterLeaderboards: (query) the fields to include for returned resources of type gameCenterLeaderboards (optional)
+     - parameter fieldsGameCenterDetails: (query) the fields to include for returned resources of type gameCenterDetails (optional)
+     - parameter fieldsGameCenterGroups: (query) the fields to include for returned resources of type gameCenterGroups (optional)
+     - parameter fieldsGameCenterLeaderboardSets: (query) the fields to include for returned resources of type gameCenterLeaderboardSets (optional)
+     - parameter fieldsGameCenterLeaderboardLocalizations: (query) the fields to include for returned resources of type gameCenterLeaderboardLocalizations (optional)
      - parameter fieldsGameCenterLeaderboardReleases: (query) the fields to include for returned resources of type gameCenterLeaderboardReleases (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitGameCenterLeaderboardSets: (query) maximum number of related gameCenterLeaderboardSets returned (when they are included) (optional)
      - parameter limitLocalizations: (query) maximum number of related localizations returned (when they are included) (optional)
      - parameter limitReleases: (query) maximum number of related releases returned (when they are included) (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: GameCenterLeaderboardsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterDetailsGameCenterLeaderboardsGetToManyRelated(id: String, filterArchived: [String]? = nil, filterReferenceName: [String]? = nil, filterId: [String]? = nil, fieldsGameCenterLeaderboardLocalizations: [FieldsGameCenterLeaderboardLocalizations_gameCenterDetailsGameCenterLeaderboardsGetToManyRelated]? = nil, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_gameCenterDetailsGameCenterLeaderboardsGetToManyRelated]? = nil, fieldsGameCenterGroups: [FieldsGameCenterGroups_gameCenterDetailsGameCenterLeaderboardsGetToManyRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterDetailsGameCenterLeaderboardsGetToManyRelated]? = nil, fieldsGameCenterLeaderboards: [FieldsGameCenterLeaderboards_gameCenterDetailsGameCenterLeaderboardsGetToManyRelated]? = nil, fieldsGameCenterLeaderboardReleases: [FieldsGameCenterLeaderboardReleases_gameCenterDetailsGameCenterLeaderboardsGetToManyRelated]? = nil, limit: Int? = nil, limitGameCenterLeaderboardSets: Int? = nil, limitLocalizations: Int? = nil, limitReleases: Int? = nil, include: [Include_gameCenterDetailsGameCenterLeaderboardsGetToManyRelated]? = nil) async throws -> GameCenterLeaderboardsResponse {
-        return try await gameCenterDetailsGameCenterLeaderboardsGetToManyRelatedWithRequestBuilder(id: id, filterArchived: filterArchived, filterReferenceName: filterReferenceName, filterId: filterId, fieldsGameCenterLeaderboardLocalizations: fieldsGameCenterLeaderboardLocalizations, fieldsGameCenterLeaderboardSets: fieldsGameCenterLeaderboardSets, fieldsGameCenterGroups: fieldsGameCenterGroups, fieldsGameCenterDetails: fieldsGameCenterDetails, fieldsGameCenterLeaderboards: fieldsGameCenterLeaderboards, fieldsGameCenterLeaderboardReleases: fieldsGameCenterLeaderboardReleases, limit: limit, limitGameCenterLeaderboardSets: limitGameCenterLeaderboardSets, limitLocalizations: limitLocalizations, limitReleases: limitReleases, include: include).execute().body
+    open class func gameCenterDetailsGameCenterLeaderboardsGetToManyRelated(id: String, filterReferenceName: [String]? = nil, filterArchived: [String]? = nil, filterId: [String]? = nil, fieldsGameCenterLeaderboards: [FieldsGameCenterLeaderboards_gameCenterDetailsGameCenterLeaderboardsGetToManyRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterDetailsGameCenterLeaderboardsGetToManyRelated]? = nil, fieldsGameCenterGroups: [FieldsGameCenterGroups_gameCenterDetailsGameCenterLeaderboardsGetToManyRelated]? = nil, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_gameCenterDetailsGameCenterLeaderboardsGetToManyRelated]? = nil, fieldsGameCenterLeaderboardLocalizations: [FieldsGameCenterLeaderboardLocalizations_gameCenterDetailsGameCenterLeaderboardsGetToManyRelated]? = nil, fieldsGameCenterLeaderboardReleases: [FieldsGameCenterLeaderboardReleases_gameCenterDetailsGameCenterLeaderboardsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_gameCenterDetailsGameCenterLeaderboardsGetToManyRelated]? = nil, limitGameCenterLeaderboardSets: Int? = nil, limitLocalizations: Int? = nil, limitReleases: Int? = nil) async throws -> GameCenterLeaderboardsResponse {
+        return try await gameCenterDetailsGameCenterLeaderboardsGetToManyRelatedWithRequestBuilder(id: id, filterReferenceName: filterReferenceName, filterArchived: filterArchived, filterId: filterId, fieldsGameCenterLeaderboards: fieldsGameCenterLeaderboards, fieldsGameCenterDetails: fieldsGameCenterDetails, fieldsGameCenterGroups: fieldsGameCenterGroups, fieldsGameCenterLeaderboardSets: fieldsGameCenterLeaderboardSets, fieldsGameCenterLeaderboardLocalizations: fieldsGameCenterLeaderboardLocalizations, fieldsGameCenterLeaderboardReleases: fieldsGameCenterLeaderboardReleases, limit: limit, include: include, limitGameCenterLeaderboardSets: limitGameCenterLeaderboardSets, limitLocalizations: limitLocalizations, limitReleases: limitReleases).execute().body
     }
 
     /**
@@ -1491,23 +1492,23 @@ open class GameCenterDetailsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
-     - parameter filterArchived: (query) filter by attribute &#39;archived&#39; (optional)
      - parameter filterReferenceName: (query) filter by attribute &#39;referenceName&#39; (optional)
+     - parameter filterArchived: (query) filter by attribute &#39;archived&#39; (optional)
      - parameter filterId: (query) filter by id(s) (optional)
-     - parameter fieldsGameCenterLeaderboardLocalizations: (query) the fields to include for returned resources of type gameCenterLeaderboardLocalizations (optional)
-     - parameter fieldsGameCenterLeaderboardSets: (query) the fields to include for returned resources of type gameCenterLeaderboardSets (optional)
-     - parameter fieldsGameCenterGroups: (query) the fields to include for returned resources of type gameCenterGroups (optional)
-     - parameter fieldsGameCenterDetails: (query) the fields to include for returned resources of type gameCenterDetails (optional)
      - parameter fieldsGameCenterLeaderboards: (query) the fields to include for returned resources of type gameCenterLeaderboards (optional)
+     - parameter fieldsGameCenterDetails: (query) the fields to include for returned resources of type gameCenterDetails (optional)
+     - parameter fieldsGameCenterGroups: (query) the fields to include for returned resources of type gameCenterGroups (optional)
+     - parameter fieldsGameCenterLeaderboardSets: (query) the fields to include for returned resources of type gameCenterLeaderboardSets (optional)
+     - parameter fieldsGameCenterLeaderboardLocalizations: (query) the fields to include for returned resources of type gameCenterLeaderboardLocalizations (optional)
      - parameter fieldsGameCenterLeaderboardReleases: (query) the fields to include for returned resources of type gameCenterLeaderboardReleases (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitGameCenterLeaderboardSets: (query) maximum number of related gameCenterLeaderboardSets returned (when they are included) (optional)
      - parameter limitLocalizations: (query) maximum number of related localizations returned (when they are included) (optional)
      - parameter limitReleases: (query) maximum number of related releases returned (when they are included) (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: RequestBuilder<GameCenterLeaderboardsResponse> 
      */
-    open class func gameCenterDetailsGameCenterLeaderboardsGetToManyRelatedWithRequestBuilder(id: String, filterArchived: [String]? = nil, filterReferenceName: [String]? = nil, filterId: [String]? = nil, fieldsGameCenterLeaderboardLocalizations: [FieldsGameCenterLeaderboardLocalizations_gameCenterDetailsGameCenterLeaderboardsGetToManyRelated]? = nil, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_gameCenterDetailsGameCenterLeaderboardsGetToManyRelated]? = nil, fieldsGameCenterGroups: [FieldsGameCenterGroups_gameCenterDetailsGameCenterLeaderboardsGetToManyRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterDetailsGameCenterLeaderboardsGetToManyRelated]? = nil, fieldsGameCenterLeaderboards: [FieldsGameCenterLeaderboards_gameCenterDetailsGameCenterLeaderboardsGetToManyRelated]? = nil, fieldsGameCenterLeaderboardReleases: [FieldsGameCenterLeaderboardReleases_gameCenterDetailsGameCenterLeaderboardsGetToManyRelated]? = nil, limit: Int? = nil, limitGameCenterLeaderboardSets: Int? = nil, limitLocalizations: Int? = nil, limitReleases: Int? = nil, include: [Include_gameCenterDetailsGameCenterLeaderboardsGetToManyRelated]? = nil) -> RequestBuilder<GameCenterLeaderboardsResponse> {
+    open class func gameCenterDetailsGameCenterLeaderboardsGetToManyRelatedWithRequestBuilder(id: String, filterReferenceName: [String]? = nil, filterArchived: [String]? = nil, filterId: [String]? = nil, fieldsGameCenterLeaderboards: [FieldsGameCenterLeaderboards_gameCenterDetailsGameCenterLeaderboardsGetToManyRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterDetailsGameCenterLeaderboardsGetToManyRelated]? = nil, fieldsGameCenterGroups: [FieldsGameCenterGroups_gameCenterDetailsGameCenterLeaderboardsGetToManyRelated]? = nil, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_gameCenterDetailsGameCenterLeaderboardsGetToManyRelated]? = nil, fieldsGameCenterLeaderboardLocalizations: [FieldsGameCenterLeaderboardLocalizations_gameCenterDetailsGameCenterLeaderboardsGetToManyRelated]? = nil, fieldsGameCenterLeaderboardReleases: [FieldsGameCenterLeaderboardReleases_gameCenterDetailsGameCenterLeaderboardsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_gameCenterDetailsGameCenterLeaderboardsGetToManyRelated]? = nil, limitGameCenterLeaderboardSets: Int? = nil, limitLocalizations: Int? = nil, limitReleases: Int? = nil) -> RequestBuilder<GameCenterLeaderboardsResponse> {
         var localVariablePath = "/v1/gameCenterDetails/{id}/gameCenterLeaderboards"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -1517,20 +1518,20 @@ open class GameCenterDetailsAPI {
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[archived]": (wrappedValue: filterArchived?.encodeToJSON(), isExplode: false),
             "filter[referenceName]": (wrappedValue: filterReferenceName?.encodeToJSON(), isExplode: false),
+            "filter[archived]": (wrappedValue: filterArchived?.encodeToJSON(), isExplode: false),
             "filter[id]": (wrappedValue: filterId?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterLeaderboardLocalizations]": (wrappedValue: fieldsGameCenterLeaderboardLocalizations?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterLeaderboardSets]": (wrappedValue: fieldsGameCenterLeaderboardSets?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterGroups]": (wrappedValue: fieldsGameCenterGroups?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterDetails]": (wrappedValue: fieldsGameCenterDetails?.encodeToJSON(), isExplode: false),
             "fields[gameCenterLeaderboards]": (wrappedValue: fieldsGameCenterLeaderboards?.encodeToJSON(), isExplode: false),
+            "fields[gameCenterDetails]": (wrappedValue: fieldsGameCenterDetails?.encodeToJSON(), isExplode: false),
+            "fields[gameCenterGroups]": (wrappedValue: fieldsGameCenterGroups?.encodeToJSON(), isExplode: false),
+            "fields[gameCenterLeaderboardSets]": (wrappedValue: fieldsGameCenterLeaderboardSets?.encodeToJSON(), isExplode: false),
+            "fields[gameCenterLeaderboardLocalizations]": (wrappedValue: fieldsGameCenterLeaderboardLocalizations?.encodeToJSON(), isExplode: false),
             "fields[gameCenterLeaderboardReleases]": (wrappedValue: fieldsGameCenterLeaderboardReleases?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "limit[gameCenterLeaderboardSets]": (wrappedValue: limitGameCenterLeaderboardSets?.encodeToJSON(), isExplode: true),
             "limit[localizations]": (wrappedValue: limitLocalizations?.encodeToJSON(), isExplode: true),
             "limit[releases]": (wrappedValue: limitReleases?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -1711,152 +1712,152 @@ open class GameCenterDetailsAPI {
      * enum for parameter fieldsGameCenterDetails
      */
     public enum FieldsGameCenterDetails_gameCenterDetailsGetInstance: String, CaseIterable {
-        case achievementreleases = "achievementReleases"
-        case app = "app"
         case arcadeenabled = "arcadeEnabled"
         case challengeenabled = "challengeEnabled"
-        case defaultgroupleaderboard = "defaultGroupLeaderboard"
-        case defaultleaderboard = "defaultLeaderboard"
-        case gamecenterachievements = "gameCenterAchievements"
-        case gamecenterappversions = "gameCenterAppVersions"
-        case gamecentergroup = "gameCenterGroup"
-        case gamecenterleaderboardsets = "gameCenterLeaderboardSets"
-        case gamecenterleaderboards = "gameCenterLeaderboards"
-        case leaderboardreleases = "leaderboardReleases"
-        case leaderboardsetreleases = "leaderboardSetReleases"
-    }
-
-    /**
-     * enum for parameter include
-     */
-    public enum Include_gameCenterDetailsGetInstance: String, CaseIterable {
-        case achievementreleases = "achievementReleases"
         case app = "app"
-        case defaultgroupleaderboard = "defaultGroupLeaderboard"
-        case defaultleaderboard = "defaultLeaderboard"
-        case gamecenterachievements = "gameCenterAchievements"
         case gamecenterappversions = "gameCenterAppVersions"
         case gamecentergroup = "gameCenterGroup"
-        case gamecenterleaderboardsets = "gameCenterLeaderboardSets"
         case gamecenterleaderboards = "gameCenterLeaderboards"
+        case gamecenterleaderboardsets = "gameCenterLeaderboardSets"
+        case gamecenterachievements = "gameCenterAchievements"
+        case defaultleaderboard = "defaultLeaderboard"
+        case defaultgroupleaderboard = "defaultGroupLeaderboard"
+        case achievementreleases = "achievementReleases"
         case leaderboardreleases = "leaderboardReleases"
         case leaderboardsetreleases = "leaderboardSetReleases"
-    }
-
-    /**
-     * enum for parameter fieldsGameCenterAchievementReleases
-     */
-    public enum FieldsGameCenterAchievementReleases_gameCenterDetailsGetInstance: String, CaseIterable {
-        case gamecenterachievement = "gameCenterAchievement"
-        case gamecenterdetail = "gameCenterDetail"
-        case live = "live"
-    }
-
-    /**
-     * enum for parameter fieldsGameCenterLeaderboardSetReleases
-     */
-    public enum FieldsGameCenterLeaderboardSetReleases_gameCenterDetailsGetInstance: String, CaseIterable {
-        case gamecenterdetail = "gameCenterDetail"
-        case gamecenterleaderboardset = "gameCenterLeaderboardSet"
-        case live = "live"
-    }
-
-    /**
-     * enum for parameter fieldsGameCenterLeaderboardSets
-     */
-    public enum FieldsGameCenterLeaderboardSets_gameCenterDetailsGetInstance: String, CaseIterable {
-        case gamecenterdetail = "gameCenterDetail"
-        case gamecentergroup = "gameCenterGroup"
-        case gamecenterleaderboards = "gameCenterLeaderboards"
-        case groupleaderboardset = "groupLeaderboardSet"
-        case localizations = "localizations"
-        case referencename = "referenceName"
-        case releases = "releases"
-        case vendoridentifier = "vendorIdentifier"
-    }
-
-    /**
-     * enum for parameter fieldsGameCenterGroups
-     */
-    public enum FieldsGameCenterGroups_gameCenterDetailsGetInstance: String, CaseIterable {
-        case gamecenterachievements = "gameCenterAchievements"
-        case gamecenterdetails = "gameCenterDetails"
-        case gamecenterleaderboardsets = "gameCenterLeaderboardSets"
-        case gamecenterleaderboards = "gameCenterLeaderboards"
-        case referencename = "referenceName"
-    }
-
-    /**
-     * enum for parameter fieldsGameCenterLeaderboards
-     */
-    public enum FieldsGameCenterLeaderboards_gameCenterDetailsGetInstance: String, CaseIterable {
-        case archived = "archived"
-        case defaultformatter = "defaultFormatter"
-        case gamecenterdetail = "gameCenterDetail"
-        case gamecentergroup = "gameCenterGroup"
-        case gamecenterleaderboardsets = "gameCenterLeaderboardSets"
-        case groupleaderboard = "groupLeaderboard"
-        case localizations = "localizations"
-        case recurrenceduration = "recurrenceDuration"
-        case recurrencerule = "recurrenceRule"
-        case recurrencestartdate = "recurrenceStartDate"
-        case referencename = "referenceName"
-        case releases = "releases"
-        case scorerangeend = "scoreRangeEnd"
-        case scorerangestart = "scoreRangeStart"
-        case scoresorttype = "scoreSortType"
-        case submissiontype = "submissionType"
-        case vendoridentifier = "vendorIdentifier"
-    }
-
-    /**
-     * enum for parameter fieldsGameCenterAchievements
-     */
-    public enum FieldsGameCenterAchievements_gameCenterDetailsGetInstance: String, CaseIterable {
-        case archived = "archived"
-        case gamecenterdetail = "gameCenterDetail"
-        case gamecentergroup = "gameCenterGroup"
-        case groupachievement = "groupAchievement"
-        case localizations = "localizations"
-        case points = "points"
-        case referencename = "referenceName"
-        case releases = "releases"
-        case repeatable = "repeatable"
-        case showbeforeearned = "showBeforeEarned"
-        case vendoridentifier = "vendorIdentifier"
     }
 
     /**
      * enum for parameter fieldsGameCenterAppVersions
      */
     public enum FieldsGameCenterAppVersions_gameCenterDetailsGetInstance: String, CaseIterable {
-        case appstoreversion = "appStoreVersion"
-        case compatibilityversions = "compatibilityVersions"
         case enabled = "enabled"
+        case compatibilityversions = "compatibilityVersions"
+        case appstoreversion = "appStoreVersion"
+    }
+
+    /**
+     * enum for parameter fieldsGameCenterGroups
+     */
+    public enum FieldsGameCenterGroups_gameCenterDetailsGetInstance: String, CaseIterable {
+        case referencename = "referenceName"
+        case gamecenterdetails = "gameCenterDetails"
+        case gamecenterleaderboards = "gameCenterLeaderboards"
+        case gamecenterleaderboardsets = "gameCenterLeaderboardSets"
+        case gamecenterachievements = "gameCenterAchievements"
+    }
+
+    /**
+     * enum for parameter fieldsGameCenterLeaderboards
+     */
+    public enum FieldsGameCenterLeaderboards_gameCenterDetailsGetInstance: String, CaseIterable {
+        case defaultformatter = "defaultFormatter"
+        case referencename = "referenceName"
+        case vendoridentifier = "vendorIdentifier"
+        case submissiontype = "submissionType"
+        case scoresorttype = "scoreSortType"
+        case scorerangestart = "scoreRangeStart"
+        case scorerangeend = "scoreRangeEnd"
+        case recurrencestartdate = "recurrenceStartDate"
+        case recurrenceduration = "recurrenceDuration"
+        case recurrencerule = "recurrenceRule"
+        case archived = "archived"
+        case gamecenterdetail = "gameCenterDetail"
+        case gamecentergroup = "gameCenterGroup"
+        case groupleaderboard = "groupLeaderboard"
+        case gamecenterleaderboardsets = "gameCenterLeaderboardSets"
+        case localizations = "localizations"
+        case releases = "releases"
+    }
+
+    /**
+     * enum for parameter fieldsGameCenterLeaderboardSets
+     */
+    public enum FieldsGameCenterLeaderboardSets_gameCenterDetailsGetInstance: String, CaseIterable {
+        case referencename = "referenceName"
+        case vendoridentifier = "vendorIdentifier"
+        case gamecenterdetail = "gameCenterDetail"
+        case gamecentergroup = "gameCenterGroup"
+        case groupleaderboardset = "groupLeaderboardSet"
+        case localizations = "localizations"
+        case gamecenterleaderboards = "gameCenterLeaderboards"
+        case releases = "releases"
+    }
+
+    /**
+     * enum for parameter fieldsGameCenterAchievements
+     */
+    public enum FieldsGameCenterAchievements_gameCenterDetailsGetInstance: String, CaseIterable {
+        case referencename = "referenceName"
+        case vendoridentifier = "vendorIdentifier"
+        case points = "points"
+        case showbeforeearned = "showBeforeEarned"
+        case repeatable = "repeatable"
+        case archived = "archived"
+        case gamecenterdetail = "gameCenterDetail"
+        case gamecentergroup = "gameCenterGroup"
+        case groupachievement = "groupAchievement"
+        case localizations = "localizations"
+        case releases = "releases"
+    }
+
+    /**
+     * enum for parameter fieldsGameCenterAchievementReleases
+     */
+    public enum FieldsGameCenterAchievementReleases_gameCenterDetailsGetInstance: String, CaseIterable {
+        case live = "live"
+        case gamecenterdetail = "gameCenterDetail"
+        case gamecenterachievement = "gameCenterAchievement"
     }
 
     /**
      * enum for parameter fieldsGameCenterLeaderboardReleases
      */
     public enum FieldsGameCenterLeaderboardReleases_gameCenterDetailsGetInstance: String, CaseIterable {
+        case live = "live"
         case gamecenterdetail = "gameCenterDetail"
         case gamecenterleaderboard = "gameCenterLeaderboard"
+    }
+
+    /**
+     * enum for parameter fieldsGameCenterLeaderboardSetReleases
+     */
+    public enum FieldsGameCenterLeaderboardSetReleases_gameCenterDetailsGetInstance: String, CaseIterable {
         case live = "live"
+        case gamecenterdetail = "gameCenterDetail"
+        case gamecenterleaderboardset = "gameCenterLeaderboardSet"
+    }
+
+    /**
+     * enum for parameter include
+     */
+    public enum Include_gameCenterDetailsGetInstance: String, CaseIterable {
+        case app = "app"
+        case gamecenterappversions = "gameCenterAppVersions"
+        case gamecentergroup = "gameCenterGroup"
+        case gamecenterleaderboards = "gameCenterLeaderboards"
+        case gamecenterleaderboardsets = "gameCenterLeaderboardSets"
+        case gamecenterachievements = "gameCenterAchievements"
+        case defaultleaderboard = "defaultLeaderboard"
+        case defaultgroupleaderboard = "defaultGroupLeaderboard"
+        case achievementreleases = "achievementReleases"
+        case leaderboardreleases = "leaderboardReleases"
+        case leaderboardsetreleases = "leaderboardSetReleases"
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsGameCenterDetails: (query) the fields to include for returned resources of type gameCenterDetails (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
-     - parameter fieldsGameCenterAchievementReleases: (query) the fields to include for returned resources of type gameCenterAchievementReleases (optional)
-     - parameter fieldsGameCenterLeaderboardSetReleases: (query) the fields to include for returned resources of type gameCenterLeaderboardSetReleases (optional)
-     - parameter fieldsGameCenterLeaderboardSets: (query) the fields to include for returned resources of type gameCenterLeaderboardSets (optional)
+     - parameter fieldsGameCenterAppVersions: (query) the fields to include for returned resources of type gameCenterAppVersions (optional)
      - parameter fieldsGameCenterGroups: (query) the fields to include for returned resources of type gameCenterGroups (optional)
      - parameter fieldsGameCenterLeaderboards: (query) the fields to include for returned resources of type gameCenterLeaderboards (optional)
+     - parameter fieldsGameCenterLeaderboardSets: (query) the fields to include for returned resources of type gameCenterLeaderboardSets (optional)
      - parameter fieldsGameCenterAchievements: (query) the fields to include for returned resources of type gameCenterAchievements (optional)
-     - parameter fieldsGameCenterAppVersions: (query) the fields to include for returned resources of type gameCenterAppVersions (optional)
+     - parameter fieldsGameCenterAchievementReleases: (query) the fields to include for returned resources of type gameCenterAchievementReleases (optional)
      - parameter fieldsGameCenterLeaderboardReleases: (query) the fields to include for returned resources of type gameCenterLeaderboardReleases (optional)
+     - parameter fieldsGameCenterLeaderboardSetReleases: (query) the fields to include for returned resources of type gameCenterLeaderboardSetReleases (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAchievementReleases: (query) maximum number of related achievementReleases returned (when they are included) (optional)
      - parameter limitGameCenterAchievements: (query) maximum number of related gameCenterAchievements returned (when they are included) (optional)
      - parameter limitGameCenterAppVersions: (query) maximum number of related gameCenterAppVersions returned (when they are included) (optional)
@@ -1867,8 +1868,8 @@ open class GameCenterDetailsAPI {
      - returns: GameCenterDetailResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterDetailsGetInstance(id: String, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterDetailsGetInstance]? = nil, include: [Include_gameCenterDetailsGetInstance]? = nil, fieldsGameCenterAchievementReleases: [FieldsGameCenterAchievementReleases_gameCenterDetailsGetInstance]? = nil, fieldsGameCenterLeaderboardSetReleases: [FieldsGameCenterLeaderboardSetReleases_gameCenterDetailsGetInstance]? = nil, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_gameCenterDetailsGetInstance]? = nil, fieldsGameCenterGroups: [FieldsGameCenterGroups_gameCenterDetailsGetInstance]? = nil, fieldsGameCenterLeaderboards: [FieldsGameCenterLeaderboards_gameCenterDetailsGetInstance]? = nil, fieldsGameCenterAchievements: [FieldsGameCenterAchievements_gameCenterDetailsGetInstance]? = nil, fieldsGameCenterAppVersions: [FieldsGameCenterAppVersions_gameCenterDetailsGetInstance]? = nil, fieldsGameCenterLeaderboardReleases: [FieldsGameCenterLeaderboardReleases_gameCenterDetailsGetInstance]? = nil, limitAchievementReleases: Int? = nil, limitGameCenterAchievements: Int? = nil, limitGameCenterAppVersions: Int? = nil, limitGameCenterLeaderboardSets: Int? = nil, limitGameCenterLeaderboards: Int? = nil, limitLeaderboardReleases: Int? = nil, limitLeaderboardSetReleases: Int? = nil) async throws -> GameCenterDetailResponse {
-        return try await gameCenterDetailsGetInstanceWithRequestBuilder(id: id, fieldsGameCenterDetails: fieldsGameCenterDetails, include: include, fieldsGameCenterAchievementReleases: fieldsGameCenterAchievementReleases, fieldsGameCenterLeaderboardSetReleases: fieldsGameCenterLeaderboardSetReleases, fieldsGameCenterLeaderboardSets: fieldsGameCenterLeaderboardSets, fieldsGameCenterGroups: fieldsGameCenterGroups, fieldsGameCenterLeaderboards: fieldsGameCenterLeaderboards, fieldsGameCenterAchievements: fieldsGameCenterAchievements, fieldsGameCenterAppVersions: fieldsGameCenterAppVersions, fieldsGameCenterLeaderboardReleases: fieldsGameCenterLeaderboardReleases, limitAchievementReleases: limitAchievementReleases, limitGameCenterAchievements: limitGameCenterAchievements, limitGameCenterAppVersions: limitGameCenterAppVersions, limitGameCenterLeaderboardSets: limitGameCenterLeaderboardSets, limitGameCenterLeaderboards: limitGameCenterLeaderboards, limitLeaderboardReleases: limitLeaderboardReleases, limitLeaderboardSetReleases: limitLeaderboardSetReleases).execute().body
+    open class func gameCenterDetailsGetInstance(id: String, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterDetailsGetInstance]? = nil, fieldsGameCenterAppVersions: [FieldsGameCenterAppVersions_gameCenterDetailsGetInstance]? = nil, fieldsGameCenterGroups: [FieldsGameCenterGroups_gameCenterDetailsGetInstance]? = nil, fieldsGameCenterLeaderboards: [FieldsGameCenterLeaderboards_gameCenterDetailsGetInstance]? = nil, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_gameCenterDetailsGetInstance]? = nil, fieldsGameCenterAchievements: [FieldsGameCenterAchievements_gameCenterDetailsGetInstance]? = nil, fieldsGameCenterAchievementReleases: [FieldsGameCenterAchievementReleases_gameCenterDetailsGetInstance]? = nil, fieldsGameCenterLeaderboardReleases: [FieldsGameCenterLeaderboardReleases_gameCenterDetailsGetInstance]? = nil, fieldsGameCenterLeaderboardSetReleases: [FieldsGameCenterLeaderboardSetReleases_gameCenterDetailsGetInstance]? = nil, include: [Include_gameCenterDetailsGetInstance]? = nil, limitAchievementReleases: Int? = nil, limitGameCenterAchievements: Int? = nil, limitGameCenterAppVersions: Int? = nil, limitGameCenterLeaderboardSets: Int? = nil, limitGameCenterLeaderboards: Int? = nil, limitLeaderboardReleases: Int? = nil, limitLeaderboardSetReleases: Int? = nil) async throws -> GameCenterDetailResponse {
+        return try await gameCenterDetailsGetInstanceWithRequestBuilder(id: id, fieldsGameCenterDetails: fieldsGameCenterDetails, fieldsGameCenterAppVersions: fieldsGameCenterAppVersions, fieldsGameCenterGroups: fieldsGameCenterGroups, fieldsGameCenterLeaderboards: fieldsGameCenterLeaderboards, fieldsGameCenterLeaderboardSets: fieldsGameCenterLeaderboardSets, fieldsGameCenterAchievements: fieldsGameCenterAchievements, fieldsGameCenterAchievementReleases: fieldsGameCenterAchievementReleases, fieldsGameCenterLeaderboardReleases: fieldsGameCenterLeaderboardReleases, fieldsGameCenterLeaderboardSetReleases: fieldsGameCenterLeaderboardSetReleases, include: include, limitAchievementReleases: limitAchievementReleases, limitGameCenterAchievements: limitGameCenterAchievements, limitGameCenterAppVersions: limitGameCenterAppVersions, limitGameCenterLeaderboardSets: limitGameCenterLeaderboardSets, limitGameCenterLeaderboards: limitGameCenterLeaderboards, limitLeaderboardReleases: limitLeaderboardReleases, limitLeaderboardSetReleases: limitLeaderboardSetReleases).execute().body
     }
 
     /**
@@ -1887,15 +1888,15 @@ open class GameCenterDetailsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsGameCenterDetails: (query) the fields to include for returned resources of type gameCenterDetails (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
-     - parameter fieldsGameCenterAchievementReleases: (query) the fields to include for returned resources of type gameCenterAchievementReleases (optional)
-     - parameter fieldsGameCenterLeaderboardSetReleases: (query) the fields to include for returned resources of type gameCenterLeaderboardSetReleases (optional)
-     - parameter fieldsGameCenterLeaderboardSets: (query) the fields to include for returned resources of type gameCenterLeaderboardSets (optional)
+     - parameter fieldsGameCenterAppVersions: (query) the fields to include for returned resources of type gameCenterAppVersions (optional)
      - parameter fieldsGameCenterGroups: (query) the fields to include for returned resources of type gameCenterGroups (optional)
      - parameter fieldsGameCenterLeaderboards: (query) the fields to include for returned resources of type gameCenterLeaderboards (optional)
+     - parameter fieldsGameCenterLeaderboardSets: (query) the fields to include for returned resources of type gameCenterLeaderboardSets (optional)
      - parameter fieldsGameCenterAchievements: (query) the fields to include for returned resources of type gameCenterAchievements (optional)
-     - parameter fieldsGameCenterAppVersions: (query) the fields to include for returned resources of type gameCenterAppVersions (optional)
+     - parameter fieldsGameCenterAchievementReleases: (query) the fields to include for returned resources of type gameCenterAchievementReleases (optional)
      - parameter fieldsGameCenterLeaderboardReleases: (query) the fields to include for returned resources of type gameCenterLeaderboardReleases (optional)
+     - parameter fieldsGameCenterLeaderboardSetReleases: (query) the fields to include for returned resources of type gameCenterLeaderboardSetReleases (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAchievementReleases: (query) maximum number of related achievementReleases returned (when they are included) (optional)
      - parameter limitGameCenterAchievements: (query) maximum number of related gameCenterAchievements returned (when they are included) (optional)
      - parameter limitGameCenterAppVersions: (query) maximum number of related gameCenterAppVersions returned (when they are included) (optional)
@@ -1905,7 +1906,7 @@ open class GameCenterDetailsAPI {
      - parameter limitLeaderboardSetReleases: (query) maximum number of related leaderboardSetReleases returned (when they are included) (optional)
      - returns: RequestBuilder<GameCenterDetailResponse> 
      */
-    open class func gameCenterDetailsGetInstanceWithRequestBuilder(id: String, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterDetailsGetInstance]? = nil, include: [Include_gameCenterDetailsGetInstance]? = nil, fieldsGameCenterAchievementReleases: [FieldsGameCenterAchievementReleases_gameCenterDetailsGetInstance]? = nil, fieldsGameCenterLeaderboardSetReleases: [FieldsGameCenterLeaderboardSetReleases_gameCenterDetailsGetInstance]? = nil, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_gameCenterDetailsGetInstance]? = nil, fieldsGameCenterGroups: [FieldsGameCenterGroups_gameCenterDetailsGetInstance]? = nil, fieldsGameCenterLeaderboards: [FieldsGameCenterLeaderboards_gameCenterDetailsGetInstance]? = nil, fieldsGameCenterAchievements: [FieldsGameCenterAchievements_gameCenterDetailsGetInstance]? = nil, fieldsGameCenterAppVersions: [FieldsGameCenterAppVersions_gameCenterDetailsGetInstance]? = nil, fieldsGameCenterLeaderboardReleases: [FieldsGameCenterLeaderboardReleases_gameCenterDetailsGetInstance]? = nil, limitAchievementReleases: Int? = nil, limitGameCenterAchievements: Int? = nil, limitGameCenterAppVersions: Int? = nil, limitGameCenterLeaderboardSets: Int? = nil, limitGameCenterLeaderboards: Int? = nil, limitLeaderboardReleases: Int? = nil, limitLeaderboardSetReleases: Int? = nil) -> RequestBuilder<GameCenterDetailResponse> {
+    open class func gameCenterDetailsGetInstanceWithRequestBuilder(id: String, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterDetailsGetInstance]? = nil, fieldsGameCenterAppVersions: [FieldsGameCenterAppVersions_gameCenterDetailsGetInstance]? = nil, fieldsGameCenterGroups: [FieldsGameCenterGroups_gameCenterDetailsGetInstance]? = nil, fieldsGameCenterLeaderboards: [FieldsGameCenterLeaderboards_gameCenterDetailsGetInstance]? = nil, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_gameCenterDetailsGetInstance]? = nil, fieldsGameCenterAchievements: [FieldsGameCenterAchievements_gameCenterDetailsGetInstance]? = nil, fieldsGameCenterAchievementReleases: [FieldsGameCenterAchievementReleases_gameCenterDetailsGetInstance]? = nil, fieldsGameCenterLeaderboardReleases: [FieldsGameCenterLeaderboardReleases_gameCenterDetailsGetInstance]? = nil, fieldsGameCenterLeaderboardSetReleases: [FieldsGameCenterLeaderboardSetReleases_gameCenterDetailsGetInstance]? = nil, include: [Include_gameCenterDetailsGetInstance]? = nil, limitAchievementReleases: Int? = nil, limitGameCenterAchievements: Int? = nil, limitGameCenterAppVersions: Int? = nil, limitGameCenterLeaderboardSets: Int? = nil, limitGameCenterLeaderboards: Int? = nil, limitLeaderboardReleases: Int? = nil, limitLeaderboardSetReleases: Int? = nil) -> RequestBuilder<GameCenterDetailResponse> {
         var localVariablePath = "/v1/gameCenterDetails/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -1916,15 +1917,15 @@ open class GameCenterDetailsAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[gameCenterDetails]": (wrappedValue: fieldsGameCenterDetails?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterAchievementReleases]": (wrappedValue: fieldsGameCenterAchievementReleases?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterLeaderboardSetReleases]": (wrappedValue: fieldsGameCenterLeaderboardSetReleases?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterLeaderboardSets]": (wrappedValue: fieldsGameCenterLeaderboardSets?.encodeToJSON(), isExplode: false),
+            "fields[gameCenterAppVersions]": (wrappedValue: fieldsGameCenterAppVersions?.encodeToJSON(), isExplode: false),
             "fields[gameCenterGroups]": (wrappedValue: fieldsGameCenterGroups?.encodeToJSON(), isExplode: false),
             "fields[gameCenterLeaderboards]": (wrappedValue: fieldsGameCenterLeaderboards?.encodeToJSON(), isExplode: false),
+            "fields[gameCenterLeaderboardSets]": (wrappedValue: fieldsGameCenterLeaderboardSets?.encodeToJSON(), isExplode: false),
             "fields[gameCenterAchievements]": (wrappedValue: fieldsGameCenterAchievements?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterAppVersions]": (wrappedValue: fieldsGameCenterAppVersions?.encodeToJSON(), isExplode: false),
+            "fields[gameCenterAchievementReleases]": (wrappedValue: fieldsGameCenterAchievementReleases?.encodeToJSON(), isExplode: false),
             "fields[gameCenterLeaderboardReleases]": (wrappedValue: fieldsGameCenterLeaderboardReleases?.encodeToJSON(), isExplode: false),
+            "fields[gameCenterLeaderboardSetReleases]": (wrappedValue: fieldsGameCenterLeaderboardSetReleases?.encodeToJSON(), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "limit[achievementReleases]": (wrappedValue: limitAchievementReleases?.encodeToJSON(), isExplode: true),
             "limit[gameCenterAchievements]": (wrappedValue: limitGameCenterAchievements?.encodeToJSON(), isExplode: true),
             "limit[gameCenterAppVersions]": (wrappedValue: limitGameCenterAppVersions?.encodeToJSON(), isExplode: true),
@@ -1966,20 +1967,29 @@ open class GameCenterDetailsAPI {
     }
 
     /**
+     * enum for parameter fieldsGameCenterLeaderboardReleases
+     */
+    public enum FieldsGameCenterLeaderboardReleases_gameCenterDetailsLeaderboardReleasesGetToManyRelated: String, CaseIterable {
+        case live = "live"
+        case gamecenterdetail = "gameCenterDetail"
+        case gamecenterleaderboard = "gameCenterLeaderboard"
+    }
+
+    /**
      * enum for parameter fieldsGameCenterDetails
      */
     public enum FieldsGameCenterDetails_gameCenterDetailsLeaderboardReleasesGetToManyRelated: String, CaseIterable {
-        case achievementreleases = "achievementReleases"
-        case app = "app"
         case arcadeenabled = "arcadeEnabled"
         case challengeenabled = "challengeEnabled"
-        case defaultgroupleaderboard = "defaultGroupLeaderboard"
-        case defaultleaderboard = "defaultLeaderboard"
-        case gamecenterachievements = "gameCenterAchievements"
+        case app = "app"
         case gamecenterappversions = "gameCenterAppVersions"
         case gamecentergroup = "gameCenterGroup"
-        case gamecenterleaderboardsets = "gameCenterLeaderboardSets"
         case gamecenterleaderboards = "gameCenterLeaderboards"
+        case gamecenterleaderboardsets = "gameCenterLeaderboardSets"
+        case gamecenterachievements = "gameCenterAchievements"
+        case defaultleaderboard = "defaultLeaderboard"
+        case defaultgroupleaderboard = "defaultGroupLeaderboard"
+        case achievementreleases = "achievementReleases"
         case leaderboardreleases = "leaderboardReleases"
         case leaderboardsetreleases = "leaderboardSetReleases"
     }
@@ -1988,32 +1998,23 @@ open class GameCenterDetailsAPI {
      * enum for parameter fieldsGameCenterLeaderboards
      */
     public enum FieldsGameCenterLeaderboards_gameCenterDetailsLeaderboardReleasesGetToManyRelated: String, CaseIterable {
-        case archived = "archived"
         case defaultformatter = "defaultFormatter"
-        case gamecenterdetail = "gameCenterDetail"
-        case gamecentergroup = "gameCenterGroup"
-        case gamecenterleaderboardsets = "gameCenterLeaderboardSets"
-        case groupleaderboard = "groupLeaderboard"
-        case localizations = "localizations"
+        case referencename = "referenceName"
+        case vendoridentifier = "vendorIdentifier"
+        case submissiontype = "submissionType"
+        case scoresorttype = "scoreSortType"
+        case scorerangestart = "scoreRangeStart"
+        case scorerangeend = "scoreRangeEnd"
+        case recurrencestartdate = "recurrenceStartDate"
         case recurrenceduration = "recurrenceDuration"
         case recurrencerule = "recurrenceRule"
-        case recurrencestartdate = "recurrenceStartDate"
-        case referencename = "referenceName"
-        case releases = "releases"
-        case scorerangeend = "scoreRangeEnd"
-        case scorerangestart = "scoreRangeStart"
-        case scoresorttype = "scoreSortType"
-        case submissiontype = "submissionType"
-        case vendoridentifier = "vendorIdentifier"
-    }
-
-    /**
-     * enum for parameter fieldsGameCenterLeaderboardReleases
-     */
-    public enum FieldsGameCenterLeaderboardReleases_gameCenterDetailsLeaderboardReleasesGetToManyRelated: String, CaseIterable {
+        case archived = "archived"
         case gamecenterdetail = "gameCenterDetail"
-        case gamecenterleaderboard = "gameCenterLeaderboard"
-        case live = "live"
+        case gamecentergroup = "gameCenterGroup"
+        case groupleaderboard = "groupLeaderboard"
+        case gamecenterleaderboardsets = "gameCenterLeaderboardSets"
+        case localizations = "localizations"
+        case releases = "releases"
     }
 
     /**
@@ -2029,16 +2030,16 @@ open class GameCenterDetailsAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter filterLive: (query) filter by attribute &#39;live&#39; (optional)
      - parameter filterGameCenterLeaderboard: (query) filter by id(s) of related &#39;gameCenterLeaderboard&#39; (optional)
+     - parameter fieldsGameCenterLeaderboardReleases: (query) the fields to include for returned resources of type gameCenterLeaderboardReleases (optional)
      - parameter fieldsGameCenterDetails: (query) the fields to include for returned resources of type gameCenterDetails (optional)
      - parameter fieldsGameCenterLeaderboards: (query) the fields to include for returned resources of type gameCenterLeaderboards (optional)
-     - parameter fieldsGameCenterLeaderboardReleases: (query) the fields to include for returned resources of type gameCenterLeaderboardReleases (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: GameCenterLeaderboardReleasesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterDetailsLeaderboardReleasesGetToManyRelated(id: String, filterLive: [String]? = nil, filterGameCenterLeaderboard: [String]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterDetailsLeaderboardReleasesGetToManyRelated]? = nil, fieldsGameCenterLeaderboards: [FieldsGameCenterLeaderboards_gameCenterDetailsLeaderboardReleasesGetToManyRelated]? = nil, fieldsGameCenterLeaderboardReleases: [FieldsGameCenterLeaderboardReleases_gameCenterDetailsLeaderboardReleasesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_gameCenterDetailsLeaderboardReleasesGetToManyRelated]? = nil) async throws -> GameCenterLeaderboardReleasesResponse {
-        return try await gameCenterDetailsLeaderboardReleasesGetToManyRelatedWithRequestBuilder(id: id, filterLive: filterLive, filterGameCenterLeaderboard: filterGameCenterLeaderboard, fieldsGameCenterDetails: fieldsGameCenterDetails, fieldsGameCenterLeaderboards: fieldsGameCenterLeaderboards, fieldsGameCenterLeaderboardReleases: fieldsGameCenterLeaderboardReleases, limit: limit, include: include).execute().body
+    open class func gameCenterDetailsLeaderboardReleasesGetToManyRelated(id: String, filterLive: [String]? = nil, filterGameCenterLeaderboard: [String]? = nil, fieldsGameCenterLeaderboardReleases: [FieldsGameCenterLeaderboardReleases_gameCenterDetailsLeaderboardReleasesGetToManyRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterDetailsLeaderboardReleasesGetToManyRelated]? = nil, fieldsGameCenterLeaderboards: [FieldsGameCenterLeaderboards_gameCenterDetailsLeaderboardReleasesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_gameCenterDetailsLeaderboardReleasesGetToManyRelated]? = nil) async throws -> GameCenterLeaderboardReleasesResponse {
+        return try await gameCenterDetailsLeaderboardReleasesGetToManyRelatedWithRequestBuilder(id: id, filterLive: filterLive, filterGameCenterLeaderboard: filterGameCenterLeaderboard, fieldsGameCenterLeaderboardReleases: fieldsGameCenterLeaderboardReleases, fieldsGameCenterDetails: fieldsGameCenterDetails, fieldsGameCenterLeaderboards: fieldsGameCenterLeaderboards, limit: limit, include: include).execute().body
     }
 
     /**
@@ -2058,14 +2059,14 @@ open class GameCenterDetailsAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter filterLive: (query) filter by attribute &#39;live&#39; (optional)
      - parameter filterGameCenterLeaderboard: (query) filter by id(s) of related &#39;gameCenterLeaderboard&#39; (optional)
+     - parameter fieldsGameCenterLeaderboardReleases: (query) the fields to include for returned resources of type gameCenterLeaderboardReleases (optional)
      - parameter fieldsGameCenterDetails: (query) the fields to include for returned resources of type gameCenterDetails (optional)
      - parameter fieldsGameCenterLeaderboards: (query) the fields to include for returned resources of type gameCenterLeaderboards (optional)
-     - parameter fieldsGameCenterLeaderboardReleases: (query) the fields to include for returned resources of type gameCenterLeaderboardReleases (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: RequestBuilder<GameCenterLeaderboardReleasesResponse> 
      */
-    open class func gameCenterDetailsLeaderboardReleasesGetToManyRelatedWithRequestBuilder(id: String, filterLive: [String]? = nil, filterGameCenterLeaderboard: [String]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterDetailsLeaderboardReleasesGetToManyRelated]? = nil, fieldsGameCenterLeaderboards: [FieldsGameCenterLeaderboards_gameCenterDetailsLeaderboardReleasesGetToManyRelated]? = nil, fieldsGameCenterLeaderboardReleases: [FieldsGameCenterLeaderboardReleases_gameCenterDetailsLeaderboardReleasesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_gameCenterDetailsLeaderboardReleasesGetToManyRelated]? = nil) -> RequestBuilder<GameCenterLeaderboardReleasesResponse> {
+    open class func gameCenterDetailsLeaderboardReleasesGetToManyRelatedWithRequestBuilder(id: String, filterLive: [String]? = nil, filterGameCenterLeaderboard: [String]? = nil, fieldsGameCenterLeaderboardReleases: [FieldsGameCenterLeaderboardReleases_gameCenterDetailsLeaderboardReleasesGetToManyRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterDetailsLeaderboardReleasesGetToManyRelated]? = nil, fieldsGameCenterLeaderboards: [FieldsGameCenterLeaderboards_gameCenterDetailsLeaderboardReleasesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_gameCenterDetailsLeaderboardReleasesGetToManyRelated]? = nil) -> RequestBuilder<GameCenterLeaderboardReleasesResponse> {
         var localVariablePath = "/v1/gameCenterDetails/{id}/leaderboardReleases"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -2077,9 +2078,9 @@ open class GameCenterDetailsAPI {
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "filter[live]": (wrappedValue: filterLive?.encodeToJSON(), isExplode: false),
             "filter[gameCenterLeaderboard]": (wrappedValue: filterGameCenterLeaderboard?.encodeToJSON(), isExplode: false),
+            "fields[gameCenterLeaderboardReleases]": (wrappedValue: fieldsGameCenterLeaderboardReleases?.encodeToJSON(), isExplode: false),
             "fields[gameCenterDetails]": (wrappedValue: fieldsGameCenterDetails?.encodeToJSON(), isExplode: false),
             "fields[gameCenterLeaderboards]": (wrappedValue: fieldsGameCenterLeaderboards?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterLeaderboardReleases]": (wrappedValue: fieldsGameCenterLeaderboardReleases?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
         ])
@@ -2119,42 +2120,42 @@ open class GameCenterDetailsAPI {
      * enum for parameter fieldsGameCenterLeaderboardSetReleases
      */
     public enum FieldsGameCenterLeaderboardSetReleases_gameCenterDetailsLeaderboardSetReleasesGetToManyRelated: String, CaseIterable {
+        case live = "live"
         case gamecenterdetail = "gameCenterDetail"
         case gamecenterleaderboardset = "gameCenterLeaderboardSet"
-        case live = "live"
-    }
-
-    /**
-     * enum for parameter fieldsGameCenterLeaderboardSets
-     */
-    public enum FieldsGameCenterLeaderboardSets_gameCenterDetailsLeaderboardSetReleasesGetToManyRelated: String, CaseIterable {
-        case gamecenterdetail = "gameCenterDetail"
-        case gamecentergroup = "gameCenterGroup"
-        case gamecenterleaderboards = "gameCenterLeaderboards"
-        case groupleaderboardset = "groupLeaderboardSet"
-        case localizations = "localizations"
-        case referencename = "referenceName"
-        case releases = "releases"
-        case vendoridentifier = "vendorIdentifier"
     }
 
     /**
      * enum for parameter fieldsGameCenterDetails
      */
     public enum FieldsGameCenterDetails_gameCenterDetailsLeaderboardSetReleasesGetToManyRelated: String, CaseIterable {
-        case achievementreleases = "achievementReleases"
-        case app = "app"
         case arcadeenabled = "arcadeEnabled"
         case challengeenabled = "challengeEnabled"
-        case defaultgroupleaderboard = "defaultGroupLeaderboard"
-        case defaultleaderboard = "defaultLeaderboard"
-        case gamecenterachievements = "gameCenterAchievements"
+        case app = "app"
         case gamecenterappversions = "gameCenterAppVersions"
         case gamecentergroup = "gameCenterGroup"
-        case gamecenterleaderboardsets = "gameCenterLeaderboardSets"
         case gamecenterleaderboards = "gameCenterLeaderboards"
+        case gamecenterleaderboardsets = "gameCenterLeaderboardSets"
+        case gamecenterachievements = "gameCenterAchievements"
+        case defaultleaderboard = "defaultLeaderboard"
+        case defaultgroupleaderboard = "defaultGroupLeaderboard"
+        case achievementreleases = "achievementReleases"
         case leaderboardreleases = "leaderboardReleases"
         case leaderboardsetreleases = "leaderboardSetReleases"
+    }
+
+    /**
+     * enum for parameter fieldsGameCenterLeaderboardSets
+     */
+    public enum FieldsGameCenterLeaderboardSets_gameCenterDetailsLeaderboardSetReleasesGetToManyRelated: String, CaseIterable {
+        case referencename = "referenceName"
+        case vendoridentifier = "vendorIdentifier"
+        case gamecenterdetail = "gameCenterDetail"
+        case gamecentergroup = "gameCenterGroup"
+        case groupleaderboardset = "groupLeaderboardSet"
+        case localizations = "localizations"
+        case gamecenterleaderboards = "gameCenterLeaderboards"
+        case releases = "releases"
     }
 
     /**
@@ -2171,15 +2172,15 @@ open class GameCenterDetailsAPI {
      - parameter filterLive: (query) filter by attribute &#39;live&#39; (optional)
      - parameter filterGameCenterLeaderboardSet: (query) filter by id(s) of related &#39;gameCenterLeaderboardSet&#39; (optional)
      - parameter fieldsGameCenterLeaderboardSetReleases: (query) the fields to include for returned resources of type gameCenterLeaderboardSetReleases (optional)
-     - parameter fieldsGameCenterLeaderboardSets: (query) the fields to include for returned resources of type gameCenterLeaderboardSets (optional)
      - parameter fieldsGameCenterDetails: (query) the fields to include for returned resources of type gameCenterDetails (optional)
+     - parameter fieldsGameCenterLeaderboardSets: (query) the fields to include for returned resources of type gameCenterLeaderboardSets (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: GameCenterLeaderboardSetReleasesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterDetailsLeaderboardSetReleasesGetToManyRelated(id: String, filterLive: [String]? = nil, filterGameCenterLeaderboardSet: [String]? = nil, fieldsGameCenterLeaderboardSetReleases: [FieldsGameCenterLeaderboardSetReleases_gameCenterDetailsLeaderboardSetReleasesGetToManyRelated]? = nil, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_gameCenterDetailsLeaderboardSetReleasesGetToManyRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterDetailsLeaderboardSetReleasesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_gameCenterDetailsLeaderboardSetReleasesGetToManyRelated]? = nil) async throws -> GameCenterLeaderboardSetReleasesResponse {
-        return try await gameCenterDetailsLeaderboardSetReleasesGetToManyRelatedWithRequestBuilder(id: id, filterLive: filterLive, filterGameCenterLeaderboardSet: filterGameCenterLeaderboardSet, fieldsGameCenterLeaderboardSetReleases: fieldsGameCenterLeaderboardSetReleases, fieldsGameCenterLeaderboardSets: fieldsGameCenterLeaderboardSets, fieldsGameCenterDetails: fieldsGameCenterDetails, limit: limit, include: include).execute().body
+    open class func gameCenterDetailsLeaderboardSetReleasesGetToManyRelated(id: String, filterLive: [String]? = nil, filterGameCenterLeaderboardSet: [String]? = nil, fieldsGameCenterLeaderboardSetReleases: [FieldsGameCenterLeaderboardSetReleases_gameCenterDetailsLeaderboardSetReleasesGetToManyRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterDetailsLeaderboardSetReleasesGetToManyRelated]? = nil, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_gameCenterDetailsLeaderboardSetReleasesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_gameCenterDetailsLeaderboardSetReleasesGetToManyRelated]? = nil) async throws -> GameCenterLeaderboardSetReleasesResponse {
+        return try await gameCenterDetailsLeaderboardSetReleasesGetToManyRelatedWithRequestBuilder(id: id, filterLive: filterLive, filterGameCenterLeaderboardSet: filterGameCenterLeaderboardSet, fieldsGameCenterLeaderboardSetReleases: fieldsGameCenterLeaderboardSetReleases, fieldsGameCenterDetails: fieldsGameCenterDetails, fieldsGameCenterLeaderboardSets: fieldsGameCenterLeaderboardSets, limit: limit, include: include).execute().body
     }
 
     /**
@@ -2200,13 +2201,13 @@ open class GameCenterDetailsAPI {
      - parameter filterLive: (query) filter by attribute &#39;live&#39; (optional)
      - parameter filterGameCenterLeaderboardSet: (query) filter by id(s) of related &#39;gameCenterLeaderboardSet&#39; (optional)
      - parameter fieldsGameCenterLeaderboardSetReleases: (query) the fields to include for returned resources of type gameCenterLeaderboardSetReleases (optional)
-     - parameter fieldsGameCenterLeaderboardSets: (query) the fields to include for returned resources of type gameCenterLeaderboardSets (optional)
      - parameter fieldsGameCenterDetails: (query) the fields to include for returned resources of type gameCenterDetails (optional)
+     - parameter fieldsGameCenterLeaderboardSets: (query) the fields to include for returned resources of type gameCenterLeaderboardSets (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: RequestBuilder<GameCenterLeaderboardSetReleasesResponse> 
      */
-    open class func gameCenterDetailsLeaderboardSetReleasesGetToManyRelatedWithRequestBuilder(id: String, filterLive: [String]? = nil, filterGameCenterLeaderboardSet: [String]? = nil, fieldsGameCenterLeaderboardSetReleases: [FieldsGameCenterLeaderboardSetReleases_gameCenterDetailsLeaderboardSetReleasesGetToManyRelated]? = nil, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_gameCenterDetailsLeaderboardSetReleasesGetToManyRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterDetailsLeaderboardSetReleasesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_gameCenterDetailsLeaderboardSetReleasesGetToManyRelated]? = nil) -> RequestBuilder<GameCenterLeaderboardSetReleasesResponse> {
+    open class func gameCenterDetailsLeaderboardSetReleasesGetToManyRelatedWithRequestBuilder(id: String, filterLive: [String]? = nil, filterGameCenterLeaderboardSet: [String]? = nil, fieldsGameCenterLeaderboardSetReleases: [FieldsGameCenterLeaderboardSetReleases_gameCenterDetailsLeaderboardSetReleasesGetToManyRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterDetailsLeaderboardSetReleasesGetToManyRelated]? = nil, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_gameCenterDetailsLeaderboardSetReleasesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_gameCenterDetailsLeaderboardSetReleasesGetToManyRelated]? = nil) -> RequestBuilder<GameCenterLeaderboardSetReleasesResponse> {
         var localVariablePath = "/v1/gameCenterDetails/{id}/leaderboardSetReleases"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -2219,8 +2220,8 @@ open class GameCenterDetailsAPI {
             "filter[live]": (wrappedValue: filterLive?.encodeToJSON(), isExplode: false),
             "filter[gameCenterLeaderboardSet]": (wrappedValue: filterGameCenterLeaderboardSet?.encodeToJSON(), isExplode: false),
             "fields[gameCenterLeaderboardSetReleases]": (wrappedValue: fieldsGameCenterLeaderboardSetReleases?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterLeaderboardSets]": (wrappedValue: fieldsGameCenterLeaderboardSets?.encodeToJSON(), isExplode: false),
             "fields[gameCenterDetails]": (wrappedValue: fieldsGameCenterDetails?.encodeToJSON(), isExplode: false),
+            "fields[gameCenterLeaderboardSets]": (wrappedValue: fieldsGameCenterLeaderboardSets?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
         ])
@@ -2285,10 +2286,10 @@ open class GameCenterDetailsAPI {
      * enum for parameter sort
      */
     public enum Sort_gameCenterDetailsRuleBasedMatchmakingRequestsGetMetrics: String, CaseIterable {
-        case averagesecondsinqueue = "averageSecondsInQueue"
-        case averagesecondsinqueue2 = "-averageSecondsInQueue"
         case count = "count"
         case count2 = "-count"
+        case averagesecondsinqueue = "averageSecondsInQueue"
+        case averagesecondsinqueue2 = "-averageSecondsInQueue"
         case p50secondsinqueue = "p50SecondsInQueue"
         case p50secondsinqueue2 = "-p50SecondsInQueue"
         case p95secondsinqueue = "p95SecondsInQueue"
@@ -2299,15 +2300,15 @@ open class GameCenterDetailsAPI {
 
      - parameter id: (path) the id of the requested resource 
      - parameter granularity: (query) the granularity of the per-group dataset 
-     - parameter limit: (query) maximum number of groups to return per page (optional)
      - parameter groupBy: (query) the dimension by which to group the results (optional)
      - parameter filterResult: (query) filter by &#39;result&#39; attribute dimension (optional)
      - parameter sort: (query) comma-separated list of sort expressions; metrics will be sorted as specified (optional)
+     - parameter limit: (query) maximum number of groups to return per page (optional)
      - returns: GameCenterMatchmakingAppRequestsV1MetricResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterDetailsRuleBasedMatchmakingRequestsGetMetrics(id: String, granularity: Granularity_gameCenterDetailsRuleBasedMatchmakingRequestsGetMetrics, limit: Int? = nil, groupBy: [GroupBy_gameCenterDetailsRuleBasedMatchmakingRequestsGetMetrics]? = nil, filterResult: FilterResult_gameCenterDetailsRuleBasedMatchmakingRequestsGetMetrics? = nil, sort: [Sort_gameCenterDetailsRuleBasedMatchmakingRequestsGetMetrics]? = nil) async throws -> GameCenterMatchmakingAppRequestsV1MetricResponse {
-        return try await gameCenterDetailsRuleBasedMatchmakingRequestsGetMetricsWithRequestBuilder(id: id, granularity: granularity, limit: limit, groupBy: groupBy, filterResult: filterResult, sort: sort).execute().body
+    open class func gameCenterDetailsRuleBasedMatchmakingRequestsGetMetrics(id: String, granularity: Granularity_gameCenterDetailsRuleBasedMatchmakingRequestsGetMetrics, groupBy: [GroupBy_gameCenterDetailsRuleBasedMatchmakingRequestsGetMetrics]? = nil, filterResult: FilterResult_gameCenterDetailsRuleBasedMatchmakingRequestsGetMetrics? = nil, sort: [Sort_gameCenterDetailsRuleBasedMatchmakingRequestsGetMetrics]? = nil, limit: Int? = nil) async throws -> GameCenterMatchmakingAppRequestsV1MetricResponse {
+        return try await gameCenterDetailsRuleBasedMatchmakingRequestsGetMetricsWithRequestBuilder(id: id, granularity: granularity, groupBy: groupBy, filterResult: filterResult, sort: sort, limit: limit).execute().body
     }
 
     /**
@@ -2326,13 +2327,13 @@ open class GameCenterDetailsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter granularity: (query) the granularity of the per-group dataset 
-     - parameter limit: (query) maximum number of groups to return per page (optional)
      - parameter groupBy: (query) the dimension by which to group the results (optional)
      - parameter filterResult: (query) filter by &#39;result&#39; attribute dimension (optional)
      - parameter sort: (query) comma-separated list of sort expressions; metrics will be sorted as specified (optional)
+     - parameter limit: (query) maximum number of groups to return per page (optional)
      - returns: RequestBuilder<GameCenterMatchmakingAppRequestsV1MetricResponse> 
      */
-    open class func gameCenterDetailsRuleBasedMatchmakingRequestsGetMetricsWithRequestBuilder(id: String, granularity: Granularity_gameCenterDetailsRuleBasedMatchmakingRequestsGetMetrics, limit: Int? = nil, groupBy: [GroupBy_gameCenterDetailsRuleBasedMatchmakingRequestsGetMetrics]? = nil, filterResult: FilterResult_gameCenterDetailsRuleBasedMatchmakingRequestsGetMetrics? = nil, sort: [Sort_gameCenterDetailsRuleBasedMatchmakingRequestsGetMetrics]? = nil) -> RequestBuilder<GameCenterMatchmakingAppRequestsV1MetricResponse> {
+    open class func gameCenterDetailsRuleBasedMatchmakingRequestsGetMetricsWithRequestBuilder(id: String, granularity: Granularity_gameCenterDetailsRuleBasedMatchmakingRequestsGetMetrics, groupBy: [GroupBy_gameCenterDetailsRuleBasedMatchmakingRequestsGetMetrics]? = nil, filterResult: FilterResult_gameCenterDetailsRuleBasedMatchmakingRequestsGetMetrics? = nil, sort: [Sort_gameCenterDetailsRuleBasedMatchmakingRequestsGetMetrics]? = nil, limit: Int? = nil) -> RequestBuilder<GameCenterMatchmakingAppRequestsV1MetricResponse> {
         var localVariablePath = "/v1/gameCenterDetails/{id}/metrics/ruleBasedMatchmakingRequests"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -2342,11 +2343,11 @@ open class GameCenterDetailsAPI {
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
             "granularity": (wrappedValue: granularity.encodeToJSON(), isExplode: false),
             "groupBy": (wrappedValue: groupBy?.encodeToJSON(), isExplode: false),
             "filter[result]": (wrappedValue: filterResult?.encodeToJSON(), isExplode: false),
             "sort": (wrappedValue: sort?.encodeToJSON(), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [

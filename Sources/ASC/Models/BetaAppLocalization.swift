@@ -19,10 +19,10 @@ public struct BetaAppLocalization: Codable, JSONEncodable, Hashable {
     public var type: ModelType
     public var id: String
     public var attributes: BetaAppLocalizationAttributes?
-    public var relationships: AppPreOrderRelationships?
+    public var relationships: BetaAppLocalizationRelationships?
     public var links: ResourceLinks?
 
-    public init(type: ModelType, id: String, attributes: BetaAppLocalizationAttributes? = nil, relationships: AppPreOrderRelationships? = nil, links: ResourceLinks? = nil) {
+    public init(type: ModelType, id: String, attributes: BetaAppLocalizationAttributes? = nil, relationships: BetaAppLocalizationRelationships? = nil, links: ResourceLinks? = nil) {
         self.type = type
         self.id = id
         self.attributes = attributes

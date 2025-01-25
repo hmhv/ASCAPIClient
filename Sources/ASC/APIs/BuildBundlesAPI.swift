@@ -178,18 +178,16 @@ open class BuildBundlesAPI {
      * enum for parameter fieldsBetaAppClipInvocations
      */
     public enum FieldsBetaAppClipInvocations_buildBundlesBetaAppClipInvocationsGetToManyRelated: String, CaseIterable {
-        case betaappclipinvocationlocalizations = "betaAppClipInvocationLocalizations"
-        case buildbundle = "buildBundle"
         case url = "url"
+        case betaappclipinvocationlocalizations = "betaAppClipInvocationLocalizations"
     }
 
     /**
      * enum for parameter fieldsBetaAppClipInvocationLocalizations
      */
     public enum FieldsBetaAppClipInvocationLocalizations_buildBundlesBetaAppClipInvocationsGetToManyRelated: String, CaseIterable {
-        case betaappclipinvocation = "betaAppClipInvocation"
-        case locale = "locale"
         case title = "title"
+        case locale = "locale"
     }
 
     /**
@@ -205,13 +203,13 @@ open class BuildBundlesAPI {
      - parameter fieldsBetaAppClipInvocations: (query) the fields to include for returned resources of type betaAppClipInvocations (optional)
      - parameter fieldsBetaAppClipInvocationLocalizations: (query) the fields to include for returned resources of type betaAppClipInvocationLocalizations (optional)
      - parameter limit: (query) maximum resources per page (optional)
-     - parameter limitBetaAppClipInvocationLocalizations: (query) maximum number of related betaAppClipInvocationLocalizations returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitBetaAppClipInvocationLocalizations: (query) maximum number of related betaAppClipInvocationLocalizations returned (when they are included) (optional)
      - returns: BetaAppClipInvocationsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildBundlesBetaAppClipInvocationsGetToManyRelated(id: String, fieldsBetaAppClipInvocations: [FieldsBetaAppClipInvocations_buildBundlesBetaAppClipInvocationsGetToManyRelated]? = nil, fieldsBetaAppClipInvocationLocalizations: [FieldsBetaAppClipInvocationLocalizations_buildBundlesBetaAppClipInvocationsGetToManyRelated]? = nil, limit: Int? = nil, limitBetaAppClipInvocationLocalizations: Int? = nil, include: [Include_buildBundlesBetaAppClipInvocationsGetToManyRelated]? = nil) async throws -> BetaAppClipInvocationsResponse {
-        return try await buildBundlesBetaAppClipInvocationsGetToManyRelatedWithRequestBuilder(id: id, fieldsBetaAppClipInvocations: fieldsBetaAppClipInvocations, fieldsBetaAppClipInvocationLocalizations: fieldsBetaAppClipInvocationLocalizations, limit: limit, limitBetaAppClipInvocationLocalizations: limitBetaAppClipInvocationLocalizations, include: include).execute().body
+    open class func buildBundlesBetaAppClipInvocationsGetToManyRelated(id: String, fieldsBetaAppClipInvocations: [FieldsBetaAppClipInvocations_buildBundlesBetaAppClipInvocationsGetToManyRelated]? = nil, fieldsBetaAppClipInvocationLocalizations: [FieldsBetaAppClipInvocationLocalizations_buildBundlesBetaAppClipInvocationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_buildBundlesBetaAppClipInvocationsGetToManyRelated]? = nil, limitBetaAppClipInvocationLocalizations: Int? = nil) async throws -> BetaAppClipInvocationsResponse {
+        return try await buildBundlesBetaAppClipInvocationsGetToManyRelatedWithRequestBuilder(id: id, fieldsBetaAppClipInvocations: fieldsBetaAppClipInvocations, fieldsBetaAppClipInvocationLocalizations: fieldsBetaAppClipInvocationLocalizations, limit: limit, include: include, limitBetaAppClipInvocationLocalizations: limitBetaAppClipInvocationLocalizations).execute().body
     }
 
     /**
@@ -232,11 +230,11 @@ open class BuildBundlesAPI {
      - parameter fieldsBetaAppClipInvocations: (query) the fields to include for returned resources of type betaAppClipInvocations (optional)
      - parameter fieldsBetaAppClipInvocationLocalizations: (query) the fields to include for returned resources of type betaAppClipInvocationLocalizations (optional)
      - parameter limit: (query) maximum resources per page (optional)
-     - parameter limitBetaAppClipInvocationLocalizations: (query) maximum number of related betaAppClipInvocationLocalizations returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitBetaAppClipInvocationLocalizations: (query) maximum number of related betaAppClipInvocationLocalizations returned (when they are included) (optional)
      - returns: RequestBuilder<BetaAppClipInvocationsResponse> 
      */
-    open class func buildBundlesBetaAppClipInvocationsGetToManyRelatedWithRequestBuilder(id: String, fieldsBetaAppClipInvocations: [FieldsBetaAppClipInvocations_buildBundlesBetaAppClipInvocationsGetToManyRelated]? = nil, fieldsBetaAppClipInvocationLocalizations: [FieldsBetaAppClipInvocationLocalizations_buildBundlesBetaAppClipInvocationsGetToManyRelated]? = nil, limit: Int? = nil, limitBetaAppClipInvocationLocalizations: Int? = nil, include: [Include_buildBundlesBetaAppClipInvocationsGetToManyRelated]? = nil) -> RequestBuilder<BetaAppClipInvocationsResponse> {
+    open class func buildBundlesBetaAppClipInvocationsGetToManyRelatedWithRequestBuilder(id: String, fieldsBetaAppClipInvocations: [FieldsBetaAppClipInvocations_buildBundlesBetaAppClipInvocationsGetToManyRelated]? = nil, fieldsBetaAppClipInvocationLocalizations: [FieldsBetaAppClipInvocationLocalizations_buildBundlesBetaAppClipInvocationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_buildBundlesBetaAppClipInvocationsGetToManyRelated]? = nil, limitBetaAppClipInvocationLocalizations: Int? = nil) -> RequestBuilder<BetaAppClipInvocationsResponse> {
         var localVariablePath = "/v1/buildBundles/{id}/betaAppClipInvocations"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -249,8 +247,8 @@ open class BuildBundlesAPI {
             "fields[betaAppClipInvocations]": (wrappedValue: fieldsBetaAppClipInvocations?.encodeToJSON(), isExplode: false),
             "fields[betaAppClipInvocationLocalizations]": (wrappedValue: fieldsBetaAppClipInvocationLocalizations?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "limit[betaAppClipInvocationLocalizations]": (wrappedValue: limitBetaAppClipInvocationLocalizations?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "limit[betaAppClipInvocationLocalizations]": (wrappedValue: limitBetaAppClipInvocationLocalizations?.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -289,9 +287,9 @@ open class BuildBundlesAPI {
      */
     public enum FieldsBuildBundleFileSizes_buildBundlesBuildBundleFileSizesGetToManyRelated: String, CaseIterable {
         case devicemodel = "deviceModel"
+        case osversion = "osVersion"
         case downloadbytes = "downloadBytes"
         case installbytes = "installBytes"
-        case osversion = "osVersion"
     }
 
     /**

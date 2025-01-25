@@ -14,12 +14,12 @@ public struct ReviewSubmissionItemCreateRequestDataRelationships: Codable, JSONE
 
     public var reviewSubmission: ReviewSubmissionItemCreateRequestDataRelationshipsReviewSubmission
     public var appStoreVersion: AppClipDefaultExperienceCreateRequestDataRelationshipsReleaseWithAppStoreVersion?
-    public var appCustomProductPageVersion: AppCustomProductPageLocalizationInlineCreateRelationshipsAppCustomProductPageVersion?
-    public var appStoreVersionExperiment: AppStoreVersionExperimentTreatmentCreateRequestDataRelationshipsAppStoreVersionExperimentV2?
-    public var appStoreVersionExperimentV2: AppStoreVersionExperimentTreatmentCreateRequestDataRelationshipsAppStoreVersionExperimentV2?
-    public var appEvent: ReviewSubmissionItemCreateRequestDataRelationshipsAppEvent?
+    public var appCustomProductPageVersion: AppCustomProductPageLocalizationRelationshipsAppCustomProductPageVersion?
+    public var appStoreVersionExperiment: AppStoreVersionExperimentTreatmentRelationshipsAppStoreVersionExperiment?
+    public var appStoreVersionExperimentV2: AppStoreVersionExperimentTreatmentRelationshipsAppStoreVersionExperiment?
+    public var appEvent: AppEventLocalizationRelationshipsAppEvent?
 
-    public init(reviewSubmission: ReviewSubmissionItemCreateRequestDataRelationshipsReviewSubmission, appStoreVersion: AppClipDefaultExperienceCreateRequestDataRelationshipsReleaseWithAppStoreVersion? = nil, appCustomProductPageVersion: AppCustomProductPageLocalizationInlineCreateRelationshipsAppCustomProductPageVersion? = nil, appStoreVersionExperiment: AppStoreVersionExperimentTreatmentCreateRequestDataRelationshipsAppStoreVersionExperimentV2? = nil, appStoreVersionExperimentV2: AppStoreVersionExperimentTreatmentCreateRequestDataRelationshipsAppStoreVersionExperimentV2? = nil, appEvent: ReviewSubmissionItemCreateRequestDataRelationshipsAppEvent? = nil) {
+    public init(reviewSubmission: ReviewSubmissionItemCreateRequestDataRelationshipsReviewSubmission, appStoreVersion: AppClipDefaultExperienceCreateRequestDataRelationshipsReleaseWithAppStoreVersion? = nil, appCustomProductPageVersion: AppCustomProductPageLocalizationRelationshipsAppCustomProductPageVersion? = nil, appStoreVersionExperiment: AppStoreVersionExperimentTreatmentRelationshipsAppStoreVersionExperiment? = nil, appStoreVersionExperimentV2: AppStoreVersionExperimentTreatmentRelationshipsAppStoreVersionExperiment? = nil, appEvent: AppEventLocalizationRelationshipsAppEvent? = nil) {
         self.reviewSubmission = reviewSubmission
         self.appStoreVersion = appStoreVersion
         self.appCustomProductPageVersion = appCustomProductPageVersion

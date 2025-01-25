@@ -81,10 +81,10 @@ open class SubscriptionOfferCodeOneTimeUseCodesAPI {
      * enum for parameter fieldsSubscriptionOfferCodeOneTimeUseCodes
      */
     public enum FieldsSubscriptionOfferCodeOneTimeUseCodes_subscriptionOfferCodeOneTimeUseCodesGetInstance: String, CaseIterable {
-        case active = "active"
+        case numberofcodes = "numberOfCodes"
         case createddate = "createdDate"
         case expirationdate = "expirationDate"
-        case numberofcodes = "numberOfCodes"
+        case active = "active"
         case offercode = "offerCode"
         case values = "values"
     }

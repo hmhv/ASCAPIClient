@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 # **appCustomProductPagesAppCustomProductPageVersionsGetToManyRelated**
 ```swift
-    open class func appCustomProductPagesAppCustomProductPageVersionsGetToManyRelated(id: String, filterState: [FilterState_appCustomProductPagesAppCustomProductPageVersionsGetToManyRelated]? = nil, fieldsAppCustomProductPageLocalizations: [FieldsAppCustomProductPageLocalizations_appCustomProductPagesAppCustomProductPageVersionsGetToManyRelated]? = nil, fieldsAppCustomProductPageVersions: [FieldsAppCustomProductPageVersions_appCustomProductPagesAppCustomProductPageVersionsGetToManyRelated]? = nil, fieldsAppCustomProductPages: [FieldsAppCustomProductPages_appCustomProductPagesAppCustomProductPageVersionsGetToManyRelated]? = nil, limit: Int? = nil, limitAppCustomProductPageLocalizations: Int? = nil, include: [Include_appCustomProductPagesAppCustomProductPageVersionsGetToManyRelated]? = nil, completion: @escaping (_ data: AppCustomProductPageVersionsResponse?, _ error: Error?) -> Void)
+    open class func appCustomProductPagesAppCustomProductPageVersionsGetToManyRelated(id: String, filterState: [FilterState_appCustomProductPagesAppCustomProductPageVersionsGetToManyRelated]? = nil, fieldsAppCustomProductPageVersions: [FieldsAppCustomProductPageVersions_appCustomProductPagesAppCustomProductPageVersionsGetToManyRelated]? = nil, fieldsAppCustomProductPages: [FieldsAppCustomProductPages_appCustomProductPagesAppCustomProductPageVersionsGetToManyRelated]? = nil, fieldsAppCustomProductPageLocalizations: [FieldsAppCustomProductPageLocalizations_appCustomProductPagesAppCustomProductPageVersionsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appCustomProductPagesAppCustomProductPageVersionsGetToManyRelated]? = nil, limitAppCustomProductPageLocalizations: Int? = nil, completion: @escaping (_ data: AppCustomProductPageVersionsResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -25,14 +25,14 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let filterState = ["filterState_example"] // [String] | filter by attribute 'state' (optional)
-let fieldsAppCustomProductPageLocalizations = ["fieldsAppCustomProductPageLocalizations_example"] // [String] | the fields to include for returned resources of type appCustomProductPageLocalizations (optional)
 let fieldsAppCustomProductPageVersions = ["fieldsAppCustomProductPageVersions_example"] // [String] | the fields to include for returned resources of type appCustomProductPageVersions (optional)
 let fieldsAppCustomProductPages = ["fieldsAppCustomProductPages_example"] // [String] | the fields to include for returned resources of type appCustomProductPages (optional)
+let fieldsAppCustomProductPageLocalizations = ["fieldsAppCustomProductPageLocalizations_example"] // [String] | the fields to include for returned resources of type appCustomProductPageLocalizations (optional)
 let limit = 987 // Int | maximum resources per page (optional)
-let limitAppCustomProductPageLocalizations = 987 // Int | maximum number of related appCustomProductPageLocalizations returned (when they are included) (optional)
 let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
+let limitAppCustomProductPageLocalizations = 987 // Int | maximum number of related appCustomProductPageLocalizations returned (when they are included) (optional)
 
-AppCustomProductPagesAPI.appCustomProductPagesAppCustomProductPageVersionsGetToManyRelated(id: id, filterState: filterState, fieldsAppCustomProductPageLocalizations: fieldsAppCustomProductPageLocalizations, fieldsAppCustomProductPageVersions: fieldsAppCustomProductPageVersions, fieldsAppCustomProductPages: fieldsAppCustomProductPages, limit: limit, limitAppCustomProductPageLocalizations: limitAppCustomProductPageLocalizations, include: include) { (response, error) in
+AppCustomProductPagesAPI.appCustomProductPagesAppCustomProductPageVersionsGetToManyRelated(id: id, filterState: filterState, fieldsAppCustomProductPageVersions: fieldsAppCustomProductPageVersions, fieldsAppCustomProductPages: fieldsAppCustomProductPages, fieldsAppCustomProductPageLocalizations: fieldsAppCustomProductPageLocalizations, limit: limit, include: include, limitAppCustomProductPageLocalizations: limitAppCustomProductPageLocalizations) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -50,12 +50,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **filterState** | [**[String]**](String.md) | filter by attribute &#39;state&#39; | [optional] 
- **fieldsAppCustomProductPageLocalizations** | [**[String]**](String.md) | the fields to include for returned resources of type appCustomProductPageLocalizations | [optional] 
  **fieldsAppCustomProductPageVersions** | [**[String]**](String.md) | the fields to include for returned resources of type appCustomProductPageVersions | [optional] 
  **fieldsAppCustomProductPages** | [**[String]**](String.md) | the fields to include for returned resources of type appCustomProductPages | [optional] 
+ **fieldsAppCustomProductPageLocalizations** | [**[String]**](String.md) | the fields to include for returned resources of type appCustomProductPageLocalizations | [optional] 
  **limit** | **Int** | maximum resources per page | [optional] 
- **limitAppCustomProductPageLocalizations** | **Int** | maximum number of related appCustomProductPageLocalizations returned (when they are included) | [optional] 
  **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
+ **limitAppCustomProductPageLocalizations** | **Int** | maximum number of related appCustomProductPageLocalizations returned (when they are included) | [optional] 
 
 ### Return type
 
@@ -84,7 +84,7 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import ASC
 
-let appCustomProductPageCreateRequest = AppCustomProductPageCreateRequest(data: AppCustomProductPageCreateRequest_data(type: "type_example", attributes: AppCustomProductPageCreateRequest_data_attributes(name: "name_example"), relationships: AppCustomProductPageCreateRequest_data_relationships(app: AnalyticsReportRequestCreateRequest_data_relationships_app(data: AlternativeDistributionKeyCreateRequest_data_relationships_app_data(type: "type_example", id: "id_example")), appCustomProductPageVersions: AppCustomProductPageCreateRequest_data_relationships_appCustomProductPageVersions(data: [AppCustomProductPageLocalization_relationships_appCustomProductPageVersion_data(type: "type_example", id: "id_example")]), appStoreVersionTemplate: AppClipDefaultExperienceCreateRequest_data_relationships_releaseWithAppStoreVersion(data: AlternativeDistributionPackageCreateRequest_data_relationships_appStoreVersion_data(type: "type_example", id: "id_example")), customProductPageTemplate: AppCustomProductPageVersionInlineCreate_relationships_appCustomProductPage(data: AppCustomProductPageVersion_relationships_appCustomProductPage_data(type: "type_example", id: "id_example")))), included: [AppCustomProductPageCreateRequest_included_inner(type: "type_example", id: "id_example", attributes: AppCustomProductPageLocalizationInlineCreate_attributes(locale: "locale_example", promotionalText: "promotionalText_example"), relationships: AppCustomProductPageVersionInlineCreate_relationships(appCustomProductPage: nil, appCustomProductPageLocalizations: AppCustomProductPageVersionInlineCreate_relationships_appCustomProductPageLocalizations(data: [AppCustomProductPageVersion_relationships_appCustomProductPageLocalizations_data_inner(type: "type_example", id: "id_example")])))]) // AppCustomProductPageCreateRequest | AppCustomProductPage representation
+let appCustomProductPageCreateRequest = AppCustomProductPageCreateRequest(data: AppCustomProductPageCreateRequest_data(type: "type_example", attributes: AppCustomProductPageCreateRequest_data_attributes(name: "name_example"), relationships: AppCustomProductPageCreateRequest_data_relationships(app: AnalyticsReportRequestCreateRequest_data_relationships_app(data: AlternativeDistributionKeyCreateRequest_data_relationships_app_data(type: "type_example", id: "id_example")), appCustomProductPageVersions: AppCustomProductPageCreateRequest_data_relationships_appCustomProductPageVersions(data: [AppCustomProductPageLocalization_relationships_appCustomProductPageVersion_data(type: "type_example", id: "id_example")]), appStoreVersionTemplate: AppClipDefaultExperienceCreateRequest_data_relationships_releaseWithAppStoreVersion(data: AlternativeDistributionPackageCreateRequest_data_relationships_appStoreVersion_data(type: "type_example", id: "id_example")), customProductPageTemplate: AppCustomProductPageVersion_relationships_appCustomProductPage(data: AppCustomProductPageVersion_relationships_appCustomProductPage_data(type: "type_example", id: "id_example")))), included: [AppCustomProductPageCreateRequest_included_inner(type: "type_example", id: "id_example", attributes: AppCustomProductPageVersionInlineCreate_attributes(deepLink: "deepLink_example"), relationships: AppCustomProductPageVersionInlineCreate_relationships(appCustomProductPage: nil, appCustomProductPageLocalizations: AppCustomProductPageVersionInlineCreate_relationships_appCustomProductPageLocalizations(data: [AppCustomProductPageVersion_relationships_appCustomProductPageLocalizations_data_inner(type: "type_example", id: "id_example")])))]) // AppCustomProductPageCreateRequest | AppCustomProductPage representation
 
 AppCustomProductPagesAPI.appCustomProductPagesCreateInstance(appCustomProductPageCreateRequest: appCustomProductPageCreateRequest) { (response, error) in
     guard error == nil else {
@@ -168,7 +168,7 @@ Void (empty response body)
 
 # **appCustomProductPagesGetInstance**
 ```swift
-    open class func appCustomProductPagesGetInstance(id: String, fieldsAppCustomProductPages: [FieldsAppCustomProductPages_appCustomProductPagesGetInstance]? = nil, include: [Include_appCustomProductPagesGetInstance]? = nil, fieldsAppCustomProductPageVersions: [FieldsAppCustomProductPageVersions_appCustomProductPagesGetInstance]? = nil, limitAppCustomProductPageVersions: Int? = nil, completion: @escaping (_ data: AppCustomProductPageResponse?, _ error: Error?) -> Void)
+    open class func appCustomProductPagesGetInstance(id: String, fieldsAppCustomProductPages: [FieldsAppCustomProductPages_appCustomProductPagesGetInstance]? = nil, fieldsAppCustomProductPageVersions: [FieldsAppCustomProductPageVersions_appCustomProductPagesGetInstance]? = nil, include: [Include_appCustomProductPagesGetInstance]? = nil, limitAppCustomProductPageVersions: Int? = nil, completion: @escaping (_ data: AppCustomProductPageResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -180,11 +180,11 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let fieldsAppCustomProductPages = ["fieldsAppCustomProductPages_example"] // [String] | the fields to include for returned resources of type appCustomProductPages (optional)
-let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let fieldsAppCustomProductPageVersions = ["fieldsAppCustomProductPageVersions_example"] // [String] | the fields to include for returned resources of type appCustomProductPageVersions (optional)
+let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let limitAppCustomProductPageVersions = 987 // Int | maximum number of related appCustomProductPageVersions returned (when they are included) (optional)
 
-AppCustomProductPagesAPI.appCustomProductPagesGetInstance(id: id, fieldsAppCustomProductPages: fieldsAppCustomProductPages, include: include, fieldsAppCustomProductPageVersions: fieldsAppCustomProductPageVersions, limitAppCustomProductPageVersions: limitAppCustomProductPageVersions) { (response, error) in
+AppCustomProductPagesAPI.appCustomProductPagesGetInstance(id: id, fieldsAppCustomProductPages: fieldsAppCustomProductPages, fieldsAppCustomProductPageVersions: fieldsAppCustomProductPageVersions, include: include, limitAppCustomProductPageVersions: limitAppCustomProductPageVersions) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -202,8 +202,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **fieldsAppCustomProductPages** | [**[String]**](String.md) | the fields to include for returned resources of type appCustomProductPages | [optional] 
- **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **fieldsAppCustomProductPageVersions** | [**[String]**](String.md) | the fields to include for returned resources of type appCustomProductPageVersions | [optional] 
+ **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **limitAppCustomProductPageVersions** | **Int** | maximum number of related appCustomProductPageVersions returned (when they are included) | [optional] 
 
 ### Return type

@@ -7,9 +7,11 @@ Name | Type | Description | Notes
 **fileName** | **String** |  | [optional] 
 **previewFrameTimeCode** | **String** |  | [optional] 
 **videoUrl** | **String** |  | [optional] 
+**previewFrameImage** | [**PreviewFrameImage**](PreviewFrameImage.md) |  | [optional] 
 **previewImage** | [**ImageAsset**](ImageAsset.md) |  | [optional] 
 **uploadOperations** | [UploadOperation] |  | [optional] 
 **assetDeliveryState** | [**AppMediaAssetState**](AppMediaAssetState.md) |  | [optional] 
+**videoDeliveryState** | [**AppMediaVideoState**](AppMediaVideoState.md) |  | [optional] 
 **appEventAssetType** | [**AppEventAssetType**](AppEventAssetType.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

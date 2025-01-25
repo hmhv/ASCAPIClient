@@ -16,13 +16,23 @@ open class CustomerReviewsAPI {
      * enum for parameter fieldsCustomerReviews
      */
     public enum FieldsCustomerReviews_customerReviewsGetInstance: String, CaseIterable {
-        case body = "body"
-        case createddate = "createdDate"
         case rating = "rating"
-        case response = "response"
-        case reviewernickname = "reviewerNickname"
-        case territory = "territory"
         case title = "title"
+        case body = "body"
+        case reviewernickname = "reviewerNickname"
+        case createddate = "createdDate"
+        case territory = "territory"
+        case response = "response"
+    }
+
+    /**
+     * enum for parameter fieldsCustomerReviewResponses
+     */
+    public enum FieldsCustomerReviewResponses_customerReviewsGetInstance: String, CaseIterable {
+        case responsebody = "responseBody"
+        case lastmodifieddate = "lastModifiedDate"
+        case state = "state"
+        case review = "review"
     }
 
     /**
@@ -33,26 +43,16 @@ open class CustomerReviewsAPI {
     }
 
     /**
-     * enum for parameter fieldsCustomerReviewResponses
-     */
-    public enum FieldsCustomerReviewResponses_customerReviewsGetInstance: String, CaseIterable {
-        case lastmodifieddate = "lastModifiedDate"
-        case responsebody = "responseBody"
-        case review = "review"
-        case state = "state"
-    }
-
-    /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsCustomerReviews: (query) the fields to include for returned resources of type customerReviews (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter fieldsCustomerReviewResponses: (query) the fields to include for returned resources of type customerReviewResponses (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: CustomerReviewResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func customerReviewsGetInstance(id: String, fieldsCustomerReviews: [FieldsCustomerReviews_customerReviewsGetInstance]? = nil, include: [Include_customerReviewsGetInstance]? = nil, fieldsCustomerReviewResponses: [FieldsCustomerReviewResponses_customerReviewsGetInstance]? = nil) async throws -> CustomerReviewResponse {
-        return try await customerReviewsGetInstanceWithRequestBuilder(id: id, fieldsCustomerReviews: fieldsCustomerReviews, include: include, fieldsCustomerReviewResponses: fieldsCustomerReviewResponses).execute().body
+    open class func customerReviewsGetInstance(id: String, fieldsCustomerReviews: [FieldsCustomerReviews_customerReviewsGetInstance]? = nil, fieldsCustomerReviewResponses: [FieldsCustomerReviewResponses_customerReviewsGetInstance]? = nil, include: [Include_customerReviewsGetInstance]? = nil) async throws -> CustomerReviewResponse {
+        return try await customerReviewsGetInstanceWithRequestBuilder(id: id, fieldsCustomerReviews: fieldsCustomerReviews, fieldsCustomerReviewResponses: fieldsCustomerReviewResponses, include: include).execute().body
     }
 
     /**
@@ -71,11 +71,11 @@ open class CustomerReviewsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsCustomerReviews: (query) the fields to include for returned resources of type customerReviews (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter fieldsCustomerReviewResponses: (query) the fields to include for returned resources of type customerReviewResponses (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: RequestBuilder<CustomerReviewResponse> 
      */
-    open class func customerReviewsGetInstanceWithRequestBuilder(id: String, fieldsCustomerReviews: [FieldsCustomerReviews_customerReviewsGetInstance]? = nil, include: [Include_customerReviewsGetInstance]? = nil, fieldsCustomerReviewResponses: [FieldsCustomerReviewResponses_customerReviewsGetInstance]? = nil) -> RequestBuilder<CustomerReviewResponse> {
+    open class func customerReviewsGetInstanceWithRequestBuilder(id: String, fieldsCustomerReviews: [FieldsCustomerReviews_customerReviewsGetInstance]? = nil, fieldsCustomerReviewResponses: [FieldsCustomerReviewResponses_customerReviewsGetInstance]? = nil, include: [Include_customerReviewsGetInstance]? = nil) -> RequestBuilder<CustomerReviewResponse> {
         var localVariablePath = "/v1/customerReviews/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -86,8 +86,8 @@ open class CustomerReviewsAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[customerReviews]": (wrappedValue: fieldsCustomerReviews?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "fields[customerReviewResponses]": (wrappedValue: fieldsCustomerReviewResponses?.encodeToJSON(), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -122,26 +122,26 @@ open class CustomerReviewsAPI {
     }
 
     /**
-     * enum for parameter fieldsCustomerReviews
-     */
-    public enum FieldsCustomerReviews_customerReviewsResponseGetToOneRelated: String, CaseIterable {
-        case body = "body"
-        case createddate = "createdDate"
-        case rating = "rating"
-        case response = "response"
-        case reviewernickname = "reviewerNickname"
-        case territory = "territory"
-        case title = "title"
-    }
-
-    /**
      * enum for parameter fieldsCustomerReviewResponses
      */
     public enum FieldsCustomerReviewResponses_customerReviewsResponseGetToOneRelated: String, CaseIterable {
-        case lastmodifieddate = "lastModifiedDate"
         case responsebody = "responseBody"
-        case review = "review"
+        case lastmodifieddate = "lastModifiedDate"
         case state = "state"
+        case review = "review"
+    }
+
+    /**
+     * enum for parameter fieldsCustomerReviews
+     */
+    public enum FieldsCustomerReviews_customerReviewsResponseGetToOneRelated: String, CaseIterable {
+        case rating = "rating"
+        case title = "title"
+        case body = "body"
+        case reviewernickname = "reviewerNickname"
+        case createddate = "createdDate"
+        case territory = "territory"
+        case response = "response"
     }
 
     /**
@@ -154,14 +154,14 @@ open class CustomerReviewsAPI {
     /**
 
      - parameter id: (path) the id of the requested resource 
-     - parameter fieldsCustomerReviews: (query) the fields to include for returned resources of type customerReviews (optional)
      - parameter fieldsCustomerReviewResponses: (query) the fields to include for returned resources of type customerReviewResponses (optional)
+     - parameter fieldsCustomerReviews: (query) the fields to include for returned resources of type customerReviews (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: CustomerReviewResponseV1Response
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func customerReviewsResponseGetToOneRelated(id: String, fieldsCustomerReviews: [FieldsCustomerReviews_customerReviewsResponseGetToOneRelated]? = nil, fieldsCustomerReviewResponses: [FieldsCustomerReviewResponses_customerReviewsResponseGetToOneRelated]? = nil, include: [Include_customerReviewsResponseGetToOneRelated]? = nil) async throws -> CustomerReviewResponseV1Response {
-        return try await customerReviewsResponseGetToOneRelatedWithRequestBuilder(id: id, fieldsCustomerReviews: fieldsCustomerReviews, fieldsCustomerReviewResponses: fieldsCustomerReviewResponses, include: include).execute().body
+    open class func customerReviewsResponseGetToOneRelated(id: String, fieldsCustomerReviewResponses: [FieldsCustomerReviewResponses_customerReviewsResponseGetToOneRelated]? = nil, fieldsCustomerReviews: [FieldsCustomerReviews_customerReviewsResponseGetToOneRelated]? = nil, include: [Include_customerReviewsResponseGetToOneRelated]? = nil) async throws -> CustomerReviewResponseV1Response {
+        return try await customerReviewsResponseGetToOneRelatedWithRequestBuilder(id: id, fieldsCustomerReviewResponses: fieldsCustomerReviewResponses, fieldsCustomerReviews: fieldsCustomerReviews, include: include).execute().body
     }
 
     /**
@@ -179,12 +179,12 @@ open class CustomerReviewsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
-     - parameter fieldsCustomerReviews: (query) the fields to include for returned resources of type customerReviews (optional)
      - parameter fieldsCustomerReviewResponses: (query) the fields to include for returned resources of type customerReviewResponses (optional)
+     - parameter fieldsCustomerReviews: (query) the fields to include for returned resources of type customerReviews (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: RequestBuilder<CustomerReviewResponseV1Response> 
      */
-    open class func customerReviewsResponseGetToOneRelatedWithRequestBuilder(id: String, fieldsCustomerReviews: [FieldsCustomerReviews_customerReviewsResponseGetToOneRelated]? = nil, fieldsCustomerReviewResponses: [FieldsCustomerReviewResponses_customerReviewsResponseGetToOneRelated]? = nil, include: [Include_customerReviewsResponseGetToOneRelated]? = nil) -> RequestBuilder<CustomerReviewResponseV1Response> {
+    open class func customerReviewsResponseGetToOneRelatedWithRequestBuilder(id: String, fieldsCustomerReviewResponses: [FieldsCustomerReviewResponses_customerReviewsResponseGetToOneRelated]? = nil, fieldsCustomerReviews: [FieldsCustomerReviews_customerReviewsResponseGetToOneRelated]? = nil, include: [Include_customerReviewsResponseGetToOneRelated]? = nil) -> RequestBuilder<CustomerReviewResponseV1Response> {
         var localVariablePath = "/v1/customerReviews/{id}/response"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -194,8 +194,8 @@ open class CustomerReviewsAPI {
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[customerReviews]": (wrappedValue: fieldsCustomerReviews?.encodeToJSON(), isExplode: false),
             "fields[customerReviewResponses]": (wrappedValue: fieldsCustomerReviewResponses?.encodeToJSON(), isExplode: false),
+            "fields[customerReviews]": (wrappedValue: fieldsCustomerReviews?.encodeToJSON(), isExplode: false),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
         ])
 

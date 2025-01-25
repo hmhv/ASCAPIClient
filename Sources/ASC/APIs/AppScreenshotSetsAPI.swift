@@ -13,30 +13,29 @@ import AnyCodable
 open class AppScreenshotSetsAPI {
 
     /**
-     * enum for parameter fieldsAppScreenshotSets
-     */
-    public enum FieldsAppScreenshotSets_appScreenshotSetsAppScreenshotsGetToManyRelated: String, CaseIterable {
-        case appcustomproductpagelocalization = "appCustomProductPageLocalization"
-        case appscreenshots = "appScreenshots"
-        case appstoreversionexperimenttreatmentlocalization = "appStoreVersionExperimentTreatmentLocalization"
-        case appstoreversionlocalization = "appStoreVersionLocalization"
-        case screenshotdisplaytype = "screenshotDisplayType"
-    }
-
-    /**
      * enum for parameter fieldsAppScreenshots
      */
     public enum FieldsAppScreenshots_appScreenshotSetsAppScreenshotsGetToManyRelated: String, CaseIterable {
-        case appscreenshotset = "appScreenshotSet"
-        case assetdeliverystate = "assetDeliveryState"
+        case filesize = "fileSize"
+        case filename = "fileName"
+        case sourcefilechecksum = "sourceFileChecksum"
+        case imageasset = "imageAsset"
         case assettoken = "assetToken"
         case assettype = "assetType"
-        case filename = "fileName"
-        case filesize = "fileSize"
-        case imageasset = "imageAsset"
-        case sourcefilechecksum = "sourceFileChecksum"
         case uploadoperations = "uploadOperations"
-        case uploaded = "uploaded"
+        case assetdeliverystate = "assetDeliveryState"
+        case appscreenshotset = "appScreenshotSet"
+    }
+
+    /**
+     * enum for parameter fieldsAppScreenshotSets
+     */
+    public enum FieldsAppScreenshotSets_appScreenshotSetsAppScreenshotsGetToManyRelated: String, CaseIterable {
+        case screenshotdisplaytype = "screenshotDisplayType"
+        case appstoreversionlocalization = "appStoreVersionLocalization"
+        case appcustomproductpagelocalization = "appCustomProductPageLocalization"
+        case appstoreversionexperimenttreatmentlocalization = "appStoreVersionExperimentTreatmentLocalization"
+        case appscreenshots = "appScreenshots"
     }
 
     /**
@@ -49,15 +48,15 @@ open class AppScreenshotSetsAPI {
     /**
 
      - parameter id: (path) the id of the requested resource 
-     - parameter fieldsAppScreenshotSets: (query) the fields to include for returned resources of type appScreenshotSets (optional)
      - parameter fieldsAppScreenshots: (query) the fields to include for returned resources of type appScreenshots (optional)
+     - parameter fieldsAppScreenshotSets: (query) the fields to include for returned resources of type appScreenshotSets (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: AppScreenshotsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appScreenshotSetsAppScreenshotsGetToManyRelated(id: String, fieldsAppScreenshotSets: [FieldsAppScreenshotSets_appScreenshotSetsAppScreenshotsGetToManyRelated]? = nil, fieldsAppScreenshots: [FieldsAppScreenshots_appScreenshotSetsAppScreenshotsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appScreenshotSetsAppScreenshotsGetToManyRelated]? = nil) async throws -> AppScreenshotsResponse {
-        return try await appScreenshotSetsAppScreenshotsGetToManyRelatedWithRequestBuilder(id: id, fieldsAppScreenshotSets: fieldsAppScreenshotSets, fieldsAppScreenshots: fieldsAppScreenshots, limit: limit, include: include).execute().body
+    open class func appScreenshotSetsAppScreenshotsGetToManyRelated(id: String, fieldsAppScreenshots: [FieldsAppScreenshots_appScreenshotSetsAppScreenshotsGetToManyRelated]? = nil, fieldsAppScreenshotSets: [FieldsAppScreenshotSets_appScreenshotSetsAppScreenshotsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appScreenshotSetsAppScreenshotsGetToManyRelated]? = nil) async throws -> AppScreenshotsResponse {
+        return try await appScreenshotSetsAppScreenshotsGetToManyRelatedWithRequestBuilder(id: id, fieldsAppScreenshots: fieldsAppScreenshots, fieldsAppScreenshotSets: fieldsAppScreenshotSets, limit: limit, include: include).execute().body
     }
 
     /**
@@ -75,13 +74,13 @@ open class AppScreenshotSetsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
-     - parameter fieldsAppScreenshotSets: (query) the fields to include for returned resources of type appScreenshotSets (optional)
      - parameter fieldsAppScreenshots: (query) the fields to include for returned resources of type appScreenshots (optional)
+     - parameter fieldsAppScreenshotSets: (query) the fields to include for returned resources of type appScreenshotSets (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: RequestBuilder<AppScreenshotsResponse> 
      */
-    open class func appScreenshotSetsAppScreenshotsGetToManyRelatedWithRequestBuilder(id: String, fieldsAppScreenshotSets: [FieldsAppScreenshotSets_appScreenshotSetsAppScreenshotsGetToManyRelated]? = nil, fieldsAppScreenshots: [FieldsAppScreenshots_appScreenshotSetsAppScreenshotsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appScreenshotSetsAppScreenshotsGetToManyRelated]? = nil) -> RequestBuilder<AppScreenshotsResponse> {
+    open class func appScreenshotSetsAppScreenshotsGetToManyRelatedWithRequestBuilder(id: String, fieldsAppScreenshots: [FieldsAppScreenshots_appScreenshotSetsAppScreenshotsGetToManyRelated]? = nil, fieldsAppScreenshotSets: [FieldsAppScreenshotSets_appScreenshotSetsAppScreenshotsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appScreenshotSetsAppScreenshotsGetToManyRelated]? = nil) -> RequestBuilder<AppScreenshotsResponse> {
         var localVariablePath = "/v1/appScreenshotSets/{id}/appScreenshots"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -91,8 +90,8 @@ open class AppScreenshotSetsAPI {
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[appScreenshotSets]": (wrappedValue: fieldsAppScreenshotSets?.encodeToJSON(), isExplode: false),
             "fields[appScreenshots]": (wrappedValue: fieldsAppScreenshots?.encodeToJSON(), isExplode: false),
+            "fields[appScreenshotSets]": (wrappedValue: fieldsAppScreenshotSets?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
         ])
@@ -408,51 +407,50 @@ open class AppScreenshotSetsAPI {
      * enum for parameter fieldsAppScreenshotSets
      */
     public enum FieldsAppScreenshotSets_appScreenshotSetsGetInstance: String, CaseIterable {
-        case appcustomproductpagelocalization = "appCustomProductPageLocalization"
-        case appscreenshots = "appScreenshots"
-        case appstoreversionexperimenttreatmentlocalization = "appStoreVersionExperimentTreatmentLocalization"
-        case appstoreversionlocalization = "appStoreVersionLocalization"
         case screenshotdisplaytype = "screenshotDisplayType"
-    }
-
-    /**
-     * enum for parameter include
-     */
-    public enum Include_appScreenshotSetsGetInstance: String, CaseIterable {
-        case appcustomproductpagelocalization = "appCustomProductPageLocalization"
-        case appscreenshots = "appScreenshots"
-        case appstoreversionexperimenttreatmentlocalization = "appStoreVersionExperimentTreatmentLocalization"
         case appstoreversionlocalization = "appStoreVersionLocalization"
+        case appcustomproductpagelocalization = "appCustomProductPageLocalization"
+        case appstoreversionexperimenttreatmentlocalization = "appStoreVersionExperimentTreatmentLocalization"
+        case appscreenshots = "appScreenshots"
     }
 
     /**
      * enum for parameter fieldsAppScreenshots
      */
     public enum FieldsAppScreenshots_appScreenshotSetsGetInstance: String, CaseIterable {
-        case appscreenshotset = "appScreenshotSet"
-        case assetdeliverystate = "assetDeliveryState"
+        case filesize = "fileSize"
+        case filename = "fileName"
+        case sourcefilechecksum = "sourceFileChecksum"
+        case imageasset = "imageAsset"
         case assettoken = "assetToken"
         case assettype = "assetType"
-        case filename = "fileName"
-        case filesize = "fileSize"
-        case imageasset = "imageAsset"
-        case sourcefilechecksum = "sourceFileChecksum"
         case uploadoperations = "uploadOperations"
-        case uploaded = "uploaded"
+        case assetdeliverystate = "assetDeliveryState"
+        case appscreenshotset = "appScreenshotSet"
+    }
+
+    /**
+     * enum for parameter include
+     */
+    public enum Include_appScreenshotSetsGetInstance: String, CaseIterable {
+        case appstoreversionlocalization = "appStoreVersionLocalization"
+        case appcustomproductpagelocalization = "appCustomProductPageLocalization"
+        case appstoreversionexperimenttreatmentlocalization = "appStoreVersionExperimentTreatmentLocalization"
+        case appscreenshots = "appScreenshots"
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAppScreenshotSets: (query) the fields to include for returned resources of type appScreenshotSets (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter fieldsAppScreenshots: (query) the fields to include for returned resources of type appScreenshots (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAppScreenshots: (query) maximum number of related appScreenshots returned (when they are included) (optional)
      - returns: AppScreenshotSetResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appScreenshotSetsGetInstance(id: String, fieldsAppScreenshotSets: [FieldsAppScreenshotSets_appScreenshotSetsGetInstance]? = nil, include: [Include_appScreenshotSetsGetInstance]? = nil, fieldsAppScreenshots: [FieldsAppScreenshots_appScreenshotSetsGetInstance]? = nil, limitAppScreenshots: Int? = nil) async throws -> AppScreenshotSetResponse {
-        return try await appScreenshotSetsGetInstanceWithRequestBuilder(id: id, fieldsAppScreenshotSets: fieldsAppScreenshotSets, include: include, fieldsAppScreenshots: fieldsAppScreenshots, limitAppScreenshots: limitAppScreenshots).execute().body
+    open class func appScreenshotSetsGetInstance(id: String, fieldsAppScreenshotSets: [FieldsAppScreenshotSets_appScreenshotSetsGetInstance]? = nil, fieldsAppScreenshots: [FieldsAppScreenshots_appScreenshotSetsGetInstance]? = nil, include: [Include_appScreenshotSetsGetInstance]? = nil, limitAppScreenshots: Int? = nil) async throws -> AppScreenshotSetResponse {
+        return try await appScreenshotSetsGetInstanceWithRequestBuilder(id: id, fieldsAppScreenshotSets: fieldsAppScreenshotSets, fieldsAppScreenshots: fieldsAppScreenshots, include: include, limitAppScreenshots: limitAppScreenshots).execute().body
     }
 
     /**
@@ -471,12 +469,12 @@ open class AppScreenshotSetsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAppScreenshotSets: (query) the fields to include for returned resources of type appScreenshotSets (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter fieldsAppScreenshots: (query) the fields to include for returned resources of type appScreenshots (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAppScreenshots: (query) maximum number of related appScreenshots returned (when they are included) (optional)
      - returns: RequestBuilder<AppScreenshotSetResponse> 
      */
-    open class func appScreenshotSetsGetInstanceWithRequestBuilder(id: String, fieldsAppScreenshotSets: [FieldsAppScreenshotSets_appScreenshotSetsGetInstance]? = nil, include: [Include_appScreenshotSetsGetInstance]? = nil, fieldsAppScreenshots: [FieldsAppScreenshots_appScreenshotSetsGetInstance]? = nil, limitAppScreenshots: Int? = nil) -> RequestBuilder<AppScreenshotSetResponse> {
+    open class func appScreenshotSetsGetInstanceWithRequestBuilder(id: String, fieldsAppScreenshotSets: [FieldsAppScreenshotSets_appScreenshotSetsGetInstance]? = nil, fieldsAppScreenshots: [FieldsAppScreenshots_appScreenshotSetsGetInstance]? = nil, include: [Include_appScreenshotSetsGetInstance]? = nil, limitAppScreenshots: Int? = nil) -> RequestBuilder<AppScreenshotSetResponse> {
         var localVariablePath = "/v1/appScreenshotSets/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -487,8 +485,8 @@ open class AppScreenshotSetsAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[appScreenshotSets]": (wrappedValue: fieldsAppScreenshotSets?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "fields[appScreenshots]": (wrappedValue: fieldsAppScreenshots?.encodeToJSON(), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "limit[appScreenshots]": (wrappedValue: limitAppScreenshots?.encodeToJSON(), isExplode: true),
         ])
 

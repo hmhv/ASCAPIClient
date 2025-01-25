@@ -25,6 +25,11 @@ public struct AppInfoAttributes: Codable, JSONEncodable, Hashable {
         case waitingForReview = "WAITING_FOR_REVIEW"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
+    public enum AustraliaAgeRating: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+        case fifteen = "FIFTEEN"
+        case eighteen = "EIGHTEEN"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
+    }
     public enum BrazilAgeRatingV2: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case selfRatedL = "SELF_RATED_L"
         case selfRatedTen = "SELF_RATED_TEN"
@@ -40,19 +45,37 @@ public struct AppInfoAttributes: Codable, JSONEncodable, Hashable {
         case officialEighteen = "OFFICIAL_EIGHTEEN"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
+    public enum FranceAgeRating: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+        case eighteen = "EIGHTEEN"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
+    }
+    public enum KoreaAgeRating: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+        case all = "ALL"
+        case twelve = "TWELVE"
+        case fifteen = "FIFTEEN"
+        case nineteen = "NINETEEN"
+        case notApplicable = "NOT_APPLICABLE"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
+    }
     public var appStoreState: AppStoreVersionState?
     public var state: State?
     public var appStoreAgeRating: AppStoreAgeRating?
+    public var australiaAgeRating: AustraliaAgeRating?
     public var brazilAgeRating: BrazilAgeRating?
     public var brazilAgeRatingV2: BrazilAgeRatingV2?
+    public var franceAgeRating: FranceAgeRating?
+    public var koreaAgeRating: KoreaAgeRating?
     public var kidsAgeBand: KidsAgeBand?
 
-    public init(appStoreState: AppStoreVersionState? = nil, state: State? = nil, appStoreAgeRating: AppStoreAgeRating? = nil, brazilAgeRating: BrazilAgeRating? = nil, brazilAgeRatingV2: BrazilAgeRatingV2? = nil, kidsAgeBand: KidsAgeBand? = nil) {
+    public init(appStoreState: AppStoreVersionState? = nil, state: State? = nil, appStoreAgeRating: AppStoreAgeRating? = nil, australiaAgeRating: AustraliaAgeRating? = nil, brazilAgeRating: BrazilAgeRating? = nil, brazilAgeRatingV2: BrazilAgeRatingV2? = nil, franceAgeRating: FranceAgeRating? = nil, koreaAgeRating: KoreaAgeRating? = nil, kidsAgeBand: KidsAgeBand? = nil) {
         self.appStoreState = appStoreState
         self.state = state
         self.appStoreAgeRating = appStoreAgeRating
+        self.australiaAgeRating = australiaAgeRating
         self.brazilAgeRating = brazilAgeRating
         self.brazilAgeRatingV2 = brazilAgeRatingV2
+        self.franceAgeRating = franceAgeRating
+        self.koreaAgeRating = koreaAgeRating
         self.kidsAgeBand = kidsAgeBand
     }
 
@@ -60,8 +83,11 @@ public struct AppInfoAttributes: Codable, JSONEncodable, Hashable {
         case appStoreState
         case state
         case appStoreAgeRating
+        case australiaAgeRating
         case brazilAgeRating
         case brazilAgeRatingV2
+        case franceAgeRating
+        case koreaAgeRating
         case kidsAgeBand
     }
 
@@ -72,8 +98,11 @@ public struct AppInfoAttributes: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(appStoreState, forKey: .appStoreState)
         try container.encodeIfPresent(state, forKey: .state)
         try container.encodeIfPresent(appStoreAgeRating, forKey: .appStoreAgeRating)
+        try container.encodeIfPresent(australiaAgeRating, forKey: .australiaAgeRating)
         try container.encodeIfPresent(brazilAgeRating, forKey: .brazilAgeRating)
         try container.encodeIfPresent(brazilAgeRatingV2, forKey: .brazilAgeRatingV2)
+        try container.encodeIfPresent(franceAgeRating, forKey: .franceAgeRating)
+        try container.encodeIfPresent(koreaAgeRating, forKey: .koreaAgeRating)
         try container.encodeIfPresent(kidsAgeBand, forKey: .kidsAgeBand)
     }
 }

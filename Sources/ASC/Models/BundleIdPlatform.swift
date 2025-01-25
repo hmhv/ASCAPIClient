@@ -13,5 +13,6 @@ import AnyCodable
 public enum BundleIdPlatform: String, Codable, CaseIterable, CaseIterableDefaultsLast {
     case ios = "IOS"
     case macOs = "MAC_OS"
+    case universal = "UNIVERSAL"
     case unknownDefaultOpenApi = "unknown_default_open_api"
 }

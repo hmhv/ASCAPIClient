@@ -12,10 +12,10 @@ import AnyCodable
 
 public struct BuildWithoutIncludesResponse: Codable, JSONEncodable, Hashable {
 
-    public var data: BuildBetaDetail
+    public var data: Build
     public var links: DocumentLinks
 
-    public init(data: BuildBetaDetail, links: DocumentLinks) {
+    public init(data: Build, links: DocumentLinks) {
         self.data = data
         self.links = links
     }

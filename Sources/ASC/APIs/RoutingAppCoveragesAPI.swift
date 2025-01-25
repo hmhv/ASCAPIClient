@@ -149,13 +149,12 @@ open class RoutingAppCoveragesAPI {
      * enum for parameter fieldsRoutingAppCoverages
      */
     public enum FieldsRoutingAppCoverages_routingAppCoveragesGetInstance: String, CaseIterable {
-        case appstoreversion = "appStoreVersion"
-        case assetdeliverystate = "assetDeliveryState"
-        case filename = "fileName"
         case filesize = "fileSize"
+        case filename = "fileName"
         case sourcefilechecksum = "sourceFileChecksum"
         case uploadoperations = "uploadOperations"
-        case uploaded = "uploaded"
+        case assetdeliverystate = "assetDeliveryState"
+        case appstoreversion = "appStoreVersion"
     }
 
     /**

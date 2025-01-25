@@ -19,8 +19,9 @@ public struct InAppPurchaseV2Relationships: Codable, JSONEncodable, Hashable {
     public var promotedPurchase: InAppPurchaseV2RelationshipsPromotedPurchase?
     public var iapPriceSchedule: InAppPurchaseV2RelationshipsIapPriceSchedule?
     public var inAppPurchaseAvailability: InAppPurchaseV2RelationshipsInAppPurchaseAvailability?
+    public var images: InAppPurchaseV2RelationshipsImages?
 
-    public init(inAppPurchaseLocalizations: InAppPurchaseV2RelationshipsInAppPurchaseLocalizations? = nil, pricePoints: InAppPurchaseV2RelationshipsPricePoints? = nil, content: InAppPurchaseV2RelationshipsContent? = nil, appStoreReviewScreenshot: InAppPurchaseV2RelationshipsAppStoreReviewScreenshot? = nil, promotedPurchase: InAppPurchaseV2RelationshipsPromotedPurchase? = nil, iapPriceSchedule: InAppPurchaseV2RelationshipsIapPriceSchedule? = nil, inAppPurchaseAvailability: InAppPurchaseV2RelationshipsInAppPurchaseAvailability? = nil) {
+    public init(inAppPurchaseLocalizations: InAppPurchaseV2RelationshipsInAppPurchaseLocalizations? = nil, pricePoints: InAppPurchaseV2RelationshipsPricePoints? = nil, content: InAppPurchaseV2RelationshipsContent? = nil, appStoreReviewScreenshot: InAppPurchaseV2RelationshipsAppStoreReviewScreenshot? = nil, promotedPurchase: InAppPurchaseV2RelationshipsPromotedPurchase? = nil, iapPriceSchedule: InAppPurchaseV2RelationshipsIapPriceSchedule? = nil, inAppPurchaseAvailability: InAppPurchaseV2RelationshipsInAppPurchaseAvailability? = nil, images: InAppPurchaseV2RelationshipsImages? = nil) {
         self.inAppPurchaseLocalizations = inAppPurchaseLocalizations
         self.pricePoints = pricePoints
         self.content = content
@@ -28,6 +29,7 @@ public struct InAppPurchaseV2Relationships: Codable, JSONEncodable, Hashable {
         self.promotedPurchase = promotedPurchase
         self.iapPriceSchedule = iapPriceSchedule
         self.inAppPurchaseAvailability = inAppPurchaseAvailability
+        self.images = images
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -38,6 +40,7 @@ public struct InAppPurchaseV2Relationships: Codable, JSONEncodable, Hashable {
         case promotedPurchase
         case iapPriceSchedule
         case inAppPurchaseAvailability
+        case images
     }
 
     // Encodable protocol methods
@@ -51,6 +54,7 @@ public struct InAppPurchaseV2Relationships: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(promotedPurchase, forKey: .promotedPurchase)
         try container.encodeIfPresent(iapPriceSchedule, forKey: .iapPriceSchedule)
         try container.encodeIfPresent(inAppPurchaseAvailability, forKey: .inAppPurchaseAvailability)
+        try container.encodeIfPresent(images, forKey: .images)
     }
 }
 

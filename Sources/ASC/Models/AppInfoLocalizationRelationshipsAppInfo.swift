@@ -12,16 +12,13 @@ import AnyCodable
 
 public struct AppInfoLocalizationRelationshipsAppInfo: Codable, JSONEncodable, Hashable {
 
-    public var links: AlternativeDistributionPackageVersionRelationshipsVariantsLinks?
     public var data: AppInfoLocalizationRelationshipsAppInfoData?
 
-    public init(links: AlternativeDistributionPackageVersionRelationshipsVariantsLinks? = nil, data: AppInfoLocalizationRelationshipsAppInfoData? = nil) {
-        self.links = links
+    public init(data: AppInfoLocalizationRelationshipsAppInfoData? = nil) {
         self.data = data
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
-        case links
         case data
     }
 
@@ -29,7 +26,6 @@ public struct AppInfoLocalizationRelationshipsAppInfo: Codable, JSONEncodable, H
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(links, forKey: .links)
         try container.encodeIfPresent(data, forKey: .data)
     }
 }

@@ -13,45 +13,44 @@ import AnyCodable
 open class AppStoreVersionExperimentsAPI {
 
     /**
-     * enum for parameter fieldsAppStoreVersionExperiments
-     */
-    public enum FieldsAppStoreVersionExperiments_appStoreVersionExperimentsAppStoreVersionExperimentTreatmentsGetToManyRelated: String, CaseIterable {
-        case app = "app"
-        case appstoreversion = "appStoreVersion"
-        case appstoreversionexperimenttreatments = "appStoreVersionExperimentTreatments"
-        case controlversions = "controlVersions"
-        case enddate = "endDate"
-        case latestcontrolversion = "latestControlVersion"
-        case name = "name"
-        case platform = "platform"
-        case reviewrequired = "reviewRequired"
-        case startdate = "startDate"
-        case started = "started"
-        case state = "state"
-        case trafficproportion = "trafficProportion"
-    }
-
-    /**
      * enum for parameter fieldsAppStoreVersionExperimentTreatments
      */
     public enum FieldsAppStoreVersionExperimentTreatments_appStoreVersionExperimentsAppStoreVersionExperimentTreatmentsGetToManyRelated: String, CaseIterable {
+        case name = "name"
         case appicon = "appIcon"
         case appiconname = "appIconName"
-        case appstoreversionexperiment = "appStoreVersionExperiment"
-        case appstoreversionexperimenttreatmentlocalizations = "appStoreVersionExperimentTreatmentLocalizations"
-        case appstoreversionexperimentv2 = "appStoreVersionExperimentV2"
-        case name = "name"
         case promoteddate = "promotedDate"
+        case appstoreversionexperiment = "appStoreVersionExperiment"
+        case appstoreversionexperimentv2 = "appStoreVersionExperimentV2"
+        case appstoreversionexperimenttreatmentlocalizations = "appStoreVersionExperimentTreatmentLocalizations"
+    }
+
+    /**
+     * enum for parameter fieldsAppStoreVersionExperiments
+     */
+    public enum FieldsAppStoreVersionExperiments_appStoreVersionExperimentsAppStoreVersionExperimentTreatmentsGetToManyRelated: String, CaseIterable {
+        case name = "name"
+        case trafficproportion = "trafficProportion"
+        case state = "state"
+        case reviewrequired = "reviewRequired"
+        case startdate = "startDate"
+        case enddate = "endDate"
+        case appstoreversion = "appStoreVersion"
+        case appstoreversionexperimenttreatments = "appStoreVersionExperimentTreatments"
+        case platform = "platform"
+        case app = "app"
+        case latestcontrolversion = "latestControlVersion"
+        case controlversions = "controlVersions"
     }
 
     /**
      * enum for parameter fieldsAppStoreVersionExperimentTreatmentLocalizations
      */
     public enum FieldsAppStoreVersionExperimentTreatmentLocalizations_appStoreVersionExperimentsAppStoreVersionExperimentTreatmentsGetToManyRelated: String, CaseIterable {
-        case apppreviewsets = "appPreviewSets"
-        case appscreenshotsets = "appScreenshotSets"
-        case appstoreversionexperimenttreatment = "appStoreVersionExperimentTreatment"
         case locale = "locale"
+        case appstoreversionexperimenttreatment = "appStoreVersionExperimentTreatment"
+        case appscreenshotsets = "appScreenshotSets"
+        case apppreviewsets = "appPreviewSets"
     }
 
     /**
@@ -59,25 +58,25 @@ open class AppStoreVersionExperimentsAPI {
      */
     public enum Include_appStoreVersionExperimentsAppStoreVersionExperimentTreatmentsGetToManyRelated: String, CaseIterable {
         case appstoreversionexperiment = "appStoreVersionExperiment"
-        case appstoreversionexperimenttreatmentlocalizations = "appStoreVersionExperimentTreatmentLocalizations"
         case appstoreversionexperimentv2 = "appStoreVersionExperimentV2"
+        case appstoreversionexperimenttreatmentlocalizations = "appStoreVersionExperimentTreatmentLocalizations"
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
-     - parameter fieldsAppStoreVersionExperiments: (query) the fields to include for returned resources of type appStoreVersionExperiments (optional)
      - parameter fieldsAppStoreVersionExperimentTreatments: (query) the fields to include for returned resources of type appStoreVersionExperimentTreatments (optional)
+     - parameter fieldsAppStoreVersionExperiments: (query) the fields to include for returned resources of type appStoreVersionExperiments (optional)
      - parameter fieldsAppStoreVersionExperimentTreatmentLocalizations: (query) the fields to include for returned resources of type appStoreVersionExperimentTreatmentLocalizations (optional)
      - parameter limit: (query) maximum resources per page (optional)
-     - parameter limitAppStoreVersionExperimentTreatmentLocalizations: (query) maximum number of related appStoreVersionExperimentTreatmentLocalizations returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitAppStoreVersionExperimentTreatmentLocalizations: (query) maximum number of related appStoreVersionExperimentTreatmentLocalizations returned (when they are included) (optional)
      - returns: AppStoreVersionExperimentTreatmentsResponse
      */
     @available(*, deprecated, message: "This operation is deprecated.")
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionExperimentsAppStoreVersionExperimentTreatmentsGetToManyRelated(id: String, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_appStoreVersionExperimentsAppStoreVersionExperimentTreatmentsGetToManyRelated]? = nil, fieldsAppStoreVersionExperimentTreatments: [FieldsAppStoreVersionExperimentTreatments_appStoreVersionExperimentsAppStoreVersionExperimentTreatmentsGetToManyRelated]? = nil, fieldsAppStoreVersionExperimentTreatmentLocalizations: [FieldsAppStoreVersionExperimentTreatmentLocalizations_appStoreVersionExperimentsAppStoreVersionExperimentTreatmentsGetToManyRelated]? = nil, limit: Int? = nil, limitAppStoreVersionExperimentTreatmentLocalizations: Int? = nil, include: [Include_appStoreVersionExperimentsAppStoreVersionExperimentTreatmentsGetToManyRelated]? = nil) async throws -> AppStoreVersionExperimentTreatmentsResponse {
-        return try await appStoreVersionExperimentsAppStoreVersionExperimentTreatmentsGetToManyRelatedWithRequestBuilder(id: id, fieldsAppStoreVersionExperiments: fieldsAppStoreVersionExperiments, fieldsAppStoreVersionExperimentTreatments: fieldsAppStoreVersionExperimentTreatments, fieldsAppStoreVersionExperimentTreatmentLocalizations: fieldsAppStoreVersionExperimentTreatmentLocalizations, limit: limit, limitAppStoreVersionExperimentTreatmentLocalizations: limitAppStoreVersionExperimentTreatmentLocalizations, include: include).execute().body
+    open class func appStoreVersionExperimentsAppStoreVersionExperimentTreatmentsGetToManyRelated(id: String, fieldsAppStoreVersionExperimentTreatments: [FieldsAppStoreVersionExperimentTreatments_appStoreVersionExperimentsAppStoreVersionExperimentTreatmentsGetToManyRelated]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_appStoreVersionExperimentsAppStoreVersionExperimentTreatmentsGetToManyRelated]? = nil, fieldsAppStoreVersionExperimentTreatmentLocalizations: [FieldsAppStoreVersionExperimentTreatmentLocalizations_appStoreVersionExperimentsAppStoreVersionExperimentTreatmentsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appStoreVersionExperimentsAppStoreVersionExperimentTreatmentsGetToManyRelated]? = nil, limitAppStoreVersionExperimentTreatmentLocalizations: Int? = nil) async throws -> AppStoreVersionExperimentTreatmentsResponse {
+        return try await appStoreVersionExperimentsAppStoreVersionExperimentTreatmentsGetToManyRelatedWithRequestBuilder(id: id, fieldsAppStoreVersionExperimentTreatments: fieldsAppStoreVersionExperimentTreatments, fieldsAppStoreVersionExperiments: fieldsAppStoreVersionExperiments, fieldsAppStoreVersionExperimentTreatmentLocalizations: fieldsAppStoreVersionExperimentTreatmentLocalizations, limit: limit, include: include, limitAppStoreVersionExperimentTreatmentLocalizations: limitAppStoreVersionExperimentTreatmentLocalizations).execute().body
     }
 
     /**
@@ -96,16 +95,16 @@ open class AppStoreVersionExperimentsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
-     - parameter fieldsAppStoreVersionExperiments: (query) the fields to include for returned resources of type appStoreVersionExperiments (optional)
      - parameter fieldsAppStoreVersionExperimentTreatments: (query) the fields to include for returned resources of type appStoreVersionExperimentTreatments (optional)
+     - parameter fieldsAppStoreVersionExperiments: (query) the fields to include for returned resources of type appStoreVersionExperiments (optional)
      - parameter fieldsAppStoreVersionExperimentTreatmentLocalizations: (query) the fields to include for returned resources of type appStoreVersionExperimentTreatmentLocalizations (optional)
      - parameter limit: (query) maximum resources per page (optional)
-     - parameter limitAppStoreVersionExperimentTreatmentLocalizations: (query) maximum number of related appStoreVersionExperimentTreatmentLocalizations returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitAppStoreVersionExperimentTreatmentLocalizations: (query) maximum number of related appStoreVersionExperimentTreatmentLocalizations returned (when they are included) (optional)
      - returns: RequestBuilder<AppStoreVersionExperimentTreatmentsResponse> 
      */
     @available(*, deprecated, message: "This operation is deprecated.")
-    open class func appStoreVersionExperimentsAppStoreVersionExperimentTreatmentsGetToManyRelatedWithRequestBuilder(id: String, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_appStoreVersionExperimentsAppStoreVersionExperimentTreatmentsGetToManyRelated]? = nil, fieldsAppStoreVersionExperimentTreatments: [FieldsAppStoreVersionExperimentTreatments_appStoreVersionExperimentsAppStoreVersionExperimentTreatmentsGetToManyRelated]? = nil, fieldsAppStoreVersionExperimentTreatmentLocalizations: [FieldsAppStoreVersionExperimentTreatmentLocalizations_appStoreVersionExperimentsAppStoreVersionExperimentTreatmentsGetToManyRelated]? = nil, limit: Int? = nil, limitAppStoreVersionExperimentTreatmentLocalizations: Int? = nil, include: [Include_appStoreVersionExperimentsAppStoreVersionExperimentTreatmentsGetToManyRelated]? = nil) -> RequestBuilder<AppStoreVersionExperimentTreatmentsResponse> {
+    open class func appStoreVersionExperimentsAppStoreVersionExperimentTreatmentsGetToManyRelatedWithRequestBuilder(id: String, fieldsAppStoreVersionExperimentTreatments: [FieldsAppStoreVersionExperimentTreatments_appStoreVersionExperimentsAppStoreVersionExperimentTreatmentsGetToManyRelated]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_appStoreVersionExperimentsAppStoreVersionExperimentTreatmentsGetToManyRelated]? = nil, fieldsAppStoreVersionExperimentTreatmentLocalizations: [FieldsAppStoreVersionExperimentTreatmentLocalizations_appStoreVersionExperimentsAppStoreVersionExperimentTreatmentsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appStoreVersionExperimentsAppStoreVersionExperimentTreatmentsGetToManyRelated]? = nil, limitAppStoreVersionExperimentTreatmentLocalizations: Int? = nil) -> RequestBuilder<AppStoreVersionExperimentTreatmentsResponse> {
         var localVariablePath = "/v1/appStoreVersionExperiments/{id}/appStoreVersionExperimentTreatments"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -115,12 +114,12 @@ open class AppStoreVersionExperimentsAPI {
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[appStoreVersionExperiments]": (wrappedValue: fieldsAppStoreVersionExperiments?.encodeToJSON(), isExplode: false),
             "fields[appStoreVersionExperimentTreatments]": (wrappedValue: fieldsAppStoreVersionExperimentTreatments?.encodeToJSON(), isExplode: false),
+            "fields[appStoreVersionExperiments]": (wrappedValue: fieldsAppStoreVersionExperiments?.encodeToJSON(), isExplode: false),
             "fields[appStoreVersionExperimentTreatmentLocalizations]": (wrappedValue: fieldsAppStoreVersionExperimentTreatmentLocalizations?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "limit[appStoreVersionExperimentTreatmentLocalizations]": (wrappedValue: limitAppStoreVersionExperimentTreatmentLocalizations?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "limit[appStoreVersionExperimentTreatmentLocalizations]": (wrappedValue: limitAppStoreVersionExperimentTreatmentLocalizations?.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -300,15 +299,27 @@ open class AppStoreVersionExperimentsAPI {
      * enum for parameter fieldsAppStoreVersionExperiments
      */
     public enum FieldsAppStoreVersionExperiments_appStoreVersionExperimentsGetInstance: String, CaseIterable {
-        case appstoreversion = "appStoreVersion"
-        case appstoreversionexperimenttreatments = "appStoreVersionExperimentTreatments"
-        case enddate = "endDate"
         case name = "name"
+        case trafficproportion = "trafficProportion"
+        case state = "state"
         case reviewrequired = "reviewRequired"
         case startdate = "startDate"
-        case started = "started"
-        case state = "state"
-        case trafficproportion = "trafficProportion"
+        case enddate = "endDate"
+        case appstoreversion = "appStoreVersion"
+        case appstoreversionexperimenttreatments = "appStoreVersionExperimentTreatments"
+    }
+
+    /**
+     * enum for parameter fieldsAppStoreVersionExperimentTreatments
+     */
+    public enum FieldsAppStoreVersionExperimentTreatments_appStoreVersionExperimentsGetInstance: String, CaseIterable {
+        case name = "name"
+        case appicon = "appIcon"
+        case appiconname = "appIconName"
+        case promoteddate = "promotedDate"
+        case appstoreversionexperiment = "appStoreVersionExperiment"
+        case appstoreversionexperimentv2 = "appStoreVersionExperimentV2"
+        case appstoreversionexperimenttreatmentlocalizations = "appStoreVersionExperimentTreatmentLocalizations"
     }
 
     /**
@@ -320,31 +331,18 @@ open class AppStoreVersionExperimentsAPI {
     }
 
     /**
-     * enum for parameter fieldsAppStoreVersionExperimentTreatments
-     */
-    public enum FieldsAppStoreVersionExperimentTreatments_appStoreVersionExperimentsGetInstance: String, CaseIterable {
-        case appicon = "appIcon"
-        case appiconname = "appIconName"
-        case appstoreversionexperiment = "appStoreVersionExperiment"
-        case appstoreversionexperimenttreatmentlocalizations = "appStoreVersionExperimentTreatmentLocalizations"
-        case appstoreversionexperimentv2 = "appStoreVersionExperimentV2"
-        case name = "name"
-        case promoteddate = "promotedDate"
-    }
-
-    /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAppStoreVersionExperiments: (query) the fields to include for returned resources of type appStoreVersionExperiments (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter fieldsAppStoreVersionExperimentTreatments: (query) the fields to include for returned resources of type appStoreVersionExperimentTreatments (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAppStoreVersionExperimentTreatments: (query) maximum number of related appStoreVersionExperimentTreatments returned (when they are included) (optional)
      - returns: AppStoreVersionExperimentResponse
      */
     @available(*, deprecated, message: "This operation is deprecated.")
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionExperimentsGetInstance(id: String, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_appStoreVersionExperimentsGetInstance]? = nil, include: [Include_appStoreVersionExperimentsGetInstance]? = nil, fieldsAppStoreVersionExperimentTreatments: [FieldsAppStoreVersionExperimentTreatments_appStoreVersionExperimentsGetInstance]? = nil, limitAppStoreVersionExperimentTreatments: Int? = nil) async throws -> AppStoreVersionExperimentResponse {
-        return try await appStoreVersionExperimentsGetInstanceWithRequestBuilder(id: id, fieldsAppStoreVersionExperiments: fieldsAppStoreVersionExperiments, include: include, fieldsAppStoreVersionExperimentTreatments: fieldsAppStoreVersionExperimentTreatments, limitAppStoreVersionExperimentTreatments: limitAppStoreVersionExperimentTreatments).execute().body
+    open class func appStoreVersionExperimentsGetInstance(id: String, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_appStoreVersionExperimentsGetInstance]? = nil, fieldsAppStoreVersionExperimentTreatments: [FieldsAppStoreVersionExperimentTreatments_appStoreVersionExperimentsGetInstance]? = nil, include: [Include_appStoreVersionExperimentsGetInstance]? = nil, limitAppStoreVersionExperimentTreatments: Int? = nil) async throws -> AppStoreVersionExperimentResponse {
+        return try await appStoreVersionExperimentsGetInstanceWithRequestBuilder(id: id, fieldsAppStoreVersionExperiments: fieldsAppStoreVersionExperiments, fieldsAppStoreVersionExperimentTreatments: fieldsAppStoreVersionExperimentTreatments, include: include, limitAppStoreVersionExperimentTreatments: limitAppStoreVersionExperimentTreatments).execute().body
     }
 
     /**
@@ -364,13 +362,13 @@ open class AppStoreVersionExperimentsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAppStoreVersionExperiments: (query) the fields to include for returned resources of type appStoreVersionExperiments (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter fieldsAppStoreVersionExperimentTreatments: (query) the fields to include for returned resources of type appStoreVersionExperimentTreatments (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAppStoreVersionExperimentTreatments: (query) maximum number of related appStoreVersionExperimentTreatments returned (when they are included) (optional)
      - returns: RequestBuilder<AppStoreVersionExperimentResponse> 
      */
     @available(*, deprecated, message: "This operation is deprecated.")
-    open class func appStoreVersionExperimentsGetInstanceWithRequestBuilder(id: String, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_appStoreVersionExperimentsGetInstance]? = nil, include: [Include_appStoreVersionExperimentsGetInstance]? = nil, fieldsAppStoreVersionExperimentTreatments: [FieldsAppStoreVersionExperimentTreatments_appStoreVersionExperimentsGetInstance]? = nil, limitAppStoreVersionExperimentTreatments: Int? = nil) -> RequestBuilder<AppStoreVersionExperimentResponse> {
+    open class func appStoreVersionExperimentsGetInstanceWithRequestBuilder(id: String, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_appStoreVersionExperimentsGetInstance]? = nil, fieldsAppStoreVersionExperimentTreatments: [FieldsAppStoreVersionExperimentTreatments_appStoreVersionExperimentsGetInstance]? = nil, include: [Include_appStoreVersionExperimentsGetInstance]? = nil, limitAppStoreVersionExperimentTreatments: Int? = nil) -> RequestBuilder<AppStoreVersionExperimentResponse> {
         var localVariablePath = "/v1/appStoreVersionExperiments/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -381,8 +379,8 @@ open class AppStoreVersionExperimentsAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[appStoreVersionExperiments]": (wrappedValue: fieldsAppStoreVersionExperiments?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "fields[appStoreVersionExperimentTreatments]": (wrappedValue: fieldsAppStoreVersionExperimentTreatments?.encodeToJSON(), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "limit[appStoreVersionExperimentTreatments]": (wrappedValue: limitAppStoreVersionExperimentTreatments?.encodeToJSON(), isExplode: true),
         ])
 
@@ -493,45 +491,44 @@ open class AppStoreVersionExperimentsAPI {
     }
 
     /**
-     * enum for parameter fieldsAppStoreVersionExperiments
-     */
-    public enum FieldsAppStoreVersionExperiments_appStoreVersionExperimentsV2AppStoreVersionExperimentTreatmentsGetToManyRelated: String, CaseIterable {
-        case app = "app"
-        case appstoreversion = "appStoreVersion"
-        case appstoreversionexperimenttreatments = "appStoreVersionExperimentTreatments"
-        case controlversions = "controlVersions"
-        case enddate = "endDate"
-        case latestcontrolversion = "latestControlVersion"
-        case name = "name"
-        case platform = "platform"
-        case reviewrequired = "reviewRequired"
-        case startdate = "startDate"
-        case started = "started"
-        case state = "state"
-        case trafficproportion = "trafficProportion"
-    }
-
-    /**
      * enum for parameter fieldsAppStoreVersionExperimentTreatments
      */
     public enum FieldsAppStoreVersionExperimentTreatments_appStoreVersionExperimentsV2AppStoreVersionExperimentTreatmentsGetToManyRelated: String, CaseIterable {
+        case name = "name"
         case appicon = "appIcon"
         case appiconname = "appIconName"
-        case appstoreversionexperiment = "appStoreVersionExperiment"
-        case appstoreversionexperimenttreatmentlocalizations = "appStoreVersionExperimentTreatmentLocalizations"
-        case appstoreversionexperimentv2 = "appStoreVersionExperimentV2"
-        case name = "name"
         case promoteddate = "promotedDate"
+        case appstoreversionexperiment = "appStoreVersionExperiment"
+        case appstoreversionexperimentv2 = "appStoreVersionExperimentV2"
+        case appstoreversionexperimenttreatmentlocalizations = "appStoreVersionExperimentTreatmentLocalizations"
+    }
+
+    /**
+     * enum for parameter fieldsAppStoreVersionExperiments
+     */
+    public enum FieldsAppStoreVersionExperiments_appStoreVersionExperimentsV2AppStoreVersionExperimentTreatmentsGetToManyRelated: String, CaseIterable {
+        case name = "name"
+        case trafficproportion = "trafficProportion"
+        case state = "state"
+        case reviewrequired = "reviewRequired"
+        case startdate = "startDate"
+        case enddate = "endDate"
+        case appstoreversion = "appStoreVersion"
+        case appstoreversionexperimenttreatments = "appStoreVersionExperimentTreatments"
+        case platform = "platform"
+        case app = "app"
+        case latestcontrolversion = "latestControlVersion"
+        case controlversions = "controlVersions"
     }
 
     /**
      * enum for parameter fieldsAppStoreVersionExperimentTreatmentLocalizations
      */
     public enum FieldsAppStoreVersionExperimentTreatmentLocalizations_appStoreVersionExperimentsV2AppStoreVersionExperimentTreatmentsGetToManyRelated: String, CaseIterable {
-        case apppreviewsets = "appPreviewSets"
-        case appscreenshotsets = "appScreenshotSets"
-        case appstoreversionexperimenttreatment = "appStoreVersionExperimentTreatment"
         case locale = "locale"
+        case appstoreversionexperimenttreatment = "appStoreVersionExperimentTreatment"
+        case appscreenshotsets = "appScreenshotSets"
+        case apppreviewsets = "appPreviewSets"
     }
 
     /**
@@ -539,24 +536,24 @@ open class AppStoreVersionExperimentsAPI {
      */
     public enum Include_appStoreVersionExperimentsV2AppStoreVersionExperimentTreatmentsGetToManyRelated: String, CaseIterable {
         case appstoreversionexperiment = "appStoreVersionExperiment"
-        case appstoreversionexperimenttreatmentlocalizations = "appStoreVersionExperimentTreatmentLocalizations"
         case appstoreversionexperimentv2 = "appStoreVersionExperimentV2"
+        case appstoreversionexperimenttreatmentlocalizations = "appStoreVersionExperimentTreatmentLocalizations"
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
-     - parameter fieldsAppStoreVersionExperiments: (query) the fields to include for returned resources of type appStoreVersionExperiments (optional)
      - parameter fieldsAppStoreVersionExperimentTreatments: (query) the fields to include for returned resources of type appStoreVersionExperimentTreatments (optional)
+     - parameter fieldsAppStoreVersionExperiments: (query) the fields to include for returned resources of type appStoreVersionExperiments (optional)
      - parameter fieldsAppStoreVersionExperimentTreatmentLocalizations: (query) the fields to include for returned resources of type appStoreVersionExperimentTreatmentLocalizations (optional)
      - parameter limit: (query) maximum resources per page (optional)
-     - parameter limitAppStoreVersionExperimentTreatmentLocalizations: (query) maximum number of related appStoreVersionExperimentTreatmentLocalizations returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitAppStoreVersionExperimentTreatmentLocalizations: (query) maximum number of related appStoreVersionExperimentTreatmentLocalizations returned (when they are included) (optional)
      - returns: AppStoreVersionExperimentTreatmentsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionExperimentsV2AppStoreVersionExperimentTreatmentsGetToManyRelated(id: String, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_appStoreVersionExperimentsV2AppStoreVersionExperimentTreatmentsGetToManyRelated]? = nil, fieldsAppStoreVersionExperimentTreatments: [FieldsAppStoreVersionExperimentTreatments_appStoreVersionExperimentsV2AppStoreVersionExperimentTreatmentsGetToManyRelated]? = nil, fieldsAppStoreVersionExperimentTreatmentLocalizations: [FieldsAppStoreVersionExperimentTreatmentLocalizations_appStoreVersionExperimentsV2AppStoreVersionExperimentTreatmentsGetToManyRelated]? = nil, limit: Int? = nil, limitAppStoreVersionExperimentTreatmentLocalizations: Int? = nil, include: [Include_appStoreVersionExperimentsV2AppStoreVersionExperimentTreatmentsGetToManyRelated]? = nil) async throws -> AppStoreVersionExperimentTreatmentsResponse {
-        return try await appStoreVersionExperimentsV2AppStoreVersionExperimentTreatmentsGetToManyRelatedWithRequestBuilder(id: id, fieldsAppStoreVersionExperiments: fieldsAppStoreVersionExperiments, fieldsAppStoreVersionExperimentTreatments: fieldsAppStoreVersionExperimentTreatments, fieldsAppStoreVersionExperimentTreatmentLocalizations: fieldsAppStoreVersionExperimentTreatmentLocalizations, limit: limit, limitAppStoreVersionExperimentTreatmentLocalizations: limitAppStoreVersionExperimentTreatmentLocalizations, include: include).execute().body
+    open class func appStoreVersionExperimentsV2AppStoreVersionExperimentTreatmentsGetToManyRelated(id: String, fieldsAppStoreVersionExperimentTreatments: [FieldsAppStoreVersionExperimentTreatments_appStoreVersionExperimentsV2AppStoreVersionExperimentTreatmentsGetToManyRelated]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_appStoreVersionExperimentsV2AppStoreVersionExperimentTreatmentsGetToManyRelated]? = nil, fieldsAppStoreVersionExperimentTreatmentLocalizations: [FieldsAppStoreVersionExperimentTreatmentLocalizations_appStoreVersionExperimentsV2AppStoreVersionExperimentTreatmentsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appStoreVersionExperimentsV2AppStoreVersionExperimentTreatmentsGetToManyRelated]? = nil, limitAppStoreVersionExperimentTreatmentLocalizations: Int? = nil) async throws -> AppStoreVersionExperimentTreatmentsResponse {
+        return try await appStoreVersionExperimentsV2AppStoreVersionExperimentTreatmentsGetToManyRelatedWithRequestBuilder(id: id, fieldsAppStoreVersionExperimentTreatments: fieldsAppStoreVersionExperimentTreatments, fieldsAppStoreVersionExperiments: fieldsAppStoreVersionExperiments, fieldsAppStoreVersionExperimentTreatmentLocalizations: fieldsAppStoreVersionExperimentTreatmentLocalizations, limit: limit, include: include, limitAppStoreVersionExperimentTreatmentLocalizations: limitAppStoreVersionExperimentTreatmentLocalizations).execute().body
     }
 
     /**
@@ -574,15 +571,15 @@ open class AppStoreVersionExperimentsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
-     - parameter fieldsAppStoreVersionExperiments: (query) the fields to include for returned resources of type appStoreVersionExperiments (optional)
      - parameter fieldsAppStoreVersionExperimentTreatments: (query) the fields to include for returned resources of type appStoreVersionExperimentTreatments (optional)
+     - parameter fieldsAppStoreVersionExperiments: (query) the fields to include for returned resources of type appStoreVersionExperiments (optional)
      - parameter fieldsAppStoreVersionExperimentTreatmentLocalizations: (query) the fields to include for returned resources of type appStoreVersionExperimentTreatmentLocalizations (optional)
      - parameter limit: (query) maximum resources per page (optional)
-     - parameter limitAppStoreVersionExperimentTreatmentLocalizations: (query) maximum number of related appStoreVersionExperimentTreatmentLocalizations returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitAppStoreVersionExperimentTreatmentLocalizations: (query) maximum number of related appStoreVersionExperimentTreatmentLocalizations returned (when they are included) (optional)
      - returns: RequestBuilder<AppStoreVersionExperimentTreatmentsResponse> 
      */
-    open class func appStoreVersionExperimentsV2AppStoreVersionExperimentTreatmentsGetToManyRelatedWithRequestBuilder(id: String, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_appStoreVersionExperimentsV2AppStoreVersionExperimentTreatmentsGetToManyRelated]? = nil, fieldsAppStoreVersionExperimentTreatments: [FieldsAppStoreVersionExperimentTreatments_appStoreVersionExperimentsV2AppStoreVersionExperimentTreatmentsGetToManyRelated]? = nil, fieldsAppStoreVersionExperimentTreatmentLocalizations: [FieldsAppStoreVersionExperimentTreatmentLocalizations_appStoreVersionExperimentsV2AppStoreVersionExperimentTreatmentsGetToManyRelated]? = nil, limit: Int? = nil, limitAppStoreVersionExperimentTreatmentLocalizations: Int? = nil, include: [Include_appStoreVersionExperimentsV2AppStoreVersionExperimentTreatmentsGetToManyRelated]? = nil) -> RequestBuilder<AppStoreVersionExperimentTreatmentsResponse> {
+    open class func appStoreVersionExperimentsV2AppStoreVersionExperimentTreatmentsGetToManyRelatedWithRequestBuilder(id: String, fieldsAppStoreVersionExperimentTreatments: [FieldsAppStoreVersionExperimentTreatments_appStoreVersionExperimentsV2AppStoreVersionExperimentTreatmentsGetToManyRelated]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_appStoreVersionExperimentsV2AppStoreVersionExperimentTreatmentsGetToManyRelated]? = nil, fieldsAppStoreVersionExperimentTreatmentLocalizations: [FieldsAppStoreVersionExperimentTreatmentLocalizations_appStoreVersionExperimentsV2AppStoreVersionExperimentTreatmentsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appStoreVersionExperimentsV2AppStoreVersionExperimentTreatmentsGetToManyRelated]? = nil, limitAppStoreVersionExperimentTreatmentLocalizations: Int? = nil) -> RequestBuilder<AppStoreVersionExperimentTreatmentsResponse> {
         var localVariablePath = "/v2/appStoreVersionExperiments/{id}/appStoreVersionExperimentTreatments"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -592,12 +589,12 @@ open class AppStoreVersionExperimentsAPI {
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[appStoreVersionExperiments]": (wrappedValue: fieldsAppStoreVersionExperiments?.encodeToJSON(), isExplode: false),
             "fields[appStoreVersionExperimentTreatments]": (wrappedValue: fieldsAppStoreVersionExperimentTreatments?.encodeToJSON(), isExplode: false),
+            "fields[appStoreVersionExperiments]": (wrappedValue: fieldsAppStoreVersionExperiments?.encodeToJSON(), isExplode: false),
             "fields[appStoreVersionExperimentTreatmentLocalizations]": (wrappedValue: fieldsAppStoreVersionExperimentTreatmentLocalizations?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "limit[appStoreVersionExperimentTreatmentLocalizations]": (wrappedValue: limitAppStoreVersionExperimentTreatmentLocalizations?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "limit[appStoreVersionExperimentTreatmentLocalizations]": (wrappedValue: limitAppStoreVersionExperimentTreatmentLocalizations?.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -768,18 +765,30 @@ open class AppStoreVersionExperimentsAPI {
      * enum for parameter fieldsAppStoreVersionExperiments
      */
     public enum FieldsAppStoreVersionExperiments_appStoreVersionExperimentsV2GetInstance: String, CaseIterable {
-        case app = "app"
-        case appstoreversionexperimenttreatments = "appStoreVersionExperimentTreatments"
-        case controlversions = "controlVersions"
-        case enddate = "endDate"
-        case latestcontrolversion = "latestControlVersion"
         case name = "name"
         case platform = "platform"
+        case trafficproportion = "trafficProportion"
+        case state = "state"
         case reviewrequired = "reviewRequired"
         case startdate = "startDate"
-        case started = "started"
-        case state = "state"
-        case trafficproportion = "trafficProportion"
+        case enddate = "endDate"
+        case app = "app"
+        case latestcontrolversion = "latestControlVersion"
+        case controlversions = "controlVersions"
+        case appstoreversionexperimenttreatments = "appStoreVersionExperimentTreatments"
+    }
+
+    /**
+     * enum for parameter fieldsAppStoreVersionExperimentTreatments
+     */
+    public enum FieldsAppStoreVersionExperimentTreatments_appStoreVersionExperimentsV2GetInstance: String, CaseIterable {
+        case name = "name"
+        case appicon = "appIcon"
+        case appiconname = "appIconName"
+        case promoteddate = "promotedDate"
+        case appstoreversionexperiment = "appStoreVersionExperiment"
+        case appstoreversionexperimentv2 = "appStoreVersionExperimentV2"
+        case appstoreversionexperimenttreatmentlocalizations = "appStoreVersionExperimentTreatmentLocalizations"
     }
 
     /**
@@ -787,37 +796,24 @@ open class AppStoreVersionExperimentsAPI {
      */
     public enum Include_appStoreVersionExperimentsV2GetInstance: String, CaseIterable {
         case app = "app"
-        case appstoreversionexperimenttreatments = "appStoreVersionExperimentTreatments"
-        case controlversions = "controlVersions"
         case latestcontrolversion = "latestControlVersion"
-    }
-
-    /**
-     * enum for parameter fieldsAppStoreVersionExperimentTreatments
-     */
-    public enum FieldsAppStoreVersionExperimentTreatments_appStoreVersionExperimentsV2GetInstance: String, CaseIterable {
-        case appicon = "appIcon"
-        case appiconname = "appIconName"
-        case appstoreversionexperiment = "appStoreVersionExperiment"
-        case appstoreversionexperimenttreatmentlocalizations = "appStoreVersionExperimentTreatmentLocalizations"
-        case appstoreversionexperimentv2 = "appStoreVersionExperimentV2"
-        case name = "name"
-        case promoteddate = "promotedDate"
+        case controlversions = "controlVersions"
+        case appstoreversionexperimenttreatments = "appStoreVersionExperimentTreatments"
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAppStoreVersionExperiments: (query) the fields to include for returned resources of type appStoreVersionExperiments (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter fieldsAppStoreVersionExperimentTreatments: (query) the fields to include for returned resources of type appStoreVersionExperimentTreatments (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAppStoreVersionExperimentTreatments: (query) maximum number of related appStoreVersionExperimentTreatments returned (when they are included) (optional)
      - parameter limitControlVersions: (query) maximum number of related controlVersions returned (when they are included) (optional)
      - returns: AppStoreVersionExperimentV2Response
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionExperimentsV2GetInstance(id: String, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_appStoreVersionExperimentsV2GetInstance]? = nil, include: [Include_appStoreVersionExperimentsV2GetInstance]? = nil, fieldsAppStoreVersionExperimentTreatments: [FieldsAppStoreVersionExperimentTreatments_appStoreVersionExperimentsV2GetInstance]? = nil, limitAppStoreVersionExperimentTreatments: Int? = nil, limitControlVersions: Int? = nil) async throws -> AppStoreVersionExperimentV2Response {
-        return try await appStoreVersionExperimentsV2GetInstanceWithRequestBuilder(id: id, fieldsAppStoreVersionExperiments: fieldsAppStoreVersionExperiments, include: include, fieldsAppStoreVersionExperimentTreatments: fieldsAppStoreVersionExperimentTreatments, limitAppStoreVersionExperimentTreatments: limitAppStoreVersionExperimentTreatments, limitControlVersions: limitControlVersions).execute().body
+    open class func appStoreVersionExperimentsV2GetInstance(id: String, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_appStoreVersionExperimentsV2GetInstance]? = nil, fieldsAppStoreVersionExperimentTreatments: [FieldsAppStoreVersionExperimentTreatments_appStoreVersionExperimentsV2GetInstance]? = nil, include: [Include_appStoreVersionExperimentsV2GetInstance]? = nil, limitAppStoreVersionExperimentTreatments: Int? = nil, limitControlVersions: Int? = nil) async throws -> AppStoreVersionExperimentV2Response {
+        return try await appStoreVersionExperimentsV2GetInstanceWithRequestBuilder(id: id, fieldsAppStoreVersionExperiments: fieldsAppStoreVersionExperiments, fieldsAppStoreVersionExperimentTreatments: fieldsAppStoreVersionExperimentTreatments, include: include, limitAppStoreVersionExperimentTreatments: limitAppStoreVersionExperimentTreatments, limitControlVersions: limitControlVersions).execute().body
     }
 
     /**
@@ -836,13 +832,13 @@ open class AppStoreVersionExperimentsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAppStoreVersionExperiments: (query) the fields to include for returned resources of type appStoreVersionExperiments (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter fieldsAppStoreVersionExperimentTreatments: (query) the fields to include for returned resources of type appStoreVersionExperimentTreatments (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAppStoreVersionExperimentTreatments: (query) maximum number of related appStoreVersionExperimentTreatments returned (when they are included) (optional)
      - parameter limitControlVersions: (query) maximum number of related controlVersions returned (when they are included) (optional)
      - returns: RequestBuilder<AppStoreVersionExperimentV2Response> 
      */
-    open class func appStoreVersionExperimentsV2GetInstanceWithRequestBuilder(id: String, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_appStoreVersionExperimentsV2GetInstance]? = nil, include: [Include_appStoreVersionExperimentsV2GetInstance]? = nil, fieldsAppStoreVersionExperimentTreatments: [FieldsAppStoreVersionExperimentTreatments_appStoreVersionExperimentsV2GetInstance]? = nil, limitAppStoreVersionExperimentTreatments: Int? = nil, limitControlVersions: Int? = nil) -> RequestBuilder<AppStoreVersionExperimentV2Response> {
+    open class func appStoreVersionExperimentsV2GetInstanceWithRequestBuilder(id: String, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_appStoreVersionExperimentsV2GetInstance]? = nil, fieldsAppStoreVersionExperimentTreatments: [FieldsAppStoreVersionExperimentTreatments_appStoreVersionExperimentsV2GetInstance]? = nil, include: [Include_appStoreVersionExperimentsV2GetInstance]? = nil, limitAppStoreVersionExperimentTreatments: Int? = nil, limitControlVersions: Int? = nil) -> RequestBuilder<AppStoreVersionExperimentV2Response> {
         var localVariablePath = "/v2/appStoreVersionExperiments/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -853,8 +849,8 @@ open class AppStoreVersionExperimentsAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[appStoreVersionExperiments]": (wrappedValue: fieldsAppStoreVersionExperiments?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "fields[appStoreVersionExperimentTreatments]": (wrappedValue: fieldsAppStoreVersionExperimentTreatments?.encodeToJSON(), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "limit[appStoreVersionExperimentTreatments]": (wrappedValue: limitAppStoreVersionExperimentTreatments?.encodeToJSON(), isExplode: true),
             "limit[controlVersions]": (wrappedValue: limitControlVersions?.encodeToJSON(), isExplode: true),
         ])

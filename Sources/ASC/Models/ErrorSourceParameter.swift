@@ -12,9 +12,9 @@ import AnyCodable
 
 public struct ErrorSourceParameter: Codable, JSONEncodable, Hashable {
 
-    public var parameter: String?
+    public var parameter: String
 
-    public init(parameter: String? = nil) {
+    public init(parameter: String) {
         self.parameter = parameter
     }
 
@@ -26,7 +26,7 @@ public struct ErrorSourceParameter: Codable, JSONEncodable, Hashable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(parameter, forKey: .parameter)
+        try container.encode(parameter, forKey: .parameter)
     }
 }
 

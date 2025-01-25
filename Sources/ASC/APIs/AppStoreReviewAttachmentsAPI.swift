@@ -149,13 +149,12 @@ open class AppStoreReviewAttachmentsAPI {
      * enum for parameter fieldsAppStoreReviewAttachments
      */
     public enum FieldsAppStoreReviewAttachments_appStoreReviewAttachmentsGetInstance: String, CaseIterable {
-        case appstorereviewdetail = "appStoreReviewDetail"
-        case assetdeliverystate = "assetDeliveryState"
-        case filename = "fileName"
         case filesize = "fileSize"
+        case filename = "fileName"
         case sourcefilechecksum = "sourceFileChecksum"
         case uploadoperations = "uploadOperations"
-        case uploaded = "uploaded"
+        case assetdeliverystate = "assetDeliveryState"
+        case appstorereviewdetail = "appStoreReviewDetail"
     }
 
     /**

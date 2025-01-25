@@ -23,7 +23,7 @@ Method | HTTP request | Description
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import ASC
 
-let endUserLicenseAgreementCreateRequest = EndUserLicenseAgreementCreateRequest(data: EndUserLicenseAgreementCreateRequest_data(type: "type_example", attributes: EndUserLicenseAgreementCreateRequest_data_attributes(agreementText: "agreementText_example"), relationships: EndUserLicenseAgreementCreateRequest_data_relationships(app: AnalyticsReportRequestCreateRequest_data_relationships_app(data: AlternativeDistributionKeyCreateRequest_data_relationships_app_data(type: "type_example", id: "id_example")), territories: AppAvailabilityCreateRequest_data_relationships_availableTerritories(data: [AppAvailability_relationships_availableTerritories_data_inner(type: "type_example", id: "id_example")])))) // EndUserLicenseAgreementCreateRequest | EndUserLicenseAgreement representation
+let endUserLicenseAgreementCreateRequest = EndUserLicenseAgreementCreateRequest(data: EndUserLicenseAgreementCreateRequest_data(type: "type_example", attributes: EndUserLicenseAgreementCreateRequest_data_attributes(agreementText: "agreementText_example"), relationships: EndUserLicenseAgreementCreateRequest_data_relationships(app: AnalyticsReportRequestCreateRequest_data_relationships_app(data: AlternativeDistributionKeyCreateRequest_data_relationships_app_data(type: "type_example", id: "id_example")), territories: EndUserLicenseAgreementCreateRequest_data_relationships_territories(data: [AppPricePointV3_relationships_territory_data(type: "type_example", id: "id_example")])))) // EndUserLicenseAgreementCreateRequest | EndUserLicenseAgreement representation
 
 EndUserLicenseAgreementsAPI.endUserLicenseAgreementsCreateInstance(endUserLicenseAgreementCreateRequest: endUserLicenseAgreementCreateRequest) { (response, error) in
     guard error == nil else {
@@ -107,7 +107,7 @@ Void (empty response body)
 
 # **endUserLicenseAgreementsGetInstance**
 ```swift
-    open class func endUserLicenseAgreementsGetInstance(id: String, fieldsEndUserLicenseAgreements: [FieldsEndUserLicenseAgreements_endUserLicenseAgreementsGetInstance]? = nil, include: [Include_endUserLicenseAgreementsGetInstance]? = nil, fieldsTerritories: [FieldsTerritories_endUserLicenseAgreementsGetInstance]? = nil, limitTerritories: Int? = nil, completion: @escaping (_ data: EndUserLicenseAgreementResponse?, _ error: Error?) -> Void)
+    open class func endUserLicenseAgreementsGetInstance(id: String, fieldsEndUserLicenseAgreements: [FieldsEndUserLicenseAgreements_endUserLicenseAgreementsGetInstance]? = nil, fieldsTerritories: [FieldsTerritories_endUserLicenseAgreementsGetInstance]? = nil, include: [Include_endUserLicenseAgreementsGetInstance]? = nil, limitTerritories: Int? = nil, completion: @escaping (_ data: EndUserLicenseAgreementResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -119,11 +119,11 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let fieldsEndUserLicenseAgreements = ["fieldsEndUserLicenseAgreements_example"] // [String] | the fields to include for returned resources of type endUserLicenseAgreements (optional)
-let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let fieldsTerritories = ["fieldsTerritories_example"] // [String] | the fields to include for returned resources of type territories (optional)
+let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let limitTerritories = 987 // Int | maximum number of related territories returned (when they are included) (optional)
 
-EndUserLicenseAgreementsAPI.endUserLicenseAgreementsGetInstance(id: id, fieldsEndUserLicenseAgreements: fieldsEndUserLicenseAgreements, include: include, fieldsTerritories: fieldsTerritories, limitTerritories: limitTerritories) { (response, error) in
+EndUserLicenseAgreementsAPI.endUserLicenseAgreementsGetInstance(id: id, fieldsEndUserLicenseAgreements: fieldsEndUserLicenseAgreements, fieldsTerritories: fieldsTerritories, include: include, limitTerritories: limitTerritories) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -141,8 +141,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **fieldsEndUserLicenseAgreements** | [**[String]**](String.md) | the fields to include for returned resources of type endUserLicenseAgreements | [optional] 
- **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **fieldsTerritories** | [**[String]**](String.md) | the fields to include for returned resources of type territories | [optional] 
+ **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **limitTerritories** | **Int** | maximum number of related territories returned (when they are included) | [optional] 
 
 ### Return type
@@ -224,7 +224,7 @@ Name | Type | Description  | Notes
 import ASC
 
 let id = "id_example" // String | the id of the requested resource
-let endUserLicenseAgreementUpdateRequest = EndUserLicenseAgreementUpdateRequest(data: EndUserLicenseAgreementUpdateRequest_data(type: "type_example", id: "id_example", attributes: BetaLicenseAgreement_attributes(agreementText: "agreementText_example"), relationships: EndUserLicenseAgreementUpdateRequest_data_relationships(territories: EndUserLicenseAgreementUpdateRequest_data_relationships_territories(data: [AppAvailability_relationships_availableTerritories_data_inner(type: "type_example", id: "id_example")])))) // EndUserLicenseAgreementUpdateRequest | EndUserLicenseAgreement representation
+let endUserLicenseAgreementUpdateRequest = EndUserLicenseAgreementUpdateRequest(data: EndUserLicenseAgreementUpdateRequest_data(type: "type_example", id: "id_example", attributes: BetaLicenseAgreement_attributes(agreementText: "agreementText_example"), relationships: EndUserLicenseAgreementUpdateRequest_data_relationships(territories: EndUserLicenseAgreementUpdateRequest_data_relationships_territories(data: [AppPricePointV3_relationships_territory_data(type: "type_example", id: "id_example")])))) // EndUserLicenseAgreementUpdateRequest | EndUserLicenseAgreement representation
 
 EndUserLicenseAgreementsAPI.endUserLicenseAgreementsUpdateInstance(id: id, endUserLicenseAgreementUpdateRequest: endUserLicenseAgreementUpdateRequest) { (response, error) in
     guard error == nil else {

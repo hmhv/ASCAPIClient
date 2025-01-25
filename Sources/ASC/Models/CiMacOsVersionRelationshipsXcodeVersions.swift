@@ -12,11 +12,11 @@ import AnyCodable
 
 public struct CiMacOsVersionRelationshipsXcodeVersions: Codable, JSONEncodable, Hashable {
 
-    public var links: AlternativeDistributionPackageVersionRelationshipsVariantsLinks?
+    public var links: RelationshipLinks?
     public var meta: PagingInformation?
     public var data: [CiMacOsVersionRelationshipsXcodeVersionsDataInner]?
 
-    public init(links: AlternativeDistributionPackageVersionRelationshipsVariantsLinks? = nil, meta: PagingInformation? = nil, data: [CiMacOsVersionRelationshipsXcodeVersionsDataInner]? = nil) {
+    public init(links: RelationshipLinks? = nil, meta: PagingInformation? = nil, data: [CiMacOsVersionRelationshipsXcodeVersionsDataInner]? = nil) {
         self.links = links
         self.meta = meta
         self.data = data

@@ -13,10 +13,10 @@ import AnyCodable
 @available(*, deprecated, message: "This schema is deprecated.")
 public struct AppStoreVersionRelationshipsAgeRatingDeclaration: Codable, JSONEncodable, Hashable {
 
-    public var links: AlternativeDistributionPackageVersionRelationshipsVariantsLinks?
+    public var links: RelationshipLinks?
     public var data: AppInfoRelationshipsAgeRatingDeclarationData?
 
-    public init(links: AlternativeDistributionPackageVersionRelationshipsVariantsLinks? = nil, data: AppInfoRelationshipsAgeRatingDeclarationData? = nil) {
+    public init(links: RelationshipLinks? = nil, data: AppInfoRelationshipsAgeRatingDeclarationData? = nil) {
         self.links = links
         self.data = data
     }

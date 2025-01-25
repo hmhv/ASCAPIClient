@@ -149,13 +149,12 @@ open class GameCenterAchievementImagesAPI {
      * enum for parameter fieldsGameCenterAchievementImages
      */
     public enum FieldsGameCenterAchievementImages_gameCenterAchievementImagesGetInstance: String, CaseIterable {
-        case assetdeliverystate = "assetDeliveryState"
-        case filename = "fileName"
         case filesize = "fileSize"
-        case gamecenterachievementlocalization = "gameCenterAchievementLocalization"
+        case filename = "fileName"
         case imageasset = "imageAsset"
         case uploadoperations = "uploadOperations"
-        case uploaded = "uploaded"
+        case assetdeliverystate = "assetDeliveryState"
+        case gamecenterachievementlocalization = "gameCenterAchievementLocalization"
     }
 
     /**

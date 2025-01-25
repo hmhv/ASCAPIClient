@@ -16,36 +16,20 @@ open class ScmProvidersAPI {
      * enum for parameter fieldsScmProviders
      */
     public enum FieldsScmProviders_scmProvidersGetCollection: String, CaseIterable {
-        case repositories = "repositories"
         case scmprovidertype = "scmProviderType"
         case url = "url"
-    }
-
-    /**
-     * enum for parameter fieldsScmRepositories
-     */
-    public enum FieldsScmRepositories_scmProvidersGetCollection: String, CaseIterable {
-        case defaultbranch = "defaultBranch"
-        case gitreferences = "gitReferences"
-        case httpcloneurl = "httpCloneUrl"
-        case lastaccesseddate = "lastAccessedDate"
-        case ownername = "ownerName"
-        case pullrequests = "pullRequests"
-        case repositoryname = "repositoryName"
-        case scmprovider = "scmProvider"
-        case sshcloneurl = "sshCloneUrl"
+        case repositories = "repositories"
     }
 
     /**
 
      - parameter fieldsScmProviders: (query) the fields to include for returned resources of type scmProviders (optional)
      - parameter limit: (query) maximum resources per page (optional)
-     - parameter fieldsScmRepositories: (query) the fields to include for returned resources of type scmRepositories (optional)
      - returns: ScmProvidersResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func scmProvidersGetCollection(fieldsScmProviders: [FieldsScmProviders_scmProvidersGetCollection]? = nil, limit: Int? = nil, fieldsScmRepositories: [FieldsScmRepositories_scmProvidersGetCollection]? = nil) async throws -> ScmProvidersResponse {
-        return try await scmProvidersGetCollectionWithRequestBuilder(fieldsScmProviders: fieldsScmProviders, limit: limit, fieldsScmRepositories: fieldsScmRepositories).execute().body
+    open class func scmProvidersGetCollection(fieldsScmProviders: [FieldsScmProviders_scmProvidersGetCollection]? = nil, limit: Int? = nil) async throws -> ScmProvidersResponse {
+        return try await scmProvidersGetCollectionWithRequestBuilder(fieldsScmProviders: fieldsScmProviders, limit: limit).execute().body
     }
 
     /**
@@ -64,10 +48,9 @@ open class ScmProvidersAPI {
        - name: itc-bearer-token
      - parameter fieldsScmProviders: (query) the fields to include for returned resources of type scmProviders (optional)
      - parameter limit: (query) maximum resources per page (optional)
-     - parameter fieldsScmRepositories: (query) the fields to include for returned resources of type scmRepositories (optional)
      - returns: RequestBuilder<ScmProvidersResponse> 
      */
-    open class func scmProvidersGetCollectionWithRequestBuilder(fieldsScmProviders: [FieldsScmProviders_scmProvidersGetCollection]? = nil, limit: Int? = nil, fieldsScmRepositories: [FieldsScmRepositories_scmProvidersGetCollection]? = nil) -> RequestBuilder<ScmProvidersResponse> {
+    open class func scmProvidersGetCollectionWithRequestBuilder(fieldsScmProviders: [FieldsScmProviders_scmProvidersGetCollection]? = nil, limit: Int? = nil) -> RequestBuilder<ScmProvidersResponse> {
         let localVariablePath = "/v1/scmProviders"
         let localVariableURLString = ASCAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -76,7 +59,6 @@ open class ScmProvidersAPI {
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[scmProviders]": (wrappedValue: fieldsScmProviders?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "fields[scmRepositories]": (wrappedValue: fieldsScmRepositories?.encodeToJSON(), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -114,36 +96,20 @@ open class ScmProvidersAPI {
      * enum for parameter fieldsScmProviders
      */
     public enum FieldsScmProviders_scmProvidersGetInstance: String, CaseIterable {
-        case repositories = "repositories"
         case scmprovidertype = "scmProviderType"
         case url = "url"
-    }
-
-    /**
-     * enum for parameter fieldsScmRepositories
-     */
-    public enum FieldsScmRepositories_scmProvidersGetInstance: String, CaseIterable {
-        case defaultbranch = "defaultBranch"
-        case gitreferences = "gitReferences"
-        case httpcloneurl = "httpCloneUrl"
-        case lastaccesseddate = "lastAccessedDate"
-        case ownername = "ownerName"
-        case pullrequests = "pullRequests"
-        case repositoryname = "repositoryName"
-        case scmprovider = "scmProvider"
-        case sshcloneurl = "sshCloneUrl"
+        case repositories = "repositories"
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsScmProviders: (query) the fields to include for returned resources of type scmProviders (optional)
-     - parameter fieldsScmRepositories: (query) the fields to include for returned resources of type scmRepositories (optional)
      - returns: ScmProviderResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func scmProvidersGetInstance(id: String, fieldsScmProviders: [FieldsScmProviders_scmProvidersGetInstance]? = nil, fieldsScmRepositories: [FieldsScmRepositories_scmProvidersGetInstance]? = nil) async throws -> ScmProviderResponse {
-        return try await scmProvidersGetInstanceWithRequestBuilder(id: id, fieldsScmProviders: fieldsScmProviders, fieldsScmRepositories: fieldsScmRepositories).execute().body
+    open class func scmProvidersGetInstance(id: String, fieldsScmProviders: [FieldsScmProviders_scmProvidersGetInstance]? = nil) async throws -> ScmProviderResponse {
+        return try await scmProvidersGetInstanceWithRequestBuilder(id: id, fieldsScmProviders: fieldsScmProviders).execute().body
     }
 
     /**
@@ -162,10 +128,9 @@ open class ScmProvidersAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsScmProviders: (query) the fields to include for returned resources of type scmProviders (optional)
-     - parameter fieldsScmRepositories: (query) the fields to include for returned resources of type scmRepositories (optional)
      - returns: RequestBuilder<ScmProviderResponse> 
      */
-    open class func scmProvidersGetInstanceWithRequestBuilder(id: String, fieldsScmProviders: [FieldsScmProviders_scmProvidersGetInstance]? = nil, fieldsScmRepositories: [FieldsScmRepositories_scmProvidersGetInstance]? = nil) -> RequestBuilder<ScmProviderResponse> {
+    open class func scmProvidersGetInstanceWithRequestBuilder(id: String, fieldsScmProviders: [FieldsScmProviders_scmProvidersGetInstance]? = nil) -> RequestBuilder<ScmProviderResponse> {
         var localVariablePath = "/v1/scmProviders/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -176,7 +141,6 @@ open class ScmProvidersAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[scmProviders]": (wrappedValue: fieldsScmProviders?.encodeToJSON(), isExplode: false),
-            "fields[scmRepositories]": (wrappedValue: fieldsScmRepositories?.encodeToJSON(), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -211,62 +175,62 @@ open class ScmProvidersAPI {
     }
 
     /**
-     * enum for parameter fieldsScmGitReferences
+     * enum for parameter fieldsScmRepositories
      */
-    public enum FieldsScmGitReferences_scmProvidersRepositoriesGetToManyRelated: String, CaseIterable {
-        case canonicalname = "canonicalName"
-        case isdeleted = "isDeleted"
-        case kind = "kind"
-        case name = "name"
-        case repository = "repository"
+    public enum FieldsScmRepositories_scmProvidersRepositoriesGetToManyRelated: String, CaseIterable {
+        case lastaccesseddate = "lastAccessedDate"
+        case httpcloneurl = "httpCloneUrl"
+        case sshcloneurl = "sshCloneUrl"
+        case ownername = "ownerName"
+        case repositoryname = "repositoryName"
+        case scmprovider = "scmProvider"
+        case defaultbranch = "defaultBranch"
+        case gitreferences = "gitReferences"
+        case pullrequests = "pullRequests"
     }
 
     /**
      * enum for parameter fieldsScmProviders
      */
     public enum FieldsScmProviders_scmProvidersRepositoriesGetToManyRelated: String, CaseIterable {
-        case repositories = "repositories"
         case scmprovidertype = "scmProviderType"
         case url = "url"
+        case repositories = "repositories"
     }
 
     /**
-     * enum for parameter fieldsScmRepositories
+     * enum for parameter fieldsScmGitReferences
      */
-    public enum FieldsScmRepositories_scmProvidersRepositoriesGetToManyRelated: String, CaseIterable {
-        case defaultbranch = "defaultBranch"
-        case gitreferences = "gitReferences"
-        case httpcloneurl = "httpCloneUrl"
-        case lastaccesseddate = "lastAccessedDate"
-        case ownername = "ownerName"
-        case pullrequests = "pullRequests"
-        case repositoryname = "repositoryName"
-        case scmprovider = "scmProvider"
-        case sshcloneurl = "sshCloneUrl"
+    public enum FieldsScmGitReferences_scmProvidersRepositoriesGetToManyRelated: String, CaseIterable {
+        case name = "name"
+        case canonicalname = "canonicalName"
+        case isdeleted = "isDeleted"
+        case kind = "kind"
+        case repository = "repository"
     }
 
     /**
      * enum for parameter include
      */
     public enum Include_scmProvidersRepositoriesGetToManyRelated: String, CaseIterable {
-        case defaultbranch = "defaultBranch"
         case scmprovider = "scmProvider"
+        case defaultbranch = "defaultBranch"
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter filterId: (query) filter by id(s) (optional)
-     - parameter fieldsScmGitReferences: (query) the fields to include for returned resources of type scmGitReferences (optional)
-     - parameter fieldsScmProviders: (query) the fields to include for returned resources of type scmProviders (optional)
      - parameter fieldsScmRepositories: (query) the fields to include for returned resources of type scmRepositories (optional)
+     - parameter fieldsScmProviders: (query) the fields to include for returned resources of type scmProviders (optional)
+     - parameter fieldsScmGitReferences: (query) the fields to include for returned resources of type scmGitReferences (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: ScmRepositoriesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func scmProvidersRepositoriesGetToManyRelated(id: String, filterId: [String]? = nil, fieldsScmGitReferences: [FieldsScmGitReferences_scmProvidersRepositoriesGetToManyRelated]? = nil, fieldsScmProviders: [FieldsScmProviders_scmProvidersRepositoriesGetToManyRelated]? = nil, fieldsScmRepositories: [FieldsScmRepositories_scmProvidersRepositoriesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_scmProvidersRepositoriesGetToManyRelated]? = nil) async throws -> ScmRepositoriesResponse {
-        return try await scmProvidersRepositoriesGetToManyRelatedWithRequestBuilder(id: id, filterId: filterId, fieldsScmGitReferences: fieldsScmGitReferences, fieldsScmProviders: fieldsScmProviders, fieldsScmRepositories: fieldsScmRepositories, limit: limit, include: include).execute().body
+    open class func scmProvidersRepositoriesGetToManyRelated(id: String, filterId: [String]? = nil, fieldsScmRepositories: [FieldsScmRepositories_scmProvidersRepositoriesGetToManyRelated]? = nil, fieldsScmProviders: [FieldsScmProviders_scmProvidersRepositoriesGetToManyRelated]? = nil, fieldsScmGitReferences: [FieldsScmGitReferences_scmProvidersRepositoriesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_scmProvidersRepositoriesGetToManyRelated]? = nil) async throws -> ScmRepositoriesResponse {
+        return try await scmProvidersRepositoriesGetToManyRelatedWithRequestBuilder(id: id, filterId: filterId, fieldsScmRepositories: fieldsScmRepositories, fieldsScmProviders: fieldsScmProviders, fieldsScmGitReferences: fieldsScmGitReferences, limit: limit, include: include).execute().body
     }
 
     /**
@@ -285,14 +249,14 @@ open class ScmProvidersAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter filterId: (query) filter by id(s) (optional)
-     - parameter fieldsScmGitReferences: (query) the fields to include for returned resources of type scmGitReferences (optional)
-     - parameter fieldsScmProviders: (query) the fields to include for returned resources of type scmProviders (optional)
      - parameter fieldsScmRepositories: (query) the fields to include for returned resources of type scmRepositories (optional)
+     - parameter fieldsScmProviders: (query) the fields to include for returned resources of type scmProviders (optional)
+     - parameter fieldsScmGitReferences: (query) the fields to include for returned resources of type scmGitReferences (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: RequestBuilder<ScmRepositoriesResponse> 
      */
-    open class func scmProvidersRepositoriesGetToManyRelatedWithRequestBuilder(id: String, filterId: [String]? = nil, fieldsScmGitReferences: [FieldsScmGitReferences_scmProvidersRepositoriesGetToManyRelated]? = nil, fieldsScmProviders: [FieldsScmProviders_scmProvidersRepositoriesGetToManyRelated]? = nil, fieldsScmRepositories: [FieldsScmRepositories_scmProvidersRepositoriesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_scmProvidersRepositoriesGetToManyRelated]? = nil) -> RequestBuilder<ScmRepositoriesResponse> {
+    open class func scmProvidersRepositoriesGetToManyRelatedWithRequestBuilder(id: String, filterId: [String]? = nil, fieldsScmRepositories: [FieldsScmRepositories_scmProvidersRepositoriesGetToManyRelated]? = nil, fieldsScmProviders: [FieldsScmProviders_scmProvidersRepositoriesGetToManyRelated]? = nil, fieldsScmGitReferences: [FieldsScmGitReferences_scmProvidersRepositoriesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_scmProvidersRepositoriesGetToManyRelated]? = nil) -> RequestBuilder<ScmRepositoriesResponse> {
         var localVariablePath = "/v1/scmProviders/{id}/repositories"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -303,9 +267,9 @@ open class ScmProvidersAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "filter[id]": (wrappedValue: filterId?.encodeToJSON(), isExplode: false),
-            "fields[scmGitReferences]": (wrappedValue: fieldsScmGitReferences?.encodeToJSON(), isExplode: false),
-            "fields[scmProviders]": (wrappedValue: fieldsScmProviders?.encodeToJSON(), isExplode: false),
             "fields[scmRepositories]": (wrappedValue: fieldsScmRepositories?.encodeToJSON(), isExplode: false),
+            "fields[scmProviders]": (wrappedValue: fieldsScmProviders?.encodeToJSON(), isExplode: false),
+            "fields[scmGitReferences]": (wrappedValue: fieldsScmGitReferences?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
         ])

@@ -12,13 +12,13 @@ import AnyCodable
 
 public struct ReviewSubmissionRelationships: Codable, JSONEncodable, Hashable {
 
-    public var app: AppAvailabilityRelationshipsApp?
+    public var app: AlternativeDistributionKeyCreateRequestDataRelationshipsApp?
     public var items: ReviewSubmissionRelationshipsItems?
-    public var appStoreVersionForReview: AppClipDefaultExperienceRelationshipsReleaseWithAppStoreVersion?
+    public var appStoreVersionForReview: AppClipDefaultExperienceCreateRequestDataRelationshipsReleaseWithAppStoreVersion?
     public var submittedByActor: ReviewSubmissionRelationshipsSubmittedByActor?
     public var lastUpdatedByActor: ReviewSubmissionRelationshipsSubmittedByActor?
 
-    public init(app: AppAvailabilityRelationshipsApp? = nil, items: ReviewSubmissionRelationshipsItems? = nil, appStoreVersionForReview: AppClipDefaultExperienceRelationshipsReleaseWithAppStoreVersion? = nil, submittedByActor: ReviewSubmissionRelationshipsSubmittedByActor? = nil, lastUpdatedByActor: ReviewSubmissionRelationshipsSubmittedByActor? = nil) {
+    public init(app: AlternativeDistributionKeyCreateRequestDataRelationshipsApp? = nil, items: ReviewSubmissionRelationshipsItems? = nil, appStoreVersionForReview: AppClipDefaultExperienceCreateRequestDataRelationshipsReleaseWithAppStoreVersion? = nil, submittedByActor: ReviewSubmissionRelationshipsSubmittedByActor? = nil, lastUpdatedByActor: ReviewSubmissionRelationshipsSubmittedByActor? = nil) {
         self.app = app
         self.items = items
         self.appStoreVersionForReview = appStoreVersionForReview

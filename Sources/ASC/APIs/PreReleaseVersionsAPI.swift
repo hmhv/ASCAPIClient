@@ -16,53 +16,49 @@ open class PreReleaseVersionsAPI {
      * enum for parameter fieldsApps
      */
     public enum FieldsApps_preReleaseVersionsAppGetToOneRelated: String, CaseIterable {
+        case name = "name"
+        case bundleid = "bundleId"
+        case sku = "sku"
+        case primarylocale = "primaryLocale"
+        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
+        case subscriptionstatusurl = "subscriptionStatusUrl"
+        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
+        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
+        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
+        case contentrightsdeclaration = "contentRightsDeclaration"
+        case streamlinedpurchasingenabled = "streamlinedPurchasingEnabled"
+        case appencryptiondeclarations = "appEncryptionDeclarations"
+        case ciproduct = "ciProduct"
+        case betatesters = "betaTesters"
+        case betagroups = "betaGroups"
+        case appstoreversions = "appStoreVersions"
+        case prereleaseversions = "preReleaseVersions"
+        case betaapplocalizations = "betaAppLocalizations"
+        case builds = "builds"
+        case betalicenseagreement = "betaLicenseAgreement"
+        case betaappreviewdetail = "betaAppReviewDetail"
+        case appinfos = "appInfos"
+        case appclips = "appClips"
+        case apppricepoints = "appPricePoints"
+        case enduserlicenseagreement = "endUserLicenseAgreement"
+        case apppriceschedule = "appPriceSchedule"
+        case appavailabilityv2 = "appAvailabilityV2"
+        case inapppurchases = "inAppPurchases"
+        case subscriptiongroups = "subscriptionGroups"
+        case gamecenterenabledversions = "gameCenterEnabledVersions"
+        case perfpowermetrics = "perfPowerMetrics"
+        case appcustomproductpages = "appCustomProductPages"
+        case inapppurchasesv2 = "inAppPurchasesV2"
+        case promotedpurchases = "promotedPurchases"
+        case appevents = "appEvents"
+        case reviewsubmissions = "reviewSubmissions"
+        case subscriptiongraceperiod = "subscriptionGracePeriod"
+        case customerreviews = "customerReviews"
+        case gamecenterdetail = "gameCenterDetail"
+        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
         case alternativedistributionkey = "alternativeDistributionKey"
         case analyticsreportrequests = "analyticsReportRequests"
-        case appavailability = "appAvailability"
-        case appclips = "appClips"
-        case appcustomproductpages = "appCustomProductPages"
-        case appencryptiondeclarations = "appEncryptionDeclarations"
-        case appevents = "appEvents"
-        case appinfos = "appInfos"
-        case apppricepoints = "appPricePoints"
-        case apppriceschedule = "appPriceSchedule"
-        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
-        case appstoreversions = "appStoreVersions"
-        case availableinnewterritories = "availableInNewTerritories"
-        case availableterritories = "availableTerritories"
-        case betaapplocalizations = "betaAppLocalizations"
-        case betaappreviewdetail = "betaAppReviewDetail"
-        case betagroups = "betaGroups"
-        case betalicenseagreement = "betaLicenseAgreement"
-        case betatesters = "betaTesters"
-        case builds = "builds"
-        case bundleid = "bundleId"
-        case ciproduct = "ciProduct"
-        case contentrightsdeclaration = "contentRightsDeclaration"
-        case customerreviews = "customerReviews"
-        case enduserlicenseagreement = "endUserLicenseAgreement"
-        case gamecenterdetail = "gameCenterDetail"
-        case gamecenterenabledversions = "gameCenterEnabledVersions"
-        case inapppurchases = "inAppPurchases"
-        case inapppurchasesv2 = "inAppPurchasesV2"
-        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
         case marketplacesearchdetail = "marketplaceSearchDetail"
-        case name = "name"
-        case perfpowermetrics = "perfPowerMetrics"
-        case preorder = "preOrder"
-        case prereleaseversions = "preReleaseVersions"
-        case pricepoints = "pricePoints"
-        case prices = "prices"
-        case primarylocale = "primaryLocale"
-        case promotedpurchases = "promotedPurchases"
-        case reviewsubmissions = "reviewSubmissions"
-        case sku = "sku"
-        case subscriptiongraceperiod = "subscriptionGracePeriod"
-        case subscriptiongroups = "subscriptionGroups"
-        case subscriptionstatusurl = "subscriptionStatusUrl"
-        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
-        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
-        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
     }
 
     /**
@@ -142,30 +138,30 @@ open class PreReleaseVersionsAPI {
      * enum for parameter fieldsBuilds
      */
     public enum FieldsBuilds_preReleaseVersionsBuildsGetToManyRelated: String, CaseIterable {
-        case app = "app"
-        case appencryptiondeclaration = "appEncryptionDeclaration"
-        case appstoreversion = "appStoreVersion"
-        case betaappreviewsubmission = "betaAppReviewSubmission"
-        case betabuildlocalizations = "betaBuildLocalizations"
-        case betagroups = "betaGroups"
-        case buildaudiencetype = "buildAudienceType"
-        case buildbetadetail = "buildBetaDetail"
-        case buildbundles = "buildBundles"
-        case computedminmacosversion = "computedMinMacOsVersion"
-        case diagnosticsignatures = "diagnosticSignatures"
+        case version = "version"
+        case uploadeddate = "uploadedDate"
         case expirationdate = "expirationDate"
         case expired = "expired"
-        case iconassettoken = "iconAssetToken"
-        case icons = "icons"
-        case individualtesters = "individualTesters"
-        case lsminimumsystemversion = "lsMinimumSystemVersion"
         case minosversion = "minOsVersion"
-        case perfpowermetrics = "perfPowerMetrics"
-        case prereleaseversion = "preReleaseVersion"
+        case lsminimumsystemversion = "lsMinimumSystemVersion"
+        case computedminmacosversion = "computedMinMacOsVersion"
+        case iconassettoken = "iconAssetToken"
         case processingstate = "processingState"
-        case uploadeddate = "uploadedDate"
+        case buildaudiencetype = "buildAudienceType"
         case usesnonexemptencryption = "usesNonExemptEncryption"
-        case version = "version"
+        case prereleaseversion = "preReleaseVersion"
+        case individualtesters = "individualTesters"
+        case betagroups = "betaGroups"
+        case betabuildlocalizations = "betaBuildLocalizations"
+        case appencryptiondeclaration = "appEncryptionDeclaration"
+        case betaappreviewsubmission = "betaAppReviewSubmission"
+        case app = "app"
+        case buildbetadetail = "buildBetaDetail"
+        case appstoreversion = "appStoreVersion"
+        case icons = "icons"
+        case buildbundles = "buildBundles"
+        case perfpowermetrics = "perfPowerMetrics"
+        case diagnosticsignatures = "diagnosticSignatures"
     }
 
     /**
@@ -276,101 +272,97 @@ open class PreReleaseVersionsAPI {
      * enum for parameter fieldsPreReleaseVersions
      */
     public enum FieldsPreReleaseVersions_preReleaseVersionsGetCollection: String, CaseIterable {
-        case app = "app"
-        case builds = "builds"
-        case platform = "platform"
         case version = "version"
-    }
-
-    /**
-     * enum for parameter include
-     */
-    public enum Include_preReleaseVersionsGetCollection: String, CaseIterable {
+        case platform = "platform"
+        case builds = "builds"
         case app = "app"
-        case builds = "builds"
-    }
-
-    /**
-     * enum for parameter fieldsApps
-     */
-    public enum FieldsApps_preReleaseVersionsGetCollection: String, CaseIterable {
-        case alternativedistributionkey = "alternativeDistributionKey"
-        case analyticsreportrequests = "analyticsReportRequests"
-        case appavailability = "appAvailability"
-        case appclips = "appClips"
-        case appcustomproductpages = "appCustomProductPages"
-        case appencryptiondeclarations = "appEncryptionDeclarations"
-        case appevents = "appEvents"
-        case appinfos = "appInfos"
-        case apppricepoints = "appPricePoints"
-        case apppriceschedule = "appPriceSchedule"
-        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
-        case appstoreversions = "appStoreVersions"
-        case availableinnewterritories = "availableInNewTerritories"
-        case availableterritories = "availableTerritories"
-        case betaapplocalizations = "betaAppLocalizations"
-        case betaappreviewdetail = "betaAppReviewDetail"
-        case betagroups = "betaGroups"
-        case betalicenseagreement = "betaLicenseAgreement"
-        case betatesters = "betaTesters"
-        case builds = "builds"
-        case bundleid = "bundleId"
-        case ciproduct = "ciProduct"
-        case contentrightsdeclaration = "contentRightsDeclaration"
-        case customerreviews = "customerReviews"
-        case enduserlicenseagreement = "endUserLicenseAgreement"
-        case gamecenterdetail = "gameCenterDetail"
-        case gamecenterenabledversions = "gameCenterEnabledVersions"
-        case inapppurchases = "inAppPurchases"
-        case inapppurchasesv2 = "inAppPurchasesV2"
-        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
-        case marketplacesearchdetail = "marketplaceSearchDetail"
-        case name = "name"
-        case perfpowermetrics = "perfPowerMetrics"
-        case preorder = "preOrder"
-        case prereleaseversions = "preReleaseVersions"
-        case pricepoints = "pricePoints"
-        case prices = "prices"
-        case primarylocale = "primaryLocale"
-        case promotedpurchases = "promotedPurchases"
-        case reviewsubmissions = "reviewSubmissions"
-        case sku = "sku"
-        case subscriptiongraceperiod = "subscriptionGracePeriod"
-        case subscriptiongroups = "subscriptionGroups"
-        case subscriptionstatusurl = "subscriptionStatusUrl"
-        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
-        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
-        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
     }
 
     /**
      * enum for parameter fieldsBuilds
      */
     public enum FieldsBuilds_preReleaseVersionsGetCollection: String, CaseIterable {
-        case app = "app"
-        case appencryptiondeclaration = "appEncryptionDeclaration"
-        case appstoreversion = "appStoreVersion"
-        case betaappreviewsubmission = "betaAppReviewSubmission"
-        case betabuildlocalizations = "betaBuildLocalizations"
-        case betagroups = "betaGroups"
-        case buildaudiencetype = "buildAudienceType"
-        case buildbetadetail = "buildBetaDetail"
-        case buildbundles = "buildBundles"
-        case computedminmacosversion = "computedMinMacOsVersion"
-        case diagnosticsignatures = "diagnosticSignatures"
+        case version = "version"
+        case uploadeddate = "uploadedDate"
         case expirationdate = "expirationDate"
         case expired = "expired"
-        case iconassettoken = "iconAssetToken"
-        case icons = "icons"
-        case individualtesters = "individualTesters"
-        case lsminimumsystemversion = "lsMinimumSystemVersion"
         case minosversion = "minOsVersion"
-        case perfpowermetrics = "perfPowerMetrics"
-        case prereleaseversion = "preReleaseVersion"
+        case lsminimumsystemversion = "lsMinimumSystemVersion"
+        case computedminmacosversion = "computedMinMacOsVersion"
+        case iconassettoken = "iconAssetToken"
         case processingstate = "processingState"
-        case uploadeddate = "uploadedDate"
+        case buildaudiencetype = "buildAudienceType"
         case usesnonexemptencryption = "usesNonExemptEncryption"
-        case version = "version"
+        case prereleaseversion = "preReleaseVersion"
+        case individualtesters = "individualTesters"
+        case betagroups = "betaGroups"
+        case betabuildlocalizations = "betaBuildLocalizations"
+        case appencryptiondeclaration = "appEncryptionDeclaration"
+        case betaappreviewsubmission = "betaAppReviewSubmission"
+        case app = "app"
+        case buildbetadetail = "buildBetaDetail"
+        case appstoreversion = "appStoreVersion"
+        case icons = "icons"
+        case buildbundles = "buildBundles"
+        case perfpowermetrics = "perfPowerMetrics"
+        case diagnosticsignatures = "diagnosticSignatures"
+    }
+
+    /**
+     * enum for parameter fieldsApps
+     */
+    public enum FieldsApps_preReleaseVersionsGetCollection: String, CaseIterable {
+        case name = "name"
+        case bundleid = "bundleId"
+        case sku = "sku"
+        case primarylocale = "primaryLocale"
+        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
+        case subscriptionstatusurl = "subscriptionStatusUrl"
+        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
+        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
+        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
+        case contentrightsdeclaration = "contentRightsDeclaration"
+        case streamlinedpurchasingenabled = "streamlinedPurchasingEnabled"
+        case appencryptiondeclarations = "appEncryptionDeclarations"
+        case ciproduct = "ciProduct"
+        case betatesters = "betaTesters"
+        case betagroups = "betaGroups"
+        case appstoreversions = "appStoreVersions"
+        case prereleaseversions = "preReleaseVersions"
+        case betaapplocalizations = "betaAppLocalizations"
+        case builds = "builds"
+        case betalicenseagreement = "betaLicenseAgreement"
+        case betaappreviewdetail = "betaAppReviewDetail"
+        case appinfos = "appInfos"
+        case appclips = "appClips"
+        case apppricepoints = "appPricePoints"
+        case enduserlicenseagreement = "endUserLicenseAgreement"
+        case apppriceschedule = "appPriceSchedule"
+        case appavailabilityv2 = "appAvailabilityV2"
+        case inapppurchases = "inAppPurchases"
+        case subscriptiongroups = "subscriptionGroups"
+        case gamecenterenabledversions = "gameCenterEnabledVersions"
+        case perfpowermetrics = "perfPowerMetrics"
+        case appcustomproductpages = "appCustomProductPages"
+        case inapppurchasesv2 = "inAppPurchasesV2"
+        case promotedpurchases = "promotedPurchases"
+        case appevents = "appEvents"
+        case reviewsubmissions = "reviewSubmissions"
+        case subscriptiongraceperiod = "subscriptionGracePeriod"
+        case customerreviews = "customerReviews"
+        case gamecenterdetail = "gameCenterDetail"
+        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
+        case alternativedistributionkey = "alternativeDistributionKey"
+        case analyticsreportrequests = "analyticsReportRequests"
+        case marketplacesearchdetail = "marketplaceSearchDetail"
+    }
+
+    /**
+     * enum for parameter include
+     */
+    public enum Include_preReleaseVersionsGetCollection: String, CaseIterable {
+        case builds = "builds"
+        case app = "app"
     }
 
     /**
@@ -384,16 +376,16 @@ open class PreReleaseVersionsAPI {
      - parameter filterBuilds: (query) filter by id(s) of related &#39;builds&#39; (optional)
      - parameter sort: (query) comma-separated list of sort expressions; resources will be sorted as specified (optional)
      - parameter fieldsPreReleaseVersions: (query) the fields to include for returned resources of type preReleaseVersions (optional)
+     - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
+     - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
-     - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
-     - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
      - parameter limitBuilds: (query) maximum number of related builds returned (when they are included) (optional)
      - returns: PreReleaseVersionsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func preReleaseVersionsGetCollection(filterBuildsExpired: [String]? = nil, filterBuildsProcessingState: [FilterBuildsProcessingState_preReleaseVersionsGetCollection]? = nil, filterBuildsVersion: [String]? = nil, filterPlatform: [FilterPlatform_preReleaseVersionsGetCollection]? = nil, filterVersion: [String]? = nil, filterApp: [String]? = nil, filterBuilds: [String]? = nil, sort: [Sort_preReleaseVersionsGetCollection]? = nil, fieldsPreReleaseVersions: [FieldsPreReleaseVersions_preReleaseVersionsGetCollection]? = nil, limit: Int? = nil, include: [Include_preReleaseVersionsGetCollection]? = nil, fieldsApps: [FieldsApps_preReleaseVersionsGetCollection]? = nil, fieldsBuilds: [FieldsBuilds_preReleaseVersionsGetCollection]? = nil, limitBuilds: Int? = nil) async throws -> PreReleaseVersionsResponse {
-        return try await preReleaseVersionsGetCollectionWithRequestBuilder(filterBuildsExpired: filterBuildsExpired, filterBuildsProcessingState: filterBuildsProcessingState, filterBuildsVersion: filterBuildsVersion, filterPlatform: filterPlatform, filterVersion: filterVersion, filterApp: filterApp, filterBuilds: filterBuilds, sort: sort, fieldsPreReleaseVersions: fieldsPreReleaseVersions, limit: limit, include: include, fieldsApps: fieldsApps, fieldsBuilds: fieldsBuilds, limitBuilds: limitBuilds).execute().body
+    open class func preReleaseVersionsGetCollection(filterBuildsExpired: [String]? = nil, filterBuildsProcessingState: [FilterBuildsProcessingState_preReleaseVersionsGetCollection]? = nil, filterBuildsVersion: [String]? = nil, filterPlatform: [FilterPlatform_preReleaseVersionsGetCollection]? = nil, filterVersion: [String]? = nil, filterApp: [String]? = nil, filterBuilds: [String]? = nil, sort: [Sort_preReleaseVersionsGetCollection]? = nil, fieldsPreReleaseVersions: [FieldsPreReleaseVersions_preReleaseVersionsGetCollection]? = nil, fieldsBuilds: [FieldsBuilds_preReleaseVersionsGetCollection]? = nil, fieldsApps: [FieldsApps_preReleaseVersionsGetCollection]? = nil, limit: Int? = nil, include: [Include_preReleaseVersionsGetCollection]? = nil, limitBuilds: Int? = nil) async throws -> PreReleaseVersionsResponse {
+        return try await preReleaseVersionsGetCollectionWithRequestBuilder(filterBuildsExpired: filterBuildsExpired, filterBuildsProcessingState: filterBuildsProcessingState, filterBuildsVersion: filterBuildsVersion, filterPlatform: filterPlatform, filterVersion: filterVersion, filterApp: filterApp, filterBuilds: filterBuilds, sort: sort, fieldsPreReleaseVersions: fieldsPreReleaseVersions, fieldsBuilds: fieldsBuilds, fieldsApps: fieldsApps, limit: limit, include: include, limitBuilds: limitBuilds).execute().body
     }
 
     /**
@@ -419,14 +411,14 @@ open class PreReleaseVersionsAPI {
      - parameter filterBuilds: (query) filter by id(s) of related &#39;builds&#39; (optional)
      - parameter sort: (query) comma-separated list of sort expressions; resources will be sorted as specified (optional)
      - parameter fieldsPreReleaseVersions: (query) the fields to include for returned resources of type preReleaseVersions (optional)
+     - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
+     - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
-     - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
-     - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
      - parameter limitBuilds: (query) maximum number of related builds returned (when they are included) (optional)
      - returns: RequestBuilder<PreReleaseVersionsResponse> 
      */
-    open class func preReleaseVersionsGetCollectionWithRequestBuilder(filterBuildsExpired: [String]? = nil, filterBuildsProcessingState: [FilterBuildsProcessingState_preReleaseVersionsGetCollection]? = nil, filterBuildsVersion: [String]? = nil, filterPlatform: [FilterPlatform_preReleaseVersionsGetCollection]? = nil, filterVersion: [String]? = nil, filterApp: [String]? = nil, filterBuilds: [String]? = nil, sort: [Sort_preReleaseVersionsGetCollection]? = nil, fieldsPreReleaseVersions: [FieldsPreReleaseVersions_preReleaseVersionsGetCollection]? = nil, limit: Int? = nil, include: [Include_preReleaseVersionsGetCollection]? = nil, fieldsApps: [FieldsApps_preReleaseVersionsGetCollection]? = nil, fieldsBuilds: [FieldsBuilds_preReleaseVersionsGetCollection]? = nil, limitBuilds: Int? = nil) -> RequestBuilder<PreReleaseVersionsResponse> {
+    open class func preReleaseVersionsGetCollectionWithRequestBuilder(filterBuildsExpired: [String]? = nil, filterBuildsProcessingState: [FilterBuildsProcessingState_preReleaseVersionsGetCollection]? = nil, filterBuildsVersion: [String]? = nil, filterPlatform: [FilterPlatform_preReleaseVersionsGetCollection]? = nil, filterVersion: [String]? = nil, filterApp: [String]? = nil, filterBuilds: [String]? = nil, sort: [Sort_preReleaseVersionsGetCollection]? = nil, fieldsPreReleaseVersions: [FieldsPreReleaseVersions_preReleaseVersionsGetCollection]? = nil, fieldsBuilds: [FieldsBuilds_preReleaseVersionsGetCollection]? = nil, fieldsApps: [FieldsApps_preReleaseVersionsGetCollection]? = nil, limit: Int? = nil, include: [Include_preReleaseVersionsGetCollection]? = nil, limitBuilds: Int? = nil) -> RequestBuilder<PreReleaseVersionsResponse> {
         let localVariablePath = "/v1/preReleaseVersions"
         let localVariableURLString = ASCAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -442,10 +434,10 @@ open class PreReleaseVersionsAPI {
             "filter[builds]": (wrappedValue: filterBuilds?.encodeToJSON(), isExplode: false),
             "sort": (wrappedValue: sort?.encodeToJSON(), isExplode: false),
             "fields[preReleaseVersions]": (wrappedValue: fieldsPreReleaseVersions?.encodeToJSON(), isExplode: false),
+            "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(), isExplode: false),
+            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
-            "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(), isExplode: false),
             "limit[builds]": (wrappedValue: limitBuilds?.encodeToJSON(), isExplode: true),
         ])
 
@@ -484,116 +476,112 @@ open class PreReleaseVersionsAPI {
      * enum for parameter fieldsPreReleaseVersions
      */
     public enum FieldsPreReleaseVersions_preReleaseVersionsGetInstance: String, CaseIterable {
-        case app = "app"
-        case builds = "builds"
-        case platform = "platform"
         case version = "version"
-    }
-
-    /**
-     * enum for parameter include
-     */
-    public enum Include_preReleaseVersionsGetInstance: String, CaseIterable {
+        case platform = "platform"
+        case builds = "builds"
         case app = "app"
-        case builds = "builds"
-    }
-
-    /**
-     * enum for parameter fieldsApps
-     */
-    public enum FieldsApps_preReleaseVersionsGetInstance: String, CaseIterable {
-        case alternativedistributionkey = "alternativeDistributionKey"
-        case analyticsreportrequests = "analyticsReportRequests"
-        case appavailability = "appAvailability"
-        case appclips = "appClips"
-        case appcustomproductpages = "appCustomProductPages"
-        case appencryptiondeclarations = "appEncryptionDeclarations"
-        case appevents = "appEvents"
-        case appinfos = "appInfos"
-        case apppricepoints = "appPricePoints"
-        case apppriceschedule = "appPriceSchedule"
-        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
-        case appstoreversions = "appStoreVersions"
-        case availableinnewterritories = "availableInNewTerritories"
-        case availableterritories = "availableTerritories"
-        case betaapplocalizations = "betaAppLocalizations"
-        case betaappreviewdetail = "betaAppReviewDetail"
-        case betagroups = "betaGroups"
-        case betalicenseagreement = "betaLicenseAgreement"
-        case betatesters = "betaTesters"
-        case builds = "builds"
-        case bundleid = "bundleId"
-        case ciproduct = "ciProduct"
-        case contentrightsdeclaration = "contentRightsDeclaration"
-        case customerreviews = "customerReviews"
-        case enduserlicenseagreement = "endUserLicenseAgreement"
-        case gamecenterdetail = "gameCenterDetail"
-        case gamecenterenabledversions = "gameCenterEnabledVersions"
-        case inapppurchases = "inAppPurchases"
-        case inapppurchasesv2 = "inAppPurchasesV2"
-        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
-        case marketplacesearchdetail = "marketplaceSearchDetail"
-        case name = "name"
-        case perfpowermetrics = "perfPowerMetrics"
-        case preorder = "preOrder"
-        case prereleaseversions = "preReleaseVersions"
-        case pricepoints = "pricePoints"
-        case prices = "prices"
-        case primarylocale = "primaryLocale"
-        case promotedpurchases = "promotedPurchases"
-        case reviewsubmissions = "reviewSubmissions"
-        case sku = "sku"
-        case subscriptiongraceperiod = "subscriptionGracePeriod"
-        case subscriptiongroups = "subscriptionGroups"
-        case subscriptionstatusurl = "subscriptionStatusUrl"
-        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
-        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
-        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
     }
 
     /**
      * enum for parameter fieldsBuilds
      */
     public enum FieldsBuilds_preReleaseVersionsGetInstance: String, CaseIterable {
-        case app = "app"
-        case appencryptiondeclaration = "appEncryptionDeclaration"
-        case appstoreversion = "appStoreVersion"
-        case betaappreviewsubmission = "betaAppReviewSubmission"
-        case betabuildlocalizations = "betaBuildLocalizations"
-        case betagroups = "betaGroups"
-        case buildaudiencetype = "buildAudienceType"
-        case buildbetadetail = "buildBetaDetail"
-        case buildbundles = "buildBundles"
-        case computedminmacosversion = "computedMinMacOsVersion"
-        case diagnosticsignatures = "diagnosticSignatures"
+        case version = "version"
+        case uploadeddate = "uploadedDate"
         case expirationdate = "expirationDate"
         case expired = "expired"
-        case iconassettoken = "iconAssetToken"
-        case icons = "icons"
-        case individualtesters = "individualTesters"
-        case lsminimumsystemversion = "lsMinimumSystemVersion"
         case minosversion = "minOsVersion"
-        case perfpowermetrics = "perfPowerMetrics"
-        case prereleaseversion = "preReleaseVersion"
+        case lsminimumsystemversion = "lsMinimumSystemVersion"
+        case computedminmacosversion = "computedMinMacOsVersion"
+        case iconassettoken = "iconAssetToken"
         case processingstate = "processingState"
-        case uploadeddate = "uploadedDate"
+        case buildaudiencetype = "buildAudienceType"
         case usesnonexemptencryption = "usesNonExemptEncryption"
-        case version = "version"
+        case prereleaseversion = "preReleaseVersion"
+        case individualtesters = "individualTesters"
+        case betagroups = "betaGroups"
+        case betabuildlocalizations = "betaBuildLocalizations"
+        case appencryptiondeclaration = "appEncryptionDeclaration"
+        case betaappreviewsubmission = "betaAppReviewSubmission"
+        case app = "app"
+        case buildbetadetail = "buildBetaDetail"
+        case appstoreversion = "appStoreVersion"
+        case icons = "icons"
+        case buildbundles = "buildBundles"
+        case perfpowermetrics = "perfPowerMetrics"
+        case diagnosticsignatures = "diagnosticSignatures"
+    }
+
+    /**
+     * enum for parameter fieldsApps
+     */
+    public enum FieldsApps_preReleaseVersionsGetInstance: String, CaseIterable {
+        case name = "name"
+        case bundleid = "bundleId"
+        case sku = "sku"
+        case primarylocale = "primaryLocale"
+        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
+        case subscriptionstatusurl = "subscriptionStatusUrl"
+        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
+        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
+        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
+        case contentrightsdeclaration = "contentRightsDeclaration"
+        case streamlinedpurchasingenabled = "streamlinedPurchasingEnabled"
+        case appencryptiondeclarations = "appEncryptionDeclarations"
+        case ciproduct = "ciProduct"
+        case betatesters = "betaTesters"
+        case betagroups = "betaGroups"
+        case appstoreversions = "appStoreVersions"
+        case prereleaseversions = "preReleaseVersions"
+        case betaapplocalizations = "betaAppLocalizations"
+        case builds = "builds"
+        case betalicenseagreement = "betaLicenseAgreement"
+        case betaappreviewdetail = "betaAppReviewDetail"
+        case appinfos = "appInfos"
+        case appclips = "appClips"
+        case apppricepoints = "appPricePoints"
+        case enduserlicenseagreement = "endUserLicenseAgreement"
+        case apppriceschedule = "appPriceSchedule"
+        case appavailabilityv2 = "appAvailabilityV2"
+        case inapppurchases = "inAppPurchases"
+        case subscriptiongroups = "subscriptionGroups"
+        case gamecenterenabledversions = "gameCenterEnabledVersions"
+        case perfpowermetrics = "perfPowerMetrics"
+        case appcustomproductpages = "appCustomProductPages"
+        case inapppurchasesv2 = "inAppPurchasesV2"
+        case promotedpurchases = "promotedPurchases"
+        case appevents = "appEvents"
+        case reviewsubmissions = "reviewSubmissions"
+        case subscriptiongraceperiod = "subscriptionGracePeriod"
+        case customerreviews = "customerReviews"
+        case gamecenterdetail = "gameCenterDetail"
+        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
+        case alternativedistributionkey = "alternativeDistributionKey"
+        case analyticsreportrequests = "analyticsReportRequests"
+        case marketplacesearchdetail = "marketplaceSearchDetail"
+    }
+
+    /**
+     * enum for parameter include
+     */
+    public enum Include_preReleaseVersionsGetInstance: String, CaseIterable {
+        case builds = "builds"
+        case app = "app"
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsPreReleaseVersions: (query) the fields to include for returned resources of type preReleaseVersions (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
-     - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
      - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
+     - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitBuilds: (query) maximum number of related builds returned (when they are included) (optional)
      - returns: PrereleaseVersionResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func preReleaseVersionsGetInstance(id: String, fieldsPreReleaseVersions: [FieldsPreReleaseVersions_preReleaseVersionsGetInstance]? = nil, include: [Include_preReleaseVersionsGetInstance]? = nil, fieldsApps: [FieldsApps_preReleaseVersionsGetInstance]? = nil, fieldsBuilds: [FieldsBuilds_preReleaseVersionsGetInstance]? = nil, limitBuilds: Int? = nil) async throws -> PrereleaseVersionResponse {
-        return try await preReleaseVersionsGetInstanceWithRequestBuilder(id: id, fieldsPreReleaseVersions: fieldsPreReleaseVersions, include: include, fieldsApps: fieldsApps, fieldsBuilds: fieldsBuilds, limitBuilds: limitBuilds).execute().body
+    open class func preReleaseVersionsGetInstance(id: String, fieldsPreReleaseVersions: [FieldsPreReleaseVersions_preReleaseVersionsGetInstance]? = nil, fieldsBuilds: [FieldsBuilds_preReleaseVersionsGetInstance]? = nil, fieldsApps: [FieldsApps_preReleaseVersionsGetInstance]? = nil, include: [Include_preReleaseVersionsGetInstance]? = nil, limitBuilds: Int? = nil) async throws -> PrereleaseVersionResponse {
+        return try await preReleaseVersionsGetInstanceWithRequestBuilder(id: id, fieldsPreReleaseVersions: fieldsPreReleaseVersions, fieldsBuilds: fieldsBuilds, fieldsApps: fieldsApps, include: include, limitBuilds: limitBuilds).execute().body
     }
 
     /**
@@ -612,13 +600,13 @@ open class PreReleaseVersionsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsPreReleaseVersions: (query) the fields to include for returned resources of type preReleaseVersions (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
-     - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
      - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
+     - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitBuilds: (query) maximum number of related builds returned (when they are included) (optional)
      - returns: RequestBuilder<PrereleaseVersionResponse> 
      */
-    open class func preReleaseVersionsGetInstanceWithRequestBuilder(id: String, fieldsPreReleaseVersions: [FieldsPreReleaseVersions_preReleaseVersionsGetInstance]? = nil, include: [Include_preReleaseVersionsGetInstance]? = nil, fieldsApps: [FieldsApps_preReleaseVersionsGetInstance]? = nil, fieldsBuilds: [FieldsBuilds_preReleaseVersionsGetInstance]? = nil, limitBuilds: Int? = nil) -> RequestBuilder<PrereleaseVersionResponse> {
+    open class func preReleaseVersionsGetInstanceWithRequestBuilder(id: String, fieldsPreReleaseVersions: [FieldsPreReleaseVersions_preReleaseVersionsGetInstance]? = nil, fieldsBuilds: [FieldsBuilds_preReleaseVersionsGetInstance]? = nil, fieldsApps: [FieldsApps_preReleaseVersionsGetInstance]? = nil, include: [Include_preReleaseVersionsGetInstance]? = nil, limitBuilds: Int? = nil) -> RequestBuilder<PrereleaseVersionResponse> {
         var localVariablePath = "/v1/preReleaseVersions/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -629,9 +617,9 @@ open class PreReleaseVersionsAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[preReleaseVersions]": (wrappedValue: fieldsPreReleaseVersions?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
             "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(), isExplode: false),
+            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "limit[builds]": (wrappedValue: limitBuilds?.encodeToJSON(), isExplode: true),
         ])
 

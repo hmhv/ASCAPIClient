@@ -157,7 +157,7 @@ Void (empty response body)
 
 # **betaBuildLocalizationsGetCollection**
 ```swift
-    open class func betaBuildLocalizationsGetCollection(filterLocale: [String]? = nil, filterBuild: [String]? = nil, fieldsBetaBuildLocalizations: [FieldsBetaBuildLocalizations_betaBuildLocalizationsGetCollection]? = nil, limit: Int? = nil, include: [Include_betaBuildLocalizationsGetCollection]? = nil, fieldsBuilds: [FieldsBuilds_betaBuildLocalizationsGetCollection]? = nil, completion: @escaping (_ data: BetaBuildLocalizationsResponse?, _ error: Error?) -> Void)
+    open class func betaBuildLocalizationsGetCollection(filterLocale: [String]? = nil, filterBuild: [String]? = nil, fieldsBetaBuildLocalizations: [FieldsBetaBuildLocalizations_betaBuildLocalizationsGetCollection]? = nil, fieldsBuilds: [FieldsBuilds_betaBuildLocalizationsGetCollection]? = nil, limit: Int? = nil, include: [Include_betaBuildLocalizationsGetCollection]? = nil, completion: @escaping (_ data: BetaBuildLocalizationsResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -170,11 +170,11 @@ import ASC
 let filterLocale = ["inner_example"] // [String] | filter by attribute 'locale' (optional)
 let filterBuild = ["inner_example"] // [String] | filter by id(s) of related 'build' (optional)
 let fieldsBetaBuildLocalizations = ["fieldsBetaBuildLocalizations_example"] // [String] | the fields to include for returned resources of type betaBuildLocalizations (optional)
+let fieldsBuilds = ["fieldsBuilds_example"] // [String] | the fields to include for returned resources of type builds (optional)
 let limit = 987 // Int | maximum resources per page (optional)
 let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
-let fieldsBuilds = ["fieldsBuilds_example"] // [String] | the fields to include for returned resources of type builds (optional)
 
-BetaBuildLocalizationsAPI.betaBuildLocalizationsGetCollection(filterLocale: filterLocale, filterBuild: filterBuild, fieldsBetaBuildLocalizations: fieldsBetaBuildLocalizations, limit: limit, include: include, fieldsBuilds: fieldsBuilds) { (response, error) in
+BetaBuildLocalizationsAPI.betaBuildLocalizationsGetCollection(filterLocale: filterLocale, filterBuild: filterBuild, fieldsBetaBuildLocalizations: fieldsBetaBuildLocalizations, fieldsBuilds: fieldsBuilds, limit: limit, include: include) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -193,9 +193,9 @@ Name | Type | Description  | Notes
  **filterLocale** | [**[String]**](String.md) | filter by attribute &#39;locale&#39; | [optional] 
  **filterBuild** | [**[String]**](String.md) | filter by id(s) of related &#39;build&#39; | [optional] 
  **fieldsBetaBuildLocalizations** | [**[String]**](String.md) | the fields to include for returned resources of type betaBuildLocalizations | [optional] 
+ **fieldsBuilds** | [**[String]**](String.md) | the fields to include for returned resources of type builds | [optional] 
  **limit** | **Int** | maximum resources per page | [optional] 
  **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
- **fieldsBuilds** | [**[String]**](String.md) | the fields to include for returned resources of type builds | [optional] 
 
 ### Return type
 
@@ -214,7 +214,7 @@ Name | Type | Description  | Notes
 
 # **betaBuildLocalizationsGetInstance**
 ```swift
-    open class func betaBuildLocalizationsGetInstance(id: String, fieldsBetaBuildLocalizations: [FieldsBetaBuildLocalizations_betaBuildLocalizationsGetInstance]? = nil, include: [Include_betaBuildLocalizationsGetInstance]? = nil, fieldsBuilds: [FieldsBuilds_betaBuildLocalizationsGetInstance]? = nil, completion: @escaping (_ data: BetaBuildLocalizationResponse?, _ error: Error?) -> Void)
+    open class func betaBuildLocalizationsGetInstance(id: String, fieldsBetaBuildLocalizations: [FieldsBetaBuildLocalizations_betaBuildLocalizationsGetInstance]? = nil, fieldsBuilds: [FieldsBuilds_betaBuildLocalizationsGetInstance]? = nil, include: [Include_betaBuildLocalizationsGetInstance]? = nil, completion: @escaping (_ data: BetaBuildLocalizationResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -226,10 +226,10 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let fieldsBetaBuildLocalizations = ["fieldsBetaBuildLocalizations_example"] // [String] | the fields to include for returned resources of type betaBuildLocalizations (optional)
-let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let fieldsBuilds = ["fieldsBuilds_example"] // [String] | the fields to include for returned resources of type builds (optional)
+let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 
-BetaBuildLocalizationsAPI.betaBuildLocalizationsGetInstance(id: id, fieldsBetaBuildLocalizations: fieldsBetaBuildLocalizations, include: include, fieldsBuilds: fieldsBuilds) { (response, error) in
+BetaBuildLocalizationsAPI.betaBuildLocalizationsGetInstance(id: id, fieldsBetaBuildLocalizations: fieldsBetaBuildLocalizations, fieldsBuilds: fieldsBuilds, include: include) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -247,8 +247,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **fieldsBetaBuildLocalizations** | [**[String]**](String.md) | the fields to include for returned resources of type betaBuildLocalizations | [optional] 
- **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **fieldsBuilds** | [**[String]**](String.md) | the fields to include for returned resources of type builds | [optional] 
+ **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
 
 ### Return type
 

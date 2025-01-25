@@ -16,11 +16,11 @@ open class InAppPurchasesAPI {
      * enum for parameter fieldsInAppPurchases
      */
     public enum FieldsInAppPurchases_inAppPurchasesGetInstance: String, CaseIterable {
-        case apps = "apps"
-        case inapppurchasetype = "inAppPurchaseType"
-        case productid = "productId"
         case referencename = "referenceName"
+        case productid = "productId"
+        case inapppurchasetype = "inAppPurchaseType"
         case state = "state"
+        case apps = "apps"
     }
 
     /**
@@ -117,37 +117,36 @@ open class InAppPurchasesAPI {
      * enum for parameter fieldsInAppPurchaseAppStoreReviewScreenshots
      */
     public enum FieldsInAppPurchaseAppStoreReviewScreenshots_inAppPurchasesV2AppStoreReviewScreenshotGetToOneRelated: String, CaseIterable {
-        case assetdeliverystate = "assetDeliveryState"
+        case filesize = "fileSize"
+        case filename = "fileName"
+        case sourcefilechecksum = "sourceFileChecksum"
+        case imageasset = "imageAsset"
         case assettoken = "assetToken"
         case assettype = "assetType"
-        case filename = "fileName"
-        case filesize = "fileSize"
-        case imageasset = "imageAsset"
-        case inapppurchasev2 = "inAppPurchaseV2"
-        case sourcefilechecksum = "sourceFileChecksum"
         case uploadoperations = "uploadOperations"
-        case uploaded = "uploaded"
+        case assetdeliverystate = "assetDeliveryState"
+        case inapppurchasev2 = "inAppPurchaseV2"
     }
 
     /**
      * enum for parameter fieldsInAppPurchases
      */
     public enum FieldsInAppPurchases_inAppPurchasesV2AppStoreReviewScreenshotGetToOneRelated: String, CaseIterable {
-        case app = "app"
-        case appstorereviewscreenshot = "appStoreReviewScreenshot"
-        case content = "content"
-        case contenthosting = "contentHosting"
+        case name = "name"
+        case productid = "productId"
+        case inapppurchasetype = "inAppPurchaseType"
+        case state = "state"
+        case reviewnote = "reviewNote"
         case familysharable = "familySharable"
+        case contenthosting = "contentHosting"
+        case inapppurchaselocalizations = "inAppPurchaseLocalizations"
+        case pricepoints = "pricePoints"
+        case content = "content"
+        case appstorereviewscreenshot = "appStoreReviewScreenshot"
+        case promotedpurchase = "promotedPurchase"
         case iappriceschedule = "iapPriceSchedule"
         case inapppurchaseavailability = "inAppPurchaseAvailability"
-        case inapppurchaselocalizations = "inAppPurchaseLocalizations"
-        case inapppurchasetype = "inAppPurchaseType"
-        case name = "name"
-        case pricepoints = "pricePoints"
-        case productid = "productId"
-        case promotedpurchase = "promotedPurchase"
-        case reviewnote = "reviewNote"
-        case state = "state"
+        case images = "images"
     }
 
     /**
@@ -237,35 +236,35 @@ open class InAppPurchasesAPI {
     }
 
     /**
-     * enum for parameter fieldsInAppPurchases
-     */
-    public enum FieldsInAppPurchases_inAppPurchasesV2ContentGetToOneRelated: String, CaseIterable {
-        case app = "app"
-        case appstorereviewscreenshot = "appStoreReviewScreenshot"
-        case content = "content"
-        case contenthosting = "contentHosting"
-        case familysharable = "familySharable"
-        case iappriceschedule = "iapPriceSchedule"
-        case inapppurchaseavailability = "inAppPurchaseAvailability"
-        case inapppurchaselocalizations = "inAppPurchaseLocalizations"
-        case inapppurchasetype = "inAppPurchaseType"
-        case name = "name"
-        case pricepoints = "pricePoints"
-        case productid = "productId"
-        case promotedpurchase = "promotedPurchase"
-        case reviewnote = "reviewNote"
-        case state = "state"
-    }
-
-    /**
      * enum for parameter fieldsInAppPurchaseContents
      */
     public enum FieldsInAppPurchaseContents_inAppPurchasesV2ContentGetToOneRelated: String, CaseIterable {
         case filename = "fileName"
         case filesize = "fileSize"
-        case inapppurchasev2 = "inAppPurchaseV2"
-        case lastmodifieddate = "lastModifiedDate"
         case url = "url"
+        case lastmodifieddate = "lastModifiedDate"
+        case inapppurchasev2 = "inAppPurchaseV2"
+    }
+
+    /**
+     * enum for parameter fieldsInAppPurchases
+     */
+    public enum FieldsInAppPurchases_inAppPurchasesV2ContentGetToOneRelated: String, CaseIterable {
+        case name = "name"
+        case productid = "productId"
+        case inapppurchasetype = "inAppPurchaseType"
+        case state = "state"
+        case reviewnote = "reviewNote"
+        case familysharable = "familySharable"
+        case contenthosting = "contentHosting"
+        case inapppurchaselocalizations = "inAppPurchaseLocalizations"
+        case pricepoints = "pricePoints"
+        case content = "content"
+        case appstorereviewscreenshot = "appStoreReviewScreenshot"
+        case promotedpurchase = "promotedPurchase"
+        case iappriceschedule = "iapPriceSchedule"
+        case inapppurchaseavailability = "inAppPurchaseAvailability"
+        case images = "images"
     }
 
     /**
@@ -278,14 +277,14 @@ open class InAppPurchasesAPI {
     /**
 
      - parameter id: (path) the id of the requested resource 
-     - parameter fieldsInAppPurchases: (query) the fields to include for returned resources of type inAppPurchases (optional)
      - parameter fieldsInAppPurchaseContents: (query) the fields to include for returned resources of type inAppPurchaseContents (optional)
+     - parameter fieldsInAppPurchases: (query) the fields to include for returned resources of type inAppPurchases (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: InAppPurchaseContentResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchasesV2ContentGetToOneRelated(id: String, fieldsInAppPurchases: [FieldsInAppPurchases_inAppPurchasesV2ContentGetToOneRelated]? = nil, fieldsInAppPurchaseContents: [FieldsInAppPurchaseContents_inAppPurchasesV2ContentGetToOneRelated]? = nil, include: [Include_inAppPurchasesV2ContentGetToOneRelated]? = nil) async throws -> InAppPurchaseContentResponse {
-        return try await inAppPurchasesV2ContentGetToOneRelatedWithRequestBuilder(id: id, fieldsInAppPurchases: fieldsInAppPurchases, fieldsInAppPurchaseContents: fieldsInAppPurchaseContents, include: include).execute().body
+    open class func inAppPurchasesV2ContentGetToOneRelated(id: String, fieldsInAppPurchaseContents: [FieldsInAppPurchaseContents_inAppPurchasesV2ContentGetToOneRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_inAppPurchasesV2ContentGetToOneRelated]? = nil, include: [Include_inAppPurchasesV2ContentGetToOneRelated]? = nil) async throws -> InAppPurchaseContentResponse {
+        return try await inAppPurchasesV2ContentGetToOneRelatedWithRequestBuilder(id: id, fieldsInAppPurchaseContents: fieldsInAppPurchaseContents, fieldsInAppPurchases: fieldsInAppPurchases, include: include).execute().body
     }
 
     /**
@@ -303,12 +302,12 @@ open class InAppPurchasesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
-     - parameter fieldsInAppPurchases: (query) the fields to include for returned resources of type inAppPurchases (optional)
      - parameter fieldsInAppPurchaseContents: (query) the fields to include for returned resources of type inAppPurchaseContents (optional)
+     - parameter fieldsInAppPurchases: (query) the fields to include for returned resources of type inAppPurchases (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: RequestBuilder<InAppPurchaseContentResponse> 
      */
-    open class func inAppPurchasesV2ContentGetToOneRelatedWithRequestBuilder(id: String, fieldsInAppPurchases: [FieldsInAppPurchases_inAppPurchasesV2ContentGetToOneRelated]? = nil, fieldsInAppPurchaseContents: [FieldsInAppPurchaseContents_inAppPurchasesV2ContentGetToOneRelated]? = nil, include: [Include_inAppPurchasesV2ContentGetToOneRelated]? = nil) -> RequestBuilder<InAppPurchaseContentResponse> {
+    open class func inAppPurchasesV2ContentGetToOneRelatedWithRequestBuilder(id: String, fieldsInAppPurchaseContents: [FieldsInAppPurchaseContents_inAppPurchasesV2ContentGetToOneRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_inAppPurchasesV2ContentGetToOneRelated]? = nil, include: [Include_inAppPurchasesV2ContentGetToOneRelated]? = nil) -> RequestBuilder<InAppPurchaseContentResponse> {
         var localVariablePath = "/v2/inAppPurchases/{id}/content"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -318,8 +317,8 @@ open class InAppPurchasesAPI {
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[inAppPurchases]": (wrappedValue: fieldsInAppPurchases?.encodeToJSON(), isExplode: false),
             "fields[inAppPurchaseContents]": (wrappedValue: fieldsInAppPurchaseContents?.encodeToJSON(), isExplode: false),
+            "fields[inAppPurchases]": (wrappedValue: fieldsInAppPurchases?.encodeToJSON(), isExplode: false),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
         ])
 
@@ -491,72 +490,32 @@ open class InAppPurchasesAPI {
      * enum for parameter fieldsInAppPurchases
      */
     public enum FieldsInAppPurchases_inAppPurchasesV2GetInstance: String, CaseIterable {
-        case app = "app"
-        case appstorereviewscreenshot = "appStoreReviewScreenshot"
-        case content = "content"
-        case contenthosting = "contentHosting"
-        case familysharable = "familySharable"
-        case iappriceschedule = "iapPriceSchedule"
-        case inapppurchaseavailability = "inAppPurchaseAvailability"
-        case inapppurchaselocalizations = "inAppPurchaseLocalizations"
-        case inapppurchasetype = "inAppPurchaseType"
         case name = "name"
-        case pricepoints = "pricePoints"
         case productid = "productId"
-        case promotedpurchase = "promotedPurchase"
-        case reviewnote = "reviewNote"
+        case inapppurchasetype = "inAppPurchaseType"
         case state = "state"
-    }
-
-    /**
-     * enum for parameter include
-     */
-    public enum Include_inAppPurchasesV2GetInstance: String, CaseIterable {
-        case appstorereviewscreenshot = "appStoreReviewScreenshot"
-        case content = "content"
-        case iappriceschedule = "iapPriceSchedule"
-        case inapppurchaseavailability = "inAppPurchaseAvailability"
+        case reviewnote = "reviewNote"
+        case familysharable = "familySharable"
+        case contenthosting = "contentHosting"
         case inapppurchaselocalizations = "inAppPurchaseLocalizations"
         case pricepoints = "pricePoints"
+        case content = "content"
+        case appstorereviewscreenshot = "appStoreReviewScreenshot"
         case promotedpurchase = "promotedPurchase"
+        case iappriceschedule = "iapPriceSchedule"
+        case inapppurchaseavailability = "inAppPurchaseAvailability"
+        case images = "images"
     }
 
     /**
-     * enum for parameter fieldsInAppPurchaseAvailabilities
+     * enum for parameter fieldsInAppPurchaseLocalizations
      */
-    public enum FieldsInAppPurchaseAvailabilities_inAppPurchasesV2GetInstance: String, CaseIterable {
-        case availableinnewterritories = "availableInNewTerritories"
-        case availableterritories = "availableTerritories"
-        case inapppurchase = "inAppPurchase"
-    }
-
-    /**
-     * enum for parameter fieldsInAppPurchaseAppStoreReviewScreenshots
-     */
-    public enum FieldsInAppPurchaseAppStoreReviewScreenshots_inAppPurchasesV2GetInstance: String, CaseIterable {
-        case assetdeliverystate = "assetDeliveryState"
-        case assettoken = "assetToken"
-        case assettype = "assetType"
-        case filename = "fileName"
-        case filesize = "fileSize"
-        case imageasset = "imageAsset"
-        case inapppurchasev2 = "inAppPurchaseV2"
-        case sourcefilechecksum = "sourceFileChecksum"
-        case uploadoperations = "uploadOperations"
-        case uploaded = "uploaded"
-    }
-
-    /**
-     * enum for parameter fieldsPromotedPurchases
-     */
-    public enum FieldsPromotedPurchases_inAppPurchasesV2GetInstance: String, CaseIterable {
-        case app = "app"
-        case enabled = "enabled"
-        case inapppurchasev2 = "inAppPurchaseV2"
-        case promotionimages = "promotionImages"
+    public enum FieldsInAppPurchaseLocalizations_inAppPurchasesV2GetInstance: String, CaseIterable {
+        case name = "name"
+        case locale = "locale"
+        case description = "description"
         case state = "state"
-        case subscription = "subscription"
-        case visibleforallusers = "visibleForAllUsers"
+        case inapppurchasev2 = "inAppPurchaseV2"
     }
 
     /**
@@ -564,31 +523,9 @@ open class InAppPurchasesAPI {
      */
     public enum FieldsInAppPurchasePricePoints_inAppPurchasesV2GetInstance: String, CaseIterable {
         case customerprice = "customerPrice"
-        case inapppurchasev2 = "inAppPurchaseV2"
-        case pricetier = "priceTier"
         case proceeds = "proceeds"
         case territory = "territory"
-    }
-
-    /**
-     * enum for parameter fieldsInAppPurchaseLocalizations
-     */
-    public enum FieldsInAppPurchaseLocalizations_inAppPurchasesV2GetInstance: String, CaseIterable {
-        case description = "description"
-        case inapppurchasev2 = "inAppPurchaseV2"
-        case locale = "locale"
-        case name = "name"
-        case state = "state"
-    }
-
-    /**
-     * enum for parameter fieldsInAppPurchasePriceSchedules
-     */
-    public enum FieldsInAppPurchasePriceSchedules_inAppPurchasesV2GetInstance: String, CaseIterable {
-        case automaticprices = "automaticPrices"
-        case baseterritory = "baseTerritory"
-        case inapppurchase = "inAppPurchase"
-        case manualprices = "manualPrices"
+        case equalizations = "equalizations"
     }
 
     /**
@@ -597,30 +534,104 @@ open class InAppPurchasesAPI {
     public enum FieldsInAppPurchaseContents_inAppPurchasesV2GetInstance: String, CaseIterable {
         case filename = "fileName"
         case filesize = "fileSize"
-        case inapppurchasev2 = "inAppPurchaseV2"
-        case lastmodifieddate = "lastModifiedDate"
         case url = "url"
+        case lastmodifieddate = "lastModifiedDate"
+        case inapppurchasev2 = "inAppPurchaseV2"
+    }
+
+    /**
+     * enum for parameter fieldsInAppPurchaseAppStoreReviewScreenshots
+     */
+    public enum FieldsInAppPurchaseAppStoreReviewScreenshots_inAppPurchasesV2GetInstance: String, CaseIterable {
+        case filesize = "fileSize"
+        case filename = "fileName"
+        case sourcefilechecksum = "sourceFileChecksum"
+        case imageasset = "imageAsset"
+        case assettoken = "assetToken"
+        case assettype = "assetType"
+        case uploadoperations = "uploadOperations"
+        case assetdeliverystate = "assetDeliveryState"
+        case inapppurchasev2 = "inAppPurchaseV2"
+    }
+
+    /**
+     * enum for parameter fieldsPromotedPurchases
+     */
+    public enum FieldsPromotedPurchases_inAppPurchasesV2GetInstance: String, CaseIterable {
+        case visibleforallusers = "visibleForAllUsers"
+        case enabled = "enabled"
+        case state = "state"
+        case inapppurchasev2 = "inAppPurchaseV2"
+        case subscription = "subscription"
+        case promotionimages = "promotionImages"
+    }
+
+    /**
+     * enum for parameter fieldsInAppPurchasePriceSchedules
+     */
+    public enum FieldsInAppPurchasePriceSchedules_inAppPurchasesV2GetInstance: String, CaseIterable {
+        case baseterritory = "baseTerritory"
+        case manualprices = "manualPrices"
+        case automaticprices = "automaticPrices"
+    }
+
+    /**
+     * enum for parameter fieldsInAppPurchaseAvailabilities
+     */
+    public enum FieldsInAppPurchaseAvailabilities_inAppPurchasesV2GetInstance: String, CaseIterable {
+        case availableinnewterritories = "availableInNewTerritories"
+        case availableterritories = "availableTerritories"
+    }
+
+    /**
+     * enum for parameter fieldsInAppPurchaseImages
+     */
+    public enum FieldsInAppPurchaseImages_inAppPurchasesV2GetInstance: String, CaseIterable {
+        case filesize = "fileSize"
+        case filename = "fileName"
+        case sourcefilechecksum = "sourceFileChecksum"
+        case assettoken = "assetToken"
+        case imageasset = "imageAsset"
+        case uploadoperations = "uploadOperations"
+        case state = "state"
+        case inapppurchase = "inAppPurchase"
+    }
+
+    /**
+     * enum for parameter include
+     */
+    public enum Include_inAppPurchasesV2GetInstance: String, CaseIterable {
+        case inapppurchaselocalizations = "inAppPurchaseLocalizations"
+        case pricepoints = "pricePoints"
+        case content = "content"
+        case appstorereviewscreenshot = "appStoreReviewScreenshot"
+        case promotedpurchase = "promotedPurchase"
+        case iappriceschedule = "iapPriceSchedule"
+        case inapppurchaseavailability = "inAppPurchaseAvailability"
+        case images = "images"
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsInAppPurchases: (query) the fields to include for returned resources of type inAppPurchases (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
-     - parameter fieldsInAppPurchaseAvailabilities: (query) the fields to include for returned resources of type inAppPurchaseAvailabilities (optional)
+     - parameter fieldsInAppPurchaseLocalizations: (query) the fields to include for returned resources of type inAppPurchaseLocalizations (optional)
+     - parameter fieldsInAppPurchasePricePoints: (query) the fields to include for returned resources of type inAppPurchasePricePoints (optional)
+     - parameter fieldsInAppPurchaseContents: (query) the fields to include for returned resources of type inAppPurchaseContents (optional)
      - parameter fieldsInAppPurchaseAppStoreReviewScreenshots: (query) the fields to include for returned resources of type inAppPurchaseAppStoreReviewScreenshots (optional)
      - parameter fieldsPromotedPurchases: (query) the fields to include for returned resources of type promotedPurchases (optional)
-     - parameter fieldsInAppPurchasePricePoints: (query) the fields to include for returned resources of type inAppPurchasePricePoints (optional)
-     - parameter fieldsInAppPurchaseLocalizations: (query) the fields to include for returned resources of type inAppPurchaseLocalizations (optional)
      - parameter fieldsInAppPurchasePriceSchedules: (query) the fields to include for returned resources of type inAppPurchasePriceSchedules (optional)
-     - parameter fieldsInAppPurchaseContents: (query) the fields to include for returned resources of type inAppPurchaseContents (optional)
+     - parameter fieldsInAppPurchaseAvailabilities: (query) the fields to include for returned resources of type inAppPurchaseAvailabilities (optional)
+     - parameter fieldsInAppPurchaseImages: (query) the fields to include for returned resources of type inAppPurchaseImages (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitImages: (query) maximum number of related images returned (when they are included) (optional)
      - parameter limitInAppPurchaseLocalizations: (query) maximum number of related inAppPurchaseLocalizations returned (when they are included) (optional)
      - parameter limitPricePoints: (query) maximum number of related pricePoints returned (when they are included) (optional)
      - returns: InAppPurchaseV2Response
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchasesV2GetInstance(id: String, fieldsInAppPurchases: [FieldsInAppPurchases_inAppPurchasesV2GetInstance]? = nil, include: [Include_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchaseAvailabilities: [FieldsInAppPurchaseAvailabilities_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchaseAppStoreReviewScreenshots: [FieldsInAppPurchaseAppStoreReviewScreenshots_inAppPurchasesV2GetInstance]? = nil, fieldsPromotedPurchases: [FieldsPromotedPurchases_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchasePricePoints: [FieldsInAppPurchasePricePoints_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchaseLocalizations: [FieldsInAppPurchaseLocalizations_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchasePriceSchedules: [FieldsInAppPurchasePriceSchedules_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchaseContents: [FieldsInAppPurchaseContents_inAppPurchasesV2GetInstance]? = nil, limitInAppPurchaseLocalizations: Int? = nil, limitPricePoints: Int? = nil) async throws -> InAppPurchaseV2Response {
-        return try await inAppPurchasesV2GetInstanceWithRequestBuilder(id: id, fieldsInAppPurchases: fieldsInAppPurchases, include: include, fieldsInAppPurchaseAvailabilities: fieldsInAppPurchaseAvailabilities, fieldsInAppPurchaseAppStoreReviewScreenshots: fieldsInAppPurchaseAppStoreReviewScreenshots, fieldsPromotedPurchases: fieldsPromotedPurchases, fieldsInAppPurchasePricePoints: fieldsInAppPurchasePricePoints, fieldsInAppPurchaseLocalizations: fieldsInAppPurchaseLocalizations, fieldsInAppPurchasePriceSchedules: fieldsInAppPurchasePriceSchedules, fieldsInAppPurchaseContents: fieldsInAppPurchaseContents, limitInAppPurchaseLocalizations: limitInAppPurchaseLocalizations, limitPricePoints: limitPricePoints).execute().body
+    open class func inAppPurchasesV2GetInstance(id: String, fieldsInAppPurchases: [FieldsInAppPurchases_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchaseLocalizations: [FieldsInAppPurchaseLocalizations_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchasePricePoints: [FieldsInAppPurchasePricePoints_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchaseContents: [FieldsInAppPurchaseContents_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchaseAppStoreReviewScreenshots: [FieldsInAppPurchaseAppStoreReviewScreenshots_inAppPurchasesV2GetInstance]? = nil, fieldsPromotedPurchases: [FieldsPromotedPurchases_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchasePriceSchedules: [FieldsInAppPurchasePriceSchedules_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchaseAvailabilities: [FieldsInAppPurchaseAvailabilities_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchaseImages: [FieldsInAppPurchaseImages_inAppPurchasesV2GetInstance]? = nil, include: [Include_inAppPurchasesV2GetInstance]? = nil, limitImages: Int? = nil, limitInAppPurchaseLocalizations: Int? = nil, limitPricePoints: Int? = nil) async throws -> InAppPurchaseV2Response {
+        return try await inAppPurchasesV2GetInstanceWithRequestBuilder(id: id, fieldsInAppPurchases: fieldsInAppPurchases, fieldsInAppPurchaseLocalizations: fieldsInAppPurchaseLocalizations, fieldsInAppPurchasePricePoints: fieldsInAppPurchasePricePoints, fieldsInAppPurchaseContents: fieldsInAppPurchaseContents, fieldsInAppPurchaseAppStoreReviewScreenshots: fieldsInAppPurchaseAppStoreReviewScreenshots, fieldsPromotedPurchases: fieldsPromotedPurchases, fieldsInAppPurchasePriceSchedules: fieldsInAppPurchasePriceSchedules, fieldsInAppPurchaseAvailabilities: fieldsInAppPurchaseAvailabilities, fieldsInAppPurchaseImages: fieldsInAppPurchaseImages, include: include, limitImages: limitImages, limitInAppPurchaseLocalizations: limitInAppPurchaseLocalizations, limitPricePoints: limitPricePoints).execute().body
     }
 
     /**
@@ -639,19 +650,21 @@ open class InAppPurchasesAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsInAppPurchases: (query) the fields to include for returned resources of type inAppPurchases (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
-     - parameter fieldsInAppPurchaseAvailabilities: (query) the fields to include for returned resources of type inAppPurchaseAvailabilities (optional)
+     - parameter fieldsInAppPurchaseLocalizations: (query) the fields to include for returned resources of type inAppPurchaseLocalizations (optional)
+     - parameter fieldsInAppPurchasePricePoints: (query) the fields to include for returned resources of type inAppPurchasePricePoints (optional)
+     - parameter fieldsInAppPurchaseContents: (query) the fields to include for returned resources of type inAppPurchaseContents (optional)
      - parameter fieldsInAppPurchaseAppStoreReviewScreenshots: (query) the fields to include for returned resources of type inAppPurchaseAppStoreReviewScreenshots (optional)
      - parameter fieldsPromotedPurchases: (query) the fields to include for returned resources of type promotedPurchases (optional)
-     - parameter fieldsInAppPurchasePricePoints: (query) the fields to include for returned resources of type inAppPurchasePricePoints (optional)
-     - parameter fieldsInAppPurchaseLocalizations: (query) the fields to include for returned resources of type inAppPurchaseLocalizations (optional)
      - parameter fieldsInAppPurchasePriceSchedules: (query) the fields to include for returned resources of type inAppPurchasePriceSchedules (optional)
-     - parameter fieldsInAppPurchaseContents: (query) the fields to include for returned resources of type inAppPurchaseContents (optional)
+     - parameter fieldsInAppPurchaseAvailabilities: (query) the fields to include for returned resources of type inAppPurchaseAvailabilities (optional)
+     - parameter fieldsInAppPurchaseImages: (query) the fields to include for returned resources of type inAppPurchaseImages (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitImages: (query) maximum number of related images returned (when they are included) (optional)
      - parameter limitInAppPurchaseLocalizations: (query) maximum number of related inAppPurchaseLocalizations returned (when they are included) (optional)
      - parameter limitPricePoints: (query) maximum number of related pricePoints returned (when they are included) (optional)
      - returns: RequestBuilder<InAppPurchaseV2Response> 
      */
-    open class func inAppPurchasesV2GetInstanceWithRequestBuilder(id: String, fieldsInAppPurchases: [FieldsInAppPurchases_inAppPurchasesV2GetInstance]? = nil, include: [Include_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchaseAvailabilities: [FieldsInAppPurchaseAvailabilities_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchaseAppStoreReviewScreenshots: [FieldsInAppPurchaseAppStoreReviewScreenshots_inAppPurchasesV2GetInstance]? = nil, fieldsPromotedPurchases: [FieldsPromotedPurchases_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchasePricePoints: [FieldsInAppPurchasePricePoints_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchaseLocalizations: [FieldsInAppPurchaseLocalizations_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchasePriceSchedules: [FieldsInAppPurchasePriceSchedules_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchaseContents: [FieldsInAppPurchaseContents_inAppPurchasesV2GetInstance]? = nil, limitInAppPurchaseLocalizations: Int? = nil, limitPricePoints: Int? = nil) -> RequestBuilder<InAppPurchaseV2Response> {
+    open class func inAppPurchasesV2GetInstanceWithRequestBuilder(id: String, fieldsInAppPurchases: [FieldsInAppPurchases_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchaseLocalizations: [FieldsInAppPurchaseLocalizations_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchasePricePoints: [FieldsInAppPurchasePricePoints_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchaseContents: [FieldsInAppPurchaseContents_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchaseAppStoreReviewScreenshots: [FieldsInAppPurchaseAppStoreReviewScreenshots_inAppPurchasesV2GetInstance]? = nil, fieldsPromotedPurchases: [FieldsPromotedPurchases_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchasePriceSchedules: [FieldsInAppPurchasePriceSchedules_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchaseAvailabilities: [FieldsInAppPurchaseAvailabilities_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchaseImages: [FieldsInAppPurchaseImages_inAppPurchasesV2GetInstance]? = nil, include: [Include_inAppPurchasesV2GetInstance]? = nil, limitImages: Int? = nil, limitInAppPurchaseLocalizations: Int? = nil, limitPricePoints: Int? = nil) -> RequestBuilder<InAppPurchaseV2Response> {
         var localVariablePath = "/v2/inAppPurchases/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -662,14 +675,16 @@ open class InAppPurchasesAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[inAppPurchases]": (wrappedValue: fieldsInAppPurchases?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "fields[inAppPurchaseAvailabilities]": (wrappedValue: fieldsInAppPurchaseAvailabilities?.encodeToJSON(), isExplode: false),
+            "fields[inAppPurchaseLocalizations]": (wrappedValue: fieldsInAppPurchaseLocalizations?.encodeToJSON(), isExplode: false),
+            "fields[inAppPurchasePricePoints]": (wrappedValue: fieldsInAppPurchasePricePoints?.encodeToJSON(), isExplode: false),
+            "fields[inAppPurchaseContents]": (wrappedValue: fieldsInAppPurchaseContents?.encodeToJSON(), isExplode: false),
             "fields[inAppPurchaseAppStoreReviewScreenshots]": (wrappedValue: fieldsInAppPurchaseAppStoreReviewScreenshots?.encodeToJSON(), isExplode: false),
             "fields[promotedPurchases]": (wrappedValue: fieldsPromotedPurchases?.encodeToJSON(), isExplode: false),
-            "fields[inAppPurchasePricePoints]": (wrappedValue: fieldsInAppPurchasePricePoints?.encodeToJSON(), isExplode: false),
-            "fields[inAppPurchaseLocalizations]": (wrappedValue: fieldsInAppPurchaseLocalizations?.encodeToJSON(), isExplode: false),
             "fields[inAppPurchasePriceSchedules]": (wrappedValue: fieldsInAppPurchasePriceSchedules?.encodeToJSON(), isExplode: false),
-            "fields[inAppPurchaseContents]": (wrappedValue: fieldsInAppPurchaseContents?.encodeToJSON(), isExplode: false),
+            "fields[inAppPurchaseAvailabilities]": (wrappedValue: fieldsInAppPurchaseAvailabilities?.encodeToJSON(), isExplode: false),
+            "fields[inAppPurchaseImages]": (wrappedValue: fieldsInAppPurchaseImages?.encodeToJSON(), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "limit[images]": (wrappedValue: limitImages?.encodeToJSON(), isExplode: true),
             "limit[inAppPurchaseLocalizations]": (wrappedValue: limitInAppPurchaseLocalizations?.encodeToJSON(), isExplode: true),
             "limit[pricePoints]": (wrappedValue: limitPricePoints?.encodeToJSON(), isExplode: true),
         ])
@@ -706,46 +721,12 @@ open class InAppPurchasesAPI {
     }
 
     /**
-     * enum for parameter fieldsInAppPurchasePrices
-     */
-    public enum FieldsInAppPurchasePrices_inAppPurchasesV2IapPriceScheduleGetToOneRelated: String, CaseIterable {
-        case enddate = "endDate"
-        case inapppurchasepricepoint = "inAppPurchasePricePoint"
-        case inapppurchasev2 = "inAppPurchaseV2"
-        case manual = "manual"
-        case startdate = "startDate"
-        case territory = "territory"
-    }
-
-    /**
-     * enum for parameter fieldsInAppPurchases
-     */
-    public enum FieldsInAppPurchases_inAppPurchasesV2IapPriceScheduleGetToOneRelated: String, CaseIterable {
-        case app = "app"
-        case appstorereviewscreenshot = "appStoreReviewScreenshot"
-        case content = "content"
-        case contenthosting = "contentHosting"
-        case familysharable = "familySharable"
-        case iappriceschedule = "iapPriceSchedule"
-        case inapppurchaseavailability = "inAppPurchaseAvailability"
-        case inapppurchaselocalizations = "inAppPurchaseLocalizations"
-        case inapppurchasetype = "inAppPurchaseType"
-        case name = "name"
-        case pricepoints = "pricePoints"
-        case productid = "productId"
-        case promotedpurchase = "promotedPurchase"
-        case reviewnote = "reviewNote"
-        case state = "state"
-    }
-
-    /**
      * enum for parameter fieldsInAppPurchasePriceSchedules
      */
     public enum FieldsInAppPurchasePriceSchedules_inAppPurchasesV2IapPriceScheduleGetToOneRelated: String, CaseIterable {
-        case automaticprices = "automaticPrices"
         case baseterritory = "baseTerritory"
-        case inapppurchase = "inAppPurchase"
         case manualprices = "manualPrices"
+        case automaticprices = "automaticPrices"
     }
 
     /**
@@ -756,30 +737,39 @@ open class InAppPurchasesAPI {
     }
 
     /**
+     * enum for parameter fieldsInAppPurchasePrices
+     */
+    public enum FieldsInAppPurchasePrices_inAppPurchasesV2IapPriceScheduleGetToOneRelated: String, CaseIterable {
+        case startdate = "startDate"
+        case enddate = "endDate"
+        case manual = "manual"
+        case inapppurchasepricepoint = "inAppPurchasePricePoint"
+        case territory = "territory"
+    }
+
+    /**
      * enum for parameter include
      */
     public enum Include_inAppPurchasesV2IapPriceScheduleGetToOneRelated: String, CaseIterable {
-        case automaticprices = "automaticPrices"
         case baseterritory = "baseTerritory"
-        case inapppurchase = "inAppPurchase"
         case manualprices = "manualPrices"
+        case automaticprices = "automaticPrices"
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
-     - parameter fieldsInAppPurchasePrices: (query) the fields to include for returned resources of type inAppPurchasePrices (optional)
-     - parameter fieldsInAppPurchases: (query) the fields to include for returned resources of type inAppPurchases (optional)
      - parameter fieldsInAppPurchasePriceSchedules: (query) the fields to include for returned resources of type inAppPurchasePriceSchedules (optional)
      - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
+     - parameter fieldsInAppPurchasePrices: (query) the fields to include for returned resources of type inAppPurchasePrices (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitManualPrices: (query) maximum number of related manualPrices returned (when they are included) (optional)
      - parameter limitAutomaticPrices: (query) maximum number of related automaticPrices returned (when they are included) (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: InAppPurchasePriceScheduleResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchasesV2IapPriceScheduleGetToOneRelated(id: String, fieldsInAppPurchasePrices: [FieldsInAppPurchasePrices_inAppPurchasesV2IapPriceScheduleGetToOneRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_inAppPurchasesV2IapPriceScheduleGetToOneRelated]? = nil, fieldsInAppPurchasePriceSchedules: [FieldsInAppPurchasePriceSchedules_inAppPurchasesV2IapPriceScheduleGetToOneRelated]? = nil, fieldsTerritories: [FieldsTerritories_inAppPurchasesV2IapPriceScheduleGetToOneRelated]? = nil, limitManualPrices: Int? = nil, limitAutomaticPrices: Int? = nil, include: [Include_inAppPurchasesV2IapPriceScheduleGetToOneRelated]? = nil) async throws -> InAppPurchasePriceScheduleResponse {
-        return try await inAppPurchasesV2IapPriceScheduleGetToOneRelatedWithRequestBuilder(id: id, fieldsInAppPurchasePrices: fieldsInAppPurchasePrices, fieldsInAppPurchases: fieldsInAppPurchases, fieldsInAppPurchasePriceSchedules: fieldsInAppPurchasePriceSchedules, fieldsTerritories: fieldsTerritories, limitManualPrices: limitManualPrices, limitAutomaticPrices: limitAutomaticPrices, include: include).execute().body
+    open class func inAppPurchasesV2IapPriceScheduleGetToOneRelated(id: String, fieldsInAppPurchasePriceSchedules: [FieldsInAppPurchasePriceSchedules_inAppPurchasesV2IapPriceScheduleGetToOneRelated]? = nil, fieldsTerritories: [FieldsTerritories_inAppPurchasesV2IapPriceScheduleGetToOneRelated]? = nil, fieldsInAppPurchasePrices: [FieldsInAppPurchasePrices_inAppPurchasesV2IapPriceScheduleGetToOneRelated]? = nil, include: [Include_inAppPurchasesV2IapPriceScheduleGetToOneRelated]? = nil, limitManualPrices: Int? = nil, limitAutomaticPrices: Int? = nil) async throws -> InAppPurchasePriceScheduleResponse {
+        return try await inAppPurchasesV2IapPriceScheduleGetToOneRelatedWithRequestBuilder(id: id, fieldsInAppPurchasePriceSchedules: fieldsInAppPurchasePriceSchedules, fieldsTerritories: fieldsTerritories, fieldsInAppPurchasePrices: fieldsInAppPurchasePrices, include: include, limitManualPrices: limitManualPrices, limitAutomaticPrices: limitAutomaticPrices).execute().body
     }
 
     /**
@@ -797,16 +787,15 @@ open class InAppPurchasesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
-     - parameter fieldsInAppPurchasePrices: (query) the fields to include for returned resources of type inAppPurchasePrices (optional)
-     - parameter fieldsInAppPurchases: (query) the fields to include for returned resources of type inAppPurchases (optional)
      - parameter fieldsInAppPurchasePriceSchedules: (query) the fields to include for returned resources of type inAppPurchasePriceSchedules (optional)
      - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
+     - parameter fieldsInAppPurchasePrices: (query) the fields to include for returned resources of type inAppPurchasePrices (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitManualPrices: (query) maximum number of related manualPrices returned (when they are included) (optional)
      - parameter limitAutomaticPrices: (query) maximum number of related automaticPrices returned (when they are included) (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: RequestBuilder<InAppPurchasePriceScheduleResponse> 
      */
-    open class func inAppPurchasesV2IapPriceScheduleGetToOneRelatedWithRequestBuilder(id: String, fieldsInAppPurchasePrices: [FieldsInAppPurchasePrices_inAppPurchasesV2IapPriceScheduleGetToOneRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_inAppPurchasesV2IapPriceScheduleGetToOneRelated]? = nil, fieldsInAppPurchasePriceSchedules: [FieldsInAppPurchasePriceSchedules_inAppPurchasesV2IapPriceScheduleGetToOneRelated]? = nil, fieldsTerritories: [FieldsTerritories_inAppPurchasesV2IapPriceScheduleGetToOneRelated]? = nil, limitManualPrices: Int? = nil, limitAutomaticPrices: Int? = nil, include: [Include_inAppPurchasesV2IapPriceScheduleGetToOneRelated]? = nil) -> RequestBuilder<InAppPurchasePriceScheduleResponse> {
+    open class func inAppPurchasesV2IapPriceScheduleGetToOneRelatedWithRequestBuilder(id: String, fieldsInAppPurchasePriceSchedules: [FieldsInAppPurchasePriceSchedules_inAppPurchasesV2IapPriceScheduleGetToOneRelated]? = nil, fieldsTerritories: [FieldsTerritories_inAppPurchasesV2IapPriceScheduleGetToOneRelated]? = nil, fieldsInAppPurchasePrices: [FieldsInAppPurchasePrices_inAppPurchasesV2IapPriceScheduleGetToOneRelated]? = nil, include: [Include_inAppPurchasesV2IapPriceScheduleGetToOneRelated]? = nil, limitManualPrices: Int? = nil, limitAutomaticPrices: Int? = nil) -> RequestBuilder<InAppPurchasePriceScheduleResponse> {
         var localVariablePath = "/v2/inAppPurchases/{id}/iapPriceSchedule"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -816,13 +805,12 @@ open class InAppPurchasesAPI {
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[inAppPurchasePrices]": (wrappedValue: fieldsInAppPurchasePrices?.encodeToJSON(), isExplode: false),
-            "fields[inAppPurchases]": (wrappedValue: fieldsInAppPurchases?.encodeToJSON(), isExplode: false),
             "fields[inAppPurchasePriceSchedules]": (wrappedValue: fieldsInAppPurchasePriceSchedules?.encodeToJSON(), isExplode: false),
             "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(), isExplode: false),
+            "fields[inAppPurchasePrices]": (wrappedValue: fieldsInAppPurchasePrices?.encodeToJSON(), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "limit[manualPrices]": (wrappedValue: limitManualPrices?.encodeToJSON(), isExplode: true),
             "limit[automaticPrices]": (wrappedValue: limitAutomaticPrices?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -857,12 +845,135 @@ open class InAppPurchasesAPI {
     }
 
     /**
+     * enum for parameter fieldsInAppPurchaseImages
+     */
+    public enum FieldsInAppPurchaseImages_inAppPurchasesV2ImagesGetToManyRelated: String, CaseIterable {
+        case filesize = "fileSize"
+        case filename = "fileName"
+        case sourcefilechecksum = "sourceFileChecksum"
+        case assettoken = "assetToken"
+        case imageasset = "imageAsset"
+        case uploadoperations = "uploadOperations"
+        case state = "state"
+        case inapppurchase = "inAppPurchase"
+    }
+
+    /**
+     * enum for parameter fieldsInAppPurchases
+     */
+    public enum FieldsInAppPurchases_inAppPurchasesV2ImagesGetToManyRelated: String, CaseIterable {
+        case name = "name"
+        case productid = "productId"
+        case inapppurchasetype = "inAppPurchaseType"
+        case state = "state"
+        case reviewnote = "reviewNote"
+        case familysharable = "familySharable"
+        case contenthosting = "contentHosting"
+        case inapppurchaselocalizations = "inAppPurchaseLocalizations"
+        case pricepoints = "pricePoints"
+        case content = "content"
+        case appstorereviewscreenshot = "appStoreReviewScreenshot"
+        case promotedpurchase = "promotedPurchase"
+        case iappriceschedule = "iapPriceSchedule"
+        case inapppurchaseavailability = "inAppPurchaseAvailability"
+        case images = "images"
+    }
+
+    /**
+     * enum for parameter include
+     */
+    public enum Include_inAppPurchasesV2ImagesGetToManyRelated: String, CaseIterable {
+        case inapppurchase = "inAppPurchase"
+    }
+
+    /**
+
+     - parameter id: (path) the id of the requested resource 
+     - parameter fieldsInAppPurchaseImages: (query) the fields to include for returned resources of type inAppPurchaseImages (optional)
+     - parameter fieldsInAppPurchases: (query) the fields to include for returned resources of type inAppPurchases (optional)
+     - parameter limit: (query) maximum resources per page (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
+     - returns: InAppPurchaseImagesResponse
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func inAppPurchasesV2ImagesGetToManyRelated(id: String, fieldsInAppPurchaseImages: [FieldsInAppPurchaseImages_inAppPurchasesV2ImagesGetToManyRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_inAppPurchasesV2ImagesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_inAppPurchasesV2ImagesGetToManyRelated]? = nil) async throws -> InAppPurchaseImagesResponse {
+        return try await inAppPurchasesV2ImagesGetToManyRelatedWithRequestBuilder(id: id, fieldsInAppPurchaseImages: fieldsInAppPurchaseImages, fieldsInAppPurchases: fieldsInAppPurchases, limit: limit, include: include).execute().body
+    }
+
+    /**
+     - parameter urlString: next or first url from App Store Connect API
+     - returns: InAppPurchaseImagesResponse
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func inAppPurchasesV2ImagesGetToManyRelated(urlString: String) async throws -> InAppPurchaseImagesResponse {
+        return try await inAppPurchasesV2ImagesGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    }
+
+    /**
+     - GET /v2/inAppPurchases/{id}/images
+     - Bearer Token:
+       - type: http
+       - name: itc-bearer-token
+     - parameter id: (path) the id of the requested resource 
+     - parameter fieldsInAppPurchaseImages: (query) the fields to include for returned resources of type inAppPurchaseImages (optional)
+     - parameter fieldsInAppPurchases: (query) the fields to include for returned resources of type inAppPurchases (optional)
+     - parameter limit: (query) maximum resources per page (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
+     - returns: RequestBuilder<InAppPurchaseImagesResponse> 
+     */
+    open class func inAppPurchasesV2ImagesGetToManyRelatedWithRequestBuilder(id: String, fieldsInAppPurchaseImages: [FieldsInAppPurchaseImages_inAppPurchasesV2ImagesGetToManyRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_inAppPurchasesV2ImagesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_inAppPurchasesV2ImagesGetToManyRelated]? = nil) -> RequestBuilder<InAppPurchaseImagesResponse> {
+        var localVariablePath = "/v2/inAppPurchases/{id}/images"
+        let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
+        let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
+        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+            "fields[inAppPurchaseImages]": (wrappedValue: fieldsInAppPurchaseImages?.encodeToJSON(), isExplode: false),
+            "fields[inAppPurchases]": (wrappedValue: fieldsInAppPurchases?.encodeToJSON(), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+        ])
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseImagesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+    }
+
+    /**
+     - GET /v2/inAppPurchases/{id}/images
+     - Bearer Token:
+       - type: http
+       - name: itc-bearer-token
+     - parameter urlString: next or first url from App Store Connect API
+     - returns: RequestBuilder<InAppPurchaseImagesResponse> 
+     */
+    open class func inAppPurchasesV2ImagesGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<InAppPurchaseImagesResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseImagesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+    }
+
+    /**
      * enum for parameter fieldsInAppPurchaseAvailabilities
      */
     public enum FieldsInAppPurchaseAvailabilities_inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelated: String, CaseIterable {
         case availableinnewterritories = "availableInNewTerritories"
         case availableterritories = "availableTerritories"
-        case inapppurchase = "inAppPurchase"
     }
 
     /**
@@ -884,13 +995,13 @@ open class InAppPurchasesAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsInAppPurchaseAvailabilities: (query) the fields to include for returned resources of type inAppPurchaseAvailabilities (optional)
      - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
-     - parameter limitAvailableTerritories: (query) maximum number of related availableTerritories returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitAvailableTerritories: (query) maximum number of related availableTerritories returned (when they are included) (optional)
      - returns: InAppPurchaseAvailabilityResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelated(id: String, fieldsInAppPurchaseAvailabilities: [FieldsInAppPurchaseAvailabilities_inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelated]? = nil, fieldsTerritories: [FieldsTerritories_inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelated]? = nil, limitAvailableTerritories: Int? = nil, include: [Include_inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelated]? = nil) async throws -> InAppPurchaseAvailabilityResponse {
-        return try await inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelatedWithRequestBuilder(id: id, fieldsInAppPurchaseAvailabilities: fieldsInAppPurchaseAvailabilities, fieldsTerritories: fieldsTerritories, limitAvailableTerritories: limitAvailableTerritories, include: include).execute().body
+    open class func inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelated(id: String, fieldsInAppPurchaseAvailabilities: [FieldsInAppPurchaseAvailabilities_inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelated]? = nil, fieldsTerritories: [FieldsTerritories_inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelated]? = nil, include: [Include_inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelated]? = nil, limitAvailableTerritories: Int? = nil) async throws -> InAppPurchaseAvailabilityResponse {
+        return try await inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelatedWithRequestBuilder(id: id, fieldsInAppPurchaseAvailabilities: fieldsInAppPurchaseAvailabilities, fieldsTerritories: fieldsTerritories, include: include, limitAvailableTerritories: limitAvailableTerritories).execute().body
     }
 
     /**
@@ -910,11 +1021,11 @@ open class InAppPurchasesAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsInAppPurchaseAvailabilities: (query) the fields to include for returned resources of type inAppPurchaseAvailabilities (optional)
      - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
-     - parameter limitAvailableTerritories: (query) maximum number of related availableTerritories returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitAvailableTerritories: (query) maximum number of related availableTerritories returned (when they are included) (optional)
      - returns: RequestBuilder<InAppPurchaseAvailabilityResponse> 
      */
-    open class func inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelatedWithRequestBuilder(id: String, fieldsInAppPurchaseAvailabilities: [FieldsInAppPurchaseAvailabilities_inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelated]? = nil, fieldsTerritories: [FieldsTerritories_inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelated]? = nil, limitAvailableTerritories: Int? = nil, include: [Include_inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelated]? = nil) -> RequestBuilder<InAppPurchaseAvailabilityResponse> {
+    open class func inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelatedWithRequestBuilder(id: String, fieldsInAppPurchaseAvailabilities: [FieldsInAppPurchaseAvailabilities_inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelated]? = nil, fieldsTerritories: [FieldsTerritories_inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelated]? = nil, include: [Include_inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelated]? = nil, limitAvailableTerritories: Int? = nil) -> RequestBuilder<InAppPurchaseAvailabilityResponse> {
         var localVariablePath = "/v2/inAppPurchases/{id}/inAppPurchaseAvailability"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -926,8 +1037,8 @@ open class InAppPurchasesAPI {
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[inAppPurchaseAvailabilities]": (wrappedValue: fieldsInAppPurchaseAvailabilities?.encodeToJSON(), isExplode: false),
             "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(), isExplode: false),
-            "limit[availableTerritories]": (wrappedValue: limitAvailableTerritories?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "limit[availableTerritories]": (wrappedValue: limitAvailableTerritories?.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -965,32 +1076,32 @@ open class InAppPurchasesAPI {
      * enum for parameter fieldsInAppPurchaseLocalizations
      */
     public enum FieldsInAppPurchaseLocalizations_inAppPurchasesV2InAppPurchaseLocalizationsGetToManyRelated: String, CaseIterable {
-        case description = "description"
-        case inapppurchasev2 = "inAppPurchaseV2"
-        case locale = "locale"
         case name = "name"
+        case locale = "locale"
+        case description = "description"
         case state = "state"
+        case inapppurchasev2 = "inAppPurchaseV2"
     }
 
     /**
      * enum for parameter fieldsInAppPurchases
      */
     public enum FieldsInAppPurchases_inAppPurchasesV2InAppPurchaseLocalizationsGetToManyRelated: String, CaseIterable {
-        case app = "app"
-        case appstorereviewscreenshot = "appStoreReviewScreenshot"
-        case content = "content"
-        case contenthosting = "contentHosting"
+        case name = "name"
+        case productid = "productId"
+        case inapppurchasetype = "inAppPurchaseType"
+        case state = "state"
+        case reviewnote = "reviewNote"
         case familysharable = "familySharable"
+        case contenthosting = "contentHosting"
+        case inapppurchaselocalizations = "inAppPurchaseLocalizations"
+        case pricepoints = "pricePoints"
+        case content = "content"
+        case appstorereviewscreenshot = "appStoreReviewScreenshot"
+        case promotedpurchase = "promotedPurchase"
         case iappriceschedule = "iapPriceSchedule"
         case inapppurchaseavailability = "inAppPurchaseAvailability"
-        case inapppurchaselocalizations = "inAppPurchaseLocalizations"
-        case inapppurchasetype = "inAppPurchaseType"
-        case name = "name"
-        case pricepoints = "pricePoints"
-        case productid = "productId"
-        case promotedpurchase = "promotedPurchase"
-        case reviewnote = "reviewNote"
-        case state = "state"
+        case images = "images"
     }
 
     /**
@@ -1087,10 +1198,9 @@ open class InAppPurchasesAPI {
      */
     public enum FieldsInAppPurchasePricePoints_inAppPurchasesV2PricePointsGetToManyRelated: String, CaseIterable {
         case customerprice = "customerPrice"
-        case inapppurchasev2 = "inAppPurchaseV2"
-        case pricetier = "priceTier"
         case proceeds = "proceeds"
         case territory = "territory"
+        case equalizations = "equalizations"
     }
 
     /**
@@ -1110,7 +1220,6 @@ open class InAppPurchasesAPI {
     /**
 
      - parameter id: (path) the id of the requested resource 
-     - parameter filterPriceTier: (query) filter by attribute &#39;priceTier&#39; (optional)
      - parameter filterTerritory: (query) filter by id(s) of related &#39;territory&#39; (optional)
      - parameter fieldsInAppPurchasePricePoints: (query) the fields to include for returned resources of type inAppPurchasePricePoints (optional)
      - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
@@ -1119,8 +1228,8 @@ open class InAppPurchasesAPI {
      - returns: InAppPurchasePricePointsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchasesV2PricePointsGetToManyRelated(id: String, filterPriceTier: [String]? = nil, filterTerritory: [String]? = nil, fieldsInAppPurchasePricePoints: [FieldsInAppPurchasePricePoints_inAppPurchasesV2PricePointsGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_inAppPurchasesV2PricePointsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_inAppPurchasesV2PricePointsGetToManyRelated]? = nil) async throws -> InAppPurchasePricePointsResponse {
-        return try await inAppPurchasesV2PricePointsGetToManyRelatedWithRequestBuilder(id: id, filterPriceTier: filterPriceTier, filterTerritory: filterTerritory, fieldsInAppPurchasePricePoints: fieldsInAppPurchasePricePoints, fieldsTerritories: fieldsTerritories, limit: limit, include: include).execute().body
+    open class func inAppPurchasesV2PricePointsGetToManyRelated(id: String, filterTerritory: [String]? = nil, fieldsInAppPurchasePricePoints: [FieldsInAppPurchasePricePoints_inAppPurchasesV2PricePointsGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_inAppPurchasesV2PricePointsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_inAppPurchasesV2PricePointsGetToManyRelated]? = nil) async throws -> InAppPurchasePricePointsResponse {
+        return try await inAppPurchasesV2PricePointsGetToManyRelatedWithRequestBuilder(id: id, filterTerritory: filterTerritory, fieldsInAppPurchasePricePoints: fieldsInAppPurchasePricePoints, fieldsTerritories: fieldsTerritories, limit: limit, include: include).execute().body
     }
 
     /**
@@ -1138,7 +1247,6 @@ open class InAppPurchasesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
-     - parameter filterPriceTier: (query) filter by attribute &#39;priceTier&#39; (optional)
      - parameter filterTerritory: (query) filter by id(s) of related &#39;territory&#39; (optional)
      - parameter fieldsInAppPurchasePricePoints: (query) the fields to include for returned resources of type inAppPurchasePricePoints (optional)
      - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
@@ -1146,7 +1254,7 @@ open class InAppPurchasesAPI {
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: RequestBuilder<InAppPurchasePricePointsResponse> 
      */
-    open class func inAppPurchasesV2PricePointsGetToManyRelatedWithRequestBuilder(id: String, filterPriceTier: [String]? = nil, filterTerritory: [String]? = nil, fieldsInAppPurchasePricePoints: [FieldsInAppPurchasePricePoints_inAppPurchasesV2PricePointsGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_inAppPurchasesV2PricePointsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_inAppPurchasesV2PricePointsGetToManyRelated]? = nil) -> RequestBuilder<InAppPurchasePricePointsResponse> {
+    open class func inAppPurchasesV2PricePointsGetToManyRelatedWithRequestBuilder(id: String, filterTerritory: [String]? = nil, fieldsInAppPurchasePricePoints: [FieldsInAppPurchasePricePoints_inAppPurchasesV2PricePointsGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_inAppPurchasesV2PricePointsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_inAppPurchasesV2PricePointsGetToManyRelated]? = nil) -> RequestBuilder<InAppPurchasePricePointsResponse> {
         var localVariablePath = "/v2/inAppPurchases/{id}/pricePoints"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -1156,7 +1264,6 @@ open class InAppPurchasesAPI {
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[priceTier]": (wrappedValue: filterPriceTier?.encodeToJSON(), isExplode: false),
             "filter[territory]": (wrappedValue: filterTerritory?.encodeToJSON(), isExplode: false),
             "fields[inAppPurchasePricePoints]": (wrappedValue: fieldsInAppPurchasePricePoints?.encodeToJSON(), isExplode: false),
             "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(), isExplode: false),
@@ -1199,73 +1306,73 @@ open class InAppPurchasesAPI {
      * enum for parameter fieldsPromotedPurchases
      */
     public enum FieldsPromotedPurchases_inAppPurchasesV2PromotedPurchaseGetToOneRelated: String, CaseIterable {
-        case app = "app"
-        case enabled = "enabled"
-        case inapppurchasev2 = "inAppPurchaseV2"
-        case promotionimages = "promotionImages"
-        case state = "state"
-        case subscription = "subscription"
         case visibleforallusers = "visibleForAllUsers"
-    }
-
-    /**
-     * enum for parameter fieldsSubscriptions
-     */
-    public enum FieldsSubscriptions_inAppPurchasesV2PromotedPurchaseGetToOneRelated: String, CaseIterable {
-        case appstorereviewscreenshot = "appStoreReviewScreenshot"
-        case familysharable = "familySharable"
-        case group = "group"
-        case grouplevel = "groupLevel"
-        case introductoryoffers = "introductoryOffers"
-        case name = "name"
-        case offercodes = "offerCodes"
-        case pricepoints = "pricePoints"
-        case prices = "prices"
-        case productid = "productId"
-        case promotedpurchase = "promotedPurchase"
-        case promotionaloffers = "promotionalOffers"
-        case reviewnote = "reviewNote"
+        case enabled = "enabled"
         case state = "state"
-        case subscriptionavailability = "subscriptionAvailability"
-        case subscriptionlocalizations = "subscriptionLocalizations"
-        case subscriptionperiod = "subscriptionPeriod"
+        case inapppurchasev2 = "inAppPurchaseV2"
+        case subscription = "subscription"
+        case promotionimages = "promotionImages"
     }
 
     /**
      * enum for parameter fieldsInAppPurchases
      */
     public enum FieldsInAppPurchases_inAppPurchasesV2PromotedPurchaseGetToOneRelated: String, CaseIterable {
-        case app = "app"
-        case appstorereviewscreenshot = "appStoreReviewScreenshot"
-        case content = "content"
-        case contenthosting = "contentHosting"
+        case name = "name"
+        case productid = "productId"
+        case inapppurchasetype = "inAppPurchaseType"
+        case state = "state"
+        case reviewnote = "reviewNote"
         case familysharable = "familySharable"
+        case contenthosting = "contentHosting"
+        case inapppurchaselocalizations = "inAppPurchaseLocalizations"
+        case pricepoints = "pricePoints"
+        case content = "content"
+        case appstorereviewscreenshot = "appStoreReviewScreenshot"
+        case promotedpurchase = "promotedPurchase"
         case iappriceschedule = "iapPriceSchedule"
         case inapppurchaseavailability = "inAppPurchaseAvailability"
-        case inapppurchaselocalizations = "inAppPurchaseLocalizations"
-        case inapppurchasetype = "inAppPurchaseType"
+        case images = "images"
+    }
+
+    /**
+     * enum for parameter fieldsSubscriptions
+     */
+    public enum FieldsSubscriptions_inAppPurchasesV2PromotedPurchaseGetToOneRelated: String, CaseIterable {
         case name = "name"
-        case pricepoints = "pricePoints"
         case productid = "productId"
-        case promotedpurchase = "promotedPurchase"
-        case reviewnote = "reviewNote"
+        case familysharable = "familySharable"
         case state = "state"
+        case subscriptionperiod = "subscriptionPeriod"
+        case reviewnote = "reviewNote"
+        case grouplevel = "groupLevel"
+        case subscriptionlocalizations = "subscriptionLocalizations"
+        case appstorereviewscreenshot = "appStoreReviewScreenshot"
+        case group = "group"
+        case introductoryoffers = "introductoryOffers"
+        case promotionaloffers = "promotionalOffers"
+        case offercodes = "offerCodes"
+        case prices = "prices"
+        case pricepoints = "pricePoints"
+        case promotedpurchase = "promotedPurchase"
+        case subscriptionavailability = "subscriptionAvailability"
+        case winbackoffers = "winBackOffers"
+        case images = "images"
     }
 
     /**
      * enum for parameter fieldsPromotedPurchaseImages
      */
     public enum FieldsPromotedPurchaseImages_inAppPurchasesV2PromotedPurchaseGetToOneRelated: String, CaseIterable {
-        case assettoken = "assetToken"
-        case assettype = "assetType"
-        case filename = "fileName"
         case filesize = "fileSize"
-        case imageasset = "imageAsset"
-        case promotedpurchase = "promotedPurchase"
+        case filename = "fileName"
         case sourcefilechecksum = "sourceFileChecksum"
-        case state = "state"
+        case assettoken = "assetToken"
+        case imageasset = "imageAsset"
+        case assettype = "assetType"
         case uploadoperations = "uploadOperations"
-        case uploaded = "uploaded"
+        case state = "state"
+        case promotedpurchase = "promotedPurchase"
     }
 
     /**
@@ -1273,24 +1380,24 @@ open class InAppPurchasesAPI {
      */
     public enum Include_inAppPurchasesV2PromotedPurchaseGetToOneRelated: String, CaseIterable {
         case inapppurchasev2 = "inAppPurchaseV2"
-        case promotionimages = "promotionImages"
         case subscription = "subscription"
+        case promotionimages = "promotionImages"
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsPromotedPurchases: (query) the fields to include for returned resources of type promotedPurchases (optional)
-     - parameter fieldsSubscriptions: (query) the fields to include for returned resources of type subscriptions (optional)
      - parameter fieldsInAppPurchases: (query) the fields to include for returned resources of type inAppPurchases (optional)
+     - parameter fieldsSubscriptions: (query) the fields to include for returned resources of type subscriptions (optional)
      - parameter fieldsPromotedPurchaseImages: (query) the fields to include for returned resources of type promotedPurchaseImages (optional)
-     - parameter limitPromotionImages: (query) maximum number of related promotionImages returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitPromotionImages: (query) maximum number of related promotionImages returned (when they are included) (optional)
      - returns: PromotedPurchaseResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchasesV2PromotedPurchaseGetToOneRelated(id: String, fieldsPromotedPurchases: [FieldsPromotedPurchases_inAppPurchasesV2PromotedPurchaseGetToOneRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_inAppPurchasesV2PromotedPurchaseGetToOneRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_inAppPurchasesV2PromotedPurchaseGetToOneRelated]? = nil, fieldsPromotedPurchaseImages: [FieldsPromotedPurchaseImages_inAppPurchasesV2PromotedPurchaseGetToOneRelated]? = nil, limitPromotionImages: Int? = nil, include: [Include_inAppPurchasesV2PromotedPurchaseGetToOneRelated]? = nil) async throws -> PromotedPurchaseResponse {
-        return try await inAppPurchasesV2PromotedPurchaseGetToOneRelatedWithRequestBuilder(id: id, fieldsPromotedPurchases: fieldsPromotedPurchases, fieldsSubscriptions: fieldsSubscriptions, fieldsInAppPurchases: fieldsInAppPurchases, fieldsPromotedPurchaseImages: fieldsPromotedPurchaseImages, limitPromotionImages: limitPromotionImages, include: include).execute().body
+    open class func inAppPurchasesV2PromotedPurchaseGetToOneRelated(id: String, fieldsPromotedPurchases: [FieldsPromotedPurchases_inAppPurchasesV2PromotedPurchaseGetToOneRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_inAppPurchasesV2PromotedPurchaseGetToOneRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_inAppPurchasesV2PromotedPurchaseGetToOneRelated]? = nil, fieldsPromotedPurchaseImages: [FieldsPromotedPurchaseImages_inAppPurchasesV2PromotedPurchaseGetToOneRelated]? = nil, include: [Include_inAppPurchasesV2PromotedPurchaseGetToOneRelated]? = nil, limitPromotionImages: Int? = nil) async throws -> PromotedPurchaseResponse {
+        return try await inAppPurchasesV2PromotedPurchaseGetToOneRelatedWithRequestBuilder(id: id, fieldsPromotedPurchases: fieldsPromotedPurchases, fieldsInAppPurchases: fieldsInAppPurchases, fieldsSubscriptions: fieldsSubscriptions, fieldsPromotedPurchaseImages: fieldsPromotedPurchaseImages, include: include, limitPromotionImages: limitPromotionImages).execute().body
     }
 
     /**
@@ -1309,14 +1416,14 @@ open class InAppPurchasesAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsPromotedPurchases: (query) the fields to include for returned resources of type promotedPurchases (optional)
-     - parameter fieldsSubscriptions: (query) the fields to include for returned resources of type subscriptions (optional)
      - parameter fieldsInAppPurchases: (query) the fields to include for returned resources of type inAppPurchases (optional)
+     - parameter fieldsSubscriptions: (query) the fields to include for returned resources of type subscriptions (optional)
      - parameter fieldsPromotedPurchaseImages: (query) the fields to include for returned resources of type promotedPurchaseImages (optional)
-     - parameter limitPromotionImages: (query) maximum number of related promotionImages returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitPromotionImages: (query) maximum number of related promotionImages returned (when they are included) (optional)
      - returns: RequestBuilder<PromotedPurchaseResponse> 
      */
-    open class func inAppPurchasesV2PromotedPurchaseGetToOneRelatedWithRequestBuilder(id: String, fieldsPromotedPurchases: [FieldsPromotedPurchases_inAppPurchasesV2PromotedPurchaseGetToOneRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_inAppPurchasesV2PromotedPurchaseGetToOneRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_inAppPurchasesV2PromotedPurchaseGetToOneRelated]? = nil, fieldsPromotedPurchaseImages: [FieldsPromotedPurchaseImages_inAppPurchasesV2PromotedPurchaseGetToOneRelated]? = nil, limitPromotionImages: Int? = nil, include: [Include_inAppPurchasesV2PromotedPurchaseGetToOneRelated]? = nil) -> RequestBuilder<PromotedPurchaseResponse> {
+    open class func inAppPurchasesV2PromotedPurchaseGetToOneRelatedWithRequestBuilder(id: String, fieldsPromotedPurchases: [FieldsPromotedPurchases_inAppPurchasesV2PromotedPurchaseGetToOneRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_inAppPurchasesV2PromotedPurchaseGetToOneRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_inAppPurchasesV2PromotedPurchaseGetToOneRelated]? = nil, fieldsPromotedPurchaseImages: [FieldsPromotedPurchaseImages_inAppPurchasesV2PromotedPurchaseGetToOneRelated]? = nil, include: [Include_inAppPurchasesV2PromotedPurchaseGetToOneRelated]? = nil, limitPromotionImages: Int? = nil) -> RequestBuilder<PromotedPurchaseResponse> {
         var localVariablePath = "/v2/inAppPurchases/{id}/promotedPurchase"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -1327,11 +1434,11 @@ open class InAppPurchasesAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[promotedPurchases]": (wrappedValue: fieldsPromotedPurchases?.encodeToJSON(), isExplode: false),
-            "fields[subscriptions]": (wrappedValue: fieldsSubscriptions?.encodeToJSON(), isExplode: false),
             "fields[inAppPurchases]": (wrappedValue: fieldsInAppPurchases?.encodeToJSON(), isExplode: false),
+            "fields[subscriptions]": (wrappedValue: fieldsSubscriptions?.encodeToJSON(), isExplode: false),
             "fields[promotedPurchaseImages]": (wrappedValue: fieldsPromotedPurchaseImages?.encodeToJSON(), isExplode: false),
-            "limit[promotionImages]": (wrappedValue: limitPromotionImages?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "limit[promotionImages]": (wrappedValue: limitPromotionImages?.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [

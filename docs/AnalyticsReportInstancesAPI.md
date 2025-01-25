@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 # **analyticsReportInstancesGetInstance**
 ```swift
-    open class func analyticsReportInstancesGetInstance(id: String, fieldsAnalyticsReportInstances: [FieldsAnalyticsReportInstances_analyticsReportInstancesGetInstance]? = nil, fieldsAnalyticsReportSegments: [FieldsAnalyticsReportSegments_analyticsReportInstancesGetInstance]? = nil, completion: @escaping (_ data: AnalyticsReportInstanceResponse?, _ error: Error?) -> Void)
+    open class func analyticsReportInstancesGetInstance(id: String, fieldsAnalyticsReportInstances: [FieldsAnalyticsReportInstances_analyticsReportInstancesGetInstance]? = nil, completion: @escaping (_ data: AnalyticsReportInstanceResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -22,9 +22,8 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let fieldsAnalyticsReportInstances = ["fieldsAnalyticsReportInstances_example"] // [String] | the fields to include for returned resources of type analyticsReportInstances (optional)
-let fieldsAnalyticsReportSegments = ["fieldsAnalyticsReportSegments_example"] // [String] | the fields to include for returned resources of type analyticsReportSegments (optional)
 
-AnalyticsReportInstancesAPI.analyticsReportInstancesGetInstance(id: id, fieldsAnalyticsReportInstances: fieldsAnalyticsReportInstances, fieldsAnalyticsReportSegments: fieldsAnalyticsReportSegments) { (response, error) in
+AnalyticsReportInstancesAPI.analyticsReportInstancesGetInstance(id: id, fieldsAnalyticsReportInstances: fieldsAnalyticsReportInstances) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -42,7 +41,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **fieldsAnalyticsReportInstances** | [**[String]**](String.md) | the fields to include for returned resources of type analyticsReportInstances | [optional] 
- **fieldsAnalyticsReportSegments** | [**[String]**](String.md) | the fields to include for returned resources of type analyticsReportSegments | [optional] 
 
 ### Return type
 

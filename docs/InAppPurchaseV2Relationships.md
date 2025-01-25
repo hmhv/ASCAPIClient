@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **promotedPurchase** | [**InAppPurchaseV2RelationshipsPromotedPurchase**](InAppPurchaseV2RelationshipsPromotedPurchase.md) |  | [optional] 
 **iapPriceSchedule** | [**InAppPurchaseV2RelationshipsIapPriceSchedule**](InAppPurchaseV2RelationshipsIapPriceSchedule.md) |  | [optional] 
 **inAppPurchaseAvailability** | [**InAppPurchaseV2RelationshipsInAppPurchaseAvailability**](InAppPurchaseV2RelationshipsInAppPurchaseAvailability.md) |  | [optional] 
+**images** | [**InAppPurchaseV2RelationshipsImages**](InAppPurchaseV2RelationshipsImages.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -12,14 +12,15 @@ import AnyCodable
 
 public struct GameCenterLeaderboardSetRelationships: Codable, JSONEncodable, Hashable {
 
-    public var gameCenterDetail: AppRelationshipsGameCenterDetail?
+    public var gameCenterDetail: GameCenterAchievementReleaseRelationshipsGameCenterDetail?
     public var gameCenterGroup: GameCenterAchievementRelationshipsGameCenterGroup?
-    public var groupLeaderboardSet: GameCenterLeaderboardSetLocalizationRelationshipsGameCenterLeaderboardSet?
+    @available(*, deprecated, message: "This property is deprecated.")
+    public var groupLeaderboardSet: GameCenterLeaderboardSetRelationshipsGroupLeaderboardSet?
     public var localizations: GameCenterLeaderboardSetRelationshipsLocalizations?
     public var gameCenterLeaderboards: GameCenterDetailRelationshipsGameCenterLeaderboards?
     public var releases: GameCenterDetailRelationshipsLeaderboardSetReleases?
 
-    public init(gameCenterDetail: AppRelationshipsGameCenterDetail? = nil, gameCenterGroup: GameCenterAchievementRelationshipsGameCenterGroup? = nil, groupLeaderboardSet: GameCenterLeaderboardSetLocalizationRelationshipsGameCenterLeaderboardSet? = nil, localizations: GameCenterLeaderboardSetRelationshipsLocalizations? = nil, gameCenterLeaderboards: GameCenterDetailRelationshipsGameCenterLeaderboards? = nil, releases: GameCenterDetailRelationshipsLeaderboardSetReleases? = nil) {
+    public init(gameCenterDetail: GameCenterAchievementReleaseRelationshipsGameCenterDetail? = nil, gameCenterGroup: GameCenterAchievementRelationshipsGameCenterGroup? = nil, groupLeaderboardSet: GameCenterLeaderboardSetRelationshipsGroupLeaderboardSet? = nil, localizations: GameCenterLeaderboardSetRelationshipsLocalizations? = nil, gameCenterLeaderboards: GameCenterDetailRelationshipsGameCenterLeaderboards? = nil, releases: GameCenterDetailRelationshipsLeaderboardSetReleases? = nil) {
         self.gameCenterDetail = gameCenterDetail
         self.gameCenterGroup = gameCenterGroup
         self.groupLeaderboardSet = groupLeaderboardSet

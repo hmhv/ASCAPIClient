@@ -19,10 +19,10 @@ public struct SubscriptionAvailability: Codable, JSONEncodable, Hashable {
     public var type: ModelType
     public var id: String
     public var attributes: AppAvailabilityV2Attributes?
-    public var relationships: SubscriptionAvailabilityRelationships?
+    public var relationships: InAppPurchaseAvailabilityRelationships?
     public var links: ResourceLinks?
 
-    public init(type: ModelType, id: String, attributes: AppAvailabilityV2Attributes? = nil, relationships: SubscriptionAvailabilityRelationships? = nil, links: ResourceLinks? = nil) {
+    public init(type: ModelType, id: String, attributes: AppAvailabilityV2Attributes? = nil, relationships: InAppPurchaseAvailabilityRelationships? = nil, links: ResourceLinks? = nil) {
         self.type = type
         self.id = id
         self.attributes = attributes

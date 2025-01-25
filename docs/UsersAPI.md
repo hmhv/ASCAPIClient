@@ -64,7 +64,7 @@ Void (empty response body)
 
 # **usersGetCollection**
 ```swift
-    open class func usersGetCollection(filterRoles: [FilterRoles_usersGetCollection]? = nil, filterUsername: [String]? = nil, filterVisibleApps: [String]? = nil, sort: [Sort_usersGetCollection]? = nil, fieldsUsers: [FieldsUsers_usersGetCollection]? = nil, limit: Int? = nil, include: [Include_usersGetCollection]? = nil, fieldsApps: [FieldsApps_usersGetCollection]? = nil, limitVisibleApps: Int? = nil, completion: @escaping (_ data: UsersResponse?, _ error: Error?) -> Void)
+    open class func usersGetCollection(filterUsername: [String]? = nil, filterRoles: [FilterRoles_usersGetCollection]? = nil, filterVisibleApps: [String]? = nil, sort: [Sort_usersGetCollection]? = nil, fieldsUsers: [FieldsUsers_usersGetCollection]? = nil, fieldsApps: [FieldsApps_usersGetCollection]? = nil, limit: Int? = nil, include: [Include_usersGetCollection]? = nil, limitVisibleApps: Int? = nil, completion: @escaping (_ data: UsersResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -74,17 +74,17 @@ Void (empty response body)
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import ASC
 
-let filterRoles = ["filterRoles_example"] // [String] | filter by attribute 'roles' (optional)
 let filterUsername = ["inner_example"] // [String] | filter by attribute 'username' (optional)
+let filterRoles = ["filterRoles_example"] // [String] | filter by attribute 'roles' (optional)
 let filterVisibleApps = ["inner_example"] // [String] | filter by id(s) of related 'visibleApps' (optional)
 let sort = ["sort_example"] // [String] | comma-separated list of sort expressions; resources will be sorted as specified (optional)
 let fieldsUsers = ["fieldsUsers_example"] // [String] | the fields to include for returned resources of type users (optional)
+let fieldsApps = ["fieldsApps_example"] // [String] | the fields to include for returned resources of type apps (optional)
 let limit = 987 // Int | maximum resources per page (optional)
 let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
-let fieldsApps = ["fieldsApps_example"] // [String] | the fields to include for returned resources of type apps (optional)
 let limitVisibleApps = 987 // Int | maximum number of related visibleApps returned (when they are included) (optional)
 
-UsersAPI.usersGetCollection(filterRoles: filterRoles, filterUsername: filterUsername, filterVisibleApps: filterVisibleApps, sort: sort, fieldsUsers: fieldsUsers, limit: limit, include: include, fieldsApps: fieldsApps, limitVisibleApps: limitVisibleApps) { (response, error) in
+UsersAPI.usersGetCollection(filterUsername: filterUsername, filterRoles: filterRoles, filterVisibleApps: filterVisibleApps, sort: sort, fieldsUsers: fieldsUsers, fieldsApps: fieldsApps, limit: limit, include: include, limitVisibleApps: limitVisibleApps) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -100,14 +100,14 @@ UsersAPI.usersGetCollection(filterRoles: filterRoles, filterUsername: filterUser
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **filterRoles** | [**[String]**](String.md) | filter by attribute &#39;roles&#39; | [optional] 
  **filterUsername** | [**[String]**](String.md) | filter by attribute &#39;username&#39; | [optional] 
+ **filterRoles** | [**[String]**](String.md) | filter by attribute &#39;roles&#39; | [optional] 
  **filterVisibleApps** | [**[String]**](String.md) | filter by id(s) of related &#39;visibleApps&#39; | [optional] 
  **sort** | [**[String]**](String.md) | comma-separated list of sort expressions; resources will be sorted as specified | [optional] 
  **fieldsUsers** | [**[String]**](String.md) | the fields to include for returned resources of type users | [optional] 
+ **fieldsApps** | [**[String]**](String.md) | the fields to include for returned resources of type apps | [optional] 
  **limit** | **Int** | maximum resources per page | [optional] 
  **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
- **fieldsApps** | [**[String]**](String.md) | the fields to include for returned resources of type apps | [optional] 
  **limitVisibleApps** | **Int** | maximum number of related visibleApps returned (when they are included) | [optional] 
 
 ### Return type
@@ -127,7 +127,7 @@ Name | Type | Description  | Notes
 
 # **usersGetInstance**
 ```swift
-    open class func usersGetInstance(id: String, fieldsUsers: [FieldsUsers_usersGetInstance]? = nil, include: [Include_usersGetInstance]? = nil, fieldsApps: [FieldsApps_usersGetInstance]? = nil, limitVisibleApps: Int? = nil, completion: @escaping (_ data: UserResponse?, _ error: Error?) -> Void)
+    open class func usersGetInstance(id: String, fieldsUsers: [FieldsUsers_usersGetInstance]? = nil, fieldsApps: [FieldsApps_usersGetInstance]? = nil, include: [Include_usersGetInstance]? = nil, limitVisibleApps: Int? = nil, completion: @escaping (_ data: UserResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -139,11 +139,11 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let fieldsUsers = ["fieldsUsers_example"] // [String] | the fields to include for returned resources of type users (optional)
-let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let fieldsApps = ["fieldsApps_example"] // [String] | the fields to include for returned resources of type apps (optional)
+let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let limitVisibleApps = 987 // Int | maximum number of related visibleApps returned (when they are included) (optional)
 
-UsersAPI.usersGetInstance(id: id, fieldsUsers: fieldsUsers, include: include, fieldsApps: fieldsApps, limitVisibleApps: limitVisibleApps) { (response, error) in
+UsersAPI.usersGetInstance(id: id, fieldsUsers: fieldsUsers, fieldsApps: fieldsApps, include: include, limitVisibleApps: limitVisibleApps) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -161,8 +161,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **fieldsUsers** | [**[String]**](String.md) | the fields to include for returned resources of type users | [optional] 
- **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **fieldsApps** | [**[String]**](String.md) | the fields to include for returned resources of type apps | [optional] 
+ **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **limitVisibleApps** | **Int** | maximum number of related visibleApps returned (when they are included) | [optional] 
 
 ### Return type

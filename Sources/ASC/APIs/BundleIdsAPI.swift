@@ -16,53 +16,49 @@ open class BundleIdsAPI {
      * enum for parameter fieldsApps
      */
     public enum FieldsApps_bundleIdsAppGetToOneRelated: String, CaseIterable {
+        case name = "name"
+        case bundleid = "bundleId"
+        case sku = "sku"
+        case primarylocale = "primaryLocale"
+        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
+        case subscriptionstatusurl = "subscriptionStatusUrl"
+        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
+        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
+        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
+        case contentrightsdeclaration = "contentRightsDeclaration"
+        case streamlinedpurchasingenabled = "streamlinedPurchasingEnabled"
+        case appencryptiondeclarations = "appEncryptionDeclarations"
+        case ciproduct = "ciProduct"
+        case betatesters = "betaTesters"
+        case betagroups = "betaGroups"
+        case appstoreversions = "appStoreVersions"
+        case prereleaseversions = "preReleaseVersions"
+        case betaapplocalizations = "betaAppLocalizations"
+        case builds = "builds"
+        case betalicenseagreement = "betaLicenseAgreement"
+        case betaappreviewdetail = "betaAppReviewDetail"
+        case appinfos = "appInfos"
+        case appclips = "appClips"
+        case apppricepoints = "appPricePoints"
+        case enduserlicenseagreement = "endUserLicenseAgreement"
+        case apppriceschedule = "appPriceSchedule"
+        case appavailabilityv2 = "appAvailabilityV2"
+        case inapppurchases = "inAppPurchases"
+        case subscriptiongroups = "subscriptionGroups"
+        case gamecenterenabledversions = "gameCenterEnabledVersions"
+        case perfpowermetrics = "perfPowerMetrics"
+        case appcustomproductpages = "appCustomProductPages"
+        case inapppurchasesv2 = "inAppPurchasesV2"
+        case promotedpurchases = "promotedPurchases"
+        case appevents = "appEvents"
+        case reviewsubmissions = "reviewSubmissions"
+        case subscriptiongraceperiod = "subscriptionGracePeriod"
+        case customerreviews = "customerReviews"
+        case gamecenterdetail = "gameCenterDetail"
+        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
         case alternativedistributionkey = "alternativeDistributionKey"
         case analyticsreportrequests = "analyticsReportRequests"
-        case appavailability = "appAvailability"
-        case appclips = "appClips"
-        case appcustomproductpages = "appCustomProductPages"
-        case appencryptiondeclarations = "appEncryptionDeclarations"
-        case appevents = "appEvents"
-        case appinfos = "appInfos"
-        case apppricepoints = "appPricePoints"
-        case apppriceschedule = "appPriceSchedule"
-        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
-        case appstoreversions = "appStoreVersions"
-        case availableinnewterritories = "availableInNewTerritories"
-        case availableterritories = "availableTerritories"
-        case betaapplocalizations = "betaAppLocalizations"
-        case betaappreviewdetail = "betaAppReviewDetail"
-        case betagroups = "betaGroups"
-        case betalicenseagreement = "betaLicenseAgreement"
-        case betatesters = "betaTesters"
-        case builds = "builds"
-        case bundleid = "bundleId"
-        case ciproduct = "ciProduct"
-        case contentrightsdeclaration = "contentRightsDeclaration"
-        case customerreviews = "customerReviews"
-        case enduserlicenseagreement = "endUserLicenseAgreement"
-        case gamecenterdetail = "gameCenterDetail"
-        case gamecenterenabledversions = "gameCenterEnabledVersions"
-        case inapppurchases = "inAppPurchases"
-        case inapppurchasesv2 = "inAppPurchasesV2"
-        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
         case marketplacesearchdetail = "marketplaceSearchDetail"
-        case name = "name"
-        case perfpowermetrics = "perfPowerMetrics"
-        case preorder = "preOrder"
-        case prereleaseversions = "preReleaseVersions"
-        case pricepoints = "pricePoints"
-        case prices = "prices"
-        case primarylocale = "primaryLocale"
-        case promotedpurchases = "promotedPurchases"
-        case reviewsubmissions = "reviewSubmissions"
-        case sku = "sku"
-        case subscriptiongraceperiod = "subscriptionGracePeriod"
-        case subscriptiongroups = "subscriptionGroups"
-        case subscriptionstatusurl = "subscriptionStatusUrl"
-        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
-        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
-        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
     }
 
     /**
@@ -142,7 +138,6 @@ open class BundleIdsAPI {
      * enum for parameter fieldsBundleIdCapabilities
      */
     public enum FieldsBundleIdCapabilities_bundleIdsBundleIdCapabilitiesGetToManyRelated: String, CaseIterable {
-        case bundleid = "bundleId"
         case capabilitytype = "capabilityType"
         case settings = "settings"
     }
@@ -362,146 +357,142 @@ open class BundleIdsAPI {
     public enum FilterPlatform_bundleIdsGetCollection: String, CaseIterable {
         case ios = "IOS"
         case macOs = "MAC_OS"
+        case universal = "UNIVERSAL"
     }
 
     /**
      * enum for parameter sort
      */
     public enum Sort_bundleIdsGetCollection: String, CaseIterable {
-        case id = "id"
-        case id2 = "-id"
-        case identifier = "identifier"
-        case identifier2 = "-identifier"
         case name = "name"
         case name2 = "-name"
         case platform = "platform"
         case platform2 = "-platform"
+        case identifier = "identifier"
+        case identifier2 = "-identifier"
         case seedid = "seedId"
         case seedid2 = "-seedId"
+        case id = "id"
+        case id2 = "-id"
     }
 
     /**
      * enum for parameter fieldsBundleIds
      */
     public enum FieldsBundleIds_bundleIdsGetCollection: String, CaseIterable {
-        case app = "app"
-        case bundleidcapabilities = "bundleIdCapabilities"
-        case identifier = "identifier"
         case name = "name"
         case platform = "platform"
-        case profiles = "profiles"
+        case identifier = "identifier"
         case seedid = "seedId"
-    }
-
-    /**
-     * enum for parameter include
-     */
-    public enum Include_bundleIdsGetCollection: String, CaseIterable {
-        case app = "app"
-        case bundleidcapabilities = "bundleIdCapabilities"
         case profiles = "profiles"
-    }
-
-    /**
-     * enum for parameter fieldsBundleIdCapabilities
-     */
-    public enum FieldsBundleIdCapabilities_bundleIdsGetCollection: String, CaseIterable {
-        case bundleid = "bundleId"
-        case capabilitytype = "capabilityType"
-        case settings = "settings"
+        case bundleidcapabilities = "bundleIdCapabilities"
+        case app = "app"
     }
 
     /**
      * enum for parameter fieldsProfiles
      */
     public enum FieldsProfiles_bundleIdsGetCollection: String, CaseIterable {
-        case bundleid = "bundleId"
-        case certificates = "certificates"
-        case createddate = "createdDate"
-        case devices = "devices"
-        case expirationdate = "expirationDate"
         case name = "name"
         case platform = "platform"
-        case profilecontent = "profileContent"
-        case profilestate = "profileState"
         case profiletype = "profileType"
+        case profilestate = "profileState"
+        case profilecontent = "profileContent"
         case uuid = "uuid"
+        case createddate = "createdDate"
+        case expirationdate = "expirationDate"
+        case bundleid = "bundleId"
+        case devices = "devices"
+        case certificates = "certificates"
+    }
+
+    /**
+     * enum for parameter fieldsBundleIdCapabilities
+     */
+    public enum FieldsBundleIdCapabilities_bundleIdsGetCollection: String, CaseIterable {
+        case capabilitytype = "capabilityType"
+        case settings = "settings"
     }
 
     /**
      * enum for parameter fieldsApps
      */
     public enum FieldsApps_bundleIdsGetCollection: String, CaseIterable {
+        case name = "name"
+        case bundleid = "bundleId"
+        case sku = "sku"
+        case primarylocale = "primaryLocale"
+        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
+        case subscriptionstatusurl = "subscriptionStatusUrl"
+        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
+        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
+        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
+        case contentrightsdeclaration = "contentRightsDeclaration"
+        case streamlinedpurchasingenabled = "streamlinedPurchasingEnabled"
+        case appencryptiondeclarations = "appEncryptionDeclarations"
+        case ciproduct = "ciProduct"
+        case betatesters = "betaTesters"
+        case betagroups = "betaGroups"
+        case appstoreversions = "appStoreVersions"
+        case prereleaseversions = "preReleaseVersions"
+        case betaapplocalizations = "betaAppLocalizations"
+        case builds = "builds"
+        case betalicenseagreement = "betaLicenseAgreement"
+        case betaappreviewdetail = "betaAppReviewDetail"
+        case appinfos = "appInfos"
+        case appclips = "appClips"
+        case apppricepoints = "appPricePoints"
+        case enduserlicenseagreement = "endUserLicenseAgreement"
+        case apppriceschedule = "appPriceSchedule"
+        case appavailabilityv2 = "appAvailabilityV2"
+        case inapppurchases = "inAppPurchases"
+        case subscriptiongroups = "subscriptionGroups"
+        case gamecenterenabledversions = "gameCenterEnabledVersions"
+        case perfpowermetrics = "perfPowerMetrics"
+        case appcustomproductpages = "appCustomProductPages"
+        case inapppurchasesv2 = "inAppPurchasesV2"
+        case promotedpurchases = "promotedPurchases"
+        case appevents = "appEvents"
+        case reviewsubmissions = "reviewSubmissions"
+        case subscriptiongraceperiod = "subscriptionGracePeriod"
+        case customerreviews = "customerReviews"
+        case gamecenterdetail = "gameCenterDetail"
+        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
         case alternativedistributionkey = "alternativeDistributionKey"
         case analyticsreportrequests = "analyticsReportRequests"
-        case appavailability = "appAvailability"
-        case appclips = "appClips"
-        case appcustomproductpages = "appCustomProductPages"
-        case appencryptiondeclarations = "appEncryptionDeclarations"
-        case appevents = "appEvents"
-        case appinfos = "appInfos"
-        case apppricepoints = "appPricePoints"
-        case apppriceschedule = "appPriceSchedule"
-        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
-        case appstoreversions = "appStoreVersions"
-        case availableinnewterritories = "availableInNewTerritories"
-        case availableterritories = "availableTerritories"
-        case betaapplocalizations = "betaAppLocalizations"
-        case betaappreviewdetail = "betaAppReviewDetail"
-        case betagroups = "betaGroups"
-        case betalicenseagreement = "betaLicenseAgreement"
-        case betatesters = "betaTesters"
-        case builds = "builds"
-        case bundleid = "bundleId"
-        case ciproduct = "ciProduct"
-        case contentrightsdeclaration = "contentRightsDeclaration"
-        case customerreviews = "customerReviews"
-        case enduserlicenseagreement = "endUserLicenseAgreement"
-        case gamecenterdetail = "gameCenterDetail"
-        case gamecenterenabledversions = "gameCenterEnabledVersions"
-        case inapppurchases = "inAppPurchases"
-        case inapppurchasesv2 = "inAppPurchasesV2"
-        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
         case marketplacesearchdetail = "marketplaceSearchDetail"
-        case name = "name"
-        case perfpowermetrics = "perfPowerMetrics"
-        case preorder = "preOrder"
-        case prereleaseversions = "preReleaseVersions"
-        case pricepoints = "pricePoints"
-        case prices = "prices"
-        case primarylocale = "primaryLocale"
-        case promotedpurchases = "promotedPurchases"
-        case reviewsubmissions = "reviewSubmissions"
-        case sku = "sku"
-        case subscriptiongraceperiod = "subscriptionGracePeriod"
-        case subscriptiongroups = "subscriptionGroups"
-        case subscriptionstatusurl = "subscriptionStatusUrl"
-        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
-        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
-        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
+    }
+
+    /**
+     * enum for parameter include
+     */
+    public enum Include_bundleIdsGetCollection: String, CaseIterable {
+        case profiles = "profiles"
+        case bundleidcapabilities = "bundleIdCapabilities"
+        case app = "app"
     }
 
     /**
 
-     - parameter filterIdentifier: (query) filter by attribute &#39;identifier&#39; (optional)
      - parameter filterName: (query) filter by attribute &#39;name&#39; (optional)
      - parameter filterPlatform: (query) filter by attribute &#39;platform&#39; (optional)
+     - parameter filterIdentifier: (query) filter by attribute &#39;identifier&#39; (optional)
      - parameter filterSeedId: (query) filter by attribute &#39;seedId&#39; (optional)
      - parameter filterId: (query) filter by id(s) (optional)
      - parameter sort: (query) comma-separated list of sort expressions; resources will be sorted as specified (optional)
      - parameter fieldsBundleIds: (query) the fields to include for returned resources of type bundleIds (optional)
+     - parameter fieldsProfiles: (query) the fields to include for returned resources of type profiles (optional)
+     - parameter fieldsBundleIdCapabilities: (query) the fields to include for returned resources of type bundleIdCapabilities (optional)
+     - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
-     - parameter fieldsBundleIdCapabilities: (query) the fields to include for returned resources of type bundleIdCapabilities (optional)
-     - parameter fieldsProfiles: (query) the fields to include for returned resources of type profiles (optional)
-     - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
      - parameter limitBundleIdCapabilities: (query) maximum number of related bundleIdCapabilities returned (when they are included) (optional)
      - parameter limitProfiles: (query) maximum number of related profiles returned (when they are included) (optional)
      - returns: BundleIdsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func bundleIdsGetCollection(filterIdentifier: [String]? = nil, filterName: [String]? = nil, filterPlatform: [FilterPlatform_bundleIdsGetCollection]? = nil, filterSeedId: [String]? = nil, filterId: [String]? = nil, sort: [Sort_bundleIdsGetCollection]? = nil, fieldsBundleIds: [FieldsBundleIds_bundleIdsGetCollection]? = nil, limit: Int? = nil, include: [Include_bundleIdsGetCollection]? = nil, fieldsBundleIdCapabilities: [FieldsBundleIdCapabilities_bundleIdsGetCollection]? = nil, fieldsProfiles: [FieldsProfiles_bundleIdsGetCollection]? = nil, fieldsApps: [FieldsApps_bundleIdsGetCollection]? = nil, limitBundleIdCapabilities: Int? = nil, limitProfiles: Int? = nil) async throws -> BundleIdsResponse {
-        return try await bundleIdsGetCollectionWithRequestBuilder(filterIdentifier: filterIdentifier, filterName: filterName, filterPlatform: filterPlatform, filterSeedId: filterSeedId, filterId: filterId, sort: sort, fieldsBundleIds: fieldsBundleIds, limit: limit, include: include, fieldsBundleIdCapabilities: fieldsBundleIdCapabilities, fieldsProfiles: fieldsProfiles, fieldsApps: fieldsApps, limitBundleIdCapabilities: limitBundleIdCapabilities, limitProfiles: limitProfiles).execute().body
+    open class func bundleIdsGetCollection(filterName: [String]? = nil, filterPlatform: [FilterPlatform_bundleIdsGetCollection]? = nil, filterIdentifier: [String]? = nil, filterSeedId: [String]? = nil, filterId: [String]? = nil, sort: [Sort_bundleIdsGetCollection]? = nil, fieldsBundleIds: [FieldsBundleIds_bundleIdsGetCollection]? = nil, fieldsProfiles: [FieldsProfiles_bundleIdsGetCollection]? = nil, fieldsBundleIdCapabilities: [FieldsBundleIdCapabilities_bundleIdsGetCollection]? = nil, fieldsApps: [FieldsApps_bundleIdsGetCollection]? = nil, limit: Int? = nil, include: [Include_bundleIdsGetCollection]? = nil, limitBundleIdCapabilities: Int? = nil, limitProfiles: Int? = nil) async throws -> BundleIdsResponse {
+        return try await bundleIdsGetCollectionWithRequestBuilder(filterName: filterName, filterPlatform: filterPlatform, filterIdentifier: filterIdentifier, filterSeedId: filterSeedId, filterId: filterId, sort: sort, fieldsBundleIds: fieldsBundleIds, fieldsProfiles: fieldsProfiles, fieldsBundleIdCapabilities: fieldsBundleIdCapabilities, fieldsApps: fieldsApps, limit: limit, include: include, limitBundleIdCapabilities: limitBundleIdCapabilities, limitProfiles: limitProfiles).execute().body
     }
 
     /**
@@ -518,41 +509,41 @@ open class BundleIdsAPI {
      - Bearer Token:
        - type: http
        - name: itc-bearer-token
-     - parameter filterIdentifier: (query) filter by attribute &#39;identifier&#39; (optional)
      - parameter filterName: (query) filter by attribute &#39;name&#39; (optional)
      - parameter filterPlatform: (query) filter by attribute &#39;platform&#39; (optional)
+     - parameter filterIdentifier: (query) filter by attribute &#39;identifier&#39; (optional)
      - parameter filterSeedId: (query) filter by attribute &#39;seedId&#39; (optional)
      - parameter filterId: (query) filter by id(s) (optional)
      - parameter sort: (query) comma-separated list of sort expressions; resources will be sorted as specified (optional)
      - parameter fieldsBundleIds: (query) the fields to include for returned resources of type bundleIds (optional)
+     - parameter fieldsProfiles: (query) the fields to include for returned resources of type profiles (optional)
+     - parameter fieldsBundleIdCapabilities: (query) the fields to include for returned resources of type bundleIdCapabilities (optional)
+     - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
-     - parameter fieldsBundleIdCapabilities: (query) the fields to include for returned resources of type bundleIdCapabilities (optional)
-     - parameter fieldsProfiles: (query) the fields to include for returned resources of type profiles (optional)
-     - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
      - parameter limitBundleIdCapabilities: (query) maximum number of related bundleIdCapabilities returned (when they are included) (optional)
      - parameter limitProfiles: (query) maximum number of related profiles returned (when they are included) (optional)
      - returns: RequestBuilder<BundleIdsResponse> 
      */
-    open class func bundleIdsGetCollectionWithRequestBuilder(filterIdentifier: [String]? = nil, filterName: [String]? = nil, filterPlatform: [FilterPlatform_bundleIdsGetCollection]? = nil, filterSeedId: [String]? = nil, filterId: [String]? = nil, sort: [Sort_bundleIdsGetCollection]? = nil, fieldsBundleIds: [FieldsBundleIds_bundleIdsGetCollection]? = nil, limit: Int? = nil, include: [Include_bundleIdsGetCollection]? = nil, fieldsBundleIdCapabilities: [FieldsBundleIdCapabilities_bundleIdsGetCollection]? = nil, fieldsProfiles: [FieldsProfiles_bundleIdsGetCollection]? = nil, fieldsApps: [FieldsApps_bundleIdsGetCollection]? = nil, limitBundleIdCapabilities: Int? = nil, limitProfiles: Int? = nil) -> RequestBuilder<BundleIdsResponse> {
+    open class func bundleIdsGetCollectionWithRequestBuilder(filterName: [String]? = nil, filterPlatform: [FilterPlatform_bundleIdsGetCollection]? = nil, filterIdentifier: [String]? = nil, filterSeedId: [String]? = nil, filterId: [String]? = nil, sort: [Sort_bundleIdsGetCollection]? = nil, fieldsBundleIds: [FieldsBundleIds_bundleIdsGetCollection]? = nil, fieldsProfiles: [FieldsProfiles_bundleIdsGetCollection]? = nil, fieldsBundleIdCapabilities: [FieldsBundleIdCapabilities_bundleIdsGetCollection]? = nil, fieldsApps: [FieldsApps_bundleIdsGetCollection]? = nil, limit: Int? = nil, include: [Include_bundleIdsGetCollection]? = nil, limitBundleIdCapabilities: Int? = nil, limitProfiles: Int? = nil) -> RequestBuilder<BundleIdsResponse> {
         let localVariablePath = "/v1/bundleIds"
         let localVariableURLString = ASCAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[identifier]": (wrappedValue: filterIdentifier?.encodeToJSON(), isExplode: false),
             "filter[name]": (wrappedValue: filterName?.encodeToJSON(), isExplode: false),
             "filter[platform]": (wrappedValue: filterPlatform?.encodeToJSON(), isExplode: false),
+            "filter[identifier]": (wrappedValue: filterIdentifier?.encodeToJSON(), isExplode: false),
             "filter[seedId]": (wrappedValue: filterSeedId?.encodeToJSON(), isExplode: false),
             "filter[id]": (wrappedValue: filterId?.encodeToJSON(), isExplode: false),
             "sort": (wrappedValue: sort?.encodeToJSON(), isExplode: false),
             "fields[bundleIds]": (wrappedValue: fieldsBundleIds?.encodeToJSON(), isExplode: false),
+            "fields[profiles]": (wrappedValue: fieldsProfiles?.encodeToJSON(), isExplode: false),
+            "fields[bundleIdCapabilities]": (wrappedValue: fieldsBundleIdCapabilities?.encodeToJSON(), isExplode: false),
+            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "fields[bundleIdCapabilities]": (wrappedValue: fieldsBundleIdCapabilities?.encodeToJSON(), isExplode: false),
-            "fields[profiles]": (wrappedValue: fieldsProfiles?.encodeToJSON(), isExplode: false),
-            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
             "limit[bundleIdCapabilities]": (wrappedValue: limitBundleIdCapabilities?.encodeToJSON(), isExplode: true),
             "limit[profiles]": (wrappedValue: limitProfiles?.encodeToJSON(), isExplode: true),
         ])
@@ -592,118 +583,113 @@ open class BundleIdsAPI {
      * enum for parameter fieldsBundleIds
      */
     public enum FieldsBundleIds_bundleIdsGetInstance: String, CaseIterable {
-        case app = "app"
-        case bundleidcapabilities = "bundleIdCapabilities"
-        case identifier = "identifier"
         case name = "name"
         case platform = "platform"
-        case profiles = "profiles"
+        case identifier = "identifier"
         case seedid = "seedId"
-    }
-
-    /**
-     * enum for parameter include
-     */
-    public enum Include_bundleIdsGetInstance: String, CaseIterable {
-        case app = "app"
-        case bundleidcapabilities = "bundleIdCapabilities"
         case profiles = "profiles"
-    }
-
-    /**
-     * enum for parameter fieldsBundleIdCapabilities
-     */
-    public enum FieldsBundleIdCapabilities_bundleIdsGetInstance: String, CaseIterable {
-        case bundleid = "bundleId"
-        case capabilitytype = "capabilityType"
-        case settings = "settings"
+        case bundleidcapabilities = "bundleIdCapabilities"
+        case app = "app"
     }
 
     /**
      * enum for parameter fieldsProfiles
      */
     public enum FieldsProfiles_bundleIdsGetInstance: String, CaseIterable {
-        case bundleid = "bundleId"
-        case certificates = "certificates"
-        case createddate = "createdDate"
-        case devices = "devices"
-        case expirationdate = "expirationDate"
         case name = "name"
         case platform = "platform"
-        case profilecontent = "profileContent"
-        case profilestate = "profileState"
         case profiletype = "profileType"
+        case profilestate = "profileState"
+        case profilecontent = "profileContent"
         case uuid = "uuid"
+        case createddate = "createdDate"
+        case expirationdate = "expirationDate"
+        case bundleid = "bundleId"
+        case devices = "devices"
+        case certificates = "certificates"
+    }
+
+    /**
+     * enum for parameter fieldsBundleIdCapabilities
+     */
+    public enum FieldsBundleIdCapabilities_bundleIdsGetInstance: String, CaseIterable {
+        case capabilitytype = "capabilityType"
+        case settings = "settings"
     }
 
     /**
      * enum for parameter fieldsApps
      */
     public enum FieldsApps_bundleIdsGetInstance: String, CaseIterable {
+        case name = "name"
+        case bundleid = "bundleId"
+        case sku = "sku"
+        case primarylocale = "primaryLocale"
+        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
+        case subscriptionstatusurl = "subscriptionStatusUrl"
+        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
+        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
+        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
+        case contentrightsdeclaration = "contentRightsDeclaration"
+        case streamlinedpurchasingenabled = "streamlinedPurchasingEnabled"
+        case appencryptiondeclarations = "appEncryptionDeclarations"
+        case ciproduct = "ciProduct"
+        case betatesters = "betaTesters"
+        case betagroups = "betaGroups"
+        case appstoreversions = "appStoreVersions"
+        case prereleaseversions = "preReleaseVersions"
+        case betaapplocalizations = "betaAppLocalizations"
+        case builds = "builds"
+        case betalicenseagreement = "betaLicenseAgreement"
+        case betaappreviewdetail = "betaAppReviewDetail"
+        case appinfos = "appInfos"
+        case appclips = "appClips"
+        case apppricepoints = "appPricePoints"
+        case enduserlicenseagreement = "endUserLicenseAgreement"
+        case apppriceschedule = "appPriceSchedule"
+        case appavailabilityv2 = "appAvailabilityV2"
+        case inapppurchases = "inAppPurchases"
+        case subscriptiongroups = "subscriptionGroups"
+        case gamecenterenabledversions = "gameCenterEnabledVersions"
+        case perfpowermetrics = "perfPowerMetrics"
+        case appcustomproductpages = "appCustomProductPages"
+        case inapppurchasesv2 = "inAppPurchasesV2"
+        case promotedpurchases = "promotedPurchases"
+        case appevents = "appEvents"
+        case reviewsubmissions = "reviewSubmissions"
+        case subscriptiongraceperiod = "subscriptionGracePeriod"
+        case customerreviews = "customerReviews"
+        case gamecenterdetail = "gameCenterDetail"
+        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
         case alternativedistributionkey = "alternativeDistributionKey"
         case analyticsreportrequests = "analyticsReportRequests"
-        case appavailability = "appAvailability"
-        case appclips = "appClips"
-        case appcustomproductpages = "appCustomProductPages"
-        case appencryptiondeclarations = "appEncryptionDeclarations"
-        case appevents = "appEvents"
-        case appinfos = "appInfos"
-        case apppricepoints = "appPricePoints"
-        case apppriceschedule = "appPriceSchedule"
-        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
-        case appstoreversions = "appStoreVersions"
-        case availableinnewterritories = "availableInNewTerritories"
-        case availableterritories = "availableTerritories"
-        case betaapplocalizations = "betaAppLocalizations"
-        case betaappreviewdetail = "betaAppReviewDetail"
-        case betagroups = "betaGroups"
-        case betalicenseagreement = "betaLicenseAgreement"
-        case betatesters = "betaTesters"
-        case builds = "builds"
-        case bundleid = "bundleId"
-        case ciproduct = "ciProduct"
-        case contentrightsdeclaration = "contentRightsDeclaration"
-        case customerreviews = "customerReviews"
-        case enduserlicenseagreement = "endUserLicenseAgreement"
-        case gamecenterdetail = "gameCenterDetail"
-        case gamecenterenabledversions = "gameCenterEnabledVersions"
-        case inapppurchases = "inAppPurchases"
-        case inapppurchasesv2 = "inAppPurchasesV2"
-        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
         case marketplacesearchdetail = "marketplaceSearchDetail"
-        case name = "name"
-        case perfpowermetrics = "perfPowerMetrics"
-        case preorder = "preOrder"
-        case prereleaseversions = "preReleaseVersions"
-        case pricepoints = "pricePoints"
-        case prices = "prices"
-        case primarylocale = "primaryLocale"
-        case promotedpurchases = "promotedPurchases"
-        case reviewsubmissions = "reviewSubmissions"
-        case sku = "sku"
-        case subscriptiongraceperiod = "subscriptionGracePeriod"
-        case subscriptiongroups = "subscriptionGroups"
-        case subscriptionstatusurl = "subscriptionStatusUrl"
-        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
-        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
-        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
+    }
+
+    /**
+     * enum for parameter include
+     */
+    public enum Include_bundleIdsGetInstance: String, CaseIterable {
+        case profiles = "profiles"
+        case bundleidcapabilities = "bundleIdCapabilities"
+        case app = "app"
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsBundleIds: (query) the fields to include for returned resources of type bundleIds (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
-     - parameter fieldsBundleIdCapabilities: (query) the fields to include for returned resources of type bundleIdCapabilities (optional)
      - parameter fieldsProfiles: (query) the fields to include for returned resources of type profiles (optional)
+     - parameter fieldsBundleIdCapabilities: (query) the fields to include for returned resources of type bundleIdCapabilities (optional)
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitBundleIdCapabilities: (query) maximum number of related bundleIdCapabilities returned (when they are included) (optional)
      - parameter limitProfiles: (query) maximum number of related profiles returned (when they are included) (optional)
      - returns: BundleIdResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func bundleIdsGetInstance(id: String, fieldsBundleIds: [FieldsBundleIds_bundleIdsGetInstance]? = nil, include: [Include_bundleIdsGetInstance]? = nil, fieldsBundleIdCapabilities: [FieldsBundleIdCapabilities_bundleIdsGetInstance]? = nil, fieldsProfiles: [FieldsProfiles_bundleIdsGetInstance]? = nil, fieldsApps: [FieldsApps_bundleIdsGetInstance]? = nil, limitBundleIdCapabilities: Int? = nil, limitProfiles: Int? = nil) async throws -> BundleIdResponse {
-        return try await bundleIdsGetInstanceWithRequestBuilder(id: id, fieldsBundleIds: fieldsBundleIds, include: include, fieldsBundleIdCapabilities: fieldsBundleIdCapabilities, fieldsProfiles: fieldsProfiles, fieldsApps: fieldsApps, limitBundleIdCapabilities: limitBundleIdCapabilities, limitProfiles: limitProfiles).execute().body
+    open class func bundleIdsGetInstance(id: String, fieldsBundleIds: [FieldsBundleIds_bundleIdsGetInstance]? = nil, fieldsProfiles: [FieldsProfiles_bundleIdsGetInstance]? = nil, fieldsBundleIdCapabilities: [FieldsBundleIdCapabilities_bundleIdsGetInstance]? = nil, fieldsApps: [FieldsApps_bundleIdsGetInstance]? = nil, include: [Include_bundleIdsGetInstance]? = nil, limitBundleIdCapabilities: Int? = nil, limitProfiles: Int? = nil) async throws -> BundleIdResponse {
+        return try await bundleIdsGetInstanceWithRequestBuilder(id: id, fieldsBundleIds: fieldsBundleIds, fieldsProfiles: fieldsProfiles, fieldsBundleIdCapabilities: fieldsBundleIdCapabilities, fieldsApps: fieldsApps, include: include, limitBundleIdCapabilities: limitBundleIdCapabilities, limitProfiles: limitProfiles).execute().body
     }
 
     /**
@@ -722,15 +708,15 @@ open class BundleIdsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsBundleIds: (query) the fields to include for returned resources of type bundleIds (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
-     - parameter fieldsBundleIdCapabilities: (query) the fields to include for returned resources of type bundleIdCapabilities (optional)
      - parameter fieldsProfiles: (query) the fields to include for returned resources of type profiles (optional)
+     - parameter fieldsBundleIdCapabilities: (query) the fields to include for returned resources of type bundleIdCapabilities (optional)
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitBundleIdCapabilities: (query) maximum number of related bundleIdCapabilities returned (when they are included) (optional)
      - parameter limitProfiles: (query) maximum number of related profiles returned (when they are included) (optional)
      - returns: RequestBuilder<BundleIdResponse> 
      */
-    open class func bundleIdsGetInstanceWithRequestBuilder(id: String, fieldsBundleIds: [FieldsBundleIds_bundleIdsGetInstance]? = nil, include: [Include_bundleIdsGetInstance]? = nil, fieldsBundleIdCapabilities: [FieldsBundleIdCapabilities_bundleIdsGetInstance]? = nil, fieldsProfiles: [FieldsProfiles_bundleIdsGetInstance]? = nil, fieldsApps: [FieldsApps_bundleIdsGetInstance]? = nil, limitBundleIdCapabilities: Int? = nil, limitProfiles: Int? = nil) -> RequestBuilder<BundleIdResponse> {
+    open class func bundleIdsGetInstanceWithRequestBuilder(id: String, fieldsBundleIds: [FieldsBundleIds_bundleIdsGetInstance]? = nil, fieldsProfiles: [FieldsProfiles_bundleIdsGetInstance]? = nil, fieldsBundleIdCapabilities: [FieldsBundleIdCapabilities_bundleIdsGetInstance]? = nil, fieldsApps: [FieldsApps_bundleIdsGetInstance]? = nil, include: [Include_bundleIdsGetInstance]? = nil, limitBundleIdCapabilities: Int? = nil, limitProfiles: Int? = nil) -> RequestBuilder<BundleIdResponse> {
         var localVariablePath = "/v1/bundleIds/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -741,10 +727,10 @@ open class BundleIdsAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[bundleIds]": (wrappedValue: fieldsBundleIds?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "fields[bundleIdCapabilities]": (wrappedValue: fieldsBundleIdCapabilities?.encodeToJSON(), isExplode: false),
             "fields[profiles]": (wrappedValue: fieldsProfiles?.encodeToJSON(), isExplode: false),
+            "fields[bundleIdCapabilities]": (wrappedValue: fieldsBundleIdCapabilities?.encodeToJSON(), isExplode: false),
             "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "limit[bundleIdCapabilities]": (wrappedValue: limitBundleIdCapabilities?.encodeToJSON(), isExplode: true),
             "limit[profiles]": (wrappedValue: limitProfiles?.encodeToJSON(), isExplode: true),
         ])
@@ -784,17 +770,17 @@ open class BundleIdsAPI {
      * enum for parameter fieldsProfiles
      */
     public enum FieldsProfiles_bundleIdsProfilesGetToManyRelated: String, CaseIterable {
-        case bundleid = "bundleId"
-        case certificates = "certificates"
-        case createddate = "createdDate"
-        case devices = "devices"
-        case expirationdate = "expirationDate"
         case name = "name"
         case platform = "platform"
-        case profilecontent = "profileContent"
-        case profilestate = "profileState"
         case profiletype = "profileType"
+        case profilestate = "profileState"
+        case profilecontent = "profileContent"
         case uuid = "uuid"
+        case createddate = "createdDate"
+        case expirationdate = "expirationDate"
+        case bundleid = "bundleId"
+        case devices = "devices"
+        case certificates = "certificates"
     }
 
     /**

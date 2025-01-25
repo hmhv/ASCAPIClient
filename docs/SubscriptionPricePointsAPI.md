@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 # **subscriptionPricePointsEqualizationsGetToManyRelated**
 ```swift
-    open class func subscriptionPricePointsEqualizationsGetToManyRelated(id: String, filterSubscription: [String]? = nil, filterTerritory: [String]? = nil, fieldsSubscriptionPricePoints: [FieldsSubscriptionPricePoints_subscriptionPricePointsEqualizationsGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_subscriptionPricePointsEqualizationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionPricePointsEqualizationsGetToManyRelated]? = nil, completion: @escaping (_ data: SubscriptionPricePointsResponse?, _ error: Error?) -> Void)
+    open class func subscriptionPricePointsEqualizationsGetToManyRelated(id: String, filterTerritory: [String]? = nil, filterSubscription: [String]? = nil, fieldsSubscriptionPricePoints: [FieldsSubscriptionPricePoints_subscriptionPricePointsEqualizationsGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_subscriptionPricePointsEqualizationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionPricePointsEqualizationsGetToManyRelated]? = nil, completion: @escaping (_ data: SubscriptionPricePointsResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -21,14 +21,14 @@ Method | HTTP request | Description
 import ASC
 
 let id = "id_example" // String | the id of the requested resource
-let filterSubscription = ["inner_example"] // [String] | filter by id(s) of related 'subscription' (optional)
 let filterTerritory = ["inner_example"] // [String] | filter by id(s) of related 'territory' (optional)
+let filterSubscription = ["inner_example"] // [String] | filter by id(s) of related 'subscription' (optional)
 let fieldsSubscriptionPricePoints = ["fieldsSubscriptionPricePoints_example"] // [String] | the fields to include for returned resources of type subscriptionPricePoints (optional)
 let fieldsTerritories = ["fieldsTerritories_example"] // [String] | the fields to include for returned resources of type territories (optional)
 let limit = 987 // Int | maximum resources per page (optional)
 let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 
-SubscriptionPricePointsAPI.subscriptionPricePointsEqualizationsGetToManyRelated(id: id, filterSubscription: filterSubscription, filterTerritory: filterTerritory, fieldsSubscriptionPricePoints: fieldsSubscriptionPricePoints, fieldsTerritories: fieldsTerritories, limit: limit, include: include) { (response, error) in
+SubscriptionPricePointsAPI.subscriptionPricePointsEqualizationsGetToManyRelated(id: id, filterTerritory: filterTerritory, filterSubscription: filterSubscription, fieldsSubscriptionPricePoints: fieldsSubscriptionPricePoints, fieldsTerritories: fieldsTerritories, limit: limit, include: include) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -45,8 +45,8 @@ SubscriptionPricePointsAPI.subscriptionPricePointsEqualizationsGetToManyRelated(
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
- **filterSubscription** | [**[String]**](String.md) | filter by id(s) of related &#39;subscription&#39; | [optional] 
  **filterTerritory** | [**[String]**](String.md) | filter by id(s) of related &#39;territory&#39; | [optional] 
+ **filterSubscription** | [**[String]**](String.md) | filter by id(s) of related &#39;subscription&#39; | [optional] 
  **fieldsSubscriptionPricePoints** | [**[String]**](String.md) | the fields to include for returned resources of type subscriptionPricePoints | [optional] 
  **fieldsTerritories** | [**[String]**](String.md) | the fields to include for returned resources of type territories | [optional] 
  **limit** | **Int** | maximum resources per page | [optional] 

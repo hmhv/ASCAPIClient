@@ -16,10 +16,10 @@ open class ScmGitReferencesAPI {
      * enum for parameter fieldsScmGitReferences
      */
     public enum FieldsScmGitReferences_scmGitReferencesGetInstance: String, CaseIterable {
+        case name = "name"
         case canonicalname = "canonicalName"
         case isdeleted = "isDeleted"
         case kind = "kind"
-        case name = "name"
         case repository = "repository"
     }
 

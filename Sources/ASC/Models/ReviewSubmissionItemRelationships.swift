@@ -12,13 +12,13 @@ import AnyCodable
 
 public struct ReviewSubmissionItemRelationships: Codable, JSONEncodable, Hashable {
 
-    public var appStoreVersion: AppClipDefaultExperienceRelationshipsReleaseWithAppStoreVersion?
+    public var appStoreVersion: AppClipDefaultExperienceCreateRequestDataRelationshipsReleaseWithAppStoreVersion?
     public var appCustomProductPageVersion: AppCustomProductPageLocalizationRelationshipsAppCustomProductPageVersion?
     public var appStoreVersionExperiment: AppStoreVersionExperimentTreatmentRelationshipsAppStoreVersionExperiment?
     public var appStoreVersionExperimentV2: AppStoreVersionExperimentTreatmentRelationshipsAppStoreVersionExperiment?
     public var appEvent: AppEventLocalizationRelationshipsAppEvent?
 
-    public init(appStoreVersion: AppClipDefaultExperienceRelationshipsReleaseWithAppStoreVersion? = nil, appCustomProductPageVersion: AppCustomProductPageLocalizationRelationshipsAppCustomProductPageVersion? = nil, appStoreVersionExperiment: AppStoreVersionExperimentTreatmentRelationshipsAppStoreVersionExperiment? = nil, appStoreVersionExperimentV2: AppStoreVersionExperimentTreatmentRelationshipsAppStoreVersionExperiment? = nil, appEvent: AppEventLocalizationRelationshipsAppEvent? = nil) {
+    public init(appStoreVersion: AppClipDefaultExperienceCreateRequestDataRelationshipsReleaseWithAppStoreVersion? = nil, appCustomProductPageVersion: AppCustomProductPageLocalizationRelationshipsAppCustomProductPageVersion? = nil, appStoreVersionExperiment: AppStoreVersionExperimentTreatmentRelationshipsAppStoreVersionExperiment? = nil, appStoreVersionExperimentV2: AppStoreVersionExperimentTreatmentRelationshipsAppStoreVersionExperiment? = nil, appEvent: AppEventLocalizationRelationshipsAppEvent? = nil) {
         self.appStoreVersion = appStoreVersion
         self.appCustomProductPageVersion = appCustomProductPageVersion
         self.appStoreVersionExperiment = appStoreVersionExperiment

@@ -12,20 +12,29 @@ import AnyCodable
 
 public struct CiProductRelationships: Codable, JSONEncodable, Hashable {
 
-    public var app: AppAvailabilityRelationshipsApp?
+    public var app: BetaAppLocalizationRelationshipsApp?
     public var bundleId: CiProductRelationshipsBundleId?
+    public var workflows: AnalyticsReportInstanceRelationshipsSegments?
     public var primaryRepositories: CiProductRelationshipsPrimaryRepositories?
+    public var additionalRepositories: AnalyticsReportInstanceRelationshipsSegments?
+    public var buildRuns: AnalyticsReportInstanceRelationshipsSegments?
 
-    public init(app: AppAvailabilityRelationshipsApp? = nil, bundleId: CiProductRelationshipsBundleId? = nil, primaryRepositories: CiProductRelationshipsPrimaryRepositories? = nil) {
+    public init(app: BetaAppLocalizationRelationshipsApp? = nil, bundleId: CiProductRelationshipsBundleId? = nil, workflows: AnalyticsReportInstanceRelationshipsSegments? = nil, primaryRepositories: CiProductRelationshipsPrimaryRepositories? = nil, additionalRepositories: AnalyticsReportInstanceRelationshipsSegments? = nil, buildRuns: AnalyticsReportInstanceRelationshipsSegments? = nil) {
         self.app = app
         self.bundleId = bundleId
+        self.workflows = workflows
         self.primaryRepositories = primaryRepositories
+        self.additionalRepositories = additionalRepositories
+        self.buildRuns = buildRuns
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case app
         case bundleId
+        case workflows
         case primaryRepositories
+        case additionalRepositories
+        case buildRuns
     }
 
     // Encodable protocol methods
@@ -34,7 +43,10 @@ public struct CiProductRelationships: Codable, JSONEncodable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(app, forKey: .app)
         try container.encodeIfPresent(bundleId, forKey: .bundleId)
+        try container.encodeIfPresent(workflows, forKey: .workflows)
         try container.encodeIfPresent(primaryRepositories, forKey: .primaryRepositories)
+        try container.encodeIfPresent(additionalRepositories, forKey: .additionalRepositories)
+        try container.encodeIfPresent(buildRuns, forKey: .buildRuns)
     }
 }
 

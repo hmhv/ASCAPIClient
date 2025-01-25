@@ -12,11 +12,11 @@ import AnyCodable
 
 public struct SubscriptionGroupRelationshipsSubscriptions: Codable, JSONEncodable, Hashable {
 
-    public var links: AlternativeDistributionPackageVersionRelationshipsVariantsLinks?
+    public var links: RelationshipLinks?
     public var meta: PagingInformation?
     public var data: [PromotedPurchaseRelationshipsSubscriptionData]?
 
-    public init(links: AlternativeDistributionPackageVersionRelationshipsVariantsLinks? = nil, meta: PagingInformation? = nil, data: [PromotedPurchaseRelationshipsSubscriptionData]? = nil) {
+    public init(links: RelationshipLinks? = nil, meta: PagingInformation? = nil, data: [PromotedPurchaseRelationshipsSubscriptionData]? = nil) {
         self.links = links
         self.meta = meta
         self.data = data

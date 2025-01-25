@@ -12,10 +12,10 @@ import AnyCodable
 
 public struct CiWorkflowRelationshipsRepository: Codable, JSONEncodable, Hashable {
 
-    public var links: AlternativeDistributionPackageVersionRelationshipsVariantsLinks?
+    public var links: RelationshipLinks?
     public var data: CiProductRelationshipsPrimaryRepositoriesDataInner?
 
-    public init(links: AlternativeDistributionPackageVersionRelationshipsVariantsLinks? = nil, data: CiProductRelationshipsPrimaryRepositoriesDataInner? = nil) {
+    public init(links: RelationshipLinks? = nil, data: CiProductRelationshipsPrimaryRepositoriesDataInner? = nil) {
         self.links = links
         self.data = data
     }

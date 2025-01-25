@@ -13,13 +13,16 @@ import AnyCodable
 public struct AppsBetaTesterUsagesV1MetricResponseDataInnerDimensionsBetaTesters: Codable, JSONEncodable, Hashable {
 
     public var links: AppsBetaTesterUsagesV1MetricResponseDataInnerDimensionsBetaTestersLinks?
+    public var data: String?
 
-    public init(links: AppsBetaTesterUsagesV1MetricResponseDataInnerDimensionsBetaTestersLinks? = nil) {
+    public init(links: AppsBetaTesterUsagesV1MetricResponseDataInnerDimensionsBetaTestersLinks? = nil, data: String? = nil) {
         self.links = links
+        self.data = data
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case links
+        case data
     }
 
     // Encodable protocol methods
@@ -27,6 +30,7 @@ public struct AppsBetaTesterUsagesV1MetricResponseDataInnerDimensionsBetaTesters
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(links, forKey: .links)
+        try container.encodeIfPresent(data, forKey: .data)
     }
 }
 

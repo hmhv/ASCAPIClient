@@ -16,10 +16,10 @@ open class CiArtifactsAPI {
      * enum for parameter fieldsCiArtifacts
      */
     public enum FieldsCiArtifacts_ciArtifactsGetInstance: String, CaseIterable {
-        case downloadurl = "downloadUrl"
+        case filetype = "fileType"
         case filename = "fileName"
         case filesize = "fileSize"
-        case filetype = "fileType"
+        case downloadurl = "downloadUrl"
     }
 
     /**

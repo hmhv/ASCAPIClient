@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 # **appScreenshotSetsAppScreenshotsGetToManyRelated**
 ```swift
-    open class func appScreenshotSetsAppScreenshotsGetToManyRelated(id: String, fieldsAppScreenshotSets: [FieldsAppScreenshotSets_appScreenshotSetsAppScreenshotsGetToManyRelated]? = nil, fieldsAppScreenshots: [FieldsAppScreenshots_appScreenshotSetsAppScreenshotsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appScreenshotSetsAppScreenshotsGetToManyRelated]? = nil, completion: @escaping (_ data: AppScreenshotsResponse?, _ error: Error?) -> Void)
+    open class func appScreenshotSetsAppScreenshotsGetToManyRelated(id: String, fieldsAppScreenshots: [FieldsAppScreenshots_appScreenshotSetsAppScreenshotsGetToManyRelated]? = nil, fieldsAppScreenshotSets: [FieldsAppScreenshotSets_appScreenshotSetsAppScreenshotsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appScreenshotSetsAppScreenshotsGetToManyRelated]? = nil, completion: @escaping (_ data: AppScreenshotsResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -25,12 +25,12 @@ Method | HTTP request | Description
 import ASC
 
 let id = "id_example" // String | the id of the requested resource
-let fieldsAppScreenshotSets = ["fieldsAppScreenshotSets_example"] // [String] | the fields to include for returned resources of type appScreenshotSets (optional)
 let fieldsAppScreenshots = ["fieldsAppScreenshots_example"] // [String] | the fields to include for returned resources of type appScreenshots (optional)
+let fieldsAppScreenshotSets = ["fieldsAppScreenshotSets_example"] // [String] | the fields to include for returned resources of type appScreenshotSets (optional)
 let limit = 987 // Int | maximum resources per page (optional)
 let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 
-AppScreenshotSetsAPI.appScreenshotSetsAppScreenshotsGetToManyRelated(id: id, fieldsAppScreenshotSets: fieldsAppScreenshotSets, fieldsAppScreenshots: fieldsAppScreenshots, limit: limit, include: include) { (response, error) in
+AppScreenshotSetsAPI.appScreenshotSetsAppScreenshotsGetToManyRelated(id: id, fieldsAppScreenshots: fieldsAppScreenshots, fieldsAppScreenshotSets: fieldsAppScreenshotSets, limit: limit, include: include) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -47,8 +47,8 @@ AppScreenshotSetsAPI.appScreenshotSetsAppScreenshotsGetToManyRelated(id: id, fie
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
- **fieldsAppScreenshotSets** | [**[String]**](String.md) | the fields to include for returned resources of type appScreenshotSets | [optional] 
  **fieldsAppScreenshots** | [**[String]**](String.md) | the fields to include for returned resources of type appScreenshots | [optional] 
+ **fieldsAppScreenshotSets** | [**[String]**](String.md) | the fields to include for returned resources of type appScreenshotSets | [optional] 
  **limit** | **Int** | maximum resources per page | [optional] 
  **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
 
@@ -177,7 +177,7 @@ Void (empty response body)
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import ASC
 
-let appScreenshotSetCreateRequest = AppScreenshotSetCreateRequest(data: AppScreenshotSetCreateRequest_data(type: "type_example", attributes: AppScreenshotSetCreateRequest_data_attributes(screenshotDisplayType: ScreenshotDisplayType()), relationships: AppPreviewSetCreateRequest_data_relationships(appStoreVersionLocalization: AppPreviewSetCreateRequest_data_relationships_appStoreVersionLocalization(data: AppPreviewSet_relationships_appStoreVersionLocalization_data(type: "type_example", id: "id_example")), appCustomProductPageLocalization: AppPreviewSetCreateRequest_data_relationships_appCustomProductPageLocalization(data: AppCustomProductPageVersion_relationships_appCustomProductPageLocalizations_data_inner(type: "type_example", id: "id_example")), appStoreVersionExperimentTreatmentLocalization: AppPreviewSetCreateRequest_data_relationships_appStoreVersionExperimentTreatmentLocalization(data: AppPreviewSet_relationships_appStoreVersionExperimentTreatmentLocalization_data(type: "type_example", id: "id_example"))))) // AppScreenshotSetCreateRequest | AppScreenshotSet representation
+let appScreenshotSetCreateRequest = AppScreenshotSetCreateRequest(data: AppScreenshotSetCreateRequest_data(type: "type_example", attributes: AppScreenshotSetCreateRequest_data_attributes(screenshotDisplayType: ScreenshotDisplayType()), relationships: AppPreviewSetCreateRequest_data_relationships(appStoreVersionLocalization: AppPreviewSet_relationships_appStoreVersionLocalization(data: AppPreviewSet_relationships_appStoreVersionLocalization_data(type: "type_example", id: "id_example")), appCustomProductPageLocalization: AppPreviewSet_relationships_appCustomProductPageLocalization(data: AppCustomProductPageVersion_relationships_appCustomProductPageLocalizations_data_inner(type: "type_example", id: "id_example")), appStoreVersionExperimentTreatmentLocalization: AppPreviewSet_relationships_appStoreVersionExperimentTreatmentLocalization(data: AppPreviewSet_relationships_appStoreVersionExperimentTreatmentLocalization_data(type: "type_example", id: "id_example"))))) // AppScreenshotSetCreateRequest | AppScreenshotSet representation
 
 AppScreenshotSetsAPI.appScreenshotSetsCreateInstance(appScreenshotSetCreateRequest: appScreenshotSetCreateRequest) { (response, error) in
     guard error == nil else {
@@ -261,7 +261,7 @@ Void (empty response body)
 
 # **appScreenshotSetsGetInstance**
 ```swift
-    open class func appScreenshotSetsGetInstance(id: String, fieldsAppScreenshotSets: [FieldsAppScreenshotSets_appScreenshotSetsGetInstance]? = nil, include: [Include_appScreenshotSetsGetInstance]? = nil, fieldsAppScreenshots: [FieldsAppScreenshots_appScreenshotSetsGetInstance]? = nil, limitAppScreenshots: Int? = nil, completion: @escaping (_ data: AppScreenshotSetResponse?, _ error: Error?) -> Void)
+    open class func appScreenshotSetsGetInstance(id: String, fieldsAppScreenshotSets: [FieldsAppScreenshotSets_appScreenshotSetsGetInstance]? = nil, fieldsAppScreenshots: [FieldsAppScreenshots_appScreenshotSetsGetInstance]? = nil, include: [Include_appScreenshotSetsGetInstance]? = nil, limitAppScreenshots: Int? = nil, completion: @escaping (_ data: AppScreenshotSetResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -273,11 +273,11 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let fieldsAppScreenshotSets = ["fieldsAppScreenshotSets_example"] // [String] | the fields to include for returned resources of type appScreenshotSets (optional)
-let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let fieldsAppScreenshots = ["fieldsAppScreenshots_example"] // [String] | the fields to include for returned resources of type appScreenshots (optional)
+let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let limitAppScreenshots = 987 // Int | maximum number of related appScreenshots returned (when they are included) (optional)
 
-AppScreenshotSetsAPI.appScreenshotSetsGetInstance(id: id, fieldsAppScreenshotSets: fieldsAppScreenshotSets, include: include, fieldsAppScreenshots: fieldsAppScreenshots, limitAppScreenshots: limitAppScreenshots) { (response, error) in
+AppScreenshotSetsAPI.appScreenshotSetsGetInstance(id: id, fieldsAppScreenshotSets: fieldsAppScreenshotSets, fieldsAppScreenshots: fieldsAppScreenshots, include: include, limitAppScreenshots: limitAppScreenshots) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -295,8 +295,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **fieldsAppScreenshotSets** | [**[String]**](String.md) | the fields to include for returned resources of type appScreenshotSets | [optional] 
- **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **fieldsAppScreenshots** | [**[String]**](String.md) | the fields to include for returned resources of type appScreenshots | [optional] 
+ **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **limitAppScreenshots** | **Int** | maximum number of related appScreenshots returned (when they are included) | [optional] 
 
 ### Return type

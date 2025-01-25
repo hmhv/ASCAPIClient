@@ -12,9 +12,9 @@ import AnyCodable
 
 public struct AppStoreVersionSubmissionRelationships: Codable, JSONEncodable, Hashable {
 
-    public var appStoreVersion: AppClipDefaultExperienceRelationshipsReleaseWithAppStoreVersion?
+    public var appStoreVersion: AppClipDefaultExperienceCreateRequestDataRelationshipsReleaseWithAppStoreVersion?
 
-    public init(appStoreVersion: AppClipDefaultExperienceRelationshipsReleaseWithAppStoreVersion? = nil) {
+    public init(appStoreVersion: AppClipDefaultExperienceCreateRequestDataRelationshipsReleaseWithAppStoreVersion? = nil) {
         self.appStoreVersion = appStoreVersion
     }
 

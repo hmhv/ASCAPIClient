@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 # **ciWorkflowsBuildRunsGetToManyRelated**
 ```swift
-    open class func ciWorkflowsBuildRunsGetToManyRelated(id: String, filterBuilds: [String]? = nil, sort: [Sort_ciWorkflowsBuildRunsGetToManyRelated]? = nil, fieldsScmGitReferences: [FieldsScmGitReferences_ciWorkflowsBuildRunsGetToManyRelated]? = nil, fieldsCiBuildRuns: [FieldsCiBuildRuns_ciWorkflowsBuildRunsGetToManyRelated]? = nil, fieldsCiWorkflows: [FieldsCiWorkflows_ciWorkflowsBuildRunsGetToManyRelated]? = nil, fieldsScmPullRequests: [FieldsScmPullRequests_ciWorkflowsBuildRunsGetToManyRelated]? = nil, fieldsCiProducts: [FieldsCiProducts_ciWorkflowsBuildRunsGetToManyRelated]? = nil, fieldsBuilds: [FieldsBuilds_ciWorkflowsBuildRunsGetToManyRelated]? = nil, limit: Int? = nil, limitBuilds: Int? = nil, include: [Include_ciWorkflowsBuildRunsGetToManyRelated]? = nil, completion: @escaping (_ data: CiBuildRunsResponse?, _ error: Error?) -> Void)
+    open class func ciWorkflowsBuildRunsGetToManyRelated(id: String, filterBuilds: [String]? = nil, sort: [Sort_ciWorkflowsBuildRunsGetToManyRelated]? = nil, fieldsCiBuildRuns: [FieldsCiBuildRuns_ciWorkflowsBuildRunsGetToManyRelated]? = nil, fieldsBuilds: [FieldsBuilds_ciWorkflowsBuildRunsGetToManyRelated]? = nil, fieldsCiWorkflows: [FieldsCiWorkflows_ciWorkflowsBuildRunsGetToManyRelated]? = nil, fieldsCiProducts: [FieldsCiProducts_ciWorkflowsBuildRunsGetToManyRelated]? = nil, fieldsScmGitReferences: [FieldsScmGitReferences_ciWorkflowsBuildRunsGetToManyRelated]? = nil, fieldsScmPullRequests: [FieldsScmPullRequests_ciWorkflowsBuildRunsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_ciWorkflowsBuildRunsGetToManyRelated]? = nil, limitBuilds: Int? = nil, completion: @escaping (_ data: CiBuildRunsResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -27,17 +27,17 @@ import ASC
 let id = "id_example" // String | the id of the requested resource
 let filterBuilds = ["inner_example"] // [String] | filter by id(s) of related 'builds' (optional)
 let sort = ["sort_example"] // [String] | comma-separated list of sort expressions; resources will be sorted as specified (optional)
-let fieldsScmGitReferences = ["fieldsScmGitReferences_example"] // [String] | the fields to include for returned resources of type scmGitReferences (optional)
 let fieldsCiBuildRuns = ["fieldsCiBuildRuns_example"] // [String] | the fields to include for returned resources of type ciBuildRuns (optional)
-let fieldsCiWorkflows = ["fieldsCiWorkflows_example"] // [String] | the fields to include for returned resources of type ciWorkflows (optional)
-let fieldsScmPullRequests = ["fieldsScmPullRequests_example"] // [String] | the fields to include for returned resources of type scmPullRequests (optional)
-let fieldsCiProducts = ["fieldsCiProducts_example"] // [String] | the fields to include for returned resources of type ciProducts (optional)
 let fieldsBuilds = ["fieldsBuilds_example"] // [String] | the fields to include for returned resources of type builds (optional)
+let fieldsCiWorkflows = ["fieldsCiWorkflows_example"] // [String] | the fields to include for returned resources of type ciWorkflows (optional)
+let fieldsCiProducts = ["fieldsCiProducts_example"] // [String] | the fields to include for returned resources of type ciProducts (optional)
+let fieldsScmGitReferences = ["fieldsScmGitReferences_example"] // [String] | the fields to include for returned resources of type scmGitReferences (optional)
+let fieldsScmPullRequests = ["fieldsScmPullRequests_example"] // [String] | the fields to include for returned resources of type scmPullRequests (optional)
 let limit = 987 // Int | maximum resources per page (optional)
-let limitBuilds = 987 // Int | maximum number of related builds returned (when they are included) (optional)
 let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
+let limitBuilds = 987 // Int | maximum number of related builds returned (when they are included) (optional)
 
-CiWorkflowsAPI.ciWorkflowsBuildRunsGetToManyRelated(id: id, filterBuilds: filterBuilds, sort: sort, fieldsScmGitReferences: fieldsScmGitReferences, fieldsCiBuildRuns: fieldsCiBuildRuns, fieldsCiWorkflows: fieldsCiWorkflows, fieldsScmPullRequests: fieldsScmPullRequests, fieldsCiProducts: fieldsCiProducts, fieldsBuilds: fieldsBuilds, limit: limit, limitBuilds: limitBuilds, include: include) { (response, error) in
+CiWorkflowsAPI.ciWorkflowsBuildRunsGetToManyRelated(id: id, filterBuilds: filterBuilds, sort: sort, fieldsCiBuildRuns: fieldsCiBuildRuns, fieldsBuilds: fieldsBuilds, fieldsCiWorkflows: fieldsCiWorkflows, fieldsCiProducts: fieldsCiProducts, fieldsScmGitReferences: fieldsScmGitReferences, fieldsScmPullRequests: fieldsScmPullRequests, limit: limit, include: include, limitBuilds: limitBuilds) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -56,15 +56,15 @@ Name | Type | Description  | Notes
  **id** | **String** | the id of the requested resource | 
  **filterBuilds** | [**[String]**](String.md) | filter by id(s) of related &#39;builds&#39; | [optional] 
  **sort** | [**[String]**](String.md) | comma-separated list of sort expressions; resources will be sorted as specified | [optional] 
- **fieldsScmGitReferences** | [**[String]**](String.md) | the fields to include for returned resources of type scmGitReferences | [optional] 
  **fieldsCiBuildRuns** | [**[String]**](String.md) | the fields to include for returned resources of type ciBuildRuns | [optional] 
- **fieldsCiWorkflows** | [**[String]**](String.md) | the fields to include for returned resources of type ciWorkflows | [optional] 
- **fieldsScmPullRequests** | [**[String]**](String.md) | the fields to include for returned resources of type scmPullRequests | [optional] 
- **fieldsCiProducts** | [**[String]**](String.md) | the fields to include for returned resources of type ciProducts | [optional] 
  **fieldsBuilds** | [**[String]**](String.md) | the fields to include for returned resources of type builds | [optional] 
+ **fieldsCiWorkflows** | [**[String]**](String.md) | the fields to include for returned resources of type ciWorkflows | [optional] 
+ **fieldsCiProducts** | [**[String]**](String.md) | the fields to include for returned resources of type ciProducts | [optional] 
+ **fieldsScmGitReferences** | [**[String]**](String.md) | the fields to include for returned resources of type scmGitReferences | [optional] 
+ **fieldsScmPullRequests** | [**[String]**](String.md) | the fields to include for returned resources of type scmPullRequests | [optional] 
  **limit** | **Int** | maximum resources per page | [optional] 
- **limitBuilds** | **Int** | maximum number of related builds returned (when they are included) | [optional] 
  **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
+ **limitBuilds** | **Int** | maximum number of related builds returned (when they are included) | [optional] 
 
 ### Return type
 
@@ -177,7 +177,7 @@ Void (empty response body)
 
 # **ciWorkflowsGetInstance**
 ```swift
-    open class func ciWorkflowsGetInstance(id: String, fieldsCiWorkflows: [FieldsCiWorkflows_ciWorkflowsGetInstance]? = nil, include: [Include_ciWorkflowsGetInstance]? = nil, fieldsCiBuildRuns: [FieldsCiBuildRuns_ciWorkflowsGetInstance]? = nil, fieldsScmRepositories: [FieldsScmRepositories_ciWorkflowsGetInstance]? = nil, completion: @escaping (_ data: CiWorkflowResponse?, _ error: Error?) -> Void)
+    open class func ciWorkflowsGetInstance(id: String, fieldsCiWorkflows: [FieldsCiWorkflows_ciWorkflowsGetInstance]? = nil, fieldsScmRepositories: [FieldsScmRepositories_ciWorkflowsGetInstance]? = nil, include: [Include_ciWorkflowsGetInstance]? = nil, completion: @escaping (_ data: CiWorkflowResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -189,11 +189,10 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let fieldsCiWorkflows = ["fieldsCiWorkflows_example"] // [String] | the fields to include for returned resources of type ciWorkflows (optional)
-let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
-let fieldsCiBuildRuns = ["fieldsCiBuildRuns_example"] // [String] | the fields to include for returned resources of type ciBuildRuns (optional)
 let fieldsScmRepositories = ["fieldsScmRepositories_example"] // [String] | the fields to include for returned resources of type scmRepositories (optional)
+let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 
-CiWorkflowsAPI.ciWorkflowsGetInstance(id: id, fieldsCiWorkflows: fieldsCiWorkflows, include: include, fieldsCiBuildRuns: fieldsCiBuildRuns, fieldsScmRepositories: fieldsScmRepositories) { (response, error) in
+CiWorkflowsAPI.ciWorkflowsGetInstance(id: id, fieldsCiWorkflows: fieldsCiWorkflows, fieldsScmRepositories: fieldsScmRepositories, include: include) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -211,9 +210,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **fieldsCiWorkflows** | [**[String]**](String.md) | the fields to include for returned resources of type ciWorkflows | [optional] 
- **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
- **fieldsCiBuildRuns** | [**[String]**](String.md) | the fields to include for returned resources of type ciBuildRuns | [optional] 
  **fieldsScmRepositories** | [**[String]**](String.md) | the fields to include for returned resources of type scmRepositories | [optional] 
+ **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
 
 ### Return type
 
@@ -232,7 +230,7 @@ Name | Type | Description  | Notes
 
 # **ciWorkflowsRepositoryGetToOneRelated**
 ```swift
-    open class func ciWorkflowsRepositoryGetToOneRelated(id: String, fieldsScmGitReferences: [FieldsScmGitReferences_ciWorkflowsRepositoryGetToOneRelated]? = nil, fieldsScmProviders: [FieldsScmProviders_ciWorkflowsRepositoryGetToOneRelated]? = nil, fieldsScmRepositories: [FieldsScmRepositories_ciWorkflowsRepositoryGetToOneRelated]? = nil, include: [Include_ciWorkflowsRepositoryGetToOneRelated]? = nil, completion: @escaping (_ data: ScmRepositoryResponse?, _ error: Error?) -> Void)
+    open class func ciWorkflowsRepositoryGetToOneRelated(id: String, fieldsScmRepositories: [FieldsScmRepositories_ciWorkflowsRepositoryGetToOneRelated]? = nil, fieldsScmProviders: [FieldsScmProviders_ciWorkflowsRepositoryGetToOneRelated]? = nil, fieldsScmGitReferences: [FieldsScmGitReferences_ciWorkflowsRepositoryGetToOneRelated]? = nil, include: [Include_ciWorkflowsRepositoryGetToOneRelated]? = nil, completion: @escaping (_ data: ScmRepositoryResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -243,12 +241,12 @@ Name | Type | Description  | Notes
 import ASC
 
 let id = "id_example" // String | the id of the requested resource
-let fieldsScmGitReferences = ["fieldsScmGitReferences_example"] // [String] | the fields to include for returned resources of type scmGitReferences (optional)
-let fieldsScmProviders = ["fieldsScmProviders_example"] // [String] | the fields to include for returned resources of type scmProviders (optional)
 let fieldsScmRepositories = ["fieldsScmRepositories_example"] // [String] | the fields to include for returned resources of type scmRepositories (optional)
+let fieldsScmProviders = ["fieldsScmProviders_example"] // [String] | the fields to include for returned resources of type scmProviders (optional)
+let fieldsScmGitReferences = ["fieldsScmGitReferences_example"] // [String] | the fields to include for returned resources of type scmGitReferences (optional)
 let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 
-CiWorkflowsAPI.ciWorkflowsRepositoryGetToOneRelated(id: id, fieldsScmGitReferences: fieldsScmGitReferences, fieldsScmProviders: fieldsScmProviders, fieldsScmRepositories: fieldsScmRepositories, include: include) { (response, error) in
+CiWorkflowsAPI.ciWorkflowsRepositoryGetToOneRelated(id: id, fieldsScmRepositories: fieldsScmRepositories, fieldsScmProviders: fieldsScmProviders, fieldsScmGitReferences: fieldsScmGitReferences, include: include) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -265,9 +263,9 @@ CiWorkflowsAPI.ciWorkflowsRepositoryGetToOneRelated(id: id, fieldsScmGitReferenc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
- **fieldsScmGitReferences** | [**[String]**](String.md) | the fields to include for returned resources of type scmGitReferences | [optional] 
- **fieldsScmProviders** | [**[String]**](String.md) | the fields to include for returned resources of type scmProviders | [optional] 
  **fieldsScmRepositories** | [**[String]**](String.md) | the fields to include for returned resources of type scmRepositories | [optional] 
+ **fieldsScmProviders** | [**[String]**](String.md) | the fields to include for returned resources of type scmProviders | [optional] 
+ **fieldsScmGitReferences** | [**[String]**](String.md) | the fields to include for returned resources of type scmGitReferences | [optional] 
  **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
 
 ### Return type
@@ -298,7 +296,7 @@ Name | Type | Description  | Notes
 import ASC
 
 let id = "id_example" // String | the id of the requested resource
-let ciWorkflowUpdateRequest = CiWorkflowUpdateRequest(data: CiWorkflowUpdateRequest_data(type: "type_example", id: "id_example", attributes: CiWorkflowUpdateRequest_data_attributes(name: "name_example", description: "description_example", branchStartCondition: CiBranchStartCondition(source: CiBranchPatterns(isAllMatch: false, patterns: [CiBranchPatterns_patterns_inner(pattern: "pattern_example", isPrefix: false)]), filesAndFoldersRule: CiFilesAndFoldersRule(mode: "mode_example", matchers: [CiStartConditionFileMatcher(directory: "directory_example", fileExtension: "fileExtension_example", fileName: "fileName_example")]), autoCancel: false), tagStartCondition: CiTagStartCondition(source: CiTagPatterns(isAllMatch: false, patterns: [nil]), filesAndFoldersRule: nil, autoCancel: false), pullRequestStartCondition: CiPullRequestStartCondition(source: nil, destination: nil, filesAndFoldersRule: nil, autoCancel: false), scheduledStartCondition: CiScheduledStartCondition(source: nil, schedule: CiScheduledStartCondition_schedule(frequency: "frequency_example", days: ["days_example"], hour: 123, minute: 123, timezone: "timezone_example")), manualBranchStartCondition: CiManualBranchStartCondition(source: nil), manualTagStartCondition: CiManualTagStartCondition(source: nil), manualPullRequestStartCondition: CiManualPullRequestStartCondition(source: nil, destination: nil), actions: [CiAction(name: "name_example", actionType: CiActionType(), destination: "destination_example", buildDistributionAudience: BuildAudienceType(), testConfiguration: CiAction_testConfiguration(kind: "kind_example", testPlanName: "testPlanName_example", testDestinations: [CiTestDestination(deviceTypeName: "deviceTypeName_example", deviceTypeIdentifier: "deviceTypeIdentifier_example", runtimeName: "runtimeName_example", runtimeIdentifier: "runtimeIdentifier_example", kind: CiTestDestinationKind())]), scheme: "scheme_example", platform: "platform_example", isRequiredToPass: false)], isEnabled: false, isLockedForEditing: false, clean: false, containerFilePath: "containerFilePath_example"), relationships: CiWorkflowUpdateRequest_data_relationships(xcodeVersion: CiWorkflowUpdateRequest_data_relationships_xcodeVersion(data: CiMacOsVersion_relationships_xcodeVersions_data_inner(type: "type_example", id: "id_example")), macOsVersion: CiWorkflowUpdateRequest_data_relationships_macOsVersion(data: CiWorkflow_relationships_macOsVersion_data(type: "type_example", id: "id_example"))))) // CiWorkflowUpdateRequest | CiWorkflow representation
+let ciWorkflowUpdateRequest = CiWorkflowUpdateRequest(data: CiWorkflowUpdateRequest_data(type: "type_example", id: "id_example", attributes: CiWorkflowUpdateRequest_data_attributes(name: "name_example", description: "description_example", branchStartCondition: CiBranchStartCondition(source: CiBranchPatterns(isAllMatch: false, patterns: [CiBranchPatterns_patterns_inner(pattern: "pattern_example", isPrefix: false)]), filesAndFoldersRule: CiFilesAndFoldersRule(mode: "mode_example", matchers: [CiStartConditionFileMatcher(directory: "directory_example", fileExtension: "fileExtension_example", fileName: "fileName_example")]), autoCancel: false), tagStartCondition: CiTagStartCondition(source: CiTagPatterns(isAllMatch: false, patterns: [nil]), filesAndFoldersRule: nil, autoCancel: false), pullRequestStartCondition: CiPullRequestStartCondition(source: nil, destination: nil, filesAndFoldersRule: nil, autoCancel: false), scheduledStartCondition: CiScheduledStartCondition(source: nil, schedule: CiScheduledStartCondition_schedule(frequency: "frequency_example", days: ["days_example"], hour: 123, minute: 123, timezone: "timezone_example")), manualBranchStartCondition: CiManualBranchStartCondition(source: nil), manualTagStartCondition: CiManualTagStartCondition(source: nil), manualPullRequestStartCondition: CiManualPullRequestStartCondition(source: nil, destination: nil), actions: [CiAction(name: "name_example", actionType: CiActionType(), destination: "destination_example", buildDistributionAudience: BuildAudienceType(), testConfiguration: CiAction_testConfiguration(kind: "kind_example", testPlanName: "testPlanName_example", testDestinations: [CiTestDestination(deviceTypeName: "deviceTypeName_example", deviceTypeIdentifier: "deviceTypeIdentifier_example", runtimeName: "runtimeName_example", runtimeIdentifier: "runtimeIdentifier_example", kind: CiTestDestinationKind())]), scheme: "scheme_example", platform: "platform_example", isRequiredToPass: false)], isEnabled: false, isLockedForEditing: false, clean: false, containerFilePath: "containerFilePath_example"), relationships: CiWorkflowUpdateRequest_data_relationships(xcodeVersion: CiWorkflow_relationships_xcodeVersion(data: CiMacOsVersion_relationships_xcodeVersions_data_inner(type: "type_example", id: "id_example")), macOsVersion: CiWorkflow_relationships_macOsVersion(data: CiWorkflow_relationships_macOsVersion_data(type: "type_example", id: "id_example"))))) // CiWorkflowUpdateRequest | CiWorkflow representation
 
 CiWorkflowsAPI.ciWorkflowsUpdateInstance(id: id, ciWorkflowUpdateRequest: ciWorkflowUpdateRequest) { (response, error) in
     guard error == nil else {

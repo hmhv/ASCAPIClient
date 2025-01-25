@@ -86,53 +86,49 @@ open class BetaTestersAPI {
      * enum for parameter fieldsApps
      */
     public enum FieldsApps_betaTestersAppsGetToManyRelated: String, CaseIterable {
+        case name = "name"
+        case bundleid = "bundleId"
+        case sku = "sku"
+        case primarylocale = "primaryLocale"
+        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
+        case subscriptionstatusurl = "subscriptionStatusUrl"
+        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
+        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
+        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
+        case contentrightsdeclaration = "contentRightsDeclaration"
+        case streamlinedpurchasingenabled = "streamlinedPurchasingEnabled"
+        case appencryptiondeclarations = "appEncryptionDeclarations"
+        case ciproduct = "ciProduct"
+        case betatesters = "betaTesters"
+        case betagroups = "betaGroups"
+        case appstoreversions = "appStoreVersions"
+        case prereleaseversions = "preReleaseVersions"
+        case betaapplocalizations = "betaAppLocalizations"
+        case builds = "builds"
+        case betalicenseagreement = "betaLicenseAgreement"
+        case betaappreviewdetail = "betaAppReviewDetail"
+        case appinfos = "appInfos"
+        case appclips = "appClips"
+        case apppricepoints = "appPricePoints"
+        case enduserlicenseagreement = "endUserLicenseAgreement"
+        case apppriceschedule = "appPriceSchedule"
+        case appavailabilityv2 = "appAvailabilityV2"
+        case inapppurchases = "inAppPurchases"
+        case subscriptiongroups = "subscriptionGroups"
+        case gamecenterenabledversions = "gameCenterEnabledVersions"
+        case perfpowermetrics = "perfPowerMetrics"
+        case appcustomproductpages = "appCustomProductPages"
+        case inapppurchasesv2 = "inAppPurchasesV2"
+        case promotedpurchases = "promotedPurchases"
+        case appevents = "appEvents"
+        case reviewsubmissions = "reviewSubmissions"
+        case subscriptiongraceperiod = "subscriptionGracePeriod"
+        case customerreviews = "customerReviews"
+        case gamecenterdetail = "gameCenterDetail"
+        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
         case alternativedistributionkey = "alternativeDistributionKey"
         case analyticsreportrequests = "analyticsReportRequests"
-        case appavailability = "appAvailability"
-        case appclips = "appClips"
-        case appcustomproductpages = "appCustomProductPages"
-        case appencryptiondeclarations = "appEncryptionDeclarations"
-        case appevents = "appEvents"
-        case appinfos = "appInfos"
-        case apppricepoints = "appPricePoints"
-        case apppriceschedule = "appPriceSchedule"
-        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
-        case appstoreversions = "appStoreVersions"
-        case availableinnewterritories = "availableInNewTerritories"
-        case availableterritories = "availableTerritories"
-        case betaapplocalizations = "betaAppLocalizations"
-        case betaappreviewdetail = "betaAppReviewDetail"
-        case betagroups = "betaGroups"
-        case betalicenseagreement = "betaLicenseAgreement"
-        case betatesters = "betaTesters"
-        case builds = "builds"
-        case bundleid = "bundleId"
-        case ciproduct = "ciProduct"
-        case contentrightsdeclaration = "contentRightsDeclaration"
-        case customerreviews = "customerReviews"
-        case enduserlicenseagreement = "endUserLicenseAgreement"
-        case gamecenterdetail = "gameCenterDetail"
-        case gamecenterenabledversions = "gameCenterEnabledVersions"
-        case inapppurchases = "inAppPurchases"
-        case inapppurchasesv2 = "inAppPurchasesV2"
-        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
         case marketplacesearchdetail = "marketplaceSearchDetail"
-        case name = "name"
-        case perfpowermetrics = "perfPowerMetrics"
-        case preorder = "preOrder"
-        case prereleaseversions = "preReleaseVersions"
-        case pricepoints = "pricePoints"
-        case prices = "prices"
-        case primarylocale = "primaryLocale"
-        case promotedpurchases = "promotedPurchases"
-        case reviewsubmissions = "reviewSubmissions"
-        case sku = "sku"
-        case subscriptiongraceperiod = "subscriptionGracePeriod"
-        case subscriptiongroups = "subscriptionGroups"
-        case subscriptionstatusurl = "subscriptionStatusUrl"
-        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
-        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
-        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
     }
 
     /**
@@ -428,20 +424,20 @@ open class BetaTestersAPI {
      * enum for parameter fieldsBetaGroups
      */
     public enum FieldsBetaGroups_betaTestersBetaGroupsGetToManyRelated: String, CaseIterable {
-        case app = "app"
-        case betatesters = "betaTesters"
-        case builds = "builds"
-        case createddate = "createdDate"
-        case feedbackenabled = "feedbackEnabled"
-        case hasaccesstoallbuilds = "hasAccessToAllBuilds"
-        case iosbuildsavailableforapplesiliconmac = "iosBuildsAvailableForAppleSiliconMac"
-        case isinternalgroup = "isInternalGroup"
         case name = "name"
-        case publiclink = "publicLink"
+        case createddate = "createdDate"
+        case isinternalgroup = "isInternalGroup"
+        case hasaccesstoallbuilds = "hasAccessToAllBuilds"
         case publiclinkenabled = "publicLinkEnabled"
         case publiclinkid = "publicLinkId"
-        case publiclinklimit = "publicLinkLimit"
         case publiclinklimitenabled = "publicLinkLimitEnabled"
+        case publiclinklimit = "publicLinkLimit"
+        case publiclink = "publicLink"
+        case feedbackenabled = "feedbackEnabled"
+        case iosbuildsavailableforapplesiliconmac = "iosBuildsAvailableForAppleSiliconMac"
+        case app = "app"
+        case builds = "builds"
+        case betatesters = "betaTesters"
     }
 
     /**
@@ -607,13 +603,13 @@ open class BetaTestersAPI {
 
      - parameter id: (path) the id of the requested resource 
      - parameter filterApps: (query) filter by &#39;apps&#39; relationship dimension 
-     - parameter limit: (query) maximum number of groups to return per page (optional)
      - parameter period: (query) the duration of the reporting period (optional)
+     - parameter limit: (query) maximum number of groups to return per page (optional)
      - returns: BetaTesterUsagesV1MetricResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaTestersBetaTesterUsagesGetMetrics(id: String, filterApps: String, limit: Int? = nil, period: Period_betaTestersBetaTesterUsagesGetMetrics? = nil) async throws -> BetaTesterUsagesV1MetricResponse {
-        return try await betaTestersBetaTesterUsagesGetMetricsWithRequestBuilder(id: id, filterApps: filterApps, limit: limit, period: period).execute().body
+    open class func betaTestersBetaTesterUsagesGetMetrics(id: String, filterApps: String, period: Period_betaTestersBetaTesterUsagesGetMetrics? = nil, limit: Int? = nil) async throws -> BetaTesterUsagesV1MetricResponse {
+        return try await betaTestersBetaTesterUsagesGetMetricsWithRequestBuilder(id: id, filterApps: filterApps, period: period, limit: limit).execute().body
     }
 
     /**
@@ -632,11 +628,11 @@ open class BetaTestersAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter filterApps: (query) filter by &#39;apps&#39; relationship dimension 
-     - parameter limit: (query) maximum number of groups to return per page (optional)
      - parameter period: (query) the duration of the reporting period (optional)
+     - parameter limit: (query) maximum number of groups to return per page (optional)
      - returns: RequestBuilder<BetaTesterUsagesV1MetricResponse> 
      */
-    open class func betaTestersBetaTesterUsagesGetMetricsWithRequestBuilder(id: String, filterApps: String, limit: Int? = nil, period: Period_betaTestersBetaTesterUsagesGetMetrics? = nil) -> RequestBuilder<BetaTesterUsagesV1MetricResponse> {
+    open class func betaTestersBetaTesterUsagesGetMetricsWithRequestBuilder(id: String, filterApps: String, period: Period_betaTestersBetaTesterUsagesGetMetrics? = nil, limit: Int? = nil) -> RequestBuilder<BetaTesterUsagesV1MetricResponse> {
         var localVariablePath = "/v1/betaTesters/{id}/metrics/betaTesterUsages"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -646,9 +642,9 @@ open class BetaTestersAPI {
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "filter[apps]": (wrappedValue: filterApps.encodeToJSON(), isExplode: false),
             "period": (wrappedValue: period?.encodeToJSON(), isExplode: false),
+            "filter[apps]": (wrappedValue: filterApps.encodeToJSON(), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -826,30 +822,30 @@ open class BetaTestersAPI {
      * enum for parameter fieldsBuilds
      */
     public enum FieldsBuilds_betaTestersBuildsGetToManyRelated: String, CaseIterable {
-        case app = "app"
-        case appencryptiondeclaration = "appEncryptionDeclaration"
-        case appstoreversion = "appStoreVersion"
-        case betaappreviewsubmission = "betaAppReviewSubmission"
-        case betabuildlocalizations = "betaBuildLocalizations"
-        case betagroups = "betaGroups"
-        case buildaudiencetype = "buildAudienceType"
-        case buildbetadetail = "buildBetaDetail"
-        case buildbundles = "buildBundles"
-        case computedminmacosversion = "computedMinMacOsVersion"
-        case diagnosticsignatures = "diagnosticSignatures"
+        case version = "version"
+        case uploadeddate = "uploadedDate"
         case expirationdate = "expirationDate"
         case expired = "expired"
-        case iconassettoken = "iconAssetToken"
-        case icons = "icons"
-        case individualtesters = "individualTesters"
-        case lsminimumsystemversion = "lsMinimumSystemVersion"
         case minosversion = "minOsVersion"
-        case perfpowermetrics = "perfPowerMetrics"
-        case prereleaseversion = "preReleaseVersion"
+        case lsminimumsystemversion = "lsMinimumSystemVersion"
+        case computedminmacosversion = "computedMinMacOsVersion"
+        case iconassettoken = "iconAssetToken"
         case processingstate = "processingState"
-        case uploadeddate = "uploadedDate"
+        case buildaudiencetype = "buildAudienceType"
         case usesnonexemptencryption = "usesNonExemptEncryption"
-        case version = "version"
+        case prereleaseversion = "preReleaseVersion"
+        case individualtesters = "individualTesters"
+        case betagroups = "betaGroups"
+        case betabuildlocalizations = "betaBuildLocalizations"
+        case appencryptiondeclaration = "appEncryptionDeclaration"
+        case betaappreviewsubmission = "betaAppReviewSubmission"
+        case app = "app"
+        case buildbetadetail = "buildBetaDetail"
+        case appstoreversion = "appStoreVersion"
+        case icons = "icons"
+        case buildbundles = "buildBundles"
+        case perfpowermetrics = "perfPowerMetrics"
+        case diagnosticsignatures = "diagnosticSignatures"
     }
 
     /**
@@ -1146,27 +1142,129 @@ open class BetaTestersAPI {
      * enum for parameter sort
      */
     public enum Sort_betaTestersGetCollection: String, CaseIterable {
-        case email = "email"
-        case email2 = "-email"
         case firstname = "firstName"
         case firstname2 = "-firstName"
-        case invitetype = "inviteType"
-        case invitetype2 = "-inviteType"
         case lastname = "lastName"
         case lastname2 = "-lastName"
+        case email = "email"
+        case email2 = "-email"
+        case invitetype = "inviteType"
+        case invitetype2 = "-inviteType"
+        case state = "state"
+        case state2 = "-state"
     }
 
     /**
      * enum for parameter fieldsBetaTesters
      */
     public enum FieldsBetaTesters_betaTestersGetCollection: String, CaseIterable {
+        case firstname = "firstName"
+        case lastname = "lastName"
+        case email = "email"
+        case invitetype = "inviteType"
+        case state = "state"
         case apps = "apps"
         case betagroups = "betaGroups"
         case builds = "builds"
-        case email = "email"
-        case firstname = "firstName"
-        case invitetype = "inviteType"
-        case lastname = "lastName"
+    }
+
+    /**
+     * enum for parameter fieldsApps
+     */
+    public enum FieldsApps_betaTestersGetCollection: String, CaseIterable {
+        case name = "name"
+        case bundleid = "bundleId"
+        case sku = "sku"
+        case primarylocale = "primaryLocale"
+        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
+        case subscriptionstatusurl = "subscriptionStatusUrl"
+        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
+        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
+        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
+        case contentrightsdeclaration = "contentRightsDeclaration"
+        case streamlinedpurchasingenabled = "streamlinedPurchasingEnabled"
+        case appencryptiondeclarations = "appEncryptionDeclarations"
+        case ciproduct = "ciProduct"
+        case betatesters = "betaTesters"
+        case betagroups = "betaGroups"
+        case appstoreversions = "appStoreVersions"
+        case prereleaseversions = "preReleaseVersions"
+        case betaapplocalizations = "betaAppLocalizations"
+        case builds = "builds"
+        case betalicenseagreement = "betaLicenseAgreement"
+        case betaappreviewdetail = "betaAppReviewDetail"
+        case appinfos = "appInfos"
+        case appclips = "appClips"
+        case apppricepoints = "appPricePoints"
+        case enduserlicenseagreement = "endUserLicenseAgreement"
+        case apppriceschedule = "appPriceSchedule"
+        case appavailabilityv2 = "appAvailabilityV2"
+        case inapppurchases = "inAppPurchases"
+        case subscriptiongroups = "subscriptionGroups"
+        case gamecenterenabledversions = "gameCenterEnabledVersions"
+        case perfpowermetrics = "perfPowerMetrics"
+        case appcustomproductpages = "appCustomProductPages"
+        case inapppurchasesv2 = "inAppPurchasesV2"
+        case promotedpurchases = "promotedPurchases"
+        case appevents = "appEvents"
+        case reviewsubmissions = "reviewSubmissions"
+        case subscriptiongraceperiod = "subscriptionGracePeriod"
+        case customerreviews = "customerReviews"
+        case gamecenterdetail = "gameCenterDetail"
+        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
+        case alternativedistributionkey = "alternativeDistributionKey"
+        case analyticsreportrequests = "analyticsReportRequests"
+        case marketplacesearchdetail = "marketplaceSearchDetail"
+    }
+
+    /**
+     * enum for parameter fieldsBetaGroups
+     */
+    public enum FieldsBetaGroups_betaTestersGetCollection: String, CaseIterable {
+        case name = "name"
+        case createddate = "createdDate"
+        case isinternalgroup = "isInternalGroup"
+        case hasaccesstoallbuilds = "hasAccessToAllBuilds"
+        case publiclinkenabled = "publicLinkEnabled"
+        case publiclinkid = "publicLinkId"
+        case publiclinklimitenabled = "publicLinkLimitEnabled"
+        case publiclinklimit = "publicLinkLimit"
+        case publiclink = "publicLink"
+        case feedbackenabled = "feedbackEnabled"
+        case iosbuildsavailableforapplesiliconmac = "iosBuildsAvailableForAppleSiliconMac"
+        case app = "app"
+        case builds = "builds"
+        case betatesters = "betaTesters"
+    }
+
+    /**
+     * enum for parameter fieldsBuilds
+     */
+    public enum FieldsBuilds_betaTestersGetCollection: String, CaseIterable {
+        case version = "version"
+        case uploadeddate = "uploadedDate"
+        case expirationdate = "expirationDate"
+        case expired = "expired"
+        case minosversion = "minOsVersion"
+        case lsminimumsystemversion = "lsMinimumSystemVersion"
+        case computedminmacosversion = "computedMinMacOsVersion"
+        case iconassettoken = "iconAssetToken"
+        case processingstate = "processingState"
+        case buildaudiencetype = "buildAudienceType"
+        case usesnonexemptencryption = "usesNonExemptEncryption"
+        case prereleaseversion = "preReleaseVersion"
+        case individualtesters = "individualTesters"
+        case betagroups = "betaGroups"
+        case betabuildlocalizations = "betaBuildLocalizations"
+        case appencryptiondeclaration = "appEncryptionDeclaration"
+        case betaappreviewsubmission = "betaAppReviewSubmission"
+        case app = "app"
+        case buildbetadetail = "buildBetaDetail"
+        case appstoreversion = "appStoreVersion"
+        case icons = "icons"
+        case buildbundles = "buildBundles"
+        case perfpowermetrics = "perfPowerMetrics"
+        case diagnosticsignatures = "diagnosticSignatures"
     }
 
     /**
@@ -1179,133 +1277,30 @@ open class BetaTestersAPI {
     }
 
     /**
-     * enum for parameter fieldsApps
-     */
-    public enum FieldsApps_betaTestersGetCollection: String, CaseIterable {
-        case alternativedistributionkey = "alternativeDistributionKey"
-        case analyticsreportrequests = "analyticsReportRequests"
-        case appavailability = "appAvailability"
-        case appclips = "appClips"
-        case appcustomproductpages = "appCustomProductPages"
-        case appencryptiondeclarations = "appEncryptionDeclarations"
-        case appevents = "appEvents"
-        case appinfos = "appInfos"
-        case apppricepoints = "appPricePoints"
-        case apppriceschedule = "appPriceSchedule"
-        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
-        case appstoreversions = "appStoreVersions"
-        case availableinnewterritories = "availableInNewTerritories"
-        case availableterritories = "availableTerritories"
-        case betaapplocalizations = "betaAppLocalizations"
-        case betaappreviewdetail = "betaAppReviewDetail"
-        case betagroups = "betaGroups"
-        case betalicenseagreement = "betaLicenseAgreement"
-        case betatesters = "betaTesters"
-        case builds = "builds"
-        case bundleid = "bundleId"
-        case ciproduct = "ciProduct"
-        case contentrightsdeclaration = "contentRightsDeclaration"
-        case customerreviews = "customerReviews"
-        case enduserlicenseagreement = "endUserLicenseAgreement"
-        case gamecenterdetail = "gameCenterDetail"
-        case gamecenterenabledversions = "gameCenterEnabledVersions"
-        case inapppurchases = "inAppPurchases"
-        case inapppurchasesv2 = "inAppPurchasesV2"
-        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
-        case marketplacesearchdetail = "marketplaceSearchDetail"
-        case name = "name"
-        case perfpowermetrics = "perfPowerMetrics"
-        case preorder = "preOrder"
-        case prereleaseversions = "preReleaseVersions"
-        case pricepoints = "pricePoints"
-        case prices = "prices"
-        case primarylocale = "primaryLocale"
-        case promotedpurchases = "promotedPurchases"
-        case reviewsubmissions = "reviewSubmissions"
-        case sku = "sku"
-        case subscriptiongraceperiod = "subscriptionGracePeriod"
-        case subscriptiongroups = "subscriptionGroups"
-        case subscriptionstatusurl = "subscriptionStatusUrl"
-        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
-        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
-        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
-    }
 
-    /**
-     * enum for parameter fieldsBuilds
-     */
-    public enum FieldsBuilds_betaTestersGetCollection: String, CaseIterable {
-        case app = "app"
-        case appencryptiondeclaration = "appEncryptionDeclaration"
-        case appstoreversion = "appStoreVersion"
-        case betaappreviewsubmission = "betaAppReviewSubmission"
-        case betabuildlocalizations = "betaBuildLocalizations"
-        case betagroups = "betaGroups"
-        case buildaudiencetype = "buildAudienceType"
-        case buildbetadetail = "buildBetaDetail"
-        case buildbundles = "buildBundles"
-        case computedminmacosversion = "computedMinMacOsVersion"
-        case diagnosticsignatures = "diagnosticSignatures"
-        case expirationdate = "expirationDate"
-        case expired = "expired"
-        case iconassettoken = "iconAssetToken"
-        case icons = "icons"
-        case individualtesters = "individualTesters"
-        case lsminimumsystemversion = "lsMinimumSystemVersion"
-        case minosversion = "minOsVersion"
-        case perfpowermetrics = "perfPowerMetrics"
-        case prereleaseversion = "preReleaseVersion"
-        case processingstate = "processingState"
-        case uploadeddate = "uploadedDate"
-        case usesnonexemptencryption = "usesNonExemptEncryption"
-        case version = "version"
-    }
-
-    /**
-     * enum for parameter fieldsBetaGroups
-     */
-    public enum FieldsBetaGroups_betaTestersGetCollection: String, CaseIterable {
-        case app = "app"
-        case betatesters = "betaTesters"
-        case builds = "builds"
-        case createddate = "createdDate"
-        case feedbackenabled = "feedbackEnabled"
-        case hasaccesstoallbuilds = "hasAccessToAllBuilds"
-        case iosbuildsavailableforapplesiliconmac = "iosBuildsAvailableForAppleSiliconMac"
-        case isinternalgroup = "isInternalGroup"
-        case name = "name"
-        case publiclink = "publicLink"
-        case publiclinkenabled = "publicLinkEnabled"
-        case publiclinkid = "publicLinkId"
-        case publiclinklimit = "publicLinkLimit"
-        case publiclinklimitenabled = "publicLinkLimitEnabled"
-    }
-
-    /**
-
-     - parameter filterEmail: (query) filter by attribute &#39;email&#39; (optional)
      - parameter filterFirstName: (query) filter by attribute &#39;firstName&#39; (optional)
-     - parameter filterInviteType: (query) filter by attribute &#39;inviteType&#39; (optional)
      - parameter filterLastName: (query) filter by attribute &#39;lastName&#39; (optional)
+     - parameter filterEmail: (query) filter by attribute &#39;email&#39; (optional)
+     - parameter filterInviteType: (query) filter by attribute &#39;inviteType&#39; (optional)
      - parameter filterApps: (query) filter by id(s) of related &#39;apps&#39; (optional)
      - parameter filterBetaGroups: (query) filter by id(s) of related &#39;betaGroups&#39; (optional)
      - parameter filterBuilds: (query) filter by id(s) of related &#39;builds&#39; (optional)
      - parameter filterId: (query) filter by id(s) (optional)
      - parameter sort: (query) comma-separated list of sort expressions; resources will be sorted as specified (optional)
      - parameter fieldsBetaTesters: (query) the fields to include for returned resources of type betaTesters (optional)
+     - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
+     - parameter fieldsBetaGroups: (query) the fields to include for returned resources of type betaGroups (optional)
+     - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
-     - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
-     - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
-     - parameter fieldsBetaGroups: (query) the fields to include for returned resources of type betaGroups (optional)
      - parameter limitApps: (query) maximum number of related apps returned (when they are included) (optional)
      - parameter limitBetaGroups: (query) maximum number of related betaGroups returned (when they are included) (optional)
      - parameter limitBuilds: (query) maximum number of related builds returned (when they are included) (optional)
      - returns: BetaTestersResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaTestersGetCollection(filterEmail: [String]? = nil, filterFirstName: [String]? = nil, filterInviteType: [FilterInviteType_betaTestersGetCollection]? = nil, filterLastName: [String]? = nil, filterApps: [String]? = nil, filterBetaGroups: [String]? = nil, filterBuilds: [String]? = nil, filterId: [String]? = nil, sort: [Sort_betaTestersGetCollection]? = nil, fieldsBetaTesters: [FieldsBetaTesters_betaTestersGetCollection]? = nil, limit: Int? = nil, include: [Include_betaTestersGetCollection]? = nil, fieldsApps: [FieldsApps_betaTestersGetCollection]? = nil, fieldsBuilds: [FieldsBuilds_betaTestersGetCollection]? = nil, fieldsBetaGroups: [FieldsBetaGroups_betaTestersGetCollection]? = nil, limitApps: Int? = nil, limitBetaGroups: Int? = nil, limitBuilds: Int? = nil) async throws -> BetaTestersResponse {
-        return try await betaTestersGetCollectionWithRequestBuilder(filterEmail: filterEmail, filterFirstName: filterFirstName, filterInviteType: filterInviteType, filterLastName: filterLastName, filterApps: filterApps, filterBetaGroups: filterBetaGroups, filterBuilds: filterBuilds, filterId: filterId, sort: sort, fieldsBetaTesters: fieldsBetaTesters, limit: limit, include: include, fieldsApps: fieldsApps, fieldsBuilds: fieldsBuilds, fieldsBetaGroups: fieldsBetaGroups, limitApps: limitApps, limitBetaGroups: limitBetaGroups, limitBuilds: limitBuilds).execute().body
+    open class func betaTestersGetCollection(filterFirstName: [String]? = nil, filterLastName: [String]? = nil, filterEmail: [String]? = nil, filterInviteType: [FilterInviteType_betaTestersGetCollection]? = nil, filterApps: [String]? = nil, filterBetaGroups: [String]? = nil, filterBuilds: [String]? = nil, filterId: [String]? = nil, sort: [Sort_betaTestersGetCollection]? = nil, fieldsBetaTesters: [FieldsBetaTesters_betaTestersGetCollection]? = nil, fieldsApps: [FieldsApps_betaTestersGetCollection]? = nil, fieldsBetaGroups: [FieldsBetaGroups_betaTestersGetCollection]? = nil, fieldsBuilds: [FieldsBuilds_betaTestersGetCollection]? = nil, limit: Int? = nil, include: [Include_betaTestersGetCollection]? = nil, limitApps: Int? = nil, limitBetaGroups: Int? = nil, limitBuilds: Int? = nil) async throws -> BetaTestersResponse {
+        return try await betaTestersGetCollectionWithRequestBuilder(filterFirstName: filterFirstName, filterLastName: filterLastName, filterEmail: filterEmail, filterInviteType: filterInviteType, filterApps: filterApps, filterBetaGroups: filterBetaGroups, filterBuilds: filterBuilds, filterId: filterId, sort: sort, fieldsBetaTesters: fieldsBetaTesters, fieldsApps: fieldsApps, fieldsBetaGroups: fieldsBetaGroups, fieldsBuilds: fieldsBuilds, limit: limit, include: include, limitApps: limitApps, limitBetaGroups: limitBetaGroups, limitBuilds: limitBuilds).execute().body
     }
 
     /**
@@ -1322,48 +1317,48 @@ open class BetaTestersAPI {
      - Bearer Token:
        - type: http
        - name: itc-bearer-token
-     - parameter filterEmail: (query) filter by attribute &#39;email&#39; (optional)
      - parameter filterFirstName: (query) filter by attribute &#39;firstName&#39; (optional)
-     - parameter filterInviteType: (query) filter by attribute &#39;inviteType&#39; (optional)
      - parameter filterLastName: (query) filter by attribute &#39;lastName&#39; (optional)
+     - parameter filterEmail: (query) filter by attribute &#39;email&#39; (optional)
+     - parameter filterInviteType: (query) filter by attribute &#39;inviteType&#39; (optional)
      - parameter filterApps: (query) filter by id(s) of related &#39;apps&#39; (optional)
      - parameter filterBetaGroups: (query) filter by id(s) of related &#39;betaGroups&#39; (optional)
      - parameter filterBuilds: (query) filter by id(s) of related &#39;builds&#39; (optional)
      - parameter filterId: (query) filter by id(s) (optional)
      - parameter sort: (query) comma-separated list of sort expressions; resources will be sorted as specified (optional)
      - parameter fieldsBetaTesters: (query) the fields to include for returned resources of type betaTesters (optional)
+     - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
+     - parameter fieldsBetaGroups: (query) the fields to include for returned resources of type betaGroups (optional)
+     - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
-     - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
-     - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
-     - parameter fieldsBetaGroups: (query) the fields to include for returned resources of type betaGroups (optional)
      - parameter limitApps: (query) maximum number of related apps returned (when they are included) (optional)
      - parameter limitBetaGroups: (query) maximum number of related betaGroups returned (when they are included) (optional)
      - parameter limitBuilds: (query) maximum number of related builds returned (when they are included) (optional)
      - returns: RequestBuilder<BetaTestersResponse> 
      */
-    open class func betaTestersGetCollectionWithRequestBuilder(filterEmail: [String]? = nil, filterFirstName: [String]? = nil, filterInviteType: [FilterInviteType_betaTestersGetCollection]? = nil, filterLastName: [String]? = nil, filterApps: [String]? = nil, filterBetaGroups: [String]? = nil, filterBuilds: [String]? = nil, filterId: [String]? = nil, sort: [Sort_betaTestersGetCollection]? = nil, fieldsBetaTesters: [FieldsBetaTesters_betaTestersGetCollection]? = nil, limit: Int? = nil, include: [Include_betaTestersGetCollection]? = nil, fieldsApps: [FieldsApps_betaTestersGetCollection]? = nil, fieldsBuilds: [FieldsBuilds_betaTestersGetCollection]? = nil, fieldsBetaGroups: [FieldsBetaGroups_betaTestersGetCollection]? = nil, limitApps: Int? = nil, limitBetaGroups: Int? = nil, limitBuilds: Int? = nil) -> RequestBuilder<BetaTestersResponse> {
+    open class func betaTestersGetCollectionWithRequestBuilder(filterFirstName: [String]? = nil, filterLastName: [String]? = nil, filterEmail: [String]? = nil, filterInviteType: [FilterInviteType_betaTestersGetCollection]? = nil, filterApps: [String]? = nil, filterBetaGroups: [String]? = nil, filterBuilds: [String]? = nil, filterId: [String]? = nil, sort: [Sort_betaTestersGetCollection]? = nil, fieldsBetaTesters: [FieldsBetaTesters_betaTestersGetCollection]? = nil, fieldsApps: [FieldsApps_betaTestersGetCollection]? = nil, fieldsBetaGroups: [FieldsBetaGroups_betaTestersGetCollection]? = nil, fieldsBuilds: [FieldsBuilds_betaTestersGetCollection]? = nil, limit: Int? = nil, include: [Include_betaTestersGetCollection]? = nil, limitApps: Int? = nil, limitBetaGroups: Int? = nil, limitBuilds: Int? = nil) -> RequestBuilder<BetaTestersResponse> {
         let localVariablePath = "/v1/betaTesters"
         let localVariableURLString = ASCAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[email]": (wrappedValue: filterEmail?.encodeToJSON(), isExplode: false),
             "filter[firstName]": (wrappedValue: filterFirstName?.encodeToJSON(), isExplode: false),
-            "filter[inviteType]": (wrappedValue: filterInviteType?.encodeToJSON(), isExplode: false),
             "filter[lastName]": (wrappedValue: filterLastName?.encodeToJSON(), isExplode: false),
+            "filter[email]": (wrappedValue: filterEmail?.encodeToJSON(), isExplode: false),
+            "filter[inviteType]": (wrappedValue: filterInviteType?.encodeToJSON(), isExplode: false),
             "filter[apps]": (wrappedValue: filterApps?.encodeToJSON(), isExplode: false),
             "filter[betaGroups]": (wrappedValue: filterBetaGroups?.encodeToJSON(), isExplode: false),
             "filter[builds]": (wrappedValue: filterBuilds?.encodeToJSON(), isExplode: false),
             "filter[id]": (wrappedValue: filterId?.encodeToJSON(), isExplode: false),
             "sort": (wrappedValue: sort?.encodeToJSON(), isExplode: false),
             "fields[betaTesters]": (wrappedValue: fieldsBetaTesters?.encodeToJSON(), isExplode: false),
+            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
+            "fields[betaGroups]": (wrappedValue: fieldsBetaGroups?.encodeToJSON(), isExplode: false),
+            "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
-            "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(), isExplode: false),
-            "fields[betaGroups]": (wrappedValue: fieldsBetaGroups?.encodeToJSON(), isExplode: false),
             "limit[apps]": (wrappedValue: limitApps?.encodeToJSON(), isExplode: true),
             "limit[betaGroups]": (wrappedValue: limitBetaGroups?.encodeToJSON(), isExplode: true),
             "limit[builds]": (wrappedValue: limitBuilds?.encodeToJSON(), isExplode: true),
@@ -1404,13 +1399,113 @@ open class BetaTestersAPI {
      * enum for parameter fieldsBetaTesters
      */
     public enum FieldsBetaTesters_betaTestersGetInstance: String, CaseIterable {
+        case firstname = "firstName"
+        case lastname = "lastName"
+        case email = "email"
+        case invitetype = "inviteType"
+        case state = "state"
         case apps = "apps"
         case betagroups = "betaGroups"
         case builds = "builds"
-        case email = "email"
-        case firstname = "firstName"
-        case invitetype = "inviteType"
-        case lastname = "lastName"
+    }
+
+    /**
+     * enum for parameter fieldsApps
+     */
+    public enum FieldsApps_betaTestersGetInstance: String, CaseIterable {
+        case name = "name"
+        case bundleid = "bundleId"
+        case sku = "sku"
+        case primarylocale = "primaryLocale"
+        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
+        case subscriptionstatusurl = "subscriptionStatusUrl"
+        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
+        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
+        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
+        case contentrightsdeclaration = "contentRightsDeclaration"
+        case streamlinedpurchasingenabled = "streamlinedPurchasingEnabled"
+        case appencryptiondeclarations = "appEncryptionDeclarations"
+        case ciproduct = "ciProduct"
+        case betatesters = "betaTesters"
+        case betagroups = "betaGroups"
+        case appstoreversions = "appStoreVersions"
+        case prereleaseversions = "preReleaseVersions"
+        case betaapplocalizations = "betaAppLocalizations"
+        case builds = "builds"
+        case betalicenseagreement = "betaLicenseAgreement"
+        case betaappreviewdetail = "betaAppReviewDetail"
+        case appinfos = "appInfos"
+        case appclips = "appClips"
+        case apppricepoints = "appPricePoints"
+        case enduserlicenseagreement = "endUserLicenseAgreement"
+        case apppriceschedule = "appPriceSchedule"
+        case appavailabilityv2 = "appAvailabilityV2"
+        case inapppurchases = "inAppPurchases"
+        case subscriptiongroups = "subscriptionGroups"
+        case gamecenterenabledversions = "gameCenterEnabledVersions"
+        case perfpowermetrics = "perfPowerMetrics"
+        case appcustomproductpages = "appCustomProductPages"
+        case inapppurchasesv2 = "inAppPurchasesV2"
+        case promotedpurchases = "promotedPurchases"
+        case appevents = "appEvents"
+        case reviewsubmissions = "reviewSubmissions"
+        case subscriptiongraceperiod = "subscriptionGracePeriod"
+        case customerreviews = "customerReviews"
+        case gamecenterdetail = "gameCenterDetail"
+        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
+        case alternativedistributionkey = "alternativeDistributionKey"
+        case analyticsreportrequests = "analyticsReportRequests"
+        case marketplacesearchdetail = "marketplaceSearchDetail"
+    }
+
+    /**
+     * enum for parameter fieldsBetaGroups
+     */
+    public enum FieldsBetaGroups_betaTestersGetInstance: String, CaseIterable {
+        case name = "name"
+        case createddate = "createdDate"
+        case isinternalgroup = "isInternalGroup"
+        case hasaccesstoallbuilds = "hasAccessToAllBuilds"
+        case publiclinkenabled = "publicLinkEnabled"
+        case publiclinkid = "publicLinkId"
+        case publiclinklimitenabled = "publicLinkLimitEnabled"
+        case publiclinklimit = "publicLinkLimit"
+        case publiclink = "publicLink"
+        case feedbackenabled = "feedbackEnabled"
+        case iosbuildsavailableforapplesiliconmac = "iosBuildsAvailableForAppleSiliconMac"
+        case app = "app"
+        case builds = "builds"
+        case betatesters = "betaTesters"
+    }
+
+    /**
+     * enum for parameter fieldsBuilds
+     */
+    public enum FieldsBuilds_betaTestersGetInstance: String, CaseIterable {
+        case version = "version"
+        case uploadeddate = "uploadedDate"
+        case expirationdate = "expirationDate"
+        case expired = "expired"
+        case minosversion = "minOsVersion"
+        case lsminimumsystemversion = "lsMinimumSystemVersion"
+        case computedminmacosversion = "computedMinMacOsVersion"
+        case iconassettoken = "iconAssetToken"
+        case processingstate = "processingState"
+        case buildaudiencetype = "buildAudienceType"
+        case usesnonexemptencryption = "usesNonExemptEncryption"
+        case prereleaseversion = "preReleaseVersion"
+        case individualtesters = "individualTesters"
+        case betagroups = "betaGroups"
+        case betabuildlocalizations = "betaBuildLocalizations"
+        case appencryptiondeclaration = "appEncryptionDeclaration"
+        case betaappreviewsubmission = "betaAppReviewSubmission"
+        case app = "app"
+        case buildbetadetail = "buildBetaDetail"
+        case appstoreversion = "appStoreVersion"
+        case icons = "icons"
+        case buildbundles = "buildBundles"
+        case perfpowermetrics = "perfPowerMetrics"
+        case diagnosticsignatures = "diagnosticSignatures"
     }
 
     /**
@@ -1423,124 +1518,21 @@ open class BetaTestersAPI {
     }
 
     /**
-     * enum for parameter fieldsApps
-     */
-    public enum FieldsApps_betaTestersGetInstance: String, CaseIterable {
-        case alternativedistributionkey = "alternativeDistributionKey"
-        case analyticsreportrequests = "analyticsReportRequests"
-        case appavailability = "appAvailability"
-        case appclips = "appClips"
-        case appcustomproductpages = "appCustomProductPages"
-        case appencryptiondeclarations = "appEncryptionDeclarations"
-        case appevents = "appEvents"
-        case appinfos = "appInfos"
-        case apppricepoints = "appPricePoints"
-        case apppriceschedule = "appPriceSchedule"
-        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
-        case appstoreversions = "appStoreVersions"
-        case availableinnewterritories = "availableInNewTerritories"
-        case availableterritories = "availableTerritories"
-        case betaapplocalizations = "betaAppLocalizations"
-        case betaappreviewdetail = "betaAppReviewDetail"
-        case betagroups = "betaGroups"
-        case betalicenseagreement = "betaLicenseAgreement"
-        case betatesters = "betaTesters"
-        case builds = "builds"
-        case bundleid = "bundleId"
-        case ciproduct = "ciProduct"
-        case contentrightsdeclaration = "contentRightsDeclaration"
-        case customerreviews = "customerReviews"
-        case enduserlicenseagreement = "endUserLicenseAgreement"
-        case gamecenterdetail = "gameCenterDetail"
-        case gamecenterenabledversions = "gameCenterEnabledVersions"
-        case inapppurchases = "inAppPurchases"
-        case inapppurchasesv2 = "inAppPurchasesV2"
-        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
-        case marketplacesearchdetail = "marketplaceSearchDetail"
-        case name = "name"
-        case perfpowermetrics = "perfPowerMetrics"
-        case preorder = "preOrder"
-        case prereleaseversions = "preReleaseVersions"
-        case pricepoints = "pricePoints"
-        case prices = "prices"
-        case primarylocale = "primaryLocale"
-        case promotedpurchases = "promotedPurchases"
-        case reviewsubmissions = "reviewSubmissions"
-        case sku = "sku"
-        case subscriptiongraceperiod = "subscriptionGracePeriod"
-        case subscriptiongroups = "subscriptionGroups"
-        case subscriptionstatusurl = "subscriptionStatusUrl"
-        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
-        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
-        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
-    }
-
-    /**
-     * enum for parameter fieldsBuilds
-     */
-    public enum FieldsBuilds_betaTestersGetInstance: String, CaseIterable {
-        case app = "app"
-        case appencryptiondeclaration = "appEncryptionDeclaration"
-        case appstoreversion = "appStoreVersion"
-        case betaappreviewsubmission = "betaAppReviewSubmission"
-        case betabuildlocalizations = "betaBuildLocalizations"
-        case betagroups = "betaGroups"
-        case buildaudiencetype = "buildAudienceType"
-        case buildbetadetail = "buildBetaDetail"
-        case buildbundles = "buildBundles"
-        case computedminmacosversion = "computedMinMacOsVersion"
-        case diagnosticsignatures = "diagnosticSignatures"
-        case expirationdate = "expirationDate"
-        case expired = "expired"
-        case iconassettoken = "iconAssetToken"
-        case icons = "icons"
-        case individualtesters = "individualTesters"
-        case lsminimumsystemversion = "lsMinimumSystemVersion"
-        case minosversion = "minOsVersion"
-        case perfpowermetrics = "perfPowerMetrics"
-        case prereleaseversion = "preReleaseVersion"
-        case processingstate = "processingState"
-        case uploadeddate = "uploadedDate"
-        case usesnonexemptencryption = "usesNonExemptEncryption"
-        case version = "version"
-    }
-
-    /**
-     * enum for parameter fieldsBetaGroups
-     */
-    public enum FieldsBetaGroups_betaTestersGetInstance: String, CaseIterable {
-        case app = "app"
-        case betatesters = "betaTesters"
-        case builds = "builds"
-        case createddate = "createdDate"
-        case feedbackenabled = "feedbackEnabled"
-        case hasaccesstoallbuilds = "hasAccessToAllBuilds"
-        case iosbuildsavailableforapplesiliconmac = "iosBuildsAvailableForAppleSiliconMac"
-        case isinternalgroup = "isInternalGroup"
-        case name = "name"
-        case publiclink = "publicLink"
-        case publiclinkenabled = "publicLinkEnabled"
-        case publiclinkid = "publicLinkId"
-        case publiclinklimit = "publicLinkLimit"
-        case publiclinklimitenabled = "publicLinkLimitEnabled"
-    }
-
-    /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsBetaTesters: (query) the fields to include for returned resources of type betaTesters (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
-     - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
      - parameter fieldsBetaGroups: (query) the fields to include for returned resources of type betaGroups (optional)
+     - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitApps: (query) maximum number of related apps returned (when they are included) (optional)
      - parameter limitBetaGroups: (query) maximum number of related betaGroups returned (when they are included) (optional)
      - parameter limitBuilds: (query) maximum number of related builds returned (when they are included) (optional)
      - returns: BetaTesterResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaTestersGetInstance(id: String, fieldsBetaTesters: [FieldsBetaTesters_betaTestersGetInstance]? = nil, include: [Include_betaTestersGetInstance]? = nil, fieldsApps: [FieldsApps_betaTestersGetInstance]? = nil, fieldsBuilds: [FieldsBuilds_betaTestersGetInstance]? = nil, fieldsBetaGroups: [FieldsBetaGroups_betaTestersGetInstance]? = nil, limitApps: Int? = nil, limitBetaGroups: Int? = nil, limitBuilds: Int? = nil) async throws -> BetaTesterResponse {
-        return try await betaTestersGetInstanceWithRequestBuilder(id: id, fieldsBetaTesters: fieldsBetaTesters, include: include, fieldsApps: fieldsApps, fieldsBuilds: fieldsBuilds, fieldsBetaGroups: fieldsBetaGroups, limitApps: limitApps, limitBetaGroups: limitBetaGroups, limitBuilds: limitBuilds).execute().body
+    open class func betaTestersGetInstance(id: String, fieldsBetaTesters: [FieldsBetaTesters_betaTestersGetInstance]? = nil, fieldsApps: [FieldsApps_betaTestersGetInstance]? = nil, fieldsBetaGroups: [FieldsBetaGroups_betaTestersGetInstance]? = nil, fieldsBuilds: [FieldsBuilds_betaTestersGetInstance]? = nil, include: [Include_betaTestersGetInstance]? = nil, limitApps: Int? = nil, limitBetaGroups: Int? = nil, limitBuilds: Int? = nil) async throws -> BetaTesterResponse {
+        return try await betaTestersGetInstanceWithRequestBuilder(id: id, fieldsBetaTesters: fieldsBetaTesters, fieldsApps: fieldsApps, fieldsBetaGroups: fieldsBetaGroups, fieldsBuilds: fieldsBuilds, include: include, limitApps: limitApps, limitBetaGroups: limitBetaGroups, limitBuilds: limitBuilds).execute().body
     }
 
     /**
@@ -1559,16 +1551,16 @@ open class BetaTestersAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsBetaTesters: (query) the fields to include for returned resources of type betaTesters (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
-     - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
      - parameter fieldsBetaGroups: (query) the fields to include for returned resources of type betaGroups (optional)
+     - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitApps: (query) maximum number of related apps returned (when they are included) (optional)
      - parameter limitBetaGroups: (query) maximum number of related betaGroups returned (when they are included) (optional)
      - parameter limitBuilds: (query) maximum number of related builds returned (when they are included) (optional)
      - returns: RequestBuilder<BetaTesterResponse> 
      */
-    open class func betaTestersGetInstanceWithRequestBuilder(id: String, fieldsBetaTesters: [FieldsBetaTesters_betaTestersGetInstance]? = nil, include: [Include_betaTestersGetInstance]? = nil, fieldsApps: [FieldsApps_betaTestersGetInstance]? = nil, fieldsBuilds: [FieldsBuilds_betaTestersGetInstance]? = nil, fieldsBetaGroups: [FieldsBetaGroups_betaTestersGetInstance]? = nil, limitApps: Int? = nil, limitBetaGroups: Int? = nil, limitBuilds: Int? = nil) -> RequestBuilder<BetaTesterResponse> {
+    open class func betaTestersGetInstanceWithRequestBuilder(id: String, fieldsBetaTesters: [FieldsBetaTesters_betaTestersGetInstance]? = nil, fieldsApps: [FieldsApps_betaTestersGetInstance]? = nil, fieldsBetaGroups: [FieldsBetaGroups_betaTestersGetInstance]? = nil, fieldsBuilds: [FieldsBuilds_betaTestersGetInstance]? = nil, include: [Include_betaTestersGetInstance]? = nil, limitApps: Int? = nil, limitBetaGroups: Int? = nil, limitBuilds: Int? = nil) -> RequestBuilder<BetaTesterResponse> {
         var localVariablePath = "/v1/betaTesters/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -1579,10 +1571,10 @@ open class BetaTestersAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[betaTesters]": (wrappedValue: fieldsBetaTesters?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
-            "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(), isExplode: false),
             "fields[betaGroups]": (wrappedValue: fieldsBetaGroups?.encodeToJSON(), isExplode: false),
+            "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "limit[apps]": (wrappedValue: limitApps?.encodeToJSON(), isExplode: true),
             "limit[betaGroups]": (wrappedValue: limitBetaGroups?.encodeToJSON(), isExplode: true),
             "limit[builds]": (wrappedValue: limitBuilds?.encodeToJSON(), isExplode: true),

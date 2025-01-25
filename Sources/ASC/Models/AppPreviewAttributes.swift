@@ -18,20 +18,24 @@ public struct AppPreviewAttributes: Codable, JSONEncodable, Hashable {
     public var previewFrameTimeCode: String?
     public var mimeType: String?
     public var videoUrl: String?
+    public var previewFrameImage: PreviewFrameImage?
     public var previewImage: ImageAsset?
     public var uploadOperations: [UploadOperation]?
     public var assetDeliveryState: AppMediaAssetState?
+    public var videoDeliveryState: AppMediaVideoState?
 
-    public init(fileSize: Int? = nil, fileName: String? = nil, sourceFileChecksum: String? = nil, previewFrameTimeCode: String? = nil, mimeType: String? = nil, videoUrl: String? = nil, previewImage: ImageAsset? = nil, uploadOperations: [UploadOperation]? = nil, assetDeliveryState: AppMediaAssetState? = nil) {
+    public init(fileSize: Int? = nil, fileName: String? = nil, sourceFileChecksum: String? = nil, previewFrameTimeCode: String? = nil, mimeType: String? = nil, videoUrl: String? = nil, previewFrameImage: PreviewFrameImage? = nil, previewImage: ImageAsset? = nil, uploadOperations: [UploadOperation]? = nil, assetDeliveryState: AppMediaAssetState? = nil, videoDeliveryState: AppMediaVideoState? = nil) {
         self.fileSize = fileSize
         self.fileName = fileName
         self.sourceFileChecksum = sourceFileChecksum
         self.previewFrameTimeCode = previewFrameTimeCode
         self.mimeType = mimeType
         self.videoUrl = videoUrl
+        self.previewFrameImage = previewFrameImage
         self.previewImage = previewImage
         self.uploadOperations = uploadOperations
         self.assetDeliveryState = assetDeliveryState
+        self.videoDeliveryState = videoDeliveryState
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -41,9 +45,11 @@ public struct AppPreviewAttributes: Codable, JSONEncodable, Hashable {
         case previewFrameTimeCode
         case mimeType
         case videoUrl
+        case previewFrameImage
         case previewImage
         case uploadOperations
         case assetDeliveryState
+        case videoDeliveryState
     }
 
     // Encodable protocol methods
@@ -56,9 +62,11 @@ public struct AppPreviewAttributes: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(previewFrameTimeCode, forKey: .previewFrameTimeCode)
         try container.encodeIfPresent(mimeType, forKey: .mimeType)
         try container.encodeIfPresent(videoUrl, forKey: .videoUrl)
+        try container.encodeIfPresent(previewFrameImage, forKey: .previewFrameImage)
         try container.encodeIfPresent(previewImage, forKey: .previewImage)
         try container.encodeIfPresent(uploadOperations, forKey: .uploadOperations)
         try container.encodeIfPresent(assetDeliveryState, forKey: .assetDeliveryState)
+        try container.encodeIfPresent(videoDeliveryState, forKey: .videoDeliveryState)
     }
 }
 

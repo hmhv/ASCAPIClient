@@ -16,30 +16,20 @@ open class AnalyticsReportsAPI {
      * enum for parameter fieldsAnalyticsReports
      */
     public enum FieldsAnalyticsReports_analyticsReportsGetInstance: String, CaseIterable {
+        case name = "name"
         case category = "category"
         case instances = "instances"
-        case name = "name"
-    }
-
-    /**
-     * enum for parameter fieldsAnalyticsReportInstances
-     */
-    public enum FieldsAnalyticsReportInstances_analyticsReportsGetInstance: String, CaseIterable {
-        case granularity = "granularity"
-        case processingdate = "processingDate"
-        case segments = "segments"
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAnalyticsReports: (query) the fields to include for returned resources of type analyticsReports (optional)
-     - parameter fieldsAnalyticsReportInstances: (query) the fields to include for returned resources of type analyticsReportInstances (optional)
      - returns: AnalyticsReportResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func analyticsReportsGetInstance(id: String, fieldsAnalyticsReports: [FieldsAnalyticsReports_analyticsReportsGetInstance]? = nil, fieldsAnalyticsReportInstances: [FieldsAnalyticsReportInstances_analyticsReportsGetInstance]? = nil) async throws -> AnalyticsReportResponse {
-        return try await analyticsReportsGetInstanceWithRequestBuilder(id: id, fieldsAnalyticsReports: fieldsAnalyticsReports, fieldsAnalyticsReportInstances: fieldsAnalyticsReportInstances).execute().body
+    open class func analyticsReportsGetInstance(id: String, fieldsAnalyticsReports: [FieldsAnalyticsReports_analyticsReportsGetInstance]? = nil) async throws -> AnalyticsReportResponse {
+        return try await analyticsReportsGetInstanceWithRequestBuilder(id: id, fieldsAnalyticsReports: fieldsAnalyticsReports).execute().body
     }
 
     /**
@@ -58,10 +48,9 @@ open class AnalyticsReportsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAnalyticsReports: (query) the fields to include for returned resources of type analyticsReports (optional)
-     - parameter fieldsAnalyticsReportInstances: (query) the fields to include for returned resources of type analyticsReportInstances (optional)
      - returns: RequestBuilder<AnalyticsReportResponse> 
      */
-    open class func analyticsReportsGetInstanceWithRequestBuilder(id: String, fieldsAnalyticsReports: [FieldsAnalyticsReports_analyticsReportsGetInstance]? = nil, fieldsAnalyticsReportInstances: [FieldsAnalyticsReportInstances_analyticsReportsGetInstance]? = nil) -> RequestBuilder<AnalyticsReportResponse> {
+    open class func analyticsReportsGetInstanceWithRequestBuilder(id: String, fieldsAnalyticsReports: [FieldsAnalyticsReports_analyticsReportsGetInstance]? = nil) -> RequestBuilder<AnalyticsReportResponse> {
         var localVariablePath = "/v1/analyticsReports/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -72,7 +61,6 @@ open class AnalyticsReportsAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[analyticsReports]": (wrappedValue: fieldsAnalyticsReports?.encodeToJSON(), isExplode: false),
-            "fields[analyticsReportInstances]": (wrappedValue: fieldsAnalyticsReportInstances?.encodeToJSON(), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [

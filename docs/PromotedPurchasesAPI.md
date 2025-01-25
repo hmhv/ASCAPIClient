@@ -23,7 +23,7 @@ Method | HTTP request | Description
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import ASC
 
-let promotedPurchaseCreateRequest = PromotedPurchaseCreateRequest(data: PromotedPurchaseCreateRequest_data(type: "type_example", attributes: PromotedPurchaseCreateRequest_data_attributes(visibleForAllUsers: false, enabled: false), relationships: PromotedPurchaseCreateRequest_data_relationships(app: AnalyticsReportRequestCreateRequest_data_relationships_app(data: AlternativeDistributionKeyCreateRequest_data_relationships_app_data(type: "type_example", id: "id_example")), inAppPurchaseV2: InAppPurchasePriceInlineCreate_relationships_inAppPurchaseV2(data: App_relationships_inAppPurchases_data_inner(type: "type_example", id: "id_example")), subscription: PromotedPurchaseCreateRequest_data_relationships_subscription(data: PromotedPurchase_relationships_subscription_data(type: "type_example", id: "id_example"))))) // PromotedPurchaseCreateRequest | PromotedPurchase representation
+let promotedPurchaseCreateRequest = PromotedPurchaseCreateRequest(data: PromotedPurchaseCreateRequest_data(type: "type_example", attributes: PromotedPurchaseCreateRequest_data_attributes(visibleForAllUsers: false, enabled: false), relationships: PromotedPurchaseCreateRequest_data_relationships(app: AnalyticsReportRequestCreateRequest_data_relationships_app(data: AlternativeDistributionKeyCreateRequest_data_relationships_app_data(type: "type_example", id: "id_example")), inAppPurchaseV2: InAppPurchaseAppStoreReviewScreenshot_relationships_inAppPurchaseV2(data: App_relationships_inAppPurchases_data_inner(type: "type_example", id: "id_example")), subscription: PromotedPurchase_relationships_subscription(data: PromotedPurchase_relationships_subscription_data(type: "type_example", id: "id_example"))))) // PromotedPurchaseCreateRequest | PromotedPurchase representation
 
 PromotedPurchasesAPI.promotedPurchasesCreateInstance(promotedPurchaseCreateRequest: promotedPurchaseCreateRequest) { (response, error) in
     guard error == nil else {
@@ -107,7 +107,7 @@ Void (empty response body)
 
 # **promotedPurchasesGetInstance**
 ```swift
-    open class func promotedPurchasesGetInstance(id: String, fieldsPromotedPurchases: [FieldsPromotedPurchases_promotedPurchasesGetInstance]? = nil, include: [Include_promotedPurchasesGetInstance]? = nil, fieldsPromotedPurchaseImages: [FieldsPromotedPurchaseImages_promotedPurchasesGetInstance]? = nil, limitPromotionImages: Int? = nil, completion: @escaping (_ data: PromotedPurchaseResponse?, _ error: Error?) -> Void)
+    open class func promotedPurchasesGetInstance(id: String, fieldsPromotedPurchases: [FieldsPromotedPurchases_promotedPurchasesGetInstance]? = nil, fieldsPromotedPurchaseImages: [FieldsPromotedPurchaseImages_promotedPurchasesGetInstance]? = nil, include: [Include_promotedPurchasesGetInstance]? = nil, limitPromotionImages: Int? = nil, completion: @escaping (_ data: PromotedPurchaseResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -119,11 +119,11 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let fieldsPromotedPurchases = ["fieldsPromotedPurchases_example"] // [String] | the fields to include for returned resources of type promotedPurchases (optional)
-let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let fieldsPromotedPurchaseImages = ["fieldsPromotedPurchaseImages_example"] // [String] | the fields to include for returned resources of type promotedPurchaseImages (optional)
+let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let limitPromotionImages = 987 // Int | maximum number of related promotionImages returned (when they are included) (optional)
 
-PromotedPurchasesAPI.promotedPurchasesGetInstance(id: id, fieldsPromotedPurchases: fieldsPromotedPurchases, include: include, fieldsPromotedPurchaseImages: fieldsPromotedPurchaseImages, limitPromotionImages: limitPromotionImages) { (response, error) in
+PromotedPurchasesAPI.promotedPurchasesGetInstance(id: id, fieldsPromotedPurchases: fieldsPromotedPurchases, fieldsPromotedPurchaseImages: fieldsPromotedPurchaseImages, include: include, limitPromotionImages: limitPromotionImages) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -141,8 +141,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **fieldsPromotedPurchases** | [**[String]**](String.md) | the fields to include for returned resources of type promotedPurchases | [optional] 
- **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **fieldsPromotedPurchaseImages** | [**[String]**](String.md) | the fields to include for returned resources of type promotedPurchaseImages | [optional] 
+ **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **limitPromotionImages** | **Int** | maximum number of related promotionImages returned (when they are included) | [optional] 
 
 ### Return type
@@ -162,7 +162,7 @@ Name | Type | Description  | Notes
 
 # **promotedPurchasesPromotionImagesGetToManyRelated**
 ```swift
-    open class func promotedPurchasesPromotionImagesGetToManyRelated(id: String, fieldsPromotedPurchases: [FieldsPromotedPurchases_promotedPurchasesPromotionImagesGetToManyRelated]? = nil, fieldsPromotedPurchaseImages: [FieldsPromotedPurchaseImages_promotedPurchasesPromotionImagesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_promotedPurchasesPromotionImagesGetToManyRelated]? = nil, completion: @escaping (_ data: PromotedPurchaseImagesResponse?, _ error: Error?) -> Void)
+    open class func promotedPurchasesPromotionImagesGetToManyRelated(id: String, fieldsPromotedPurchaseImages: [FieldsPromotedPurchaseImages_promotedPurchasesPromotionImagesGetToManyRelated]? = nil, fieldsPromotedPurchases: [FieldsPromotedPurchases_promotedPurchasesPromotionImagesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_promotedPurchasesPromotionImagesGetToManyRelated]? = nil, completion: @escaping (_ data: PromotedPurchaseImagesResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -173,12 +173,12 @@ Name | Type | Description  | Notes
 import ASC
 
 let id = "id_example" // String | the id of the requested resource
-let fieldsPromotedPurchases = ["fieldsPromotedPurchases_example"] // [String] | the fields to include for returned resources of type promotedPurchases (optional)
 let fieldsPromotedPurchaseImages = ["fieldsPromotedPurchaseImages_example"] // [String] | the fields to include for returned resources of type promotedPurchaseImages (optional)
+let fieldsPromotedPurchases = ["fieldsPromotedPurchases_example"] // [String] | the fields to include for returned resources of type promotedPurchases (optional)
 let limit = 987 // Int | maximum resources per page (optional)
 let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 
-PromotedPurchasesAPI.promotedPurchasesPromotionImagesGetToManyRelated(id: id, fieldsPromotedPurchases: fieldsPromotedPurchases, fieldsPromotedPurchaseImages: fieldsPromotedPurchaseImages, limit: limit, include: include) { (response, error) in
+PromotedPurchasesAPI.promotedPurchasesPromotionImagesGetToManyRelated(id: id, fieldsPromotedPurchaseImages: fieldsPromotedPurchaseImages, fieldsPromotedPurchases: fieldsPromotedPurchases, limit: limit, include: include) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -195,8 +195,8 @@ PromotedPurchasesAPI.promotedPurchasesPromotionImagesGetToManyRelated(id: id, fi
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
- **fieldsPromotedPurchases** | [**[String]**](String.md) | the fields to include for returned resources of type promotedPurchases | [optional] 
  **fieldsPromotedPurchaseImages** | [**[String]**](String.md) | the fields to include for returned resources of type promotedPurchaseImages | [optional] 
+ **fieldsPromotedPurchases** | [**[String]**](String.md) | the fields to include for returned resources of type promotedPurchases | [optional] 
  **limit** | **Int** | maximum resources per page | [optional] 
  **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
 

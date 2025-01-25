@@ -12,10 +12,10 @@ import AnyCodable
 
 public struct GameCenterLeaderboardSetReleaseRelationships: Codable, JSONEncodable, Hashable {
 
-    public var gameCenterDetail: AppRelationshipsGameCenterDetail?
+    public var gameCenterDetail: GameCenterAchievementReleaseRelationshipsGameCenterDetail?
     public var gameCenterLeaderboardSet: GameCenterLeaderboardSetLocalizationRelationshipsGameCenterLeaderboardSet?
 
-    public init(gameCenterDetail: AppRelationshipsGameCenterDetail? = nil, gameCenterLeaderboardSet: GameCenterLeaderboardSetLocalizationRelationshipsGameCenterLeaderboardSet? = nil) {
+    public init(gameCenterDetail: GameCenterAchievementReleaseRelationshipsGameCenterDetail? = nil, gameCenterLeaderboardSet: GameCenterLeaderboardSetLocalizationRelationshipsGameCenterLeaderboardSet? = nil) {
         self.gameCenterDetail = gameCenterDetail
         self.gameCenterLeaderboardSet = gameCenterLeaderboardSet
     }

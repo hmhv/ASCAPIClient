@@ -16,9 +16,19 @@ open class CiMacOsVersionsAPI {
      * enum for parameter fieldsCiMacOsVersions
      */
     public enum FieldsCiMacOsVersions_ciMacOsVersionsGetCollection: String, CaseIterable {
-        case name = "name"
         case version = "version"
+        case name = "name"
         case xcodeversions = "xcodeVersions"
+    }
+
+    /**
+     * enum for parameter fieldsCiXcodeVersions
+     */
+    public enum FieldsCiXcodeVersions_ciMacOsVersionsGetCollection: String, CaseIterable {
+        case version = "version"
+        case name = "name"
+        case testdestinations = "testDestinations"
+        case macosversions = "macOsVersions"
     }
 
     /**
@@ -29,27 +39,17 @@ open class CiMacOsVersionsAPI {
     }
 
     /**
-     * enum for parameter fieldsCiXcodeVersions
-     */
-    public enum FieldsCiXcodeVersions_ciMacOsVersionsGetCollection: String, CaseIterable {
-        case macosversions = "macOsVersions"
-        case name = "name"
-        case testdestinations = "testDestinations"
-        case version = "version"
-    }
-
-    /**
 
      - parameter fieldsCiMacOsVersions: (query) the fields to include for returned resources of type ciMacOsVersions (optional)
+     - parameter fieldsCiXcodeVersions: (query) the fields to include for returned resources of type ciXcodeVersions (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
-     - parameter fieldsCiXcodeVersions: (query) the fields to include for returned resources of type ciXcodeVersions (optional)
      - parameter limitXcodeVersions: (query) maximum number of related xcodeVersions returned (when they are included) (optional)
      - returns: CiMacOsVersionsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciMacOsVersionsGetCollection(fieldsCiMacOsVersions: [FieldsCiMacOsVersions_ciMacOsVersionsGetCollection]? = nil, limit: Int? = nil, include: [Include_ciMacOsVersionsGetCollection]? = nil, fieldsCiXcodeVersions: [FieldsCiXcodeVersions_ciMacOsVersionsGetCollection]? = nil, limitXcodeVersions: Int? = nil) async throws -> CiMacOsVersionsResponse {
-        return try await ciMacOsVersionsGetCollectionWithRequestBuilder(fieldsCiMacOsVersions: fieldsCiMacOsVersions, limit: limit, include: include, fieldsCiXcodeVersions: fieldsCiXcodeVersions, limitXcodeVersions: limitXcodeVersions).execute().body
+    open class func ciMacOsVersionsGetCollection(fieldsCiMacOsVersions: [FieldsCiMacOsVersions_ciMacOsVersionsGetCollection]? = nil, fieldsCiXcodeVersions: [FieldsCiXcodeVersions_ciMacOsVersionsGetCollection]? = nil, limit: Int? = nil, include: [Include_ciMacOsVersionsGetCollection]? = nil, limitXcodeVersions: Int? = nil) async throws -> CiMacOsVersionsResponse {
+        return try await ciMacOsVersionsGetCollectionWithRequestBuilder(fieldsCiMacOsVersions: fieldsCiMacOsVersions, fieldsCiXcodeVersions: fieldsCiXcodeVersions, limit: limit, include: include, limitXcodeVersions: limitXcodeVersions).execute().body
     }
 
     /**
@@ -67,13 +67,13 @@ open class CiMacOsVersionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter fieldsCiMacOsVersions: (query) the fields to include for returned resources of type ciMacOsVersions (optional)
+     - parameter fieldsCiXcodeVersions: (query) the fields to include for returned resources of type ciXcodeVersions (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
-     - parameter fieldsCiXcodeVersions: (query) the fields to include for returned resources of type ciXcodeVersions (optional)
      - parameter limitXcodeVersions: (query) maximum number of related xcodeVersions returned (when they are included) (optional)
      - returns: RequestBuilder<CiMacOsVersionsResponse> 
      */
-    open class func ciMacOsVersionsGetCollectionWithRequestBuilder(fieldsCiMacOsVersions: [FieldsCiMacOsVersions_ciMacOsVersionsGetCollection]? = nil, limit: Int? = nil, include: [Include_ciMacOsVersionsGetCollection]? = nil, fieldsCiXcodeVersions: [FieldsCiXcodeVersions_ciMacOsVersionsGetCollection]? = nil, limitXcodeVersions: Int? = nil) -> RequestBuilder<CiMacOsVersionsResponse> {
+    open class func ciMacOsVersionsGetCollectionWithRequestBuilder(fieldsCiMacOsVersions: [FieldsCiMacOsVersions_ciMacOsVersionsGetCollection]? = nil, fieldsCiXcodeVersions: [FieldsCiXcodeVersions_ciMacOsVersionsGetCollection]? = nil, limit: Int? = nil, include: [Include_ciMacOsVersionsGetCollection]? = nil, limitXcodeVersions: Int? = nil) -> RequestBuilder<CiMacOsVersionsResponse> {
         let localVariablePath = "/v1/ciMacOsVersions"
         let localVariableURLString = ASCAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -81,9 +81,9 @@ open class CiMacOsVersionsAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[ciMacOsVersions]": (wrappedValue: fieldsCiMacOsVersions?.encodeToJSON(), isExplode: false),
+            "fields[ciXcodeVersions]": (wrappedValue: fieldsCiXcodeVersions?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "fields[ciXcodeVersions]": (wrappedValue: fieldsCiXcodeVersions?.encodeToJSON(), isExplode: false),
             "limit[xcodeVersions]": (wrappedValue: limitXcodeVersions?.encodeToJSON(), isExplode: true),
         ])
 
@@ -122,9 +122,19 @@ open class CiMacOsVersionsAPI {
      * enum for parameter fieldsCiMacOsVersions
      */
     public enum FieldsCiMacOsVersions_ciMacOsVersionsGetInstance: String, CaseIterable {
-        case name = "name"
         case version = "version"
+        case name = "name"
         case xcodeversions = "xcodeVersions"
+    }
+
+    /**
+     * enum for parameter fieldsCiXcodeVersions
+     */
+    public enum FieldsCiXcodeVersions_ciMacOsVersionsGetInstance: String, CaseIterable {
+        case version = "version"
+        case name = "name"
+        case testdestinations = "testDestinations"
+        case macosversions = "macOsVersions"
     }
 
     /**
@@ -135,27 +145,17 @@ open class CiMacOsVersionsAPI {
     }
 
     /**
-     * enum for parameter fieldsCiXcodeVersions
-     */
-    public enum FieldsCiXcodeVersions_ciMacOsVersionsGetInstance: String, CaseIterable {
-        case macosversions = "macOsVersions"
-        case name = "name"
-        case testdestinations = "testDestinations"
-        case version = "version"
-    }
-
-    /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsCiMacOsVersions: (query) the fields to include for returned resources of type ciMacOsVersions (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter fieldsCiXcodeVersions: (query) the fields to include for returned resources of type ciXcodeVersions (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitXcodeVersions: (query) maximum number of related xcodeVersions returned (when they are included) (optional)
      - returns: CiMacOsVersionResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciMacOsVersionsGetInstance(id: String, fieldsCiMacOsVersions: [FieldsCiMacOsVersions_ciMacOsVersionsGetInstance]? = nil, include: [Include_ciMacOsVersionsGetInstance]? = nil, fieldsCiXcodeVersions: [FieldsCiXcodeVersions_ciMacOsVersionsGetInstance]? = nil, limitXcodeVersions: Int? = nil) async throws -> CiMacOsVersionResponse {
-        return try await ciMacOsVersionsGetInstanceWithRequestBuilder(id: id, fieldsCiMacOsVersions: fieldsCiMacOsVersions, include: include, fieldsCiXcodeVersions: fieldsCiXcodeVersions, limitXcodeVersions: limitXcodeVersions).execute().body
+    open class func ciMacOsVersionsGetInstance(id: String, fieldsCiMacOsVersions: [FieldsCiMacOsVersions_ciMacOsVersionsGetInstance]? = nil, fieldsCiXcodeVersions: [FieldsCiXcodeVersions_ciMacOsVersionsGetInstance]? = nil, include: [Include_ciMacOsVersionsGetInstance]? = nil, limitXcodeVersions: Int? = nil) async throws -> CiMacOsVersionResponse {
+        return try await ciMacOsVersionsGetInstanceWithRequestBuilder(id: id, fieldsCiMacOsVersions: fieldsCiMacOsVersions, fieldsCiXcodeVersions: fieldsCiXcodeVersions, include: include, limitXcodeVersions: limitXcodeVersions).execute().body
     }
 
     /**
@@ -174,12 +174,12 @@ open class CiMacOsVersionsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsCiMacOsVersions: (query) the fields to include for returned resources of type ciMacOsVersions (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter fieldsCiXcodeVersions: (query) the fields to include for returned resources of type ciXcodeVersions (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitXcodeVersions: (query) maximum number of related xcodeVersions returned (when they are included) (optional)
      - returns: RequestBuilder<CiMacOsVersionResponse> 
      */
-    open class func ciMacOsVersionsGetInstanceWithRequestBuilder(id: String, fieldsCiMacOsVersions: [FieldsCiMacOsVersions_ciMacOsVersionsGetInstance]? = nil, include: [Include_ciMacOsVersionsGetInstance]? = nil, fieldsCiXcodeVersions: [FieldsCiXcodeVersions_ciMacOsVersionsGetInstance]? = nil, limitXcodeVersions: Int? = nil) -> RequestBuilder<CiMacOsVersionResponse> {
+    open class func ciMacOsVersionsGetInstanceWithRequestBuilder(id: String, fieldsCiMacOsVersions: [FieldsCiMacOsVersions_ciMacOsVersionsGetInstance]? = nil, fieldsCiXcodeVersions: [FieldsCiXcodeVersions_ciMacOsVersionsGetInstance]? = nil, include: [Include_ciMacOsVersionsGetInstance]? = nil, limitXcodeVersions: Int? = nil) -> RequestBuilder<CiMacOsVersionResponse> {
         var localVariablePath = "/v1/ciMacOsVersions/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -190,8 +190,8 @@ open class CiMacOsVersionsAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[ciMacOsVersions]": (wrappedValue: fieldsCiMacOsVersions?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "fields[ciXcodeVersions]": (wrappedValue: fieldsCiXcodeVersions?.encodeToJSON(), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "limit[xcodeVersions]": (wrappedValue: limitXcodeVersions?.encodeToJSON(), isExplode: true),
         ])
 
@@ -230,18 +230,18 @@ open class CiMacOsVersionsAPI {
      * enum for parameter fieldsCiXcodeVersions
      */
     public enum FieldsCiXcodeVersions_ciMacOsVersionsXcodeVersionsGetToManyRelated: String, CaseIterable {
-        case macosversions = "macOsVersions"
+        case version = "version"
         case name = "name"
         case testdestinations = "testDestinations"
-        case version = "version"
+        case macosversions = "macOsVersions"
     }
 
     /**
      * enum for parameter fieldsCiMacOsVersions
      */
     public enum FieldsCiMacOsVersions_ciMacOsVersionsXcodeVersionsGetToManyRelated: String, CaseIterable {
-        case name = "name"
         case version = "version"
+        case name = "name"
         case xcodeversions = "xcodeVersions"
     }
 
@@ -258,13 +258,13 @@ open class CiMacOsVersionsAPI {
      - parameter fieldsCiXcodeVersions: (query) the fields to include for returned resources of type ciXcodeVersions (optional)
      - parameter fieldsCiMacOsVersions: (query) the fields to include for returned resources of type ciMacOsVersions (optional)
      - parameter limit: (query) maximum resources per page (optional)
-     - parameter limitMacOsVersions: (query) maximum number of related macOsVersions returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitMacOsVersions: (query) maximum number of related macOsVersions returned (when they are included) (optional)
      - returns: CiXcodeVersionsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciMacOsVersionsXcodeVersionsGetToManyRelated(id: String, fieldsCiXcodeVersions: [FieldsCiXcodeVersions_ciMacOsVersionsXcodeVersionsGetToManyRelated]? = nil, fieldsCiMacOsVersions: [FieldsCiMacOsVersions_ciMacOsVersionsXcodeVersionsGetToManyRelated]? = nil, limit: Int? = nil, limitMacOsVersions: Int? = nil, include: [Include_ciMacOsVersionsXcodeVersionsGetToManyRelated]? = nil) async throws -> CiXcodeVersionsResponse {
-        return try await ciMacOsVersionsXcodeVersionsGetToManyRelatedWithRequestBuilder(id: id, fieldsCiXcodeVersions: fieldsCiXcodeVersions, fieldsCiMacOsVersions: fieldsCiMacOsVersions, limit: limit, limitMacOsVersions: limitMacOsVersions, include: include).execute().body
+    open class func ciMacOsVersionsXcodeVersionsGetToManyRelated(id: String, fieldsCiXcodeVersions: [FieldsCiXcodeVersions_ciMacOsVersionsXcodeVersionsGetToManyRelated]? = nil, fieldsCiMacOsVersions: [FieldsCiMacOsVersions_ciMacOsVersionsXcodeVersionsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_ciMacOsVersionsXcodeVersionsGetToManyRelated]? = nil, limitMacOsVersions: Int? = nil) async throws -> CiXcodeVersionsResponse {
+        return try await ciMacOsVersionsXcodeVersionsGetToManyRelatedWithRequestBuilder(id: id, fieldsCiXcodeVersions: fieldsCiXcodeVersions, fieldsCiMacOsVersions: fieldsCiMacOsVersions, limit: limit, include: include, limitMacOsVersions: limitMacOsVersions).execute().body
     }
 
     /**
@@ -285,11 +285,11 @@ open class CiMacOsVersionsAPI {
      - parameter fieldsCiXcodeVersions: (query) the fields to include for returned resources of type ciXcodeVersions (optional)
      - parameter fieldsCiMacOsVersions: (query) the fields to include for returned resources of type ciMacOsVersions (optional)
      - parameter limit: (query) maximum resources per page (optional)
-     - parameter limitMacOsVersions: (query) maximum number of related macOsVersions returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitMacOsVersions: (query) maximum number of related macOsVersions returned (when they are included) (optional)
      - returns: RequestBuilder<CiXcodeVersionsResponse> 
      */
-    open class func ciMacOsVersionsXcodeVersionsGetToManyRelatedWithRequestBuilder(id: String, fieldsCiXcodeVersions: [FieldsCiXcodeVersions_ciMacOsVersionsXcodeVersionsGetToManyRelated]? = nil, fieldsCiMacOsVersions: [FieldsCiMacOsVersions_ciMacOsVersionsXcodeVersionsGetToManyRelated]? = nil, limit: Int? = nil, limitMacOsVersions: Int? = nil, include: [Include_ciMacOsVersionsXcodeVersionsGetToManyRelated]? = nil) -> RequestBuilder<CiXcodeVersionsResponse> {
+    open class func ciMacOsVersionsXcodeVersionsGetToManyRelatedWithRequestBuilder(id: String, fieldsCiXcodeVersions: [FieldsCiXcodeVersions_ciMacOsVersionsXcodeVersionsGetToManyRelated]? = nil, fieldsCiMacOsVersions: [FieldsCiMacOsVersions_ciMacOsVersionsXcodeVersionsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_ciMacOsVersionsXcodeVersionsGetToManyRelated]? = nil, limitMacOsVersions: Int? = nil) -> RequestBuilder<CiXcodeVersionsResponse> {
         var localVariablePath = "/v1/ciMacOsVersions/{id}/xcodeVersions"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -302,8 +302,8 @@ open class CiMacOsVersionsAPI {
             "fields[ciXcodeVersions]": (wrappedValue: fieldsCiXcodeVersions?.encodeToJSON(), isExplode: false),
             "fields[ciMacOsVersions]": (wrappedValue: fieldsCiMacOsVersions?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "limit[macOsVersions]": (wrappedValue: limitMacOsVersions?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "limit[macOsVersions]": (wrappedValue: limitMacOsVersions?.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [

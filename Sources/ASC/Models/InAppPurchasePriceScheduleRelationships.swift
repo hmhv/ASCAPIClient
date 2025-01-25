@@ -12,20 +12,17 @@ import AnyCodable
 
 public struct InAppPurchasePriceScheduleRelationships: Codable, JSONEncodable, Hashable {
 
-    public var inAppPurchase: InAppPurchaseAppStoreReviewScreenshotRelationshipsInAppPurchaseV2?
-    public var baseTerritory: AppPricePointV2RelationshipsTerritory?
+    public var baseTerritory: AppPriceScheduleRelationshipsBaseTerritory?
     public var manualPrices: InAppPurchasePriceScheduleRelationshipsManualPrices?
     public var automaticPrices: InAppPurchasePriceScheduleRelationshipsManualPrices?
 
-    public init(inAppPurchase: InAppPurchaseAppStoreReviewScreenshotRelationshipsInAppPurchaseV2? = nil, baseTerritory: AppPricePointV2RelationshipsTerritory? = nil, manualPrices: InAppPurchasePriceScheduleRelationshipsManualPrices? = nil, automaticPrices: InAppPurchasePriceScheduleRelationshipsManualPrices? = nil) {
-        self.inAppPurchase = inAppPurchase
+    public init(baseTerritory: AppPriceScheduleRelationshipsBaseTerritory? = nil, manualPrices: InAppPurchasePriceScheduleRelationshipsManualPrices? = nil, automaticPrices: InAppPurchasePriceScheduleRelationshipsManualPrices? = nil) {
         self.baseTerritory = baseTerritory
         self.manualPrices = manualPrices
         self.automaticPrices = automaticPrices
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
-        case inAppPurchase
         case baseTerritory
         case manualPrices
         case automaticPrices
@@ -35,7 +32,6 @@ public struct InAppPurchasePriceScheduleRelationships: Codable, JSONEncodable, H
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(inAppPurchase, forKey: .inAppPurchase)
         try container.encodeIfPresent(baseTerritory, forKey: .baseTerritory)
         try container.encodeIfPresent(manualPrices, forKey: .manualPrices)
         try container.encodeIfPresent(automaticPrices, forKey: .automaticPrices)

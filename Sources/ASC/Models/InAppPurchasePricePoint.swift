@@ -18,11 +18,11 @@ public struct InAppPurchasePricePoint: Codable, JSONEncodable, Hashable {
     }
     public var type: ModelType
     public var id: String
-    public var attributes: InAppPurchasePricePointAttributes?
+    public var attributes: AppPricePointV3Attributes?
     public var relationships: InAppPurchasePricePointRelationships?
     public var links: ResourceLinks?
 
-    public init(type: ModelType, id: String, attributes: InAppPurchasePricePointAttributes? = nil, relationships: InAppPurchasePricePointRelationships? = nil, links: ResourceLinks? = nil) {
+    public init(type: ModelType, id: String, attributes: AppPricePointV3Attributes? = nil, relationships: InAppPurchasePricePointRelationships? = nil, links: ResourceLinks? = nil) {
         self.type = type
         self.id = id
         self.attributes = attributes

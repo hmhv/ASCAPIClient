@@ -12,10 +12,10 @@ import AnyCodable
 
 public struct BetaLicenseAgreementWithoutIncludesResponse: Codable, JSONEncodable, Hashable {
 
-    public var data: App
+    public var data: BetaLicenseAgreement
     public var links: DocumentLinks
 
-    public init(data: App, links: DocumentLinks) {
+    public init(data: BetaLicenseAgreement, links: DocumentLinks) {
         self.data = data
         self.links = links
     }

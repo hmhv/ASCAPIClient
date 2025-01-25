@@ -13,11 +13,11 @@ import AnyCodable
 @available(*, deprecated, message: "This schema is deprecated.")
 public struct AppRelationshipsInAppPurchases: Codable, JSONEncodable, Hashable {
 
-    public var links: AlternativeDistributionPackageVersionRelationshipsVariantsLinks?
+    public var links: RelationshipLinks?
     public var meta: PagingInformation?
     public var data: [AppRelationshipsInAppPurchasesDataInner]?
 
-    public init(links: AlternativeDistributionPackageVersionRelationshipsVariantsLinks? = nil, meta: PagingInformation? = nil, data: [AppRelationshipsInAppPurchasesDataInner]? = nil) {
+    public init(links: RelationshipLinks? = nil, meta: PagingInformation? = nil, data: [AppRelationshipsInAppPurchasesDataInner]? = nil) {
         self.links = links
         self.meta = meta
         self.data = data

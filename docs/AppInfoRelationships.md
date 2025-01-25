@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**app** | [**AppAvailabilityRelationshipsApp**](AppAvailabilityRelationshipsApp.md) |  | [optional] 
+**app** | [**AlternativeDistributionKeyCreateRequestDataRelationshipsApp**](AlternativeDistributionKeyCreateRequestDataRelationshipsApp.md) |  | [optional] 
 **ageRatingDeclaration** | [**AppInfoRelationshipsAgeRatingDeclaration**](AppInfoRelationshipsAgeRatingDeclaration.md) |  | [optional] 
 **appInfoLocalizations** | [**AppInfoRelationshipsAppInfoLocalizations**](AppInfoRelationshipsAppInfoLocalizations.md) |  | [optional] 
 **primaryCategory** | [**AppCategoryRelationshipsParent**](AppCategoryRelationshipsParent.md) |  | [optional] 

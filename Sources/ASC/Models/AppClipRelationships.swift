@@ -12,17 +12,20 @@ import AnyCodable
 
 public struct AppClipRelationships: Codable, JSONEncodable, Hashable {
 
-    public var app: AppAvailabilityRelationshipsApp?
+    public var app: AlternativeDistributionKeyCreateRequestDataRelationshipsApp?
     public var appClipDefaultExperiences: AppClipRelationshipsAppClipDefaultExperiences?
+    public var appClipAdvancedExperiences: AnalyticsReportInstanceRelationshipsSegments?
 
-    public init(app: AppAvailabilityRelationshipsApp? = nil, appClipDefaultExperiences: AppClipRelationshipsAppClipDefaultExperiences? = nil) {
+    public init(app: AlternativeDistributionKeyCreateRequestDataRelationshipsApp? = nil, appClipDefaultExperiences: AppClipRelationshipsAppClipDefaultExperiences? = nil, appClipAdvancedExperiences: AnalyticsReportInstanceRelationshipsSegments? = nil) {
         self.app = app
         self.appClipDefaultExperiences = appClipDefaultExperiences
+        self.appClipAdvancedExperiences = appClipAdvancedExperiences
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case app
         case appClipDefaultExperiences
+        case appClipAdvancedExperiences
     }
 
     // Encodable protocol methods
@@ -31,6 +34,7 @@ public struct AppClipRelationships: Codable, JSONEncodable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(app, forKey: .app)
         try container.encodeIfPresent(appClipDefaultExperiences, forKey: .appClipDefaultExperiences)
+        try container.encodeIfPresent(appClipAdvancedExperiences, forKey: .appClipAdvancedExperiences)
     }
 }
 

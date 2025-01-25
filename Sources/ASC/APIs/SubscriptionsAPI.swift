@@ -16,39 +16,40 @@ open class SubscriptionsAPI {
      * enum for parameter fieldsSubscriptionAppStoreReviewScreenshots
      */
     public enum FieldsSubscriptionAppStoreReviewScreenshots_subscriptionsAppStoreReviewScreenshotGetToOneRelated: String, CaseIterable {
-        case assetdeliverystate = "assetDeliveryState"
+        case filesize = "fileSize"
+        case filename = "fileName"
+        case sourcefilechecksum = "sourceFileChecksum"
+        case imageasset = "imageAsset"
         case assettoken = "assetToken"
         case assettype = "assetType"
-        case filename = "fileName"
-        case filesize = "fileSize"
-        case imageasset = "imageAsset"
-        case sourcefilechecksum = "sourceFileChecksum"
-        case subscription = "subscription"
         case uploadoperations = "uploadOperations"
-        case uploaded = "uploaded"
+        case assetdeliverystate = "assetDeliveryState"
+        case subscription = "subscription"
     }
 
     /**
      * enum for parameter fieldsSubscriptions
      */
     public enum FieldsSubscriptions_subscriptionsAppStoreReviewScreenshotGetToOneRelated: String, CaseIterable {
-        case appstorereviewscreenshot = "appStoreReviewScreenshot"
-        case familysharable = "familySharable"
-        case group = "group"
-        case grouplevel = "groupLevel"
-        case introductoryoffers = "introductoryOffers"
         case name = "name"
-        case offercodes = "offerCodes"
-        case pricepoints = "pricePoints"
-        case prices = "prices"
         case productid = "productId"
-        case promotedpurchase = "promotedPurchase"
-        case promotionaloffers = "promotionalOffers"
-        case reviewnote = "reviewNote"
+        case familysharable = "familySharable"
         case state = "state"
-        case subscriptionavailability = "subscriptionAvailability"
-        case subscriptionlocalizations = "subscriptionLocalizations"
         case subscriptionperiod = "subscriptionPeriod"
+        case reviewnote = "reviewNote"
+        case grouplevel = "groupLevel"
+        case subscriptionlocalizations = "subscriptionLocalizations"
+        case appstorereviewscreenshot = "appStoreReviewScreenshot"
+        case group = "group"
+        case introductoryoffers = "introductoryOffers"
+        case promotionaloffers = "promotionalOffers"
+        case offercodes = "offerCodes"
+        case prices = "prices"
+        case pricepoints = "pricePoints"
+        case promotedpurchase = "promotedPurchase"
+        case subscriptionavailability = "subscriptionAvailability"
+        case winbackoffers = "winBackOffers"
+        case images = "images"
     }
 
     /**
@@ -274,110 +275,118 @@ open class SubscriptionsAPI {
      * enum for parameter fieldsSubscriptions
      */
     public enum FieldsSubscriptions_subscriptionsGetInstance: String, CaseIterable {
-        case appstorereviewscreenshot = "appStoreReviewScreenshot"
-        case familysharable = "familySharable"
-        case group = "group"
-        case grouplevel = "groupLevel"
-        case introductoryoffers = "introductoryOffers"
         case name = "name"
-        case offercodes = "offerCodes"
-        case pricepoints = "pricePoints"
-        case prices = "prices"
         case productid = "productId"
-        case promotedpurchase = "promotedPurchase"
-        case promotionaloffers = "promotionalOffers"
-        case reviewnote = "reviewNote"
+        case familysharable = "familySharable"
         case state = "state"
-        case subscriptionavailability = "subscriptionAvailability"
-        case subscriptionlocalizations = "subscriptionLocalizations"
         case subscriptionperiod = "subscriptionPeriod"
-    }
-
-    /**
-     * enum for parameter include
-     */
-    public enum Include_subscriptionsGetInstance: String, CaseIterable {
+        case reviewnote = "reviewNote"
+        case grouplevel = "groupLevel"
+        case subscriptionlocalizations = "subscriptionLocalizations"
         case appstorereviewscreenshot = "appStoreReviewScreenshot"
         case group = "group"
         case introductoryoffers = "introductoryOffers"
+        case promotionaloffers = "promotionalOffers"
         case offercodes = "offerCodes"
         case prices = "prices"
+        case pricepoints = "pricePoints"
         case promotedpurchase = "promotedPurchase"
-        case promotionaloffers = "promotionalOffers"
         case subscriptionavailability = "subscriptionAvailability"
-        case subscriptionlocalizations = "subscriptionLocalizations"
+        case winbackoffers = "winBackOffers"
+        case images = "images"
     }
 
     /**
-     * enum for parameter fieldsPromotedPurchases
+     * enum for parameter fieldsSubscriptionLocalizations
      */
-    public enum FieldsPromotedPurchases_subscriptionsGetInstance: String, CaseIterable {
-        case app = "app"
-        case enabled = "enabled"
-        case inapppurchasev2 = "inAppPurchaseV2"
-        case promotionimages = "promotionImages"
+    public enum FieldsSubscriptionLocalizations_subscriptionsGetInstance: String, CaseIterable {
+        case name = "name"
+        case locale = "locale"
+        case description = "description"
         case state = "state"
         case subscription = "subscription"
-        case visibleforallusers = "visibleForAllUsers"
-    }
-
-    /**
-     * enum for parameter fieldsSubscriptionPricePoints
-     */
-    public enum FieldsSubscriptionPricePoints_subscriptionsGetInstance: String, CaseIterable {
-        case customerprice = "customerPrice"
-        case equalizations = "equalizations"
-        case proceeds = "proceeds"
-        case proceedsyear2 = "proceedsYear2"
-        case subscription = "subscription"
-        case territory = "territory"
-    }
-
-    /**
-     * enum for parameter fieldsSubscriptionPromotionalOffers
-     */
-    public enum FieldsSubscriptionPromotionalOffers_subscriptionsGetInstance: String, CaseIterable {
-        case duration = "duration"
-        case name = "name"
-        case numberofperiods = "numberOfPeriods"
-        case offercode = "offerCode"
-        case offermode = "offerMode"
-        case prices = "prices"
-        case subscription = "subscription"
-    }
-
-    /**
-     * enum for parameter fieldsSubscriptionOfferCodes
-     */
-    public enum FieldsSubscriptionOfferCodes_subscriptionsGetInstance: String, CaseIterable {
-        case active = "active"
-        case customcodes = "customCodes"
-        case customereligibilities = "customerEligibilities"
-        case duration = "duration"
-        case name = "name"
-        case numberofperiods = "numberOfPeriods"
-        case offereligibility = "offerEligibility"
-        case offermode = "offerMode"
-        case onetimeusecodes = "oneTimeUseCodes"
-        case prices = "prices"
-        case subscription = "subscription"
-        case totalnumberofcodes = "totalNumberOfCodes"
     }
 
     /**
      * enum for parameter fieldsSubscriptionAppStoreReviewScreenshots
      */
     public enum FieldsSubscriptionAppStoreReviewScreenshots_subscriptionsGetInstance: String, CaseIterable {
-        case assetdeliverystate = "assetDeliveryState"
+        case filesize = "fileSize"
+        case filename = "fileName"
+        case sourcefilechecksum = "sourceFileChecksum"
+        case imageasset = "imageAsset"
         case assettoken = "assetToken"
         case assettype = "assetType"
-        case filename = "fileName"
-        case filesize = "fileSize"
-        case imageasset = "imageAsset"
-        case sourcefilechecksum = "sourceFileChecksum"
-        case subscription = "subscription"
         case uploadoperations = "uploadOperations"
-        case uploaded = "uploaded"
+        case assetdeliverystate = "assetDeliveryState"
+        case subscription = "subscription"
+    }
+
+    /**
+     * enum for parameter fieldsSubscriptionIntroductoryOffers
+     */
+    public enum FieldsSubscriptionIntroductoryOffers_subscriptionsGetInstance: String, CaseIterable {
+        case startdate = "startDate"
+        case enddate = "endDate"
+        case duration = "duration"
+        case offermode = "offerMode"
+        case numberofperiods = "numberOfPeriods"
+        case subscription = "subscription"
+        case territory = "territory"
+        case subscriptionpricepoint = "subscriptionPricePoint"
+    }
+
+    /**
+     * enum for parameter fieldsSubscriptionPromotionalOffers
+     */
+    public enum FieldsSubscriptionPromotionalOffers_subscriptionsGetInstance: String, CaseIterable {
+        case name = "name"
+        case offercode = "offerCode"
+        case duration = "duration"
+        case offermode = "offerMode"
+        case numberofperiods = "numberOfPeriods"
+        case subscription = "subscription"
+        case prices = "prices"
+    }
+
+    /**
+     * enum for parameter fieldsSubscriptionOfferCodes
+     */
+    public enum FieldsSubscriptionOfferCodes_subscriptionsGetInstance: String, CaseIterable {
+        case name = "name"
+        case customereligibilities = "customerEligibilities"
+        case offereligibility = "offerEligibility"
+        case duration = "duration"
+        case offermode = "offerMode"
+        case numberofperiods = "numberOfPeriods"
+        case totalnumberofcodes = "totalNumberOfCodes"
+        case active = "active"
+        case subscription = "subscription"
+        case onetimeusecodes = "oneTimeUseCodes"
+        case customcodes = "customCodes"
+        case prices = "prices"
+    }
+
+    /**
+     * enum for parameter fieldsSubscriptionPrices
+     */
+    public enum FieldsSubscriptionPrices_subscriptionsGetInstance: String, CaseIterable {
+        case startdate = "startDate"
+        case preserved = "preserved"
+        case territory = "territory"
+        case subscriptionpricepoint = "subscriptionPricePoint"
+    }
+
+    /**
+     * enum for parameter fieldsPromotedPurchases
+     */
+    public enum FieldsPromotedPurchases_subscriptionsGetInstance: String, CaseIterable {
+        case visibleforallusers = "visibleForAllUsers"
+        case enabled = "enabled"
+        case state = "state"
+        case inapppurchasev2 = "inAppPurchaseV2"
+        case subscription = "subscription"
+        case promotionimages = "promotionImages"
     }
 
     /**
@@ -386,70 +395,85 @@ open class SubscriptionsAPI {
     public enum FieldsSubscriptionAvailabilities_subscriptionsGetInstance: String, CaseIterable {
         case availableinnewterritories = "availableInNewTerritories"
         case availableterritories = "availableTerritories"
-        case subscription = "subscription"
     }
 
     /**
-     * enum for parameter fieldsSubscriptionPrices
+     * enum for parameter fieldsWinBackOffers
      */
-    public enum FieldsSubscriptionPrices_subscriptionsGetInstance: String, CaseIterable {
-        case preservecurrentprice = "preserveCurrentPrice"
-        case preserved = "preserved"
-        case startdate = "startDate"
-        case subscription = "subscription"
-        case subscriptionpricepoint = "subscriptionPricePoint"
-        case territory = "territory"
-    }
-
-    /**
-     * enum for parameter fieldsSubscriptionIntroductoryOffers
-     */
-    public enum FieldsSubscriptionIntroductoryOffers_subscriptionsGetInstance: String, CaseIterable {
+    public enum FieldsWinBackOffers_subscriptionsGetInstance: String, CaseIterable {
+        case referencename = "referenceName"
+        case offerid = "offerId"
         case duration = "duration"
-        case enddate = "endDate"
-        case numberofperiods = "numberOfPeriods"
         case offermode = "offerMode"
+        case periodcount = "periodCount"
+        case customereligibilitypaidsubscriptiondurationinmonths = "customerEligibilityPaidSubscriptionDurationInMonths"
+        case customereligibilitytimesincelastsubscribedinmonths = "customerEligibilityTimeSinceLastSubscribedInMonths"
+        case customereligibilitywaitbetweenoffersinmonths = "customerEligibilityWaitBetweenOffersInMonths"
         case startdate = "startDate"
-        case subscription = "subscription"
-        case subscriptionpricepoint = "subscriptionPricePoint"
-        case territory = "territory"
+        case enddate = "endDate"
+        case priority = "priority"
+        case promotionintent = "promotionIntent"
+        case prices = "prices"
     }
 
     /**
-     * enum for parameter fieldsSubscriptionLocalizations
+     * enum for parameter fieldsSubscriptionImages
      */
-    public enum FieldsSubscriptionLocalizations_subscriptionsGetInstance: String, CaseIterable {
-        case description = "description"
-        case locale = "locale"
-        case name = "name"
+    public enum FieldsSubscriptionImages_subscriptionsGetInstance: String, CaseIterable {
+        case filesize = "fileSize"
+        case filename = "fileName"
+        case sourcefilechecksum = "sourceFileChecksum"
+        case assettoken = "assetToken"
+        case imageasset = "imageAsset"
+        case uploadoperations = "uploadOperations"
         case state = "state"
         case subscription = "subscription"
+    }
+
+    /**
+     * enum for parameter include
+     */
+    public enum Include_subscriptionsGetInstance: String, CaseIterable {
+        case subscriptionlocalizations = "subscriptionLocalizations"
+        case appstorereviewscreenshot = "appStoreReviewScreenshot"
+        case group = "group"
+        case introductoryoffers = "introductoryOffers"
+        case promotionaloffers = "promotionalOffers"
+        case offercodes = "offerCodes"
+        case prices = "prices"
+        case promotedpurchase = "promotedPurchase"
+        case subscriptionavailability = "subscriptionAvailability"
+        case winbackoffers = "winBackOffers"
+        case images = "images"
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsSubscriptions: (query) the fields to include for returned resources of type subscriptions (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
-     - parameter fieldsPromotedPurchases: (query) the fields to include for returned resources of type promotedPurchases (optional)
-     - parameter fieldsSubscriptionPricePoints: (query) the fields to include for returned resources of type subscriptionPricePoints (optional)
+     - parameter fieldsSubscriptionLocalizations: (query) the fields to include for returned resources of type subscriptionLocalizations (optional)
+     - parameter fieldsSubscriptionAppStoreReviewScreenshots: (query) the fields to include for returned resources of type subscriptionAppStoreReviewScreenshots (optional)
+     - parameter fieldsSubscriptionIntroductoryOffers: (query) the fields to include for returned resources of type subscriptionIntroductoryOffers (optional)
      - parameter fieldsSubscriptionPromotionalOffers: (query) the fields to include for returned resources of type subscriptionPromotionalOffers (optional)
      - parameter fieldsSubscriptionOfferCodes: (query) the fields to include for returned resources of type subscriptionOfferCodes (optional)
-     - parameter fieldsSubscriptionAppStoreReviewScreenshots: (query) the fields to include for returned resources of type subscriptionAppStoreReviewScreenshots (optional)
-     - parameter fieldsSubscriptionAvailabilities: (query) the fields to include for returned resources of type subscriptionAvailabilities (optional)
      - parameter fieldsSubscriptionPrices: (query) the fields to include for returned resources of type subscriptionPrices (optional)
-     - parameter fieldsSubscriptionIntroductoryOffers: (query) the fields to include for returned resources of type subscriptionIntroductoryOffers (optional)
-     - parameter fieldsSubscriptionLocalizations: (query) the fields to include for returned resources of type subscriptionLocalizations (optional)
+     - parameter fieldsPromotedPurchases: (query) the fields to include for returned resources of type promotedPurchases (optional)
+     - parameter fieldsSubscriptionAvailabilities: (query) the fields to include for returned resources of type subscriptionAvailabilities (optional)
+     - parameter fieldsWinBackOffers: (query) the fields to include for returned resources of type winBackOffers (optional)
+     - parameter fieldsSubscriptionImages: (query) the fields to include for returned resources of type subscriptionImages (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitImages: (query) maximum number of related images returned (when they are included) (optional)
      - parameter limitIntroductoryOffers: (query) maximum number of related introductoryOffers returned (when they are included) (optional)
      - parameter limitOfferCodes: (query) maximum number of related offerCodes returned (when they are included) (optional)
      - parameter limitPrices: (query) maximum number of related prices returned (when they are included) (optional)
      - parameter limitPromotionalOffers: (query) maximum number of related promotionalOffers returned (when they are included) (optional)
      - parameter limitSubscriptionLocalizations: (query) maximum number of related subscriptionLocalizations returned (when they are included) (optional)
+     - parameter limitWinBackOffers: (query) maximum number of related winBackOffers returned (when they are included) (optional)
      - returns: SubscriptionResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionsGetInstance(id: String, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsGetInstance]? = nil, include: [Include_subscriptionsGetInstance]? = nil, fieldsPromotedPurchases: [FieldsPromotedPurchases_subscriptionsGetInstance]? = nil, fieldsSubscriptionPricePoints: [FieldsSubscriptionPricePoints_subscriptionsGetInstance]? = nil, fieldsSubscriptionPromotionalOffers: [FieldsSubscriptionPromotionalOffers_subscriptionsGetInstance]? = nil, fieldsSubscriptionOfferCodes: [FieldsSubscriptionOfferCodes_subscriptionsGetInstance]? = nil, fieldsSubscriptionAppStoreReviewScreenshots: [FieldsSubscriptionAppStoreReviewScreenshots_subscriptionsGetInstance]? = nil, fieldsSubscriptionAvailabilities: [FieldsSubscriptionAvailabilities_subscriptionsGetInstance]? = nil, fieldsSubscriptionPrices: [FieldsSubscriptionPrices_subscriptionsGetInstance]? = nil, fieldsSubscriptionIntroductoryOffers: [FieldsSubscriptionIntroductoryOffers_subscriptionsGetInstance]? = nil, fieldsSubscriptionLocalizations: [FieldsSubscriptionLocalizations_subscriptionsGetInstance]? = nil, limitIntroductoryOffers: Int? = nil, limitOfferCodes: Int? = nil, limitPrices: Int? = nil, limitPromotionalOffers: Int? = nil, limitSubscriptionLocalizations: Int? = nil) async throws -> SubscriptionResponse {
-        return try await subscriptionsGetInstanceWithRequestBuilder(id: id, fieldsSubscriptions: fieldsSubscriptions, include: include, fieldsPromotedPurchases: fieldsPromotedPurchases, fieldsSubscriptionPricePoints: fieldsSubscriptionPricePoints, fieldsSubscriptionPromotionalOffers: fieldsSubscriptionPromotionalOffers, fieldsSubscriptionOfferCodes: fieldsSubscriptionOfferCodes, fieldsSubscriptionAppStoreReviewScreenshots: fieldsSubscriptionAppStoreReviewScreenshots, fieldsSubscriptionAvailabilities: fieldsSubscriptionAvailabilities, fieldsSubscriptionPrices: fieldsSubscriptionPrices, fieldsSubscriptionIntroductoryOffers: fieldsSubscriptionIntroductoryOffers, fieldsSubscriptionLocalizations: fieldsSubscriptionLocalizations, limitIntroductoryOffers: limitIntroductoryOffers, limitOfferCodes: limitOfferCodes, limitPrices: limitPrices, limitPromotionalOffers: limitPromotionalOffers, limitSubscriptionLocalizations: limitSubscriptionLocalizations).execute().body
+    open class func subscriptionsGetInstance(id: String, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsGetInstance]? = nil, fieldsSubscriptionLocalizations: [FieldsSubscriptionLocalizations_subscriptionsGetInstance]? = nil, fieldsSubscriptionAppStoreReviewScreenshots: [FieldsSubscriptionAppStoreReviewScreenshots_subscriptionsGetInstance]? = nil, fieldsSubscriptionIntroductoryOffers: [FieldsSubscriptionIntroductoryOffers_subscriptionsGetInstance]? = nil, fieldsSubscriptionPromotionalOffers: [FieldsSubscriptionPromotionalOffers_subscriptionsGetInstance]? = nil, fieldsSubscriptionOfferCodes: [FieldsSubscriptionOfferCodes_subscriptionsGetInstance]? = nil, fieldsSubscriptionPrices: [FieldsSubscriptionPrices_subscriptionsGetInstance]? = nil, fieldsPromotedPurchases: [FieldsPromotedPurchases_subscriptionsGetInstance]? = nil, fieldsSubscriptionAvailabilities: [FieldsSubscriptionAvailabilities_subscriptionsGetInstance]? = nil, fieldsWinBackOffers: [FieldsWinBackOffers_subscriptionsGetInstance]? = nil, fieldsSubscriptionImages: [FieldsSubscriptionImages_subscriptionsGetInstance]? = nil, include: [Include_subscriptionsGetInstance]? = nil, limitImages: Int? = nil, limitIntroductoryOffers: Int? = nil, limitOfferCodes: Int? = nil, limitPrices: Int? = nil, limitPromotionalOffers: Int? = nil, limitSubscriptionLocalizations: Int? = nil, limitWinBackOffers: Int? = nil) async throws -> SubscriptionResponse {
+        return try await subscriptionsGetInstanceWithRequestBuilder(id: id, fieldsSubscriptions: fieldsSubscriptions, fieldsSubscriptionLocalizations: fieldsSubscriptionLocalizations, fieldsSubscriptionAppStoreReviewScreenshots: fieldsSubscriptionAppStoreReviewScreenshots, fieldsSubscriptionIntroductoryOffers: fieldsSubscriptionIntroductoryOffers, fieldsSubscriptionPromotionalOffers: fieldsSubscriptionPromotionalOffers, fieldsSubscriptionOfferCodes: fieldsSubscriptionOfferCodes, fieldsSubscriptionPrices: fieldsSubscriptionPrices, fieldsPromotedPurchases: fieldsPromotedPurchases, fieldsSubscriptionAvailabilities: fieldsSubscriptionAvailabilities, fieldsWinBackOffers: fieldsWinBackOffers, fieldsSubscriptionImages: fieldsSubscriptionImages, include: include, limitImages: limitImages, limitIntroductoryOffers: limitIntroductoryOffers, limitOfferCodes: limitOfferCodes, limitPrices: limitPrices, limitPromotionalOffers: limitPromotionalOffers, limitSubscriptionLocalizations: limitSubscriptionLocalizations, limitWinBackOffers: limitWinBackOffers).execute().body
     }
 
     /**
@@ -468,24 +492,27 @@ open class SubscriptionsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsSubscriptions: (query) the fields to include for returned resources of type subscriptions (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
-     - parameter fieldsPromotedPurchases: (query) the fields to include for returned resources of type promotedPurchases (optional)
-     - parameter fieldsSubscriptionPricePoints: (query) the fields to include for returned resources of type subscriptionPricePoints (optional)
+     - parameter fieldsSubscriptionLocalizations: (query) the fields to include for returned resources of type subscriptionLocalizations (optional)
+     - parameter fieldsSubscriptionAppStoreReviewScreenshots: (query) the fields to include for returned resources of type subscriptionAppStoreReviewScreenshots (optional)
+     - parameter fieldsSubscriptionIntroductoryOffers: (query) the fields to include for returned resources of type subscriptionIntroductoryOffers (optional)
      - parameter fieldsSubscriptionPromotionalOffers: (query) the fields to include for returned resources of type subscriptionPromotionalOffers (optional)
      - parameter fieldsSubscriptionOfferCodes: (query) the fields to include for returned resources of type subscriptionOfferCodes (optional)
-     - parameter fieldsSubscriptionAppStoreReviewScreenshots: (query) the fields to include for returned resources of type subscriptionAppStoreReviewScreenshots (optional)
-     - parameter fieldsSubscriptionAvailabilities: (query) the fields to include for returned resources of type subscriptionAvailabilities (optional)
      - parameter fieldsSubscriptionPrices: (query) the fields to include for returned resources of type subscriptionPrices (optional)
-     - parameter fieldsSubscriptionIntroductoryOffers: (query) the fields to include for returned resources of type subscriptionIntroductoryOffers (optional)
-     - parameter fieldsSubscriptionLocalizations: (query) the fields to include for returned resources of type subscriptionLocalizations (optional)
+     - parameter fieldsPromotedPurchases: (query) the fields to include for returned resources of type promotedPurchases (optional)
+     - parameter fieldsSubscriptionAvailabilities: (query) the fields to include for returned resources of type subscriptionAvailabilities (optional)
+     - parameter fieldsWinBackOffers: (query) the fields to include for returned resources of type winBackOffers (optional)
+     - parameter fieldsSubscriptionImages: (query) the fields to include for returned resources of type subscriptionImages (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitImages: (query) maximum number of related images returned (when they are included) (optional)
      - parameter limitIntroductoryOffers: (query) maximum number of related introductoryOffers returned (when they are included) (optional)
      - parameter limitOfferCodes: (query) maximum number of related offerCodes returned (when they are included) (optional)
      - parameter limitPrices: (query) maximum number of related prices returned (when they are included) (optional)
      - parameter limitPromotionalOffers: (query) maximum number of related promotionalOffers returned (when they are included) (optional)
      - parameter limitSubscriptionLocalizations: (query) maximum number of related subscriptionLocalizations returned (when they are included) (optional)
+     - parameter limitWinBackOffers: (query) maximum number of related winBackOffers returned (when they are included) (optional)
      - returns: RequestBuilder<SubscriptionResponse> 
      */
-    open class func subscriptionsGetInstanceWithRequestBuilder(id: String, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsGetInstance]? = nil, include: [Include_subscriptionsGetInstance]? = nil, fieldsPromotedPurchases: [FieldsPromotedPurchases_subscriptionsGetInstance]? = nil, fieldsSubscriptionPricePoints: [FieldsSubscriptionPricePoints_subscriptionsGetInstance]? = nil, fieldsSubscriptionPromotionalOffers: [FieldsSubscriptionPromotionalOffers_subscriptionsGetInstance]? = nil, fieldsSubscriptionOfferCodes: [FieldsSubscriptionOfferCodes_subscriptionsGetInstance]? = nil, fieldsSubscriptionAppStoreReviewScreenshots: [FieldsSubscriptionAppStoreReviewScreenshots_subscriptionsGetInstance]? = nil, fieldsSubscriptionAvailabilities: [FieldsSubscriptionAvailabilities_subscriptionsGetInstance]? = nil, fieldsSubscriptionPrices: [FieldsSubscriptionPrices_subscriptionsGetInstance]? = nil, fieldsSubscriptionIntroductoryOffers: [FieldsSubscriptionIntroductoryOffers_subscriptionsGetInstance]? = nil, fieldsSubscriptionLocalizations: [FieldsSubscriptionLocalizations_subscriptionsGetInstance]? = nil, limitIntroductoryOffers: Int? = nil, limitOfferCodes: Int? = nil, limitPrices: Int? = nil, limitPromotionalOffers: Int? = nil, limitSubscriptionLocalizations: Int? = nil) -> RequestBuilder<SubscriptionResponse> {
+    open class func subscriptionsGetInstanceWithRequestBuilder(id: String, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsGetInstance]? = nil, fieldsSubscriptionLocalizations: [FieldsSubscriptionLocalizations_subscriptionsGetInstance]? = nil, fieldsSubscriptionAppStoreReviewScreenshots: [FieldsSubscriptionAppStoreReviewScreenshots_subscriptionsGetInstance]? = nil, fieldsSubscriptionIntroductoryOffers: [FieldsSubscriptionIntroductoryOffers_subscriptionsGetInstance]? = nil, fieldsSubscriptionPromotionalOffers: [FieldsSubscriptionPromotionalOffers_subscriptionsGetInstance]? = nil, fieldsSubscriptionOfferCodes: [FieldsSubscriptionOfferCodes_subscriptionsGetInstance]? = nil, fieldsSubscriptionPrices: [FieldsSubscriptionPrices_subscriptionsGetInstance]? = nil, fieldsPromotedPurchases: [FieldsPromotedPurchases_subscriptionsGetInstance]? = nil, fieldsSubscriptionAvailabilities: [FieldsSubscriptionAvailabilities_subscriptionsGetInstance]? = nil, fieldsWinBackOffers: [FieldsWinBackOffers_subscriptionsGetInstance]? = nil, fieldsSubscriptionImages: [FieldsSubscriptionImages_subscriptionsGetInstance]? = nil, include: [Include_subscriptionsGetInstance]? = nil, limitImages: Int? = nil, limitIntroductoryOffers: Int? = nil, limitOfferCodes: Int? = nil, limitPrices: Int? = nil, limitPromotionalOffers: Int? = nil, limitSubscriptionLocalizations: Int? = nil, limitWinBackOffers: Int? = nil) -> RequestBuilder<SubscriptionResponse> {
         var localVariablePath = "/v1/subscriptions/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -496,21 +523,24 @@ open class SubscriptionsAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[subscriptions]": (wrappedValue: fieldsSubscriptions?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "fields[promotedPurchases]": (wrappedValue: fieldsPromotedPurchases?.encodeToJSON(), isExplode: false),
-            "fields[subscriptionPricePoints]": (wrappedValue: fieldsSubscriptionPricePoints?.encodeToJSON(), isExplode: false),
+            "fields[subscriptionLocalizations]": (wrappedValue: fieldsSubscriptionLocalizations?.encodeToJSON(), isExplode: false),
+            "fields[subscriptionAppStoreReviewScreenshots]": (wrappedValue: fieldsSubscriptionAppStoreReviewScreenshots?.encodeToJSON(), isExplode: false),
+            "fields[subscriptionIntroductoryOffers]": (wrappedValue: fieldsSubscriptionIntroductoryOffers?.encodeToJSON(), isExplode: false),
             "fields[subscriptionPromotionalOffers]": (wrappedValue: fieldsSubscriptionPromotionalOffers?.encodeToJSON(), isExplode: false),
             "fields[subscriptionOfferCodes]": (wrappedValue: fieldsSubscriptionOfferCodes?.encodeToJSON(), isExplode: false),
-            "fields[subscriptionAppStoreReviewScreenshots]": (wrappedValue: fieldsSubscriptionAppStoreReviewScreenshots?.encodeToJSON(), isExplode: false),
-            "fields[subscriptionAvailabilities]": (wrappedValue: fieldsSubscriptionAvailabilities?.encodeToJSON(), isExplode: false),
             "fields[subscriptionPrices]": (wrappedValue: fieldsSubscriptionPrices?.encodeToJSON(), isExplode: false),
-            "fields[subscriptionIntroductoryOffers]": (wrappedValue: fieldsSubscriptionIntroductoryOffers?.encodeToJSON(), isExplode: false),
-            "fields[subscriptionLocalizations]": (wrappedValue: fieldsSubscriptionLocalizations?.encodeToJSON(), isExplode: false),
+            "fields[promotedPurchases]": (wrappedValue: fieldsPromotedPurchases?.encodeToJSON(), isExplode: false),
+            "fields[subscriptionAvailabilities]": (wrappedValue: fieldsSubscriptionAvailabilities?.encodeToJSON(), isExplode: false),
+            "fields[winBackOffers]": (wrappedValue: fieldsWinBackOffers?.encodeToJSON(), isExplode: false),
+            "fields[subscriptionImages]": (wrappedValue: fieldsSubscriptionImages?.encodeToJSON(), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "limit[images]": (wrappedValue: limitImages?.encodeToJSON(), isExplode: true),
             "limit[introductoryOffers]": (wrappedValue: limitIntroductoryOffers?.encodeToJSON(), isExplode: true),
             "limit[offerCodes]": (wrappedValue: limitOfferCodes?.encodeToJSON(), isExplode: true),
             "limit[prices]": (wrappedValue: limitPrices?.encodeToJSON(), isExplode: true),
             "limit[promotionalOffers]": (wrappedValue: limitPromotionalOffers?.encodeToJSON(), isExplode: true),
             "limit[subscriptionLocalizations]": (wrappedValue: limitSubscriptionLocalizations?.encodeToJSON(), isExplode: true),
+            "limit[winBackOffers]": (wrappedValue: limitWinBackOffers?.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -540,6 +570,134 @@ open class SubscriptionsAPI {
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<SubscriptionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+    }
+
+    /**
+     * enum for parameter fieldsSubscriptionImages
+     */
+    public enum FieldsSubscriptionImages_subscriptionsImagesGetToManyRelated: String, CaseIterable {
+        case filesize = "fileSize"
+        case filename = "fileName"
+        case sourcefilechecksum = "sourceFileChecksum"
+        case assettoken = "assetToken"
+        case imageasset = "imageAsset"
+        case uploadoperations = "uploadOperations"
+        case state = "state"
+        case subscription = "subscription"
+    }
+
+    /**
+     * enum for parameter fieldsSubscriptions
+     */
+    public enum FieldsSubscriptions_subscriptionsImagesGetToManyRelated: String, CaseIterable {
+        case name = "name"
+        case productid = "productId"
+        case familysharable = "familySharable"
+        case state = "state"
+        case subscriptionperiod = "subscriptionPeriod"
+        case reviewnote = "reviewNote"
+        case grouplevel = "groupLevel"
+        case subscriptionlocalizations = "subscriptionLocalizations"
+        case appstorereviewscreenshot = "appStoreReviewScreenshot"
+        case group = "group"
+        case introductoryoffers = "introductoryOffers"
+        case promotionaloffers = "promotionalOffers"
+        case offercodes = "offerCodes"
+        case prices = "prices"
+        case pricepoints = "pricePoints"
+        case promotedpurchase = "promotedPurchase"
+        case subscriptionavailability = "subscriptionAvailability"
+        case winbackoffers = "winBackOffers"
+        case images = "images"
+    }
+
+    /**
+     * enum for parameter include
+     */
+    public enum Include_subscriptionsImagesGetToManyRelated: String, CaseIterable {
+        case subscription = "subscription"
+    }
+
+    /**
+
+     - parameter id: (path) the id of the requested resource 
+     - parameter fieldsSubscriptionImages: (query) the fields to include for returned resources of type subscriptionImages (optional)
+     - parameter fieldsSubscriptions: (query) the fields to include for returned resources of type subscriptions (optional)
+     - parameter limit: (query) maximum resources per page (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
+     - returns: SubscriptionImagesResponse
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func subscriptionsImagesGetToManyRelated(id: String, fieldsSubscriptionImages: [FieldsSubscriptionImages_subscriptionsImagesGetToManyRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsImagesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionsImagesGetToManyRelated]? = nil) async throws -> SubscriptionImagesResponse {
+        return try await subscriptionsImagesGetToManyRelatedWithRequestBuilder(id: id, fieldsSubscriptionImages: fieldsSubscriptionImages, fieldsSubscriptions: fieldsSubscriptions, limit: limit, include: include).execute().body
+    }
+
+    /**
+     - parameter urlString: next or first url from App Store Connect API
+     - returns: SubscriptionImagesResponse
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func subscriptionsImagesGetToManyRelated(urlString: String) async throws -> SubscriptionImagesResponse {
+        return try await subscriptionsImagesGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    }
+
+    /**
+     - GET /v1/subscriptions/{id}/images
+     - Bearer Token:
+       - type: http
+       - name: itc-bearer-token
+     - parameter id: (path) the id of the requested resource 
+     - parameter fieldsSubscriptionImages: (query) the fields to include for returned resources of type subscriptionImages (optional)
+     - parameter fieldsSubscriptions: (query) the fields to include for returned resources of type subscriptions (optional)
+     - parameter limit: (query) maximum resources per page (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
+     - returns: RequestBuilder<SubscriptionImagesResponse> 
+     */
+    open class func subscriptionsImagesGetToManyRelatedWithRequestBuilder(id: String, fieldsSubscriptionImages: [FieldsSubscriptionImages_subscriptionsImagesGetToManyRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsImagesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionsImagesGetToManyRelated]? = nil) -> RequestBuilder<SubscriptionImagesResponse> {
+        var localVariablePath = "/v1/subscriptions/{id}/images"
+        let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
+        let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
+        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+            "fields[subscriptionImages]": (wrappedValue: fieldsSubscriptionImages?.encodeToJSON(), isExplode: false),
+            "fields[subscriptions]": (wrappedValue: fieldsSubscriptions?.encodeToJSON(), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+        ])
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<SubscriptionImagesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+    }
+
+    /**
+     - GET /v1/subscriptions/{id}/images
+     - Bearer Token:
+       - type: http
+       - name: itc-bearer-token
+     - parameter urlString: next or first url from App Store Connect API
+     - returns: RequestBuilder<SubscriptionImagesResponse> 
+     */
+    open class func subscriptionsImagesGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<SubscriptionImagesResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<SubscriptionImagesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
@@ -615,52 +773,42 @@ open class SubscriptionsAPI {
     }
 
     /**
-     * enum for parameter fieldsSubscriptionPricePoints
+     * enum for parameter fieldsSubscriptionIntroductoryOffers
      */
-    public enum FieldsSubscriptionPricePoints_subscriptionsIntroductoryOffersGetToManyRelated: String, CaseIterable {
-        case customerprice = "customerPrice"
-        case equalizations = "equalizations"
-        case proceeds = "proceeds"
-        case proceedsyear2 = "proceedsYear2"
+    public enum FieldsSubscriptionIntroductoryOffers_subscriptionsIntroductoryOffersGetToManyRelated: String, CaseIterable {
+        case startdate = "startDate"
+        case enddate = "endDate"
+        case duration = "duration"
+        case offermode = "offerMode"
+        case numberofperiods = "numberOfPeriods"
         case subscription = "subscription"
         case territory = "territory"
+        case subscriptionpricepoint = "subscriptionPricePoint"
     }
 
     /**
      * enum for parameter fieldsSubscriptions
      */
     public enum FieldsSubscriptions_subscriptionsIntroductoryOffersGetToManyRelated: String, CaseIterable {
-        case appstorereviewscreenshot = "appStoreReviewScreenshot"
-        case familysharable = "familySharable"
-        case group = "group"
-        case grouplevel = "groupLevel"
-        case introductoryoffers = "introductoryOffers"
         case name = "name"
-        case offercodes = "offerCodes"
-        case pricepoints = "pricePoints"
-        case prices = "prices"
         case productid = "productId"
-        case promotedpurchase = "promotedPurchase"
-        case promotionaloffers = "promotionalOffers"
-        case reviewnote = "reviewNote"
+        case familysharable = "familySharable"
         case state = "state"
-        case subscriptionavailability = "subscriptionAvailability"
-        case subscriptionlocalizations = "subscriptionLocalizations"
         case subscriptionperiod = "subscriptionPeriod"
-    }
-
-    /**
-     * enum for parameter fieldsSubscriptionIntroductoryOffers
-     */
-    public enum FieldsSubscriptionIntroductoryOffers_subscriptionsIntroductoryOffersGetToManyRelated: String, CaseIterable {
-        case duration = "duration"
-        case enddate = "endDate"
-        case numberofperiods = "numberOfPeriods"
-        case offermode = "offerMode"
-        case startdate = "startDate"
-        case subscription = "subscription"
-        case subscriptionpricepoint = "subscriptionPricePoint"
-        case territory = "territory"
+        case reviewnote = "reviewNote"
+        case grouplevel = "groupLevel"
+        case subscriptionlocalizations = "subscriptionLocalizations"
+        case appstorereviewscreenshot = "appStoreReviewScreenshot"
+        case group = "group"
+        case introductoryoffers = "introductoryOffers"
+        case promotionaloffers = "promotionalOffers"
+        case offercodes = "offerCodes"
+        case prices = "prices"
+        case pricepoints = "pricePoints"
+        case promotedpurchase = "promotedPurchase"
+        case subscriptionavailability = "subscriptionAvailability"
+        case winbackoffers = "winBackOffers"
+        case images = "images"
     }
 
     /**
@@ -671,29 +819,40 @@ open class SubscriptionsAPI {
     }
 
     /**
+     * enum for parameter fieldsSubscriptionPricePoints
+     */
+    public enum FieldsSubscriptionPricePoints_subscriptionsIntroductoryOffersGetToManyRelated: String, CaseIterable {
+        case customerprice = "customerPrice"
+        case proceeds = "proceeds"
+        case proceedsyear2 = "proceedsYear2"
+        case territory = "territory"
+        case equalizations = "equalizations"
+    }
+
+    /**
      * enum for parameter include
      */
     public enum Include_subscriptionsIntroductoryOffersGetToManyRelated: String, CaseIterable {
         case subscription = "subscription"
-        case subscriptionpricepoint = "subscriptionPricePoint"
         case territory = "territory"
+        case subscriptionpricepoint = "subscriptionPricePoint"
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter filterTerritory: (query) filter by id(s) of related &#39;territory&#39; (optional)
-     - parameter fieldsSubscriptionPricePoints: (query) the fields to include for returned resources of type subscriptionPricePoints (optional)
-     - parameter fieldsSubscriptions: (query) the fields to include for returned resources of type subscriptions (optional)
      - parameter fieldsSubscriptionIntroductoryOffers: (query) the fields to include for returned resources of type subscriptionIntroductoryOffers (optional)
+     - parameter fieldsSubscriptions: (query) the fields to include for returned resources of type subscriptions (optional)
      - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
+     - parameter fieldsSubscriptionPricePoints: (query) the fields to include for returned resources of type subscriptionPricePoints (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: SubscriptionIntroductoryOffersResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionsIntroductoryOffersGetToManyRelated(id: String, filterTerritory: [String]? = nil, fieldsSubscriptionPricePoints: [FieldsSubscriptionPricePoints_subscriptionsIntroductoryOffersGetToManyRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsIntroductoryOffersGetToManyRelated]? = nil, fieldsSubscriptionIntroductoryOffers: [FieldsSubscriptionIntroductoryOffers_subscriptionsIntroductoryOffersGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_subscriptionsIntroductoryOffersGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionsIntroductoryOffersGetToManyRelated]? = nil) async throws -> SubscriptionIntroductoryOffersResponse {
-        return try await subscriptionsIntroductoryOffersGetToManyRelatedWithRequestBuilder(id: id, filterTerritory: filterTerritory, fieldsSubscriptionPricePoints: fieldsSubscriptionPricePoints, fieldsSubscriptions: fieldsSubscriptions, fieldsSubscriptionIntroductoryOffers: fieldsSubscriptionIntroductoryOffers, fieldsTerritories: fieldsTerritories, limit: limit, include: include).execute().body
+    open class func subscriptionsIntroductoryOffersGetToManyRelated(id: String, filterTerritory: [String]? = nil, fieldsSubscriptionIntroductoryOffers: [FieldsSubscriptionIntroductoryOffers_subscriptionsIntroductoryOffersGetToManyRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsIntroductoryOffersGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_subscriptionsIntroductoryOffersGetToManyRelated]? = nil, fieldsSubscriptionPricePoints: [FieldsSubscriptionPricePoints_subscriptionsIntroductoryOffersGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionsIntroductoryOffersGetToManyRelated]? = nil) async throws -> SubscriptionIntroductoryOffersResponse {
+        return try await subscriptionsIntroductoryOffersGetToManyRelatedWithRequestBuilder(id: id, filterTerritory: filterTerritory, fieldsSubscriptionIntroductoryOffers: fieldsSubscriptionIntroductoryOffers, fieldsSubscriptions: fieldsSubscriptions, fieldsTerritories: fieldsTerritories, fieldsSubscriptionPricePoints: fieldsSubscriptionPricePoints, limit: limit, include: include).execute().body
     }
 
     /**
@@ -712,15 +871,15 @@ open class SubscriptionsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter filterTerritory: (query) filter by id(s) of related &#39;territory&#39; (optional)
-     - parameter fieldsSubscriptionPricePoints: (query) the fields to include for returned resources of type subscriptionPricePoints (optional)
-     - parameter fieldsSubscriptions: (query) the fields to include for returned resources of type subscriptions (optional)
      - parameter fieldsSubscriptionIntroductoryOffers: (query) the fields to include for returned resources of type subscriptionIntroductoryOffers (optional)
+     - parameter fieldsSubscriptions: (query) the fields to include for returned resources of type subscriptions (optional)
      - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
+     - parameter fieldsSubscriptionPricePoints: (query) the fields to include for returned resources of type subscriptionPricePoints (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: RequestBuilder<SubscriptionIntroductoryOffersResponse> 
      */
-    open class func subscriptionsIntroductoryOffersGetToManyRelatedWithRequestBuilder(id: String, filterTerritory: [String]? = nil, fieldsSubscriptionPricePoints: [FieldsSubscriptionPricePoints_subscriptionsIntroductoryOffersGetToManyRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsIntroductoryOffersGetToManyRelated]? = nil, fieldsSubscriptionIntroductoryOffers: [FieldsSubscriptionIntroductoryOffers_subscriptionsIntroductoryOffersGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_subscriptionsIntroductoryOffersGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionsIntroductoryOffersGetToManyRelated]? = nil) -> RequestBuilder<SubscriptionIntroductoryOffersResponse> {
+    open class func subscriptionsIntroductoryOffersGetToManyRelatedWithRequestBuilder(id: String, filterTerritory: [String]? = nil, fieldsSubscriptionIntroductoryOffers: [FieldsSubscriptionIntroductoryOffers_subscriptionsIntroductoryOffersGetToManyRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsIntroductoryOffersGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_subscriptionsIntroductoryOffersGetToManyRelated]? = nil, fieldsSubscriptionPricePoints: [FieldsSubscriptionPricePoints_subscriptionsIntroductoryOffersGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionsIntroductoryOffersGetToManyRelated]? = nil) -> RequestBuilder<SubscriptionIntroductoryOffersResponse> {
         var localVariablePath = "/v1/subscriptions/{id}/introductoryOffers"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -731,10 +890,10 @@ open class SubscriptionsAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "filter[territory]": (wrappedValue: filterTerritory?.encodeToJSON(), isExplode: false),
-            "fields[subscriptionPricePoints]": (wrappedValue: fieldsSubscriptionPricePoints?.encodeToJSON(), isExplode: false),
-            "fields[subscriptions]": (wrappedValue: fieldsSubscriptions?.encodeToJSON(), isExplode: false),
             "fields[subscriptionIntroductoryOffers]": (wrappedValue: fieldsSubscriptionIntroductoryOffers?.encodeToJSON(), isExplode: false),
+            "fields[subscriptions]": (wrappedValue: fieldsSubscriptions?.encodeToJSON(), isExplode: false),
             "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(), isExplode: false),
+            "fields[subscriptionPricePoints]": (wrappedValue: fieldsSubscriptionPricePoints?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
         ])
@@ -844,107 +1003,109 @@ open class SubscriptionsAPI {
     }
 
     /**
-     * enum for parameter fieldsSubscriptionOfferCodeCustomCodes
-     */
-    public enum FieldsSubscriptionOfferCodeCustomCodes_subscriptionsOfferCodesGetToManyRelated: String, CaseIterable {
-        case active = "active"
-        case createddate = "createdDate"
-        case customcode = "customCode"
-        case expirationdate = "expirationDate"
-        case numberofcodes = "numberOfCodes"
-        case offercode = "offerCode"
-    }
-
-    /**
      * enum for parameter fieldsSubscriptionOfferCodes
      */
     public enum FieldsSubscriptionOfferCodes_subscriptionsOfferCodesGetToManyRelated: String, CaseIterable {
-        case active = "active"
-        case customcodes = "customCodes"
-        case customereligibilities = "customerEligibilities"
-        case duration = "duration"
         case name = "name"
-        case numberofperiods = "numberOfPeriods"
+        case customereligibilities = "customerEligibilities"
         case offereligibility = "offerEligibility"
+        case duration = "duration"
         case offermode = "offerMode"
-        case onetimeusecodes = "oneTimeUseCodes"
-        case prices = "prices"
-        case subscription = "subscription"
+        case numberofperiods = "numberOfPeriods"
         case totalnumberofcodes = "totalNumberOfCodes"
-    }
-
-    /**
-     * enum for parameter fieldsSubscriptionOfferCodeOneTimeUseCodes
-     */
-    public enum FieldsSubscriptionOfferCodeOneTimeUseCodes_subscriptionsOfferCodesGetToManyRelated: String, CaseIterable {
         case active = "active"
-        case createddate = "createdDate"
-        case expirationdate = "expirationDate"
-        case numberofcodes = "numberOfCodes"
-        case offercode = "offerCode"
-        case values = "values"
+        case subscription = "subscription"
+        case onetimeusecodes = "oneTimeUseCodes"
+        case customcodes = "customCodes"
+        case prices = "prices"
     }
 
     /**
      * enum for parameter fieldsSubscriptions
      */
     public enum FieldsSubscriptions_subscriptionsOfferCodesGetToManyRelated: String, CaseIterable {
-        case appstorereviewscreenshot = "appStoreReviewScreenshot"
-        case familysharable = "familySharable"
-        case group = "group"
-        case grouplevel = "groupLevel"
-        case introductoryoffers = "introductoryOffers"
         case name = "name"
-        case offercodes = "offerCodes"
-        case pricepoints = "pricePoints"
-        case prices = "prices"
         case productid = "productId"
-        case promotedpurchase = "promotedPurchase"
-        case promotionaloffers = "promotionalOffers"
-        case reviewnote = "reviewNote"
+        case familysharable = "familySharable"
         case state = "state"
-        case subscriptionavailability = "subscriptionAvailability"
-        case subscriptionlocalizations = "subscriptionLocalizations"
         case subscriptionperiod = "subscriptionPeriod"
+        case reviewnote = "reviewNote"
+        case grouplevel = "groupLevel"
+        case subscriptionlocalizations = "subscriptionLocalizations"
+        case appstorereviewscreenshot = "appStoreReviewScreenshot"
+        case group = "group"
+        case introductoryoffers = "introductoryOffers"
+        case promotionaloffers = "promotionalOffers"
+        case offercodes = "offerCodes"
+        case prices = "prices"
+        case pricepoints = "pricePoints"
+        case promotedpurchase = "promotedPurchase"
+        case subscriptionavailability = "subscriptionAvailability"
+        case winbackoffers = "winBackOffers"
+        case images = "images"
+    }
+
+    /**
+     * enum for parameter fieldsSubscriptionOfferCodeOneTimeUseCodes
+     */
+    public enum FieldsSubscriptionOfferCodeOneTimeUseCodes_subscriptionsOfferCodesGetToManyRelated: String, CaseIterable {
+        case numberofcodes = "numberOfCodes"
+        case createddate = "createdDate"
+        case expirationdate = "expirationDate"
+        case active = "active"
+        case offercode = "offerCode"
+        case values = "values"
+    }
+
+    /**
+     * enum for parameter fieldsSubscriptionOfferCodeCustomCodes
+     */
+    public enum FieldsSubscriptionOfferCodeCustomCodes_subscriptionsOfferCodesGetToManyRelated: String, CaseIterable {
+        case customcode = "customCode"
+        case numberofcodes = "numberOfCodes"
+        case createddate = "createdDate"
+        case expirationdate = "expirationDate"
+        case active = "active"
+        case offercode = "offerCode"
     }
 
     /**
      * enum for parameter fieldsSubscriptionOfferCodePrices
      */
     public enum FieldsSubscriptionOfferCodePrices_subscriptionsOfferCodesGetToManyRelated: String, CaseIterable {
-        case subscriptionpricepoint = "subscriptionPricePoint"
         case territory = "territory"
+        case subscriptionpricepoint = "subscriptionPricePoint"
     }
 
     /**
      * enum for parameter include
      */
     public enum Include_subscriptionsOfferCodesGetToManyRelated: String, CaseIterable {
-        case customcodes = "customCodes"
-        case onetimeusecodes = "oneTimeUseCodes"
-        case prices = "prices"
         case subscription = "subscription"
+        case onetimeusecodes = "oneTimeUseCodes"
+        case customcodes = "customCodes"
+        case prices = "prices"
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter filterTerritory: (query) filter by territory (optional)
-     - parameter fieldsSubscriptionOfferCodeCustomCodes: (query) the fields to include for returned resources of type subscriptionOfferCodeCustomCodes (optional)
      - parameter fieldsSubscriptionOfferCodes: (query) the fields to include for returned resources of type subscriptionOfferCodes (optional)
-     - parameter fieldsSubscriptionOfferCodeOneTimeUseCodes: (query) the fields to include for returned resources of type subscriptionOfferCodeOneTimeUseCodes (optional)
      - parameter fieldsSubscriptions: (query) the fields to include for returned resources of type subscriptions (optional)
+     - parameter fieldsSubscriptionOfferCodeOneTimeUseCodes: (query) the fields to include for returned resources of type subscriptionOfferCodeOneTimeUseCodes (optional)
+     - parameter fieldsSubscriptionOfferCodeCustomCodes: (query) the fields to include for returned resources of type subscriptionOfferCodeCustomCodes (optional)
      - parameter fieldsSubscriptionOfferCodePrices: (query) the fields to include for returned resources of type subscriptionOfferCodePrices (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitOneTimeUseCodes: (query) maximum number of related oneTimeUseCodes returned (when they are included) (optional)
      - parameter limitCustomCodes: (query) maximum number of related customCodes returned (when they are included) (optional)
      - parameter limitPrices: (query) maximum number of related prices returned (when they are included) (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: SubscriptionOfferCodesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionsOfferCodesGetToManyRelated(id: String, filterTerritory: [String]? = nil, fieldsSubscriptionOfferCodeCustomCodes: [FieldsSubscriptionOfferCodeCustomCodes_subscriptionsOfferCodesGetToManyRelated]? = nil, fieldsSubscriptionOfferCodes: [FieldsSubscriptionOfferCodes_subscriptionsOfferCodesGetToManyRelated]? = nil, fieldsSubscriptionOfferCodeOneTimeUseCodes: [FieldsSubscriptionOfferCodeOneTimeUseCodes_subscriptionsOfferCodesGetToManyRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsOfferCodesGetToManyRelated]? = nil, fieldsSubscriptionOfferCodePrices: [FieldsSubscriptionOfferCodePrices_subscriptionsOfferCodesGetToManyRelated]? = nil, limit: Int? = nil, limitOneTimeUseCodes: Int? = nil, limitCustomCodes: Int? = nil, limitPrices: Int? = nil, include: [Include_subscriptionsOfferCodesGetToManyRelated]? = nil) async throws -> SubscriptionOfferCodesResponse {
-        return try await subscriptionsOfferCodesGetToManyRelatedWithRequestBuilder(id: id, filterTerritory: filterTerritory, fieldsSubscriptionOfferCodeCustomCodes: fieldsSubscriptionOfferCodeCustomCodes, fieldsSubscriptionOfferCodes: fieldsSubscriptionOfferCodes, fieldsSubscriptionOfferCodeOneTimeUseCodes: fieldsSubscriptionOfferCodeOneTimeUseCodes, fieldsSubscriptions: fieldsSubscriptions, fieldsSubscriptionOfferCodePrices: fieldsSubscriptionOfferCodePrices, limit: limit, limitOneTimeUseCodes: limitOneTimeUseCodes, limitCustomCodes: limitCustomCodes, limitPrices: limitPrices, include: include).execute().body
+    open class func subscriptionsOfferCodesGetToManyRelated(id: String, filterTerritory: [String]? = nil, fieldsSubscriptionOfferCodes: [FieldsSubscriptionOfferCodes_subscriptionsOfferCodesGetToManyRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsOfferCodesGetToManyRelated]? = nil, fieldsSubscriptionOfferCodeOneTimeUseCodes: [FieldsSubscriptionOfferCodeOneTimeUseCodes_subscriptionsOfferCodesGetToManyRelated]? = nil, fieldsSubscriptionOfferCodeCustomCodes: [FieldsSubscriptionOfferCodeCustomCodes_subscriptionsOfferCodesGetToManyRelated]? = nil, fieldsSubscriptionOfferCodePrices: [FieldsSubscriptionOfferCodePrices_subscriptionsOfferCodesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionsOfferCodesGetToManyRelated]? = nil, limitOneTimeUseCodes: Int? = nil, limitCustomCodes: Int? = nil, limitPrices: Int? = nil) async throws -> SubscriptionOfferCodesResponse {
+        return try await subscriptionsOfferCodesGetToManyRelatedWithRequestBuilder(id: id, filterTerritory: filterTerritory, fieldsSubscriptionOfferCodes: fieldsSubscriptionOfferCodes, fieldsSubscriptions: fieldsSubscriptions, fieldsSubscriptionOfferCodeOneTimeUseCodes: fieldsSubscriptionOfferCodeOneTimeUseCodes, fieldsSubscriptionOfferCodeCustomCodes: fieldsSubscriptionOfferCodeCustomCodes, fieldsSubscriptionOfferCodePrices: fieldsSubscriptionOfferCodePrices, limit: limit, include: include, limitOneTimeUseCodes: limitOneTimeUseCodes, limitCustomCodes: limitCustomCodes, limitPrices: limitPrices).execute().body
     }
 
     /**
@@ -963,19 +1124,19 @@ open class SubscriptionsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter filterTerritory: (query) filter by territory (optional)
-     - parameter fieldsSubscriptionOfferCodeCustomCodes: (query) the fields to include for returned resources of type subscriptionOfferCodeCustomCodes (optional)
      - parameter fieldsSubscriptionOfferCodes: (query) the fields to include for returned resources of type subscriptionOfferCodes (optional)
-     - parameter fieldsSubscriptionOfferCodeOneTimeUseCodes: (query) the fields to include for returned resources of type subscriptionOfferCodeOneTimeUseCodes (optional)
      - parameter fieldsSubscriptions: (query) the fields to include for returned resources of type subscriptions (optional)
+     - parameter fieldsSubscriptionOfferCodeOneTimeUseCodes: (query) the fields to include for returned resources of type subscriptionOfferCodeOneTimeUseCodes (optional)
+     - parameter fieldsSubscriptionOfferCodeCustomCodes: (query) the fields to include for returned resources of type subscriptionOfferCodeCustomCodes (optional)
      - parameter fieldsSubscriptionOfferCodePrices: (query) the fields to include for returned resources of type subscriptionOfferCodePrices (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitOneTimeUseCodes: (query) maximum number of related oneTimeUseCodes returned (when they are included) (optional)
      - parameter limitCustomCodes: (query) maximum number of related customCodes returned (when they are included) (optional)
      - parameter limitPrices: (query) maximum number of related prices returned (when they are included) (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: RequestBuilder<SubscriptionOfferCodesResponse> 
      */
-    open class func subscriptionsOfferCodesGetToManyRelatedWithRequestBuilder(id: String, filterTerritory: [String]? = nil, fieldsSubscriptionOfferCodeCustomCodes: [FieldsSubscriptionOfferCodeCustomCodes_subscriptionsOfferCodesGetToManyRelated]? = nil, fieldsSubscriptionOfferCodes: [FieldsSubscriptionOfferCodes_subscriptionsOfferCodesGetToManyRelated]? = nil, fieldsSubscriptionOfferCodeOneTimeUseCodes: [FieldsSubscriptionOfferCodeOneTimeUseCodes_subscriptionsOfferCodesGetToManyRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsOfferCodesGetToManyRelated]? = nil, fieldsSubscriptionOfferCodePrices: [FieldsSubscriptionOfferCodePrices_subscriptionsOfferCodesGetToManyRelated]? = nil, limit: Int? = nil, limitOneTimeUseCodes: Int? = nil, limitCustomCodes: Int? = nil, limitPrices: Int? = nil, include: [Include_subscriptionsOfferCodesGetToManyRelated]? = nil) -> RequestBuilder<SubscriptionOfferCodesResponse> {
+    open class func subscriptionsOfferCodesGetToManyRelatedWithRequestBuilder(id: String, filterTerritory: [String]? = nil, fieldsSubscriptionOfferCodes: [FieldsSubscriptionOfferCodes_subscriptionsOfferCodesGetToManyRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsOfferCodesGetToManyRelated]? = nil, fieldsSubscriptionOfferCodeOneTimeUseCodes: [FieldsSubscriptionOfferCodeOneTimeUseCodes_subscriptionsOfferCodesGetToManyRelated]? = nil, fieldsSubscriptionOfferCodeCustomCodes: [FieldsSubscriptionOfferCodeCustomCodes_subscriptionsOfferCodesGetToManyRelated]? = nil, fieldsSubscriptionOfferCodePrices: [FieldsSubscriptionOfferCodePrices_subscriptionsOfferCodesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionsOfferCodesGetToManyRelated]? = nil, limitOneTimeUseCodes: Int? = nil, limitCustomCodes: Int? = nil, limitPrices: Int? = nil) -> RequestBuilder<SubscriptionOfferCodesResponse> {
         var localVariablePath = "/v1/subscriptions/{id}/offerCodes"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -986,16 +1147,16 @@ open class SubscriptionsAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "filter[territory]": (wrappedValue: filterTerritory?.encodeToJSON(), isExplode: false),
-            "fields[subscriptionOfferCodeCustomCodes]": (wrappedValue: fieldsSubscriptionOfferCodeCustomCodes?.encodeToJSON(), isExplode: false),
             "fields[subscriptionOfferCodes]": (wrappedValue: fieldsSubscriptionOfferCodes?.encodeToJSON(), isExplode: false),
-            "fields[subscriptionOfferCodeOneTimeUseCodes]": (wrappedValue: fieldsSubscriptionOfferCodeOneTimeUseCodes?.encodeToJSON(), isExplode: false),
             "fields[subscriptions]": (wrappedValue: fieldsSubscriptions?.encodeToJSON(), isExplode: false),
+            "fields[subscriptionOfferCodeOneTimeUseCodes]": (wrappedValue: fieldsSubscriptionOfferCodeOneTimeUseCodes?.encodeToJSON(), isExplode: false),
+            "fields[subscriptionOfferCodeCustomCodes]": (wrappedValue: fieldsSubscriptionOfferCodeCustomCodes?.encodeToJSON(), isExplode: false),
             "fields[subscriptionOfferCodePrices]": (wrappedValue: fieldsSubscriptionOfferCodePrices?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "limit[oneTimeUseCodes]": (wrappedValue: limitOneTimeUseCodes?.encodeToJSON(), isExplode: true),
             "limit[customCodes]": (wrappedValue: limitCustomCodes?.encodeToJSON(), isExplode: true),
             "limit[prices]": (wrappedValue: limitPrices?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -1034,11 +1195,10 @@ open class SubscriptionsAPI {
      */
     public enum FieldsSubscriptionPricePoints_subscriptionsPricePointsGetToManyRelated: String, CaseIterable {
         case customerprice = "customerPrice"
-        case equalizations = "equalizations"
         case proceeds = "proceeds"
         case proceedsyear2 = "proceedsYear2"
-        case subscription = "subscription"
         case territory = "territory"
+        case equalizations = "equalizations"
     }
 
     /**
@@ -1211,27 +1371,13 @@ open class SubscriptionsAPI {
     }
 
     /**
-     * enum for parameter fieldsSubscriptionPricePoints
-     */
-    public enum FieldsSubscriptionPricePoints_subscriptionsPricesGetToManyRelated: String, CaseIterable {
-        case customerprice = "customerPrice"
-        case equalizations = "equalizations"
-        case proceeds = "proceeds"
-        case proceedsyear2 = "proceedsYear2"
-        case subscription = "subscription"
-        case territory = "territory"
-    }
-
-    /**
      * enum for parameter fieldsSubscriptionPrices
      */
     public enum FieldsSubscriptionPrices_subscriptionsPricesGetToManyRelated: String, CaseIterable {
-        case preservecurrentprice = "preserveCurrentPrice"
-        case preserved = "preserved"
         case startdate = "startDate"
-        case subscription = "subscription"
-        case subscriptionpricepoint = "subscriptionPricePoint"
+        case preserved = "preserved"
         case territory = "territory"
+        case subscriptionpricepoint = "subscriptionPricePoint"
     }
 
     /**
@@ -1242,11 +1388,22 @@ open class SubscriptionsAPI {
     }
 
     /**
+     * enum for parameter fieldsSubscriptionPricePoints
+     */
+    public enum FieldsSubscriptionPricePoints_subscriptionsPricesGetToManyRelated: String, CaseIterable {
+        case customerprice = "customerPrice"
+        case proceeds = "proceeds"
+        case proceedsyear2 = "proceedsYear2"
+        case territory = "territory"
+        case equalizations = "equalizations"
+    }
+
+    /**
      * enum for parameter include
      */
     public enum Include_subscriptionsPricesGetToManyRelated: String, CaseIterable {
-        case subscriptionpricepoint = "subscriptionPricePoint"
         case territory = "territory"
+        case subscriptionpricepoint = "subscriptionPricePoint"
     }
 
     /**
@@ -1254,16 +1411,16 @@ open class SubscriptionsAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter filterSubscriptionPricePoint: (query) filter by id(s) of related &#39;subscriptionPricePoint&#39; (optional)
      - parameter filterTerritory: (query) filter by id(s) of related &#39;territory&#39; (optional)
-     - parameter fieldsSubscriptionPricePoints: (query) the fields to include for returned resources of type subscriptionPricePoints (optional)
      - parameter fieldsSubscriptionPrices: (query) the fields to include for returned resources of type subscriptionPrices (optional)
      - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
+     - parameter fieldsSubscriptionPricePoints: (query) the fields to include for returned resources of type subscriptionPricePoints (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: SubscriptionPricesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionsPricesGetToManyRelated(id: String, filterSubscriptionPricePoint: [String]? = nil, filterTerritory: [String]? = nil, fieldsSubscriptionPricePoints: [FieldsSubscriptionPricePoints_subscriptionsPricesGetToManyRelated]? = nil, fieldsSubscriptionPrices: [FieldsSubscriptionPrices_subscriptionsPricesGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_subscriptionsPricesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionsPricesGetToManyRelated]? = nil) async throws -> SubscriptionPricesResponse {
-        return try await subscriptionsPricesGetToManyRelatedWithRequestBuilder(id: id, filterSubscriptionPricePoint: filterSubscriptionPricePoint, filterTerritory: filterTerritory, fieldsSubscriptionPricePoints: fieldsSubscriptionPricePoints, fieldsSubscriptionPrices: fieldsSubscriptionPrices, fieldsTerritories: fieldsTerritories, limit: limit, include: include).execute().body
+    open class func subscriptionsPricesGetToManyRelated(id: String, filterSubscriptionPricePoint: [String]? = nil, filterTerritory: [String]? = nil, fieldsSubscriptionPrices: [FieldsSubscriptionPrices_subscriptionsPricesGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_subscriptionsPricesGetToManyRelated]? = nil, fieldsSubscriptionPricePoints: [FieldsSubscriptionPricePoints_subscriptionsPricesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionsPricesGetToManyRelated]? = nil) async throws -> SubscriptionPricesResponse {
+        return try await subscriptionsPricesGetToManyRelatedWithRequestBuilder(id: id, filterSubscriptionPricePoint: filterSubscriptionPricePoint, filterTerritory: filterTerritory, fieldsSubscriptionPrices: fieldsSubscriptionPrices, fieldsTerritories: fieldsTerritories, fieldsSubscriptionPricePoints: fieldsSubscriptionPricePoints, limit: limit, include: include).execute().body
     }
 
     /**
@@ -1283,14 +1440,14 @@ open class SubscriptionsAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter filterSubscriptionPricePoint: (query) filter by id(s) of related &#39;subscriptionPricePoint&#39; (optional)
      - parameter filterTerritory: (query) filter by id(s) of related &#39;territory&#39; (optional)
-     - parameter fieldsSubscriptionPricePoints: (query) the fields to include for returned resources of type subscriptionPricePoints (optional)
      - parameter fieldsSubscriptionPrices: (query) the fields to include for returned resources of type subscriptionPrices (optional)
      - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
+     - parameter fieldsSubscriptionPricePoints: (query) the fields to include for returned resources of type subscriptionPricePoints (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: RequestBuilder<SubscriptionPricesResponse> 
      */
-    open class func subscriptionsPricesGetToManyRelatedWithRequestBuilder(id: String, filterSubscriptionPricePoint: [String]? = nil, filterTerritory: [String]? = nil, fieldsSubscriptionPricePoints: [FieldsSubscriptionPricePoints_subscriptionsPricesGetToManyRelated]? = nil, fieldsSubscriptionPrices: [FieldsSubscriptionPrices_subscriptionsPricesGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_subscriptionsPricesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionsPricesGetToManyRelated]? = nil) -> RequestBuilder<SubscriptionPricesResponse> {
+    open class func subscriptionsPricesGetToManyRelatedWithRequestBuilder(id: String, filterSubscriptionPricePoint: [String]? = nil, filterTerritory: [String]? = nil, fieldsSubscriptionPrices: [FieldsSubscriptionPrices_subscriptionsPricesGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_subscriptionsPricesGetToManyRelated]? = nil, fieldsSubscriptionPricePoints: [FieldsSubscriptionPricePoints_subscriptionsPricesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionsPricesGetToManyRelated]? = nil) -> RequestBuilder<SubscriptionPricesResponse> {
         var localVariablePath = "/v1/subscriptions/{id}/prices"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -1302,9 +1459,9 @@ open class SubscriptionsAPI {
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "filter[subscriptionPricePoint]": (wrappedValue: filterSubscriptionPricePoint?.encodeToJSON(), isExplode: false),
             "filter[territory]": (wrappedValue: filterTerritory?.encodeToJSON(), isExplode: false),
-            "fields[subscriptionPricePoints]": (wrappedValue: fieldsSubscriptionPricePoints?.encodeToJSON(), isExplode: false),
             "fields[subscriptionPrices]": (wrappedValue: fieldsSubscriptionPrices?.encodeToJSON(), isExplode: false),
             "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(), isExplode: false),
+            "fields[subscriptionPricePoints]": (wrappedValue: fieldsSubscriptionPricePoints?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
         ])
@@ -1417,73 +1574,73 @@ open class SubscriptionsAPI {
      * enum for parameter fieldsPromotedPurchases
      */
     public enum FieldsPromotedPurchases_subscriptionsPromotedPurchaseGetToOneRelated: String, CaseIterable {
-        case app = "app"
-        case enabled = "enabled"
-        case inapppurchasev2 = "inAppPurchaseV2"
-        case promotionimages = "promotionImages"
-        case state = "state"
-        case subscription = "subscription"
         case visibleforallusers = "visibleForAllUsers"
-    }
-
-    /**
-     * enum for parameter fieldsSubscriptions
-     */
-    public enum FieldsSubscriptions_subscriptionsPromotedPurchaseGetToOneRelated: String, CaseIterable {
-        case appstorereviewscreenshot = "appStoreReviewScreenshot"
-        case familysharable = "familySharable"
-        case group = "group"
-        case grouplevel = "groupLevel"
-        case introductoryoffers = "introductoryOffers"
-        case name = "name"
-        case offercodes = "offerCodes"
-        case pricepoints = "pricePoints"
-        case prices = "prices"
-        case productid = "productId"
-        case promotedpurchase = "promotedPurchase"
-        case promotionaloffers = "promotionalOffers"
-        case reviewnote = "reviewNote"
+        case enabled = "enabled"
         case state = "state"
-        case subscriptionavailability = "subscriptionAvailability"
-        case subscriptionlocalizations = "subscriptionLocalizations"
-        case subscriptionperiod = "subscriptionPeriod"
+        case inapppurchasev2 = "inAppPurchaseV2"
+        case subscription = "subscription"
+        case promotionimages = "promotionImages"
     }
 
     /**
      * enum for parameter fieldsInAppPurchases
      */
     public enum FieldsInAppPurchases_subscriptionsPromotedPurchaseGetToOneRelated: String, CaseIterable {
-        case app = "app"
-        case appstorereviewscreenshot = "appStoreReviewScreenshot"
-        case content = "content"
-        case contenthosting = "contentHosting"
+        case name = "name"
+        case productid = "productId"
+        case inapppurchasetype = "inAppPurchaseType"
+        case state = "state"
+        case reviewnote = "reviewNote"
         case familysharable = "familySharable"
+        case contenthosting = "contentHosting"
+        case inapppurchaselocalizations = "inAppPurchaseLocalizations"
+        case pricepoints = "pricePoints"
+        case content = "content"
+        case appstorereviewscreenshot = "appStoreReviewScreenshot"
+        case promotedpurchase = "promotedPurchase"
         case iappriceschedule = "iapPriceSchedule"
         case inapppurchaseavailability = "inAppPurchaseAvailability"
-        case inapppurchaselocalizations = "inAppPurchaseLocalizations"
-        case inapppurchasetype = "inAppPurchaseType"
+        case images = "images"
+    }
+
+    /**
+     * enum for parameter fieldsSubscriptions
+     */
+    public enum FieldsSubscriptions_subscriptionsPromotedPurchaseGetToOneRelated: String, CaseIterable {
         case name = "name"
-        case pricepoints = "pricePoints"
         case productid = "productId"
-        case promotedpurchase = "promotedPurchase"
-        case reviewnote = "reviewNote"
+        case familysharable = "familySharable"
         case state = "state"
+        case subscriptionperiod = "subscriptionPeriod"
+        case reviewnote = "reviewNote"
+        case grouplevel = "groupLevel"
+        case subscriptionlocalizations = "subscriptionLocalizations"
+        case appstorereviewscreenshot = "appStoreReviewScreenshot"
+        case group = "group"
+        case introductoryoffers = "introductoryOffers"
+        case promotionaloffers = "promotionalOffers"
+        case offercodes = "offerCodes"
+        case prices = "prices"
+        case pricepoints = "pricePoints"
+        case promotedpurchase = "promotedPurchase"
+        case subscriptionavailability = "subscriptionAvailability"
+        case winbackoffers = "winBackOffers"
+        case images = "images"
     }
 
     /**
      * enum for parameter fieldsPromotedPurchaseImages
      */
     public enum FieldsPromotedPurchaseImages_subscriptionsPromotedPurchaseGetToOneRelated: String, CaseIterable {
-        case assettoken = "assetToken"
-        case assettype = "assetType"
-        case filename = "fileName"
         case filesize = "fileSize"
-        case imageasset = "imageAsset"
-        case promotedpurchase = "promotedPurchase"
+        case filename = "fileName"
         case sourcefilechecksum = "sourceFileChecksum"
-        case state = "state"
+        case assettoken = "assetToken"
+        case imageasset = "imageAsset"
+        case assettype = "assetType"
         case uploadoperations = "uploadOperations"
-        case uploaded = "uploaded"
+        case state = "state"
+        case promotedpurchase = "promotedPurchase"
     }
 
     /**
@@ -1491,24 +1648,24 @@ open class SubscriptionsAPI {
      */
     public enum Include_subscriptionsPromotedPurchaseGetToOneRelated: String, CaseIterable {
         case inapppurchasev2 = "inAppPurchaseV2"
-        case promotionimages = "promotionImages"
         case subscription = "subscription"
+        case promotionimages = "promotionImages"
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsPromotedPurchases: (query) the fields to include for returned resources of type promotedPurchases (optional)
-     - parameter fieldsSubscriptions: (query) the fields to include for returned resources of type subscriptions (optional)
      - parameter fieldsInAppPurchases: (query) the fields to include for returned resources of type inAppPurchases (optional)
+     - parameter fieldsSubscriptions: (query) the fields to include for returned resources of type subscriptions (optional)
      - parameter fieldsPromotedPurchaseImages: (query) the fields to include for returned resources of type promotedPurchaseImages (optional)
-     - parameter limitPromotionImages: (query) maximum number of related promotionImages returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitPromotionImages: (query) maximum number of related promotionImages returned (when they are included) (optional)
      - returns: PromotedPurchaseResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionsPromotedPurchaseGetToOneRelated(id: String, fieldsPromotedPurchases: [FieldsPromotedPurchases_subscriptionsPromotedPurchaseGetToOneRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsPromotedPurchaseGetToOneRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_subscriptionsPromotedPurchaseGetToOneRelated]? = nil, fieldsPromotedPurchaseImages: [FieldsPromotedPurchaseImages_subscriptionsPromotedPurchaseGetToOneRelated]? = nil, limitPromotionImages: Int? = nil, include: [Include_subscriptionsPromotedPurchaseGetToOneRelated]? = nil) async throws -> PromotedPurchaseResponse {
-        return try await subscriptionsPromotedPurchaseGetToOneRelatedWithRequestBuilder(id: id, fieldsPromotedPurchases: fieldsPromotedPurchases, fieldsSubscriptions: fieldsSubscriptions, fieldsInAppPurchases: fieldsInAppPurchases, fieldsPromotedPurchaseImages: fieldsPromotedPurchaseImages, limitPromotionImages: limitPromotionImages, include: include).execute().body
+    open class func subscriptionsPromotedPurchaseGetToOneRelated(id: String, fieldsPromotedPurchases: [FieldsPromotedPurchases_subscriptionsPromotedPurchaseGetToOneRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_subscriptionsPromotedPurchaseGetToOneRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsPromotedPurchaseGetToOneRelated]? = nil, fieldsPromotedPurchaseImages: [FieldsPromotedPurchaseImages_subscriptionsPromotedPurchaseGetToOneRelated]? = nil, include: [Include_subscriptionsPromotedPurchaseGetToOneRelated]? = nil, limitPromotionImages: Int? = nil) async throws -> PromotedPurchaseResponse {
+        return try await subscriptionsPromotedPurchaseGetToOneRelatedWithRequestBuilder(id: id, fieldsPromotedPurchases: fieldsPromotedPurchases, fieldsInAppPurchases: fieldsInAppPurchases, fieldsSubscriptions: fieldsSubscriptions, fieldsPromotedPurchaseImages: fieldsPromotedPurchaseImages, include: include, limitPromotionImages: limitPromotionImages).execute().body
     }
 
     /**
@@ -1527,14 +1684,14 @@ open class SubscriptionsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsPromotedPurchases: (query) the fields to include for returned resources of type promotedPurchases (optional)
-     - parameter fieldsSubscriptions: (query) the fields to include for returned resources of type subscriptions (optional)
      - parameter fieldsInAppPurchases: (query) the fields to include for returned resources of type inAppPurchases (optional)
+     - parameter fieldsSubscriptions: (query) the fields to include for returned resources of type subscriptions (optional)
      - parameter fieldsPromotedPurchaseImages: (query) the fields to include for returned resources of type promotedPurchaseImages (optional)
-     - parameter limitPromotionImages: (query) maximum number of related promotionImages returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitPromotionImages: (query) maximum number of related promotionImages returned (when they are included) (optional)
      - returns: RequestBuilder<PromotedPurchaseResponse> 
      */
-    open class func subscriptionsPromotedPurchaseGetToOneRelatedWithRequestBuilder(id: String, fieldsPromotedPurchases: [FieldsPromotedPurchases_subscriptionsPromotedPurchaseGetToOneRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsPromotedPurchaseGetToOneRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_subscriptionsPromotedPurchaseGetToOneRelated]? = nil, fieldsPromotedPurchaseImages: [FieldsPromotedPurchaseImages_subscriptionsPromotedPurchaseGetToOneRelated]? = nil, limitPromotionImages: Int? = nil, include: [Include_subscriptionsPromotedPurchaseGetToOneRelated]? = nil) -> RequestBuilder<PromotedPurchaseResponse> {
+    open class func subscriptionsPromotedPurchaseGetToOneRelatedWithRequestBuilder(id: String, fieldsPromotedPurchases: [FieldsPromotedPurchases_subscriptionsPromotedPurchaseGetToOneRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_subscriptionsPromotedPurchaseGetToOneRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsPromotedPurchaseGetToOneRelated]? = nil, fieldsPromotedPurchaseImages: [FieldsPromotedPurchaseImages_subscriptionsPromotedPurchaseGetToOneRelated]? = nil, include: [Include_subscriptionsPromotedPurchaseGetToOneRelated]? = nil, limitPromotionImages: Int? = nil) -> RequestBuilder<PromotedPurchaseResponse> {
         var localVariablePath = "/v1/subscriptions/{id}/promotedPurchase"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -1545,11 +1702,11 @@ open class SubscriptionsAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[promotedPurchases]": (wrappedValue: fieldsPromotedPurchases?.encodeToJSON(), isExplode: false),
-            "fields[subscriptions]": (wrappedValue: fieldsSubscriptions?.encodeToJSON(), isExplode: false),
             "fields[inAppPurchases]": (wrappedValue: fieldsInAppPurchases?.encodeToJSON(), isExplode: false),
+            "fields[subscriptions]": (wrappedValue: fieldsSubscriptions?.encodeToJSON(), isExplode: false),
             "fields[promotedPurchaseImages]": (wrappedValue: fieldsPromotedPurchaseImages?.encodeToJSON(), isExplode: false),
-            "limit[promotionImages]": (wrappedValue: limitPromotionImages?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "limit[promotionImages]": (wrappedValue: limitPromotionImages?.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -1587,52 +1744,54 @@ open class SubscriptionsAPI {
      * enum for parameter fieldsSubscriptionPromotionalOffers
      */
     public enum FieldsSubscriptionPromotionalOffers_subscriptionsPromotionalOffersGetToManyRelated: String, CaseIterable {
-        case duration = "duration"
         case name = "name"
-        case numberofperiods = "numberOfPeriods"
         case offercode = "offerCode"
+        case duration = "duration"
         case offermode = "offerMode"
-        case prices = "prices"
+        case numberofperiods = "numberOfPeriods"
         case subscription = "subscription"
+        case prices = "prices"
     }
 
     /**
      * enum for parameter fieldsSubscriptions
      */
     public enum FieldsSubscriptions_subscriptionsPromotionalOffersGetToManyRelated: String, CaseIterable {
-        case appstorereviewscreenshot = "appStoreReviewScreenshot"
-        case familysharable = "familySharable"
-        case group = "group"
-        case grouplevel = "groupLevel"
-        case introductoryoffers = "introductoryOffers"
         case name = "name"
-        case offercodes = "offerCodes"
-        case pricepoints = "pricePoints"
-        case prices = "prices"
         case productid = "productId"
-        case promotedpurchase = "promotedPurchase"
-        case promotionaloffers = "promotionalOffers"
-        case reviewnote = "reviewNote"
+        case familysharable = "familySharable"
         case state = "state"
-        case subscriptionavailability = "subscriptionAvailability"
-        case subscriptionlocalizations = "subscriptionLocalizations"
         case subscriptionperiod = "subscriptionPeriod"
+        case reviewnote = "reviewNote"
+        case grouplevel = "groupLevel"
+        case subscriptionlocalizations = "subscriptionLocalizations"
+        case appstorereviewscreenshot = "appStoreReviewScreenshot"
+        case group = "group"
+        case introductoryoffers = "introductoryOffers"
+        case promotionaloffers = "promotionalOffers"
+        case offercodes = "offerCodes"
+        case prices = "prices"
+        case pricepoints = "pricePoints"
+        case promotedpurchase = "promotedPurchase"
+        case subscriptionavailability = "subscriptionAvailability"
+        case winbackoffers = "winBackOffers"
+        case images = "images"
     }
 
     /**
      * enum for parameter fieldsSubscriptionPromotionalOfferPrices
      */
     public enum FieldsSubscriptionPromotionalOfferPrices_subscriptionsPromotionalOffersGetToManyRelated: String, CaseIterable {
-        case subscriptionpricepoint = "subscriptionPricePoint"
         case territory = "territory"
+        case subscriptionpricepoint = "subscriptionPricePoint"
     }
 
     /**
      * enum for parameter include
      */
     public enum Include_subscriptionsPromotionalOffersGetToManyRelated: String, CaseIterable {
-        case prices = "prices"
         case subscription = "subscription"
+        case prices = "prices"
     }
 
     /**
@@ -1643,13 +1802,13 @@ open class SubscriptionsAPI {
      - parameter fieldsSubscriptions: (query) the fields to include for returned resources of type subscriptions (optional)
      - parameter fieldsSubscriptionPromotionalOfferPrices: (query) the fields to include for returned resources of type subscriptionPromotionalOfferPrices (optional)
      - parameter limit: (query) maximum resources per page (optional)
-     - parameter limitPrices: (query) maximum number of related prices returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitPrices: (query) maximum number of related prices returned (when they are included) (optional)
      - returns: SubscriptionPromotionalOffersResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionsPromotionalOffersGetToManyRelated(id: String, filterTerritory: [String]? = nil, fieldsSubscriptionPromotionalOffers: [FieldsSubscriptionPromotionalOffers_subscriptionsPromotionalOffersGetToManyRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsPromotionalOffersGetToManyRelated]? = nil, fieldsSubscriptionPromotionalOfferPrices: [FieldsSubscriptionPromotionalOfferPrices_subscriptionsPromotionalOffersGetToManyRelated]? = nil, limit: Int? = nil, limitPrices: Int? = nil, include: [Include_subscriptionsPromotionalOffersGetToManyRelated]? = nil) async throws -> SubscriptionPromotionalOffersResponse {
-        return try await subscriptionsPromotionalOffersGetToManyRelatedWithRequestBuilder(id: id, filterTerritory: filterTerritory, fieldsSubscriptionPromotionalOffers: fieldsSubscriptionPromotionalOffers, fieldsSubscriptions: fieldsSubscriptions, fieldsSubscriptionPromotionalOfferPrices: fieldsSubscriptionPromotionalOfferPrices, limit: limit, limitPrices: limitPrices, include: include).execute().body
+    open class func subscriptionsPromotionalOffersGetToManyRelated(id: String, filterTerritory: [String]? = nil, fieldsSubscriptionPromotionalOffers: [FieldsSubscriptionPromotionalOffers_subscriptionsPromotionalOffersGetToManyRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsPromotionalOffersGetToManyRelated]? = nil, fieldsSubscriptionPromotionalOfferPrices: [FieldsSubscriptionPromotionalOfferPrices_subscriptionsPromotionalOffersGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionsPromotionalOffersGetToManyRelated]? = nil, limitPrices: Int? = nil) async throws -> SubscriptionPromotionalOffersResponse {
+        return try await subscriptionsPromotionalOffersGetToManyRelatedWithRequestBuilder(id: id, filterTerritory: filterTerritory, fieldsSubscriptionPromotionalOffers: fieldsSubscriptionPromotionalOffers, fieldsSubscriptions: fieldsSubscriptions, fieldsSubscriptionPromotionalOfferPrices: fieldsSubscriptionPromotionalOfferPrices, limit: limit, include: include, limitPrices: limitPrices).execute().body
     }
 
     /**
@@ -1672,11 +1831,11 @@ open class SubscriptionsAPI {
      - parameter fieldsSubscriptions: (query) the fields to include for returned resources of type subscriptions (optional)
      - parameter fieldsSubscriptionPromotionalOfferPrices: (query) the fields to include for returned resources of type subscriptionPromotionalOfferPrices (optional)
      - parameter limit: (query) maximum resources per page (optional)
-     - parameter limitPrices: (query) maximum number of related prices returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitPrices: (query) maximum number of related prices returned (when they are included) (optional)
      - returns: RequestBuilder<SubscriptionPromotionalOffersResponse> 
      */
-    open class func subscriptionsPromotionalOffersGetToManyRelatedWithRequestBuilder(id: String, filterTerritory: [String]? = nil, fieldsSubscriptionPromotionalOffers: [FieldsSubscriptionPromotionalOffers_subscriptionsPromotionalOffersGetToManyRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsPromotionalOffersGetToManyRelated]? = nil, fieldsSubscriptionPromotionalOfferPrices: [FieldsSubscriptionPromotionalOfferPrices_subscriptionsPromotionalOffersGetToManyRelated]? = nil, limit: Int? = nil, limitPrices: Int? = nil, include: [Include_subscriptionsPromotionalOffersGetToManyRelated]? = nil) -> RequestBuilder<SubscriptionPromotionalOffersResponse> {
+    open class func subscriptionsPromotionalOffersGetToManyRelatedWithRequestBuilder(id: String, filterTerritory: [String]? = nil, fieldsSubscriptionPromotionalOffers: [FieldsSubscriptionPromotionalOffers_subscriptionsPromotionalOffersGetToManyRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsPromotionalOffersGetToManyRelated]? = nil, fieldsSubscriptionPromotionalOfferPrices: [FieldsSubscriptionPromotionalOfferPrices_subscriptionsPromotionalOffersGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionsPromotionalOffersGetToManyRelated]? = nil, limitPrices: Int? = nil) -> RequestBuilder<SubscriptionPromotionalOffersResponse> {
         var localVariablePath = "/v1/subscriptions/{id}/promotionalOffers"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -1691,8 +1850,8 @@ open class SubscriptionsAPI {
             "fields[subscriptions]": (wrappedValue: fieldsSubscriptions?.encodeToJSON(), isExplode: false),
             "fields[subscriptionPromotionalOfferPrices]": (wrappedValue: fieldsSubscriptionPromotionalOfferPrices?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "limit[prices]": (wrappedValue: limitPrices?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "limit[prices]": (wrappedValue: limitPrices?.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -1732,30 +1891,6 @@ open class SubscriptionsAPI {
     public enum FieldsSubscriptionAvailabilities_subscriptionsSubscriptionAvailabilityGetToOneRelated: String, CaseIterable {
         case availableinnewterritories = "availableInNewTerritories"
         case availableterritories = "availableTerritories"
-        case subscription = "subscription"
-    }
-
-    /**
-     * enum for parameter fieldsSubscriptions
-     */
-    public enum FieldsSubscriptions_subscriptionsSubscriptionAvailabilityGetToOneRelated: String, CaseIterable {
-        case appstorereviewscreenshot = "appStoreReviewScreenshot"
-        case familysharable = "familySharable"
-        case group = "group"
-        case grouplevel = "groupLevel"
-        case introductoryoffers = "introductoryOffers"
-        case name = "name"
-        case offercodes = "offerCodes"
-        case pricepoints = "pricePoints"
-        case prices = "prices"
-        case productid = "productId"
-        case promotedpurchase = "promotedPurchase"
-        case promotionaloffers = "promotionalOffers"
-        case reviewnote = "reviewNote"
-        case state = "state"
-        case subscriptionavailability = "subscriptionAvailability"
-        case subscriptionlocalizations = "subscriptionLocalizations"
-        case subscriptionperiod = "subscriptionPeriod"
     }
 
     /**
@@ -1770,22 +1905,20 @@ open class SubscriptionsAPI {
      */
     public enum Include_subscriptionsSubscriptionAvailabilityGetToOneRelated: String, CaseIterable {
         case availableterritories = "availableTerritories"
-        case subscription = "subscription"
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsSubscriptionAvailabilities: (query) the fields to include for returned resources of type subscriptionAvailabilities (optional)
-     - parameter fieldsSubscriptions: (query) the fields to include for returned resources of type subscriptions (optional)
      - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
-     - parameter limitAvailableTerritories: (query) maximum number of related availableTerritories returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitAvailableTerritories: (query) maximum number of related availableTerritories returned (when they are included) (optional)
      - returns: SubscriptionAvailabilityResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionsSubscriptionAvailabilityGetToOneRelated(id: String, fieldsSubscriptionAvailabilities: [FieldsSubscriptionAvailabilities_subscriptionsSubscriptionAvailabilityGetToOneRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsSubscriptionAvailabilityGetToOneRelated]? = nil, fieldsTerritories: [FieldsTerritories_subscriptionsSubscriptionAvailabilityGetToOneRelated]? = nil, limitAvailableTerritories: Int? = nil, include: [Include_subscriptionsSubscriptionAvailabilityGetToOneRelated]? = nil) async throws -> SubscriptionAvailabilityResponse {
-        return try await subscriptionsSubscriptionAvailabilityGetToOneRelatedWithRequestBuilder(id: id, fieldsSubscriptionAvailabilities: fieldsSubscriptionAvailabilities, fieldsSubscriptions: fieldsSubscriptions, fieldsTerritories: fieldsTerritories, limitAvailableTerritories: limitAvailableTerritories, include: include).execute().body
+    open class func subscriptionsSubscriptionAvailabilityGetToOneRelated(id: String, fieldsSubscriptionAvailabilities: [FieldsSubscriptionAvailabilities_subscriptionsSubscriptionAvailabilityGetToOneRelated]? = nil, fieldsTerritories: [FieldsTerritories_subscriptionsSubscriptionAvailabilityGetToOneRelated]? = nil, include: [Include_subscriptionsSubscriptionAvailabilityGetToOneRelated]? = nil, limitAvailableTerritories: Int? = nil) async throws -> SubscriptionAvailabilityResponse {
+        return try await subscriptionsSubscriptionAvailabilityGetToOneRelatedWithRequestBuilder(id: id, fieldsSubscriptionAvailabilities: fieldsSubscriptionAvailabilities, fieldsTerritories: fieldsTerritories, include: include, limitAvailableTerritories: limitAvailableTerritories).execute().body
     }
 
     /**
@@ -1804,13 +1937,12 @@ open class SubscriptionsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsSubscriptionAvailabilities: (query) the fields to include for returned resources of type subscriptionAvailabilities (optional)
-     - parameter fieldsSubscriptions: (query) the fields to include for returned resources of type subscriptions (optional)
      - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
-     - parameter limitAvailableTerritories: (query) maximum number of related availableTerritories returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitAvailableTerritories: (query) maximum number of related availableTerritories returned (when they are included) (optional)
      - returns: RequestBuilder<SubscriptionAvailabilityResponse> 
      */
-    open class func subscriptionsSubscriptionAvailabilityGetToOneRelatedWithRequestBuilder(id: String, fieldsSubscriptionAvailabilities: [FieldsSubscriptionAvailabilities_subscriptionsSubscriptionAvailabilityGetToOneRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsSubscriptionAvailabilityGetToOneRelated]? = nil, fieldsTerritories: [FieldsTerritories_subscriptionsSubscriptionAvailabilityGetToOneRelated]? = nil, limitAvailableTerritories: Int? = nil, include: [Include_subscriptionsSubscriptionAvailabilityGetToOneRelated]? = nil) -> RequestBuilder<SubscriptionAvailabilityResponse> {
+    open class func subscriptionsSubscriptionAvailabilityGetToOneRelatedWithRequestBuilder(id: String, fieldsSubscriptionAvailabilities: [FieldsSubscriptionAvailabilities_subscriptionsSubscriptionAvailabilityGetToOneRelated]? = nil, fieldsTerritories: [FieldsTerritories_subscriptionsSubscriptionAvailabilityGetToOneRelated]? = nil, include: [Include_subscriptionsSubscriptionAvailabilityGetToOneRelated]? = nil, limitAvailableTerritories: Int? = nil) -> RequestBuilder<SubscriptionAvailabilityResponse> {
         var localVariablePath = "/v1/subscriptions/{id}/subscriptionAvailability"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -1821,10 +1953,9 @@ open class SubscriptionsAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[subscriptionAvailabilities]": (wrappedValue: fieldsSubscriptionAvailabilities?.encodeToJSON(), isExplode: false),
-            "fields[subscriptions]": (wrappedValue: fieldsSubscriptions?.encodeToJSON(), isExplode: false),
             "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(), isExplode: false),
-            "limit[availableTerritories]": (wrappedValue: limitAvailableTerritories?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "limit[availableTerritories]": (wrappedValue: limitAvailableTerritories?.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -1859,37 +1990,39 @@ open class SubscriptionsAPI {
     }
 
     /**
-     * enum for parameter fieldsSubscriptions
-     */
-    public enum FieldsSubscriptions_subscriptionsSubscriptionLocalizationsGetToManyRelated: String, CaseIterable {
-        case appstorereviewscreenshot = "appStoreReviewScreenshot"
-        case familysharable = "familySharable"
-        case group = "group"
-        case grouplevel = "groupLevel"
-        case introductoryoffers = "introductoryOffers"
-        case name = "name"
-        case offercodes = "offerCodes"
-        case pricepoints = "pricePoints"
-        case prices = "prices"
-        case productid = "productId"
-        case promotedpurchase = "promotedPurchase"
-        case promotionaloffers = "promotionalOffers"
-        case reviewnote = "reviewNote"
-        case state = "state"
-        case subscriptionavailability = "subscriptionAvailability"
-        case subscriptionlocalizations = "subscriptionLocalizations"
-        case subscriptionperiod = "subscriptionPeriod"
-    }
-
-    /**
      * enum for parameter fieldsSubscriptionLocalizations
      */
     public enum FieldsSubscriptionLocalizations_subscriptionsSubscriptionLocalizationsGetToManyRelated: String, CaseIterable {
-        case description = "description"
-        case locale = "locale"
         case name = "name"
+        case locale = "locale"
+        case description = "description"
         case state = "state"
         case subscription = "subscription"
+    }
+
+    /**
+     * enum for parameter fieldsSubscriptions
+     */
+    public enum FieldsSubscriptions_subscriptionsSubscriptionLocalizationsGetToManyRelated: String, CaseIterable {
+        case name = "name"
+        case productid = "productId"
+        case familysharable = "familySharable"
+        case state = "state"
+        case subscriptionperiod = "subscriptionPeriod"
+        case reviewnote = "reviewNote"
+        case grouplevel = "groupLevel"
+        case subscriptionlocalizations = "subscriptionLocalizations"
+        case appstorereviewscreenshot = "appStoreReviewScreenshot"
+        case group = "group"
+        case introductoryoffers = "introductoryOffers"
+        case promotionaloffers = "promotionalOffers"
+        case offercodes = "offerCodes"
+        case prices = "prices"
+        case pricepoints = "pricePoints"
+        case promotedpurchase = "promotedPurchase"
+        case subscriptionavailability = "subscriptionAvailability"
+        case winbackoffers = "winBackOffers"
+        case images = "images"
     }
 
     /**
@@ -1902,15 +2035,15 @@ open class SubscriptionsAPI {
     /**
 
      - parameter id: (path) the id of the requested resource 
-     - parameter fieldsSubscriptions: (query) the fields to include for returned resources of type subscriptions (optional)
      - parameter fieldsSubscriptionLocalizations: (query) the fields to include for returned resources of type subscriptionLocalizations (optional)
+     - parameter fieldsSubscriptions: (query) the fields to include for returned resources of type subscriptions (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: SubscriptionLocalizationsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionsSubscriptionLocalizationsGetToManyRelated(id: String, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsSubscriptionLocalizationsGetToManyRelated]? = nil, fieldsSubscriptionLocalizations: [FieldsSubscriptionLocalizations_subscriptionsSubscriptionLocalizationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionsSubscriptionLocalizationsGetToManyRelated]? = nil) async throws -> SubscriptionLocalizationsResponse {
-        return try await subscriptionsSubscriptionLocalizationsGetToManyRelatedWithRequestBuilder(id: id, fieldsSubscriptions: fieldsSubscriptions, fieldsSubscriptionLocalizations: fieldsSubscriptionLocalizations, limit: limit, include: include).execute().body
+    open class func subscriptionsSubscriptionLocalizationsGetToManyRelated(id: String, fieldsSubscriptionLocalizations: [FieldsSubscriptionLocalizations_subscriptionsSubscriptionLocalizationsGetToManyRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsSubscriptionLocalizationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionsSubscriptionLocalizationsGetToManyRelated]? = nil) async throws -> SubscriptionLocalizationsResponse {
+        return try await subscriptionsSubscriptionLocalizationsGetToManyRelatedWithRequestBuilder(id: id, fieldsSubscriptionLocalizations: fieldsSubscriptionLocalizations, fieldsSubscriptions: fieldsSubscriptions, limit: limit, include: include).execute().body
     }
 
     /**
@@ -1928,13 +2061,13 @@ open class SubscriptionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
-     - parameter fieldsSubscriptions: (query) the fields to include for returned resources of type subscriptions (optional)
      - parameter fieldsSubscriptionLocalizations: (query) the fields to include for returned resources of type subscriptionLocalizations (optional)
+     - parameter fieldsSubscriptions: (query) the fields to include for returned resources of type subscriptions (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: RequestBuilder<SubscriptionLocalizationsResponse> 
      */
-    open class func subscriptionsSubscriptionLocalizationsGetToManyRelatedWithRequestBuilder(id: String, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsSubscriptionLocalizationsGetToManyRelated]? = nil, fieldsSubscriptionLocalizations: [FieldsSubscriptionLocalizations_subscriptionsSubscriptionLocalizationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionsSubscriptionLocalizationsGetToManyRelated]? = nil) -> RequestBuilder<SubscriptionLocalizationsResponse> {
+    open class func subscriptionsSubscriptionLocalizationsGetToManyRelatedWithRequestBuilder(id: String, fieldsSubscriptionLocalizations: [FieldsSubscriptionLocalizations_subscriptionsSubscriptionLocalizationsGetToManyRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsSubscriptionLocalizationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionsSubscriptionLocalizationsGetToManyRelated]? = nil) -> RequestBuilder<SubscriptionLocalizationsResponse> {
         var localVariablePath = "/v1/subscriptions/{id}/subscriptionLocalizations"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -1944,8 +2077,8 @@ open class SubscriptionsAPI {
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[subscriptions]": (wrappedValue: fieldsSubscriptions?.encodeToJSON(), isExplode: false),
             "fields[subscriptionLocalizations]": (wrappedValue: fieldsSubscriptionLocalizations?.encodeToJSON(), isExplode: false),
+            "fields[subscriptions]": (wrappedValue: fieldsSubscriptions?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
         ])
@@ -2049,5 +2182,124 @@ open class SubscriptionsAPI {
         let localVariableRequestBuilder: RequestBuilder<SubscriptionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+    }
+
+    /**
+     * enum for parameter fieldsWinBackOffers
+     */
+    public enum FieldsWinBackOffers_subscriptionsWinBackOffersGetToManyRelated: String, CaseIterable {
+        case referencename = "referenceName"
+        case offerid = "offerId"
+        case duration = "duration"
+        case offermode = "offerMode"
+        case periodcount = "periodCount"
+        case customereligibilitypaidsubscriptiondurationinmonths = "customerEligibilityPaidSubscriptionDurationInMonths"
+        case customereligibilitytimesincelastsubscribedinmonths = "customerEligibilityTimeSinceLastSubscribedInMonths"
+        case customereligibilitywaitbetweenoffersinmonths = "customerEligibilityWaitBetweenOffersInMonths"
+        case startdate = "startDate"
+        case enddate = "endDate"
+        case priority = "priority"
+        case promotionintent = "promotionIntent"
+        case prices = "prices"
+    }
+
+    /**
+     * enum for parameter fieldsWinBackOfferPrices
+     */
+    public enum FieldsWinBackOfferPrices_subscriptionsWinBackOffersGetToManyRelated: String, CaseIterable {
+        case territory = "territory"
+        case subscriptionpricepoint = "subscriptionPricePoint"
+    }
+
+    /**
+     * enum for parameter include
+     */
+    public enum Include_subscriptionsWinBackOffersGetToManyRelated: String, CaseIterable {
+        case prices = "prices"
+    }
+
+    /**
+
+     - parameter id: (path) the id of the requested resource 
+     - parameter fieldsWinBackOffers: (query) the fields to include for returned resources of type winBackOffers (optional)
+     - parameter fieldsWinBackOfferPrices: (query) the fields to include for returned resources of type winBackOfferPrices (optional)
+     - parameter limit: (query) maximum resources per page (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitPrices: (query) maximum number of related prices returned (when they are included) (optional)
+     - returns: WinBackOffersResponse
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func subscriptionsWinBackOffersGetToManyRelated(id: String, fieldsWinBackOffers: [FieldsWinBackOffers_subscriptionsWinBackOffersGetToManyRelated]? = nil, fieldsWinBackOfferPrices: [FieldsWinBackOfferPrices_subscriptionsWinBackOffersGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionsWinBackOffersGetToManyRelated]? = nil, limitPrices: Int? = nil) async throws -> WinBackOffersResponse {
+        return try await subscriptionsWinBackOffersGetToManyRelatedWithRequestBuilder(id: id, fieldsWinBackOffers: fieldsWinBackOffers, fieldsWinBackOfferPrices: fieldsWinBackOfferPrices, limit: limit, include: include, limitPrices: limitPrices).execute().body
+    }
+
+    /**
+     - parameter urlString: next or first url from App Store Connect API
+     - returns: WinBackOffersResponse
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func subscriptionsWinBackOffersGetToManyRelated(urlString: String) async throws -> WinBackOffersResponse {
+        return try await subscriptionsWinBackOffersGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    }
+
+    /**
+     - GET /v1/subscriptions/{id}/winBackOffers
+     - Bearer Token:
+       - type: http
+       - name: itc-bearer-token
+     - parameter id: (path) the id of the requested resource 
+     - parameter fieldsWinBackOffers: (query) the fields to include for returned resources of type winBackOffers (optional)
+     - parameter fieldsWinBackOfferPrices: (query) the fields to include for returned resources of type winBackOfferPrices (optional)
+     - parameter limit: (query) maximum resources per page (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitPrices: (query) maximum number of related prices returned (when they are included) (optional)
+     - returns: RequestBuilder<WinBackOffersResponse> 
+     */
+    open class func subscriptionsWinBackOffersGetToManyRelatedWithRequestBuilder(id: String, fieldsWinBackOffers: [FieldsWinBackOffers_subscriptionsWinBackOffersGetToManyRelated]? = nil, fieldsWinBackOfferPrices: [FieldsWinBackOfferPrices_subscriptionsWinBackOffersGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionsWinBackOffersGetToManyRelated]? = nil, limitPrices: Int? = nil) -> RequestBuilder<WinBackOffersResponse> {
+        var localVariablePath = "/v1/subscriptions/{id}/winBackOffers"
+        let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
+        let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
+        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+            "fields[winBackOffers]": (wrappedValue: fieldsWinBackOffers?.encodeToJSON(), isExplode: false),
+            "fields[winBackOfferPrices]": (wrappedValue: fieldsWinBackOfferPrices?.encodeToJSON(), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "limit[prices]": (wrappedValue: limitPrices?.encodeToJSON(), isExplode: true),
+        ])
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<WinBackOffersResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+    }
+
+    /**
+     - GET /v1/subscriptions/{id}/winBackOffers
+     - Bearer Token:
+       - type: http
+       - name: itc-bearer-token
+     - parameter urlString: next or first url from App Store Connect API
+     - returns: RequestBuilder<WinBackOffersResponse> 
+     */
+    open class func subscriptionsWinBackOffersGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<WinBackOffersResponse> {
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<WinBackOffersResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 }

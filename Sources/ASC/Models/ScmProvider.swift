@@ -19,12 +19,14 @@ public struct ScmProvider: Codable, JSONEncodable, Hashable {
     public var type: ModelType
     public var id: String
     public var attributes: ScmProviderAttributes?
+    public var relationships: ScmProviderRelationships?
     public var links: ResourceLinks?
 
-    public init(type: ModelType, id: String, attributes: ScmProviderAttributes? = nil, links: ResourceLinks? = nil) {
+    public init(type: ModelType, id: String, attributes: ScmProviderAttributes? = nil, relationships: ScmProviderRelationships? = nil, links: ResourceLinks? = nil) {
         self.type = type
         self.id = id
         self.attributes = attributes
+        self.relationships = relationships
         self.links = links
     }
 
@@ -32,6 +34,7 @@ public struct ScmProvider: Codable, JSONEncodable, Hashable {
         case type
         case id
         case attributes
+        case relationships
         case links
     }
 
@@ -42,6 +45,7 @@ public struct ScmProvider: Codable, JSONEncodable, Hashable {
         try container.encode(type, forKey: .type)
         try container.encode(id, forKey: .id)
         try container.encodeIfPresent(attributes, forKey: .attributes)
+        try container.encodeIfPresent(relationships, forKey: .relationships)
         try container.encodeIfPresent(links, forKey: .links)
     }
 }

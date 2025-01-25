@@ -149,43 +149,43 @@ open class SubscriptionPromotionalOffersAPI {
      * enum for parameter fieldsSubscriptionPromotionalOffers
      */
     public enum FieldsSubscriptionPromotionalOffers_subscriptionPromotionalOffersGetInstance: String, CaseIterable {
-        case duration = "duration"
         case name = "name"
-        case numberofperiods = "numberOfPeriods"
         case offercode = "offerCode"
+        case duration = "duration"
         case offermode = "offerMode"
-        case prices = "prices"
+        case numberofperiods = "numberOfPeriods"
         case subscription = "subscription"
-    }
-
-    /**
-     * enum for parameter include
-     */
-    public enum Include_subscriptionPromotionalOffersGetInstance: String, CaseIterable {
         case prices = "prices"
-        case subscription = "subscription"
     }
 
     /**
      * enum for parameter fieldsSubscriptionPromotionalOfferPrices
      */
     public enum FieldsSubscriptionPromotionalOfferPrices_subscriptionPromotionalOffersGetInstance: String, CaseIterable {
-        case subscriptionpricepoint = "subscriptionPricePoint"
         case territory = "territory"
+        case subscriptionpricepoint = "subscriptionPricePoint"
+    }
+
+    /**
+     * enum for parameter include
+     */
+    public enum Include_subscriptionPromotionalOffersGetInstance: String, CaseIterable {
+        case subscription = "subscription"
+        case prices = "prices"
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsSubscriptionPromotionalOffers: (query) the fields to include for returned resources of type subscriptionPromotionalOffers (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter fieldsSubscriptionPromotionalOfferPrices: (query) the fields to include for returned resources of type subscriptionPromotionalOfferPrices (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitPrices: (query) maximum number of related prices returned (when they are included) (optional)
      - returns: SubscriptionPromotionalOfferResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionPromotionalOffersGetInstance(id: String, fieldsSubscriptionPromotionalOffers: [FieldsSubscriptionPromotionalOffers_subscriptionPromotionalOffersGetInstance]? = nil, include: [Include_subscriptionPromotionalOffersGetInstance]? = nil, fieldsSubscriptionPromotionalOfferPrices: [FieldsSubscriptionPromotionalOfferPrices_subscriptionPromotionalOffersGetInstance]? = nil, limitPrices: Int? = nil) async throws -> SubscriptionPromotionalOfferResponse {
-        return try await subscriptionPromotionalOffersGetInstanceWithRequestBuilder(id: id, fieldsSubscriptionPromotionalOffers: fieldsSubscriptionPromotionalOffers, include: include, fieldsSubscriptionPromotionalOfferPrices: fieldsSubscriptionPromotionalOfferPrices, limitPrices: limitPrices).execute().body
+    open class func subscriptionPromotionalOffersGetInstance(id: String, fieldsSubscriptionPromotionalOffers: [FieldsSubscriptionPromotionalOffers_subscriptionPromotionalOffersGetInstance]? = nil, fieldsSubscriptionPromotionalOfferPrices: [FieldsSubscriptionPromotionalOfferPrices_subscriptionPromotionalOffersGetInstance]? = nil, include: [Include_subscriptionPromotionalOffersGetInstance]? = nil, limitPrices: Int? = nil) async throws -> SubscriptionPromotionalOfferResponse {
+        return try await subscriptionPromotionalOffersGetInstanceWithRequestBuilder(id: id, fieldsSubscriptionPromotionalOffers: fieldsSubscriptionPromotionalOffers, fieldsSubscriptionPromotionalOfferPrices: fieldsSubscriptionPromotionalOfferPrices, include: include, limitPrices: limitPrices).execute().body
     }
 
     /**
@@ -204,12 +204,12 @@ open class SubscriptionPromotionalOffersAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsSubscriptionPromotionalOffers: (query) the fields to include for returned resources of type subscriptionPromotionalOffers (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter fieldsSubscriptionPromotionalOfferPrices: (query) the fields to include for returned resources of type subscriptionPromotionalOfferPrices (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitPrices: (query) maximum number of related prices returned (when they are included) (optional)
      - returns: RequestBuilder<SubscriptionPromotionalOfferResponse> 
      */
-    open class func subscriptionPromotionalOffersGetInstanceWithRequestBuilder(id: String, fieldsSubscriptionPromotionalOffers: [FieldsSubscriptionPromotionalOffers_subscriptionPromotionalOffersGetInstance]? = nil, include: [Include_subscriptionPromotionalOffersGetInstance]? = nil, fieldsSubscriptionPromotionalOfferPrices: [FieldsSubscriptionPromotionalOfferPrices_subscriptionPromotionalOffersGetInstance]? = nil, limitPrices: Int? = nil) -> RequestBuilder<SubscriptionPromotionalOfferResponse> {
+    open class func subscriptionPromotionalOffersGetInstanceWithRequestBuilder(id: String, fieldsSubscriptionPromotionalOffers: [FieldsSubscriptionPromotionalOffers_subscriptionPromotionalOffersGetInstance]? = nil, fieldsSubscriptionPromotionalOfferPrices: [FieldsSubscriptionPromotionalOfferPrices_subscriptionPromotionalOffersGetInstance]? = nil, include: [Include_subscriptionPromotionalOffersGetInstance]? = nil, limitPrices: Int? = nil) -> RequestBuilder<SubscriptionPromotionalOfferResponse> {
         var localVariablePath = "/v1/subscriptionPromotionalOffers/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -220,8 +220,8 @@ open class SubscriptionPromotionalOffersAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[subscriptionPromotionalOffers]": (wrappedValue: fieldsSubscriptionPromotionalOffers?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "fields[subscriptionPromotionalOfferPrices]": (wrappedValue: fieldsSubscriptionPromotionalOfferPrices?.encodeToJSON(), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "limit[prices]": (wrappedValue: limitPrices?.encodeToJSON(), isExplode: true),
         ])
 
@@ -257,15 +257,11 @@ open class SubscriptionPromotionalOffersAPI {
     }
 
     /**
-     * enum for parameter fieldsSubscriptionPricePoints
+     * enum for parameter fieldsSubscriptionPromotionalOfferPrices
      */
-    public enum FieldsSubscriptionPricePoints_subscriptionPromotionalOffersPricesGetToManyRelated: String, CaseIterable {
-        case customerprice = "customerPrice"
-        case equalizations = "equalizations"
-        case proceeds = "proceeds"
-        case proceedsyear2 = "proceedsYear2"
-        case subscription = "subscription"
+    public enum FieldsSubscriptionPromotionalOfferPrices_subscriptionPromotionalOffersPricesGetToManyRelated: String, CaseIterable {
         case territory = "territory"
+        case subscriptionpricepoint = "subscriptionPricePoint"
     }
 
     /**
@@ -276,35 +272,38 @@ open class SubscriptionPromotionalOffersAPI {
     }
 
     /**
-     * enum for parameter fieldsSubscriptionPromotionalOfferPrices
+     * enum for parameter fieldsSubscriptionPricePoints
      */
-    public enum FieldsSubscriptionPromotionalOfferPrices_subscriptionPromotionalOffersPricesGetToManyRelated: String, CaseIterable {
-        case subscriptionpricepoint = "subscriptionPricePoint"
+    public enum FieldsSubscriptionPricePoints_subscriptionPromotionalOffersPricesGetToManyRelated: String, CaseIterable {
+        case customerprice = "customerPrice"
+        case proceeds = "proceeds"
+        case proceedsyear2 = "proceedsYear2"
         case territory = "territory"
+        case equalizations = "equalizations"
     }
 
     /**
      * enum for parameter include
      */
     public enum Include_subscriptionPromotionalOffersPricesGetToManyRelated: String, CaseIterable {
-        case subscriptionpricepoint = "subscriptionPricePoint"
         case territory = "territory"
+        case subscriptionpricepoint = "subscriptionPricePoint"
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter filterTerritory: (query) filter by id(s) of related &#39;territory&#39; (optional)
-     - parameter fieldsSubscriptionPricePoints: (query) the fields to include for returned resources of type subscriptionPricePoints (optional)
-     - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
      - parameter fieldsSubscriptionPromotionalOfferPrices: (query) the fields to include for returned resources of type subscriptionPromotionalOfferPrices (optional)
+     - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
+     - parameter fieldsSubscriptionPricePoints: (query) the fields to include for returned resources of type subscriptionPricePoints (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: SubscriptionPromotionalOfferPricesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionPromotionalOffersPricesGetToManyRelated(id: String, filterTerritory: [String]? = nil, fieldsSubscriptionPricePoints: [FieldsSubscriptionPricePoints_subscriptionPromotionalOffersPricesGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_subscriptionPromotionalOffersPricesGetToManyRelated]? = nil, fieldsSubscriptionPromotionalOfferPrices: [FieldsSubscriptionPromotionalOfferPrices_subscriptionPromotionalOffersPricesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionPromotionalOffersPricesGetToManyRelated]? = nil) async throws -> SubscriptionPromotionalOfferPricesResponse {
-        return try await subscriptionPromotionalOffersPricesGetToManyRelatedWithRequestBuilder(id: id, filterTerritory: filterTerritory, fieldsSubscriptionPricePoints: fieldsSubscriptionPricePoints, fieldsTerritories: fieldsTerritories, fieldsSubscriptionPromotionalOfferPrices: fieldsSubscriptionPromotionalOfferPrices, limit: limit, include: include).execute().body
+    open class func subscriptionPromotionalOffersPricesGetToManyRelated(id: String, filterTerritory: [String]? = nil, fieldsSubscriptionPromotionalOfferPrices: [FieldsSubscriptionPromotionalOfferPrices_subscriptionPromotionalOffersPricesGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_subscriptionPromotionalOffersPricesGetToManyRelated]? = nil, fieldsSubscriptionPricePoints: [FieldsSubscriptionPricePoints_subscriptionPromotionalOffersPricesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionPromotionalOffersPricesGetToManyRelated]? = nil) async throws -> SubscriptionPromotionalOfferPricesResponse {
+        return try await subscriptionPromotionalOffersPricesGetToManyRelatedWithRequestBuilder(id: id, filterTerritory: filterTerritory, fieldsSubscriptionPromotionalOfferPrices: fieldsSubscriptionPromotionalOfferPrices, fieldsTerritories: fieldsTerritories, fieldsSubscriptionPricePoints: fieldsSubscriptionPricePoints, limit: limit, include: include).execute().body
     }
 
     /**
@@ -323,14 +322,14 @@ open class SubscriptionPromotionalOffersAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter filterTerritory: (query) filter by id(s) of related &#39;territory&#39; (optional)
-     - parameter fieldsSubscriptionPricePoints: (query) the fields to include for returned resources of type subscriptionPricePoints (optional)
-     - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
      - parameter fieldsSubscriptionPromotionalOfferPrices: (query) the fields to include for returned resources of type subscriptionPromotionalOfferPrices (optional)
+     - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
+     - parameter fieldsSubscriptionPricePoints: (query) the fields to include for returned resources of type subscriptionPricePoints (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: RequestBuilder<SubscriptionPromotionalOfferPricesResponse> 
      */
-    open class func subscriptionPromotionalOffersPricesGetToManyRelatedWithRequestBuilder(id: String, filterTerritory: [String]? = nil, fieldsSubscriptionPricePoints: [FieldsSubscriptionPricePoints_subscriptionPromotionalOffersPricesGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_subscriptionPromotionalOffersPricesGetToManyRelated]? = nil, fieldsSubscriptionPromotionalOfferPrices: [FieldsSubscriptionPromotionalOfferPrices_subscriptionPromotionalOffersPricesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionPromotionalOffersPricesGetToManyRelated]? = nil) -> RequestBuilder<SubscriptionPromotionalOfferPricesResponse> {
+    open class func subscriptionPromotionalOffersPricesGetToManyRelatedWithRequestBuilder(id: String, filterTerritory: [String]? = nil, fieldsSubscriptionPromotionalOfferPrices: [FieldsSubscriptionPromotionalOfferPrices_subscriptionPromotionalOffersPricesGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_subscriptionPromotionalOffersPricesGetToManyRelated]? = nil, fieldsSubscriptionPricePoints: [FieldsSubscriptionPricePoints_subscriptionPromotionalOffersPricesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionPromotionalOffersPricesGetToManyRelated]? = nil) -> RequestBuilder<SubscriptionPromotionalOfferPricesResponse> {
         var localVariablePath = "/v1/subscriptionPromotionalOffers/{id}/prices"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -341,9 +340,9 @@ open class SubscriptionPromotionalOffersAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "filter[territory]": (wrappedValue: filterTerritory?.encodeToJSON(), isExplode: false),
-            "fields[subscriptionPricePoints]": (wrappedValue: fieldsSubscriptionPricePoints?.encodeToJSON(), isExplode: false),
-            "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(), isExplode: false),
             "fields[subscriptionPromotionalOfferPrices]": (wrappedValue: fieldsSubscriptionPromotionalOfferPrices?.encodeToJSON(), isExplode: false),
+            "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(), isExplode: false),
+            "fields[subscriptionPricePoints]": (wrappedValue: fieldsSubscriptionPricePoints?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
         ])

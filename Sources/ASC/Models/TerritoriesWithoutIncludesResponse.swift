@@ -12,11 +12,11 @@ import AnyCodable
 
 public struct TerritoriesWithoutIncludesResponse: Codable, JSONEncodable, Hashable {
 
-    public var data: [EndUserLicenseAgreement]
+    public var data: [Territory]
     public var links: PagedDocumentLinks
     public var meta: PagingInformation?
 
-    public init(data: [EndUserLicenseAgreement], links: PagedDocumentLinks, meta: PagingInformation? = nil) {
+    public init(data: [Territory], links: PagedDocumentLinks, meta: PagingInformation? = nil) {
         self.data = data
         self.links = links
         self.meta = meta

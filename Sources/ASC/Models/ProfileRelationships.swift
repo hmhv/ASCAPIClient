@@ -12,11 +12,11 @@ import AnyCodable
 
 public struct ProfileRelationships: Codable, JSONEncodable, Hashable {
 
-    public var bundleId: CiProductRelationshipsBundleId?
+    public var bundleId: ProfileRelationshipsBundleId?
     public var devices: ProfileRelationshipsDevices?
     public var certificates: ProfileRelationshipsCertificates?
 
-    public init(bundleId: CiProductRelationshipsBundleId? = nil, devices: ProfileRelationshipsDevices? = nil, certificates: ProfileRelationshipsCertificates? = nil) {
+    public init(bundleId: ProfileRelationshipsBundleId? = nil, devices: ProfileRelationshipsDevices? = nil, certificates: ProfileRelationshipsCertificates? = nil) {
         self.bundleId = bundleId
         self.devices = devices
         self.certificates = certificates

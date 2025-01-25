@@ -158,7 +158,6 @@ open class UserInvitationsAPI {
         case developer = "DEVELOPER"
         case accessToReports = "ACCESS_TO_REPORTS"
         case customerSupport = "CUSTOMER_SUPPORT"
-        case imageManager = "IMAGE_MANAGER"
         case createApps = "CREATE_APPS"
         case cloudManagedDeveloperId = "CLOUD_MANAGED_DEVELOPER_ID"
         case cloudManagedAppDistribution = "CLOUD_MANAGED_APP_DISTRIBUTION"
@@ -179,14 +178,63 @@ open class UserInvitationsAPI {
      * enum for parameter fieldsUserInvitations
      */
     public enum FieldsUserInvitations_userInvitationsGetCollection: String, CaseIterable {
-        case allappsvisible = "allAppsVisible"
         case email = "email"
-        case expirationdate = "expirationDate"
         case firstname = "firstName"
         case lastname = "lastName"
-        case provisioningallowed = "provisioningAllowed"
+        case expirationdate = "expirationDate"
         case roles = "roles"
+        case allappsvisible = "allAppsVisible"
+        case provisioningallowed = "provisioningAllowed"
         case visibleapps = "visibleApps"
+    }
+
+    /**
+     * enum for parameter fieldsApps
+     */
+    public enum FieldsApps_userInvitationsGetCollection: String, CaseIterable {
+        case name = "name"
+        case bundleid = "bundleId"
+        case sku = "sku"
+        case primarylocale = "primaryLocale"
+        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
+        case subscriptionstatusurl = "subscriptionStatusUrl"
+        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
+        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
+        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
+        case contentrightsdeclaration = "contentRightsDeclaration"
+        case streamlinedpurchasingenabled = "streamlinedPurchasingEnabled"
+        case appencryptiondeclarations = "appEncryptionDeclarations"
+        case ciproduct = "ciProduct"
+        case betatesters = "betaTesters"
+        case betagroups = "betaGroups"
+        case appstoreversions = "appStoreVersions"
+        case prereleaseversions = "preReleaseVersions"
+        case betaapplocalizations = "betaAppLocalizations"
+        case builds = "builds"
+        case betalicenseagreement = "betaLicenseAgreement"
+        case betaappreviewdetail = "betaAppReviewDetail"
+        case appinfos = "appInfos"
+        case appclips = "appClips"
+        case apppricepoints = "appPricePoints"
+        case enduserlicenseagreement = "endUserLicenseAgreement"
+        case apppriceschedule = "appPriceSchedule"
+        case appavailabilityv2 = "appAvailabilityV2"
+        case inapppurchases = "inAppPurchases"
+        case subscriptiongroups = "subscriptionGroups"
+        case gamecenterenabledversions = "gameCenterEnabledVersions"
+        case perfpowermetrics = "perfPowerMetrics"
+        case appcustomproductpages = "appCustomProductPages"
+        case inapppurchasesv2 = "inAppPurchasesV2"
+        case promotedpurchases = "promotedPurchases"
+        case appevents = "appEvents"
+        case reviewsubmissions = "reviewSubmissions"
+        case subscriptiongraceperiod = "subscriptionGracePeriod"
+        case customerreviews = "customerReviews"
+        case gamecenterdetail = "gameCenterDetail"
+        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
+        case alternativedistributionkey = "alternativeDistributionKey"
+        case analyticsreportrequests = "analyticsReportRequests"
+        case marketplacesearchdetail = "marketplaceSearchDetail"
     }
 
     /**
@@ -197,74 +245,21 @@ open class UserInvitationsAPI {
     }
 
     /**
-     * enum for parameter fieldsApps
-     */
-    public enum FieldsApps_userInvitationsGetCollection: String, CaseIterable {
-        case alternativedistributionkey = "alternativeDistributionKey"
-        case analyticsreportrequests = "analyticsReportRequests"
-        case appavailability = "appAvailability"
-        case appclips = "appClips"
-        case appcustomproductpages = "appCustomProductPages"
-        case appencryptiondeclarations = "appEncryptionDeclarations"
-        case appevents = "appEvents"
-        case appinfos = "appInfos"
-        case apppricepoints = "appPricePoints"
-        case apppriceschedule = "appPriceSchedule"
-        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
-        case appstoreversions = "appStoreVersions"
-        case availableinnewterritories = "availableInNewTerritories"
-        case availableterritories = "availableTerritories"
-        case betaapplocalizations = "betaAppLocalizations"
-        case betaappreviewdetail = "betaAppReviewDetail"
-        case betagroups = "betaGroups"
-        case betalicenseagreement = "betaLicenseAgreement"
-        case betatesters = "betaTesters"
-        case builds = "builds"
-        case bundleid = "bundleId"
-        case ciproduct = "ciProduct"
-        case contentrightsdeclaration = "contentRightsDeclaration"
-        case customerreviews = "customerReviews"
-        case enduserlicenseagreement = "endUserLicenseAgreement"
-        case gamecenterdetail = "gameCenterDetail"
-        case gamecenterenabledversions = "gameCenterEnabledVersions"
-        case inapppurchases = "inAppPurchases"
-        case inapppurchasesv2 = "inAppPurchasesV2"
-        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
-        case marketplacesearchdetail = "marketplaceSearchDetail"
-        case name = "name"
-        case perfpowermetrics = "perfPowerMetrics"
-        case preorder = "preOrder"
-        case prereleaseversions = "preReleaseVersions"
-        case pricepoints = "pricePoints"
-        case prices = "prices"
-        case primarylocale = "primaryLocale"
-        case promotedpurchases = "promotedPurchases"
-        case reviewsubmissions = "reviewSubmissions"
-        case sku = "sku"
-        case subscriptiongraceperiod = "subscriptionGracePeriod"
-        case subscriptiongroups = "subscriptionGroups"
-        case subscriptionstatusurl = "subscriptionStatusUrl"
-        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
-        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
-        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
-    }
-
-    /**
 
      - parameter filterEmail: (query) filter by attribute &#39;email&#39; (optional)
      - parameter filterRoles: (query) filter by attribute &#39;roles&#39; (optional)
      - parameter filterVisibleApps: (query) filter by id(s) of related &#39;visibleApps&#39; (optional)
      - parameter sort: (query) comma-separated list of sort expressions; resources will be sorted as specified (optional)
      - parameter fieldsUserInvitations: (query) the fields to include for returned resources of type userInvitations (optional)
+     - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
-     - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
      - parameter limitVisibleApps: (query) maximum number of related visibleApps returned (when they are included) (optional)
      - returns: UserInvitationsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func userInvitationsGetCollection(filterEmail: [String]? = nil, filterRoles: [FilterRoles_userInvitationsGetCollection]? = nil, filterVisibleApps: [String]? = nil, sort: [Sort_userInvitationsGetCollection]? = nil, fieldsUserInvitations: [FieldsUserInvitations_userInvitationsGetCollection]? = nil, limit: Int? = nil, include: [Include_userInvitationsGetCollection]? = nil, fieldsApps: [FieldsApps_userInvitationsGetCollection]? = nil, limitVisibleApps: Int? = nil) async throws -> UserInvitationsResponse {
-        return try await userInvitationsGetCollectionWithRequestBuilder(filterEmail: filterEmail, filterRoles: filterRoles, filterVisibleApps: filterVisibleApps, sort: sort, fieldsUserInvitations: fieldsUserInvitations, limit: limit, include: include, fieldsApps: fieldsApps, limitVisibleApps: limitVisibleApps).execute().body
+    open class func userInvitationsGetCollection(filterEmail: [String]? = nil, filterRoles: [FilterRoles_userInvitationsGetCollection]? = nil, filterVisibleApps: [String]? = nil, sort: [Sort_userInvitationsGetCollection]? = nil, fieldsUserInvitations: [FieldsUserInvitations_userInvitationsGetCollection]? = nil, fieldsApps: [FieldsApps_userInvitationsGetCollection]? = nil, limit: Int? = nil, include: [Include_userInvitationsGetCollection]? = nil, limitVisibleApps: Int? = nil) async throws -> UserInvitationsResponse {
+        return try await userInvitationsGetCollectionWithRequestBuilder(filterEmail: filterEmail, filterRoles: filterRoles, filterVisibleApps: filterVisibleApps, sort: sort, fieldsUserInvitations: fieldsUserInvitations, fieldsApps: fieldsApps, limit: limit, include: include, limitVisibleApps: limitVisibleApps).execute().body
     }
 
     /**
@@ -286,13 +281,13 @@ open class UserInvitationsAPI {
      - parameter filterVisibleApps: (query) filter by id(s) of related &#39;visibleApps&#39; (optional)
      - parameter sort: (query) comma-separated list of sort expressions; resources will be sorted as specified (optional)
      - parameter fieldsUserInvitations: (query) the fields to include for returned resources of type userInvitations (optional)
+     - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
-     - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
      - parameter limitVisibleApps: (query) maximum number of related visibleApps returned (when they are included) (optional)
      - returns: RequestBuilder<UserInvitationsResponse> 
      */
-    open class func userInvitationsGetCollectionWithRequestBuilder(filterEmail: [String]? = nil, filterRoles: [FilterRoles_userInvitationsGetCollection]? = nil, filterVisibleApps: [String]? = nil, sort: [Sort_userInvitationsGetCollection]? = nil, fieldsUserInvitations: [FieldsUserInvitations_userInvitationsGetCollection]? = nil, limit: Int? = nil, include: [Include_userInvitationsGetCollection]? = nil, fieldsApps: [FieldsApps_userInvitationsGetCollection]? = nil, limitVisibleApps: Int? = nil) -> RequestBuilder<UserInvitationsResponse> {
+    open class func userInvitationsGetCollectionWithRequestBuilder(filterEmail: [String]? = nil, filterRoles: [FilterRoles_userInvitationsGetCollection]? = nil, filterVisibleApps: [String]? = nil, sort: [Sort_userInvitationsGetCollection]? = nil, fieldsUserInvitations: [FieldsUserInvitations_userInvitationsGetCollection]? = nil, fieldsApps: [FieldsApps_userInvitationsGetCollection]? = nil, limit: Int? = nil, include: [Include_userInvitationsGetCollection]? = nil, limitVisibleApps: Int? = nil) -> RequestBuilder<UserInvitationsResponse> {
         let localVariablePath = "/v1/userInvitations"
         let localVariableURLString = ASCAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -304,9 +299,9 @@ open class UserInvitationsAPI {
             "filter[visibleApps]": (wrappedValue: filterVisibleApps?.encodeToJSON(), isExplode: false),
             "sort": (wrappedValue: sort?.encodeToJSON(), isExplode: false),
             "fields[userInvitations]": (wrappedValue: fieldsUserInvitations?.encodeToJSON(), isExplode: false),
+            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
             "limit[visibleApps]": (wrappedValue: limitVisibleApps?.encodeToJSON(), isExplode: true),
         ])
 
@@ -345,14 +340,63 @@ open class UserInvitationsAPI {
      * enum for parameter fieldsUserInvitations
      */
     public enum FieldsUserInvitations_userInvitationsGetInstance: String, CaseIterable {
-        case allappsvisible = "allAppsVisible"
         case email = "email"
-        case expirationdate = "expirationDate"
         case firstname = "firstName"
         case lastname = "lastName"
-        case provisioningallowed = "provisioningAllowed"
+        case expirationdate = "expirationDate"
         case roles = "roles"
+        case allappsvisible = "allAppsVisible"
+        case provisioningallowed = "provisioningAllowed"
         case visibleapps = "visibleApps"
+    }
+
+    /**
+     * enum for parameter fieldsApps
+     */
+    public enum FieldsApps_userInvitationsGetInstance: String, CaseIterable {
+        case name = "name"
+        case bundleid = "bundleId"
+        case sku = "sku"
+        case primarylocale = "primaryLocale"
+        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
+        case subscriptionstatusurl = "subscriptionStatusUrl"
+        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
+        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
+        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
+        case contentrightsdeclaration = "contentRightsDeclaration"
+        case streamlinedpurchasingenabled = "streamlinedPurchasingEnabled"
+        case appencryptiondeclarations = "appEncryptionDeclarations"
+        case ciproduct = "ciProduct"
+        case betatesters = "betaTesters"
+        case betagroups = "betaGroups"
+        case appstoreversions = "appStoreVersions"
+        case prereleaseversions = "preReleaseVersions"
+        case betaapplocalizations = "betaAppLocalizations"
+        case builds = "builds"
+        case betalicenseagreement = "betaLicenseAgreement"
+        case betaappreviewdetail = "betaAppReviewDetail"
+        case appinfos = "appInfos"
+        case appclips = "appClips"
+        case apppricepoints = "appPricePoints"
+        case enduserlicenseagreement = "endUserLicenseAgreement"
+        case apppriceschedule = "appPriceSchedule"
+        case appavailabilityv2 = "appAvailabilityV2"
+        case inapppurchases = "inAppPurchases"
+        case subscriptiongroups = "subscriptionGroups"
+        case gamecenterenabledversions = "gameCenterEnabledVersions"
+        case perfpowermetrics = "perfPowerMetrics"
+        case appcustomproductpages = "appCustomProductPages"
+        case inapppurchasesv2 = "inAppPurchasesV2"
+        case promotedpurchases = "promotedPurchases"
+        case appevents = "appEvents"
+        case reviewsubmissions = "reviewSubmissions"
+        case subscriptiongraceperiod = "subscriptionGracePeriod"
+        case customerreviews = "customerReviews"
+        case gamecenterdetail = "gameCenterDetail"
+        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
+        case alternativedistributionkey = "alternativeDistributionKey"
+        case analyticsreportrequests = "analyticsReportRequests"
+        case marketplacesearchdetail = "marketplaceSearchDetail"
     }
 
     /**
@@ -363,70 +407,17 @@ open class UserInvitationsAPI {
     }
 
     /**
-     * enum for parameter fieldsApps
-     */
-    public enum FieldsApps_userInvitationsGetInstance: String, CaseIterable {
-        case alternativedistributionkey = "alternativeDistributionKey"
-        case analyticsreportrequests = "analyticsReportRequests"
-        case appavailability = "appAvailability"
-        case appclips = "appClips"
-        case appcustomproductpages = "appCustomProductPages"
-        case appencryptiondeclarations = "appEncryptionDeclarations"
-        case appevents = "appEvents"
-        case appinfos = "appInfos"
-        case apppricepoints = "appPricePoints"
-        case apppriceschedule = "appPriceSchedule"
-        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
-        case appstoreversions = "appStoreVersions"
-        case availableinnewterritories = "availableInNewTerritories"
-        case availableterritories = "availableTerritories"
-        case betaapplocalizations = "betaAppLocalizations"
-        case betaappreviewdetail = "betaAppReviewDetail"
-        case betagroups = "betaGroups"
-        case betalicenseagreement = "betaLicenseAgreement"
-        case betatesters = "betaTesters"
-        case builds = "builds"
-        case bundleid = "bundleId"
-        case ciproduct = "ciProduct"
-        case contentrightsdeclaration = "contentRightsDeclaration"
-        case customerreviews = "customerReviews"
-        case enduserlicenseagreement = "endUserLicenseAgreement"
-        case gamecenterdetail = "gameCenterDetail"
-        case gamecenterenabledversions = "gameCenterEnabledVersions"
-        case inapppurchases = "inAppPurchases"
-        case inapppurchasesv2 = "inAppPurchasesV2"
-        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
-        case marketplacesearchdetail = "marketplaceSearchDetail"
-        case name = "name"
-        case perfpowermetrics = "perfPowerMetrics"
-        case preorder = "preOrder"
-        case prereleaseversions = "preReleaseVersions"
-        case pricepoints = "pricePoints"
-        case prices = "prices"
-        case primarylocale = "primaryLocale"
-        case promotedpurchases = "promotedPurchases"
-        case reviewsubmissions = "reviewSubmissions"
-        case sku = "sku"
-        case subscriptiongraceperiod = "subscriptionGracePeriod"
-        case subscriptiongroups = "subscriptionGroups"
-        case subscriptionstatusurl = "subscriptionStatusUrl"
-        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
-        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
-        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
-    }
-
-    /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsUserInvitations: (query) the fields to include for returned resources of type userInvitations (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitVisibleApps: (query) maximum number of related visibleApps returned (when they are included) (optional)
      - returns: UserInvitationResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func userInvitationsGetInstance(id: String, fieldsUserInvitations: [FieldsUserInvitations_userInvitationsGetInstance]? = nil, include: [Include_userInvitationsGetInstance]? = nil, fieldsApps: [FieldsApps_userInvitationsGetInstance]? = nil, limitVisibleApps: Int? = nil) async throws -> UserInvitationResponse {
-        return try await userInvitationsGetInstanceWithRequestBuilder(id: id, fieldsUserInvitations: fieldsUserInvitations, include: include, fieldsApps: fieldsApps, limitVisibleApps: limitVisibleApps).execute().body
+    open class func userInvitationsGetInstance(id: String, fieldsUserInvitations: [FieldsUserInvitations_userInvitationsGetInstance]? = nil, fieldsApps: [FieldsApps_userInvitationsGetInstance]? = nil, include: [Include_userInvitationsGetInstance]? = nil, limitVisibleApps: Int? = nil) async throws -> UserInvitationResponse {
+        return try await userInvitationsGetInstanceWithRequestBuilder(id: id, fieldsUserInvitations: fieldsUserInvitations, fieldsApps: fieldsApps, include: include, limitVisibleApps: limitVisibleApps).execute().body
     }
 
     /**
@@ -445,12 +436,12 @@ open class UserInvitationsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsUserInvitations: (query) the fields to include for returned resources of type userInvitations (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitVisibleApps: (query) maximum number of related visibleApps returned (when they are included) (optional)
      - returns: RequestBuilder<UserInvitationResponse> 
      */
-    open class func userInvitationsGetInstanceWithRequestBuilder(id: String, fieldsUserInvitations: [FieldsUserInvitations_userInvitationsGetInstance]? = nil, include: [Include_userInvitationsGetInstance]? = nil, fieldsApps: [FieldsApps_userInvitationsGetInstance]? = nil, limitVisibleApps: Int? = nil) -> RequestBuilder<UserInvitationResponse> {
+    open class func userInvitationsGetInstanceWithRequestBuilder(id: String, fieldsUserInvitations: [FieldsUserInvitations_userInvitationsGetInstance]? = nil, fieldsApps: [FieldsApps_userInvitationsGetInstance]? = nil, include: [Include_userInvitationsGetInstance]? = nil, limitVisibleApps: Int? = nil) -> RequestBuilder<UserInvitationResponse> {
         var localVariablePath = "/v1/userInvitations/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -461,8 +452,8 @@ open class UserInvitationsAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[userInvitations]": (wrappedValue: fieldsUserInvitations?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "limit[visibleApps]": (wrappedValue: limitVisibleApps?.encodeToJSON(), isExplode: true),
         ])
 
@@ -501,53 +492,49 @@ open class UserInvitationsAPI {
      * enum for parameter fieldsApps
      */
     public enum FieldsApps_userInvitationsVisibleAppsGetToManyRelated: String, CaseIterable {
+        case name = "name"
+        case bundleid = "bundleId"
+        case sku = "sku"
+        case primarylocale = "primaryLocale"
+        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
+        case subscriptionstatusurl = "subscriptionStatusUrl"
+        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
+        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
+        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
+        case contentrightsdeclaration = "contentRightsDeclaration"
+        case streamlinedpurchasingenabled = "streamlinedPurchasingEnabled"
+        case appencryptiondeclarations = "appEncryptionDeclarations"
+        case ciproduct = "ciProduct"
+        case betatesters = "betaTesters"
+        case betagroups = "betaGroups"
+        case appstoreversions = "appStoreVersions"
+        case prereleaseversions = "preReleaseVersions"
+        case betaapplocalizations = "betaAppLocalizations"
+        case builds = "builds"
+        case betalicenseagreement = "betaLicenseAgreement"
+        case betaappreviewdetail = "betaAppReviewDetail"
+        case appinfos = "appInfos"
+        case appclips = "appClips"
+        case apppricepoints = "appPricePoints"
+        case enduserlicenseagreement = "endUserLicenseAgreement"
+        case apppriceschedule = "appPriceSchedule"
+        case appavailabilityv2 = "appAvailabilityV2"
+        case inapppurchases = "inAppPurchases"
+        case subscriptiongroups = "subscriptionGroups"
+        case gamecenterenabledversions = "gameCenterEnabledVersions"
+        case perfpowermetrics = "perfPowerMetrics"
+        case appcustomproductpages = "appCustomProductPages"
+        case inapppurchasesv2 = "inAppPurchasesV2"
+        case promotedpurchases = "promotedPurchases"
+        case appevents = "appEvents"
+        case reviewsubmissions = "reviewSubmissions"
+        case subscriptiongraceperiod = "subscriptionGracePeriod"
+        case customerreviews = "customerReviews"
+        case gamecenterdetail = "gameCenterDetail"
+        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
         case alternativedistributionkey = "alternativeDistributionKey"
         case analyticsreportrequests = "analyticsReportRequests"
-        case appavailability = "appAvailability"
-        case appclips = "appClips"
-        case appcustomproductpages = "appCustomProductPages"
-        case appencryptiondeclarations = "appEncryptionDeclarations"
-        case appevents = "appEvents"
-        case appinfos = "appInfos"
-        case apppricepoints = "appPricePoints"
-        case apppriceschedule = "appPriceSchedule"
-        case appstoreversionexperimentsv2 = "appStoreVersionExperimentsV2"
-        case appstoreversions = "appStoreVersions"
-        case availableinnewterritories = "availableInNewTerritories"
-        case availableterritories = "availableTerritories"
-        case betaapplocalizations = "betaAppLocalizations"
-        case betaappreviewdetail = "betaAppReviewDetail"
-        case betagroups = "betaGroups"
-        case betalicenseagreement = "betaLicenseAgreement"
-        case betatesters = "betaTesters"
-        case builds = "builds"
-        case bundleid = "bundleId"
-        case ciproduct = "ciProduct"
-        case contentrightsdeclaration = "contentRightsDeclaration"
-        case customerreviews = "customerReviews"
-        case enduserlicenseagreement = "endUserLicenseAgreement"
-        case gamecenterdetail = "gameCenterDetail"
-        case gamecenterenabledversions = "gameCenterEnabledVersions"
-        case inapppurchases = "inAppPurchases"
-        case inapppurchasesv2 = "inAppPurchasesV2"
-        case isoreverwasmadeforkids = "isOrEverWasMadeForKids"
         case marketplacesearchdetail = "marketplaceSearchDetail"
-        case name = "name"
-        case perfpowermetrics = "perfPowerMetrics"
-        case preorder = "preOrder"
-        case prereleaseversions = "preReleaseVersions"
-        case pricepoints = "pricePoints"
-        case prices = "prices"
-        case primarylocale = "primaryLocale"
-        case promotedpurchases = "promotedPurchases"
-        case reviewsubmissions = "reviewSubmissions"
-        case sku = "sku"
-        case subscriptiongraceperiod = "subscriptionGracePeriod"
-        case subscriptiongroups = "subscriptionGroups"
-        case subscriptionstatusurl = "subscriptionStatusUrl"
-        case subscriptionstatusurlforsandbox = "subscriptionStatusUrlForSandbox"
-        case subscriptionstatusurlversion = "subscriptionStatusUrlVersion"
-        case subscriptionstatusurlversionforsandbox = "subscriptionStatusUrlVersionForSandbox"
     }
 
     /**

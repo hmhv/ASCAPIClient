@@ -12,18 +12,15 @@ import AnyCodable
 
 public struct BuildRelationshipsBuildBundles: Codable, JSONEncodable, Hashable {
 
-    public var links: AlternativeDistributionPackageVersionRelationshipsVariantsLinks?
     public var meta: PagingInformation?
     public var data: [BetaAppClipInvocationCreateRequestDataRelationshipsBuildBundleData]?
 
-    public init(links: AlternativeDistributionPackageVersionRelationshipsVariantsLinks? = nil, meta: PagingInformation? = nil, data: [BetaAppClipInvocationCreateRequestDataRelationshipsBuildBundleData]? = nil) {
-        self.links = links
+    public init(meta: PagingInformation? = nil, data: [BetaAppClipInvocationCreateRequestDataRelationshipsBuildBundleData]? = nil) {
         self.meta = meta
         self.data = data
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
-        case links
         case meta
         case data
     }
@@ -32,7 +29,6 @@ public struct BuildRelationshipsBuildBundles: Codable, JSONEncodable, Hashable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(links, forKey: .links)
         try container.encodeIfPresent(meta, forKey: .meta)
         try container.encodeIfPresent(data, forKey: .data)
     }

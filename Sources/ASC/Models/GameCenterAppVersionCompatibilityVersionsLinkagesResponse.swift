@@ -12,11 +12,11 @@ import AnyCodable
 
 public struct GameCenterAppVersionCompatibilityVersionsLinkagesResponse: Codable, JSONEncodable, Hashable {
 
-    public var data: [GameCenterAppVersionRelationshipsCompatibilityVersionsDataInner]
+    public var data: [AppStoreVersionRelationshipsGameCenterAppVersionData]
     public var links: PagedDocumentLinks
     public var meta: PagingInformation?
 
-    public init(data: [GameCenterAppVersionRelationshipsCompatibilityVersionsDataInner], links: PagedDocumentLinks, meta: PagingInformation? = nil) {
+    public init(data: [AppStoreVersionRelationshipsGameCenterAppVersionData], links: PagedDocumentLinks, meta: PagingInformation? = nil) {
         self.data = data
         self.links = links
         self.meta = meta

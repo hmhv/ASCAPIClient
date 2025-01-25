@@ -12,11 +12,11 @@ import AnyCodable
 
 public struct AppPreviewSetCreateRequestDataRelationships: Codable, JSONEncodable, Hashable {
 
-    public var appStoreVersionLocalization: AppPreviewSetCreateRequestDataRelationshipsAppStoreVersionLocalization?
-    public var appCustomProductPageLocalization: AppPreviewSetCreateRequestDataRelationshipsAppCustomProductPageLocalization?
-    public var appStoreVersionExperimentTreatmentLocalization: AppPreviewSetCreateRequestDataRelationshipsAppStoreVersionExperimentTreatmentLocalization?
+    public var appStoreVersionLocalization: AppPreviewSetRelationshipsAppStoreVersionLocalization?
+    public var appCustomProductPageLocalization: AppPreviewSetRelationshipsAppCustomProductPageLocalization?
+    public var appStoreVersionExperimentTreatmentLocalization: AppPreviewSetRelationshipsAppStoreVersionExperimentTreatmentLocalization?
 
-    public init(appStoreVersionLocalization: AppPreviewSetCreateRequestDataRelationshipsAppStoreVersionLocalization? = nil, appCustomProductPageLocalization: AppPreviewSetCreateRequestDataRelationshipsAppCustomProductPageLocalization? = nil, appStoreVersionExperimentTreatmentLocalization: AppPreviewSetCreateRequestDataRelationshipsAppStoreVersionExperimentTreatmentLocalization? = nil) {
+    public init(appStoreVersionLocalization: AppPreviewSetRelationshipsAppStoreVersionLocalization? = nil, appCustomProductPageLocalization: AppPreviewSetRelationshipsAppCustomProductPageLocalization? = nil, appStoreVersionExperimentTreatmentLocalization: AppPreviewSetRelationshipsAppStoreVersionExperimentTreatmentLocalization? = nil) {
         self.appStoreVersionLocalization = appStoreVersionLocalization
         self.appCustomProductPageLocalization = appCustomProductPageLocalization
         self.appStoreVersionExperimentTreatmentLocalization = appStoreVersionExperimentTreatmentLocalization

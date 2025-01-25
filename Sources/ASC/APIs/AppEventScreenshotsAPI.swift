@@ -149,15 +149,14 @@ open class AppEventScreenshotsAPI {
      * enum for parameter fieldsAppEventScreenshots
      */
     public enum FieldsAppEventScreenshots_appEventScreenshotsGetInstance: String, CaseIterable {
+        case filesize = "fileSize"
+        case filename = "fileName"
+        case imageasset = "imageAsset"
+        case assettoken = "assetToken"
+        case uploadoperations = "uploadOperations"
+        case assetdeliverystate = "assetDeliveryState"
         case appeventassettype = "appEventAssetType"
         case appeventlocalization = "appEventLocalization"
-        case assetdeliverystate = "assetDeliveryState"
-        case assettoken = "assetToken"
-        case filename = "fileName"
-        case filesize = "fileSize"
-        case imageasset = "imageAsset"
-        case uploadoperations = "uploadOperations"
-        case uploaded = "uploaded"
     }
 
     /**

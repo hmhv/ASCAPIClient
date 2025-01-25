@@ -16,24 +16,26 @@ open class AppInfosAPI {
      * enum for parameter fieldsAgeRatingDeclarations
      */
     public enum FieldsAgeRatingDeclarations_appInfosAgeRatingDeclarationGetToOneRelated: String, CaseIterable {
-        case ageratingoverride = "ageRatingOverride"
         case alcoholtobaccoordruguseorreferences = "alcoholTobaccoOrDrugUseOrReferences"
         case contests = "contests"
-        case gambling = "gambling"
         case gamblingandcontests = "gamblingAndContests"
+        case gambling = "gambling"
         case gamblingsimulated = "gamblingSimulated"
-        case horrororfearthemes = "horrorOrFearThemes"
         case kidsageband = "kidsAgeBand"
-        case matureorsuggestivethemes = "matureOrSuggestiveThemes"
+        case lootbox = "lootBox"
         case medicalortreatmentinformation = "medicalOrTreatmentInformation"
         case profanityorcrudehumor = "profanityOrCrudeHumor"
-        case seventeenplus = "seventeenPlus"
         case sexualcontentgraphicandnudity = "sexualContentGraphicAndNudity"
         case sexualcontentornudity = "sexualContentOrNudity"
+        case horrororfearthemes = "horrorOrFearThemes"
+        case matureorsuggestivethemes = "matureOrSuggestiveThemes"
         case unrestrictedwebaccess = "unrestrictedWebAccess"
         case violencecartoonorfantasy = "violenceCartoonOrFantasy"
-        case violencerealistic = "violenceRealistic"
         case violencerealisticprolongedgraphicorsadistic = "violenceRealisticProlongedGraphicOrSadistic"
+        case violencerealistic = "violenceRealistic"
+        case ageratingoverride = "ageRatingOverride"
+        case koreaageratingoverride = "koreaAgeRatingOverride"
+        case seventeenplus = "seventeenPlus"
     }
 
     /**
@@ -110,37 +112,40 @@ open class AppInfosAPI {
     }
 
     /**
+     * enum for parameter fieldsAppInfoLocalizations
+     */
+    public enum FieldsAppInfoLocalizations_appInfosAppInfoLocalizationsGetToManyRelated: String, CaseIterable {
+        case locale = "locale"
+        case name = "name"
+        case subtitle = "subtitle"
+        case privacypolicyurl = "privacyPolicyUrl"
+        case privacychoicesurl = "privacyChoicesUrl"
+        case privacypolicytext = "privacyPolicyText"
+        case appinfo = "appInfo"
+    }
+
+    /**
      * enum for parameter fieldsAppInfos
      */
     public enum FieldsAppInfos_appInfosAppInfoLocalizationsGetToManyRelated: String, CaseIterable {
-        case ageratingdeclaration = "ageRatingDeclaration"
-        case app = "app"
-        case appinfolocalizations = "appInfoLocalizations"
-        case appstoreagerating = "appStoreAgeRating"
         case appstorestate = "appStoreState"
+        case state = "state"
+        case appstoreagerating = "appStoreAgeRating"
+        case australiaagerating = "australiaAgeRating"
         case brazilagerating = "brazilAgeRating"
         case brazilageratingv2 = "brazilAgeRatingV2"
+        case franceagerating = "franceAgeRating"
+        case koreaagerating = "koreaAgeRating"
         case kidsageband = "kidsAgeBand"
+        case app = "app"
+        case ageratingdeclaration = "ageRatingDeclaration"
+        case appinfolocalizations = "appInfoLocalizations"
         case primarycategory = "primaryCategory"
         case primarysubcategoryone = "primarySubcategoryOne"
         case primarysubcategorytwo = "primarySubcategoryTwo"
         case secondarycategory = "secondaryCategory"
         case secondarysubcategoryone = "secondarySubcategoryOne"
         case secondarysubcategorytwo = "secondarySubcategoryTwo"
-        case state = "state"
-    }
-
-    /**
-     * enum for parameter fieldsAppInfoLocalizations
-     */
-    public enum FieldsAppInfoLocalizations_appInfosAppInfoLocalizationsGetToManyRelated: String, CaseIterable {
-        case appinfo = "appInfo"
-        case locale = "locale"
-        case name = "name"
-        case privacychoicesurl = "privacyChoicesUrl"
-        case privacypolicytext = "privacyPolicyText"
-        case privacypolicyurl = "privacyPolicyUrl"
-        case subtitle = "subtitle"
     }
 
     /**
@@ -154,15 +159,15 @@ open class AppInfosAPI {
 
      - parameter id: (path) the id of the requested resource 
      - parameter filterLocale: (query) filter by attribute &#39;locale&#39; (optional)
-     - parameter fieldsAppInfos: (query) the fields to include for returned resources of type appInfos (optional)
      - parameter fieldsAppInfoLocalizations: (query) the fields to include for returned resources of type appInfoLocalizations (optional)
+     - parameter fieldsAppInfos: (query) the fields to include for returned resources of type appInfos (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: AppInfoLocalizationsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appInfosAppInfoLocalizationsGetToManyRelated(id: String, filterLocale: [String]? = nil, fieldsAppInfos: [FieldsAppInfos_appInfosAppInfoLocalizationsGetToManyRelated]? = nil, fieldsAppInfoLocalizations: [FieldsAppInfoLocalizations_appInfosAppInfoLocalizationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appInfosAppInfoLocalizationsGetToManyRelated]? = nil) async throws -> AppInfoLocalizationsResponse {
-        return try await appInfosAppInfoLocalizationsGetToManyRelatedWithRequestBuilder(id: id, filterLocale: filterLocale, fieldsAppInfos: fieldsAppInfos, fieldsAppInfoLocalizations: fieldsAppInfoLocalizations, limit: limit, include: include).execute().body
+    open class func appInfosAppInfoLocalizationsGetToManyRelated(id: String, filterLocale: [String]? = nil, fieldsAppInfoLocalizations: [FieldsAppInfoLocalizations_appInfosAppInfoLocalizationsGetToManyRelated]? = nil, fieldsAppInfos: [FieldsAppInfos_appInfosAppInfoLocalizationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appInfosAppInfoLocalizationsGetToManyRelated]? = nil) async throws -> AppInfoLocalizationsResponse {
+        return try await appInfosAppInfoLocalizationsGetToManyRelatedWithRequestBuilder(id: id, filterLocale: filterLocale, fieldsAppInfoLocalizations: fieldsAppInfoLocalizations, fieldsAppInfos: fieldsAppInfos, limit: limit, include: include).execute().body
     }
 
     /**
@@ -181,13 +186,13 @@ open class AppInfosAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter filterLocale: (query) filter by attribute &#39;locale&#39; (optional)
-     - parameter fieldsAppInfos: (query) the fields to include for returned resources of type appInfos (optional)
      - parameter fieldsAppInfoLocalizations: (query) the fields to include for returned resources of type appInfoLocalizations (optional)
+     - parameter fieldsAppInfos: (query) the fields to include for returned resources of type appInfos (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - returns: RequestBuilder<AppInfoLocalizationsResponse> 
      */
-    open class func appInfosAppInfoLocalizationsGetToManyRelatedWithRequestBuilder(id: String, filterLocale: [String]? = nil, fieldsAppInfos: [FieldsAppInfos_appInfosAppInfoLocalizationsGetToManyRelated]? = nil, fieldsAppInfoLocalizations: [FieldsAppInfoLocalizations_appInfosAppInfoLocalizationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appInfosAppInfoLocalizationsGetToManyRelated]? = nil) -> RequestBuilder<AppInfoLocalizationsResponse> {
+    open class func appInfosAppInfoLocalizationsGetToManyRelatedWithRequestBuilder(id: String, filterLocale: [String]? = nil, fieldsAppInfoLocalizations: [FieldsAppInfoLocalizations_appInfosAppInfoLocalizationsGetToManyRelated]? = nil, fieldsAppInfos: [FieldsAppInfos_appInfosAppInfoLocalizationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appInfosAppInfoLocalizationsGetToManyRelated]? = nil) -> RequestBuilder<AppInfoLocalizationsResponse> {
         var localVariablePath = "/v1/appInfos/{id}/appInfoLocalizations"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -198,8 +203,8 @@ open class AppInfosAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "filter[locale]": (wrappedValue: filterLocale?.encodeToJSON(), isExplode: false),
-            "fields[appInfos]": (wrappedValue: fieldsAppInfos?.encodeToJSON(), isExplode: false),
             "fields[appInfoLocalizations]": (wrappedValue: fieldsAppInfoLocalizations?.encodeToJSON(), isExplode: false),
+            "fields[appInfos]": (wrappedValue: fieldsAppInfos?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
         ])
@@ -239,29 +244,17 @@ open class AppInfosAPI {
      * enum for parameter fieldsAppInfos
      */
     public enum FieldsAppInfos_appInfosGetInstance: String, CaseIterable {
-        case ageratingdeclaration = "ageRatingDeclaration"
-        case app = "app"
-        case appinfolocalizations = "appInfoLocalizations"
-        case appstoreagerating = "appStoreAgeRating"
         case appstorestate = "appStoreState"
+        case state = "state"
+        case appstoreagerating = "appStoreAgeRating"
+        case australiaagerating = "australiaAgeRating"
         case brazilagerating = "brazilAgeRating"
         case brazilageratingv2 = "brazilAgeRatingV2"
+        case franceagerating = "franceAgeRating"
+        case koreaagerating = "koreaAgeRating"
         case kidsageband = "kidsAgeBand"
-        case primarycategory = "primaryCategory"
-        case primarysubcategoryone = "primarySubcategoryOne"
-        case primarysubcategorytwo = "primarySubcategoryTwo"
-        case secondarycategory = "secondaryCategory"
-        case secondarysubcategoryone = "secondarySubcategoryOne"
-        case secondarysubcategorytwo = "secondarySubcategoryTwo"
-        case state = "state"
-    }
-
-    /**
-     * enum for parameter include
-     */
-    public enum Include_appInfosGetInstance: String, CaseIterable {
-        case ageratingdeclaration = "ageRatingDeclaration"
         case app = "app"
+        case ageratingdeclaration = "ageRatingDeclaration"
         case appinfolocalizations = "appInfoLocalizations"
         case primarycategory = "primaryCategory"
         case primarysubcategoryone = "primarySubcategoryOne"
@@ -275,62 +268,79 @@ open class AppInfosAPI {
      * enum for parameter fieldsAgeRatingDeclarations
      */
     public enum FieldsAgeRatingDeclarations_appInfosGetInstance: String, CaseIterable {
-        case ageratingoverride = "ageRatingOverride"
         case alcoholtobaccoordruguseorreferences = "alcoholTobaccoOrDrugUseOrReferences"
         case contests = "contests"
-        case gambling = "gambling"
         case gamblingandcontests = "gamblingAndContests"
+        case gambling = "gambling"
         case gamblingsimulated = "gamblingSimulated"
-        case horrororfearthemes = "horrorOrFearThemes"
         case kidsageband = "kidsAgeBand"
-        case matureorsuggestivethemes = "matureOrSuggestiveThemes"
+        case lootbox = "lootBox"
         case medicalortreatmentinformation = "medicalOrTreatmentInformation"
         case profanityorcrudehumor = "profanityOrCrudeHumor"
-        case seventeenplus = "seventeenPlus"
         case sexualcontentgraphicandnudity = "sexualContentGraphicAndNudity"
         case sexualcontentornudity = "sexualContentOrNudity"
+        case horrororfearthemes = "horrorOrFearThemes"
+        case matureorsuggestivethemes = "matureOrSuggestiveThemes"
         case unrestrictedwebaccess = "unrestrictedWebAccess"
         case violencecartoonorfantasy = "violenceCartoonOrFantasy"
-        case violencerealistic = "violenceRealistic"
         case violencerealisticprolongedgraphicorsadistic = "violenceRealisticProlongedGraphicOrSadistic"
+        case violencerealistic = "violenceRealistic"
+        case ageratingoverride = "ageRatingOverride"
+        case koreaageratingoverride = "koreaAgeRatingOverride"
+        case seventeenplus = "seventeenPlus"
     }
 
     /**
      * enum for parameter fieldsAppInfoLocalizations
      */
     public enum FieldsAppInfoLocalizations_appInfosGetInstance: String, CaseIterable {
-        case appinfo = "appInfo"
         case locale = "locale"
         case name = "name"
+        case subtitle = "subtitle"
+        case privacypolicyurl = "privacyPolicyUrl"
         case privacychoicesurl = "privacyChoicesUrl"
         case privacypolicytext = "privacyPolicyText"
-        case privacypolicyurl = "privacyPolicyUrl"
-        case subtitle = "subtitle"
+        case appinfo = "appInfo"
     }
 
     /**
      * enum for parameter fieldsAppCategories
      */
     public enum FieldsAppCategories_appInfosGetInstance: String, CaseIterable {
-        case parent = "parent"
         case platforms = "platforms"
         case subcategories = "subcategories"
+        case parent = "parent"
+    }
+
+    /**
+     * enum for parameter include
+     */
+    public enum Include_appInfosGetInstance: String, CaseIterable {
+        case app = "app"
+        case ageratingdeclaration = "ageRatingDeclaration"
+        case appinfolocalizations = "appInfoLocalizations"
+        case primarycategory = "primaryCategory"
+        case primarysubcategoryone = "primarySubcategoryOne"
+        case primarysubcategorytwo = "primarySubcategoryTwo"
+        case secondarycategory = "secondaryCategory"
+        case secondarysubcategoryone = "secondarySubcategoryOne"
+        case secondarysubcategorytwo = "secondarySubcategoryTwo"
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAppInfos: (query) the fields to include for returned resources of type appInfos (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter fieldsAgeRatingDeclarations: (query) the fields to include for returned resources of type ageRatingDeclarations (optional)
      - parameter fieldsAppInfoLocalizations: (query) the fields to include for returned resources of type appInfoLocalizations (optional)
      - parameter fieldsAppCategories: (query) the fields to include for returned resources of type appCategories (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAppInfoLocalizations: (query) maximum number of related appInfoLocalizations returned (when they are included) (optional)
      - returns: AppInfoResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appInfosGetInstance(id: String, fieldsAppInfos: [FieldsAppInfos_appInfosGetInstance]? = nil, include: [Include_appInfosGetInstance]? = nil, fieldsAgeRatingDeclarations: [FieldsAgeRatingDeclarations_appInfosGetInstance]? = nil, fieldsAppInfoLocalizations: [FieldsAppInfoLocalizations_appInfosGetInstance]? = nil, fieldsAppCategories: [FieldsAppCategories_appInfosGetInstance]? = nil, limitAppInfoLocalizations: Int? = nil) async throws -> AppInfoResponse {
-        return try await appInfosGetInstanceWithRequestBuilder(id: id, fieldsAppInfos: fieldsAppInfos, include: include, fieldsAgeRatingDeclarations: fieldsAgeRatingDeclarations, fieldsAppInfoLocalizations: fieldsAppInfoLocalizations, fieldsAppCategories: fieldsAppCategories, limitAppInfoLocalizations: limitAppInfoLocalizations).execute().body
+    open class func appInfosGetInstance(id: String, fieldsAppInfos: [FieldsAppInfos_appInfosGetInstance]? = nil, fieldsAgeRatingDeclarations: [FieldsAgeRatingDeclarations_appInfosGetInstance]? = nil, fieldsAppInfoLocalizations: [FieldsAppInfoLocalizations_appInfosGetInstance]? = nil, fieldsAppCategories: [FieldsAppCategories_appInfosGetInstance]? = nil, include: [Include_appInfosGetInstance]? = nil, limitAppInfoLocalizations: Int? = nil) async throws -> AppInfoResponse {
+        return try await appInfosGetInstanceWithRequestBuilder(id: id, fieldsAppInfos: fieldsAppInfos, fieldsAgeRatingDeclarations: fieldsAgeRatingDeclarations, fieldsAppInfoLocalizations: fieldsAppInfoLocalizations, fieldsAppCategories: fieldsAppCategories, include: include, limitAppInfoLocalizations: limitAppInfoLocalizations).execute().body
     }
 
     /**
@@ -349,14 +359,14 @@ open class AppInfosAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAppInfos: (query) the fields to include for returned resources of type appInfos (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter fieldsAgeRatingDeclarations: (query) the fields to include for returned resources of type ageRatingDeclarations (optional)
      - parameter fieldsAppInfoLocalizations: (query) the fields to include for returned resources of type appInfoLocalizations (optional)
      - parameter fieldsAppCategories: (query) the fields to include for returned resources of type appCategories (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAppInfoLocalizations: (query) maximum number of related appInfoLocalizations returned (when they are included) (optional)
      - returns: RequestBuilder<AppInfoResponse> 
      */
-    open class func appInfosGetInstanceWithRequestBuilder(id: String, fieldsAppInfos: [FieldsAppInfos_appInfosGetInstance]? = nil, include: [Include_appInfosGetInstance]? = nil, fieldsAgeRatingDeclarations: [FieldsAgeRatingDeclarations_appInfosGetInstance]? = nil, fieldsAppInfoLocalizations: [FieldsAppInfoLocalizations_appInfosGetInstance]? = nil, fieldsAppCategories: [FieldsAppCategories_appInfosGetInstance]? = nil, limitAppInfoLocalizations: Int? = nil) -> RequestBuilder<AppInfoResponse> {
+    open class func appInfosGetInstanceWithRequestBuilder(id: String, fieldsAppInfos: [FieldsAppInfos_appInfosGetInstance]? = nil, fieldsAgeRatingDeclarations: [FieldsAgeRatingDeclarations_appInfosGetInstance]? = nil, fieldsAppInfoLocalizations: [FieldsAppInfoLocalizations_appInfosGetInstance]? = nil, fieldsAppCategories: [FieldsAppCategories_appInfosGetInstance]? = nil, include: [Include_appInfosGetInstance]? = nil, limitAppInfoLocalizations: Int? = nil) -> RequestBuilder<AppInfoResponse> {
         var localVariablePath = "/v1/appInfos/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -367,10 +377,10 @@ open class AppInfosAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[appInfos]": (wrappedValue: fieldsAppInfos?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "fields[ageRatingDeclarations]": (wrappedValue: fieldsAgeRatingDeclarations?.encodeToJSON(), isExplode: false),
             "fields[appInfoLocalizations]": (wrappedValue: fieldsAppInfoLocalizations?.encodeToJSON(), isExplode: false),
             "fields[appCategories]": (wrappedValue: fieldsAppCategories?.encodeToJSON(), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "limit[appInfoLocalizations]": (wrappedValue: limitAppInfoLocalizations?.encodeToJSON(), isExplode: true),
         ])
 
@@ -409,30 +419,30 @@ open class AppInfosAPI {
      * enum for parameter fieldsAppCategories
      */
     public enum FieldsAppCategories_appInfosPrimaryCategoryGetToOneRelated: String, CaseIterable {
-        case parent = "parent"
         case platforms = "platforms"
         case subcategories = "subcategories"
+        case parent = "parent"
     }
 
     /**
      * enum for parameter include
      */
     public enum Include_appInfosPrimaryCategoryGetToOneRelated: String, CaseIterable {
-        case parent = "parent"
         case subcategories = "subcategories"
+        case parent = "parent"
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAppCategories: (query) the fields to include for returned resources of type appCategories (optional)
-     - parameter limitSubcategories: (query) maximum number of related subcategories returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitSubcategories: (query) maximum number of related subcategories returned (when they are included) (optional)
      - returns: AppCategoryResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appInfosPrimaryCategoryGetToOneRelated(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosPrimaryCategoryGetToOneRelated]? = nil, limitSubcategories: Int? = nil, include: [Include_appInfosPrimaryCategoryGetToOneRelated]? = nil) async throws -> AppCategoryResponse {
-        return try await appInfosPrimaryCategoryGetToOneRelatedWithRequestBuilder(id: id, fieldsAppCategories: fieldsAppCategories, limitSubcategories: limitSubcategories, include: include).execute().body
+    open class func appInfosPrimaryCategoryGetToOneRelated(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosPrimaryCategoryGetToOneRelated]? = nil, include: [Include_appInfosPrimaryCategoryGetToOneRelated]? = nil, limitSubcategories: Int? = nil) async throws -> AppCategoryResponse {
+        return try await appInfosPrimaryCategoryGetToOneRelatedWithRequestBuilder(id: id, fieldsAppCategories: fieldsAppCategories, include: include, limitSubcategories: limitSubcategories).execute().body
     }
 
     /**
@@ -451,11 +461,11 @@ open class AppInfosAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAppCategories: (query) the fields to include for returned resources of type appCategories (optional)
-     - parameter limitSubcategories: (query) maximum number of related subcategories returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitSubcategories: (query) maximum number of related subcategories returned (when they are included) (optional)
      - returns: RequestBuilder<AppCategoryResponse> 
      */
-    open class func appInfosPrimaryCategoryGetToOneRelatedWithRequestBuilder(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosPrimaryCategoryGetToOneRelated]? = nil, limitSubcategories: Int? = nil, include: [Include_appInfosPrimaryCategoryGetToOneRelated]? = nil) -> RequestBuilder<AppCategoryResponse> {
+    open class func appInfosPrimaryCategoryGetToOneRelatedWithRequestBuilder(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosPrimaryCategoryGetToOneRelated]? = nil, include: [Include_appInfosPrimaryCategoryGetToOneRelated]? = nil, limitSubcategories: Int? = nil) -> RequestBuilder<AppCategoryResponse> {
         var localVariablePath = "/v1/appInfos/{id}/primaryCategory"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -466,8 +476,8 @@ open class AppInfosAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[appCategories]": (wrappedValue: fieldsAppCategories?.encodeToJSON(), isExplode: false),
-            "limit[subcategories]": (wrappedValue: limitSubcategories?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "limit[subcategories]": (wrappedValue: limitSubcategories?.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -505,30 +515,30 @@ open class AppInfosAPI {
      * enum for parameter fieldsAppCategories
      */
     public enum FieldsAppCategories_appInfosPrimarySubcategoryOneGetToOneRelated: String, CaseIterable {
-        case parent = "parent"
         case platforms = "platforms"
         case subcategories = "subcategories"
+        case parent = "parent"
     }
 
     /**
      * enum for parameter include
      */
     public enum Include_appInfosPrimarySubcategoryOneGetToOneRelated: String, CaseIterable {
-        case parent = "parent"
         case subcategories = "subcategories"
+        case parent = "parent"
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAppCategories: (query) the fields to include for returned resources of type appCategories (optional)
-     - parameter limitSubcategories: (query) maximum number of related subcategories returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitSubcategories: (query) maximum number of related subcategories returned (when they are included) (optional)
      - returns: AppCategoryResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appInfosPrimarySubcategoryOneGetToOneRelated(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosPrimarySubcategoryOneGetToOneRelated]? = nil, limitSubcategories: Int? = nil, include: [Include_appInfosPrimarySubcategoryOneGetToOneRelated]? = nil) async throws -> AppCategoryResponse {
-        return try await appInfosPrimarySubcategoryOneGetToOneRelatedWithRequestBuilder(id: id, fieldsAppCategories: fieldsAppCategories, limitSubcategories: limitSubcategories, include: include).execute().body
+    open class func appInfosPrimarySubcategoryOneGetToOneRelated(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosPrimarySubcategoryOneGetToOneRelated]? = nil, include: [Include_appInfosPrimarySubcategoryOneGetToOneRelated]? = nil, limitSubcategories: Int? = nil) async throws -> AppCategoryResponse {
+        return try await appInfosPrimarySubcategoryOneGetToOneRelatedWithRequestBuilder(id: id, fieldsAppCategories: fieldsAppCategories, include: include, limitSubcategories: limitSubcategories).execute().body
     }
 
     /**
@@ -547,11 +557,11 @@ open class AppInfosAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAppCategories: (query) the fields to include for returned resources of type appCategories (optional)
-     - parameter limitSubcategories: (query) maximum number of related subcategories returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitSubcategories: (query) maximum number of related subcategories returned (when they are included) (optional)
      - returns: RequestBuilder<AppCategoryResponse> 
      */
-    open class func appInfosPrimarySubcategoryOneGetToOneRelatedWithRequestBuilder(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosPrimarySubcategoryOneGetToOneRelated]? = nil, limitSubcategories: Int? = nil, include: [Include_appInfosPrimarySubcategoryOneGetToOneRelated]? = nil) -> RequestBuilder<AppCategoryResponse> {
+    open class func appInfosPrimarySubcategoryOneGetToOneRelatedWithRequestBuilder(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosPrimarySubcategoryOneGetToOneRelated]? = nil, include: [Include_appInfosPrimarySubcategoryOneGetToOneRelated]? = nil, limitSubcategories: Int? = nil) -> RequestBuilder<AppCategoryResponse> {
         var localVariablePath = "/v1/appInfos/{id}/primarySubcategoryOne"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -562,8 +572,8 @@ open class AppInfosAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[appCategories]": (wrappedValue: fieldsAppCategories?.encodeToJSON(), isExplode: false),
-            "limit[subcategories]": (wrappedValue: limitSubcategories?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "limit[subcategories]": (wrappedValue: limitSubcategories?.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -601,30 +611,30 @@ open class AppInfosAPI {
      * enum for parameter fieldsAppCategories
      */
     public enum FieldsAppCategories_appInfosPrimarySubcategoryTwoGetToOneRelated: String, CaseIterable {
-        case parent = "parent"
         case platforms = "platforms"
         case subcategories = "subcategories"
+        case parent = "parent"
     }
 
     /**
      * enum for parameter include
      */
     public enum Include_appInfosPrimarySubcategoryTwoGetToOneRelated: String, CaseIterable {
-        case parent = "parent"
         case subcategories = "subcategories"
+        case parent = "parent"
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAppCategories: (query) the fields to include for returned resources of type appCategories (optional)
-     - parameter limitSubcategories: (query) maximum number of related subcategories returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitSubcategories: (query) maximum number of related subcategories returned (when they are included) (optional)
      - returns: AppCategoryResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appInfosPrimarySubcategoryTwoGetToOneRelated(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosPrimarySubcategoryTwoGetToOneRelated]? = nil, limitSubcategories: Int? = nil, include: [Include_appInfosPrimarySubcategoryTwoGetToOneRelated]? = nil) async throws -> AppCategoryResponse {
-        return try await appInfosPrimarySubcategoryTwoGetToOneRelatedWithRequestBuilder(id: id, fieldsAppCategories: fieldsAppCategories, limitSubcategories: limitSubcategories, include: include).execute().body
+    open class func appInfosPrimarySubcategoryTwoGetToOneRelated(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosPrimarySubcategoryTwoGetToOneRelated]? = nil, include: [Include_appInfosPrimarySubcategoryTwoGetToOneRelated]? = nil, limitSubcategories: Int? = nil) async throws -> AppCategoryResponse {
+        return try await appInfosPrimarySubcategoryTwoGetToOneRelatedWithRequestBuilder(id: id, fieldsAppCategories: fieldsAppCategories, include: include, limitSubcategories: limitSubcategories).execute().body
     }
 
     /**
@@ -643,11 +653,11 @@ open class AppInfosAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAppCategories: (query) the fields to include for returned resources of type appCategories (optional)
-     - parameter limitSubcategories: (query) maximum number of related subcategories returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitSubcategories: (query) maximum number of related subcategories returned (when they are included) (optional)
      - returns: RequestBuilder<AppCategoryResponse> 
      */
-    open class func appInfosPrimarySubcategoryTwoGetToOneRelatedWithRequestBuilder(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosPrimarySubcategoryTwoGetToOneRelated]? = nil, limitSubcategories: Int? = nil, include: [Include_appInfosPrimarySubcategoryTwoGetToOneRelated]? = nil) -> RequestBuilder<AppCategoryResponse> {
+    open class func appInfosPrimarySubcategoryTwoGetToOneRelatedWithRequestBuilder(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosPrimarySubcategoryTwoGetToOneRelated]? = nil, include: [Include_appInfosPrimarySubcategoryTwoGetToOneRelated]? = nil, limitSubcategories: Int? = nil) -> RequestBuilder<AppCategoryResponse> {
         var localVariablePath = "/v1/appInfos/{id}/primarySubcategoryTwo"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -658,8 +668,8 @@ open class AppInfosAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[appCategories]": (wrappedValue: fieldsAppCategories?.encodeToJSON(), isExplode: false),
-            "limit[subcategories]": (wrappedValue: limitSubcategories?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "limit[subcategories]": (wrappedValue: limitSubcategories?.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -697,30 +707,30 @@ open class AppInfosAPI {
      * enum for parameter fieldsAppCategories
      */
     public enum FieldsAppCategories_appInfosSecondaryCategoryGetToOneRelated: String, CaseIterable {
-        case parent = "parent"
         case platforms = "platforms"
         case subcategories = "subcategories"
+        case parent = "parent"
     }
 
     /**
      * enum for parameter include
      */
     public enum Include_appInfosSecondaryCategoryGetToOneRelated: String, CaseIterable {
-        case parent = "parent"
         case subcategories = "subcategories"
+        case parent = "parent"
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAppCategories: (query) the fields to include for returned resources of type appCategories (optional)
-     - parameter limitSubcategories: (query) maximum number of related subcategories returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitSubcategories: (query) maximum number of related subcategories returned (when they are included) (optional)
      - returns: AppCategoryResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appInfosSecondaryCategoryGetToOneRelated(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosSecondaryCategoryGetToOneRelated]? = nil, limitSubcategories: Int? = nil, include: [Include_appInfosSecondaryCategoryGetToOneRelated]? = nil) async throws -> AppCategoryResponse {
-        return try await appInfosSecondaryCategoryGetToOneRelatedWithRequestBuilder(id: id, fieldsAppCategories: fieldsAppCategories, limitSubcategories: limitSubcategories, include: include).execute().body
+    open class func appInfosSecondaryCategoryGetToOneRelated(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosSecondaryCategoryGetToOneRelated]? = nil, include: [Include_appInfosSecondaryCategoryGetToOneRelated]? = nil, limitSubcategories: Int? = nil) async throws -> AppCategoryResponse {
+        return try await appInfosSecondaryCategoryGetToOneRelatedWithRequestBuilder(id: id, fieldsAppCategories: fieldsAppCategories, include: include, limitSubcategories: limitSubcategories).execute().body
     }
 
     /**
@@ -739,11 +749,11 @@ open class AppInfosAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAppCategories: (query) the fields to include for returned resources of type appCategories (optional)
-     - parameter limitSubcategories: (query) maximum number of related subcategories returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitSubcategories: (query) maximum number of related subcategories returned (when they are included) (optional)
      - returns: RequestBuilder<AppCategoryResponse> 
      */
-    open class func appInfosSecondaryCategoryGetToOneRelatedWithRequestBuilder(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosSecondaryCategoryGetToOneRelated]? = nil, limitSubcategories: Int? = nil, include: [Include_appInfosSecondaryCategoryGetToOneRelated]? = nil) -> RequestBuilder<AppCategoryResponse> {
+    open class func appInfosSecondaryCategoryGetToOneRelatedWithRequestBuilder(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosSecondaryCategoryGetToOneRelated]? = nil, include: [Include_appInfosSecondaryCategoryGetToOneRelated]? = nil, limitSubcategories: Int? = nil) -> RequestBuilder<AppCategoryResponse> {
         var localVariablePath = "/v1/appInfos/{id}/secondaryCategory"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -754,8 +764,8 @@ open class AppInfosAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[appCategories]": (wrappedValue: fieldsAppCategories?.encodeToJSON(), isExplode: false),
-            "limit[subcategories]": (wrappedValue: limitSubcategories?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "limit[subcategories]": (wrappedValue: limitSubcategories?.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -793,30 +803,30 @@ open class AppInfosAPI {
      * enum for parameter fieldsAppCategories
      */
     public enum FieldsAppCategories_appInfosSecondarySubcategoryOneGetToOneRelated: String, CaseIterable {
-        case parent = "parent"
         case platforms = "platforms"
         case subcategories = "subcategories"
+        case parent = "parent"
     }
 
     /**
      * enum for parameter include
      */
     public enum Include_appInfosSecondarySubcategoryOneGetToOneRelated: String, CaseIterable {
-        case parent = "parent"
         case subcategories = "subcategories"
+        case parent = "parent"
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAppCategories: (query) the fields to include for returned resources of type appCategories (optional)
-     - parameter limitSubcategories: (query) maximum number of related subcategories returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitSubcategories: (query) maximum number of related subcategories returned (when they are included) (optional)
      - returns: AppCategoryResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appInfosSecondarySubcategoryOneGetToOneRelated(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosSecondarySubcategoryOneGetToOneRelated]? = nil, limitSubcategories: Int? = nil, include: [Include_appInfosSecondarySubcategoryOneGetToOneRelated]? = nil) async throws -> AppCategoryResponse {
-        return try await appInfosSecondarySubcategoryOneGetToOneRelatedWithRequestBuilder(id: id, fieldsAppCategories: fieldsAppCategories, limitSubcategories: limitSubcategories, include: include).execute().body
+    open class func appInfosSecondarySubcategoryOneGetToOneRelated(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosSecondarySubcategoryOneGetToOneRelated]? = nil, include: [Include_appInfosSecondarySubcategoryOneGetToOneRelated]? = nil, limitSubcategories: Int? = nil) async throws -> AppCategoryResponse {
+        return try await appInfosSecondarySubcategoryOneGetToOneRelatedWithRequestBuilder(id: id, fieldsAppCategories: fieldsAppCategories, include: include, limitSubcategories: limitSubcategories).execute().body
     }
 
     /**
@@ -835,11 +845,11 @@ open class AppInfosAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAppCategories: (query) the fields to include for returned resources of type appCategories (optional)
-     - parameter limitSubcategories: (query) maximum number of related subcategories returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitSubcategories: (query) maximum number of related subcategories returned (when they are included) (optional)
      - returns: RequestBuilder<AppCategoryResponse> 
      */
-    open class func appInfosSecondarySubcategoryOneGetToOneRelatedWithRequestBuilder(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosSecondarySubcategoryOneGetToOneRelated]? = nil, limitSubcategories: Int? = nil, include: [Include_appInfosSecondarySubcategoryOneGetToOneRelated]? = nil) -> RequestBuilder<AppCategoryResponse> {
+    open class func appInfosSecondarySubcategoryOneGetToOneRelatedWithRequestBuilder(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosSecondarySubcategoryOneGetToOneRelated]? = nil, include: [Include_appInfosSecondarySubcategoryOneGetToOneRelated]? = nil, limitSubcategories: Int? = nil) -> RequestBuilder<AppCategoryResponse> {
         var localVariablePath = "/v1/appInfos/{id}/secondarySubcategoryOne"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -850,8 +860,8 @@ open class AppInfosAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[appCategories]": (wrappedValue: fieldsAppCategories?.encodeToJSON(), isExplode: false),
-            "limit[subcategories]": (wrappedValue: limitSubcategories?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "limit[subcategories]": (wrappedValue: limitSubcategories?.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -889,30 +899,30 @@ open class AppInfosAPI {
      * enum for parameter fieldsAppCategories
      */
     public enum FieldsAppCategories_appInfosSecondarySubcategoryTwoGetToOneRelated: String, CaseIterable {
-        case parent = "parent"
         case platforms = "platforms"
         case subcategories = "subcategories"
+        case parent = "parent"
     }
 
     /**
      * enum for parameter include
      */
     public enum Include_appInfosSecondarySubcategoryTwoGetToOneRelated: String, CaseIterable {
-        case parent = "parent"
         case subcategories = "subcategories"
+        case parent = "parent"
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAppCategories: (query) the fields to include for returned resources of type appCategories (optional)
-     - parameter limitSubcategories: (query) maximum number of related subcategories returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitSubcategories: (query) maximum number of related subcategories returned (when they are included) (optional)
      - returns: AppCategoryResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appInfosSecondarySubcategoryTwoGetToOneRelated(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosSecondarySubcategoryTwoGetToOneRelated]? = nil, limitSubcategories: Int? = nil, include: [Include_appInfosSecondarySubcategoryTwoGetToOneRelated]? = nil) async throws -> AppCategoryResponse {
-        return try await appInfosSecondarySubcategoryTwoGetToOneRelatedWithRequestBuilder(id: id, fieldsAppCategories: fieldsAppCategories, limitSubcategories: limitSubcategories, include: include).execute().body
+    open class func appInfosSecondarySubcategoryTwoGetToOneRelated(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosSecondarySubcategoryTwoGetToOneRelated]? = nil, include: [Include_appInfosSecondarySubcategoryTwoGetToOneRelated]? = nil, limitSubcategories: Int? = nil) async throws -> AppCategoryResponse {
+        return try await appInfosSecondarySubcategoryTwoGetToOneRelatedWithRequestBuilder(id: id, fieldsAppCategories: fieldsAppCategories, include: include, limitSubcategories: limitSubcategories).execute().body
     }
 
     /**
@@ -931,11 +941,11 @@ open class AppInfosAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAppCategories: (query) the fields to include for returned resources of type appCategories (optional)
-     - parameter limitSubcategories: (query) maximum number of related subcategories returned (when they are included) (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter limitSubcategories: (query) maximum number of related subcategories returned (when they are included) (optional)
      - returns: RequestBuilder<AppCategoryResponse> 
      */
-    open class func appInfosSecondarySubcategoryTwoGetToOneRelatedWithRequestBuilder(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosSecondarySubcategoryTwoGetToOneRelated]? = nil, limitSubcategories: Int? = nil, include: [Include_appInfosSecondarySubcategoryTwoGetToOneRelated]? = nil) -> RequestBuilder<AppCategoryResponse> {
+    open class func appInfosSecondarySubcategoryTwoGetToOneRelatedWithRequestBuilder(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosSecondarySubcategoryTwoGetToOneRelated]? = nil, include: [Include_appInfosSecondarySubcategoryTwoGetToOneRelated]? = nil, limitSubcategories: Int? = nil) -> RequestBuilder<AppCategoryResponse> {
         var localVariablePath = "/v1/appInfos/{id}/secondarySubcategoryTwo"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -946,8 +956,8 @@ open class AppInfosAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[appCategories]": (wrappedValue: fieldsAppCategories?.encodeToJSON(), isExplode: false),
-            "limit[subcategories]": (wrappedValue: limitSubcategories?.encodeToJSON(), isExplode: true),
             "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "limit[subcategories]": (wrappedValue: limitSubcategories?.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [

@@ -16,28 +16,27 @@ open class AppEventLocalizationsAPI {
      * enum for parameter fieldsAppEventScreenshots
      */
     public enum FieldsAppEventScreenshots_appEventLocalizationsAppEventScreenshotsGetToManyRelated: String, CaseIterable {
+        case filesize = "fileSize"
+        case filename = "fileName"
+        case imageasset = "imageAsset"
+        case assettoken = "assetToken"
+        case uploadoperations = "uploadOperations"
+        case assetdeliverystate = "assetDeliveryState"
         case appeventassettype = "appEventAssetType"
         case appeventlocalization = "appEventLocalization"
-        case assetdeliverystate = "assetDeliveryState"
-        case assettoken = "assetToken"
-        case filename = "fileName"
-        case filesize = "fileSize"
-        case imageasset = "imageAsset"
-        case uploadoperations = "uploadOperations"
-        case uploaded = "uploaded"
     }
 
     /**
      * enum for parameter fieldsAppEventLocalizations
      */
     public enum FieldsAppEventLocalizations_appEventLocalizationsAppEventScreenshotsGetToManyRelated: String, CaseIterable {
+        case locale = "locale"
+        case name = "name"
+        case shortdescription = "shortDescription"
+        case longdescription = "longDescription"
         case appevent = "appEvent"
         case appeventscreenshots = "appEventScreenshots"
         case appeventvideoclips = "appEventVideoClips"
-        case locale = "locale"
-        case longdescription = "longDescription"
-        case name = "name"
-        case shortdescription = "shortDescription"
     }
 
     /**
@@ -133,29 +132,30 @@ open class AppEventLocalizationsAPI {
      * enum for parameter fieldsAppEventVideoClips
      */
     public enum FieldsAppEventVideoClips_appEventLocalizationsAppEventVideoClipsGetToManyRelated: String, CaseIterable {
-        case appeventassettype = "appEventAssetType"
-        case appeventlocalization = "appEventLocalization"
-        case assetdeliverystate = "assetDeliveryState"
-        case filename = "fileName"
         case filesize = "fileSize"
+        case filename = "fileName"
         case previewframetimecode = "previewFrameTimeCode"
+        case videourl = "videoUrl"
+        case previewframeimage = "previewFrameImage"
         case previewimage = "previewImage"
         case uploadoperations = "uploadOperations"
-        case uploaded = "uploaded"
-        case videourl = "videoUrl"
+        case assetdeliverystate = "assetDeliveryState"
+        case videodeliverystate = "videoDeliveryState"
+        case appeventassettype = "appEventAssetType"
+        case appeventlocalization = "appEventLocalization"
     }
 
     /**
      * enum for parameter fieldsAppEventLocalizations
      */
     public enum FieldsAppEventLocalizations_appEventLocalizationsAppEventVideoClipsGetToManyRelated: String, CaseIterable {
+        case locale = "locale"
+        case name = "name"
+        case shortdescription = "shortDescription"
+        case longdescription = "longDescription"
         case appevent = "appEvent"
         case appeventscreenshots = "appEventScreenshots"
         case appeventvideoclips = "appEventVideoClips"
-        case locale = "locale"
-        case longdescription = "longDescription"
-        case name = "name"
-        case shortdescription = "shortDescription"
     }
 
     /**
@@ -384,13 +384,44 @@ open class AppEventLocalizationsAPI {
      * enum for parameter fieldsAppEventLocalizations
      */
     public enum FieldsAppEventLocalizations_appEventLocalizationsGetInstance: String, CaseIterable {
+        case locale = "locale"
+        case name = "name"
+        case shortdescription = "shortDescription"
+        case longdescription = "longDescription"
         case appevent = "appEvent"
         case appeventscreenshots = "appEventScreenshots"
         case appeventvideoclips = "appEventVideoClips"
-        case locale = "locale"
-        case longdescription = "longDescription"
-        case name = "name"
-        case shortdescription = "shortDescription"
+    }
+
+    /**
+     * enum for parameter fieldsAppEventScreenshots
+     */
+    public enum FieldsAppEventScreenshots_appEventLocalizationsGetInstance: String, CaseIterable {
+        case filesize = "fileSize"
+        case filename = "fileName"
+        case imageasset = "imageAsset"
+        case assettoken = "assetToken"
+        case uploadoperations = "uploadOperations"
+        case assetdeliverystate = "assetDeliveryState"
+        case appeventassettype = "appEventAssetType"
+        case appeventlocalization = "appEventLocalization"
+    }
+
+    /**
+     * enum for parameter fieldsAppEventVideoClips
+     */
+    public enum FieldsAppEventVideoClips_appEventLocalizationsGetInstance: String, CaseIterable {
+        case filesize = "fileSize"
+        case filename = "fileName"
+        case previewframetimecode = "previewFrameTimeCode"
+        case videourl = "videoUrl"
+        case previewframeimage = "previewFrameImage"
+        case previewimage = "previewImage"
+        case uploadoperations = "uploadOperations"
+        case assetdeliverystate = "assetDeliveryState"
+        case videodeliverystate = "videoDeliveryState"
+        case appeventassettype = "appEventAssetType"
+        case appeventlocalization = "appEventLocalization"
     }
 
     /**
@@ -403,50 +434,19 @@ open class AppEventLocalizationsAPI {
     }
 
     /**
-     * enum for parameter fieldsAppEventScreenshots
-     */
-    public enum FieldsAppEventScreenshots_appEventLocalizationsGetInstance: String, CaseIterable {
-        case appeventassettype = "appEventAssetType"
-        case appeventlocalization = "appEventLocalization"
-        case assetdeliverystate = "assetDeliveryState"
-        case assettoken = "assetToken"
-        case filename = "fileName"
-        case filesize = "fileSize"
-        case imageasset = "imageAsset"
-        case uploadoperations = "uploadOperations"
-        case uploaded = "uploaded"
-    }
-
-    /**
-     * enum for parameter fieldsAppEventVideoClips
-     */
-    public enum FieldsAppEventVideoClips_appEventLocalizationsGetInstance: String, CaseIterable {
-        case appeventassettype = "appEventAssetType"
-        case appeventlocalization = "appEventLocalization"
-        case assetdeliverystate = "assetDeliveryState"
-        case filename = "fileName"
-        case filesize = "fileSize"
-        case previewframetimecode = "previewFrameTimeCode"
-        case previewimage = "previewImage"
-        case uploadoperations = "uploadOperations"
-        case uploaded = "uploaded"
-        case videourl = "videoUrl"
-    }
-
-    /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAppEventLocalizations: (query) the fields to include for returned resources of type appEventLocalizations (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter fieldsAppEventScreenshots: (query) the fields to include for returned resources of type appEventScreenshots (optional)
      - parameter fieldsAppEventVideoClips: (query) the fields to include for returned resources of type appEventVideoClips (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAppEventScreenshots: (query) maximum number of related appEventScreenshots returned (when they are included) (optional)
      - parameter limitAppEventVideoClips: (query) maximum number of related appEventVideoClips returned (when they are included) (optional)
      - returns: AppEventLocalizationResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appEventLocalizationsGetInstance(id: String, fieldsAppEventLocalizations: [FieldsAppEventLocalizations_appEventLocalizationsGetInstance]? = nil, include: [Include_appEventLocalizationsGetInstance]? = nil, fieldsAppEventScreenshots: [FieldsAppEventScreenshots_appEventLocalizationsGetInstance]? = nil, fieldsAppEventVideoClips: [FieldsAppEventVideoClips_appEventLocalizationsGetInstance]? = nil, limitAppEventScreenshots: Int? = nil, limitAppEventVideoClips: Int? = nil) async throws -> AppEventLocalizationResponse {
-        return try await appEventLocalizationsGetInstanceWithRequestBuilder(id: id, fieldsAppEventLocalizations: fieldsAppEventLocalizations, include: include, fieldsAppEventScreenshots: fieldsAppEventScreenshots, fieldsAppEventVideoClips: fieldsAppEventVideoClips, limitAppEventScreenshots: limitAppEventScreenshots, limitAppEventVideoClips: limitAppEventVideoClips).execute().body
+    open class func appEventLocalizationsGetInstance(id: String, fieldsAppEventLocalizations: [FieldsAppEventLocalizations_appEventLocalizationsGetInstance]? = nil, fieldsAppEventScreenshots: [FieldsAppEventScreenshots_appEventLocalizationsGetInstance]? = nil, fieldsAppEventVideoClips: [FieldsAppEventVideoClips_appEventLocalizationsGetInstance]? = nil, include: [Include_appEventLocalizationsGetInstance]? = nil, limitAppEventScreenshots: Int? = nil, limitAppEventVideoClips: Int? = nil) async throws -> AppEventLocalizationResponse {
+        return try await appEventLocalizationsGetInstanceWithRequestBuilder(id: id, fieldsAppEventLocalizations: fieldsAppEventLocalizations, fieldsAppEventScreenshots: fieldsAppEventScreenshots, fieldsAppEventVideoClips: fieldsAppEventVideoClips, include: include, limitAppEventScreenshots: limitAppEventScreenshots, limitAppEventVideoClips: limitAppEventVideoClips).execute().body
     }
 
     /**
@@ -465,14 +465,14 @@ open class AppEventLocalizationsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAppEventLocalizations: (query) the fields to include for returned resources of type appEventLocalizations (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter fieldsAppEventScreenshots: (query) the fields to include for returned resources of type appEventScreenshots (optional)
      - parameter fieldsAppEventVideoClips: (query) the fields to include for returned resources of type appEventVideoClips (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAppEventScreenshots: (query) maximum number of related appEventScreenshots returned (when they are included) (optional)
      - parameter limitAppEventVideoClips: (query) maximum number of related appEventVideoClips returned (when they are included) (optional)
      - returns: RequestBuilder<AppEventLocalizationResponse> 
      */
-    open class func appEventLocalizationsGetInstanceWithRequestBuilder(id: String, fieldsAppEventLocalizations: [FieldsAppEventLocalizations_appEventLocalizationsGetInstance]? = nil, include: [Include_appEventLocalizationsGetInstance]? = nil, fieldsAppEventScreenshots: [FieldsAppEventScreenshots_appEventLocalizationsGetInstance]? = nil, fieldsAppEventVideoClips: [FieldsAppEventVideoClips_appEventLocalizationsGetInstance]? = nil, limitAppEventScreenshots: Int? = nil, limitAppEventVideoClips: Int? = nil) -> RequestBuilder<AppEventLocalizationResponse> {
+    open class func appEventLocalizationsGetInstanceWithRequestBuilder(id: String, fieldsAppEventLocalizations: [FieldsAppEventLocalizations_appEventLocalizationsGetInstance]? = nil, fieldsAppEventScreenshots: [FieldsAppEventScreenshots_appEventLocalizationsGetInstance]? = nil, fieldsAppEventVideoClips: [FieldsAppEventVideoClips_appEventLocalizationsGetInstance]? = nil, include: [Include_appEventLocalizationsGetInstance]? = nil, limitAppEventScreenshots: Int? = nil, limitAppEventVideoClips: Int? = nil) -> RequestBuilder<AppEventLocalizationResponse> {
         var localVariablePath = "/v1/appEventLocalizations/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -483,9 +483,9 @@ open class AppEventLocalizationsAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[appEventLocalizations]": (wrappedValue: fieldsAppEventLocalizations?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "fields[appEventScreenshots]": (wrappedValue: fieldsAppEventScreenshots?.encodeToJSON(), isExplode: false),
             "fields[appEventVideoClips]": (wrappedValue: fieldsAppEventVideoClips?.encodeToJSON(), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "limit[appEventScreenshots]": (wrappedValue: limitAppEventScreenshots?.encodeToJSON(), isExplode: true),
             "limit[appEventVideoClips]": (wrappedValue: limitAppEventVideoClips?.encodeToJSON(), isExplode: true),
         ])

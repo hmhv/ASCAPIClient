@@ -13,9 +13,9 @@ import AnyCodable
 public struct EndUserLicenseAgreementCreateRequestDataRelationships: Codable, JSONEncodable, Hashable {
 
     public var app: AnalyticsReportRequestCreateRequestDataRelationshipsApp
-    public var territories: AppAvailabilityCreateRequestDataRelationshipsAvailableTerritories
+    public var territories: EndUserLicenseAgreementCreateRequestDataRelationshipsTerritories
 
-    public init(app: AnalyticsReportRequestCreateRequestDataRelationshipsApp, territories: AppAvailabilityCreateRequestDataRelationshipsAvailableTerritories) {
+    public init(app: AnalyticsReportRequestCreateRequestDataRelationshipsApp, territories: EndUserLicenseAgreementCreateRequestDataRelationshipsTerritories) {
         self.app = app
         self.territories = territories
     }

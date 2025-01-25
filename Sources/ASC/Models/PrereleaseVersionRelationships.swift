@@ -13,9 +13,9 @@ import AnyCodable
 public struct PrereleaseVersionRelationships: Codable, JSONEncodable, Hashable {
 
     public var builds: AppRelationshipsBuilds?
-    public var app: AppAvailabilityRelationshipsApp?
+    public var app: BetaAppLocalizationRelationshipsApp?
 
-    public init(builds: AppRelationshipsBuilds? = nil, app: AppAvailabilityRelationshipsApp? = nil) {
+    public init(builds: AppRelationshipsBuilds? = nil, app: BetaAppLocalizationRelationshipsApp? = nil) {
         self.builds = builds
         self.app = app
     }

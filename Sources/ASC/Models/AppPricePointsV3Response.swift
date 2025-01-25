@@ -13,11 +13,11 @@ import AnyCodable
 public struct AppPricePointsV3Response: Codable, JSONEncodable, Hashable {
 
     public var data: [AppPricePointV3]
-    public var included: [AppAvailabilityResponseIncludedInner]?
+    public var included: [AppPricePointsV3ResponseIncludedInner]?
     public var links: PagedDocumentLinks
     public var meta: PagingInformation?
 
-    public init(data: [AppPricePointV3], included: [AppAvailabilityResponseIncludedInner]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {
+    public init(data: [AppPricePointV3], included: [AppPricePointsV3ResponseIncludedInner]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {
         self.data = data
         self.included = included
         self.links = links

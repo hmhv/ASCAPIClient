@@ -14,17 +14,19 @@ public struct CiBuildRunRelationships: Codable, JSONEncodable, Hashable {
 
     public var builds: AppRelationshipsBuilds?
     public var workflow: CiBuildRunRelationshipsWorkflow?
-    public var product: AppRelationshipsCiProduct?
+    public var product: CiBuildRunRelationshipsProduct?
     public var sourceBranchOrTag: CiBuildRunRelationshipsSourceBranchOrTag?
     public var destinationBranch: CiBuildRunRelationshipsSourceBranchOrTag?
+    public var actions: AnalyticsReportInstanceRelationshipsSegments?
     public var pullRequest: CiBuildRunRelationshipsPullRequest?
 
-    public init(builds: AppRelationshipsBuilds? = nil, workflow: CiBuildRunRelationshipsWorkflow? = nil, product: AppRelationshipsCiProduct? = nil, sourceBranchOrTag: CiBuildRunRelationshipsSourceBranchOrTag? = nil, destinationBranch: CiBuildRunRelationshipsSourceBranchOrTag? = nil, pullRequest: CiBuildRunRelationshipsPullRequest? = nil) {
+    public init(builds: AppRelationshipsBuilds? = nil, workflow: CiBuildRunRelationshipsWorkflow? = nil, product: CiBuildRunRelationshipsProduct? = nil, sourceBranchOrTag: CiBuildRunRelationshipsSourceBranchOrTag? = nil, destinationBranch: CiBuildRunRelationshipsSourceBranchOrTag? = nil, actions: AnalyticsReportInstanceRelationshipsSegments? = nil, pullRequest: CiBuildRunRelationshipsPullRequest? = nil) {
         self.builds = builds
         self.workflow = workflow
         self.product = product
         self.sourceBranchOrTag = sourceBranchOrTag
         self.destinationBranch = destinationBranch
+        self.actions = actions
         self.pullRequest = pullRequest
     }
 
@@ -34,6 +36,7 @@ public struct CiBuildRunRelationships: Codable, JSONEncodable, Hashable {
         case product
         case sourceBranchOrTag
         case destinationBranch
+        case actions
         case pullRequest
     }
 
@@ -46,6 +49,7 @@ public struct CiBuildRunRelationships: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(product, forKey: .product)
         try container.encodeIfPresent(sourceBranchOrTag, forKey: .sourceBranchOrTag)
         try container.encodeIfPresent(destinationBranch, forKey: .destinationBranch)
+        try container.encodeIfPresent(actions, forKey: .actions)
         try container.encodeIfPresent(pullRequest, forKey: .pullRequest)
     }
 }

@@ -12,10 +12,10 @@ import AnyCodable
 
 public struct BuildRelationshipsPreReleaseVersion: Codable, JSONEncodable, Hashable {
 
-    public var links: AlternativeDistributionPackageVersionRelationshipsVariantsLinks?
+    public var links: RelationshipLinks?
     public var data: AppRelationshipsPreReleaseVersionsDataInner?
 
-    public init(links: AlternativeDistributionPackageVersionRelationshipsVariantsLinks? = nil, data: AppRelationshipsPreReleaseVersionsDataInner? = nil) {
+    public init(links: RelationshipLinks? = nil, data: AppRelationshipsPreReleaseVersionsDataInner? = nil) {
         self.links = links
         self.data = data
     }

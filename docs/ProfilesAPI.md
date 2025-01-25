@@ -260,7 +260,7 @@ Name | Type | Description  | Notes
 
 # **profilesGetCollection**
 ```swift
-    open class func profilesGetCollection(filterName: [String]? = nil, filterProfileState: [FilterProfileState_profilesGetCollection]? = nil, filterProfileType: [FilterProfileType_profilesGetCollection]? = nil, filterId: [String]? = nil, sort: [Sort_profilesGetCollection]? = nil, fieldsProfiles: [FieldsProfiles_profilesGetCollection]? = nil, limit: Int? = nil, include: [Include_profilesGetCollection]? = nil, fieldsCertificates: [FieldsCertificates_profilesGetCollection]? = nil, fieldsDevices: [FieldsDevices_profilesGetCollection]? = nil, fieldsBundleIds: [FieldsBundleIds_profilesGetCollection]? = nil, limitCertificates: Int? = nil, limitDevices: Int? = nil, completion: @escaping (_ data: ProfilesResponse?, _ error: Error?) -> Void)
+    open class func profilesGetCollection(filterName: [String]? = nil, filterProfileType: [FilterProfileType_profilesGetCollection]? = nil, filterProfileState: [FilterProfileState_profilesGetCollection]? = nil, filterId: [String]? = nil, sort: [Sort_profilesGetCollection]? = nil, fieldsProfiles: [FieldsProfiles_profilesGetCollection]? = nil, fieldsBundleIds: [FieldsBundleIds_profilesGetCollection]? = nil, fieldsDevices: [FieldsDevices_profilesGetCollection]? = nil, fieldsCertificates: [FieldsCertificates_profilesGetCollection]? = nil, limit: Int? = nil, include: [Include_profilesGetCollection]? = nil, limitCertificates: Int? = nil, limitDevices: Int? = nil, completion: @escaping (_ data: ProfilesResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -271,20 +271,20 @@ Name | Type | Description  | Notes
 import ASC
 
 let filterName = ["inner_example"] // [String] | filter by attribute 'name' (optional)
-let filterProfileState = ["filterProfileState_example"] // [String] | filter by attribute 'profileState' (optional)
 let filterProfileType = ["filterProfileType_example"] // [String] | filter by attribute 'profileType' (optional)
+let filterProfileState = ["filterProfileState_example"] // [String] | filter by attribute 'profileState' (optional)
 let filterId = ["inner_example"] // [String] | filter by id(s) (optional)
 let sort = ["sort_example"] // [String] | comma-separated list of sort expressions; resources will be sorted as specified (optional)
 let fieldsProfiles = ["fieldsProfiles_example"] // [String] | the fields to include for returned resources of type profiles (optional)
+let fieldsBundleIds = ["fieldsBundleIds_example"] // [String] | the fields to include for returned resources of type bundleIds (optional)
+let fieldsDevices = ["fieldsDevices_example"] // [String] | the fields to include for returned resources of type devices (optional)
+let fieldsCertificates = ["fieldsCertificates_example"] // [String] | the fields to include for returned resources of type certificates (optional)
 let limit = 987 // Int | maximum resources per page (optional)
 let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
-let fieldsCertificates = ["fieldsCertificates_example"] // [String] | the fields to include for returned resources of type certificates (optional)
-let fieldsDevices = ["fieldsDevices_example"] // [String] | the fields to include for returned resources of type devices (optional)
-let fieldsBundleIds = ["fieldsBundleIds_example"] // [String] | the fields to include for returned resources of type bundleIds (optional)
 let limitCertificates = 987 // Int | maximum number of related certificates returned (when they are included) (optional)
 let limitDevices = 987 // Int | maximum number of related devices returned (when they are included) (optional)
 
-ProfilesAPI.profilesGetCollection(filterName: filterName, filterProfileState: filterProfileState, filterProfileType: filterProfileType, filterId: filterId, sort: sort, fieldsProfiles: fieldsProfiles, limit: limit, include: include, fieldsCertificates: fieldsCertificates, fieldsDevices: fieldsDevices, fieldsBundleIds: fieldsBundleIds, limitCertificates: limitCertificates, limitDevices: limitDevices) { (response, error) in
+ProfilesAPI.profilesGetCollection(filterName: filterName, filterProfileType: filterProfileType, filterProfileState: filterProfileState, filterId: filterId, sort: sort, fieldsProfiles: fieldsProfiles, fieldsBundleIds: fieldsBundleIds, fieldsDevices: fieldsDevices, fieldsCertificates: fieldsCertificates, limit: limit, include: include, limitCertificates: limitCertificates, limitDevices: limitDevices) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -301,16 +301,16 @@ ProfilesAPI.profilesGetCollection(filterName: filterName, filterProfileState: fi
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **filterName** | [**[String]**](String.md) | filter by attribute &#39;name&#39; | [optional] 
- **filterProfileState** | [**[String]**](String.md) | filter by attribute &#39;profileState&#39; | [optional] 
  **filterProfileType** | [**[String]**](String.md) | filter by attribute &#39;profileType&#39; | [optional] 
+ **filterProfileState** | [**[String]**](String.md) | filter by attribute &#39;profileState&#39; | [optional] 
  **filterId** | [**[String]**](String.md) | filter by id(s) | [optional] 
  **sort** | [**[String]**](String.md) | comma-separated list of sort expressions; resources will be sorted as specified | [optional] 
  **fieldsProfiles** | [**[String]**](String.md) | the fields to include for returned resources of type profiles | [optional] 
+ **fieldsBundleIds** | [**[String]**](String.md) | the fields to include for returned resources of type bundleIds | [optional] 
+ **fieldsDevices** | [**[String]**](String.md) | the fields to include for returned resources of type devices | [optional] 
+ **fieldsCertificates** | [**[String]**](String.md) | the fields to include for returned resources of type certificates | [optional] 
  **limit** | **Int** | maximum resources per page | [optional] 
  **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
- **fieldsCertificates** | [**[String]**](String.md) | the fields to include for returned resources of type certificates | [optional] 
- **fieldsDevices** | [**[String]**](String.md) | the fields to include for returned resources of type devices | [optional] 
- **fieldsBundleIds** | [**[String]**](String.md) | the fields to include for returned resources of type bundleIds | [optional] 
  **limitCertificates** | **Int** | maximum number of related certificates returned (when they are included) | [optional] 
  **limitDevices** | **Int** | maximum number of related devices returned (when they are included) | [optional] 
 
@@ -331,7 +331,7 @@ Name | Type | Description  | Notes
 
 # **profilesGetInstance**
 ```swift
-    open class func profilesGetInstance(id: String, fieldsProfiles: [FieldsProfiles_profilesGetInstance]? = nil, include: [Include_profilesGetInstance]? = nil, fieldsCertificates: [FieldsCertificates_profilesGetInstance]? = nil, fieldsDevices: [FieldsDevices_profilesGetInstance]? = nil, fieldsBundleIds: [FieldsBundleIds_profilesGetInstance]? = nil, limitCertificates: Int? = nil, limitDevices: Int? = nil, completion: @escaping (_ data: ProfileResponse?, _ error: Error?) -> Void)
+    open class func profilesGetInstance(id: String, fieldsProfiles: [FieldsProfiles_profilesGetInstance]? = nil, fieldsBundleIds: [FieldsBundleIds_profilesGetInstance]? = nil, fieldsDevices: [FieldsDevices_profilesGetInstance]? = nil, fieldsCertificates: [FieldsCertificates_profilesGetInstance]? = nil, include: [Include_profilesGetInstance]? = nil, limitCertificates: Int? = nil, limitDevices: Int? = nil, completion: @escaping (_ data: ProfileResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -343,14 +343,14 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let fieldsProfiles = ["fieldsProfiles_example"] // [String] | the fields to include for returned resources of type profiles (optional)
-let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
-let fieldsCertificates = ["fieldsCertificates_example"] // [String] | the fields to include for returned resources of type certificates (optional)
-let fieldsDevices = ["fieldsDevices_example"] // [String] | the fields to include for returned resources of type devices (optional)
 let fieldsBundleIds = ["fieldsBundleIds_example"] // [String] | the fields to include for returned resources of type bundleIds (optional)
+let fieldsDevices = ["fieldsDevices_example"] // [String] | the fields to include for returned resources of type devices (optional)
+let fieldsCertificates = ["fieldsCertificates_example"] // [String] | the fields to include for returned resources of type certificates (optional)
+let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let limitCertificates = 987 // Int | maximum number of related certificates returned (when they are included) (optional)
 let limitDevices = 987 // Int | maximum number of related devices returned (when they are included) (optional)
 
-ProfilesAPI.profilesGetInstance(id: id, fieldsProfiles: fieldsProfiles, include: include, fieldsCertificates: fieldsCertificates, fieldsDevices: fieldsDevices, fieldsBundleIds: fieldsBundleIds, limitCertificates: limitCertificates, limitDevices: limitDevices) { (response, error) in
+ProfilesAPI.profilesGetInstance(id: id, fieldsProfiles: fieldsProfiles, fieldsBundleIds: fieldsBundleIds, fieldsDevices: fieldsDevices, fieldsCertificates: fieldsCertificates, include: include, limitCertificates: limitCertificates, limitDevices: limitDevices) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -368,10 +368,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **fieldsProfiles** | [**[String]**](String.md) | the fields to include for returned resources of type profiles | [optional] 
- **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
- **fieldsCertificates** | [**[String]**](String.md) | the fields to include for returned resources of type certificates | [optional] 
- **fieldsDevices** | [**[String]**](String.md) | the fields to include for returned resources of type devices | [optional] 
  **fieldsBundleIds** | [**[String]**](String.md) | the fields to include for returned resources of type bundleIds | [optional] 
+ **fieldsDevices** | [**[String]**](String.md) | the fields to include for returned resources of type devices | [optional] 
+ **fieldsCertificates** | [**[String]**](String.md) | the fields to include for returned resources of type certificates | [optional] 
+ **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **limitCertificates** | **Int** | maximum number of related certificates returned (when they are included) | [optional] 
  **limitDevices** | **Int** | maximum number of related devices returned (when they are included) | [optional] 
 

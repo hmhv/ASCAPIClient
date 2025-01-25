@@ -149,9 +149,8 @@ open class BetaAppClipInvocationsAPI {
      * enum for parameter fieldsBetaAppClipInvocations
      */
     public enum FieldsBetaAppClipInvocations_betaAppClipInvocationsGetInstance: String, CaseIterable {
-        case betaappclipinvocationlocalizations = "betaAppClipInvocationLocalizations"
-        case buildbundle = "buildBundle"
         case url = "url"
+        case betaappclipinvocationlocalizations = "betaAppClipInvocationLocalizations"
     }
 
     /**

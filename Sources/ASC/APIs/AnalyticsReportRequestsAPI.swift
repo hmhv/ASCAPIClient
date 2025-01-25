@@ -150,9 +150,17 @@ open class AnalyticsReportRequestsAPI {
      */
     public enum FieldsAnalyticsReportRequests_analyticsReportRequestsGetInstance: String, CaseIterable {
         case accesstype = "accessType"
-        case app = "app"
-        case reports = "reports"
         case stoppedduetoinactivity = "stoppedDueToInactivity"
+        case reports = "reports"
+    }
+
+    /**
+     * enum for parameter fieldsAnalyticsReports
+     */
+    public enum FieldsAnalyticsReports_analyticsReportRequestsGetInstance: String, CaseIterable {
+        case name = "name"
+        case category = "category"
+        case instances = "instances"
     }
 
     /**
@@ -163,26 +171,17 @@ open class AnalyticsReportRequestsAPI {
     }
 
     /**
-     * enum for parameter fieldsAnalyticsReports
-     */
-    public enum FieldsAnalyticsReports_analyticsReportRequestsGetInstance: String, CaseIterable {
-        case category = "category"
-        case instances = "instances"
-        case name = "name"
-    }
-
-    /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAnalyticsReportRequests: (query) the fields to include for returned resources of type analyticsReportRequests (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter fieldsAnalyticsReports: (query) the fields to include for returned resources of type analyticsReports (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitReports: (query) maximum number of related reports returned (when they are included) (optional)
      - returns: AnalyticsReportRequestResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func analyticsReportRequestsGetInstance(id: String, fieldsAnalyticsReportRequests: [FieldsAnalyticsReportRequests_analyticsReportRequestsGetInstance]? = nil, include: [Include_analyticsReportRequestsGetInstance]? = nil, fieldsAnalyticsReports: [FieldsAnalyticsReports_analyticsReportRequestsGetInstance]? = nil, limitReports: Int? = nil) async throws -> AnalyticsReportRequestResponse {
-        return try await analyticsReportRequestsGetInstanceWithRequestBuilder(id: id, fieldsAnalyticsReportRequests: fieldsAnalyticsReportRequests, include: include, fieldsAnalyticsReports: fieldsAnalyticsReports, limitReports: limitReports).execute().body
+    open class func analyticsReportRequestsGetInstance(id: String, fieldsAnalyticsReportRequests: [FieldsAnalyticsReportRequests_analyticsReportRequestsGetInstance]? = nil, fieldsAnalyticsReports: [FieldsAnalyticsReports_analyticsReportRequestsGetInstance]? = nil, include: [Include_analyticsReportRequestsGetInstance]? = nil, limitReports: Int? = nil) async throws -> AnalyticsReportRequestResponse {
+        return try await analyticsReportRequestsGetInstanceWithRequestBuilder(id: id, fieldsAnalyticsReportRequests: fieldsAnalyticsReportRequests, fieldsAnalyticsReports: fieldsAnalyticsReports, include: include, limitReports: limitReports).execute().body
     }
 
     /**
@@ -201,12 +200,12 @@ open class AnalyticsReportRequestsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAnalyticsReportRequests: (query) the fields to include for returned resources of type analyticsReportRequests (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter fieldsAnalyticsReports: (query) the fields to include for returned resources of type analyticsReports (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitReports: (query) maximum number of related reports returned (when they are included) (optional)
      - returns: RequestBuilder<AnalyticsReportRequestResponse> 
      */
-    open class func analyticsReportRequestsGetInstanceWithRequestBuilder(id: String, fieldsAnalyticsReportRequests: [FieldsAnalyticsReportRequests_analyticsReportRequestsGetInstance]? = nil, include: [Include_analyticsReportRequestsGetInstance]? = nil, fieldsAnalyticsReports: [FieldsAnalyticsReports_analyticsReportRequestsGetInstance]? = nil, limitReports: Int? = nil) -> RequestBuilder<AnalyticsReportRequestResponse> {
+    open class func analyticsReportRequestsGetInstanceWithRequestBuilder(id: String, fieldsAnalyticsReportRequests: [FieldsAnalyticsReportRequests_analyticsReportRequestsGetInstance]? = nil, fieldsAnalyticsReports: [FieldsAnalyticsReports_analyticsReportRequestsGetInstance]? = nil, include: [Include_analyticsReportRequestsGetInstance]? = nil, limitReports: Int? = nil) -> RequestBuilder<AnalyticsReportRequestResponse> {
         var localVariablePath = "/v1/analyticsReportRequests/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -217,8 +216,8 @@ open class AnalyticsReportRequestsAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[analyticsReportRequests]": (wrappedValue: fieldsAnalyticsReportRequests?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "fields[analyticsReports]": (wrappedValue: fieldsAnalyticsReports?.encodeToJSON(), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "limit[reports]": (wrappedValue: limitReports?.encodeToJSON(), isExplode: true),
         ])
 
@@ -268,23 +267,23 @@ open class AnalyticsReportRequestsAPI {
      * enum for parameter fieldsAnalyticsReports
      */
     public enum FieldsAnalyticsReports_analyticsReportRequestsReportsGetToManyRelated: String, CaseIterable {
+        case name = "name"
         case category = "category"
         case instances = "instances"
-        case name = "name"
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
-     - parameter filterCategory: (query) filter by attribute &#39;category&#39; (optional)
      - parameter filterName: (query) filter by attribute &#39;name&#39; (optional)
+     - parameter filterCategory: (query) filter by attribute &#39;category&#39; (optional)
      - parameter fieldsAnalyticsReports: (query) the fields to include for returned resources of type analyticsReports (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - returns: AnalyticsReportsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func analyticsReportRequestsReportsGetToManyRelated(id: String, filterCategory: [FilterCategory_analyticsReportRequestsReportsGetToManyRelated]? = nil, filterName: [String]? = nil, fieldsAnalyticsReports: [FieldsAnalyticsReports_analyticsReportRequestsReportsGetToManyRelated]? = nil, limit: Int? = nil) async throws -> AnalyticsReportsResponse {
-        return try await analyticsReportRequestsReportsGetToManyRelatedWithRequestBuilder(id: id, filterCategory: filterCategory, filterName: filterName, fieldsAnalyticsReports: fieldsAnalyticsReports, limit: limit).execute().body
+    open class func analyticsReportRequestsReportsGetToManyRelated(id: String, filterName: [String]? = nil, filterCategory: [FilterCategory_analyticsReportRequestsReportsGetToManyRelated]? = nil, fieldsAnalyticsReports: [FieldsAnalyticsReports_analyticsReportRequestsReportsGetToManyRelated]? = nil, limit: Int? = nil) async throws -> AnalyticsReportsResponse {
+        return try await analyticsReportRequestsReportsGetToManyRelatedWithRequestBuilder(id: id, filterName: filterName, filterCategory: filterCategory, fieldsAnalyticsReports: fieldsAnalyticsReports, limit: limit).execute().body
     }
 
     /**
@@ -302,13 +301,13 @@ open class AnalyticsReportRequestsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
-     - parameter filterCategory: (query) filter by attribute &#39;category&#39; (optional)
      - parameter filterName: (query) filter by attribute &#39;name&#39; (optional)
+     - parameter filterCategory: (query) filter by attribute &#39;category&#39; (optional)
      - parameter fieldsAnalyticsReports: (query) the fields to include for returned resources of type analyticsReports (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - returns: RequestBuilder<AnalyticsReportsResponse> 
      */
-    open class func analyticsReportRequestsReportsGetToManyRelatedWithRequestBuilder(id: String, filterCategory: [FilterCategory_analyticsReportRequestsReportsGetToManyRelated]? = nil, filterName: [String]? = nil, fieldsAnalyticsReports: [FieldsAnalyticsReports_analyticsReportRequestsReportsGetToManyRelated]? = nil, limit: Int? = nil) -> RequestBuilder<AnalyticsReportsResponse> {
+    open class func analyticsReportRequestsReportsGetToManyRelatedWithRequestBuilder(id: String, filterName: [String]? = nil, filterCategory: [FilterCategory_analyticsReportRequestsReportsGetToManyRelated]? = nil, fieldsAnalyticsReports: [FieldsAnalyticsReports_analyticsReportRequestsReportsGetToManyRelated]? = nil, limit: Int? = nil) -> RequestBuilder<AnalyticsReportsResponse> {
         var localVariablePath = "/v1/analyticsReportRequests/{id}/reports"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -318,8 +317,8 @@ open class AnalyticsReportRequestsAPI {
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[category]": (wrappedValue: filterCategory?.encodeToJSON(), isExplode: false),
             "filter[name]": (wrappedValue: filterName?.encodeToJSON(), isExplode: false),
+            "filter[category]": (wrappedValue: filterCategory?.encodeToJSON(), isExplode: false),
             "fields[analyticsReports]": (wrappedValue: fieldsAnalyticsReports?.encodeToJSON(), isExplode: false),
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
         ])

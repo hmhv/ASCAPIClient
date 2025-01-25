@@ -149,10 +149,10 @@ open class CustomerReviewResponsesAPI {
      * enum for parameter fieldsCustomerReviewResponses
      */
     public enum FieldsCustomerReviewResponses_customerReviewResponsesGetInstance: String, CaseIterable {
-        case lastmodifieddate = "lastModifiedDate"
         case responsebody = "responseBody"
-        case review = "review"
+        case lastmodifieddate = "lastModifiedDate"
         case state = "state"
+        case review = "review"
     }
 
     /**

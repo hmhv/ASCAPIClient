@@ -3,8 +3,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**app** | [**AppAvailabilityRelationshipsApp**](AppAvailabilityRelationshipsApp.md) |  | [optional] 
-**baseTerritory** | [**AppPricePointV2RelationshipsTerritory**](AppPricePointV2RelationshipsTerritory.md) |  | [optional] 
+**app** | [**AlternativeDistributionKeyCreateRequestDataRelationshipsApp**](AlternativeDistributionKeyCreateRequestDataRelationshipsApp.md) |  | [optional] 
+**baseTerritory** | [**AppPriceScheduleRelationshipsBaseTerritory**](AppPriceScheduleRelationshipsBaseTerritory.md) |  | [optional] 
 **manualPrices** | [**AppPriceScheduleRelationshipsManualPrices**](AppPriceScheduleRelationshipsManualPrices.md) |  | [optional] 
 **automaticPrices** | [**AppPriceScheduleRelationshipsManualPrices**](AppPriceScheduleRelationshipsManualPrices.md) |  | [optional] 
 

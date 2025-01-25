@@ -12,10 +12,10 @@ import AnyCodable
 
 public struct AppWithoutIncludesResponse: Codable, JSONEncodable, Hashable {
 
-    public var data: PrereleaseVersion
+    public var data: App
     public var links: DocumentLinks
 
-    public init(data: PrereleaseVersion, links: DocumentLinks) {
+    public init(data: App, links: DocumentLinks) {
         self.data = data
         self.links = links
     }

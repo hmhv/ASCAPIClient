@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 # **salesReportsGetCollection**
 ```swift
-    open class func salesReportsGetCollection(filterFrequency: [FilterFrequency_salesReportsGetCollection], filterReportSubType: [FilterReportSubType_salesReportsGetCollection], filterReportType: [FilterReportType_salesReportsGetCollection], filterVendorNumber: [String], filterReportDate: [String]? = nil, filterVersion: [String]? = nil, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func salesReportsGetCollection(filterVendorNumber: [String], filterReportType: [FilterReportType_salesReportsGetCollection], filterReportSubType: [FilterReportSubType_salesReportsGetCollection], filterFrequency: [FilterFrequency_salesReportsGetCollection], filterReportDate: [String]? = nil, filterVersion: [String]? = nil, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
 ```
 
 
@@ -19,14 +19,14 @@ Method | HTTP request | Description
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import ASC
 
-let filterFrequency = ["filterFrequency_example"] // [String] | filter by attribute 'frequency'
-let filterReportSubType = ["filterReportSubType_example"] // [String] | filter by attribute 'reportSubType'
-let filterReportType = ["filterReportType_example"] // [String] | filter by attribute 'reportType'
 let filterVendorNumber = ["inner_example"] // [String] | filter by attribute 'vendorNumber'
+let filterReportType = ["filterReportType_example"] // [String] | filter by attribute 'reportType'
+let filterReportSubType = ["filterReportSubType_example"] // [String] | filter by attribute 'reportSubType'
+let filterFrequency = ["filterFrequency_example"] // [String] | filter by attribute 'frequency'
 let filterReportDate = ["inner_example"] // [String] | filter by attribute 'reportDate' (optional)
 let filterVersion = ["inner_example"] // [String] | filter by attribute 'version' (optional)
 
-SalesReportsAPI.salesReportsGetCollection(filterFrequency: filterFrequency, filterReportSubType: filterReportSubType, filterReportType: filterReportType, filterVendorNumber: filterVendorNumber, filterReportDate: filterReportDate, filterVersion: filterVersion) { (response, error) in
+SalesReportsAPI.salesReportsGetCollection(filterVendorNumber: filterVendorNumber, filterReportType: filterReportType, filterReportSubType: filterReportSubType, filterFrequency: filterFrequency, filterReportDate: filterReportDate, filterVersion: filterVersion) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -42,10 +42,10 @@ SalesReportsAPI.salesReportsGetCollection(filterFrequency: filterFrequency, filt
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **filterFrequency** | [**[String]**](String.md) | filter by attribute &#39;frequency&#39; | 
- **filterReportSubType** | [**[String]**](String.md) | filter by attribute &#39;reportSubType&#39; | 
- **filterReportType** | [**[String]**](String.md) | filter by attribute &#39;reportType&#39; | 
  **filterVendorNumber** | [**[String]**](String.md) | filter by attribute &#39;vendorNumber&#39; | 
+ **filterReportType** | [**[String]**](String.md) | filter by attribute &#39;reportType&#39; | 
+ **filterReportSubType** | [**[String]**](String.md) | filter by attribute &#39;reportSubType&#39; | 
+ **filterFrequency** | [**[String]**](String.md) | filter by attribute &#39;frequency&#39; | 
  **filterReportDate** | [**[String]**](String.md) | filter by attribute &#39;reportDate&#39; | [optional] 
  **filterVersion** | [**[String]**](String.md) | filter by attribute &#39;version&#39; | [optional] 
 

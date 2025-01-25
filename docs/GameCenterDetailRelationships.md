@@ -3,9 +3,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**app** | [**AppAvailabilityRelationshipsApp**](AppAvailabilityRelationshipsApp.md) |  | [optional] 
+**app** | [**AlternativeDistributionKeyCreateRequestDataRelationshipsApp**](AlternativeDistributionKeyCreateRequestDataRelationshipsApp.md) |  | [optional] 
 **gameCenterAppVersions** | [**GameCenterAppVersionRelationshipsCompatibilityVersions**](GameCenterAppVersionRelationshipsCompatibilityVersions.md) |  | [optional] 
-**gameCenterGroup** | [**GameCenterAchievementRelationshipsGameCenterGroup**](GameCenterAchievementRelationshipsGameCenterGroup.md) |  | [optional] 
+**gameCenterGroup** | [**GameCenterDetailRelationshipsGameCenterGroup**](GameCenterDetailRelationshipsGameCenterGroup.md) |  | [optional] 
 **gameCenterLeaderboards** | [**GameCenterDetailRelationshipsGameCenterLeaderboards**](GameCenterDetailRelationshipsGameCenterLeaderboards.md) |  | [optional] 
 **gameCenterLeaderboardSets** | [**GameCenterDetailRelationshipsGameCenterLeaderboardSets**](GameCenterDetailRelationshipsGameCenterLeaderboardSets.md) |  | [optional] 
 **gameCenterAchievements** | [**GameCenterDetailRelationshipsGameCenterAchievements**](GameCenterDetailRelationshipsGameCenterAchievements.md) |  | [optional] 

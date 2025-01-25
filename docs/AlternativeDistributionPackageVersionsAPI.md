@@ -62,7 +62,7 @@ Name | Type | Description  | Notes
 
 # **alternativeDistributionPackageVersionsGetInstance**
 ```swift
-    open class func alternativeDistributionPackageVersionsGetInstance(id: String, fieldsAlternativeDistributionPackageVersions: [FieldsAlternativeDistributionPackageVersions_alternativeDistributionPackageVersionsGetInstance]? = nil, include: [Include_alternativeDistributionPackageVersionsGetInstance]? = nil, fieldsAlternativeDistributionPackageVariants: [FieldsAlternativeDistributionPackageVariants_alternativeDistributionPackageVersionsGetInstance]? = nil, fieldsAlternativeDistributionPackageDeltas: [FieldsAlternativeDistributionPackageDeltas_alternativeDistributionPackageVersionsGetInstance]? = nil, limitDeltas: Int? = nil, limitVariants: Int? = nil, completion: @escaping (_ data: AlternativeDistributionPackageVersionResponse?, _ error: Error?) -> Void)
+    open class func alternativeDistributionPackageVersionsGetInstance(id: String, fieldsAlternativeDistributionPackageVersions: [FieldsAlternativeDistributionPackageVersions_alternativeDistributionPackageVersionsGetInstance]? = nil, fieldsAlternativeDistributionPackageVariants: [FieldsAlternativeDistributionPackageVariants_alternativeDistributionPackageVersionsGetInstance]? = nil, fieldsAlternativeDistributionPackageDeltas: [FieldsAlternativeDistributionPackageDeltas_alternativeDistributionPackageVersionsGetInstance]? = nil, include: [Include_alternativeDistributionPackageVersionsGetInstance]? = nil, limitDeltas: Int? = nil, limitVariants: Int? = nil, completion: @escaping (_ data: AlternativeDistributionPackageVersionResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -74,13 +74,13 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let fieldsAlternativeDistributionPackageVersions = ["fieldsAlternativeDistributionPackageVersions_example"] // [String] | the fields to include for returned resources of type alternativeDistributionPackageVersions (optional)
-let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let fieldsAlternativeDistributionPackageVariants = ["fieldsAlternativeDistributionPackageVariants_example"] // [String] | the fields to include for returned resources of type alternativeDistributionPackageVariants (optional)
 let fieldsAlternativeDistributionPackageDeltas = ["fieldsAlternativeDistributionPackageDeltas_example"] // [String] | the fields to include for returned resources of type alternativeDistributionPackageDeltas (optional)
+let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let limitDeltas = 987 // Int | maximum number of related deltas returned (when they are included) (optional)
 let limitVariants = 987 // Int | maximum number of related variants returned (when they are included) (optional)
 
-AlternativeDistributionPackageVersionsAPI.alternativeDistributionPackageVersionsGetInstance(id: id, fieldsAlternativeDistributionPackageVersions: fieldsAlternativeDistributionPackageVersions, include: include, fieldsAlternativeDistributionPackageVariants: fieldsAlternativeDistributionPackageVariants, fieldsAlternativeDistributionPackageDeltas: fieldsAlternativeDistributionPackageDeltas, limitDeltas: limitDeltas, limitVariants: limitVariants) { (response, error) in
+AlternativeDistributionPackageVersionsAPI.alternativeDistributionPackageVersionsGetInstance(id: id, fieldsAlternativeDistributionPackageVersions: fieldsAlternativeDistributionPackageVersions, fieldsAlternativeDistributionPackageVariants: fieldsAlternativeDistributionPackageVariants, fieldsAlternativeDistributionPackageDeltas: fieldsAlternativeDistributionPackageDeltas, include: include, limitDeltas: limitDeltas, limitVariants: limitVariants) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -98,9 +98,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **fieldsAlternativeDistributionPackageVersions** | [**[String]**](String.md) | the fields to include for returned resources of type alternativeDistributionPackageVersions | [optional] 
- **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **fieldsAlternativeDistributionPackageVariants** | [**[String]**](String.md) | the fields to include for returned resources of type alternativeDistributionPackageVariants | [optional] 
  **fieldsAlternativeDistributionPackageDeltas** | [**[String]**](String.md) | the fields to include for returned resources of type alternativeDistributionPackageDeltas | [optional] 
+ **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **limitDeltas** | **Int** | maximum number of related deltas returned (when they are included) | [optional] 
  **limitVariants** | **Int** | maximum number of related variants returned (when they are included) | [optional] 
 

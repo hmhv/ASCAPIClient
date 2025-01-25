@@ -12,9 +12,9 @@ import AnyCodable
 
 public struct GameCenterAppVersionCompatibilityVersionsLinkagesRequest: Codable, JSONEncodable, Hashable {
 
-    public var data: [GameCenterAppVersionRelationshipsCompatibilityVersionsDataInner]
+    public var data: [AppStoreVersionRelationshipsGameCenterAppVersionData]
 
-    public init(data: [GameCenterAppVersionRelationshipsCompatibilityVersionsDataInner]) {
+    public init(data: [AppStoreVersionRelationshipsGameCenterAppVersionData]) {
         self.data = data
     }
 

@@ -12,12 +12,12 @@ import AnyCodable
 
 public struct AppPriceScheduleRelationships: Codable, JSONEncodable, Hashable {
 
-    public var app: AppAvailabilityRelationshipsApp?
-    public var baseTerritory: AppPricePointV2RelationshipsTerritory?
+    public var app: AlternativeDistributionKeyCreateRequestDataRelationshipsApp?
+    public var baseTerritory: AppPriceScheduleRelationshipsBaseTerritory?
     public var manualPrices: AppPriceScheduleRelationshipsManualPrices?
     public var automaticPrices: AppPriceScheduleRelationshipsManualPrices?
 
-    public init(app: AppAvailabilityRelationshipsApp? = nil, baseTerritory: AppPricePointV2RelationshipsTerritory? = nil, manualPrices: AppPriceScheduleRelationshipsManualPrices? = nil, automaticPrices: AppPriceScheduleRelationshipsManualPrices? = nil) {
+    public init(app: AlternativeDistributionKeyCreateRequestDataRelationshipsApp? = nil, baseTerritory: AppPriceScheduleRelationshipsBaseTerritory? = nil, manualPrices: AppPriceScheduleRelationshipsManualPrices? = nil, automaticPrices: AppPriceScheduleRelationshipsManualPrices? = nil) {
         self.app = app
         self.baseTerritory = baseTerritory
         self.manualPrices = manualPrices

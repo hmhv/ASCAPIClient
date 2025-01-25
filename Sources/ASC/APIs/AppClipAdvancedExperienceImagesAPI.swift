@@ -81,13 +81,12 @@ open class AppClipAdvancedExperienceImagesAPI {
      * enum for parameter fieldsAppClipAdvancedExperienceImages
      */
     public enum FieldsAppClipAdvancedExperienceImages_appClipAdvancedExperienceImagesGetInstance: String, CaseIterable {
-        case assetdeliverystate = "assetDeliveryState"
-        case filename = "fileName"
         case filesize = "fileSize"
-        case imageasset = "imageAsset"
+        case filename = "fileName"
         case sourcefilechecksum = "sourceFileChecksum"
+        case imageasset = "imageAsset"
         case uploadoperations = "uploadOperations"
-        case uploaded = "uploaded"
+        case assetdeliverystate = "assetDeliveryState"
     }
 
     /**

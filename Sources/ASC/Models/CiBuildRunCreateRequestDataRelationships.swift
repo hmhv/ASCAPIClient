@@ -13,11 +13,11 @@ import AnyCodable
 public struct CiBuildRunCreateRequestDataRelationships: Codable, JSONEncodable, Hashable {
 
     public var buildRun: CiBuildRunCreateRequestDataRelationshipsBuildRun?
-    public var workflow: CiBuildRunCreateRequestDataRelationshipsWorkflow?
-    public var sourceBranchOrTag: CiBuildRunCreateRequestDataRelationshipsSourceBranchOrTag?
-    public var pullRequest: CiBuildRunCreateRequestDataRelationshipsPullRequest?
+    public var workflow: CiBuildRunRelationshipsWorkflow?
+    public var sourceBranchOrTag: CiBuildRunRelationshipsSourceBranchOrTag?
+    public var pullRequest: CiBuildRunRelationshipsPullRequest?
 
-    public init(buildRun: CiBuildRunCreateRequestDataRelationshipsBuildRun? = nil, workflow: CiBuildRunCreateRequestDataRelationshipsWorkflow? = nil, sourceBranchOrTag: CiBuildRunCreateRequestDataRelationshipsSourceBranchOrTag? = nil, pullRequest: CiBuildRunCreateRequestDataRelationshipsPullRequest? = nil) {
+    public init(buildRun: CiBuildRunCreateRequestDataRelationshipsBuildRun? = nil, workflow: CiBuildRunRelationshipsWorkflow? = nil, sourceBranchOrTag: CiBuildRunRelationshipsSourceBranchOrTag? = nil, pullRequest: CiBuildRunRelationshipsPullRequest? = nil) {
         self.buildRun = buildRun
         self.workflow = workflow
         self.sourceBranchOrTag = sourceBranchOrTag

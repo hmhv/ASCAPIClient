@@ -3,9 +3,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**app** | [**AppAvailabilityRelationshipsApp**](AppAvailabilityRelationshipsApp.md) |  | [optional] 
+**app** | [**AlternativeDistributionKeyCreateRequestDataRelationshipsApp**](AlternativeDistributionKeyCreateRequestDataRelationshipsApp.md) |  | [optional] 
 **items** | [**ReviewSubmissionRelationshipsItems**](ReviewSubmissionRelationshipsItems.md) |  | [optional] 
-**appStoreVersionForReview** | [**AppClipDefaultExperienceRelationshipsReleaseWithAppStoreVersion**](AppClipDefaultExperienceRelationshipsReleaseWithAppStoreVersion.md) |  | [optional] 
+**appStoreVersionForReview** | [**AppClipDefaultExperienceCreateRequestDataRelationshipsReleaseWithAppStoreVersion**](AppClipDefaultExperienceCreateRequestDataRelationshipsReleaseWithAppStoreVersion.md) |  | [optional] 
 **submittedByActor** | [**ReviewSubmissionRelationshipsSubmittedByActor**](ReviewSubmissionRelationshipsSubmittedByActor.md) |  | [optional] 
 **lastUpdatedByActor** | [**ReviewSubmissionRelationshipsSubmittedByActor**](ReviewSubmissionRelationshipsSubmittedByActor.md) |  | [optional] 
 

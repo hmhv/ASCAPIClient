@@ -149,72 +149,70 @@ open class GameCenterMatchmakingRuleSetsAPI {
      * enum for parameter fieldsGameCenterMatchmakingRuleSets
      */
     public enum FieldsGameCenterMatchmakingRuleSets_gameCenterMatchmakingRuleSetsGetCollection: String, CaseIterable {
-        case matchmakingqueues = "matchmakingQueues"
-        case maxplayers = "maxPlayers"
-        case minplayers = "minPlayers"
         case referencename = "referenceName"
         case rulelanguageversion = "ruleLanguageVersion"
-        case rules = "rules"
+        case minplayers = "minPlayers"
+        case maxplayers = "maxPlayers"
         case teams = "teams"
-    }
-
-    /**
-     * enum for parameter include
-     */
-    public enum Include_gameCenterMatchmakingRuleSetsGetCollection: String, CaseIterable {
+        case rules = "rules"
         case matchmakingqueues = "matchmakingQueues"
-        case rules = "rules"
-        case teams = "teams"
-    }
-
-    /**
-     * enum for parameter fieldsGameCenterMatchmakingQueues
-     */
-    public enum FieldsGameCenterMatchmakingQueues_gameCenterMatchmakingRuleSetsGetCollection: String, CaseIterable {
-        case classicmatchmakingbundleids = "classicMatchmakingBundleIds"
-        case experimentruleset = "experimentRuleSet"
-        case referencename = "referenceName"
-        case ruleset = "ruleSet"
     }
 
     /**
      * enum for parameter fieldsGameCenterMatchmakingTeams
      */
     public enum FieldsGameCenterMatchmakingTeams_gameCenterMatchmakingRuleSetsGetCollection: String, CaseIterable {
-        case maxplayers = "maxPlayers"
-        case minplayers = "minPlayers"
         case referencename = "referenceName"
-        case ruleset = "ruleSet"
+        case minplayers = "minPlayers"
+        case maxplayers = "maxPlayers"
     }
 
     /**
      * enum for parameter fieldsGameCenterMatchmakingRules
      */
     public enum FieldsGameCenterMatchmakingRules_gameCenterMatchmakingRuleSetsGetCollection: String, CaseIterable {
-        case description = "description"
-        case expression = "expression"
         case referencename = "referenceName"
-        case ruleset = "ruleSet"
+        case description = "description"
         case type = "type"
+        case expression = "expression"
         case weight = "weight"
+    }
+
+    /**
+     * enum for parameter fieldsGameCenterMatchmakingQueues
+     */
+    public enum FieldsGameCenterMatchmakingQueues_gameCenterMatchmakingRuleSetsGetCollection: String, CaseIterable {
+        case referencename = "referenceName"
+        case classicmatchmakingbundleids = "classicMatchmakingBundleIds"
+        case ruleset = "ruleSet"
+        case experimentruleset = "experimentRuleSet"
+    }
+
+    /**
+     * enum for parameter include
+     */
+    public enum Include_gameCenterMatchmakingRuleSetsGetCollection: String, CaseIterable {
+        case teams = "teams"
+        case rules = "rules"
+        case matchmakingqueues = "matchmakingQueues"
     }
 
     /**
 
      - parameter fieldsGameCenterMatchmakingRuleSets: (query) the fields to include for returned resources of type gameCenterMatchmakingRuleSets (optional)
-     - parameter limit: (query) maximum resources per page (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
-     - parameter fieldsGameCenterMatchmakingQueues: (query) the fields to include for returned resources of type gameCenterMatchmakingQueues (optional)
      - parameter fieldsGameCenterMatchmakingTeams: (query) the fields to include for returned resources of type gameCenterMatchmakingTeams (optional)
      - parameter fieldsGameCenterMatchmakingRules: (query) the fields to include for returned resources of type gameCenterMatchmakingRules (optional)
+     - parameter fieldsGameCenterMatchmakingQueues: (query) the fields to include for returned resources of type gameCenterMatchmakingQueues (optional)
+     - parameter limit: (query) maximum resources per page (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitMatchmakingQueues: (query) maximum number of related matchmakingQueues returned (when they are included) (optional)
      - parameter limitRules: (query) maximum number of related rules returned (when they are included) (optional)
      - parameter limitTeams: (query) maximum number of related teams returned (when they are included) (optional)
      - returns: GameCenterMatchmakingRuleSetsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterMatchmakingRuleSetsGetCollection(fieldsGameCenterMatchmakingRuleSets: [FieldsGameCenterMatchmakingRuleSets_gameCenterMatchmakingRuleSetsGetCollection]? = nil, limit: Int? = nil, include: [Include_gameCenterMatchmakingRuleSetsGetCollection]? = nil, fieldsGameCenterMatchmakingQueues: [FieldsGameCenterMatchmakingQueues_gameCenterMatchmakingRuleSetsGetCollection]? = nil, fieldsGameCenterMatchmakingTeams: [FieldsGameCenterMatchmakingTeams_gameCenterMatchmakingRuleSetsGetCollection]? = nil, fieldsGameCenterMatchmakingRules: [FieldsGameCenterMatchmakingRules_gameCenterMatchmakingRuleSetsGetCollection]? = nil, limitMatchmakingQueues: Int? = nil, limitRules: Int? = nil, limitTeams: Int? = nil) async throws -> GameCenterMatchmakingRuleSetsResponse {
-        return try await gameCenterMatchmakingRuleSetsGetCollectionWithRequestBuilder(fieldsGameCenterMatchmakingRuleSets: fieldsGameCenterMatchmakingRuleSets, limit: limit, include: include, fieldsGameCenterMatchmakingQueues: fieldsGameCenterMatchmakingQueues, fieldsGameCenterMatchmakingTeams: fieldsGameCenterMatchmakingTeams, fieldsGameCenterMatchmakingRules: fieldsGameCenterMatchmakingRules, limitMatchmakingQueues: limitMatchmakingQueues, limitRules: limitRules, limitTeams: limitTeams).execute().body
+    open class func gameCenterMatchmakingRuleSetsGetCollection(fieldsGameCenterMatchmakingRuleSets: [FieldsGameCenterMatchmakingRuleSets_gameCenterMatchmakingRuleSetsGetCollection]? = nil, fieldsGameCenterMatchmakingTeams: [FieldsGameCenterMatchmakingTeams_gameCenterMatchmakingRuleSetsGetCollection]? = nil, fieldsGameCenterMatchmakingRules: [FieldsGameCenterMatchmakingRules_gameCenterMatchmakingRuleSetsGetCollection]? = nil, fieldsGameCenterMatchmakingQueues: [FieldsGameCenterMatchmakingQueues_gameCenterMatchmakingRuleSetsGetCollection]? = nil, limit: Int? = nil, include: [Include_gameCenterMatchmakingRuleSetsGetCollection]? = nil, limitMatchmakingQueues: Int? = nil, limitRules: Int? = nil, limitTeams: Int? = nil) async throws -> GameCenterMatchmakingRuleSetsResponse {
+        return try await gameCenterMatchmakingRuleSetsGetCollectionWithRequestBuilder(fieldsGameCenterMatchmakingRuleSets: fieldsGameCenterMatchmakingRuleSets, fieldsGameCenterMatchmakingTeams: fieldsGameCenterMatchmakingTeams, fieldsGameCenterMatchmakingRules: fieldsGameCenterMatchmakingRules, fieldsGameCenterMatchmakingQueues: fieldsGameCenterMatchmakingQueues, limit: limit, include: include, limitMatchmakingQueues: limitMatchmakingQueues, limitRules: limitRules, limitTeams: limitTeams).execute().body
     }
 
     /**
@@ -232,17 +230,17 @@ open class GameCenterMatchmakingRuleSetsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter fieldsGameCenterMatchmakingRuleSets: (query) the fields to include for returned resources of type gameCenterMatchmakingRuleSets (optional)
-     - parameter limit: (query) maximum resources per page (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
-     - parameter fieldsGameCenterMatchmakingQueues: (query) the fields to include for returned resources of type gameCenterMatchmakingQueues (optional)
      - parameter fieldsGameCenterMatchmakingTeams: (query) the fields to include for returned resources of type gameCenterMatchmakingTeams (optional)
      - parameter fieldsGameCenterMatchmakingRules: (query) the fields to include for returned resources of type gameCenterMatchmakingRules (optional)
+     - parameter fieldsGameCenterMatchmakingQueues: (query) the fields to include for returned resources of type gameCenterMatchmakingQueues (optional)
+     - parameter limit: (query) maximum resources per page (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitMatchmakingQueues: (query) maximum number of related matchmakingQueues returned (when they are included) (optional)
      - parameter limitRules: (query) maximum number of related rules returned (when they are included) (optional)
      - parameter limitTeams: (query) maximum number of related teams returned (when they are included) (optional)
      - returns: RequestBuilder<GameCenterMatchmakingRuleSetsResponse> 
      */
-    open class func gameCenterMatchmakingRuleSetsGetCollectionWithRequestBuilder(fieldsGameCenterMatchmakingRuleSets: [FieldsGameCenterMatchmakingRuleSets_gameCenterMatchmakingRuleSetsGetCollection]? = nil, limit: Int? = nil, include: [Include_gameCenterMatchmakingRuleSetsGetCollection]? = nil, fieldsGameCenterMatchmakingQueues: [FieldsGameCenterMatchmakingQueues_gameCenterMatchmakingRuleSetsGetCollection]? = nil, fieldsGameCenterMatchmakingTeams: [FieldsGameCenterMatchmakingTeams_gameCenterMatchmakingRuleSetsGetCollection]? = nil, fieldsGameCenterMatchmakingRules: [FieldsGameCenterMatchmakingRules_gameCenterMatchmakingRuleSetsGetCollection]? = nil, limitMatchmakingQueues: Int? = nil, limitRules: Int? = nil, limitTeams: Int? = nil) -> RequestBuilder<GameCenterMatchmakingRuleSetsResponse> {
+    open class func gameCenterMatchmakingRuleSetsGetCollectionWithRequestBuilder(fieldsGameCenterMatchmakingRuleSets: [FieldsGameCenterMatchmakingRuleSets_gameCenterMatchmakingRuleSetsGetCollection]? = nil, fieldsGameCenterMatchmakingTeams: [FieldsGameCenterMatchmakingTeams_gameCenterMatchmakingRuleSetsGetCollection]? = nil, fieldsGameCenterMatchmakingRules: [FieldsGameCenterMatchmakingRules_gameCenterMatchmakingRuleSetsGetCollection]? = nil, fieldsGameCenterMatchmakingQueues: [FieldsGameCenterMatchmakingQueues_gameCenterMatchmakingRuleSetsGetCollection]? = nil, limit: Int? = nil, include: [Include_gameCenterMatchmakingRuleSetsGetCollection]? = nil, limitMatchmakingQueues: Int? = nil, limitRules: Int? = nil, limitTeams: Int? = nil) -> RequestBuilder<GameCenterMatchmakingRuleSetsResponse> {
         let localVariablePath = "/v1/gameCenterMatchmakingRuleSets"
         let localVariableURLString = ASCAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -250,11 +248,11 @@ open class GameCenterMatchmakingRuleSetsAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[gameCenterMatchmakingRuleSets]": (wrappedValue: fieldsGameCenterMatchmakingRuleSets?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterMatchmakingQueues]": (wrappedValue: fieldsGameCenterMatchmakingQueues?.encodeToJSON(), isExplode: false),
             "fields[gameCenterMatchmakingTeams]": (wrappedValue: fieldsGameCenterMatchmakingTeams?.encodeToJSON(), isExplode: false),
             "fields[gameCenterMatchmakingRules]": (wrappedValue: fieldsGameCenterMatchmakingRules?.encodeToJSON(), isExplode: false),
+            "fields[gameCenterMatchmakingQueues]": (wrappedValue: fieldsGameCenterMatchmakingQueues?.encodeToJSON(), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "limit[matchmakingQueues]": (wrappedValue: limitMatchmakingQueues?.encodeToJSON(), isExplode: true),
             "limit[rules]": (wrappedValue: limitRules?.encodeToJSON(), isExplode: true),
             "limit[teams]": (wrappedValue: limitTeams?.encodeToJSON(), isExplode: true),
@@ -295,72 +293,70 @@ open class GameCenterMatchmakingRuleSetsAPI {
      * enum for parameter fieldsGameCenterMatchmakingRuleSets
      */
     public enum FieldsGameCenterMatchmakingRuleSets_gameCenterMatchmakingRuleSetsGetInstance: String, CaseIterable {
-        case matchmakingqueues = "matchmakingQueues"
-        case maxplayers = "maxPlayers"
-        case minplayers = "minPlayers"
         case referencename = "referenceName"
         case rulelanguageversion = "ruleLanguageVersion"
-        case rules = "rules"
+        case minplayers = "minPlayers"
+        case maxplayers = "maxPlayers"
         case teams = "teams"
-    }
-
-    /**
-     * enum for parameter include
-     */
-    public enum Include_gameCenterMatchmakingRuleSetsGetInstance: String, CaseIterable {
+        case rules = "rules"
         case matchmakingqueues = "matchmakingQueues"
-        case rules = "rules"
-        case teams = "teams"
-    }
-
-    /**
-     * enum for parameter fieldsGameCenterMatchmakingQueues
-     */
-    public enum FieldsGameCenterMatchmakingQueues_gameCenterMatchmakingRuleSetsGetInstance: String, CaseIterable {
-        case classicmatchmakingbundleids = "classicMatchmakingBundleIds"
-        case experimentruleset = "experimentRuleSet"
-        case referencename = "referenceName"
-        case ruleset = "ruleSet"
     }
 
     /**
      * enum for parameter fieldsGameCenterMatchmakingTeams
      */
     public enum FieldsGameCenterMatchmakingTeams_gameCenterMatchmakingRuleSetsGetInstance: String, CaseIterable {
-        case maxplayers = "maxPlayers"
-        case minplayers = "minPlayers"
         case referencename = "referenceName"
-        case ruleset = "ruleSet"
+        case minplayers = "minPlayers"
+        case maxplayers = "maxPlayers"
     }
 
     /**
      * enum for parameter fieldsGameCenterMatchmakingRules
      */
     public enum FieldsGameCenterMatchmakingRules_gameCenterMatchmakingRuleSetsGetInstance: String, CaseIterable {
-        case description = "description"
-        case expression = "expression"
         case referencename = "referenceName"
-        case ruleset = "ruleSet"
+        case description = "description"
         case type = "type"
+        case expression = "expression"
         case weight = "weight"
+    }
+
+    /**
+     * enum for parameter fieldsGameCenterMatchmakingQueues
+     */
+    public enum FieldsGameCenterMatchmakingQueues_gameCenterMatchmakingRuleSetsGetInstance: String, CaseIterable {
+        case referencename = "referenceName"
+        case classicmatchmakingbundleids = "classicMatchmakingBundleIds"
+        case ruleset = "ruleSet"
+        case experimentruleset = "experimentRuleSet"
+    }
+
+    /**
+     * enum for parameter include
+     */
+    public enum Include_gameCenterMatchmakingRuleSetsGetInstance: String, CaseIterable {
+        case teams = "teams"
+        case rules = "rules"
+        case matchmakingqueues = "matchmakingQueues"
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsGameCenterMatchmakingRuleSets: (query) the fields to include for returned resources of type gameCenterMatchmakingRuleSets (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
-     - parameter fieldsGameCenterMatchmakingQueues: (query) the fields to include for returned resources of type gameCenterMatchmakingQueues (optional)
      - parameter fieldsGameCenterMatchmakingTeams: (query) the fields to include for returned resources of type gameCenterMatchmakingTeams (optional)
      - parameter fieldsGameCenterMatchmakingRules: (query) the fields to include for returned resources of type gameCenterMatchmakingRules (optional)
+     - parameter fieldsGameCenterMatchmakingQueues: (query) the fields to include for returned resources of type gameCenterMatchmakingQueues (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitMatchmakingQueues: (query) maximum number of related matchmakingQueues returned (when they are included) (optional)
      - parameter limitRules: (query) maximum number of related rules returned (when they are included) (optional)
      - parameter limitTeams: (query) maximum number of related teams returned (when they are included) (optional)
      - returns: GameCenterMatchmakingRuleSetResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterMatchmakingRuleSetsGetInstance(id: String, fieldsGameCenterMatchmakingRuleSets: [FieldsGameCenterMatchmakingRuleSets_gameCenterMatchmakingRuleSetsGetInstance]? = nil, include: [Include_gameCenterMatchmakingRuleSetsGetInstance]? = nil, fieldsGameCenterMatchmakingQueues: [FieldsGameCenterMatchmakingQueues_gameCenterMatchmakingRuleSetsGetInstance]? = nil, fieldsGameCenterMatchmakingTeams: [FieldsGameCenterMatchmakingTeams_gameCenterMatchmakingRuleSetsGetInstance]? = nil, fieldsGameCenterMatchmakingRules: [FieldsGameCenterMatchmakingRules_gameCenterMatchmakingRuleSetsGetInstance]? = nil, limitMatchmakingQueues: Int? = nil, limitRules: Int? = nil, limitTeams: Int? = nil) async throws -> GameCenterMatchmakingRuleSetResponse {
-        return try await gameCenterMatchmakingRuleSetsGetInstanceWithRequestBuilder(id: id, fieldsGameCenterMatchmakingRuleSets: fieldsGameCenterMatchmakingRuleSets, include: include, fieldsGameCenterMatchmakingQueues: fieldsGameCenterMatchmakingQueues, fieldsGameCenterMatchmakingTeams: fieldsGameCenterMatchmakingTeams, fieldsGameCenterMatchmakingRules: fieldsGameCenterMatchmakingRules, limitMatchmakingQueues: limitMatchmakingQueues, limitRules: limitRules, limitTeams: limitTeams).execute().body
+    open class func gameCenterMatchmakingRuleSetsGetInstance(id: String, fieldsGameCenterMatchmakingRuleSets: [FieldsGameCenterMatchmakingRuleSets_gameCenterMatchmakingRuleSetsGetInstance]? = nil, fieldsGameCenterMatchmakingTeams: [FieldsGameCenterMatchmakingTeams_gameCenterMatchmakingRuleSetsGetInstance]? = nil, fieldsGameCenterMatchmakingRules: [FieldsGameCenterMatchmakingRules_gameCenterMatchmakingRuleSetsGetInstance]? = nil, fieldsGameCenterMatchmakingQueues: [FieldsGameCenterMatchmakingQueues_gameCenterMatchmakingRuleSetsGetInstance]? = nil, include: [Include_gameCenterMatchmakingRuleSetsGetInstance]? = nil, limitMatchmakingQueues: Int? = nil, limitRules: Int? = nil, limitTeams: Int? = nil) async throws -> GameCenterMatchmakingRuleSetResponse {
+        return try await gameCenterMatchmakingRuleSetsGetInstanceWithRequestBuilder(id: id, fieldsGameCenterMatchmakingRuleSets: fieldsGameCenterMatchmakingRuleSets, fieldsGameCenterMatchmakingTeams: fieldsGameCenterMatchmakingTeams, fieldsGameCenterMatchmakingRules: fieldsGameCenterMatchmakingRules, fieldsGameCenterMatchmakingQueues: fieldsGameCenterMatchmakingQueues, include: include, limitMatchmakingQueues: limitMatchmakingQueues, limitRules: limitRules, limitTeams: limitTeams).execute().body
     }
 
     /**
@@ -379,16 +375,16 @@ open class GameCenterMatchmakingRuleSetsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsGameCenterMatchmakingRuleSets: (query) the fields to include for returned resources of type gameCenterMatchmakingRuleSets (optional)
-     - parameter include: (query) comma-separated list of relationships to include (optional)
-     - parameter fieldsGameCenterMatchmakingQueues: (query) the fields to include for returned resources of type gameCenterMatchmakingQueues (optional)
      - parameter fieldsGameCenterMatchmakingTeams: (query) the fields to include for returned resources of type gameCenterMatchmakingTeams (optional)
      - parameter fieldsGameCenterMatchmakingRules: (query) the fields to include for returned resources of type gameCenterMatchmakingRules (optional)
+     - parameter fieldsGameCenterMatchmakingQueues: (query) the fields to include for returned resources of type gameCenterMatchmakingQueues (optional)
+     - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitMatchmakingQueues: (query) maximum number of related matchmakingQueues returned (when they are included) (optional)
      - parameter limitRules: (query) maximum number of related rules returned (when they are included) (optional)
      - parameter limitTeams: (query) maximum number of related teams returned (when they are included) (optional)
      - returns: RequestBuilder<GameCenterMatchmakingRuleSetResponse> 
      */
-    open class func gameCenterMatchmakingRuleSetsGetInstanceWithRequestBuilder(id: String, fieldsGameCenterMatchmakingRuleSets: [FieldsGameCenterMatchmakingRuleSets_gameCenterMatchmakingRuleSetsGetInstance]? = nil, include: [Include_gameCenterMatchmakingRuleSetsGetInstance]? = nil, fieldsGameCenterMatchmakingQueues: [FieldsGameCenterMatchmakingQueues_gameCenterMatchmakingRuleSetsGetInstance]? = nil, fieldsGameCenterMatchmakingTeams: [FieldsGameCenterMatchmakingTeams_gameCenterMatchmakingRuleSetsGetInstance]? = nil, fieldsGameCenterMatchmakingRules: [FieldsGameCenterMatchmakingRules_gameCenterMatchmakingRuleSetsGetInstance]? = nil, limitMatchmakingQueues: Int? = nil, limitRules: Int? = nil, limitTeams: Int? = nil) -> RequestBuilder<GameCenterMatchmakingRuleSetResponse> {
+    open class func gameCenterMatchmakingRuleSetsGetInstanceWithRequestBuilder(id: String, fieldsGameCenterMatchmakingRuleSets: [FieldsGameCenterMatchmakingRuleSets_gameCenterMatchmakingRuleSetsGetInstance]? = nil, fieldsGameCenterMatchmakingTeams: [FieldsGameCenterMatchmakingTeams_gameCenterMatchmakingRuleSetsGetInstance]? = nil, fieldsGameCenterMatchmakingRules: [FieldsGameCenterMatchmakingRules_gameCenterMatchmakingRuleSetsGetInstance]? = nil, fieldsGameCenterMatchmakingQueues: [FieldsGameCenterMatchmakingQueues_gameCenterMatchmakingRuleSetsGetInstance]? = nil, include: [Include_gameCenterMatchmakingRuleSetsGetInstance]? = nil, limitMatchmakingQueues: Int? = nil, limitRules: Int? = nil, limitTeams: Int? = nil) -> RequestBuilder<GameCenterMatchmakingRuleSetResponse> {
         var localVariablePath = "/v1/gameCenterMatchmakingRuleSets/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -399,10 +395,10 @@ open class GameCenterMatchmakingRuleSetsAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "fields[gameCenterMatchmakingRuleSets]": (wrappedValue: fieldsGameCenterMatchmakingRuleSets?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterMatchmakingQueues]": (wrappedValue: fieldsGameCenterMatchmakingQueues?.encodeToJSON(), isExplode: false),
             "fields[gameCenterMatchmakingTeams]": (wrappedValue: fieldsGameCenterMatchmakingTeams?.encodeToJSON(), isExplode: false),
             "fields[gameCenterMatchmakingRules]": (wrappedValue: fieldsGameCenterMatchmakingRules?.encodeToJSON(), isExplode: false),
+            "fields[gameCenterMatchmakingQueues]": (wrappedValue: fieldsGameCenterMatchmakingQueues?.encodeToJSON(), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
             "limit[matchmakingQueues]": (wrappedValue: limitMatchmakingQueues?.encodeToJSON(), isExplode: true),
             "limit[rules]": (wrappedValue: limitRules?.encodeToJSON(), isExplode: true),
             "limit[teams]": (wrappedValue: limitTeams?.encodeToJSON(), isExplode: true),
@@ -443,31 +439,31 @@ open class GameCenterMatchmakingRuleSetsAPI {
      * enum for parameter fieldsGameCenterMatchmakingQueues
      */
     public enum FieldsGameCenterMatchmakingQueues_gameCenterMatchmakingRuleSetsMatchmakingQueuesGetToManyRelated: String, CaseIterable {
-        case classicmatchmakingbundleids = "classicMatchmakingBundleIds"
-        case experimentruleset = "experimentRuleSet"
         case referencename = "referenceName"
+        case classicmatchmakingbundleids = "classicMatchmakingBundleIds"
         case ruleset = "ruleSet"
+        case experimentruleset = "experimentRuleSet"
     }
 
     /**
      * enum for parameter fieldsGameCenterMatchmakingRuleSets
      */
     public enum FieldsGameCenterMatchmakingRuleSets_gameCenterMatchmakingRuleSetsMatchmakingQueuesGetToManyRelated: String, CaseIterable {
-        case matchmakingqueues = "matchmakingQueues"
-        case maxplayers = "maxPlayers"
-        case minplayers = "minPlayers"
         case referencename = "referenceName"
         case rulelanguageversion = "ruleLanguageVersion"
-        case rules = "rules"
+        case minplayers = "minPlayers"
+        case maxplayers = "maxPlayers"
         case teams = "teams"
+        case rules = "rules"
+        case matchmakingqueues = "matchmakingQueues"
     }
 
     /**
      * enum for parameter include
      */
     public enum Include_gameCenterMatchmakingRuleSetsMatchmakingQueuesGetToManyRelated: String, CaseIterable {
-        case experimentruleset = "experimentRuleSet"
         case ruleset = "ruleSet"
+        case experimentruleset = "experimentRuleSet"
     }
 
     /**
@@ -556,11 +552,10 @@ open class GameCenterMatchmakingRuleSetsAPI {
      * enum for parameter fieldsGameCenterMatchmakingRules
      */
     public enum FieldsGameCenterMatchmakingRules_gameCenterMatchmakingRuleSetsRulesGetToManyRelated: String, CaseIterable {
-        case description = "description"
-        case expression = "expression"
         case referencename = "referenceName"
-        case ruleset = "ruleSet"
+        case description = "description"
         case type = "type"
+        case expression = "expression"
         case weight = "weight"
     }
 
@@ -644,10 +639,9 @@ open class GameCenterMatchmakingRuleSetsAPI {
      * enum for parameter fieldsGameCenterMatchmakingTeams
      */
     public enum FieldsGameCenterMatchmakingTeams_gameCenterMatchmakingRuleSetsTeamsGetToManyRelated: String, CaseIterable {
-        case maxplayers = "maxPlayers"
-        case minplayers = "minPlayers"
         case referencename = "referenceName"
-        case ruleset = "ruleSet"
+        case minplayers = "minPlayers"
+        case maxplayers = "maxPlayers"
     }
 
     /**

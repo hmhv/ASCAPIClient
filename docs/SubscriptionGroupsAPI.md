@@ -108,7 +108,7 @@ Void (empty response body)
 
 # **subscriptionGroupsGetInstance**
 ```swift
-    open class func subscriptionGroupsGetInstance(id: String, fieldsSubscriptionGroups: [FieldsSubscriptionGroups_subscriptionGroupsGetInstance]? = nil, include: [Include_subscriptionGroupsGetInstance]? = nil, fieldsSubscriptions: [FieldsSubscriptions_subscriptionGroupsGetInstance]? = nil, fieldsSubscriptionGroupLocalizations: [FieldsSubscriptionGroupLocalizations_subscriptionGroupsGetInstance]? = nil, limitSubscriptionGroupLocalizations: Int? = nil, limitSubscriptions: Int? = nil, completion: @escaping (_ data: SubscriptionGroupResponse?, _ error: Error?) -> Void)
+    open class func subscriptionGroupsGetInstance(id: String, fieldsSubscriptionGroups: [FieldsSubscriptionGroups_subscriptionGroupsGetInstance]? = nil, fieldsSubscriptions: [FieldsSubscriptions_subscriptionGroupsGetInstance]? = nil, fieldsSubscriptionGroupLocalizations: [FieldsSubscriptionGroupLocalizations_subscriptionGroupsGetInstance]? = nil, include: [Include_subscriptionGroupsGetInstance]? = nil, limitSubscriptionGroupLocalizations: Int? = nil, limitSubscriptions: Int? = nil, completion: @escaping (_ data: SubscriptionGroupResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -120,13 +120,13 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let fieldsSubscriptionGroups = ["fieldsSubscriptionGroups_example"] // [String] | the fields to include for returned resources of type subscriptionGroups (optional)
-let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let fieldsSubscriptions = ["fieldsSubscriptions_example"] // [String] | the fields to include for returned resources of type subscriptions (optional)
 let fieldsSubscriptionGroupLocalizations = ["fieldsSubscriptionGroupLocalizations_example"] // [String] | the fields to include for returned resources of type subscriptionGroupLocalizations (optional)
+let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let limitSubscriptionGroupLocalizations = 987 // Int | maximum number of related subscriptionGroupLocalizations returned (when they are included) (optional)
 let limitSubscriptions = 987 // Int | maximum number of related subscriptions returned (when they are included) (optional)
 
-SubscriptionGroupsAPI.subscriptionGroupsGetInstance(id: id, fieldsSubscriptionGroups: fieldsSubscriptionGroups, include: include, fieldsSubscriptions: fieldsSubscriptions, fieldsSubscriptionGroupLocalizations: fieldsSubscriptionGroupLocalizations, limitSubscriptionGroupLocalizations: limitSubscriptionGroupLocalizations, limitSubscriptions: limitSubscriptions) { (response, error) in
+SubscriptionGroupsAPI.subscriptionGroupsGetInstance(id: id, fieldsSubscriptionGroups: fieldsSubscriptionGroups, fieldsSubscriptions: fieldsSubscriptions, fieldsSubscriptionGroupLocalizations: fieldsSubscriptionGroupLocalizations, include: include, limitSubscriptionGroupLocalizations: limitSubscriptionGroupLocalizations, limitSubscriptions: limitSubscriptions) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -144,9 +144,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **fieldsSubscriptionGroups** | [**[String]**](String.md) | the fields to include for returned resources of type subscriptionGroups | [optional] 
- **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **fieldsSubscriptions** | [**[String]**](String.md) | the fields to include for returned resources of type subscriptions | [optional] 
  **fieldsSubscriptionGroupLocalizations** | [**[String]**](String.md) | the fields to include for returned resources of type subscriptionGroupLocalizations | [optional] 
+ **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **limitSubscriptionGroupLocalizations** | **Int** | maximum number of related subscriptionGroupLocalizations returned (when they are included) | [optional] 
  **limitSubscriptions** | **Int** | maximum number of related subscriptions returned (when they are included) | [optional] 
 
@@ -167,7 +167,7 @@ Name | Type | Description  | Notes
 
 # **subscriptionGroupsSubscriptionGroupLocalizationsGetToManyRelated**
 ```swift
-    open class func subscriptionGroupsSubscriptionGroupLocalizationsGetToManyRelated(id: String, fieldsSubscriptionGroups: [FieldsSubscriptionGroups_subscriptionGroupsSubscriptionGroupLocalizationsGetToManyRelated]? = nil, fieldsSubscriptionGroupLocalizations: [FieldsSubscriptionGroupLocalizations_subscriptionGroupsSubscriptionGroupLocalizationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionGroupsSubscriptionGroupLocalizationsGetToManyRelated]? = nil, completion: @escaping (_ data: SubscriptionGroupLocalizationsResponse?, _ error: Error?) -> Void)
+    open class func subscriptionGroupsSubscriptionGroupLocalizationsGetToManyRelated(id: String, fieldsSubscriptionGroupLocalizations: [FieldsSubscriptionGroupLocalizations_subscriptionGroupsSubscriptionGroupLocalizationsGetToManyRelated]? = nil, fieldsSubscriptionGroups: [FieldsSubscriptionGroups_subscriptionGroupsSubscriptionGroupLocalizationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionGroupsSubscriptionGroupLocalizationsGetToManyRelated]? = nil, completion: @escaping (_ data: SubscriptionGroupLocalizationsResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -178,12 +178,12 @@ Name | Type | Description  | Notes
 import ASC
 
 let id = "id_example" // String | the id of the requested resource
-let fieldsSubscriptionGroups = ["fieldsSubscriptionGroups_example"] // [String] | the fields to include for returned resources of type subscriptionGroups (optional)
 let fieldsSubscriptionGroupLocalizations = ["fieldsSubscriptionGroupLocalizations_example"] // [String] | the fields to include for returned resources of type subscriptionGroupLocalizations (optional)
+let fieldsSubscriptionGroups = ["fieldsSubscriptionGroups_example"] // [String] | the fields to include for returned resources of type subscriptionGroups (optional)
 let limit = 987 // Int | maximum resources per page (optional)
 let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 
-SubscriptionGroupsAPI.subscriptionGroupsSubscriptionGroupLocalizationsGetToManyRelated(id: id, fieldsSubscriptionGroups: fieldsSubscriptionGroups, fieldsSubscriptionGroupLocalizations: fieldsSubscriptionGroupLocalizations, limit: limit, include: include) { (response, error) in
+SubscriptionGroupsAPI.subscriptionGroupsSubscriptionGroupLocalizationsGetToManyRelated(id: id, fieldsSubscriptionGroupLocalizations: fieldsSubscriptionGroupLocalizations, fieldsSubscriptionGroups: fieldsSubscriptionGroups, limit: limit, include: include) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -200,8 +200,8 @@ SubscriptionGroupsAPI.subscriptionGroupsSubscriptionGroupLocalizationsGetToManyR
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
- **fieldsSubscriptionGroups** | [**[String]**](String.md) | the fields to include for returned resources of type subscriptionGroups | [optional] 
  **fieldsSubscriptionGroupLocalizations** | [**[String]**](String.md) | the fields to include for returned resources of type subscriptionGroupLocalizations | [optional] 
+ **fieldsSubscriptionGroups** | [**[String]**](String.md) | the fields to include for returned resources of type subscriptionGroups | [optional] 
  **limit** | **Int** | maximum resources per page | [optional] 
  **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
 
@@ -222,7 +222,7 @@ Name | Type | Description  | Notes
 
 # **subscriptionGroupsSubscriptionsGetToManyRelated**
 ```swift
-    open class func subscriptionGroupsSubscriptionsGetToManyRelated(id: String, filterName: [String]? = nil, filterProductId: [String]? = nil, filterState: [FilterState_subscriptionGroupsSubscriptionsGetToManyRelated]? = nil, sort: [Sort_subscriptionGroupsSubscriptionsGetToManyRelated]? = nil, fieldsPromotedPurchases: [FieldsPromotedPurchases_subscriptionGroupsSubscriptionsGetToManyRelated]? = nil, fieldsSubscriptionPromotionalOffers: [FieldsSubscriptionPromotionalOffers_subscriptionGroupsSubscriptionsGetToManyRelated]? = nil, fieldsSubscriptionOfferCodes: [FieldsSubscriptionOfferCodes_subscriptionGroupsSubscriptionsGetToManyRelated]? = nil, fieldsSubscriptionAppStoreReviewScreenshots: [FieldsSubscriptionAppStoreReviewScreenshots_subscriptionGroupsSubscriptionsGetToManyRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_subscriptionGroupsSubscriptionsGetToManyRelated]? = nil, fieldsSubscriptionAvailabilities: [FieldsSubscriptionAvailabilities_subscriptionGroupsSubscriptionsGetToManyRelated]? = nil, fieldsSubscriptionGroups: [FieldsSubscriptionGroups_subscriptionGroupsSubscriptionsGetToManyRelated]? = nil, fieldsSubscriptionIntroductoryOffers: [FieldsSubscriptionIntroductoryOffers_subscriptionGroupsSubscriptionsGetToManyRelated]? = nil, fieldsSubscriptionPrices: [FieldsSubscriptionPrices_subscriptionGroupsSubscriptionsGetToManyRelated]? = nil, fieldsSubscriptionLocalizations: [FieldsSubscriptionLocalizations_subscriptionGroupsSubscriptionsGetToManyRelated]? = nil, limit: Int? = nil, limitSubscriptionLocalizations: Int? = nil, limitIntroductoryOffers: Int? = nil, limitPromotionalOffers: Int? = nil, limitOfferCodes: Int? = nil, limitPrices: Int? = nil, include: [Include_subscriptionGroupsSubscriptionsGetToManyRelated]? = nil, completion: @escaping (_ data: SubscriptionsResponse?, _ error: Error?) -> Void)
+    open class func subscriptionGroupsSubscriptionsGetToManyRelated(id: String, filterProductId: [String]? = nil, filterName: [String]? = nil, filterState: [FilterState_subscriptionGroupsSubscriptionsGetToManyRelated]? = nil, sort: [Sort_subscriptionGroupsSubscriptionsGetToManyRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_subscriptionGroupsSubscriptionsGetToManyRelated]? = nil, fieldsSubscriptionLocalizations: [FieldsSubscriptionLocalizations_subscriptionGroupsSubscriptionsGetToManyRelated]? = nil, fieldsSubscriptionAppStoreReviewScreenshots: [FieldsSubscriptionAppStoreReviewScreenshots_subscriptionGroupsSubscriptionsGetToManyRelated]? = nil, fieldsSubscriptionGroups: [FieldsSubscriptionGroups_subscriptionGroupsSubscriptionsGetToManyRelated]? = nil, fieldsSubscriptionIntroductoryOffers: [FieldsSubscriptionIntroductoryOffers_subscriptionGroupsSubscriptionsGetToManyRelated]? = nil, fieldsSubscriptionPromotionalOffers: [FieldsSubscriptionPromotionalOffers_subscriptionGroupsSubscriptionsGetToManyRelated]? = nil, fieldsSubscriptionOfferCodes: [FieldsSubscriptionOfferCodes_subscriptionGroupsSubscriptionsGetToManyRelated]? = nil, fieldsSubscriptionPrices: [FieldsSubscriptionPrices_subscriptionGroupsSubscriptionsGetToManyRelated]? = nil, fieldsPromotedPurchases: [FieldsPromotedPurchases_subscriptionGroupsSubscriptionsGetToManyRelated]? = nil, fieldsSubscriptionAvailabilities: [FieldsSubscriptionAvailabilities_subscriptionGroupsSubscriptionsGetToManyRelated]? = nil, fieldsWinBackOffers: [FieldsWinBackOffers_subscriptionGroupsSubscriptionsGetToManyRelated]? = nil, fieldsSubscriptionImages: [FieldsSubscriptionImages_subscriptionGroupsSubscriptionsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionGroupsSubscriptionsGetToManyRelated]? = nil, limitSubscriptionLocalizations: Int? = nil, limitIntroductoryOffers: Int? = nil, limitPromotionalOffers: Int? = nil, limitOfferCodes: Int? = nil, limitPrices: Int? = nil, limitWinBackOffers: Int? = nil, limitImages: Int? = nil, completion: @escaping (_ data: SubscriptionsResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -233,29 +233,33 @@ Name | Type | Description  | Notes
 import ASC
 
 let id = "id_example" // String | the id of the requested resource
-let filterName = ["inner_example"] // [String] | filter by attribute 'name' (optional)
 let filterProductId = ["inner_example"] // [String] | filter by attribute 'productId' (optional)
+let filterName = ["inner_example"] // [String] | filter by attribute 'name' (optional)
 let filterState = ["filterState_example"] // [String] | filter by attribute 'state' (optional)
 let sort = ["sort_example"] // [String] | comma-separated list of sort expressions; resources will be sorted as specified (optional)
-let fieldsPromotedPurchases = ["fieldsPromotedPurchases_example"] // [String] | the fields to include for returned resources of type promotedPurchases (optional)
-let fieldsSubscriptionPromotionalOffers = ["fieldsSubscriptionPromotionalOffers_example"] // [String] | the fields to include for returned resources of type subscriptionPromotionalOffers (optional)
-let fieldsSubscriptionOfferCodes = ["fieldsSubscriptionOfferCodes_example"] // [String] | the fields to include for returned resources of type subscriptionOfferCodes (optional)
-let fieldsSubscriptionAppStoreReviewScreenshots = ["fieldsSubscriptionAppStoreReviewScreenshots_example"] // [String] | the fields to include for returned resources of type subscriptionAppStoreReviewScreenshots (optional)
 let fieldsSubscriptions = ["fieldsSubscriptions_example"] // [String] | the fields to include for returned resources of type subscriptions (optional)
-let fieldsSubscriptionAvailabilities = ["fieldsSubscriptionAvailabilities_example"] // [String] | the fields to include for returned resources of type subscriptionAvailabilities (optional)
+let fieldsSubscriptionLocalizations = ["fieldsSubscriptionLocalizations_example"] // [String] | the fields to include for returned resources of type subscriptionLocalizations (optional)
+let fieldsSubscriptionAppStoreReviewScreenshots = ["fieldsSubscriptionAppStoreReviewScreenshots_example"] // [String] | the fields to include for returned resources of type subscriptionAppStoreReviewScreenshots (optional)
 let fieldsSubscriptionGroups = ["fieldsSubscriptionGroups_example"] // [String] | the fields to include for returned resources of type subscriptionGroups (optional)
 let fieldsSubscriptionIntroductoryOffers = ["fieldsSubscriptionIntroductoryOffers_example"] // [String] | the fields to include for returned resources of type subscriptionIntroductoryOffers (optional)
+let fieldsSubscriptionPromotionalOffers = ["fieldsSubscriptionPromotionalOffers_example"] // [String] | the fields to include for returned resources of type subscriptionPromotionalOffers (optional)
+let fieldsSubscriptionOfferCodes = ["fieldsSubscriptionOfferCodes_example"] // [String] | the fields to include for returned resources of type subscriptionOfferCodes (optional)
 let fieldsSubscriptionPrices = ["fieldsSubscriptionPrices_example"] // [String] | the fields to include for returned resources of type subscriptionPrices (optional)
-let fieldsSubscriptionLocalizations = ["fieldsSubscriptionLocalizations_example"] // [String] | the fields to include for returned resources of type subscriptionLocalizations (optional)
+let fieldsPromotedPurchases = ["fieldsPromotedPurchases_example"] // [String] | the fields to include for returned resources of type promotedPurchases (optional)
+let fieldsSubscriptionAvailabilities = ["fieldsSubscriptionAvailabilities_example"] // [String] | the fields to include for returned resources of type subscriptionAvailabilities (optional)
+let fieldsWinBackOffers = ["fieldsWinBackOffers_example"] // [String] | the fields to include for returned resources of type winBackOffers (optional)
+let fieldsSubscriptionImages = ["fieldsSubscriptionImages_example"] // [String] | the fields to include for returned resources of type subscriptionImages (optional)
 let limit = 987 // Int | maximum resources per page (optional)
+let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let limitSubscriptionLocalizations = 987 // Int | maximum number of related subscriptionLocalizations returned (when they are included) (optional)
 let limitIntroductoryOffers = 987 // Int | maximum number of related introductoryOffers returned (when they are included) (optional)
 let limitPromotionalOffers = 987 // Int | maximum number of related promotionalOffers returned (when they are included) (optional)
 let limitOfferCodes = 987 // Int | maximum number of related offerCodes returned (when they are included) (optional)
 let limitPrices = 987 // Int | maximum number of related prices returned (when they are included) (optional)
-let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
+let limitWinBackOffers = 987 // Int | maximum number of related winBackOffers returned (when they are included) (optional)
+let limitImages = 987 // Int | maximum number of related images returned (when they are included) (optional)
 
-SubscriptionGroupsAPI.subscriptionGroupsSubscriptionsGetToManyRelated(id: id, filterName: filterName, filterProductId: filterProductId, filterState: filterState, sort: sort, fieldsPromotedPurchases: fieldsPromotedPurchases, fieldsSubscriptionPromotionalOffers: fieldsSubscriptionPromotionalOffers, fieldsSubscriptionOfferCodes: fieldsSubscriptionOfferCodes, fieldsSubscriptionAppStoreReviewScreenshots: fieldsSubscriptionAppStoreReviewScreenshots, fieldsSubscriptions: fieldsSubscriptions, fieldsSubscriptionAvailabilities: fieldsSubscriptionAvailabilities, fieldsSubscriptionGroups: fieldsSubscriptionGroups, fieldsSubscriptionIntroductoryOffers: fieldsSubscriptionIntroductoryOffers, fieldsSubscriptionPrices: fieldsSubscriptionPrices, fieldsSubscriptionLocalizations: fieldsSubscriptionLocalizations, limit: limit, limitSubscriptionLocalizations: limitSubscriptionLocalizations, limitIntroductoryOffers: limitIntroductoryOffers, limitPromotionalOffers: limitPromotionalOffers, limitOfferCodes: limitOfferCodes, limitPrices: limitPrices, include: include) { (response, error) in
+SubscriptionGroupsAPI.subscriptionGroupsSubscriptionsGetToManyRelated(id: id, filterProductId: filterProductId, filterName: filterName, filterState: filterState, sort: sort, fieldsSubscriptions: fieldsSubscriptions, fieldsSubscriptionLocalizations: fieldsSubscriptionLocalizations, fieldsSubscriptionAppStoreReviewScreenshots: fieldsSubscriptionAppStoreReviewScreenshots, fieldsSubscriptionGroups: fieldsSubscriptionGroups, fieldsSubscriptionIntroductoryOffers: fieldsSubscriptionIntroductoryOffers, fieldsSubscriptionPromotionalOffers: fieldsSubscriptionPromotionalOffers, fieldsSubscriptionOfferCodes: fieldsSubscriptionOfferCodes, fieldsSubscriptionPrices: fieldsSubscriptionPrices, fieldsPromotedPurchases: fieldsPromotedPurchases, fieldsSubscriptionAvailabilities: fieldsSubscriptionAvailabilities, fieldsWinBackOffers: fieldsWinBackOffers, fieldsSubscriptionImages: fieldsSubscriptionImages, limit: limit, include: include, limitSubscriptionLocalizations: limitSubscriptionLocalizations, limitIntroductoryOffers: limitIntroductoryOffers, limitPromotionalOffers: limitPromotionalOffers, limitOfferCodes: limitOfferCodes, limitPrices: limitPrices, limitWinBackOffers: limitWinBackOffers, limitImages: limitImages) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -272,27 +276,31 @@ SubscriptionGroupsAPI.subscriptionGroupsSubscriptionsGetToManyRelated(id: id, fi
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
- **filterName** | [**[String]**](String.md) | filter by attribute &#39;name&#39; | [optional] 
  **filterProductId** | [**[String]**](String.md) | filter by attribute &#39;productId&#39; | [optional] 
+ **filterName** | [**[String]**](String.md) | filter by attribute &#39;name&#39; | [optional] 
  **filterState** | [**[String]**](String.md) | filter by attribute &#39;state&#39; | [optional] 
  **sort** | [**[String]**](String.md) | comma-separated list of sort expressions; resources will be sorted as specified | [optional] 
- **fieldsPromotedPurchases** | [**[String]**](String.md) | the fields to include for returned resources of type promotedPurchases | [optional] 
- **fieldsSubscriptionPromotionalOffers** | [**[String]**](String.md) | the fields to include for returned resources of type subscriptionPromotionalOffers | [optional] 
- **fieldsSubscriptionOfferCodes** | [**[String]**](String.md) | the fields to include for returned resources of type subscriptionOfferCodes | [optional] 
- **fieldsSubscriptionAppStoreReviewScreenshots** | [**[String]**](String.md) | the fields to include for returned resources of type subscriptionAppStoreReviewScreenshots | [optional] 
  **fieldsSubscriptions** | [**[String]**](String.md) | the fields to include for returned resources of type subscriptions | [optional] 
- **fieldsSubscriptionAvailabilities** | [**[String]**](String.md) | the fields to include for returned resources of type subscriptionAvailabilities | [optional] 
+ **fieldsSubscriptionLocalizations** | [**[String]**](String.md) | the fields to include for returned resources of type subscriptionLocalizations | [optional] 
+ **fieldsSubscriptionAppStoreReviewScreenshots** | [**[String]**](String.md) | the fields to include for returned resources of type subscriptionAppStoreReviewScreenshots | [optional] 
  **fieldsSubscriptionGroups** | [**[String]**](String.md) | the fields to include for returned resources of type subscriptionGroups | [optional] 
  **fieldsSubscriptionIntroductoryOffers** | [**[String]**](String.md) | the fields to include for returned resources of type subscriptionIntroductoryOffers | [optional] 
+ **fieldsSubscriptionPromotionalOffers** | [**[String]**](String.md) | the fields to include for returned resources of type subscriptionPromotionalOffers | [optional] 
+ **fieldsSubscriptionOfferCodes** | [**[String]**](String.md) | the fields to include for returned resources of type subscriptionOfferCodes | [optional] 
  **fieldsSubscriptionPrices** | [**[String]**](String.md) | the fields to include for returned resources of type subscriptionPrices | [optional] 
- **fieldsSubscriptionLocalizations** | [**[String]**](String.md) | the fields to include for returned resources of type subscriptionLocalizations | [optional] 
+ **fieldsPromotedPurchases** | [**[String]**](String.md) | the fields to include for returned resources of type promotedPurchases | [optional] 
+ **fieldsSubscriptionAvailabilities** | [**[String]**](String.md) | the fields to include for returned resources of type subscriptionAvailabilities | [optional] 
+ **fieldsWinBackOffers** | [**[String]**](String.md) | the fields to include for returned resources of type winBackOffers | [optional] 
+ **fieldsSubscriptionImages** | [**[String]**](String.md) | the fields to include for returned resources of type subscriptionImages | [optional] 
  **limit** | **Int** | maximum resources per page | [optional] 
+ **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **limitSubscriptionLocalizations** | **Int** | maximum number of related subscriptionLocalizations returned (when they are included) | [optional] 
  **limitIntroductoryOffers** | **Int** | maximum number of related introductoryOffers returned (when they are included) | [optional] 
  **limitPromotionalOffers** | **Int** | maximum number of related promotionalOffers returned (when they are included) | [optional] 
  **limitOfferCodes** | **Int** | maximum number of related offerCodes returned (when they are included) | [optional] 
  **limitPrices** | **Int** | maximum number of related prices returned (when they are included) | [optional] 
- **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
+ **limitWinBackOffers** | **Int** | maximum number of related winBackOffers returned (when they are included) | [optional] 
+ **limitImages** | **Int** | maximum number of related images returned (when they are included) | [optional] 
 
 ### Return type
 

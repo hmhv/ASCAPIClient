@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 # **financeReportsGetCollection**
 ```swift
-    open class func financeReportsGetCollection(filterRegionCode: [String], filterReportDate: [String], filterReportType: [FilterReportType_financeReportsGetCollection], filterVendorNumber: [String], completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func financeReportsGetCollection(filterVendorNumber: [String], filterReportType: [FilterReportType_financeReportsGetCollection], filterRegionCode: [String], filterReportDate: [String], completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
 ```
 
 
@@ -19,12 +19,12 @@ Method | HTTP request | Description
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import ASC
 
+let filterVendorNumber = ["inner_example"] // [String] | filter by attribute 'vendorNumber'
+let filterReportType = ["filterReportType_example"] // [String] | filter by attribute 'reportType'
 let filterRegionCode = ["inner_example"] // [String] | filter by attribute 'regionCode'
 let filterReportDate = ["inner_example"] // [String] | filter by attribute 'reportDate'
-let filterReportType = ["filterReportType_example"] // [String] | filter by attribute 'reportType'
-let filterVendorNumber = ["inner_example"] // [String] | filter by attribute 'vendorNumber'
 
-FinanceReportsAPI.financeReportsGetCollection(filterRegionCode: filterRegionCode, filterReportDate: filterReportDate, filterReportType: filterReportType, filterVendorNumber: filterVendorNumber) { (response, error) in
+FinanceReportsAPI.financeReportsGetCollection(filterVendorNumber: filterVendorNumber, filterReportType: filterReportType, filterRegionCode: filterRegionCode, filterReportDate: filterReportDate) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -40,10 +40,10 @@ FinanceReportsAPI.financeReportsGetCollection(filterRegionCode: filterRegionCode
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **filterVendorNumber** | [**[String]**](String.md) | filter by attribute &#39;vendorNumber&#39; | 
+ **filterReportType** | [**[String]**](String.md) | filter by attribute &#39;reportType&#39; | 
  **filterRegionCode** | [**[String]**](String.md) | filter by attribute &#39;regionCode&#39; | 
  **filterReportDate** | [**[String]**](String.md) | filter by attribute &#39;reportDate&#39; | 
- **filterReportType** | [**[String]**](String.md) | filter by attribute &#39;reportType&#39; | 
- **filterVendorNumber** | [**[String]**](String.md) | filter by attribute &#39;vendorNumber&#39; | 
 
 ### Return type
 

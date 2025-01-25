@@ -12,10 +12,10 @@ import AnyCodable
 
 public struct AppStoreVersionExperimentTreatmentCreateRequestDataRelationships: Codable, JSONEncodable, Hashable {
 
-    public var appStoreVersionExperiment: AppStoreVersionExperimentTreatmentCreateRequestDataRelationshipsAppStoreVersionExperiment
-    public var appStoreVersionExperimentV2: AppStoreVersionExperimentTreatmentCreateRequestDataRelationshipsAppStoreVersionExperimentV2?
+    public var appStoreVersionExperiment: AppStoreVersionExperimentTreatmentRelationshipsAppStoreVersionExperiment?
+    public var appStoreVersionExperimentV2: AppStoreVersionExperimentTreatmentRelationshipsAppStoreVersionExperiment?
 
-    public init(appStoreVersionExperiment: AppStoreVersionExperimentTreatmentCreateRequestDataRelationshipsAppStoreVersionExperiment, appStoreVersionExperimentV2: AppStoreVersionExperimentTreatmentCreateRequestDataRelationshipsAppStoreVersionExperimentV2? = nil) {
+    public init(appStoreVersionExperiment: AppStoreVersionExperimentTreatmentRelationshipsAppStoreVersionExperiment? = nil, appStoreVersionExperimentV2: AppStoreVersionExperimentTreatmentRelationshipsAppStoreVersionExperiment? = nil) {
         self.appStoreVersionExperiment = appStoreVersionExperiment
         self.appStoreVersionExperimentV2 = appStoreVersionExperimentV2
     }
@@ -29,7 +29,7 @@ public struct AppStoreVersionExperimentTreatmentCreateRequestDataRelationships: 
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(appStoreVersionExperiment, forKey: .appStoreVersionExperiment)
+        try container.encodeIfPresent(appStoreVersionExperiment, forKey: .appStoreVersionExperiment)
         try container.encodeIfPresent(appStoreVersionExperimentV2, forKey: .appStoreVersionExperimentV2)
     }
 }

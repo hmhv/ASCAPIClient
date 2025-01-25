@@ -110,7 +110,7 @@ Void (empty response body)
 
 # **gameCenterMatchmakingRuleSetsGetCollection**
 ```swift
-    open class func gameCenterMatchmakingRuleSetsGetCollection(fieldsGameCenterMatchmakingRuleSets: [FieldsGameCenterMatchmakingRuleSets_gameCenterMatchmakingRuleSetsGetCollection]? = nil, limit: Int? = nil, include: [Include_gameCenterMatchmakingRuleSetsGetCollection]? = nil, fieldsGameCenterMatchmakingQueues: [FieldsGameCenterMatchmakingQueues_gameCenterMatchmakingRuleSetsGetCollection]? = nil, fieldsGameCenterMatchmakingTeams: [FieldsGameCenterMatchmakingTeams_gameCenterMatchmakingRuleSetsGetCollection]? = nil, fieldsGameCenterMatchmakingRules: [FieldsGameCenterMatchmakingRules_gameCenterMatchmakingRuleSetsGetCollection]? = nil, limitMatchmakingQueues: Int? = nil, limitRules: Int? = nil, limitTeams: Int? = nil, completion: @escaping (_ data: GameCenterMatchmakingRuleSetsResponse?, _ error: Error?) -> Void)
+    open class func gameCenterMatchmakingRuleSetsGetCollection(fieldsGameCenterMatchmakingRuleSets: [FieldsGameCenterMatchmakingRuleSets_gameCenterMatchmakingRuleSetsGetCollection]? = nil, fieldsGameCenterMatchmakingTeams: [FieldsGameCenterMatchmakingTeams_gameCenterMatchmakingRuleSetsGetCollection]? = nil, fieldsGameCenterMatchmakingRules: [FieldsGameCenterMatchmakingRules_gameCenterMatchmakingRuleSetsGetCollection]? = nil, fieldsGameCenterMatchmakingQueues: [FieldsGameCenterMatchmakingQueues_gameCenterMatchmakingRuleSetsGetCollection]? = nil, limit: Int? = nil, include: [Include_gameCenterMatchmakingRuleSetsGetCollection]? = nil, limitMatchmakingQueues: Int? = nil, limitRules: Int? = nil, limitTeams: Int? = nil, completion: @escaping (_ data: GameCenterMatchmakingRuleSetsResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -121,16 +121,16 @@ Void (empty response body)
 import ASC
 
 let fieldsGameCenterMatchmakingRuleSets = ["fieldsGameCenterMatchmakingRuleSets_example"] // [String] | the fields to include for returned resources of type gameCenterMatchmakingRuleSets (optional)
-let limit = 987 // Int | maximum resources per page (optional)
-let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
-let fieldsGameCenterMatchmakingQueues = ["fieldsGameCenterMatchmakingQueues_example"] // [String] | the fields to include for returned resources of type gameCenterMatchmakingQueues (optional)
 let fieldsGameCenterMatchmakingTeams = ["fieldsGameCenterMatchmakingTeams_example"] // [String] | the fields to include for returned resources of type gameCenterMatchmakingTeams (optional)
 let fieldsGameCenterMatchmakingRules = ["fieldsGameCenterMatchmakingRules_example"] // [String] | the fields to include for returned resources of type gameCenterMatchmakingRules (optional)
+let fieldsGameCenterMatchmakingQueues = ["fieldsGameCenterMatchmakingQueues_example"] // [String] | the fields to include for returned resources of type gameCenterMatchmakingQueues (optional)
+let limit = 987 // Int | maximum resources per page (optional)
+let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let limitMatchmakingQueues = 987 // Int | maximum number of related matchmakingQueues returned (when they are included) (optional)
 let limitRules = 987 // Int | maximum number of related rules returned (when they are included) (optional)
 let limitTeams = 987 // Int | maximum number of related teams returned (when they are included) (optional)
 
-GameCenterMatchmakingRuleSetsAPI.gameCenterMatchmakingRuleSetsGetCollection(fieldsGameCenterMatchmakingRuleSets: fieldsGameCenterMatchmakingRuleSets, limit: limit, include: include, fieldsGameCenterMatchmakingQueues: fieldsGameCenterMatchmakingQueues, fieldsGameCenterMatchmakingTeams: fieldsGameCenterMatchmakingTeams, fieldsGameCenterMatchmakingRules: fieldsGameCenterMatchmakingRules, limitMatchmakingQueues: limitMatchmakingQueues, limitRules: limitRules, limitTeams: limitTeams) { (response, error) in
+GameCenterMatchmakingRuleSetsAPI.gameCenterMatchmakingRuleSetsGetCollection(fieldsGameCenterMatchmakingRuleSets: fieldsGameCenterMatchmakingRuleSets, fieldsGameCenterMatchmakingTeams: fieldsGameCenterMatchmakingTeams, fieldsGameCenterMatchmakingRules: fieldsGameCenterMatchmakingRules, fieldsGameCenterMatchmakingQueues: fieldsGameCenterMatchmakingQueues, limit: limit, include: include, limitMatchmakingQueues: limitMatchmakingQueues, limitRules: limitRules, limitTeams: limitTeams) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -147,11 +147,11 @@ GameCenterMatchmakingRuleSetsAPI.gameCenterMatchmakingRuleSetsGetCollection(fiel
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **fieldsGameCenterMatchmakingRuleSets** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterMatchmakingRuleSets | [optional] 
- **limit** | **Int** | maximum resources per page | [optional] 
- **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
- **fieldsGameCenterMatchmakingQueues** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterMatchmakingQueues | [optional] 
  **fieldsGameCenterMatchmakingTeams** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterMatchmakingTeams | [optional] 
  **fieldsGameCenterMatchmakingRules** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterMatchmakingRules | [optional] 
+ **fieldsGameCenterMatchmakingQueues** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterMatchmakingQueues | [optional] 
+ **limit** | **Int** | maximum resources per page | [optional] 
+ **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **limitMatchmakingQueues** | **Int** | maximum number of related matchmakingQueues returned (when they are included) | [optional] 
  **limitRules** | **Int** | maximum number of related rules returned (when they are included) | [optional] 
  **limitTeams** | **Int** | maximum number of related teams returned (when they are included) | [optional] 
@@ -173,7 +173,7 @@ Name | Type | Description  | Notes
 
 # **gameCenterMatchmakingRuleSetsGetInstance**
 ```swift
-    open class func gameCenterMatchmakingRuleSetsGetInstance(id: String, fieldsGameCenterMatchmakingRuleSets: [FieldsGameCenterMatchmakingRuleSets_gameCenterMatchmakingRuleSetsGetInstance]? = nil, include: [Include_gameCenterMatchmakingRuleSetsGetInstance]? = nil, fieldsGameCenterMatchmakingQueues: [FieldsGameCenterMatchmakingQueues_gameCenterMatchmakingRuleSetsGetInstance]? = nil, fieldsGameCenterMatchmakingTeams: [FieldsGameCenterMatchmakingTeams_gameCenterMatchmakingRuleSetsGetInstance]? = nil, fieldsGameCenterMatchmakingRules: [FieldsGameCenterMatchmakingRules_gameCenterMatchmakingRuleSetsGetInstance]? = nil, limitMatchmakingQueues: Int? = nil, limitRules: Int? = nil, limitTeams: Int? = nil, completion: @escaping (_ data: GameCenterMatchmakingRuleSetResponse?, _ error: Error?) -> Void)
+    open class func gameCenterMatchmakingRuleSetsGetInstance(id: String, fieldsGameCenterMatchmakingRuleSets: [FieldsGameCenterMatchmakingRuleSets_gameCenterMatchmakingRuleSetsGetInstance]? = nil, fieldsGameCenterMatchmakingTeams: [FieldsGameCenterMatchmakingTeams_gameCenterMatchmakingRuleSetsGetInstance]? = nil, fieldsGameCenterMatchmakingRules: [FieldsGameCenterMatchmakingRules_gameCenterMatchmakingRuleSetsGetInstance]? = nil, fieldsGameCenterMatchmakingQueues: [FieldsGameCenterMatchmakingQueues_gameCenterMatchmakingRuleSetsGetInstance]? = nil, include: [Include_gameCenterMatchmakingRuleSetsGetInstance]? = nil, limitMatchmakingQueues: Int? = nil, limitRules: Int? = nil, limitTeams: Int? = nil, completion: @escaping (_ data: GameCenterMatchmakingRuleSetResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -185,15 +185,15 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let fieldsGameCenterMatchmakingRuleSets = ["fieldsGameCenterMatchmakingRuleSets_example"] // [String] | the fields to include for returned resources of type gameCenterMatchmakingRuleSets (optional)
-let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
-let fieldsGameCenterMatchmakingQueues = ["fieldsGameCenterMatchmakingQueues_example"] // [String] | the fields to include for returned resources of type gameCenterMatchmakingQueues (optional)
 let fieldsGameCenterMatchmakingTeams = ["fieldsGameCenterMatchmakingTeams_example"] // [String] | the fields to include for returned resources of type gameCenterMatchmakingTeams (optional)
 let fieldsGameCenterMatchmakingRules = ["fieldsGameCenterMatchmakingRules_example"] // [String] | the fields to include for returned resources of type gameCenterMatchmakingRules (optional)
+let fieldsGameCenterMatchmakingQueues = ["fieldsGameCenterMatchmakingQueues_example"] // [String] | the fields to include for returned resources of type gameCenterMatchmakingQueues (optional)
+let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let limitMatchmakingQueues = 987 // Int | maximum number of related matchmakingQueues returned (when they are included) (optional)
 let limitRules = 987 // Int | maximum number of related rules returned (when they are included) (optional)
 let limitTeams = 987 // Int | maximum number of related teams returned (when they are included) (optional)
 
-GameCenterMatchmakingRuleSetsAPI.gameCenterMatchmakingRuleSetsGetInstance(id: id, fieldsGameCenterMatchmakingRuleSets: fieldsGameCenterMatchmakingRuleSets, include: include, fieldsGameCenterMatchmakingQueues: fieldsGameCenterMatchmakingQueues, fieldsGameCenterMatchmakingTeams: fieldsGameCenterMatchmakingTeams, fieldsGameCenterMatchmakingRules: fieldsGameCenterMatchmakingRules, limitMatchmakingQueues: limitMatchmakingQueues, limitRules: limitRules, limitTeams: limitTeams) { (response, error) in
+GameCenterMatchmakingRuleSetsAPI.gameCenterMatchmakingRuleSetsGetInstance(id: id, fieldsGameCenterMatchmakingRuleSets: fieldsGameCenterMatchmakingRuleSets, fieldsGameCenterMatchmakingTeams: fieldsGameCenterMatchmakingTeams, fieldsGameCenterMatchmakingRules: fieldsGameCenterMatchmakingRules, fieldsGameCenterMatchmakingQueues: fieldsGameCenterMatchmakingQueues, include: include, limitMatchmakingQueues: limitMatchmakingQueues, limitRules: limitRules, limitTeams: limitTeams) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -211,10 +211,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **fieldsGameCenterMatchmakingRuleSets** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterMatchmakingRuleSets | [optional] 
- **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
- **fieldsGameCenterMatchmakingQueues** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterMatchmakingQueues | [optional] 
  **fieldsGameCenterMatchmakingTeams** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterMatchmakingTeams | [optional] 
  **fieldsGameCenterMatchmakingRules** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterMatchmakingRules | [optional] 
+ **fieldsGameCenterMatchmakingQueues** | [**[String]**](String.md) | the fields to include for returned resources of type gameCenterMatchmakingQueues | [optional] 
+ **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **limitMatchmakingQueues** | **Int** | maximum number of related matchmakingQueues returned (when they are included) | [optional] 
  **limitRules** | **Int** | maximum number of related rules returned (when they are included) | [optional] 
  **limitTeams** | **Int** | maximum number of related teams returned (when they are included) | [optional] 

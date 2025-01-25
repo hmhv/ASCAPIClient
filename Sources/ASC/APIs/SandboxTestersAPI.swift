@@ -16,13 +16,13 @@ open class SandboxTestersAPI {
      * enum for parameter fieldsSandboxTesters
      */
     public enum FieldsSandboxTesters_sandboxTestersV2GetCollection: String, CaseIterable {
-        case acaccountname = "acAccountName"
-        case applepaycompatible = "applePayCompatible"
         case firstname = "firstName"
-        case interruptpurchases = "interruptPurchases"
         case lastname = "lastName"
-        case subscriptionrenewalrate = "subscriptionRenewalRate"
+        case acaccountname = "acAccountName"
         case territory = "territory"
+        case applepaycompatible = "applePayCompatible"
+        case interruptpurchases = "interruptPurchases"
+        case subscriptionrenewalrate = "subscriptionRenewalRate"
     }
 
     /**

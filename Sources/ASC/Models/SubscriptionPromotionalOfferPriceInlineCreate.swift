@@ -18,9 +18,9 @@ public struct SubscriptionPromotionalOfferPriceInlineCreate: Codable, JSONEncoda
     }
     public var type: ModelType
     public var id: String?
-    public var relationships: SubscriptionOfferCodePriceInlineCreateRelationships?
+    public var relationships: SubscriptionOfferCodePriceRelationships?
 
-    public init(type: ModelType, id: String? = nil, relationships: SubscriptionOfferCodePriceInlineCreateRelationships? = nil) {
+    public init(type: ModelType, id: String? = nil, relationships: SubscriptionOfferCodePriceRelationships? = nil) {
         self.type = type
         self.id = id
         self.relationships = relationships

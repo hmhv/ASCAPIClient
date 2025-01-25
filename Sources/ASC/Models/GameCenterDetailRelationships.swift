@@ -12,9 +12,9 @@ import AnyCodable
 
 public struct GameCenterDetailRelationships: Codable, JSONEncodable, Hashable {
 
-    public var app: AppAvailabilityRelationshipsApp?
+    public var app: AlternativeDistributionKeyCreateRequestDataRelationshipsApp?
     public var gameCenterAppVersions: GameCenterAppVersionRelationshipsCompatibilityVersions?
-    public var gameCenterGroup: GameCenterAchievementRelationshipsGameCenterGroup?
+    public var gameCenterGroup: GameCenterDetailRelationshipsGameCenterGroup?
     public var gameCenterLeaderboards: GameCenterDetailRelationshipsGameCenterLeaderboards?
     public var gameCenterLeaderboardSets: GameCenterDetailRelationshipsGameCenterLeaderboardSets?
     public var gameCenterAchievements: GameCenterDetailRelationshipsGameCenterAchievements?
@@ -24,7 +24,7 @@ public struct GameCenterDetailRelationships: Codable, JSONEncodable, Hashable {
     public var leaderboardReleases: GameCenterDetailRelationshipsLeaderboardReleases?
     public var leaderboardSetReleases: GameCenterDetailRelationshipsLeaderboardSetReleases?
 
-    public init(app: AppAvailabilityRelationshipsApp? = nil, gameCenterAppVersions: GameCenterAppVersionRelationshipsCompatibilityVersions? = nil, gameCenterGroup: GameCenterAchievementRelationshipsGameCenterGroup? = nil, gameCenterLeaderboards: GameCenterDetailRelationshipsGameCenterLeaderboards? = nil, gameCenterLeaderboardSets: GameCenterDetailRelationshipsGameCenterLeaderboardSets? = nil, gameCenterAchievements: GameCenterDetailRelationshipsGameCenterAchievements? = nil, defaultLeaderboard: GameCenterDetailRelationshipsDefaultLeaderboard? = nil, defaultGroupLeaderboard: GameCenterDetailRelationshipsDefaultLeaderboard? = nil, achievementReleases: GameCenterAchievementRelationshipsReleases? = nil, leaderboardReleases: GameCenterDetailRelationshipsLeaderboardReleases? = nil, leaderboardSetReleases: GameCenterDetailRelationshipsLeaderboardSetReleases? = nil) {
+    public init(app: AlternativeDistributionKeyCreateRequestDataRelationshipsApp? = nil, gameCenterAppVersions: GameCenterAppVersionRelationshipsCompatibilityVersions? = nil, gameCenterGroup: GameCenterDetailRelationshipsGameCenterGroup? = nil, gameCenterLeaderboards: GameCenterDetailRelationshipsGameCenterLeaderboards? = nil, gameCenterLeaderboardSets: GameCenterDetailRelationshipsGameCenterLeaderboardSets? = nil, gameCenterAchievements: GameCenterDetailRelationshipsGameCenterAchievements? = nil, defaultLeaderboard: GameCenterDetailRelationshipsDefaultLeaderboard? = nil, defaultGroupLeaderboard: GameCenterDetailRelationshipsDefaultLeaderboard? = nil, achievementReleases: GameCenterAchievementRelationshipsReleases? = nil, leaderboardReleases: GameCenterDetailRelationshipsLeaderboardReleases? = nil, leaderboardSetReleases: GameCenterDetailRelationshipsLeaderboardSetReleases? = nil) {
         self.app = app
         self.gameCenterAppVersions = gameCenterAppVersions
         self.gameCenterGroup = gameCenterGroup

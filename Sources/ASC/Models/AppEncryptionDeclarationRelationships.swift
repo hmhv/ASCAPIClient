@@ -12,12 +12,13 @@ import AnyCodable
 
 public struct AppEncryptionDeclarationRelationships: Codable, JSONEncodable, Hashable {
 
-    public var app: AppAvailabilityRelationshipsApp?
+    @available(*, deprecated, message: "This property is deprecated.")
+    public var app: AppEncryptionDeclarationRelationshipsApp?
     @available(*, deprecated, message: "This property is deprecated.")
     public var builds: AppEncryptionDeclarationRelationshipsBuilds?
     public var appEncryptionDeclarationDocument: AppEncryptionDeclarationRelationshipsAppEncryptionDeclarationDocument?
 
-    public init(app: AppAvailabilityRelationshipsApp? = nil, builds: AppEncryptionDeclarationRelationshipsBuilds? = nil, appEncryptionDeclarationDocument: AppEncryptionDeclarationRelationshipsAppEncryptionDeclarationDocument? = nil) {
+    public init(app: AppEncryptionDeclarationRelationshipsApp? = nil, builds: AppEncryptionDeclarationRelationshipsBuilds? = nil, appEncryptionDeclarationDocument: AppEncryptionDeclarationRelationshipsAppEncryptionDeclarationDocument? = nil) {
         self.app = app
         self.builds = builds
         self.appEncryptionDeclarationDocument = appEncryptionDeclarationDocument

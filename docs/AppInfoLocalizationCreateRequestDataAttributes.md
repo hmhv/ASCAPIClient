@@ -4,7 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **locale** | **String** |  | 
-**name** | **String** |  | [optional] 
+**name** | **String** |  | 
 **subtitle** | **String** |  | [optional] 
 **privacyPolicyUrl** | **String** |  | [optional] 
 **privacyChoicesUrl** | **String** |  | [optional] 

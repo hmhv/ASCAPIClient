@@ -19,12 +19,14 @@ public struct AnalyticsReportInstance: Codable, JSONEncodable, Hashable {
     public var type: ModelType
     public var id: String
     public var attributes: AnalyticsReportInstanceAttributes?
+    public var relationships: AnalyticsReportInstanceRelationships?
     public var links: ResourceLinks?
 
-    public init(type: ModelType, id: String, attributes: AnalyticsReportInstanceAttributes? = nil, links: ResourceLinks? = nil) {
+    public init(type: ModelType, id: String, attributes: AnalyticsReportInstanceAttributes? = nil, relationships: AnalyticsReportInstanceRelationships? = nil, links: ResourceLinks? = nil) {
         self.type = type
         self.id = id
         self.attributes = attributes
+        self.relationships = relationships
         self.links = links
     }
 
@@ -32,6 +34,7 @@ public struct AnalyticsReportInstance: Codable, JSONEncodable, Hashable {
         case type
         case id
         case attributes
+        case relationships
         case links
     }
 
@@ -42,6 +45,7 @@ public struct AnalyticsReportInstance: Codable, JSONEncodable, Hashable {
         try container.encode(type, forKey: .type)
         try container.encode(id, forKey: .id)
         try container.encodeIfPresent(attributes, forKey: .attributes)
+        try container.encodeIfPresent(relationships, forKey: .relationships)
         try container.encodeIfPresent(links, forKey: .links)
     }
 }

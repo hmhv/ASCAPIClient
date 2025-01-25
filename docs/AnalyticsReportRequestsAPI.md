@@ -106,7 +106,7 @@ Void (empty response body)
 
 # **analyticsReportRequestsGetInstance**
 ```swift
-    open class func analyticsReportRequestsGetInstance(id: String, fieldsAnalyticsReportRequests: [FieldsAnalyticsReportRequests_analyticsReportRequestsGetInstance]? = nil, include: [Include_analyticsReportRequestsGetInstance]? = nil, fieldsAnalyticsReports: [FieldsAnalyticsReports_analyticsReportRequestsGetInstance]? = nil, limitReports: Int? = nil, completion: @escaping (_ data: AnalyticsReportRequestResponse?, _ error: Error?) -> Void)
+    open class func analyticsReportRequestsGetInstance(id: String, fieldsAnalyticsReportRequests: [FieldsAnalyticsReportRequests_analyticsReportRequestsGetInstance]? = nil, fieldsAnalyticsReports: [FieldsAnalyticsReports_analyticsReportRequestsGetInstance]? = nil, include: [Include_analyticsReportRequestsGetInstance]? = nil, limitReports: Int? = nil, completion: @escaping (_ data: AnalyticsReportRequestResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -118,11 +118,11 @@ import ASC
 
 let id = "id_example" // String | the id of the requested resource
 let fieldsAnalyticsReportRequests = ["fieldsAnalyticsReportRequests_example"] // [String] | the fields to include for returned resources of type analyticsReportRequests (optional)
-let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let fieldsAnalyticsReports = ["fieldsAnalyticsReports_example"] // [String] | the fields to include for returned resources of type analyticsReports (optional)
+let include = ["include_example"] // [String] | comma-separated list of relationships to include (optional)
 let limitReports = 987 // Int | maximum number of related reports returned (when they are included) (optional)
 
-AnalyticsReportRequestsAPI.analyticsReportRequestsGetInstance(id: id, fieldsAnalyticsReportRequests: fieldsAnalyticsReportRequests, include: include, fieldsAnalyticsReports: fieldsAnalyticsReports, limitReports: limitReports) { (response, error) in
+AnalyticsReportRequestsAPI.analyticsReportRequestsGetInstance(id: id, fieldsAnalyticsReportRequests: fieldsAnalyticsReportRequests, fieldsAnalyticsReports: fieldsAnalyticsReports, include: include, limitReports: limitReports) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -140,8 +140,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
  **fieldsAnalyticsReportRequests** | [**[String]**](String.md) | the fields to include for returned resources of type analyticsReportRequests | [optional] 
- **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **fieldsAnalyticsReports** | [**[String]**](String.md) | the fields to include for returned resources of type analyticsReports | [optional] 
+ **include** | [**[String]**](String.md) | comma-separated list of relationships to include | [optional] 
  **limitReports** | **Int** | maximum number of related reports returned (when they are included) | [optional] 
 
 ### Return type
@@ -161,7 +161,7 @@ Name | Type | Description  | Notes
 
 # **analyticsReportRequestsReportsGetToManyRelated**
 ```swift
-    open class func analyticsReportRequestsReportsGetToManyRelated(id: String, filterCategory: [FilterCategory_analyticsReportRequestsReportsGetToManyRelated]? = nil, filterName: [String]? = nil, fieldsAnalyticsReports: [FieldsAnalyticsReports_analyticsReportRequestsReportsGetToManyRelated]? = nil, limit: Int? = nil, completion: @escaping (_ data: AnalyticsReportsResponse?, _ error: Error?) -> Void)
+    open class func analyticsReportRequestsReportsGetToManyRelated(id: String, filterName: [String]? = nil, filterCategory: [FilterCategory_analyticsReportRequestsReportsGetToManyRelated]? = nil, fieldsAnalyticsReports: [FieldsAnalyticsReports_analyticsReportRequestsReportsGetToManyRelated]? = nil, limit: Int? = nil, completion: @escaping (_ data: AnalyticsReportsResponse?, _ error: Error?) -> Void)
 ```
 
 
@@ -172,12 +172,12 @@ Name | Type | Description  | Notes
 import ASC
 
 let id = "id_example" // String | the id of the requested resource
-let filterCategory = ["filterCategory_example"] // [String] | filter by attribute 'category' (optional)
 let filterName = ["inner_example"] // [String] | filter by attribute 'name' (optional)
+let filterCategory = ["filterCategory_example"] // [String] | filter by attribute 'category' (optional)
 let fieldsAnalyticsReports = ["fieldsAnalyticsReports_example"] // [String] | the fields to include for returned resources of type analyticsReports (optional)
 let limit = 987 // Int | maximum resources per page (optional)
 
-AnalyticsReportRequestsAPI.analyticsReportRequestsReportsGetToManyRelated(id: id, filterCategory: filterCategory, filterName: filterName, fieldsAnalyticsReports: fieldsAnalyticsReports, limit: limit) { (response, error) in
+AnalyticsReportRequestsAPI.analyticsReportRequestsReportsGetToManyRelated(id: id, filterName: filterName, filterCategory: filterCategory, fieldsAnalyticsReports: fieldsAnalyticsReports, limit: limit) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -194,8 +194,8 @@ AnalyticsReportRequestsAPI.analyticsReportRequestsReportsGetToManyRelated(id: id
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String** | the id of the requested resource | 
- **filterCategory** | [**[String]**](String.md) | filter by attribute &#39;category&#39; | [optional] 
  **filterName** | [**[String]**](String.md) | filter by attribute &#39;name&#39; | [optional] 
+ **filterCategory** | [**[String]**](String.md) | filter by attribute &#39;category&#39; | [optional] 
  **fieldsAnalyticsReports** | [**[String]**](String.md) | the fields to include for returned resources of type analyticsReports | [optional] 
  **limit** | **Int** | maximum resources per page | [optional] 
 

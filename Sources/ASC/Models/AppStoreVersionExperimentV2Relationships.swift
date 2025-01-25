@@ -12,12 +12,12 @@ import AnyCodable
 
 public struct AppStoreVersionExperimentV2Relationships: Codable, JSONEncodable, Hashable {
 
-    public var app: AppAvailabilityRelationshipsApp?
-    public var latestControlVersion: AppClipDefaultExperienceRelationshipsReleaseWithAppStoreVersion?
+    public var app: AlternativeDistributionKeyCreateRequestDataRelationshipsApp?
+    public var latestControlVersion: AppClipDefaultExperienceCreateRequestDataRelationshipsReleaseWithAppStoreVersion?
     public var controlVersions: AppStoreVersionExperimentV2RelationshipsControlVersions?
     public var appStoreVersionExperimentTreatments: AppStoreVersionExperimentV2RelationshipsAppStoreVersionExperimentTreatments?
 
-    public init(app: AppAvailabilityRelationshipsApp? = nil, latestControlVersion: AppClipDefaultExperienceRelationshipsReleaseWithAppStoreVersion? = nil, controlVersions: AppStoreVersionExperimentV2RelationshipsControlVersions? = nil, appStoreVersionExperimentTreatments: AppStoreVersionExperimentV2RelationshipsAppStoreVersionExperimentTreatments? = nil) {
+    public init(app: AlternativeDistributionKeyCreateRequestDataRelationshipsApp? = nil, latestControlVersion: AppClipDefaultExperienceCreateRequestDataRelationshipsReleaseWithAppStoreVersion? = nil, controlVersions: AppStoreVersionExperimentV2RelationshipsControlVersions? = nil, appStoreVersionExperimentTreatments: AppStoreVersionExperimentV2RelationshipsAppStoreVersionExperimentTreatments? = nil) {
         self.app = app
         self.latestControlVersion = latestControlVersion
         self.controlVersions = controlVersions

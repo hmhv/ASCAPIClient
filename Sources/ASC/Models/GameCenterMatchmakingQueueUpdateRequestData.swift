@@ -19,9 +19,9 @@ public struct GameCenterMatchmakingQueueUpdateRequestData: Codable, JSONEncodabl
     public var type: ModelType
     public var id: String
     public var attributes: GameCenterMatchmakingQueueUpdateRequestDataAttributes?
-    public var relationships: GameCenterMatchmakingQueueUpdateRequestDataRelationships?
+    public var relationships: GameCenterMatchmakingQueueRelationships?
 
-    public init(type: ModelType, id: String, attributes: GameCenterMatchmakingQueueUpdateRequestDataAttributes? = nil, relationships: GameCenterMatchmakingQueueUpdateRequestDataRelationships? = nil) {
+    public init(type: ModelType, id: String, attributes: GameCenterMatchmakingQueueUpdateRequestDataAttributes? = nil, relationships: GameCenterMatchmakingQueueRelationships? = nil) {
         self.type = type
         self.id = id
         self.attributes = attributes

@@ -149,9 +149,9 @@ open class AlternativeDistributionDomainsAPI {
      * enum for parameter fieldsAlternativeDistributionDomains
      */
     public enum FieldsAlternativeDistributionDomains_alternativeDistributionDomainsGetCollection: String, CaseIterable {
-        case createddate = "createdDate"
         case domain = "domain"
         case referencename = "referenceName"
+        case createddate = "createdDate"
     }
 
     /**
@@ -229,9 +229,9 @@ open class AlternativeDistributionDomainsAPI {
      * enum for parameter fieldsAlternativeDistributionDomains
      */
     public enum FieldsAlternativeDistributionDomains_alternativeDistributionDomainsGetInstance: String, CaseIterable {
-        case createddate = "createdDate"
         case domain = "domain"
         case referencename = "referenceName"
+        case createddate = "createdDate"
     }
 
     /**

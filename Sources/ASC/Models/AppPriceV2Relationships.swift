@@ -13,9 +13,9 @@ import AnyCodable
 public struct AppPriceV2Relationships: Codable, JSONEncodable, Hashable {
 
     public var appPricePoint: AppPriceV2RelationshipsAppPricePoint?
-    public var territory: AppPricePointV2RelationshipsTerritory?
+    public var territory: AppPricePointV3RelationshipsTerritory?
 
-    public init(appPricePoint: AppPriceV2RelationshipsAppPricePoint? = nil, territory: AppPricePointV2RelationshipsTerritory? = nil) {
+    public init(appPricePoint: AppPriceV2RelationshipsAppPricePoint? = nil, territory: AppPricePointV3RelationshipsTerritory? = nil) {
         self.appPricePoint = appPricePoint
         self.territory = territory
     }

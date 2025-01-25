@@ -149,13 +149,13 @@ open class AppInfoLocalizationsAPI {
      * enum for parameter fieldsAppInfoLocalizations
      */
     public enum FieldsAppInfoLocalizations_appInfoLocalizationsGetInstance: String, CaseIterable {
-        case appinfo = "appInfo"
         case locale = "locale"
         case name = "name"
+        case subtitle = "subtitle"
+        case privacypolicyurl = "privacyPolicyUrl"
         case privacychoicesurl = "privacyChoicesUrl"
         case privacypolicytext = "privacyPolicyText"
-        case privacypolicyurl = "privacyPolicyUrl"
-        case subtitle = "subtitle"
+        case appinfo = "appInfo"
     }
 
     /**

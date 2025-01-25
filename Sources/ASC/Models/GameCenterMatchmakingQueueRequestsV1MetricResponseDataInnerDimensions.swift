@@ -12,10 +12,10 @@ import AnyCodable
 
 public struct GameCenterMatchmakingQueueRequestsV1MetricResponseDataInnerDimensions: Codable, JSONEncodable, Hashable {
 
-    public var result: BetaBuildUsagesV1MetricResponseDataInnerDimensionsBundleIds?
+    public var result: GameCenterMatchmakingAppRequestsV1MetricResponseDataInnerDimensionsResult?
     public var gameCenterDetail: AppsBetaTesterUsagesV1MetricResponseDataInnerDimensionsBetaTesters?
 
-    public init(result: BetaBuildUsagesV1MetricResponseDataInnerDimensionsBundleIds? = nil, gameCenterDetail: AppsBetaTesterUsagesV1MetricResponseDataInnerDimensionsBetaTesters? = nil) {
+    public init(result: GameCenterMatchmakingAppRequestsV1MetricResponseDataInnerDimensionsResult? = nil, gameCenterDetail: AppsBetaTesterUsagesV1MetricResponseDataInnerDimensionsBetaTesters? = nil) {
         self.result = result
         self.gameCenterDetail = gameCenterDetail
     }
