@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct ScmGitReferenceAttributes: Codable, JSONEncodable, Hashable {
+public struct ScmGitReferenceAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
     public var name: String?
     public var canonicalName: String?

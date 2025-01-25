@@ -6,29 +6,28 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class InAppPurchaseLocalizationsAPI {
 
     /**
 
      - parameter inAppPurchaseLocalizationCreateRequest: (body) InAppPurchaseLocalization representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: InAppPurchaseLocalizationResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchaseLocalizationsCreateInstance(inAppPurchaseLocalizationCreateRequest: InAppPurchaseLocalizationCreateRequest) async throws -> InAppPurchaseLocalizationResponse {
-        return try await inAppPurchaseLocalizationsCreateInstanceWithRequestBuilder(inAppPurchaseLocalizationCreateRequest: inAppPurchaseLocalizationCreateRequest).execute().body
+    open class func inAppPurchaseLocalizationsCreateInstance(inAppPurchaseLocalizationCreateRequest: InAppPurchaseLocalizationCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> InAppPurchaseLocalizationResponse {
+        return try await inAppPurchaseLocalizationsCreateInstanceWithRequestBuilder(inAppPurchaseLocalizationCreateRequest: inAppPurchaseLocalizationCreateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: InAppPurchaseLocalizationResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchaseLocalizationsCreateInstance(urlString: String) async throws -> InAppPurchaseLocalizationResponse {
-        return try await inAppPurchaseLocalizationsCreateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func inAppPurchaseLocalizationsCreateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> InAppPurchaseLocalizationResponse {
+        return try await inAppPurchaseLocalizationsCreateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -37,12 +36,13 @@ open class InAppPurchaseLocalizationsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter inAppPurchaseLocalizationCreateRequest: (body) InAppPurchaseLocalization representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<InAppPurchaseLocalizationResponse> 
      */
-    open class func inAppPurchaseLocalizationsCreateInstanceWithRequestBuilder(inAppPurchaseLocalizationCreateRequest: InAppPurchaseLocalizationCreateRequest) -> RequestBuilder<InAppPurchaseLocalizationResponse> {
+    open class func inAppPurchaseLocalizationsCreateInstanceWithRequestBuilder(inAppPurchaseLocalizationCreateRequest: InAppPurchaseLocalizationCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<InAppPurchaseLocalizationResponse> {
         let localVariablePath = "/v1/inAppPurchaseLocalizations"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: inAppPurchaseLocalizationCreateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: inAppPurchaseLocalizationCreateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -52,9 +52,9 @@ open class InAppPurchaseLocalizationsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseLocalizationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseLocalizationResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -63,37 +63,40 @@ open class InAppPurchaseLocalizationsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<InAppPurchaseLocalizationResponse> 
      */
-    open class func inAppPurchaseLocalizationsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<InAppPurchaseLocalizationResponse> {
+    open class func inAppPurchaseLocalizationsCreateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<InAppPurchaseLocalizationResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseLocalizationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseLocalizationResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchaseLocalizationsDeleteInstance(id: String) async throws {
-        return try await inAppPurchaseLocalizationsDeleteInstanceWithRequestBuilder(id: id).execute().body
+    open class func inAppPurchaseLocalizationsDeleteInstance(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await inAppPurchaseLocalizationsDeleteInstanceWithRequestBuilder(id: id, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchaseLocalizationsDeleteInstance(urlString: String) async throws {
-        return try await inAppPurchaseLocalizationsDeleteInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func inAppPurchaseLocalizationsDeleteInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await inAppPurchaseLocalizationsDeleteInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -102,14 +105,15 @@ open class InAppPurchaseLocalizationsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func inAppPurchaseLocalizationsDeleteInstanceWithRequestBuilder(id: String) -> RequestBuilder<Void> {
+    open class func inAppPurchaseLocalizationsDeleteInstanceWithRequestBuilder(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/inAppPurchaseLocalizations/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -120,9 +124,9 @@ open class InAppPurchaseLocalizationsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -131,24 +135,25 @@ open class InAppPurchaseLocalizationsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func inAppPurchaseLocalizationsDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func inAppPurchaseLocalizationsDeleteInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsInAppPurchaseLocalizations
      */
-    public enum FieldsInAppPurchaseLocalizations_inAppPurchaseLocalizationsGetInstance: String, CaseIterable {
+    public enum FieldsInAppPurchaseLocalizations_inAppPurchaseLocalizationsGetInstance: String, Sendable, CaseIterable {
         case name = "name"
         case locale = "locale"
         case description = "description"
@@ -159,7 +164,7 @@ open class InAppPurchaseLocalizationsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_inAppPurchaseLocalizationsGetInstance: String, CaseIterable {
+    public enum Include_inAppPurchaseLocalizationsGetInstance: String, Sendable, CaseIterable {
         case inapppurchasev2 = "inAppPurchaseV2"
     }
 
@@ -168,20 +173,22 @@ open class InAppPurchaseLocalizationsAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsInAppPurchaseLocalizations: (query) the fields to include for returned resources of type inAppPurchaseLocalizations (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: InAppPurchaseLocalizationResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchaseLocalizationsGetInstance(id: String, fieldsInAppPurchaseLocalizations: [FieldsInAppPurchaseLocalizations_inAppPurchaseLocalizationsGetInstance]? = nil, include: [Include_inAppPurchaseLocalizationsGetInstance]? = nil) async throws -> InAppPurchaseLocalizationResponse {
-        return try await inAppPurchaseLocalizationsGetInstanceWithRequestBuilder(id: id, fieldsInAppPurchaseLocalizations: fieldsInAppPurchaseLocalizations, include: include).execute().body
+    open class func inAppPurchaseLocalizationsGetInstance(id: String, fieldsInAppPurchaseLocalizations: [FieldsInAppPurchaseLocalizations_inAppPurchaseLocalizationsGetInstance]? = nil, include: [Include_inAppPurchaseLocalizationsGetInstance]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> InAppPurchaseLocalizationResponse {
+        return try await inAppPurchaseLocalizationsGetInstanceWithRequestBuilder(id: id, fieldsInAppPurchaseLocalizations: fieldsInAppPurchaseLocalizations, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: InAppPurchaseLocalizationResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchaseLocalizationsGetInstance(urlString: String) async throws -> InAppPurchaseLocalizationResponse {
-        return try await inAppPurchaseLocalizationsGetInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func inAppPurchaseLocalizationsGetInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> InAppPurchaseLocalizationResponse {
+        return try await inAppPurchaseLocalizationsGetInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -192,20 +199,21 @@ open class InAppPurchaseLocalizationsAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsInAppPurchaseLocalizations: (query) the fields to include for returned resources of type inAppPurchaseLocalizations (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<InAppPurchaseLocalizationResponse> 
      */
-    open class func inAppPurchaseLocalizationsGetInstanceWithRequestBuilder(id: String, fieldsInAppPurchaseLocalizations: [FieldsInAppPurchaseLocalizations_inAppPurchaseLocalizationsGetInstance]? = nil, include: [Include_inAppPurchaseLocalizationsGetInstance]? = nil) -> RequestBuilder<InAppPurchaseLocalizationResponse> {
+    open class func inAppPurchaseLocalizationsGetInstanceWithRequestBuilder(id: String, fieldsInAppPurchaseLocalizations: [FieldsInAppPurchaseLocalizations_inAppPurchaseLocalizationsGetInstance]? = nil, include: [Include_inAppPurchaseLocalizationsGetInstance]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<InAppPurchaseLocalizationResponse> {
         var localVariablePath = "/v1/inAppPurchaseLocalizations/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[inAppPurchaseLocalizations]": (wrappedValue: fieldsInAppPurchaseLocalizations?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "fields[inAppPurchaseLocalizations]": (wrappedValue: fieldsInAppPurchaseLocalizations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -214,9 +222,9 @@ open class InAppPurchaseLocalizationsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseLocalizationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseLocalizationResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -225,38 +233,41 @@ open class InAppPurchaseLocalizationsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<InAppPurchaseLocalizationResponse> 
      */
-    open class func inAppPurchaseLocalizationsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<InAppPurchaseLocalizationResponse> {
+    open class func inAppPurchaseLocalizationsGetInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<InAppPurchaseLocalizationResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseLocalizationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseLocalizationResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter inAppPurchaseLocalizationUpdateRequest: (body) InAppPurchaseLocalization representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: InAppPurchaseLocalizationResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchaseLocalizationsUpdateInstance(id: String, inAppPurchaseLocalizationUpdateRequest: InAppPurchaseLocalizationUpdateRequest) async throws -> InAppPurchaseLocalizationResponse {
-        return try await inAppPurchaseLocalizationsUpdateInstanceWithRequestBuilder(id: id, inAppPurchaseLocalizationUpdateRequest: inAppPurchaseLocalizationUpdateRequest).execute().body
+    open class func inAppPurchaseLocalizationsUpdateInstance(id: String, inAppPurchaseLocalizationUpdateRequest: InAppPurchaseLocalizationUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> InAppPurchaseLocalizationResponse {
+        return try await inAppPurchaseLocalizationsUpdateInstanceWithRequestBuilder(id: id, inAppPurchaseLocalizationUpdateRequest: inAppPurchaseLocalizationUpdateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: InAppPurchaseLocalizationResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchaseLocalizationsUpdateInstance(urlString: String) async throws -> InAppPurchaseLocalizationResponse {
-        return try await inAppPurchaseLocalizationsUpdateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func inAppPurchaseLocalizationsUpdateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> InAppPurchaseLocalizationResponse {
+        return try await inAppPurchaseLocalizationsUpdateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -266,15 +277,16 @@ open class InAppPurchaseLocalizationsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter inAppPurchaseLocalizationUpdateRequest: (body) InAppPurchaseLocalization representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<InAppPurchaseLocalizationResponse> 
      */
-    open class func inAppPurchaseLocalizationsUpdateInstanceWithRequestBuilder(id: String, inAppPurchaseLocalizationUpdateRequest: InAppPurchaseLocalizationUpdateRequest) -> RequestBuilder<InAppPurchaseLocalizationResponse> {
+    open class func inAppPurchaseLocalizationsUpdateInstanceWithRequestBuilder(id: String, inAppPurchaseLocalizationUpdateRequest: InAppPurchaseLocalizationUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<InAppPurchaseLocalizationResponse> {
         var localVariablePath = "/v1/inAppPurchaseLocalizations/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: inAppPurchaseLocalizationUpdateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: inAppPurchaseLocalizationUpdateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -284,9 +296,9 @@ open class InAppPurchaseLocalizationsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseLocalizationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseLocalizationResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -295,17 +307,18 @@ open class InAppPurchaseLocalizationsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<InAppPurchaseLocalizationResponse> 
      */
-    open class func inAppPurchaseLocalizationsUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<InAppPurchaseLocalizationResponse> {
+    open class func inAppPurchaseLocalizationsUpdateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<InAppPurchaseLocalizationResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseLocalizationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseLocalizationResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

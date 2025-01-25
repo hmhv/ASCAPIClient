@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public enum GameCenterMatchmakingRuleSetsResponseIncludedInner: Codable, JSONEncodable, Hashable {
+public enum GameCenterMatchmakingRuleSetsResponseIncludedInner: Sendable, Codable, JSONEncodable, Hashable {
     case typeGameCenterMatchmakingQueue(GameCenterMatchmakingQueue)
     case typeGameCenterMatchmakingRule(GameCenterMatchmakingRule)
     case typeGameCenterMatchmakingTeam(GameCenterMatchmakingTeam)

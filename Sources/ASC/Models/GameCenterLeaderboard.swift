@@ -6,13 +6,10 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct GameCenterLeaderboard: Codable, JSONEncodable, Hashable {
+public struct GameCenterLeaderboard: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum ModelType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum ModelType: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case gamecenterleaderboards = "gameCenterLeaderboards"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }

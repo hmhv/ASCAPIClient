@@ -6,13 +6,10 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct GameCenterMatchmakingTestRequestInlineCreateAttributes: Codable, JSONEncodable, Hashable {
+public struct GameCenterMatchmakingTestRequestInlineCreateAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum Locale: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum Locale: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case arSa = "AR-SA"
         case caEs = "CA-ES"
         case csCz = "CS-CZ"

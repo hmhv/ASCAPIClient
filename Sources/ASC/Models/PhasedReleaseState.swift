@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public enum PhasedReleaseState: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+public enum PhasedReleaseState: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
     case inactive = "INACTIVE"
     case active = "ACTIVE"
     case paused = "PAUSED"

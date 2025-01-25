@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct CiStartConditionFileMatcher: Codable, JSONEncodable, Hashable {
+public struct CiStartConditionFileMatcher: Sendable, Codable, JSONEncodable, Hashable {
 
     public var directory: String?
     public var fileExtension: String?

@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct BetaAppClipInvocationRelationshipsBetaAppClipInvocationLocalizations: Codable, JSONEncodable, Hashable {
+public struct BetaAppClipInvocationRelationshipsBetaAppClipInvocationLocalizations: Sendable, Codable, JSONEncodable, Hashable {
 
     public var meta: PagingInformation?
     public var data: [BetaAppClipInvocationRelationshipsBetaAppClipInvocationLocalizationsDataInner]?

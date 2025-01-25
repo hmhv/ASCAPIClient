@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct BundleIdCapabilityAttributes: Codable, JSONEncodable, Hashable {
+public struct BundleIdCapabilityAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
     public var capabilityType: CapabilityType?
     public var settings: [CapabilitySetting]?

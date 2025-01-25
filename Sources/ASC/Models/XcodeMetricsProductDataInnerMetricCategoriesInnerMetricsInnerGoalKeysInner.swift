@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct XcodeMetricsProductDataInnerMetricCategoriesInnerMetricsInnerGoalKeysInner: Codable, JSONEncodable, Hashable {
+public struct XcodeMetricsProductDataInnerMetricCategoriesInnerMetricsInnerGoalKeysInner: Sendable, Codable, JSONEncodable, Hashable {
 
     public var goalKey: String?
     public var lowerBound: Int?

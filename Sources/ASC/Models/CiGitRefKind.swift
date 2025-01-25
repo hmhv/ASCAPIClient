@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public enum CiGitRefKind: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+public enum CiGitRefKind: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
     case branch = "BRANCH"
     case tag = "TAG"
     case unknownDefaultOpenApi = "unknown_default_open_api"

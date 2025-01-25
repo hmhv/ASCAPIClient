@@ -6,19 +6,16 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct CapabilitySetting: Codable, JSONEncodable, Hashable {
+public struct CapabilitySetting: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum Key: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum Key: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case icloudVersion = "ICLOUD_VERSION"
         case dataProtectionPermissionLevel = "DATA_PROTECTION_PERMISSION_LEVEL"
         case appleIdAuthAppConsent = "APPLE_ID_AUTH_APP_CONSENT"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
-    public enum AllowedInstances: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum AllowedInstances: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case entry = "ENTRY"
         case single = "SINGLE"
         case multiple = "MULTIPLE"

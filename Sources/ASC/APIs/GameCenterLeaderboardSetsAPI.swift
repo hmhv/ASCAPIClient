@@ -6,29 +6,28 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class GameCenterLeaderboardSetsAPI {
 
     /**
 
      - parameter gameCenterLeaderboardSetCreateRequest: (body) GameCenterLeaderboardSet representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterLeaderboardSetResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterLeaderboardSetsCreateInstance(gameCenterLeaderboardSetCreateRequest: GameCenterLeaderboardSetCreateRequest) async throws -> GameCenterLeaderboardSetResponse {
-        return try await gameCenterLeaderboardSetsCreateInstanceWithRequestBuilder(gameCenterLeaderboardSetCreateRequest: gameCenterLeaderboardSetCreateRequest).execute().body
+    open class func gameCenterLeaderboardSetsCreateInstance(gameCenterLeaderboardSetCreateRequest: GameCenterLeaderboardSetCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterLeaderboardSetResponse {
+        return try await gameCenterLeaderboardSetsCreateInstanceWithRequestBuilder(gameCenterLeaderboardSetCreateRequest: gameCenterLeaderboardSetCreateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterLeaderboardSetResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterLeaderboardSetsCreateInstance(urlString: String) async throws -> GameCenterLeaderboardSetResponse {
-        return try await gameCenterLeaderboardSetsCreateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func gameCenterLeaderboardSetsCreateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterLeaderboardSetResponse {
+        return try await gameCenterLeaderboardSetsCreateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -37,12 +36,13 @@ open class GameCenterLeaderboardSetsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter gameCenterLeaderboardSetCreateRequest: (body) GameCenterLeaderboardSet representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterLeaderboardSetResponse> 
      */
-    open class func gameCenterLeaderboardSetsCreateInstanceWithRequestBuilder(gameCenterLeaderboardSetCreateRequest: GameCenterLeaderboardSetCreateRequest) -> RequestBuilder<GameCenterLeaderboardSetResponse> {
+    open class func gameCenterLeaderboardSetsCreateInstanceWithRequestBuilder(gameCenterLeaderboardSetCreateRequest: GameCenterLeaderboardSetCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterLeaderboardSetResponse> {
         let localVariablePath = "/v1/gameCenterLeaderboardSets"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: gameCenterLeaderboardSetCreateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: gameCenterLeaderboardSetCreateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -52,9 +52,9 @@ open class GameCenterLeaderboardSetsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardSetResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardSetResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -63,37 +63,40 @@ open class GameCenterLeaderboardSetsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterLeaderboardSetResponse> 
      */
-    open class func gameCenterLeaderboardSetsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterLeaderboardSetResponse> {
+    open class func gameCenterLeaderboardSetsCreateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterLeaderboardSetResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardSetResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardSetResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterLeaderboardSetsDeleteInstance(id: String) async throws {
-        return try await gameCenterLeaderboardSetsDeleteInstanceWithRequestBuilder(id: id).execute().body
+    open class func gameCenterLeaderboardSetsDeleteInstance(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await gameCenterLeaderboardSetsDeleteInstanceWithRequestBuilder(id: id, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterLeaderboardSetsDeleteInstance(urlString: String) async throws {
-        return try await gameCenterLeaderboardSetsDeleteInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func gameCenterLeaderboardSetsDeleteInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await gameCenterLeaderboardSetsDeleteInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -102,14 +105,15 @@ open class GameCenterLeaderboardSetsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func gameCenterLeaderboardSetsDeleteInstanceWithRequestBuilder(id: String) -> RequestBuilder<Void> {
+    open class func gameCenterLeaderboardSetsDeleteInstanceWithRequestBuilder(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/gameCenterLeaderboardSets/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -120,9 +124,9 @@ open class GameCenterLeaderboardSetsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -131,38 +135,41 @@ open class GameCenterLeaderboardSetsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func gameCenterLeaderboardSetsDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func gameCenterLeaderboardSetsDeleteInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter gameCenterLeaderboardSetGameCenterLeaderboardsLinkagesRequest: (body) List of related linkages 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterLeaderboardSetsGameCenterLeaderboardsCreateToManyRelationship(id: String, gameCenterLeaderboardSetGameCenterLeaderboardsLinkagesRequest: GameCenterLeaderboardSetGameCenterLeaderboardsLinkagesRequest) async throws {
-        return try await gameCenterLeaderboardSetsGameCenterLeaderboardsCreateToManyRelationshipWithRequestBuilder(id: id, gameCenterLeaderboardSetGameCenterLeaderboardsLinkagesRequest: gameCenterLeaderboardSetGameCenterLeaderboardsLinkagesRequest).execute().body
+    open class func gameCenterLeaderboardSetsGameCenterLeaderboardsCreateToManyRelationship(id: String, gameCenterLeaderboardSetGameCenterLeaderboardsLinkagesRequest: GameCenterLeaderboardSetGameCenterLeaderboardsLinkagesRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await gameCenterLeaderboardSetsGameCenterLeaderboardsCreateToManyRelationshipWithRequestBuilder(id: id, gameCenterLeaderboardSetGameCenterLeaderboardsLinkagesRequest: gameCenterLeaderboardSetGameCenterLeaderboardsLinkagesRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterLeaderboardSetsGameCenterLeaderboardsCreateToManyRelationship(urlString: String) async throws {
-        return try await gameCenterLeaderboardSetsGameCenterLeaderboardsCreateToManyRelationshipWithRequestBuilder(urlString: urlString).execute().body
+    open class func gameCenterLeaderboardSetsGameCenterLeaderboardsCreateToManyRelationship(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await gameCenterLeaderboardSetsGameCenterLeaderboardsCreateToManyRelationshipWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -172,15 +179,16 @@ open class GameCenterLeaderboardSetsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter gameCenterLeaderboardSetGameCenterLeaderboardsLinkagesRequest: (body) List of related linkages 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func gameCenterLeaderboardSetsGameCenterLeaderboardsCreateToManyRelationshipWithRequestBuilder(id: String, gameCenterLeaderboardSetGameCenterLeaderboardsLinkagesRequest: GameCenterLeaderboardSetGameCenterLeaderboardsLinkagesRequest) -> RequestBuilder<Void> {
+    open class func gameCenterLeaderboardSetsGameCenterLeaderboardsCreateToManyRelationshipWithRequestBuilder(id: String, gameCenterLeaderboardSetGameCenterLeaderboardsLinkagesRequest: GameCenterLeaderboardSetGameCenterLeaderboardsLinkagesRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/gameCenterLeaderboardSets/{id}/relationships/gameCenterLeaderboards"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: gameCenterLeaderboardSetGameCenterLeaderboardsLinkagesRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: gameCenterLeaderboardSetGameCenterLeaderboardsLinkagesRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -190,9 +198,9 @@ open class GameCenterLeaderboardSetsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -201,38 +209,41 @@ open class GameCenterLeaderboardSetsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func gameCenterLeaderboardSetsGameCenterLeaderboardsCreateToManyRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func gameCenterLeaderboardSetsGameCenterLeaderboardsCreateToManyRelationshipWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter gameCenterLeaderboardSetGameCenterLeaderboardsLinkagesRequest: (body) List of related linkages 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterLeaderboardSetsGameCenterLeaderboardsDeleteToManyRelationship(id: String, gameCenterLeaderboardSetGameCenterLeaderboardsLinkagesRequest: GameCenterLeaderboardSetGameCenterLeaderboardsLinkagesRequest) async throws {
-        return try await gameCenterLeaderboardSetsGameCenterLeaderboardsDeleteToManyRelationshipWithRequestBuilder(id: id, gameCenterLeaderboardSetGameCenterLeaderboardsLinkagesRequest: gameCenterLeaderboardSetGameCenterLeaderboardsLinkagesRequest).execute().body
+    open class func gameCenterLeaderboardSetsGameCenterLeaderboardsDeleteToManyRelationship(id: String, gameCenterLeaderboardSetGameCenterLeaderboardsLinkagesRequest: GameCenterLeaderboardSetGameCenterLeaderboardsLinkagesRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await gameCenterLeaderboardSetsGameCenterLeaderboardsDeleteToManyRelationshipWithRequestBuilder(id: id, gameCenterLeaderboardSetGameCenterLeaderboardsLinkagesRequest: gameCenterLeaderboardSetGameCenterLeaderboardsLinkagesRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterLeaderboardSetsGameCenterLeaderboardsDeleteToManyRelationship(urlString: String) async throws {
-        return try await gameCenterLeaderboardSetsGameCenterLeaderboardsDeleteToManyRelationshipWithRequestBuilder(urlString: urlString).execute().body
+    open class func gameCenterLeaderboardSetsGameCenterLeaderboardsDeleteToManyRelationship(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await gameCenterLeaderboardSetsGameCenterLeaderboardsDeleteToManyRelationshipWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -242,15 +253,16 @@ open class GameCenterLeaderboardSetsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter gameCenterLeaderboardSetGameCenterLeaderboardsLinkagesRequest: (body) List of related linkages 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func gameCenterLeaderboardSetsGameCenterLeaderboardsDeleteToManyRelationshipWithRequestBuilder(id: String, gameCenterLeaderboardSetGameCenterLeaderboardsLinkagesRequest: GameCenterLeaderboardSetGameCenterLeaderboardsLinkagesRequest) -> RequestBuilder<Void> {
+    open class func gameCenterLeaderboardSetsGameCenterLeaderboardsDeleteToManyRelationshipWithRequestBuilder(id: String, gameCenterLeaderboardSetGameCenterLeaderboardsLinkagesRequest: GameCenterLeaderboardSetGameCenterLeaderboardsLinkagesRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/gameCenterLeaderboardSets/{id}/relationships/gameCenterLeaderboards"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: gameCenterLeaderboardSetGameCenterLeaderboardsLinkagesRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: gameCenterLeaderboardSetGameCenterLeaderboardsLinkagesRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -260,9 +272,9 @@ open class GameCenterLeaderboardSetsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -271,24 +283,25 @@ open class GameCenterLeaderboardSetsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func gameCenterLeaderboardSetsGameCenterLeaderboardsDeleteToManyRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func gameCenterLeaderboardSetsGameCenterLeaderboardsDeleteToManyRelationshipWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsGameCenterLeaderboards
      */
-    public enum FieldsGameCenterLeaderboards_gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelated: String, CaseIterable {
+    public enum FieldsGameCenterLeaderboards_gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelated: String, Sendable, CaseIterable {
         case defaultformatter = "defaultFormatter"
         case referencename = "referenceName"
         case vendoridentifier = "vendorIdentifier"
@@ -311,7 +324,7 @@ open class GameCenterLeaderboardSetsAPI {
     /**
      * enum for parameter fieldsGameCenterDetails
      */
-    public enum FieldsGameCenterDetails_gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelated: String, CaseIterable {
+    public enum FieldsGameCenterDetails_gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelated: String, Sendable, CaseIterable {
         case arcadeenabled = "arcadeEnabled"
         case challengeenabled = "challengeEnabled"
         case app = "app"
@@ -330,7 +343,7 @@ open class GameCenterLeaderboardSetsAPI {
     /**
      * enum for parameter fieldsGameCenterGroups
      */
-    public enum FieldsGameCenterGroups_gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelated: String, CaseIterable {
+    public enum FieldsGameCenterGroups_gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelated: String, Sendable, CaseIterable {
         case referencename = "referenceName"
         case gamecenterdetails = "gameCenterDetails"
         case gamecenterleaderboards = "gameCenterLeaderboards"
@@ -341,7 +354,7 @@ open class GameCenterLeaderboardSetsAPI {
     /**
      * enum for parameter fieldsGameCenterLeaderboardSets
      */
-    public enum FieldsGameCenterLeaderboardSets_gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelated: String, CaseIterable {
+    public enum FieldsGameCenterLeaderboardSets_gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelated: String, Sendable, CaseIterable {
         case referencename = "referenceName"
         case vendoridentifier = "vendorIdentifier"
         case gamecenterdetail = "gameCenterDetail"
@@ -355,7 +368,7 @@ open class GameCenterLeaderboardSetsAPI {
     /**
      * enum for parameter fieldsGameCenterLeaderboardLocalizations
      */
-    public enum FieldsGameCenterLeaderboardLocalizations_gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelated: String, CaseIterable {
+    public enum FieldsGameCenterLeaderboardLocalizations_gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelated: String, Sendable, CaseIterable {
         case locale = "locale"
         case name = "name"
         case formatteroverride = "formatterOverride"
@@ -368,7 +381,7 @@ open class GameCenterLeaderboardSetsAPI {
     /**
      * enum for parameter fieldsGameCenterLeaderboardReleases
      */
-    public enum FieldsGameCenterLeaderboardReleases_gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelated: String, CaseIterable {
+    public enum FieldsGameCenterLeaderboardReleases_gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelated: String, Sendable, CaseIterable {
         case live = "live"
         case gamecenterdetail = "gameCenterDetail"
         case gamecenterleaderboard = "gameCenterLeaderboard"
@@ -377,7 +390,7 @@ open class GameCenterLeaderboardSetsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelated: String, CaseIterable {
+    public enum Include_gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelated: String, Sendable, CaseIterable {
         case gamecenterdetail = "gameCenterDetail"
         case gamecentergroup = "gameCenterGroup"
         case groupleaderboard = "groupLeaderboard"
@@ -403,20 +416,22 @@ open class GameCenterLeaderboardSetsAPI {
      - parameter limitGameCenterLeaderboardSets: (query) maximum number of related gameCenterLeaderboardSets returned (when they are included) (optional)
      - parameter limitLocalizations: (query) maximum number of related localizations returned (when they are included) (optional)
      - parameter limitReleases: (query) maximum number of related releases returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterLeaderboardsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelated(id: String, filterReferenceName: [String]? = nil, filterArchived: [String]? = nil, filterId: [String]? = nil, fieldsGameCenterLeaderboards: [FieldsGameCenterLeaderboards_gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelated]? = nil, fieldsGameCenterGroups: [FieldsGameCenterGroups_gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelated]? = nil, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelated]? = nil, fieldsGameCenterLeaderboardLocalizations: [FieldsGameCenterLeaderboardLocalizations_gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelated]? = nil, fieldsGameCenterLeaderboardReleases: [FieldsGameCenterLeaderboardReleases_gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelated]? = nil, limitGameCenterLeaderboardSets: Int? = nil, limitLocalizations: Int? = nil, limitReleases: Int? = nil) async throws -> GameCenterLeaderboardsResponse {
-        return try await gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelatedWithRequestBuilder(id: id, filterReferenceName: filterReferenceName, filterArchived: filterArchived, filterId: filterId, fieldsGameCenterLeaderboards: fieldsGameCenterLeaderboards, fieldsGameCenterDetails: fieldsGameCenterDetails, fieldsGameCenterGroups: fieldsGameCenterGroups, fieldsGameCenterLeaderboardSets: fieldsGameCenterLeaderboardSets, fieldsGameCenterLeaderboardLocalizations: fieldsGameCenterLeaderboardLocalizations, fieldsGameCenterLeaderboardReleases: fieldsGameCenterLeaderboardReleases, limit: limit, include: include, limitGameCenterLeaderboardSets: limitGameCenterLeaderboardSets, limitLocalizations: limitLocalizations, limitReleases: limitReleases).execute().body
+    open class func gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelated(id: String, filterReferenceName: [String]? = nil, filterArchived: [String]? = nil, filterId: [String]? = nil, fieldsGameCenterLeaderboards: [FieldsGameCenterLeaderboards_gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelated]? = nil, fieldsGameCenterGroups: [FieldsGameCenterGroups_gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelated]? = nil, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelated]? = nil, fieldsGameCenterLeaderboardLocalizations: [FieldsGameCenterLeaderboardLocalizations_gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelated]? = nil, fieldsGameCenterLeaderboardReleases: [FieldsGameCenterLeaderboardReleases_gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelated]? = nil, limitGameCenterLeaderboardSets: Int? = nil, limitLocalizations: Int? = nil, limitReleases: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterLeaderboardsResponse {
+        return try await gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelatedWithRequestBuilder(id: id, filterReferenceName: filterReferenceName, filterArchived: filterArchived, filterId: filterId, fieldsGameCenterLeaderboards: fieldsGameCenterLeaderboards, fieldsGameCenterDetails: fieldsGameCenterDetails, fieldsGameCenterGroups: fieldsGameCenterGroups, fieldsGameCenterLeaderboardSets: fieldsGameCenterLeaderboardSets, fieldsGameCenterLeaderboardLocalizations: fieldsGameCenterLeaderboardLocalizations, fieldsGameCenterLeaderboardReleases: fieldsGameCenterLeaderboardReleases, limit: limit, include: include, limitGameCenterLeaderboardSets: limitGameCenterLeaderboardSets, limitLocalizations: limitLocalizations, limitReleases: limitReleases, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterLeaderboardsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelated(urlString: String) async throws -> GameCenterLeaderboardsResponse {
-        return try await gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterLeaderboardsResponse {
+        return try await gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -439,32 +454,33 @@ open class GameCenterLeaderboardSetsAPI {
      - parameter limitGameCenterLeaderboardSets: (query) maximum number of related gameCenterLeaderboardSets returned (when they are included) (optional)
      - parameter limitLocalizations: (query) maximum number of related localizations returned (when they are included) (optional)
      - parameter limitReleases: (query) maximum number of related releases returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterLeaderboardsResponse> 
      */
-    open class func gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelatedWithRequestBuilder(id: String, filterReferenceName: [String]? = nil, filterArchived: [String]? = nil, filterId: [String]? = nil, fieldsGameCenterLeaderboards: [FieldsGameCenterLeaderboards_gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelated]? = nil, fieldsGameCenterGroups: [FieldsGameCenterGroups_gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelated]? = nil, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelated]? = nil, fieldsGameCenterLeaderboardLocalizations: [FieldsGameCenterLeaderboardLocalizations_gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelated]? = nil, fieldsGameCenterLeaderboardReleases: [FieldsGameCenterLeaderboardReleases_gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelated]? = nil, limitGameCenterLeaderboardSets: Int? = nil, limitLocalizations: Int? = nil, limitReleases: Int? = nil) -> RequestBuilder<GameCenterLeaderboardsResponse> {
+    open class func gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelatedWithRequestBuilder(id: String, filterReferenceName: [String]? = nil, filterArchived: [String]? = nil, filterId: [String]? = nil, fieldsGameCenterLeaderboards: [FieldsGameCenterLeaderboards_gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelated]? = nil, fieldsGameCenterGroups: [FieldsGameCenterGroups_gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelated]? = nil, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelated]? = nil, fieldsGameCenterLeaderboardLocalizations: [FieldsGameCenterLeaderboardLocalizations_gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelated]? = nil, fieldsGameCenterLeaderboardReleases: [FieldsGameCenterLeaderboardReleases_gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelated]? = nil, limitGameCenterLeaderboardSets: Int? = nil, limitLocalizations: Int? = nil, limitReleases: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterLeaderboardsResponse> {
         var localVariablePath = "/v1/gameCenterLeaderboardSets/{id}/gameCenterLeaderboards"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[referenceName]": (wrappedValue: filterReferenceName?.encodeToJSON(), isExplode: false),
-            "filter[archived]": (wrappedValue: filterArchived?.encodeToJSON(), isExplode: false),
-            "filter[id]": (wrappedValue: filterId?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterLeaderboards]": (wrappedValue: fieldsGameCenterLeaderboards?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterDetails]": (wrappedValue: fieldsGameCenterDetails?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterGroups]": (wrappedValue: fieldsGameCenterGroups?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterLeaderboardSets]": (wrappedValue: fieldsGameCenterLeaderboardSets?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterLeaderboardLocalizations]": (wrappedValue: fieldsGameCenterLeaderboardLocalizations?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterLeaderboardReleases]": (wrappedValue: fieldsGameCenterLeaderboardReleases?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[gameCenterLeaderboardSets]": (wrappedValue: limitGameCenterLeaderboardSets?.encodeToJSON(), isExplode: true),
-            "limit[localizations]": (wrappedValue: limitLocalizations?.encodeToJSON(), isExplode: true),
-            "limit[releases]": (wrappedValue: limitReleases?.encodeToJSON(), isExplode: true),
+            "filter[referenceName]": (wrappedValue: filterReferenceName?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[archived]": (wrappedValue: filterArchived?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[id]": (wrappedValue: filterId?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[gameCenterLeaderboards]": (wrappedValue: fieldsGameCenterLeaderboards?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[gameCenterDetails]": (wrappedValue: fieldsGameCenterDetails?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[gameCenterGroups]": (wrappedValue: fieldsGameCenterGroups?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[gameCenterLeaderboardSets]": (wrappedValue: fieldsGameCenterLeaderboardSets?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[gameCenterLeaderboardLocalizations]": (wrappedValue: fieldsGameCenterLeaderboardLocalizations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[gameCenterLeaderboardReleases]": (wrappedValue: fieldsGameCenterLeaderboardReleases?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[gameCenterLeaderboardSets]": (wrappedValue: limitGameCenterLeaderboardSets?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[localizations]": (wrappedValue: limitLocalizations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[releases]": (wrappedValue: limitReleases?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -473,9 +489,9 @@ open class GameCenterLeaderboardSetsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -484,38 +500,41 @@ open class GameCenterLeaderboardSetsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterLeaderboardsResponse> 
      */
-    open class func gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterLeaderboardsResponse> {
+    open class func gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterLeaderboardsResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterLeaderboardSetGameCenterLeaderboardsLinkagesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelationship(id: String, limit: Int? = nil) async throws -> GameCenterLeaderboardSetGameCenterLeaderboardsLinkagesResponse {
-        return try await gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelationshipWithRequestBuilder(id: id, limit: limit).execute().body
+    open class func gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelationship(id: String, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterLeaderboardSetGameCenterLeaderboardsLinkagesResponse {
+        return try await gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelationshipWithRequestBuilder(id: id, limit: limit, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterLeaderboardSetGameCenterLeaderboardsLinkagesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelationship(urlString: String) async throws -> GameCenterLeaderboardSetGameCenterLeaderboardsLinkagesResponse {
-        return try await gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelationshipWithRequestBuilder(urlString: urlString).execute().body
+    open class func gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelationship(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterLeaderboardSetGameCenterLeaderboardsLinkagesResponse {
+        return try await gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelationshipWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -525,19 +544,20 @@ open class GameCenterLeaderboardSetsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterLeaderboardSetGameCenterLeaderboardsLinkagesResponse> 
      */
-    open class func gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelationshipWithRequestBuilder(id: String, limit: Int? = nil) -> RequestBuilder<GameCenterLeaderboardSetGameCenterLeaderboardsLinkagesResponse> {
+    open class func gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelationshipWithRequestBuilder(id: String, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterLeaderboardSetGameCenterLeaderboardsLinkagesResponse> {
         var localVariablePath = "/v1/gameCenterLeaderboardSets/{id}/relationships/gameCenterLeaderboards"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -546,9 +566,9 @@ open class GameCenterLeaderboardSetsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardSetGameCenterLeaderboardsLinkagesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardSetGameCenterLeaderboardsLinkagesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -557,38 +577,41 @@ open class GameCenterLeaderboardSetsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterLeaderboardSetGameCenterLeaderboardsLinkagesResponse> 
      */
-    open class func gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterLeaderboardSetGameCenterLeaderboardsLinkagesResponse> {
+    open class func gameCenterLeaderboardSetsGameCenterLeaderboardsGetToManyRelationshipWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterLeaderboardSetGameCenterLeaderboardsLinkagesResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardSetGameCenterLeaderboardsLinkagesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardSetGameCenterLeaderboardsLinkagesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter gameCenterLeaderboardSetGameCenterLeaderboardsLinkagesRequest: (body) List of related linkages 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterLeaderboardSetsGameCenterLeaderboardsReplaceToManyRelationship(id: String, gameCenterLeaderboardSetGameCenterLeaderboardsLinkagesRequest: GameCenterLeaderboardSetGameCenterLeaderboardsLinkagesRequest) async throws {
-        return try await gameCenterLeaderboardSetsGameCenterLeaderboardsReplaceToManyRelationshipWithRequestBuilder(id: id, gameCenterLeaderboardSetGameCenterLeaderboardsLinkagesRequest: gameCenterLeaderboardSetGameCenterLeaderboardsLinkagesRequest).execute().body
+    open class func gameCenterLeaderboardSetsGameCenterLeaderboardsReplaceToManyRelationship(id: String, gameCenterLeaderboardSetGameCenterLeaderboardsLinkagesRequest: GameCenterLeaderboardSetGameCenterLeaderboardsLinkagesRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await gameCenterLeaderboardSetsGameCenterLeaderboardsReplaceToManyRelationshipWithRequestBuilder(id: id, gameCenterLeaderboardSetGameCenterLeaderboardsLinkagesRequest: gameCenterLeaderboardSetGameCenterLeaderboardsLinkagesRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterLeaderboardSetsGameCenterLeaderboardsReplaceToManyRelationship(urlString: String) async throws {
-        return try await gameCenterLeaderboardSetsGameCenterLeaderboardsReplaceToManyRelationshipWithRequestBuilder(urlString: urlString).execute().body
+    open class func gameCenterLeaderboardSetsGameCenterLeaderboardsReplaceToManyRelationship(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await gameCenterLeaderboardSetsGameCenterLeaderboardsReplaceToManyRelationshipWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -598,15 +621,16 @@ open class GameCenterLeaderboardSetsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter gameCenterLeaderboardSetGameCenterLeaderboardsLinkagesRequest: (body) List of related linkages 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func gameCenterLeaderboardSetsGameCenterLeaderboardsReplaceToManyRelationshipWithRequestBuilder(id: String, gameCenterLeaderboardSetGameCenterLeaderboardsLinkagesRequest: GameCenterLeaderboardSetGameCenterLeaderboardsLinkagesRequest) -> RequestBuilder<Void> {
+    open class func gameCenterLeaderboardSetsGameCenterLeaderboardsReplaceToManyRelationshipWithRequestBuilder(id: String, gameCenterLeaderboardSetGameCenterLeaderboardsLinkagesRequest: GameCenterLeaderboardSetGameCenterLeaderboardsLinkagesRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/gameCenterLeaderboardSets/{id}/relationships/gameCenterLeaderboards"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: gameCenterLeaderboardSetGameCenterLeaderboardsLinkagesRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: gameCenterLeaderboardSetGameCenterLeaderboardsLinkagesRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -616,9 +640,9 @@ open class GameCenterLeaderboardSetsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -627,24 +651,25 @@ open class GameCenterLeaderboardSetsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func gameCenterLeaderboardSetsGameCenterLeaderboardsReplaceToManyRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func gameCenterLeaderboardSetsGameCenterLeaderboardsReplaceToManyRelationshipWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsGameCenterLeaderboardSets
      */
-    public enum FieldsGameCenterLeaderboardSets_gameCenterLeaderboardSetsGetInstance: String, CaseIterable {
+    public enum FieldsGameCenterLeaderboardSets_gameCenterLeaderboardSetsGetInstance: String, Sendable, CaseIterable {
         case referencename = "referenceName"
         case vendoridentifier = "vendorIdentifier"
         case gamecenterdetail = "gameCenterDetail"
@@ -658,7 +683,7 @@ open class GameCenterLeaderboardSetsAPI {
     /**
      * enum for parameter fieldsGameCenterLeaderboardSetLocalizations
      */
-    public enum FieldsGameCenterLeaderboardSetLocalizations_gameCenterLeaderboardSetsGetInstance: String, CaseIterable {
+    public enum FieldsGameCenterLeaderboardSetLocalizations_gameCenterLeaderboardSetsGetInstance: String, Sendable, CaseIterable {
         case locale = "locale"
         case name = "name"
         case gamecenterleaderboardset = "gameCenterLeaderboardSet"
@@ -668,7 +693,7 @@ open class GameCenterLeaderboardSetsAPI {
     /**
      * enum for parameter fieldsGameCenterLeaderboards
      */
-    public enum FieldsGameCenterLeaderboards_gameCenterLeaderboardSetsGetInstance: String, CaseIterable {
+    public enum FieldsGameCenterLeaderboards_gameCenterLeaderboardSetsGetInstance: String, Sendable, CaseIterable {
         case defaultformatter = "defaultFormatter"
         case referencename = "referenceName"
         case vendoridentifier = "vendorIdentifier"
@@ -691,7 +716,7 @@ open class GameCenterLeaderboardSetsAPI {
     /**
      * enum for parameter fieldsGameCenterLeaderboardSetReleases
      */
-    public enum FieldsGameCenterLeaderboardSetReleases_gameCenterLeaderboardSetsGetInstance: String, CaseIterable {
+    public enum FieldsGameCenterLeaderboardSetReleases_gameCenterLeaderboardSetsGetInstance: String, Sendable, CaseIterable {
         case live = "live"
         case gamecenterdetail = "gameCenterDetail"
         case gamecenterleaderboardset = "gameCenterLeaderboardSet"
@@ -700,7 +725,7 @@ open class GameCenterLeaderboardSetsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_gameCenterLeaderboardSetsGetInstance: String, CaseIterable {
+    public enum Include_gameCenterLeaderboardSetsGetInstance: String, Sendable, CaseIterable {
         case gamecenterdetail = "gameCenterDetail"
         case gamecentergroup = "gameCenterGroup"
         case groupleaderboardset = "groupLeaderboardSet"
@@ -720,20 +745,22 @@ open class GameCenterLeaderboardSetsAPI {
      - parameter limitGameCenterLeaderboards: (query) maximum number of related gameCenterLeaderboards returned (when they are included) (optional)
      - parameter limitLocalizations: (query) maximum number of related localizations returned (when they are included) (optional)
      - parameter limitReleases: (query) maximum number of related releases returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterLeaderboardSetResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterLeaderboardSetsGetInstance(id: String, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_gameCenterLeaderboardSetsGetInstance]? = nil, fieldsGameCenterLeaderboardSetLocalizations: [FieldsGameCenterLeaderboardSetLocalizations_gameCenterLeaderboardSetsGetInstance]? = nil, fieldsGameCenterLeaderboards: [FieldsGameCenterLeaderboards_gameCenterLeaderboardSetsGetInstance]? = nil, fieldsGameCenterLeaderboardSetReleases: [FieldsGameCenterLeaderboardSetReleases_gameCenterLeaderboardSetsGetInstance]? = nil, include: [Include_gameCenterLeaderboardSetsGetInstance]? = nil, limitGameCenterLeaderboards: Int? = nil, limitLocalizations: Int? = nil, limitReleases: Int? = nil) async throws -> GameCenterLeaderboardSetResponse {
-        return try await gameCenterLeaderboardSetsGetInstanceWithRequestBuilder(id: id, fieldsGameCenterLeaderboardSets: fieldsGameCenterLeaderboardSets, fieldsGameCenterLeaderboardSetLocalizations: fieldsGameCenterLeaderboardSetLocalizations, fieldsGameCenterLeaderboards: fieldsGameCenterLeaderboards, fieldsGameCenterLeaderboardSetReleases: fieldsGameCenterLeaderboardSetReleases, include: include, limitGameCenterLeaderboards: limitGameCenterLeaderboards, limitLocalizations: limitLocalizations, limitReleases: limitReleases).execute().body
+    open class func gameCenterLeaderboardSetsGetInstance(id: String, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_gameCenterLeaderboardSetsGetInstance]? = nil, fieldsGameCenterLeaderboardSetLocalizations: [FieldsGameCenterLeaderboardSetLocalizations_gameCenterLeaderboardSetsGetInstance]? = nil, fieldsGameCenterLeaderboards: [FieldsGameCenterLeaderboards_gameCenterLeaderboardSetsGetInstance]? = nil, fieldsGameCenterLeaderboardSetReleases: [FieldsGameCenterLeaderboardSetReleases_gameCenterLeaderboardSetsGetInstance]? = nil, include: [Include_gameCenterLeaderboardSetsGetInstance]? = nil, limitGameCenterLeaderboards: Int? = nil, limitLocalizations: Int? = nil, limitReleases: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterLeaderboardSetResponse {
+        return try await gameCenterLeaderboardSetsGetInstanceWithRequestBuilder(id: id, fieldsGameCenterLeaderboardSets: fieldsGameCenterLeaderboardSets, fieldsGameCenterLeaderboardSetLocalizations: fieldsGameCenterLeaderboardSetLocalizations, fieldsGameCenterLeaderboards: fieldsGameCenterLeaderboards, fieldsGameCenterLeaderboardSetReleases: fieldsGameCenterLeaderboardSetReleases, include: include, limitGameCenterLeaderboards: limitGameCenterLeaderboards, limitLocalizations: limitLocalizations, limitReleases: limitReleases, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterLeaderboardSetResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterLeaderboardSetsGetInstance(urlString: String) async throws -> GameCenterLeaderboardSetResponse {
-        return try await gameCenterLeaderboardSetsGetInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func gameCenterLeaderboardSetsGetInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterLeaderboardSetResponse {
+        return try await gameCenterLeaderboardSetsGetInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -750,26 +777,27 @@ open class GameCenterLeaderboardSetsAPI {
      - parameter limitGameCenterLeaderboards: (query) maximum number of related gameCenterLeaderboards returned (when they are included) (optional)
      - parameter limitLocalizations: (query) maximum number of related localizations returned (when they are included) (optional)
      - parameter limitReleases: (query) maximum number of related releases returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterLeaderboardSetResponse> 
      */
-    open class func gameCenterLeaderboardSetsGetInstanceWithRequestBuilder(id: String, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_gameCenterLeaderboardSetsGetInstance]? = nil, fieldsGameCenterLeaderboardSetLocalizations: [FieldsGameCenterLeaderboardSetLocalizations_gameCenterLeaderboardSetsGetInstance]? = nil, fieldsGameCenterLeaderboards: [FieldsGameCenterLeaderboards_gameCenterLeaderboardSetsGetInstance]? = nil, fieldsGameCenterLeaderboardSetReleases: [FieldsGameCenterLeaderboardSetReleases_gameCenterLeaderboardSetsGetInstance]? = nil, include: [Include_gameCenterLeaderboardSetsGetInstance]? = nil, limitGameCenterLeaderboards: Int? = nil, limitLocalizations: Int? = nil, limitReleases: Int? = nil) -> RequestBuilder<GameCenterLeaderboardSetResponse> {
+    open class func gameCenterLeaderboardSetsGetInstanceWithRequestBuilder(id: String, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_gameCenterLeaderboardSetsGetInstance]? = nil, fieldsGameCenterLeaderboardSetLocalizations: [FieldsGameCenterLeaderboardSetLocalizations_gameCenterLeaderboardSetsGetInstance]? = nil, fieldsGameCenterLeaderboards: [FieldsGameCenterLeaderboards_gameCenterLeaderboardSetsGetInstance]? = nil, fieldsGameCenterLeaderboardSetReleases: [FieldsGameCenterLeaderboardSetReleases_gameCenterLeaderboardSetsGetInstance]? = nil, include: [Include_gameCenterLeaderboardSetsGetInstance]? = nil, limitGameCenterLeaderboards: Int? = nil, limitLocalizations: Int? = nil, limitReleases: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterLeaderboardSetResponse> {
         var localVariablePath = "/v1/gameCenterLeaderboardSets/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[gameCenterLeaderboardSets]": (wrappedValue: fieldsGameCenterLeaderboardSets?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterLeaderboardSetLocalizations]": (wrappedValue: fieldsGameCenterLeaderboardSetLocalizations?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterLeaderboards]": (wrappedValue: fieldsGameCenterLeaderboards?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterLeaderboardSetReleases]": (wrappedValue: fieldsGameCenterLeaderboardSetReleases?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[gameCenterLeaderboards]": (wrappedValue: limitGameCenterLeaderboards?.encodeToJSON(), isExplode: true),
-            "limit[localizations]": (wrappedValue: limitLocalizations?.encodeToJSON(), isExplode: true),
-            "limit[releases]": (wrappedValue: limitReleases?.encodeToJSON(), isExplode: true),
+            "fields[gameCenterLeaderboardSets]": (wrappedValue: fieldsGameCenterLeaderboardSets?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[gameCenterLeaderboardSetLocalizations]": (wrappedValue: fieldsGameCenterLeaderboardSetLocalizations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[gameCenterLeaderboards]": (wrappedValue: fieldsGameCenterLeaderboards?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[gameCenterLeaderboardSetReleases]": (wrappedValue: fieldsGameCenterLeaderboardSetReleases?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[gameCenterLeaderboards]": (wrappedValue: limitGameCenterLeaderboards?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[localizations]": (wrappedValue: limitLocalizations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[releases]": (wrappedValue: limitReleases?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -778,9 +806,9 @@ open class GameCenterLeaderboardSetsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardSetResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardSetResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -789,24 +817,25 @@ open class GameCenterLeaderboardSetsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterLeaderboardSetResponse> 
      */
-    open class func gameCenterLeaderboardSetsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterLeaderboardSetResponse> {
+    open class func gameCenterLeaderboardSetsGetInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterLeaderboardSetResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardSetResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardSetResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsGameCenterLeaderboardSets
      */
-    public enum FieldsGameCenterLeaderboardSets_gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelated: String, CaseIterable {
+    public enum FieldsGameCenterLeaderboardSets_gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelated: String, Sendable, CaseIterable {
         case referencename = "referenceName"
         case vendoridentifier = "vendorIdentifier"
         case gamecenterdetail = "gameCenterDetail"
@@ -820,7 +849,7 @@ open class GameCenterLeaderboardSetsAPI {
     /**
      * enum for parameter fieldsGameCenterDetails
      */
-    public enum FieldsGameCenterDetails_gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelated: String, CaseIterable {
+    public enum FieldsGameCenterDetails_gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelated: String, Sendable, CaseIterable {
         case arcadeenabled = "arcadeEnabled"
         case challengeenabled = "challengeEnabled"
         case app = "app"
@@ -839,7 +868,7 @@ open class GameCenterLeaderboardSetsAPI {
     /**
      * enum for parameter fieldsGameCenterGroups
      */
-    public enum FieldsGameCenterGroups_gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelated: String, CaseIterable {
+    public enum FieldsGameCenterGroups_gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelated: String, Sendable, CaseIterable {
         case referencename = "referenceName"
         case gamecenterdetails = "gameCenterDetails"
         case gamecenterleaderboards = "gameCenterLeaderboards"
@@ -850,7 +879,7 @@ open class GameCenterLeaderboardSetsAPI {
     /**
      * enum for parameter fieldsGameCenterLeaderboardSetLocalizations
      */
-    public enum FieldsGameCenterLeaderboardSetLocalizations_gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelated: String, CaseIterable {
+    public enum FieldsGameCenterLeaderboardSetLocalizations_gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelated: String, Sendable, CaseIterable {
         case locale = "locale"
         case name = "name"
         case gamecenterleaderboardset = "gameCenterLeaderboardSet"
@@ -860,7 +889,7 @@ open class GameCenterLeaderboardSetsAPI {
     /**
      * enum for parameter fieldsGameCenterLeaderboards
      */
-    public enum FieldsGameCenterLeaderboards_gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelated: String, CaseIterable {
+    public enum FieldsGameCenterLeaderboards_gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelated: String, Sendable, CaseIterable {
         case defaultformatter = "defaultFormatter"
         case referencename = "referenceName"
         case vendoridentifier = "vendorIdentifier"
@@ -883,7 +912,7 @@ open class GameCenterLeaderboardSetsAPI {
     /**
      * enum for parameter fieldsGameCenterLeaderboardSetReleases
      */
-    public enum FieldsGameCenterLeaderboardSetReleases_gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelated: String, CaseIterable {
+    public enum FieldsGameCenterLeaderboardSetReleases_gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelated: String, Sendable, CaseIterable {
         case live = "live"
         case gamecenterdetail = "gameCenterDetail"
         case gamecenterleaderboardset = "gameCenterLeaderboardSet"
@@ -892,7 +921,7 @@ open class GameCenterLeaderboardSetsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelated: String, CaseIterable {
+    public enum Include_gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelated: String, Sendable, CaseIterable {
         case gamecenterdetail = "gameCenterDetail"
         case gamecentergroup = "gameCenterGroup"
         case groupleaderboardset = "groupLeaderboardSet"
@@ -914,22 +943,24 @@ open class GameCenterLeaderboardSetsAPI {
      - parameter limitLocalizations: (query) maximum number of related localizations returned (when they are included) (optional)
      - parameter limitGameCenterLeaderboards: (query) maximum number of related gameCenterLeaderboards returned (when they are included) (optional)
      - parameter limitReleases: (query) maximum number of related releases returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterLeaderboardSetResponse
      */
     @available(*, deprecated, message: "This operation is deprecated.")
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelated(id: String, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelated]? = nil, fieldsGameCenterGroups: [FieldsGameCenterGroups_gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelated]? = nil, fieldsGameCenterLeaderboardSetLocalizations: [FieldsGameCenterLeaderboardSetLocalizations_gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelated]? = nil, fieldsGameCenterLeaderboards: [FieldsGameCenterLeaderboards_gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelated]? = nil, fieldsGameCenterLeaderboardSetReleases: [FieldsGameCenterLeaderboardSetReleases_gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelated]? = nil, include: [Include_gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelated]? = nil, limitLocalizations: Int? = nil, limitGameCenterLeaderboards: Int? = nil, limitReleases: Int? = nil) async throws -> GameCenterLeaderboardSetResponse {
-        return try await gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelatedWithRequestBuilder(id: id, fieldsGameCenterLeaderboardSets: fieldsGameCenterLeaderboardSets, fieldsGameCenterDetails: fieldsGameCenterDetails, fieldsGameCenterGroups: fieldsGameCenterGroups, fieldsGameCenterLeaderboardSetLocalizations: fieldsGameCenterLeaderboardSetLocalizations, fieldsGameCenterLeaderboards: fieldsGameCenterLeaderboards, fieldsGameCenterLeaderboardSetReleases: fieldsGameCenterLeaderboardSetReleases, include: include, limitLocalizations: limitLocalizations, limitGameCenterLeaderboards: limitGameCenterLeaderboards, limitReleases: limitReleases).execute().body
+    open class func gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelated(id: String, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelated]? = nil, fieldsGameCenterGroups: [FieldsGameCenterGroups_gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelated]? = nil, fieldsGameCenterLeaderboardSetLocalizations: [FieldsGameCenterLeaderboardSetLocalizations_gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelated]? = nil, fieldsGameCenterLeaderboards: [FieldsGameCenterLeaderboards_gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelated]? = nil, fieldsGameCenterLeaderboardSetReleases: [FieldsGameCenterLeaderboardSetReleases_gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelated]? = nil, include: [Include_gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelated]? = nil, limitLocalizations: Int? = nil, limitGameCenterLeaderboards: Int? = nil, limitReleases: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterLeaderboardSetResponse {
+        return try await gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelatedWithRequestBuilder(id: id, fieldsGameCenterLeaderboardSets: fieldsGameCenterLeaderboardSets, fieldsGameCenterDetails: fieldsGameCenterDetails, fieldsGameCenterGroups: fieldsGameCenterGroups, fieldsGameCenterLeaderboardSetLocalizations: fieldsGameCenterLeaderboardSetLocalizations, fieldsGameCenterLeaderboards: fieldsGameCenterLeaderboards, fieldsGameCenterLeaderboardSetReleases: fieldsGameCenterLeaderboardSetReleases, include: include, limitLocalizations: limitLocalizations, limitGameCenterLeaderboards: limitGameCenterLeaderboards, limitReleases: limitReleases, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterLeaderboardSetResponse
      */
     @available(*, deprecated, message: "This operation is deprecated.")
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelated(urlString: String) async throws -> GameCenterLeaderboardSetResponse {
-        return try await gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterLeaderboardSetResponse {
+        return try await gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -948,29 +979,30 @@ open class GameCenterLeaderboardSetsAPI {
      - parameter limitLocalizations: (query) maximum number of related localizations returned (when they are included) (optional)
      - parameter limitGameCenterLeaderboards: (query) maximum number of related gameCenterLeaderboards returned (when they are included) (optional)
      - parameter limitReleases: (query) maximum number of related releases returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterLeaderboardSetResponse> 
      */
     @available(*, deprecated, message: "This operation is deprecated.")
-    open class func gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelatedWithRequestBuilder(id: String, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelated]? = nil, fieldsGameCenterGroups: [FieldsGameCenterGroups_gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelated]? = nil, fieldsGameCenterLeaderboardSetLocalizations: [FieldsGameCenterLeaderboardSetLocalizations_gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelated]? = nil, fieldsGameCenterLeaderboards: [FieldsGameCenterLeaderboards_gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelated]? = nil, fieldsGameCenterLeaderboardSetReleases: [FieldsGameCenterLeaderboardSetReleases_gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelated]? = nil, include: [Include_gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelated]? = nil, limitLocalizations: Int? = nil, limitGameCenterLeaderboards: Int? = nil, limitReleases: Int? = nil) -> RequestBuilder<GameCenterLeaderboardSetResponse> {
+    open class func gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelatedWithRequestBuilder(id: String, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelated]? = nil, fieldsGameCenterGroups: [FieldsGameCenterGroups_gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelated]? = nil, fieldsGameCenterLeaderboardSetLocalizations: [FieldsGameCenterLeaderboardSetLocalizations_gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelated]? = nil, fieldsGameCenterLeaderboards: [FieldsGameCenterLeaderboards_gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelated]? = nil, fieldsGameCenterLeaderboardSetReleases: [FieldsGameCenterLeaderboardSetReleases_gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelated]? = nil, include: [Include_gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelated]? = nil, limitLocalizations: Int? = nil, limitGameCenterLeaderboards: Int? = nil, limitReleases: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterLeaderboardSetResponse> {
         var localVariablePath = "/v1/gameCenterLeaderboardSets/{id}/groupLeaderboardSet"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[gameCenterLeaderboardSets]": (wrappedValue: fieldsGameCenterLeaderboardSets?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterDetails]": (wrappedValue: fieldsGameCenterDetails?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterGroups]": (wrappedValue: fieldsGameCenterGroups?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterLeaderboardSetLocalizations]": (wrappedValue: fieldsGameCenterLeaderboardSetLocalizations?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterLeaderboards]": (wrappedValue: fieldsGameCenterLeaderboards?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterLeaderboardSetReleases]": (wrappedValue: fieldsGameCenterLeaderboardSetReleases?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[localizations]": (wrappedValue: limitLocalizations?.encodeToJSON(), isExplode: true),
-            "limit[gameCenterLeaderboards]": (wrappedValue: limitGameCenterLeaderboards?.encodeToJSON(), isExplode: true),
-            "limit[releases]": (wrappedValue: limitReleases?.encodeToJSON(), isExplode: true),
+            "fields[gameCenterLeaderboardSets]": (wrappedValue: fieldsGameCenterLeaderboardSets?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[gameCenterDetails]": (wrappedValue: fieldsGameCenterDetails?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[gameCenterGroups]": (wrappedValue: fieldsGameCenterGroups?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[gameCenterLeaderboardSetLocalizations]": (wrappedValue: fieldsGameCenterLeaderboardSetLocalizations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[gameCenterLeaderboards]": (wrappedValue: fieldsGameCenterLeaderboards?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[gameCenterLeaderboardSetReleases]": (wrappedValue: fieldsGameCenterLeaderboardSetReleases?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[localizations]": (wrappedValue: limitLocalizations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[gameCenterLeaderboards]": (wrappedValue: limitGameCenterLeaderboards?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[releases]": (wrappedValue: limitReleases?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -979,9 +1011,9 @@ open class GameCenterLeaderboardSetsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardSetResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardSetResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -990,40 +1022,43 @@ open class GameCenterLeaderboardSetsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterLeaderboardSetResponse> 
      */
     @available(*, deprecated, message: "This operation is deprecated.")
-    open class func gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterLeaderboardSetResponse> {
+    open class func gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterLeaderboardSetResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardSetResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardSetResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterLeaderboardSetGroupLeaderboardSetLinkageResponse
      */
     @available(*, deprecated, message: "This operation is deprecated.")
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelationship(id: String) async throws -> GameCenterLeaderboardSetGroupLeaderboardSetLinkageResponse {
-        return try await gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelationshipWithRequestBuilder(id: id).execute().body
+    open class func gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelationship(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterLeaderboardSetGroupLeaderboardSetLinkageResponse {
+        return try await gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelationshipWithRequestBuilder(id: id, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterLeaderboardSetGroupLeaderboardSetLinkageResponse
      */
     @available(*, deprecated, message: "This operation is deprecated.")
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelationship(urlString: String) async throws -> GameCenterLeaderboardSetGroupLeaderboardSetLinkageResponse {
-        return try await gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelationshipWithRequestBuilder(urlString: urlString).execute().body
+    open class func gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelationship(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterLeaderboardSetGroupLeaderboardSetLinkageResponse {
+        return try await gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelationshipWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1032,15 +1067,16 @@ open class GameCenterLeaderboardSetsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterLeaderboardSetGroupLeaderboardSetLinkageResponse> 
      */
     @available(*, deprecated, message: "This operation is deprecated.")
-    open class func gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelationshipWithRequestBuilder(id: String) -> RequestBuilder<GameCenterLeaderboardSetGroupLeaderboardSetLinkageResponse> {
+    open class func gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelationshipWithRequestBuilder(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterLeaderboardSetGroupLeaderboardSetLinkageResponse> {
         var localVariablePath = "/v1/gameCenterLeaderboardSets/{id}/relationships/groupLeaderboardSet"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -1051,9 +1087,9 @@ open class GameCenterLeaderboardSetsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardSetGroupLeaderboardSetLinkageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardSetGroupLeaderboardSetLinkageResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -1062,41 +1098,44 @@ open class GameCenterLeaderboardSetsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterLeaderboardSetGroupLeaderboardSetLinkageResponse> 
      */
     @available(*, deprecated, message: "This operation is deprecated.")
-    open class func gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterLeaderboardSetGroupLeaderboardSetLinkageResponse> {
+    open class func gameCenterLeaderboardSetsGroupLeaderboardSetGetToOneRelationshipWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterLeaderboardSetGroupLeaderboardSetLinkageResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardSetGroupLeaderboardSetLinkageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardSetGroupLeaderboardSetLinkageResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter gameCenterLeaderboardSetGroupLeaderboardSetLinkageRequest: (body) Related linkage 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(*, deprecated, message: "This operation is deprecated.")
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterLeaderboardSetsGroupLeaderboardSetUpdateToOneRelationship(id: String, gameCenterLeaderboardSetGroupLeaderboardSetLinkageRequest: GameCenterLeaderboardSetGroupLeaderboardSetLinkageRequest) async throws {
-        return try await gameCenterLeaderboardSetsGroupLeaderboardSetUpdateToOneRelationshipWithRequestBuilder(id: id, gameCenterLeaderboardSetGroupLeaderboardSetLinkageRequest: gameCenterLeaderboardSetGroupLeaderboardSetLinkageRequest).execute().body
+    open class func gameCenterLeaderboardSetsGroupLeaderboardSetUpdateToOneRelationship(id: String, gameCenterLeaderboardSetGroupLeaderboardSetLinkageRequest: GameCenterLeaderboardSetGroupLeaderboardSetLinkageRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await gameCenterLeaderboardSetsGroupLeaderboardSetUpdateToOneRelationshipWithRequestBuilder(id: id, gameCenterLeaderboardSetGroupLeaderboardSetLinkageRequest: gameCenterLeaderboardSetGroupLeaderboardSetLinkageRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(*, deprecated, message: "This operation is deprecated.")
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterLeaderboardSetsGroupLeaderboardSetUpdateToOneRelationship(urlString: String) async throws {
-        return try await gameCenterLeaderboardSetsGroupLeaderboardSetUpdateToOneRelationshipWithRequestBuilder(urlString: urlString).execute().body
+    open class func gameCenterLeaderboardSetsGroupLeaderboardSetUpdateToOneRelationship(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await gameCenterLeaderboardSetsGroupLeaderboardSetUpdateToOneRelationshipWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1106,16 +1145,17 @@ open class GameCenterLeaderboardSetsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter gameCenterLeaderboardSetGroupLeaderboardSetLinkageRequest: (body) Related linkage 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
     @available(*, deprecated, message: "This operation is deprecated.")
-    open class func gameCenterLeaderboardSetsGroupLeaderboardSetUpdateToOneRelationshipWithRequestBuilder(id: String, gameCenterLeaderboardSetGroupLeaderboardSetLinkageRequest: GameCenterLeaderboardSetGroupLeaderboardSetLinkageRequest) -> RequestBuilder<Void> {
+    open class func gameCenterLeaderboardSetsGroupLeaderboardSetUpdateToOneRelationshipWithRequestBuilder(id: String, gameCenterLeaderboardSetGroupLeaderboardSetLinkageRequest: GameCenterLeaderboardSetGroupLeaderboardSetLinkageRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/gameCenterLeaderboardSets/{id}/relationships/groupLeaderboardSet"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: gameCenterLeaderboardSetGroupLeaderboardSetLinkageRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: gameCenterLeaderboardSetGroupLeaderboardSetLinkageRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -1125,9 +1165,9 @@ open class GameCenterLeaderboardSetsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -1136,25 +1176,26 @@ open class GameCenterLeaderboardSetsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
     @available(*, deprecated, message: "This operation is deprecated.")
-    open class func gameCenterLeaderboardSetsGroupLeaderboardSetUpdateToOneRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func gameCenterLeaderboardSetsGroupLeaderboardSetUpdateToOneRelationshipWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsGameCenterLeaderboardSetLocalizations
      */
-    public enum FieldsGameCenterLeaderboardSetLocalizations_gameCenterLeaderboardSetsLocalizationsGetToManyRelated: String, CaseIterable {
+    public enum FieldsGameCenterLeaderboardSetLocalizations_gameCenterLeaderboardSetsLocalizationsGetToManyRelated: String, Sendable, CaseIterable {
         case locale = "locale"
         case name = "name"
         case gamecenterleaderboardset = "gameCenterLeaderboardSet"
@@ -1164,7 +1205,7 @@ open class GameCenterLeaderboardSetsAPI {
     /**
      * enum for parameter fieldsGameCenterLeaderboardSets
      */
-    public enum FieldsGameCenterLeaderboardSets_gameCenterLeaderboardSetsLocalizationsGetToManyRelated: String, CaseIterable {
+    public enum FieldsGameCenterLeaderboardSets_gameCenterLeaderboardSetsLocalizationsGetToManyRelated: String, Sendable, CaseIterable {
         case referencename = "referenceName"
         case vendoridentifier = "vendorIdentifier"
         case gamecenterdetail = "gameCenterDetail"
@@ -1178,7 +1219,7 @@ open class GameCenterLeaderboardSetsAPI {
     /**
      * enum for parameter fieldsGameCenterLeaderboardSetImages
      */
-    public enum FieldsGameCenterLeaderboardSetImages_gameCenterLeaderboardSetsLocalizationsGetToManyRelated: String, CaseIterable {
+    public enum FieldsGameCenterLeaderboardSetImages_gameCenterLeaderboardSetsLocalizationsGetToManyRelated: String, Sendable, CaseIterable {
         case filesize = "fileSize"
         case filename = "fileName"
         case imageasset = "imageAsset"
@@ -1190,7 +1231,7 @@ open class GameCenterLeaderboardSetsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_gameCenterLeaderboardSetsLocalizationsGetToManyRelated: String, CaseIterable {
+    public enum Include_gameCenterLeaderboardSetsLocalizationsGetToManyRelated: String, Sendable, CaseIterable {
         case gamecenterleaderboardset = "gameCenterLeaderboardSet"
         case gamecenterleaderboardsetimage = "gameCenterLeaderboardSetImage"
     }
@@ -1203,20 +1244,22 @@ open class GameCenterLeaderboardSetsAPI {
      - parameter fieldsGameCenterLeaderboardSetImages: (query) the fields to include for returned resources of type gameCenterLeaderboardSetImages (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterLeaderboardSetLocalizationsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterLeaderboardSetsLocalizationsGetToManyRelated(id: String, fieldsGameCenterLeaderboardSetLocalizations: [FieldsGameCenterLeaderboardSetLocalizations_gameCenterLeaderboardSetsLocalizationsGetToManyRelated]? = nil, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_gameCenterLeaderboardSetsLocalizationsGetToManyRelated]? = nil, fieldsGameCenterLeaderboardSetImages: [FieldsGameCenterLeaderboardSetImages_gameCenterLeaderboardSetsLocalizationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_gameCenterLeaderboardSetsLocalizationsGetToManyRelated]? = nil) async throws -> GameCenterLeaderboardSetLocalizationsResponse {
-        return try await gameCenterLeaderboardSetsLocalizationsGetToManyRelatedWithRequestBuilder(id: id, fieldsGameCenterLeaderboardSetLocalizations: fieldsGameCenterLeaderboardSetLocalizations, fieldsGameCenterLeaderboardSets: fieldsGameCenterLeaderboardSets, fieldsGameCenterLeaderboardSetImages: fieldsGameCenterLeaderboardSetImages, limit: limit, include: include).execute().body
+    open class func gameCenterLeaderboardSetsLocalizationsGetToManyRelated(id: String, fieldsGameCenterLeaderboardSetLocalizations: [FieldsGameCenterLeaderboardSetLocalizations_gameCenterLeaderboardSetsLocalizationsGetToManyRelated]? = nil, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_gameCenterLeaderboardSetsLocalizationsGetToManyRelated]? = nil, fieldsGameCenterLeaderboardSetImages: [FieldsGameCenterLeaderboardSetImages_gameCenterLeaderboardSetsLocalizationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_gameCenterLeaderboardSetsLocalizationsGetToManyRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterLeaderboardSetLocalizationsResponse {
+        return try await gameCenterLeaderboardSetsLocalizationsGetToManyRelatedWithRequestBuilder(id: id, fieldsGameCenterLeaderboardSetLocalizations: fieldsGameCenterLeaderboardSetLocalizations, fieldsGameCenterLeaderboardSets: fieldsGameCenterLeaderboardSets, fieldsGameCenterLeaderboardSetImages: fieldsGameCenterLeaderboardSetImages, limit: limit, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterLeaderboardSetLocalizationsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterLeaderboardSetsLocalizationsGetToManyRelated(urlString: String) async throws -> GameCenterLeaderboardSetLocalizationsResponse {
-        return try await gameCenterLeaderboardSetsLocalizationsGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func gameCenterLeaderboardSetsLocalizationsGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterLeaderboardSetLocalizationsResponse {
+        return try await gameCenterLeaderboardSetsLocalizationsGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1230,23 +1273,24 @@ open class GameCenterLeaderboardSetsAPI {
      - parameter fieldsGameCenterLeaderboardSetImages: (query) the fields to include for returned resources of type gameCenterLeaderboardSetImages (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterLeaderboardSetLocalizationsResponse> 
      */
-    open class func gameCenterLeaderboardSetsLocalizationsGetToManyRelatedWithRequestBuilder(id: String, fieldsGameCenterLeaderboardSetLocalizations: [FieldsGameCenterLeaderboardSetLocalizations_gameCenterLeaderboardSetsLocalizationsGetToManyRelated]? = nil, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_gameCenterLeaderboardSetsLocalizationsGetToManyRelated]? = nil, fieldsGameCenterLeaderboardSetImages: [FieldsGameCenterLeaderboardSetImages_gameCenterLeaderboardSetsLocalizationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_gameCenterLeaderboardSetsLocalizationsGetToManyRelated]? = nil) -> RequestBuilder<GameCenterLeaderboardSetLocalizationsResponse> {
+    open class func gameCenterLeaderboardSetsLocalizationsGetToManyRelatedWithRequestBuilder(id: String, fieldsGameCenterLeaderboardSetLocalizations: [FieldsGameCenterLeaderboardSetLocalizations_gameCenterLeaderboardSetsLocalizationsGetToManyRelated]? = nil, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_gameCenterLeaderboardSetsLocalizationsGetToManyRelated]? = nil, fieldsGameCenterLeaderboardSetImages: [FieldsGameCenterLeaderboardSetImages_gameCenterLeaderboardSetsLocalizationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_gameCenterLeaderboardSetsLocalizationsGetToManyRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterLeaderboardSetLocalizationsResponse> {
         var localVariablePath = "/v1/gameCenterLeaderboardSets/{id}/localizations"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[gameCenterLeaderboardSetLocalizations]": (wrappedValue: fieldsGameCenterLeaderboardSetLocalizations?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterLeaderboardSets]": (wrappedValue: fieldsGameCenterLeaderboardSets?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterLeaderboardSetImages]": (wrappedValue: fieldsGameCenterLeaderboardSetImages?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "fields[gameCenterLeaderboardSetLocalizations]": (wrappedValue: fieldsGameCenterLeaderboardSetLocalizations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[gameCenterLeaderboardSets]": (wrappedValue: fieldsGameCenterLeaderboardSets?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[gameCenterLeaderboardSetImages]": (wrappedValue: fieldsGameCenterLeaderboardSetImages?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -1255,9 +1299,9 @@ open class GameCenterLeaderboardSetsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardSetLocalizationsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardSetLocalizationsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -1266,24 +1310,25 @@ open class GameCenterLeaderboardSetsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterLeaderboardSetLocalizationsResponse> 
      */
-    open class func gameCenterLeaderboardSetsLocalizationsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterLeaderboardSetLocalizationsResponse> {
+    open class func gameCenterLeaderboardSetsLocalizationsGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterLeaderboardSetLocalizationsResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardSetLocalizationsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardSetLocalizationsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsGameCenterLeaderboardSetReleases
      */
-    public enum FieldsGameCenterLeaderboardSetReleases_gameCenterLeaderboardSetsReleasesGetToManyRelated: String, CaseIterable {
+    public enum FieldsGameCenterLeaderboardSetReleases_gameCenterLeaderboardSetsReleasesGetToManyRelated: String, Sendable, CaseIterable {
         case live = "live"
         case gamecenterdetail = "gameCenterDetail"
         case gamecenterleaderboardset = "gameCenterLeaderboardSet"
@@ -1292,7 +1337,7 @@ open class GameCenterLeaderboardSetsAPI {
     /**
      * enum for parameter fieldsGameCenterDetails
      */
-    public enum FieldsGameCenterDetails_gameCenterLeaderboardSetsReleasesGetToManyRelated: String, CaseIterable {
+    public enum FieldsGameCenterDetails_gameCenterLeaderboardSetsReleasesGetToManyRelated: String, Sendable, CaseIterable {
         case arcadeenabled = "arcadeEnabled"
         case challengeenabled = "challengeEnabled"
         case app = "app"
@@ -1311,7 +1356,7 @@ open class GameCenterLeaderboardSetsAPI {
     /**
      * enum for parameter fieldsGameCenterLeaderboardSets
      */
-    public enum FieldsGameCenterLeaderboardSets_gameCenterLeaderboardSetsReleasesGetToManyRelated: String, CaseIterable {
+    public enum FieldsGameCenterLeaderboardSets_gameCenterLeaderboardSetsReleasesGetToManyRelated: String, Sendable, CaseIterable {
         case referencename = "referenceName"
         case vendoridentifier = "vendorIdentifier"
         case gamecenterdetail = "gameCenterDetail"
@@ -1325,7 +1370,7 @@ open class GameCenterLeaderboardSetsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_gameCenterLeaderboardSetsReleasesGetToManyRelated: String, CaseIterable {
+    public enum Include_gameCenterLeaderboardSetsReleasesGetToManyRelated: String, Sendable, CaseIterable {
         case gamecenterdetail = "gameCenterDetail"
         case gamecenterleaderboardset = "gameCenterLeaderboardSet"
     }
@@ -1340,20 +1385,22 @@ open class GameCenterLeaderboardSetsAPI {
      - parameter fieldsGameCenterLeaderboardSets: (query) the fields to include for returned resources of type gameCenterLeaderboardSets (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterLeaderboardSetReleasesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterLeaderboardSetsReleasesGetToManyRelated(id: String, filterLive: [String]? = nil, filterGameCenterDetail: [String]? = nil, fieldsGameCenterLeaderboardSetReleases: [FieldsGameCenterLeaderboardSetReleases_gameCenterLeaderboardSetsReleasesGetToManyRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterLeaderboardSetsReleasesGetToManyRelated]? = nil, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_gameCenterLeaderboardSetsReleasesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_gameCenterLeaderboardSetsReleasesGetToManyRelated]? = nil) async throws -> GameCenterLeaderboardSetReleasesResponse {
-        return try await gameCenterLeaderboardSetsReleasesGetToManyRelatedWithRequestBuilder(id: id, filterLive: filterLive, filterGameCenterDetail: filterGameCenterDetail, fieldsGameCenterLeaderboardSetReleases: fieldsGameCenterLeaderboardSetReleases, fieldsGameCenterDetails: fieldsGameCenterDetails, fieldsGameCenterLeaderboardSets: fieldsGameCenterLeaderboardSets, limit: limit, include: include).execute().body
+    open class func gameCenterLeaderboardSetsReleasesGetToManyRelated(id: String, filterLive: [String]? = nil, filterGameCenterDetail: [String]? = nil, fieldsGameCenterLeaderboardSetReleases: [FieldsGameCenterLeaderboardSetReleases_gameCenterLeaderboardSetsReleasesGetToManyRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterLeaderboardSetsReleasesGetToManyRelated]? = nil, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_gameCenterLeaderboardSetsReleasesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_gameCenterLeaderboardSetsReleasesGetToManyRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterLeaderboardSetReleasesResponse {
+        return try await gameCenterLeaderboardSetsReleasesGetToManyRelatedWithRequestBuilder(id: id, filterLive: filterLive, filterGameCenterDetail: filterGameCenterDetail, fieldsGameCenterLeaderboardSetReleases: fieldsGameCenterLeaderboardSetReleases, fieldsGameCenterDetails: fieldsGameCenterDetails, fieldsGameCenterLeaderboardSets: fieldsGameCenterLeaderboardSets, limit: limit, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterLeaderboardSetReleasesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterLeaderboardSetsReleasesGetToManyRelated(urlString: String) async throws -> GameCenterLeaderboardSetReleasesResponse {
-        return try await gameCenterLeaderboardSetsReleasesGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func gameCenterLeaderboardSetsReleasesGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterLeaderboardSetReleasesResponse {
+        return try await gameCenterLeaderboardSetsReleasesGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1369,25 +1416,26 @@ open class GameCenterLeaderboardSetsAPI {
      - parameter fieldsGameCenterLeaderboardSets: (query) the fields to include for returned resources of type gameCenterLeaderboardSets (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterLeaderboardSetReleasesResponse> 
      */
-    open class func gameCenterLeaderboardSetsReleasesGetToManyRelatedWithRequestBuilder(id: String, filterLive: [String]? = nil, filterGameCenterDetail: [String]? = nil, fieldsGameCenterLeaderboardSetReleases: [FieldsGameCenterLeaderboardSetReleases_gameCenterLeaderboardSetsReleasesGetToManyRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterLeaderboardSetsReleasesGetToManyRelated]? = nil, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_gameCenterLeaderboardSetsReleasesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_gameCenterLeaderboardSetsReleasesGetToManyRelated]? = nil) -> RequestBuilder<GameCenterLeaderboardSetReleasesResponse> {
+    open class func gameCenterLeaderboardSetsReleasesGetToManyRelatedWithRequestBuilder(id: String, filterLive: [String]? = nil, filterGameCenterDetail: [String]? = nil, fieldsGameCenterLeaderboardSetReleases: [FieldsGameCenterLeaderboardSetReleases_gameCenterLeaderboardSetsReleasesGetToManyRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterLeaderboardSetsReleasesGetToManyRelated]? = nil, fieldsGameCenterLeaderboardSets: [FieldsGameCenterLeaderboardSets_gameCenterLeaderboardSetsReleasesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_gameCenterLeaderboardSetsReleasesGetToManyRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterLeaderboardSetReleasesResponse> {
         var localVariablePath = "/v1/gameCenterLeaderboardSets/{id}/releases"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[live]": (wrappedValue: filterLive?.encodeToJSON(), isExplode: false),
-            "filter[gameCenterDetail]": (wrappedValue: filterGameCenterDetail?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterLeaderboardSetReleases]": (wrappedValue: fieldsGameCenterLeaderboardSetReleases?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterDetails]": (wrappedValue: fieldsGameCenterDetails?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterLeaderboardSets]": (wrappedValue: fieldsGameCenterLeaderboardSets?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "filter[live]": (wrappedValue: filterLive?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[gameCenterDetail]": (wrappedValue: filterGameCenterDetail?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[gameCenterLeaderboardSetReleases]": (wrappedValue: fieldsGameCenterLeaderboardSetReleases?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[gameCenterDetails]": (wrappedValue: fieldsGameCenterDetails?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[gameCenterLeaderboardSets]": (wrappedValue: fieldsGameCenterLeaderboardSets?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -1396,9 +1444,9 @@ open class GameCenterLeaderboardSetsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardSetReleasesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardSetReleasesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -1407,38 +1455,41 @@ open class GameCenterLeaderboardSetsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterLeaderboardSetReleasesResponse> 
      */
-    open class func gameCenterLeaderboardSetsReleasesGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterLeaderboardSetReleasesResponse> {
+    open class func gameCenterLeaderboardSetsReleasesGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterLeaderboardSetReleasesResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardSetReleasesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardSetReleasesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter gameCenterLeaderboardSetUpdateRequest: (body) GameCenterLeaderboardSet representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterLeaderboardSetResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterLeaderboardSetsUpdateInstance(id: String, gameCenterLeaderboardSetUpdateRequest: GameCenterLeaderboardSetUpdateRequest) async throws -> GameCenterLeaderboardSetResponse {
-        return try await gameCenterLeaderboardSetsUpdateInstanceWithRequestBuilder(id: id, gameCenterLeaderboardSetUpdateRequest: gameCenterLeaderboardSetUpdateRequest).execute().body
+    open class func gameCenterLeaderboardSetsUpdateInstance(id: String, gameCenterLeaderboardSetUpdateRequest: GameCenterLeaderboardSetUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterLeaderboardSetResponse {
+        return try await gameCenterLeaderboardSetsUpdateInstanceWithRequestBuilder(id: id, gameCenterLeaderboardSetUpdateRequest: gameCenterLeaderboardSetUpdateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterLeaderboardSetResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterLeaderboardSetsUpdateInstance(urlString: String) async throws -> GameCenterLeaderboardSetResponse {
-        return try await gameCenterLeaderboardSetsUpdateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func gameCenterLeaderboardSetsUpdateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterLeaderboardSetResponse {
+        return try await gameCenterLeaderboardSetsUpdateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1448,15 +1499,16 @@ open class GameCenterLeaderboardSetsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter gameCenterLeaderboardSetUpdateRequest: (body) GameCenterLeaderboardSet representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterLeaderboardSetResponse> 
      */
-    open class func gameCenterLeaderboardSetsUpdateInstanceWithRequestBuilder(id: String, gameCenterLeaderboardSetUpdateRequest: GameCenterLeaderboardSetUpdateRequest) -> RequestBuilder<GameCenterLeaderboardSetResponse> {
+    open class func gameCenterLeaderboardSetsUpdateInstanceWithRequestBuilder(id: String, gameCenterLeaderboardSetUpdateRequest: GameCenterLeaderboardSetUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterLeaderboardSetResponse> {
         var localVariablePath = "/v1/gameCenterLeaderboardSets/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: gameCenterLeaderboardSetUpdateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: gameCenterLeaderboardSetUpdateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -1466,9 +1518,9 @@ open class GameCenterLeaderboardSetsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardSetResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardSetResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -1477,17 +1529,18 @@ open class GameCenterLeaderboardSetsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterLeaderboardSetResponse> 
      */
-    open class func gameCenterLeaderboardSetsUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterLeaderboardSetResponse> {
+    open class func gameCenterLeaderboardSetsUpdateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterLeaderboardSetResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardSetResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardSetResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

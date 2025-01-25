@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct BetaLicenseAgreementAttributes: Codable, JSONEncodable, Hashable {
+public struct BetaLicenseAgreementAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
     public var agreementText: String?
 

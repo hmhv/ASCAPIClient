@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct CiTagStartCondition: Codable, JSONEncodable, Hashable {
+public struct CiTagStartCondition: Sendable, Codable, JSONEncodable, Hashable {
 
     public var source: CiTagPatterns?
     public var filesAndFoldersRule: CiFilesAndFoldersRule?

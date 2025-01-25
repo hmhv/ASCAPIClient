@@ -6,29 +6,28 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class DevicesAPI {
 
     /**
 
      - parameter deviceCreateRequest: (body) Device representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: DeviceResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func devicesCreateInstance(deviceCreateRequest: DeviceCreateRequest) async throws -> DeviceResponse {
-        return try await devicesCreateInstanceWithRequestBuilder(deviceCreateRequest: deviceCreateRequest).execute().body
+    open class func devicesCreateInstance(deviceCreateRequest: DeviceCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> DeviceResponse {
+        return try await devicesCreateInstanceWithRequestBuilder(deviceCreateRequest: deviceCreateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: DeviceResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func devicesCreateInstance(urlString: String) async throws -> DeviceResponse {
-        return try await devicesCreateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func devicesCreateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> DeviceResponse {
+        return try await devicesCreateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -37,12 +36,13 @@ open class DevicesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter deviceCreateRequest: (body) Device representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<DeviceResponse> 
      */
-    open class func devicesCreateInstanceWithRequestBuilder(deviceCreateRequest: DeviceCreateRequest) -> RequestBuilder<DeviceResponse> {
+    open class func devicesCreateInstanceWithRequestBuilder(deviceCreateRequest: DeviceCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<DeviceResponse> {
         let localVariablePath = "/v1/devices"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: deviceCreateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: deviceCreateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -52,9 +52,9 @@ open class DevicesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<DeviceResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<DeviceResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -63,24 +63,25 @@ open class DevicesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<DeviceResponse> 
      */
-    open class func devicesCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<DeviceResponse> {
+    open class func devicesCreateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<DeviceResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<DeviceResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<DeviceResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter filterPlatform
      */
-    public enum FilterPlatform_devicesGetCollection: String, CaseIterable {
+    public enum FilterPlatform_devicesGetCollection: String, Sendable, CaseIterable {
         case ios = "IOS"
         case macOs = "MAC_OS"
         case universal = "UNIVERSAL"
@@ -89,7 +90,7 @@ open class DevicesAPI {
     /**
      * enum for parameter filterStatus
      */
-    public enum FilterStatus_devicesGetCollection: String, CaseIterable {
+    public enum FilterStatus_devicesGetCollection: String, Sendable, CaseIterable {
         case enabled = "ENABLED"
         case disabled = "DISABLED"
     }
@@ -97,7 +98,7 @@ open class DevicesAPI {
     /**
      * enum for parameter sort
      */
-    public enum Sort_devicesGetCollection: String, CaseIterable {
+    public enum Sort_devicesGetCollection: String, Sendable, CaseIterable {
         case name = "name"
         case name2 = "-name"
         case platform = "platform"
@@ -113,7 +114,7 @@ open class DevicesAPI {
     /**
      * enum for parameter fieldsDevices
      */
-    public enum FieldsDevices_devicesGetCollection: String, CaseIterable {
+    public enum FieldsDevices_devicesGetCollection: String, Sendable, CaseIterable {
         case name = "name"
         case platform = "platform"
         case udid = "udid"
@@ -133,20 +134,22 @@ open class DevicesAPI {
      - parameter sort: (query) comma-separated list of sort expressions; resources will be sorted as specified (optional)
      - parameter fieldsDevices: (query) the fields to include for returned resources of type devices (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: DevicesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func devicesGetCollection(filterName: [String]? = nil, filterPlatform: [FilterPlatform_devicesGetCollection]? = nil, filterUdid: [String]? = nil, filterStatus: [FilterStatus_devicesGetCollection]? = nil, filterId: [String]? = nil, sort: [Sort_devicesGetCollection]? = nil, fieldsDevices: [FieldsDevices_devicesGetCollection]? = nil, limit: Int? = nil) async throws -> DevicesResponse {
-        return try await devicesGetCollectionWithRequestBuilder(filterName: filterName, filterPlatform: filterPlatform, filterUdid: filterUdid, filterStatus: filterStatus, filterId: filterId, sort: sort, fieldsDevices: fieldsDevices, limit: limit).execute().body
+    open class func devicesGetCollection(filterName: [String]? = nil, filterPlatform: [FilterPlatform_devicesGetCollection]? = nil, filterUdid: [String]? = nil, filterStatus: [FilterStatus_devicesGetCollection]? = nil, filterId: [String]? = nil, sort: [Sort_devicesGetCollection]? = nil, fieldsDevices: [FieldsDevices_devicesGetCollection]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> DevicesResponse {
+        return try await devicesGetCollectionWithRequestBuilder(filterName: filterName, filterPlatform: filterPlatform, filterUdid: filterUdid, filterStatus: filterStatus, filterId: filterId, sort: sort, fieldsDevices: fieldsDevices, limit: limit, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: DevicesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func devicesGetCollection(urlString: String) async throws -> DevicesResponse {
-        return try await devicesGetCollectionWithRequestBuilder(urlString: urlString).execute().body
+    open class func devicesGetCollection(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> DevicesResponse {
+        return try await devicesGetCollectionWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -162,23 +165,24 @@ open class DevicesAPI {
      - parameter sort: (query) comma-separated list of sort expressions; resources will be sorted as specified (optional)
      - parameter fieldsDevices: (query) the fields to include for returned resources of type devices (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<DevicesResponse> 
      */
-    open class func devicesGetCollectionWithRequestBuilder(filterName: [String]? = nil, filterPlatform: [FilterPlatform_devicesGetCollection]? = nil, filterUdid: [String]? = nil, filterStatus: [FilterStatus_devicesGetCollection]? = nil, filterId: [String]? = nil, sort: [Sort_devicesGetCollection]? = nil, fieldsDevices: [FieldsDevices_devicesGetCollection]? = nil, limit: Int? = nil) -> RequestBuilder<DevicesResponse> {
+    open class func devicesGetCollectionWithRequestBuilder(filterName: [String]? = nil, filterPlatform: [FilterPlatform_devicesGetCollection]? = nil, filterUdid: [String]? = nil, filterStatus: [FilterStatus_devicesGetCollection]? = nil, filterId: [String]? = nil, sort: [Sort_devicesGetCollection]? = nil, fieldsDevices: [FieldsDevices_devicesGetCollection]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<DevicesResponse> {
         let localVariablePath = "/v1/devices"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[name]": (wrappedValue: filterName?.encodeToJSON(), isExplode: false),
-            "filter[platform]": (wrappedValue: filterPlatform?.encodeToJSON(), isExplode: false),
-            "filter[udid]": (wrappedValue: filterUdid?.encodeToJSON(), isExplode: false),
-            "filter[status]": (wrappedValue: filterStatus?.encodeToJSON(), isExplode: false),
-            "filter[id]": (wrappedValue: filterId?.encodeToJSON(), isExplode: false),
-            "sort": (wrappedValue: sort?.encodeToJSON(), isExplode: false),
-            "fields[devices]": (wrappedValue: fieldsDevices?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "filter[name]": (wrappedValue: filterName?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[platform]": (wrappedValue: filterPlatform?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[udid]": (wrappedValue: filterUdid?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[status]": (wrappedValue: filterStatus?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[id]": (wrappedValue: filterId?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "sort": (wrappedValue: sort?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[devices]": (wrappedValue: fieldsDevices?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -187,9 +191,9 @@ open class DevicesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<DevicesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<DevicesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -198,24 +202,25 @@ open class DevicesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<DevicesResponse> 
      */
-    open class func devicesGetCollectionWithRequestBuilder(urlString: String) -> RequestBuilder<DevicesResponse> {
+    open class func devicesGetCollectionWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<DevicesResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<DevicesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<DevicesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsDevices
      */
-    public enum FieldsDevices_devicesGetInstance: String, CaseIterable {
+    public enum FieldsDevices_devicesGetInstance: String, Sendable, CaseIterable {
         case name = "name"
         case platform = "platform"
         case udid = "udid"
@@ -229,20 +234,22 @@ open class DevicesAPI {
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsDevices: (query) the fields to include for returned resources of type devices (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: DeviceResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func devicesGetInstance(id: String, fieldsDevices: [FieldsDevices_devicesGetInstance]? = nil) async throws -> DeviceResponse {
-        return try await devicesGetInstanceWithRequestBuilder(id: id, fieldsDevices: fieldsDevices).execute().body
+    open class func devicesGetInstance(id: String, fieldsDevices: [FieldsDevices_devicesGetInstance]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> DeviceResponse {
+        return try await devicesGetInstanceWithRequestBuilder(id: id, fieldsDevices: fieldsDevices, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: DeviceResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func devicesGetInstance(urlString: String) async throws -> DeviceResponse {
-        return try await devicesGetInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func devicesGetInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> DeviceResponse {
+        return try await devicesGetInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -252,19 +259,20 @@ open class DevicesAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsDevices: (query) the fields to include for returned resources of type devices (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<DeviceResponse> 
      */
-    open class func devicesGetInstanceWithRequestBuilder(id: String, fieldsDevices: [FieldsDevices_devicesGetInstance]? = nil) -> RequestBuilder<DeviceResponse> {
+    open class func devicesGetInstanceWithRequestBuilder(id: String, fieldsDevices: [FieldsDevices_devicesGetInstance]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<DeviceResponse> {
         var localVariablePath = "/v1/devices/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[devices]": (wrappedValue: fieldsDevices?.encodeToJSON(), isExplode: false),
+            "fields[devices]": (wrappedValue: fieldsDevices?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -273,9 +281,9 @@ open class DevicesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<DeviceResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<DeviceResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -284,38 +292,41 @@ open class DevicesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<DeviceResponse> 
      */
-    open class func devicesGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<DeviceResponse> {
+    open class func devicesGetInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<DeviceResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<DeviceResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<DeviceResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter deviceUpdateRequest: (body) Device representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: DeviceResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func devicesUpdateInstance(id: String, deviceUpdateRequest: DeviceUpdateRequest) async throws -> DeviceResponse {
-        return try await devicesUpdateInstanceWithRequestBuilder(id: id, deviceUpdateRequest: deviceUpdateRequest).execute().body
+    open class func devicesUpdateInstance(id: String, deviceUpdateRequest: DeviceUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> DeviceResponse {
+        return try await devicesUpdateInstanceWithRequestBuilder(id: id, deviceUpdateRequest: deviceUpdateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: DeviceResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func devicesUpdateInstance(urlString: String) async throws -> DeviceResponse {
-        return try await devicesUpdateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func devicesUpdateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> DeviceResponse {
+        return try await devicesUpdateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -325,15 +336,16 @@ open class DevicesAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter deviceUpdateRequest: (body) Device representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<DeviceResponse> 
      */
-    open class func devicesUpdateInstanceWithRequestBuilder(id: String, deviceUpdateRequest: DeviceUpdateRequest) -> RequestBuilder<DeviceResponse> {
+    open class func devicesUpdateInstanceWithRequestBuilder(id: String, deviceUpdateRequest: DeviceUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<DeviceResponse> {
         var localVariablePath = "/v1/devices/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: deviceUpdateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: deviceUpdateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -343,9 +355,9 @@ open class DevicesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<DeviceResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<DeviceResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -354,17 +366,18 @@ open class DevicesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<DeviceResponse> 
      */
-    open class func devicesUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<DeviceResponse> {
+    open class func devicesUpdateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<DeviceResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<DeviceResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<DeviceResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

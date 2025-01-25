@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct GameCenterMatchmakingRuleSetUpdateRequestDataAttributes: Codable, JSONEncodable, Hashable {
+public struct GameCenterMatchmakingRuleSetUpdateRequestDataAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
     public var minPlayers: Int?
     public var maxPlayers: Int?

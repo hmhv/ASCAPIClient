@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public enum BetaReviewState: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+public enum BetaReviewState: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
     case waitingForReview = "WAITING_FOR_REVIEW"
     case inReview = "IN_REVIEW"
     case rejected = "REJECTED"

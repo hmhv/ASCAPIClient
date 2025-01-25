@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct GameCenterDetailAttributes: Codable, JSONEncodable, Hashable {
+public struct GameCenterDetailAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
     public var arcadeEnabled: Bool?
     public var challengeEnabled: Bool?

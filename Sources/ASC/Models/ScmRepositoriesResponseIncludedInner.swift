@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public enum ScmRepositoriesResponseIncludedInner: Codable, JSONEncodable, Hashable {
+public enum ScmRepositoriesResponseIncludedInner: Sendable, Codable, JSONEncodable, Hashable {
     case typeScmGitReference(ScmGitReference)
     case typeScmProvider(ScmProvider)
 

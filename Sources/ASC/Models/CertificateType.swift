@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public enum CertificateType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+public enum CertificateType: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
     case iosDevelopment = "IOS_DEVELOPMENT"
     case iosDistribution = "IOS_DISTRIBUTION"
     case macAppDistribution = "MAC_APP_DISTRIBUTION"

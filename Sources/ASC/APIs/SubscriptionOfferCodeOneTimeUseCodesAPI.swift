@@ -6,29 +6,28 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class SubscriptionOfferCodeOneTimeUseCodesAPI {
 
     /**
 
      - parameter subscriptionOfferCodeOneTimeUseCodeCreateRequest: (body) SubscriptionOfferCodeOneTimeUseCode representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: SubscriptionOfferCodeOneTimeUseCodeResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionOfferCodeOneTimeUseCodesCreateInstance(subscriptionOfferCodeOneTimeUseCodeCreateRequest: SubscriptionOfferCodeOneTimeUseCodeCreateRequest) async throws -> SubscriptionOfferCodeOneTimeUseCodeResponse {
-        return try await subscriptionOfferCodeOneTimeUseCodesCreateInstanceWithRequestBuilder(subscriptionOfferCodeOneTimeUseCodeCreateRequest: subscriptionOfferCodeOneTimeUseCodeCreateRequest).execute().body
+    open class func subscriptionOfferCodeOneTimeUseCodesCreateInstance(subscriptionOfferCodeOneTimeUseCodeCreateRequest: SubscriptionOfferCodeOneTimeUseCodeCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> SubscriptionOfferCodeOneTimeUseCodeResponse {
+        return try await subscriptionOfferCodeOneTimeUseCodesCreateInstanceWithRequestBuilder(subscriptionOfferCodeOneTimeUseCodeCreateRequest: subscriptionOfferCodeOneTimeUseCodeCreateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: SubscriptionOfferCodeOneTimeUseCodeResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionOfferCodeOneTimeUseCodesCreateInstance(urlString: String) async throws -> SubscriptionOfferCodeOneTimeUseCodeResponse {
-        return try await subscriptionOfferCodeOneTimeUseCodesCreateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func subscriptionOfferCodeOneTimeUseCodesCreateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> SubscriptionOfferCodeOneTimeUseCodeResponse {
+        return try await subscriptionOfferCodeOneTimeUseCodesCreateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -37,12 +36,13 @@ open class SubscriptionOfferCodeOneTimeUseCodesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter subscriptionOfferCodeOneTimeUseCodeCreateRequest: (body) SubscriptionOfferCodeOneTimeUseCode representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<SubscriptionOfferCodeOneTimeUseCodeResponse> 
      */
-    open class func subscriptionOfferCodeOneTimeUseCodesCreateInstanceWithRequestBuilder(subscriptionOfferCodeOneTimeUseCodeCreateRequest: SubscriptionOfferCodeOneTimeUseCodeCreateRequest) -> RequestBuilder<SubscriptionOfferCodeOneTimeUseCodeResponse> {
+    open class func subscriptionOfferCodeOneTimeUseCodesCreateInstanceWithRequestBuilder(subscriptionOfferCodeOneTimeUseCodeCreateRequest: SubscriptionOfferCodeOneTimeUseCodeCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<SubscriptionOfferCodeOneTimeUseCodeResponse> {
         let localVariablePath = "/v1/subscriptionOfferCodeOneTimeUseCodes"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: subscriptionOfferCodeOneTimeUseCodeCreateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: subscriptionOfferCodeOneTimeUseCodeCreateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -52,9 +52,9 @@ open class SubscriptionOfferCodeOneTimeUseCodesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<SubscriptionOfferCodeOneTimeUseCodeResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<SubscriptionOfferCodeOneTimeUseCodeResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -63,24 +63,25 @@ open class SubscriptionOfferCodeOneTimeUseCodesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<SubscriptionOfferCodeOneTimeUseCodeResponse> 
      */
-    open class func subscriptionOfferCodeOneTimeUseCodesCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<SubscriptionOfferCodeOneTimeUseCodeResponse> {
+    open class func subscriptionOfferCodeOneTimeUseCodesCreateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<SubscriptionOfferCodeOneTimeUseCodeResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<SubscriptionOfferCodeOneTimeUseCodeResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<SubscriptionOfferCodeOneTimeUseCodeResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsSubscriptionOfferCodeOneTimeUseCodes
      */
-    public enum FieldsSubscriptionOfferCodeOneTimeUseCodes_subscriptionOfferCodeOneTimeUseCodesGetInstance: String, CaseIterable {
+    public enum FieldsSubscriptionOfferCodeOneTimeUseCodes_subscriptionOfferCodeOneTimeUseCodesGetInstance: String, Sendable, CaseIterable {
         case numberofcodes = "numberOfCodes"
         case createddate = "createdDate"
         case expirationdate = "expirationDate"
@@ -92,7 +93,7 @@ open class SubscriptionOfferCodeOneTimeUseCodesAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_subscriptionOfferCodeOneTimeUseCodesGetInstance: String, CaseIterable {
+    public enum Include_subscriptionOfferCodeOneTimeUseCodesGetInstance: String, Sendable, CaseIterable {
         case offercode = "offerCode"
     }
 
@@ -101,20 +102,22 @@ open class SubscriptionOfferCodeOneTimeUseCodesAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsSubscriptionOfferCodeOneTimeUseCodes: (query) the fields to include for returned resources of type subscriptionOfferCodeOneTimeUseCodes (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: SubscriptionOfferCodeOneTimeUseCodeResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionOfferCodeOneTimeUseCodesGetInstance(id: String, fieldsSubscriptionOfferCodeOneTimeUseCodes: [FieldsSubscriptionOfferCodeOneTimeUseCodes_subscriptionOfferCodeOneTimeUseCodesGetInstance]? = nil, include: [Include_subscriptionOfferCodeOneTimeUseCodesGetInstance]? = nil) async throws -> SubscriptionOfferCodeOneTimeUseCodeResponse {
-        return try await subscriptionOfferCodeOneTimeUseCodesGetInstanceWithRequestBuilder(id: id, fieldsSubscriptionOfferCodeOneTimeUseCodes: fieldsSubscriptionOfferCodeOneTimeUseCodes, include: include).execute().body
+    open class func subscriptionOfferCodeOneTimeUseCodesGetInstance(id: String, fieldsSubscriptionOfferCodeOneTimeUseCodes: [FieldsSubscriptionOfferCodeOneTimeUseCodes_subscriptionOfferCodeOneTimeUseCodesGetInstance]? = nil, include: [Include_subscriptionOfferCodeOneTimeUseCodesGetInstance]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> SubscriptionOfferCodeOneTimeUseCodeResponse {
+        return try await subscriptionOfferCodeOneTimeUseCodesGetInstanceWithRequestBuilder(id: id, fieldsSubscriptionOfferCodeOneTimeUseCodes: fieldsSubscriptionOfferCodeOneTimeUseCodes, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: SubscriptionOfferCodeOneTimeUseCodeResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionOfferCodeOneTimeUseCodesGetInstance(urlString: String) async throws -> SubscriptionOfferCodeOneTimeUseCodeResponse {
-        return try await subscriptionOfferCodeOneTimeUseCodesGetInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func subscriptionOfferCodeOneTimeUseCodesGetInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> SubscriptionOfferCodeOneTimeUseCodeResponse {
+        return try await subscriptionOfferCodeOneTimeUseCodesGetInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -125,20 +128,21 @@ open class SubscriptionOfferCodeOneTimeUseCodesAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsSubscriptionOfferCodeOneTimeUseCodes: (query) the fields to include for returned resources of type subscriptionOfferCodeOneTimeUseCodes (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<SubscriptionOfferCodeOneTimeUseCodeResponse> 
      */
-    open class func subscriptionOfferCodeOneTimeUseCodesGetInstanceWithRequestBuilder(id: String, fieldsSubscriptionOfferCodeOneTimeUseCodes: [FieldsSubscriptionOfferCodeOneTimeUseCodes_subscriptionOfferCodeOneTimeUseCodesGetInstance]? = nil, include: [Include_subscriptionOfferCodeOneTimeUseCodesGetInstance]? = nil) -> RequestBuilder<SubscriptionOfferCodeOneTimeUseCodeResponse> {
+    open class func subscriptionOfferCodeOneTimeUseCodesGetInstanceWithRequestBuilder(id: String, fieldsSubscriptionOfferCodeOneTimeUseCodes: [FieldsSubscriptionOfferCodeOneTimeUseCodes_subscriptionOfferCodeOneTimeUseCodesGetInstance]? = nil, include: [Include_subscriptionOfferCodeOneTimeUseCodesGetInstance]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<SubscriptionOfferCodeOneTimeUseCodeResponse> {
         var localVariablePath = "/v1/subscriptionOfferCodeOneTimeUseCodes/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[subscriptionOfferCodeOneTimeUseCodes]": (wrappedValue: fieldsSubscriptionOfferCodeOneTimeUseCodes?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "fields[subscriptionOfferCodeOneTimeUseCodes]": (wrappedValue: fieldsSubscriptionOfferCodeOneTimeUseCodes?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -147,9 +151,9 @@ open class SubscriptionOfferCodeOneTimeUseCodesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<SubscriptionOfferCodeOneTimeUseCodeResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<SubscriptionOfferCodeOneTimeUseCodeResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -158,38 +162,41 @@ open class SubscriptionOfferCodeOneTimeUseCodesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<SubscriptionOfferCodeOneTimeUseCodeResponse> 
      */
-    open class func subscriptionOfferCodeOneTimeUseCodesGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<SubscriptionOfferCodeOneTimeUseCodeResponse> {
+    open class func subscriptionOfferCodeOneTimeUseCodesGetInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<SubscriptionOfferCodeOneTimeUseCodeResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<SubscriptionOfferCodeOneTimeUseCodeResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<SubscriptionOfferCodeOneTimeUseCodeResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter subscriptionOfferCodeOneTimeUseCodeUpdateRequest: (body) SubscriptionOfferCodeOneTimeUseCode representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: SubscriptionOfferCodeOneTimeUseCodeResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionOfferCodeOneTimeUseCodesUpdateInstance(id: String, subscriptionOfferCodeOneTimeUseCodeUpdateRequest: SubscriptionOfferCodeOneTimeUseCodeUpdateRequest) async throws -> SubscriptionOfferCodeOneTimeUseCodeResponse {
-        return try await subscriptionOfferCodeOneTimeUseCodesUpdateInstanceWithRequestBuilder(id: id, subscriptionOfferCodeOneTimeUseCodeUpdateRequest: subscriptionOfferCodeOneTimeUseCodeUpdateRequest).execute().body
+    open class func subscriptionOfferCodeOneTimeUseCodesUpdateInstance(id: String, subscriptionOfferCodeOneTimeUseCodeUpdateRequest: SubscriptionOfferCodeOneTimeUseCodeUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> SubscriptionOfferCodeOneTimeUseCodeResponse {
+        return try await subscriptionOfferCodeOneTimeUseCodesUpdateInstanceWithRequestBuilder(id: id, subscriptionOfferCodeOneTimeUseCodeUpdateRequest: subscriptionOfferCodeOneTimeUseCodeUpdateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: SubscriptionOfferCodeOneTimeUseCodeResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionOfferCodeOneTimeUseCodesUpdateInstance(urlString: String) async throws -> SubscriptionOfferCodeOneTimeUseCodeResponse {
-        return try await subscriptionOfferCodeOneTimeUseCodesUpdateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func subscriptionOfferCodeOneTimeUseCodesUpdateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> SubscriptionOfferCodeOneTimeUseCodeResponse {
+        return try await subscriptionOfferCodeOneTimeUseCodesUpdateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -199,15 +206,16 @@ open class SubscriptionOfferCodeOneTimeUseCodesAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter subscriptionOfferCodeOneTimeUseCodeUpdateRequest: (body) SubscriptionOfferCodeOneTimeUseCode representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<SubscriptionOfferCodeOneTimeUseCodeResponse> 
      */
-    open class func subscriptionOfferCodeOneTimeUseCodesUpdateInstanceWithRequestBuilder(id: String, subscriptionOfferCodeOneTimeUseCodeUpdateRequest: SubscriptionOfferCodeOneTimeUseCodeUpdateRequest) -> RequestBuilder<SubscriptionOfferCodeOneTimeUseCodeResponse> {
+    open class func subscriptionOfferCodeOneTimeUseCodesUpdateInstanceWithRequestBuilder(id: String, subscriptionOfferCodeOneTimeUseCodeUpdateRequest: SubscriptionOfferCodeOneTimeUseCodeUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<SubscriptionOfferCodeOneTimeUseCodeResponse> {
         var localVariablePath = "/v1/subscriptionOfferCodeOneTimeUseCodes/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: subscriptionOfferCodeOneTimeUseCodeUpdateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: subscriptionOfferCodeOneTimeUseCodeUpdateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -217,9 +225,9 @@ open class SubscriptionOfferCodeOneTimeUseCodesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<SubscriptionOfferCodeOneTimeUseCodeResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<SubscriptionOfferCodeOneTimeUseCodeResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -228,37 +236,40 @@ open class SubscriptionOfferCodeOneTimeUseCodesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<SubscriptionOfferCodeOneTimeUseCodeResponse> 
      */
-    open class func subscriptionOfferCodeOneTimeUseCodesUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<SubscriptionOfferCodeOneTimeUseCodeResponse> {
+    open class func subscriptionOfferCodeOneTimeUseCodesUpdateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<SubscriptionOfferCodeOneTimeUseCodeResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<SubscriptionOfferCodeOneTimeUseCodeResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<SubscriptionOfferCodeOneTimeUseCodeResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: String
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionOfferCodeOneTimeUseCodesValuesGetToOneRelated(id: String) async throws -> String {
-        return try await subscriptionOfferCodeOneTimeUseCodesValuesGetToOneRelatedWithRequestBuilder(id: id).execute().body
+    open class func subscriptionOfferCodeOneTimeUseCodesValuesGetToOneRelated(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> String {
+        return try await subscriptionOfferCodeOneTimeUseCodesValuesGetToOneRelatedWithRequestBuilder(id: id, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: String
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionOfferCodeOneTimeUseCodesValuesGetToOneRelated(urlString: String) async throws -> String {
-        return try await subscriptionOfferCodeOneTimeUseCodesValuesGetToOneRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func subscriptionOfferCodeOneTimeUseCodesValuesGetToOneRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> String {
+        return try await subscriptionOfferCodeOneTimeUseCodesValuesGetToOneRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -267,14 +278,15 @@ open class SubscriptionOfferCodeOneTimeUseCodesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<String> 
      */
-    open class func subscriptionOfferCodeOneTimeUseCodesValuesGetToOneRelatedWithRequestBuilder(id: String) -> RequestBuilder<String> {
+    open class func subscriptionOfferCodeOneTimeUseCodesValuesGetToOneRelatedWithRequestBuilder(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<String> {
         var localVariablePath = "/v1/subscriptionOfferCodeOneTimeUseCodes/{id}/values"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -285,9 +297,9 @@ open class SubscriptionOfferCodeOneTimeUseCodesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<String>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<String>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -296,17 +308,18 @@ open class SubscriptionOfferCodeOneTimeUseCodesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<String> 
      */
-    open class func subscriptionOfferCodeOneTimeUseCodesValuesGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<String> {
+    open class func subscriptionOfferCodeOneTimeUseCodesValuesGetToOneRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<String> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<String>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<String>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

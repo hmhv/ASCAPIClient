@@ -6,13 +6,10 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct ScmProviderType: Codable, JSONEncodable, Hashable {
+public struct ScmProviderType: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum Kind: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum Kind: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case bitbucketCloud = "BITBUCKET_CLOUD"
         case bitbucketServer = "BITBUCKET_SERVER"
         case githubCloud = "GITHUB_CLOUD"

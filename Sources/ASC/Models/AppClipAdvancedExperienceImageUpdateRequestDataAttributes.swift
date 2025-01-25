@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppClipAdvancedExperienceImageUpdateRequestDataAttributes: Codable, JSONEncodable, Hashable {
+public struct AppClipAdvancedExperienceImageUpdateRequestDataAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
     public var sourceFileChecksum: String?
     public var uploaded: Bool?

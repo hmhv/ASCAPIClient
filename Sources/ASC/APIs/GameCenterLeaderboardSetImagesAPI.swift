@@ -6,29 +6,28 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class GameCenterLeaderboardSetImagesAPI {
 
     /**
 
      - parameter gameCenterLeaderboardSetImageCreateRequest: (body) GameCenterLeaderboardSetImage representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterLeaderboardSetImageResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterLeaderboardSetImagesCreateInstance(gameCenterLeaderboardSetImageCreateRequest: GameCenterLeaderboardSetImageCreateRequest) async throws -> GameCenterLeaderboardSetImageResponse {
-        return try await gameCenterLeaderboardSetImagesCreateInstanceWithRequestBuilder(gameCenterLeaderboardSetImageCreateRequest: gameCenterLeaderboardSetImageCreateRequest).execute().body
+    open class func gameCenterLeaderboardSetImagesCreateInstance(gameCenterLeaderboardSetImageCreateRequest: GameCenterLeaderboardSetImageCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterLeaderboardSetImageResponse {
+        return try await gameCenterLeaderboardSetImagesCreateInstanceWithRequestBuilder(gameCenterLeaderboardSetImageCreateRequest: gameCenterLeaderboardSetImageCreateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterLeaderboardSetImageResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterLeaderboardSetImagesCreateInstance(urlString: String) async throws -> GameCenterLeaderboardSetImageResponse {
-        return try await gameCenterLeaderboardSetImagesCreateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func gameCenterLeaderboardSetImagesCreateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterLeaderboardSetImageResponse {
+        return try await gameCenterLeaderboardSetImagesCreateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -37,12 +36,13 @@ open class GameCenterLeaderboardSetImagesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter gameCenterLeaderboardSetImageCreateRequest: (body) GameCenterLeaderboardSetImage representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterLeaderboardSetImageResponse> 
      */
-    open class func gameCenterLeaderboardSetImagesCreateInstanceWithRequestBuilder(gameCenterLeaderboardSetImageCreateRequest: GameCenterLeaderboardSetImageCreateRequest) -> RequestBuilder<GameCenterLeaderboardSetImageResponse> {
+    open class func gameCenterLeaderboardSetImagesCreateInstanceWithRequestBuilder(gameCenterLeaderboardSetImageCreateRequest: GameCenterLeaderboardSetImageCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterLeaderboardSetImageResponse> {
         let localVariablePath = "/v1/gameCenterLeaderboardSetImages"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: gameCenterLeaderboardSetImageCreateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: gameCenterLeaderboardSetImageCreateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -52,9 +52,9 @@ open class GameCenterLeaderboardSetImagesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardSetImageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardSetImageResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -63,37 +63,40 @@ open class GameCenterLeaderboardSetImagesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterLeaderboardSetImageResponse> 
      */
-    open class func gameCenterLeaderboardSetImagesCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterLeaderboardSetImageResponse> {
+    open class func gameCenterLeaderboardSetImagesCreateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterLeaderboardSetImageResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardSetImageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardSetImageResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterLeaderboardSetImagesDeleteInstance(id: String) async throws {
-        return try await gameCenterLeaderboardSetImagesDeleteInstanceWithRequestBuilder(id: id).execute().body
+    open class func gameCenterLeaderboardSetImagesDeleteInstance(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await gameCenterLeaderboardSetImagesDeleteInstanceWithRequestBuilder(id: id, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterLeaderboardSetImagesDeleteInstance(urlString: String) async throws {
-        return try await gameCenterLeaderboardSetImagesDeleteInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func gameCenterLeaderboardSetImagesDeleteInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await gameCenterLeaderboardSetImagesDeleteInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -102,14 +105,15 @@ open class GameCenterLeaderboardSetImagesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func gameCenterLeaderboardSetImagesDeleteInstanceWithRequestBuilder(id: String) -> RequestBuilder<Void> {
+    open class func gameCenterLeaderboardSetImagesDeleteInstanceWithRequestBuilder(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/gameCenterLeaderboardSetImages/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -120,9 +124,9 @@ open class GameCenterLeaderboardSetImagesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -131,24 +135,25 @@ open class GameCenterLeaderboardSetImagesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func gameCenterLeaderboardSetImagesDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func gameCenterLeaderboardSetImagesDeleteInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsGameCenterLeaderboardSetImages
      */
-    public enum FieldsGameCenterLeaderboardSetImages_gameCenterLeaderboardSetImagesGetInstance: String, CaseIterable {
+    public enum FieldsGameCenterLeaderboardSetImages_gameCenterLeaderboardSetImagesGetInstance: String, Sendable, CaseIterable {
         case filesize = "fileSize"
         case filename = "fileName"
         case imageasset = "imageAsset"
@@ -160,7 +165,7 @@ open class GameCenterLeaderboardSetImagesAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_gameCenterLeaderboardSetImagesGetInstance: String, CaseIterable {
+    public enum Include_gameCenterLeaderboardSetImagesGetInstance: String, Sendable, CaseIterable {
         case gamecenterleaderboardsetlocalization = "gameCenterLeaderboardSetLocalization"
     }
 
@@ -169,20 +174,22 @@ open class GameCenterLeaderboardSetImagesAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsGameCenterLeaderboardSetImages: (query) the fields to include for returned resources of type gameCenterLeaderboardSetImages (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterLeaderboardSetImageResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterLeaderboardSetImagesGetInstance(id: String, fieldsGameCenterLeaderboardSetImages: [FieldsGameCenterLeaderboardSetImages_gameCenterLeaderboardSetImagesGetInstance]? = nil, include: [Include_gameCenterLeaderboardSetImagesGetInstance]? = nil) async throws -> GameCenterLeaderboardSetImageResponse {
-        return try await gameCenterLeaderboardSetImagesGetInstanceWithRequestBuilder(id: id, fieldsGameCenterLeaderboardSetImages: fieldsGameCenterLeaderboardSetImages, include: include).execute().body
+    open class func gameCenterLeaderboardSetImagesGetInstance(id: String, fieldsGameCenterLeaderboardSetImages: [FieldsGameCenterLeaderboardSetImages_gameCenterLeaderboardSetImagesGetInstance]? = nil, include: [Include_gameCenterLeaderboardSetImagesGetInstance]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterLeaderboardSetImageResponse {
+        return try await gameCenterLeaderboardSetImagesGetInstanceWithRequestBuilder(id: id, fieldsGameCenterLeaderboardSetImages: fieldsGameCenterLeaderboardSetImages, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterLeaderboardSetImageResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterLeaderboardSetImagesGetInstance(urlString: String) async throws -> GameCenterLeaderboardSetImageResponse {
-        return try await gameCenterLeaderboardSetImagesGetInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func gameCenterLeaderboardSetImagesGetInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterLeaderboardSetImageResponse {
+        return try await gameCenterLeaderboardSetImagesGetInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -193,20 +200,21 @@ open class GameCenterLeaderboardSetImagesAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsGameCenterLeaderboardSetImages: (query) the fields to include for returned resources of type gameCenterLeaderboardSetImages (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterLeaderboardSetImageResponse> 
      */
-    open class func gameCenterLeaderboardSetImagesGetInstanceWithRequestBuilder(id: String, fieldsGameCenterLeaderboardSetImages: [FieldsGameCenterLeaderboardSetImages_gameCenterLeaderboardSetImagesGetInstance]? = nil, include: [Include_gameCenterLeaderboardSetImagesGetInstance]? = nil) -> RequestBuilder<GameCenterLeaderboardSetImageResponse> {
+    open class func gameCenterLeaderboardSetImagesGetInstanceWithRequestBuilder(id: String, fieldsGameCenterLeaderboardSetImages: [FieldsGameCenterLeaderboardSetImages_gameCenterLeaderboardSetImagesGetInstance]? = nil, include: [Include_gameCenterLeaderboardSetImagesGetInstance]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterLeaderboardSetImageResponse> {
         var localVariablePath = "/v1/gameCenterLeaderboardSetImages/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[gameCenterLeaderboardSetImages]": (wrappedValue: fieldsGameCenterLeaderboardSetImages?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "fields[gameCenterLeaderboardSetImages]": (wrappedValue: fieldsGameCenterLeaderboardSetImages?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -215,9 +223,9 @@ open class GameCenterLeaderboardSetImagesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardSetImageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardSetImageResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -226,38 +234,41 @@ open class GameCenterLeaderboardSetImagesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterLeaderboardSetImageResponse> 
      */
-    open class func gameCenterLeaderboardSetImagesGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterLeaderboardSetImageResponse> {
+    open class func gameCenterLeaderboardSetImagesGetInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterLeaderboardSetImageResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardSetImageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardSetImageResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter gameCenterLeaderboardSetImageUpdateRequest: (body) GameCenterLeaderboardSetImage representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterLeaderboardSetImageResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterLeaderboardSetImagesUpdateInstance(id: String, gameCenterLeaderboardSetImageUpdateRequest: GameCenterLeaderboardSetImageUpdateRequest) async throws -> GameCenterLeaderboardSetImageResponse {
-        return try await gameCenterLeaderboardSetImagesUpdateInstanceWithRequestBuilder(id: id, gameCenterLeaderboardSetImageUpdateRequest: gameCenterLeaderboardSetImageUpdateRequest).execute().body
+    open class func gameCenterLeaderboardSetImagesUpdateInstance(id: String, gameCenterLeaderboardSetImageUpdateRequest: GameCenterLeaderboardSetImageUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterLeaderboardSetImageResponse {
+        return try await gameCenterLeaderboardSetImagesUpdateInstanceWithRequestBuilder(id: id, gameCenterLeaderboardSetImageUpdateRequest: gameCenterLeaderboardSetImageUpdateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterLeaderboardSetImageResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterLeaderboardSetImagesUpdateInstance(urlString: String) async throws -> GameCenterLeaderboardSetImageResponse {
-        return try await gameCenterLeaderboardSetImagesUpdateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func gameCenterLeaderboardSetImagesUpdateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterLeaderboardSetImageResponse {
+        return try await gameCenterLeaderboardSetImagesUpdateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -267,15 +278,16 @@ open class GameCenterLeaderboardSetImagesAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter gameCenterLeaderboardSetImageUpdateRequest: (body) GameCenterLeaderboardSetImage representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterLeaderboardSetImageResponse> 
      */
-    open class func gameCenterLeaderboardSetImagesUpdateInstanceWithRequestBuilder(id: String, gameCenterLeaderboardSetImageUpdateRequest: GameCenterLeaderboardSetImageUpdateRequest) -> RequestBuilder<GameCenterLeaderboardSetImageResponse> {
+    open class func gameCenterLeaderboardSetImagesUpdateInstanceWithRequestBuilder(id: String, gameCenterLeaderboardSetImageUpdateRequest: GameCenterLeaderboardSetImageUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterLeaderboardSetImageResponse> {
         var localVariablePath = "/v1/gameCenterLeaderboardSetImages/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: gameCenterLeaderboardSetImageUpdateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: gameCenterLeaderboardSetImageUpdateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -285,9 +297,9 @@ open class GameCenterLeaderboardSetImagesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardSetImageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardSetImageResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -296,17 +308,18 @@ open class GameCenterLeaderboardSetImagesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterLeaderboardSetImageResponse> 
      */
-    open class func gameCenterLeaderboardSetImagesUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterLeaderboardSetImageResponse> {
+    open class func gameCenterLeaderboardSetImagesUpdateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterLeaderboardSetImageResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardSetImageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardSetImageResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

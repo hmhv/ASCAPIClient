@@ -6,13 +6,10 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppRelationshipsBetaGroupsDataInner: Codable, JSONEncodable, Hashable {
+public struct AppRelationshipsBetaGroupsDataInner: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum ModelType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum ModelType: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case betagroups = "betaGroups"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }

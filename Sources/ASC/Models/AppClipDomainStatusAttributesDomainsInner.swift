@@ -6,13 +6,10 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppClipDomainStatusAttributesDomainsInner: Codable, JSONEncodable, Hashable {
+public struct AppClipDomainStatusAttributesDomainsInner: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum ErrorCode: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum ErrorCode: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case badHttpResponse = "BAD_HTTP_RESPONSE"
         case badJsonContent = "BAD_JSON_CONTENT"
         case badPkcs7Signature = "BAD_PKCS7_SIGNATURE"

@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public enum ErrorResponseErrorsInnerSource: Codable, JSONEncodable, Hashable {
+public enum ErrorResponseErrorsInnerSource: Sendable, Codable, JSONEncodable, Hashable {
     case typeErrorSourceParameter(ErrorSourceParameter)
     case typeErrorSourcePointer(ErrorSourcePointer)
 

@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct PromotedPurchaseUpdateRequestDataAttributes: Codable, JSONEncodable, Hashable {
+public struct PromotedPurchaseUpdateRequestDataAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
     public var visibleForAllUsers: Bool?
     public var enabled: Bool?

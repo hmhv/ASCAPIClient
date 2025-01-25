@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct CiXcodeVersionsResponse: Codable, JSONEncodable, Hashable {
+public struct CiXcodeVersionsResponse: Sendable, Codable, JSONEncodable, Hashable {
 
     public var data: [CiXcodeVersion]
     public var included: [CiMacOsVersion]?

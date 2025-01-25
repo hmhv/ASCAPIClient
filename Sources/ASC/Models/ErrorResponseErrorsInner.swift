@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct ErrorResponseErrorsInner: Codable, JSONEncodable, Hashable {
+public struct ErrorResponseErrorsInner: Sendable, Codable, JSONEncodable, Hashable {
 
     public var id: String?
     public var status: String
@@ -19,9 +16,9 @@ public struct ErrorResponseErrorsInner: Codable, JSONEncodable, Hashable {
     public var detail: String
     public var source: ErrorResponseErrorsInnerSource?
     public var links: ErrorLinks?
-    public var meta: [String: AnyCodable]?
+    public var meta: [String: JSONValue]?
 
-    public init(id: String? = nil, status: String, code: String, title: String, detail: String, source: ErrorResponseErrorsInnerSource? = nil, links: ErrorLinks? = nil, meta: [String: AnyCodable]? = nil) {
+    public init(id: String? = nil, status: String, code: String, title: String, detail: String, source: ErrorResponseErrorsInnerSource? = nil, links: ErrorLinks? = nil, meta: [String: JSONValue]? = nil) {
         self.id = id
         self.status = status
         self.code = code

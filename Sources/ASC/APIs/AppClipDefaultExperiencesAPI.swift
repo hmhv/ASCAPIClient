@@ -6,16 +6,13 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class AppClipDefaultExperiencesAPI {
 
     /**
      * enum for parameter fieldsAppClipAppStoreReviewDetails
      */
-    public enum FieldsAppClipAppStoreReviewDetails_appClipDefaultExperiencesAppClipAppStoreReviewDetailGetToOneRelated: String, CaseIterable {
+    public enum FieldsAppClipAppStoreReviewDetails_appClipDefaultExperiencesAppClipAppStoreReviewDetailGetToOneRelated: String, Sendable, CaseIterable {
         case invocationurls = "invocationUrls"
         case appclipdefaultexperience = "appClipDefaultExperience"
     }
@@ -23,7 +20,7 @@ open class AppClipDefaultExperiencesAPI {
     /**
      * enum for parameter fieldsAppClipDefaultExperiences
      */
-    public enum FieldsAppClipDefaultExperiences_appClipDefaultExperiencesAppClipAppStoreReviewDetailGetToOneRelated: String, CaseIterable {
+    public enum FieldsAppClipDefaultExperiences_appClipDefaultExperiencesAppClipAppStoreReviewDetailGetToOneRelated: String, Sendable, CaseIterable {
         case action = "action"
         case appclip = "appClip"
         case releasewithappstoreversion = "releaseWithAppStoreVersion"
@@ -34,7 +31,7 @@ open class AppClipDefaultExperiencesAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_appClipDefaultExperiencesAppClipAppStoreReviewDetailGetToOneRelated: String, CaseIterable {
+    public enum Include_appClipDefaultExperiencesAppClipAppStoreReviewDetailGetToOneRelated: String, Sendable, CaseIterable {
         case appclipdefaultexperience = "appClipDefaultExperience"
     }
 
@@ -44,20 +41,22 @@ open class AppClipDefaultExperiencesAPI {
      - parameter fieldsAppClipAppStoreReviewDetails: (query) the fields to include for returned resources of type appClipAppStoreReviewDetails (optional)
      - parameter fieldsAppClipDefaultExperiences: (query) the fields to include for returned resources of type appClipDefaultExperiences (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppClipAppStoreReviewDetailResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appClipDefaultExperiencesAppClipAppStoreReviewDetailGetToOneRelated(id: String, fieldsAppClipAppStoreReviewDetails: [FieldsAppClipAppStoreReviewDetails_appClipDefaultExperiencesAppClipAppStoreReviewDetailGetToOneRelated]? = nil, fieldsAppClipDefaultExperiences: [FieldsAppClipDefaultExperiences_appClipDefaultExperiencesAppClipAppStoreReviewDetailGetToOneRelated]? = nil, include: [Include_appClipDefaultExperiencesAppClipAppStoreReviewDetailGetToOneRelated]? = nil) async throws -> AppClipAppStoreReviewDetailResponse {
-        return try await appClipDefaultExperiencesAppClipAppStoreReviewDetailGetToOneRelatedWithRequestBuilder(id: id, fieldsAppClipAppStoreReviewDetails: fieldsAppClipAppStoreReviewDetails, fieldsAppClipDefaultExperiences: fieldsAppClipDefaultExperiences, include: include).execute().body
+    open class func appClipDefaultExperiencesAppClipAppStoreReviewDetailGetToOneRelated(id: String, fieldsAppClipAppStoreReviewDetails: [FieldsAppClipAppStoreReviewDetails_appClipDefaultExperiencesAppClipAppStoreReviewDetailGetToOneRelated]? = nil, fieldsAppClipDefaultExperiences: [FieldsAppClipDefaultExperiences_appClipDefaultExperiencesAppClipAppStoreReviewDetailGetToOneRelated]? = nil, include: [Include_appClipDefaultExperiencesAppClipAppStoreReviewDetailGetToOneRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppClipAppStoreReviewDetailResponse {
+        return try await appClipDefaultExperiencesAppClipAppStoreReviewDetailGetToOneRelatedWithRequestBuilder(id: id, fieldsAppClipAppStoreReviewDetails: fieldsAppClipAppStoreReviewDetails, fieldsAppClipDefaultExperiences: fieldsAppClipDefaultExperiences, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppClipAppStoreReviewDetailResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appClipDefaultExperiencesAppClipAppStoreReviewDetailGetToOneRelated(urlString: String) async throws -> AppClipAppStoreReviewDetailResponse {
-        return try await appClipDefaultExperiencesAppClipAppStoreReviewDetailGetToOneRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func appClipDefaultExperiencesAppClipAppStoreReviewDetailGetToOneRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppClipAppStoreReviewDetailResponse {
+        return try await appClipDefaultExperiencesAppClipAppStoreReviewDetailGetToOneRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -69,21 +68,22 @@ open class AppClipDefaultExperiencesAPI {
      - parameter fieldsAppClipAppStoreReviewDetails: (query) the fields to include for returned resources of type appClipAppStoreReviewDetails (optional)
      - parameter fieldsAppClipDefaultExperiences: (query) the fields to include for returned resources of type appClipDefaultExperiences (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppClipAppStoreReviewDetailResponse> 
      */
-    open class func appClipDefaultExperiencesAppClipAppStoreReviewDetailGetToOneRelatedWithRequestBuilder(id: String, fieldsAppClipAppStoreReviewDetails: [FieldsAppClipAppStoreReviewDetails_appClipDefaultExperiencesAppClipAppStoreReviewDetailGetToOneRelated]? = nil, fieldsAppClipDefaultExperiences: [FieldsAppClipDefaultExperiences_appClipDefaultExperiencesAppClipAppStoreReviewDetailGetToOneRelated]? = nil, include: [Include_appClipDefaultExperiencesAppClipAppStoreReviewDetailGetToOneRelated]? = nil) -> RequestBuilder<AppClipAppStoreReviewDetailResponse> {
+    open class func appClipDefaultExperiencesAppClipAppStoreReviewDetailGetToOneRelatedWithRequestBuilder(id: String, fieldsAppClipAppStoreReviewDetails: [FieldsAppClipAppStoreReviewDetails_appClipDefaultExperiencesAppClipAppStoreReviewDetailGetToOneRelated]? = nil, fieldsAppClipDefaultExperiences: [FieldsAppClipDefaultExperiences_appClipDefaultExperiencesAppClipAppStoreReviewDetailGetToOneRelated]? = nil, include: [Include_appClipDefaultExperiencesAppClipAppStoreReviewDetailGetToOneRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppClipAppStoreReviewDetailResponse> {
         var localVariablePath = "/v1/appClipDefaultExperiences/{id}/appClipAppStoreReviewDetail"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[appClipAppStoreReviewDetails]": (wrappedValue: fieldsAppClipAppStoreReviewDetails?.encodeToJSON(), isExplode: false),
-            "fields[appClipDefaultExperiences]": (wrappedValue: fieldsAppClipDefaultExperiences?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "fields[appClipAppStoreReviewDetails]": (wrappedValue: fieldsAppClipAppStoreReviewDetails?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appClipDefaultExperiences]": (wrappedValue: fieldsAppClipDefaultExperiences?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -92,9 +92,9 @@ open class AppClipDefaultExperiencesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppClipAppStoreReviewDetailResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppClipAppStoreReviewDetailResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -103,24 +103,25 @@ open class AppClipDefaultExperiencesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppClipAppStoreReviewDetailResponse> 
      */
-    open class func appClipDefaultExperiencesAppClipAppStoreReviewDetailGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppClipAppStoreReviewDetailResponse> {
+    open class func appClipDefaultExperiencesAppClipAppStoreReviewDetailGetToOneRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppClipAppStoreReviewDetailResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppClipAppStoreReviewDetailResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppClipAppStoreReviewDetailResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsAppClipDefaultExperienceLocalizations
      */
-    public enum FieldsAppClipDefaultExperienceLocalizations_appClipDefaultExperiencesAppClipDefaultExperienceLocalizationsGetToManyRelated: String, CaseIterable {
+    public enum FieldsAppClipDefaultExperienceLocalizations_appClipDefaultExperiencesAppClipDefaultExperienceLocalizationsGetToManyRelated: String, Sendable, CaseIterable {
         case locale = "locale"
         case subtitle = "subtitle"
         case appclipdefaultexperience = "appClipDefaultExperience"
@@ -130,7 +131,7 @@ open class AppClipDefaultExperiencesAPI {
     /**
      * enum for parameter fieldsAppClipDefaultExperiences
      */
-    public enum FieldsAppClipDefaultExperiences_appClipDefaultExperiencesAppClipDefaultExperienceLocalizationsGetToManyRelated: String, CaseIterable {
+    public enum FieldsAppClipDefaultExperiences_appClipDefaultExperiencesAppClipDefaultExperienceLocalizationsGetToManyRelated: String, Sendable, CaseIterable {
         case action = "action"
         case appclip = "appClip"
         case releasewithappstoreversion = "releaseWithAppStoreVersion"
@@ -141,7 +142,7 @@ open class AppClipDefaultExperiencesAPI {
     /**
      * enum for parameter fieldsAppClipHeaderImages
      */
-    public enum FieldsAppClipHeaderImages_appClipDefaultExperiencesAppClipDefaultExperienceLocalizationsGetToManyRelated: String, CaseIterable {
+    public enum FieldsAppClipHeaderImages_appClipDefaultExperiencesAppClipDefaultExperienceLocalizationsGetToManyRelated: String, Sendable, CaseIterable {
         case filesize = "fileSize"
         case filename = "fileName"
         case sourcefilechecksum = "sourceFileChecksum"
@@ -154,7 +155,7 @@ open class AppClipDefaultExperiencesAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_appClipDefaultExperiencesAppClipDefaultExperienceLocalizationsGetToManyRelated: String, CaseIterable {
+    public enum Include_appClipDefaultExperiencesAppClipDefaultExperienceLocalizationsGetToManyRelated: String, Sendable, CaseIterable {
         case appclipdefaultexperience = "appClipDefaultExperience"
         case appclipheaderimage = "appClipHeaderImage"
     }
@@ -168,20 +169,22 @@ open class AppClipDefaultExperiencesAPI {
      - parameter fieldsAppClipHeaderImages: (query) the fields to include for returned resources of type appClipHeaderImages (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppClipDefaultExperienceLocalizationsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appClipDefaultExperiencesAppClipDefaultExperienceLocalizationsGetToManyRelated(id: String, filterLocale: [String]? = nil, fieldsAppClipDefaultExperienceLocalizations: [FieldsAppClipDefaultExperienceLocalizations_appClipDefaultExperiencesAppClipDefaultExperienceLocalizationsGetToManyRelated]? = nil, fieldsAppClipDefaultExperiences: [FieldsAppClipDefaultExperiences_appClipDefaultExperiencesAppClipDefaultExperienceLocalizationsGetToManyRelated]? = nil, fieldsAppClipHeaderImages: [FieldsAppClipHeaderImages_appClipDefaultExperiencesAppClipDefaultExperienceLocalizationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appClipDefaultExperiencesAppClipDefaultExperienceLocalizationsGetToManyRelated]? = nil) async throws -> AppClipDefaultExperienceLocalizationsResponse {
-        return try await appClipDefaultExperiencesAppClipDefaultExperienceLocalizationsGetToManyRelatedWithRequestBuilder(id: id, filterLocale: filterLocale, fieldsAppClipDefaultExperienceLocalizations: fieldsAppClipDefaultExperienceLocalizations, fieldsAppClipDefaultExperiences: fieldsAppClipDefaultExperiences, fieldsAppClipHeaderImages: fieldsAppClipHeaderImages, limit: limit, include: include).execute().body
+    open class func appClipDefaultExperiencesAppClipDefaultExperienceLocalizationsGetToManyRelated(id: String, filterLocale: [String]? = nil, fieldsAppClipDefaultExperienceLocalizations: [FieldsAppClipDefaultExperienceLocalizations_appClipDefaultExperiencesAppClipDefaultExperienceLocalizationsGetToManyRelated]? = nil, fieldsAppClipDefaultExperiences: [FieldsAppClipDefaultExperiences_appClipDefaultExperiencesAppClipDefaultExperienceLocalizationsGetToManyRelated]? = nil, fieldsAppClipHeaderImages: [FieldsAppClipHeaderImages_appClipDefaultExperiencesAppClipDefaultExperienceLocalizationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appClipDefaultExperiencesAppClipDefaultExperienceLocalizationsGetToManyRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppClipDefaultExperienceLocalizationsResponse {
+        return try await appClipDefaultExperiencesAppClipDefaultExperienceLocalizationsGetToManyRelatedWithRequestBuilder(id: id, filterLocale: filterLocale, fieldsAppClipDefaultExperienceLocalizations: fieldsAppClipDefaultExperienceLocalizations, fieldsAppClipDefaultExperiences: fieldsAppClipDefaultExperiences, fieldsAppClipHeaderImages: fieldsAppClipHeaderImages, limit: limit, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppClipDefaultExperienceLocalizationsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appClipDefaultExperiencesAppClipDefaultExperienceLocalizationsGetToManyRelated(urlString: String) async throws -> AppClipDefaultExperienceLocalizationsResponse {
-        return try await appClipDefaultExperiencesAppClipDefaultExperienceLocalizationsGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func appClipDefaultExperiencesAppClipDefaultExperienceLocalizationsGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppClipDefaultExperienceLocalizationsResponse {
+        return try await appClipDefaultExperiencesAppClipDefaultExperienceLocalizationsGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -196,24 +199,25 @@ open class AppClipDefaultExperiencesAPI {
      - parameter fieldsAppClipHeaderImages: (query) the fields to include for returned resources of type appClipHeaderImages (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppClipDefaultExperienceLocalizationsResponse> 
      */
-    open class func appClipDefaultExperiencesAppClipDefaultExperienceLocalizationsGetToManyRelatedWithRequestBuilder(id: String, filterLocale: [String]? = nil, fieldsAppClipDefaultExperienceLocalizations: [FieldsAppClipDefaultExperienceLocalizations_appClipDefaultExperiencesAppClipDefaultExperienceLocalizationsGetToManyRelated]? = nil, fieldsAppClipDefaultExperiences: [FieldsAppClipDefaultExperiences_appClipDefaultExperiencesAppClipDefaultExperienceLocalizationsGetToManyRelated]? = nil, fieldsAppClipHeaderImages: [FieldsAppClipHeaderImages_appClipDefaultExperiencesAppClipDefaultExperienceLocalizationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appClipDefaultExperiencesAppClipDefaultExperienceLocalizationsGetToManyRelated]? = nil) -> RequestBuilder<AppClipDefaultExperienceLocalizationsResponse> {
+    open class func appClipDefaultExperiencesAppClipDefaultExperienceLocalizationsGetToManyRelatedWithRequestBuilder(id: String, filterLocale: [String]? = nil, fieldsAppClipDefaultExperienceLocalizations: [FieldsAppClipDefaultExperienceLocalizations_appClipDefaultExperiencesAppClipDefaultExperienceLocalizationsGetToManyRelated]? = nil, fieldsAppClipDefaultExperiences: [FieldsAppClipDefaultExperiences_appClipDefaultExperiencesAppClipDefaultExperienceLocalizationsGetToManyRelated]? = nil, fieldsAppClipHeaderImages: [FieldsAppClipHeaderImages_appClipDefaultExperiencesAppClipDefaultExperienceLocalizationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appClipDefaultExperiencesAppClipDefaultExperienceLocalizationsGetToManyRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppClipDefaultExperienceLocalizationsResponse> {
         var localVariablePath = "/v1/appClipDefaultExperiences/{id}/appClipDefaultExperienceLocalizations"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[locale]": (wrappedValue: filterLocale?.encodeToJSON(), isExplode: false),
-            "fields[appClipDefaultExperienceLocalizations]": (wrappedValue: fieldsAppClipDefaultExperienceLocalizations?.encodeToJSON(), isExplode: false),
-            "fields[appClipDefaultExperiences]": (wrappedValue: fieldsAppClipDefaultExperiences?.encodeToJSON(), isExplode: false),
-            "fields[appClipHeaderImages]": (wrappedValue: fieldsAppClipHeaderImages?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "filter[locale]": (wrappedValue: filterLocale?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appClipDefaultExperienceLocalizations]": (wrappedValue: fieldsAppClipDefaultExperienceLocalizations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appClipDefaultExperiences]": (wrappedValue: fieldsAppClipDefaultExperiences?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appClipHeaderImages]": (wrappedValue: fieldsAppClipHeaderImages?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -222,9 +226,9 @@ open class AppClipDefaultExperiencesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppClipDefaultExperienceLocalizationsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppClipDefaultExperienceLocalizationsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -233,37 +237,40 @@ open class AppClipDefaultExperiencesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppClipDefaultExperienceLocalizationsResponse> 
      */
-    open class func appClipDefaultExperiencesAppClipDefaultExperienceLocalizationsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppClipDefaultExperienceLocalizationsResponse> {
+    open class func appClipDefaultExperiencesAppClipDefaultExperienceLocalizationsGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppClipDefaultExperienceLocalizationsResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppClipDefaultExperienceLocalizationsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppClipDefaultExperienceLocalizationsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter appClipDefaultExperienceCreateRequest: (body) AppClipDefaultExperience representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppClipDefaultExperienceResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appClipDefaultExperiencesCreateInstance(appClipDefaultExperienceCreateRequest: AppClipDefaultExperienceCreateRequest) async throws -> AppClipDefaultExperienceResponse {
-        return try await appClipDefaultExperiencesCreateInstanceWithRequestBuilder(appClipDefaultExperienceCreateRequest: appClipDefaultExperienceCreateRequest).execute().body
+    open class func appClipDefaultExperiencesCreateInstance(appClipDefaultExperienceCreateRequest: AppClipDefaultExperienceCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppClipDefaultExperienceResponse {
+        return try await appClipDefaultExperiencesCreateInstanceWithRequestBuilder(appClipDefaultExperienceCreateRequest: appClipDefaultExperienceCreateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppClipDefaultExperienceResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appClipDefaultExperiencesCreateInstance(urlString: String) async throws -> AppClipDefaultExperienceResponse {
-        return try await appClipDefaultExperiencesCreateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func appClipDefaultExperiencesCreateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppClipDefaultExperienceResponse {
+        return try await appClipDefaultExperiencesCreateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -272,12 +279,13 @@ open class AppClipDefaultExperiencesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter appClipDefaultExperienceCreateRequest: (body) AppClipDefaultExperience representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppClipDefaultExperienceResponse> 
      */
-    open class func appClipDefaultExperiencesCreateInstanceWithRequestBuilder(appClipDefaultExperienceCreateRequest: AppClipDefaultExperienceCreateRequest) -> RequestBuilder<AppClipDefaultExperienceResponse> {
+    open class func appClipDefaultExperiencesCreateInstanceWithRequestBuilder(appClipDefaultExperienceCreateRequest: AppClipDefaultExperienceCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppClipDefaultExperienceResponse> {
         let localVariablePath = "/v1/appClipDefaultExperiences"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: appClipDefaultExperienceCreateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: appClipDefaultExperienceCreateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -287,9 +295,9 @@ open class AppClipDefaultExperiencesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppClipDefaultExperienceResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppClipDefaultExperienceResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -298,37 +306,40 @@ open class AppClipDefaultExperiencesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppClipDefaultExperienceResponse> 
      */
-    open class func appClipDefaultExperiencesCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppClipDefaultExperienceResponse> {
+    open class func appClipDefaultExperiencesCreateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppClipDefaultExperienceResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppClipDefaultExperienceResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppClipDefaultExperienceResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appClipDefaultExperiencesDeleteInstance(id: String) async throws {
-        return try await appClipDefaultExperiencesDeleteInstanceWithRequestBuilder(id: id).execute().body
+    open class func appClipDefaultExperiencesDeleteInstance(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await appClipDefaultExperiencesDeleteInstanceWithRequestBuilder(id: id, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appClipDefaultExperiencesDeleteInstance(urlString: String) async throws {
-        return try await appClipDefaultExperiencesDeleteInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func appClipDefaultExperiencesDeleteInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await appClipDefaultExperiencesDeleteInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -337,14 +348,15 @@ open class AppClipDefaultExperiencesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func appClipDefaultExperiencesDeleteInstanceWithRequestBuilder(id: String) -> RequestBuilder<Void> {
+    open class func appClipDefaultExperiencesDeleteInstanceWithRequestBuilder(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/appClipDefaultExperiences/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -355,9 +367,9 @@ open class AppClipDefaultExperiencesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -366,24 +378,25 @@ open class AppClipDefaultExperiencesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func appClipDefaultExperiencesDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func appClipDefaultExperiencesDeleteInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsAppClipDefaultExperiences
      */
-    public enum FieldsAppClipDefaultExperiences_appClipDefaultExperiencesGetInstance: String, CaseIterable {
+    public enum FieldsAppClipDefaultExperiences_appClipDefaultExperiencesGetInstance: String, Sendable, CaseIterable {
         case action = "action"
         case appclip = "appClip"
         case releasewithappstoreversion = "releaseWithAppStoreVersion"
@@ -394,7 +407,7 @@ open class AppClipDefaultExperiencesAPI {
     /**
      * enum for parameter fieldsAppStoreVersions
      */
-    public enum FieldsAppStoreVersions_appClipDefaultExperiencesGetInstance: String, CaseIterable {
+    public enum FieldsAppStoreVersions_appClipDefaultExperiencesGetInstance: String, Sendable, CaseIterable {
         case platform = "platform"
         case versionstring = "versionString"
         case appstorestate = "appStoreState"
@@ -424,7 +437,7 @@ open class AppClipDefaultExperiencesAPI {
     /**
      * enum for parameter fieldsAppClipDefaultExperienceLocalizations
      */
-    public enum FieldsAppClipDefaultExperienceLocalizations_appClipDefaultExperiencesGetInstance: String, CaseIterable {
+    public enum FieldsAppClipDefaultExperienceLocalizations_appClipDefaultExperiencesGetInstance: String, Sendable, CaseIterable {
         case locale = "locale"
         case subtitle = "subtitle"
         case appclipdefaultexperience = "appClipDefaultExperience"
@@ -434,7 +447,7 @@ open class AppClipDefaultExperiencesAPI {
     /**
      * enum for parameter fieldsAppClipAppStoreReviewDetails
      */
-    public enum FieldsAppClipAppStoreReviewDetails_appClipDefaultExperiencesGetInstance: String, CaseIterable {
+    public enum FieldsAppClipAppStoreReviewDetails_appClipDefaultExperiencesGetInstance: String, Sendable, CaseIterable {
         case invocationurls = "invocationUrls"
         case appclipdefaultexperience = "appClipDefaultExperience"
     }
@@ -442,7 +455,7 @@ open class AppClipDefaultExperiencesAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_appClipDefaultExperiencesGetInstance: String, CaseIterable {
+    public enum Include_appClipDefaultExperiencesGetInstance: String, Sendable, CaseIterable {
         case appclip = "appClip"
         case releasewithappstoreversion = "releaseWithAppStoreVersion"
         case appclipdefaultexperiencelocalizations = "appClipDefaultExperienceLocalizations"
@@ -458,20 +471,22 @@ open class AppClipDefaultExperiencesAPI {
      - parameter fieldsAppClipAppStoreReviewDetails: (query) the fields to include for returned resources of type appClipAppStoreReviewDetails (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAppClipDefaultExperienceLocalizations: (query) maximum number of related appClipDefaultExperienceLocalizations returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppClipDefaultExperienceResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appClipDefaultExperiencesGetInstance(id: String, fieldsAppClipDefaultExperiences: [FieldsAppClipDefaultExperiences_appClipDefaultExperiencesGetInstance]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_appClipDefaultExperiencesGetInstance]? = nil, fieldsAppClipDefaultExperienceLocalizations: [FieldsAppClipDefaultExperienceLocalizations_appClipDefaultExperiencesGetInstance]? = nil, fieldsAppClipAppStoreReviewDetails: [FieldsAppClipAppStoreReviewDetails_appClipDefaultExperiencesGetInstance]? = nil, include: [Include_appClipDefaultExperiencesGetInstance]? = nil, limitAppClipDefaultExperienceLocalizations: Int? = nil) async throws -> AppClipDefaultExperienceResponse {
-        return try await appClipDefaultExperiencesGetInstanceWithRequestBuilder(id: id, fieldsAppClipDefaultExperiences: fieldsAppClipDefaultExperiences, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsAppClipDefaultExperienceLocalizations: fieldsAppClipDefaultExperienceLocalizations, fieldsAppClipAppStoreReviewDetails: fieldsAppClipAppStoreReviewDetails, include: include, limitAppClipDefaultExperienceLocalizations: limitAppClipDefaultExperienceLocalizations).execute().body
+    open class func appClipDefaultExperiencesGetInstance(id: String, fieldsAppClipDefaultExperiences: [FieldsAppClipDefaultExperiences_appClipDefaultExperiencesGetInstance]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_appClipDefaultExperiencesGetInstance]? = nil, fieldsAppClipDefaultExperienceLocalizations: [FieldsAppClipDefaultExperienceLocalizations_appClipDefaultExperiencesGetInstance]? = nil, fieldsAppClipAppStoreReviewDetails: [FieldsAppClipAppStoreReviewDetails_appClipDefaultExperiencesGetInstance]? = nil, include: [Include_appClipDefaultExperiencesGetInstance]? = nil, limitAppClipDefaultExperienceLocalizations: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppClipDefaultExperienceResponse {
+        return try await appClipDefaultExperiencesGetInstanceWithRequestBuilder(id: id, fieldsAppClipDefaultExperiences: fieldsAppClipDefaultExperiences, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsAppClipDefaultExperienceLocalizations: fieldsAppClipDefaultExperienceLocalizations, fieldsAppClipAppStoreReviewDetails: fieldsAppClipAppStoreReviewDetails, include: include, limitAppClipDefaultExperienceLocalizations: limitAppClipDefaultExperienceLocalizations, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppClipDefaultExperienceResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appClipDefaultExperiencesGetInstance(urlString: String) async throws -> AppClipDefaultExperienceResponse {
-        return try await appClipDefaultExperiencesGetInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func appClipDefaultExperiencesGetInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppClipDefaultExperienceResponse {
+        return try await appClipDefaultExperiencesGetInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -486,24 +501,25 @@ open class AppClipDefaultExperiencesAPI {
      - parameter fieldsAppClipAppStoreReviewDetails: (query) the fields to include for returned resources of type appClipAppStoreReviewDetails (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAppClipDefaultExperienceLocalizations: (query) maximum number of related appClipDefaultExperienceLocalizations returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppClipDefaultExperienceResponse> 
      */
-    open class func appClipDefaultExperiencesGetInstanceWithRequestBuilder(id: String, fieldsAppClipDefaultExperiences: [FieldsAppClipDefaultExperiences_appClipDefaultExperiencesGetInstance]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_appClipDefaultExperiencesGetInstance]? = nil, fieldsAppClipDefaultExperienceLocalizations: [FieldsAppClipDefaultExperienceLocalizations_appClipDefaultExperiencesGetInstance]? = nil, fieldsAppClipAppStoreReviewDetails: [FieldsAppClipAppStoreReviewDetails_appClipDefaultExperiencesGetInstance]? = nil, include: [Include_appClipDefaultExperiencesGetInstance]? = nil, limitAppClipDefaultExperienceLocalizations: Int? = nil) -> RequestBuilder<AppClipDefaultExperienceResponse> {
+    open class func appClipDefaultExperiencesGetInstanceWithRequestBuilder(id: String, fieldsAppClipDefaultExperiences: [FieldsAppClipDefaultExperiences_appClipDefaultExperiencesGetInstance]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_appClipDefaultExperiencesGetInstance]? = nil, fieldsAppClipDefaultExperienceLocalizations: [FieldsAppClipDefaultExperienceLocalizations_appClipDefaultExperiencesGetInstance]? = nil, fieldsAppClipAppStoreReviewDetails: [FieldsAppClipAppStoreReviewDetails_appClipDefaultExperiencesGetInstance]? = nil, include: [Include_appClipDefaultExperiencesGetInstance]? = nil, limitAppClipDefaultExperienceLocalizations: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppClipDefaultExperienceResponse> {
         var localVariablePath = "/v1/appClipDefaultExperiences/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[appClipDefaultExperiences]": (wrappedValue: fieldsAppClipDefaultExperiences?.encodeToJSON(), isExplode: false),
-            "fields[appStoreVersions]": (wrappedValue: fieldsAppStoreVersions?.encodeToJSON(), isExplode: false),
-            "fields[appClipDefaultExperienceLocalizations]": (wrappedValue: fieldsAppClipDefaultExperienceLocalizations?.encodeToJSON(), isExplode: false),
-            "fields[appClipAppStoreReviewDetails]": (wrappedValue: fieldsAppClipAppStoreReviewDetails?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[appClipDefaultExperienceLocalizations]": (wrappedValue: limitAppClipDefaultExperienceLocalizations?.encodeToJSON(), isExplode: true),
+            "fields[appClipDefaultExperiences]": (wrappedValue: fieldsAppClipDefaultExperiences?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appStoreVersions]": (wrappedValue: fieldsAppStoreVersions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appClipDefaultExperienceLocalizations]": (wrappedValue: fieldsAppClipDefaultExperienceLocalizations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appClipAppStoreReviewDetails]": (wrappedValue: fieldsAppClipAppStoreReviewDetails?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[appClipDefaultExperienceLocalizations]": (wrappedValue: limitAppClipDefaultExperienceLocalizations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -512,9 +528,9 @@ open class AppClipDefaultExperiencesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppClipDefaultExperienceResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppClipDefaultExperienceResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -523,24 +539,25 @@ open class AppClipDefaultExperiencesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppClipDefaultExperienceResponse> 
      */
-    open class func appClipDefaultExperiencesGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppClipDefaultExperienceResponse> {
+    open class func appClipDefaultExperiencesGetInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppClipDefaultExperienceResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppClipDefaultExperienceResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppClipDefaultExperienceResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsAppStoreVersions
      */
-    public enum FieldsAppStoreVersions_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated: String, CaseIterable {
+    public enum FieldsAppStoreVersions_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated: String, Sendable, CaseIterable {
         case platform = "platform"
         case versionstring = "versionString"
         case appstorestate = "appStoreState"
@@ -570,7 +587,7 @@ open class AppClipDefaultExperiencesAPI {
     /**
      * enum for parameter fieldsApps
      */
-    public enum FieldsApps_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated: String, CaseIterable {
+    public enum FieldsApps_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated: String, Sendable, CaseIterable {
         case name = "name"
         case bundleid = "bundleId"
         case sku = "sku"
@@ -619,7 +636,7 @@ open class AppClipDefaultExperiencesAPI {
     /**
      * enum for parameter fieldsAgeRatingDeclarations
      */
-    public enum FieldsAgeRatingDeclarations_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated: String, CaseIterable {
+    public enum FieldsAgeRatingDeclarations_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated: String, Sendable, CaseIterable {
         case alcoholtobaccoordruguseorreferences = "alcoholTobaccoOrDrugUseOrReferences"
         case contests = "contests"
         case gamblingandcontests = "gamblingAndContests"
@@ -645,7 +662,7 @@ open class AppClipDefaultExperiencesAPI {
     /**
      * enum for parameter fieldsAppStoreVersionLocalizations
      */
-    public enum FieldsAppStoreVersionLocalizations_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated: String, CaseIterable {
+    public enum FieldsAppStoreVersionLocalizations_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated: String, Sendable, CaseIterable {
         case description = "description"
         case locale = "locale"
         case keywords = "keywords"
@@ -661,7 +678,7 @@ open class AppClipDefaultExperiencesAPI {
     /**
      * enum for parameter fieldsBuilds
      */
-    public enum FieldsBuilds_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated: String, CaseIterable {
+    public enum FieldsBuilds_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated: String, Sendable, CaseIterable {
         case version = "version"
         case uploadeddate = "uploadedDate"
         case expirationdate = "expirationDate"
@@ -691,7 +708,7 @@ open class AppClipDefaultExperiencesAPI {
     /**
      * enum for parameter fieldsAppStoreVersionPhasedReleases
      */
-    public enum FieldsAppStoreVersionPhasedReleases_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated: String, CaseIterable {
+    public enum FieldsAppStoreVersionPhasedReleases_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated: String, Sendable, CaseIterable {
         case phasedreleasestate = "phasedReleaseState"
         case startdate = "startDate"
         case totalpauseduration = "totalPauseDuration"
@@ -701,7 +718,7 @@ open class AppClipDefaultExperiencesAPI {
     /**
      * enum for parameter fieldsGameCenterAppVersions
      */
-    public enum FieldsGameCenterAppVersions_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated: String, CaseIterable {
+    public enum FieldsGameCenterAppVersions_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated: String, Sendable, CaseIterable {
         case enabled = "enabled"
         case compatibilityversions = "compatibilityVersions"
         case appstoreversion = "appStoreVersion"
@@ -710,7 +727,7 @@ open class AppClipDefaultExperiencesAPI {
     /**
      * enum for parameter fieldsRoutingAppCoverages
      */
-    public enum FieldsRoutingAppCoverages_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated: String, CaseIterable {
+    public enum FieldsRoutingAppCoverages_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated: String, Sendable, CaseIterable {
         case filesize = "fileSize"
         case filename = "fileName"
         case sourcefilechecksum = "sourceFileChecksum"
@@ -722,7 +739,7 @@ open class AppClipDefaultExperiencesAPI {
     /**
      * enum for parameter fieldsAppStoreReviewDetails
      */
-    public enum FieldsAppStoreReviewDetails_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated: String, CaseIterable {
+    public enum FieldsAppStoreReviewDetails_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated: String, Sendable, CaseIterable {
         case contactfirstname = "contactFirstName"
         case contactlastname = "contactLastName"
         case contactphone = "contactPhone"
@@ -738,14 +755,14 @@ open class AppClipDefaultExperiencesAPI {
     /**
      * enum for parameter fieldsAppStoreVersionSubmissions
      */
-    public enum FieldsAppStoreVersionSubmissions_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated: String, CaseIterable {
+    public enum FieldsAppStoreVersionSubmissions_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated: String, Sendable, CaseIterable {
         case appstoreversion = "appStoreVersion"
     }
 
     /**
      * enum for parameter fieldsAppClipDefaultExperiences
      */
-    public enum FieldsAppClipDefaultExperiences_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated: String, CaseIterable {
+    public enum FieldsAppClipDefaultExperiences_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated: String, Sendable, CaseIterable {
         case action = "action"
         case appclip = "appClip"
         case releasewithappstoreversion = "releaseWithAppStoreVersion"
@@ -756,7 +773,7 @@ open class AppClipDefaultExperiencesAPI {
     /**
      * enum for parameter fieldsAppStoreVersionExperiments
      */
-    public enum FieldsAppStoreVersionExperiments_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated: String, CaseIterable {
+    public enum FieldsAppStoreVersionExperiments_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated: String, Sendable, CaseIterable {
         case name = "name"
         case trafficproportion = "trafficProportion"
         case state = "state"
@@ -774,14 +791,14 @@ open class AppClipDefaultExperiencesAPI {
     /**
      * enum for parameter fieldsAlternativeDistributionPackages
      */
-    public enum FieldsAlternativeDistributionPackages_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated: String, CaseIterable {
+    public enum FieldsAlternativeDistributionPackages_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated: String, Sendable, CaseIterable {
         case versions = "versions"
     }
 
     /**
      * enum for parameter include
      */
-    public enum Include_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated: String, CaseIterable {
+    public enum Include_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated: String, Sendable, CaseIterable {
         case app = "app"
         case ageratingdeclaration = "ageRatingDeclaration"
         case appstoreversionlocalizations = "appStoreVersionLocalizations"
@@ -817,20 +834,22 @@ open class AppClipDefaultExperiencesAPI {
      - parameter limitAppStoreVersionLocalizations: (query) maximum number of related appStoreVersionLocalizations returned (when they are included) (optional)
      - parameter limitAppStoreVersionExperiments: (query) maximum number of related appStoreVersionExperiments returned (when they are included) (optional)
      - parameter limitAppStoreVersionExperimentsV2: (query) maximum number of related appStoreVersionExperimentsV2 returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppStoreVersionResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated(id: String, fieldsAppStoreVersions: [FieldsAppStoreVersions_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsApps: [FieldsApps_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAgeRatingDeclarations: [FieldsAgeRatingDeclarations_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionLocalizations: [FieldsAppStoreVersionLocalizations_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsBuilds: [FieldsBuilds_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionPhasedReleases: [FieldsAppStoreVersionPhasedReleases_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsGameCenterAppVersions: [FieldsGameCenterAppVersions_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsRoutingAppCoverages: [FieldsRoutingAppCoverages_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreReviewDetails: [FieldsAppStoreReviewDetails_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionSubmissions: [FieldsAppStoreVersionSubmissions_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAppClipDefaultExperiences: [FieldsAppClipDefaultExperiences_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAlternativeDistributionPackages: [FieldsAlternativeDistributionPackages_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, include: [Include_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, limitAppStoreVersionLocalizations: Int? = nil, limitAppStoreVersionExperiments: Int? = nil, limitAppStoreVersionExperimentsV2: Int? = nil) async throws -> AppStoreVersionResponse {
-        return try await appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelatedWithRequestBuilder(id: id, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsApps: fieldsApps, fieldsAgeRatingDeclarations: fieldsAgeRatingDeclarations, fieldsAppStoreVersionLocalizations: fieldsAppStoreVersionLocalizations, fieldsBuilds: fieldsBuilds, fieldsAppStoreVersionPhasedReleases: fieldsAppStoreVersionPhasedReleases, fieldsGameCenterAppVersions: fieldsGameCenterAppVersions, fieldsRoutingAppCoverages: fieldsRoutingAppCoverages, fieldsAppStoreReviewDetails: fieldsAppStoreReviewDetails, fieldsAppStoreVersionSubmissions: fieldsAppStoreVersionSubmissions, fieldsAppClipDefaultExperiences: fieldsAppClipDefaultExperiences, fieldsAppStoreVersionExperiments: fieldsAppStoreVersionExperiments, fieldsAlternativeDistributionPackages: fieldsAlternativeDistributionPackages, include: include, limitAppStoreVersionLocalizations: limitAppStoreVersionLocalizations, limitAppStoreVersionExperiments: limitAppStoreVersionExperiments, limitAppStoreVersionExperimentsV2: limitAppStoreVersionExperimentsV2).execute().body
+    open class func appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated(id: String, fieldsAppStoreVersions: [FieldsAppStoreVersions_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsApps: [FieldsApps_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAgeRatingDeclarations: [FieldsAgeRatingDeclarations_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionLocalizations: [FieldsAppStoreVersionLocalizations_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsBuilds: [FieldsBuilds_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionPhasedReleases: [FieldsAppStoreVersionPhasedReleases_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsGameCenterAppVersions: [FieldsGameCenterAppVersions_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsRoutingAppCoverages: [FieldsRoutingAppCoverages_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreReviewDetails: [FieldsAppStoreReviewDetails_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionSubmissions: [FieldsAppStoreVersionSubmissions_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAppClipDefaultExperiences: [FieldsAppClipDefaultExperiences_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAlternativeDistributionPackages: [FieldsAlternativeDistributionPackages_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, include: [Include_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, limitAppStoreVersionLocalizations: Int? = nil, limitAppStoreVersionExperiments: Int? = nil, limitAppStoreVersionExperimentsV2: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppStoreVersionResponse {
+        return try await appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelatedWithRequestBuilder(id: id, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsApps: fieldsApps, fieldsAgeRatingDeclarations: fieldsAgeRatingDeclarations, fieldsAppStoreVersionLocalizations: fieldsAppStoreVersionLocalizations, fieldsBuilds: fieldsBuilds, fieldsAppStoreVersionPhasedReleases: fieldsAppStoreVersionPhasedReleases, fieldsGameCenterAppVersions: fieldsGameCenterAppVersions, fieldsRoutingAppCoverages: fieldsRoutingAppCoverages, fieldsAppStoreReviewDetails: fieldsAppStoreReviewDetails, fieldsAppStoreVersionSubmissions: fieldsAppStoreVersionSubmissions, fieldsAppClipDefaultExperiences: fieldsAppClipDefaultExperiences, fieldsAppStoreVersionExperiments: fieldsAppStoreVersionExperiments, fieldsAlternativeDistributionPackages: fieldsAlternativeDistributionPackages, include: include, limitAppStoreVersionLocalizations: limitAppStoreVersionLocalizations, limitAppStoreVersionExperiments: limitAppStoreVersionExperiments, limitAppStoreVersionExperimentsV2: limitAppStoreVersionExperimentsV2, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppStoreVersionResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated(urlString: String) async throws -> AppStoreVersionResponse {
-        return try await appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppStoreVersionResponse {
+        return try await appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -856,35 +875,36 @@ open class AppClipDefaultExperiencesAPI {
      - parameter limitAppStoreVersionLocalizations: (query) maximum number of related appStoreVersionLocalizations returned (when they are included) (optional)
      - parameter limitAppStoreVersionExperiments: (query) maximum number of related appStoreVersionExperiments returned (when they are included) (optional)
      - parameter limitAppStoreVersionExperimentsV2: (query) maximum number of related appStoreVersionExperimentsV2 returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppStoreVersionResponse> 
      */
-    open class func appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelatedWithRequestBuilder(id: String, fieldsAppStoreVersions: [FieldsAppStoreVersions_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsApps: [FieldsApps_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAgeRatingDeclarations: [FieldsAgeRatingDeclarations_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionLocalizations: [FieldsAppStoreVersionLocalizations_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsBuilds: [FieldsBuilds_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionPhasedReleases: [FieldsAppStoreVersionPhasedReleases_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsGameCenterAppVersions: [FieldsGameCenterAppVersions_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsRoutingAppCoverages: [FieldsRoutingAppCoverages_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreReviewDetails: [FieldsAppStoreReviewDetails_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionSubmissions: [FieldsAppStoreVersionSubmissions_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAppClipDefaultExperiences: [FieldsAppClipDefaultExperiences_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAlternativeDistributionPackages: [FieldsAlternativeDistributionPackages_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, include: [Include_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, limitAppStoreVersionLocalizations: Int? = nil, limitAppStoreVersionExperiments: Int? = nil, limitAppStoreVersionExperimentsV2: Int? = nil) -> RequestBuilder<AppStoreVersionResponse> {
+    open class func appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelatedWithRequestBuilder(id: String, fieldsAppStoreVersions: [FieldsAppStoreVersions_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsApps: [FieldsApps_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAgeRatingDeclarations: [FieldsAgeRatingDeclarations_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionLocalizations: [FieldsAppStoreVersionLocalizations_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsBuilds: [FieldsBuilds_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionPhasedReleases: [FieldsAppStoreVersionPhasedReleases_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsGameCenterAppVersions: [FieldsGameCenterAppVersions_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsRoutingAppCoverages: [FieldsRoutingAppCoverages_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreReviewDetails: [FieldsAppStoreReviewDetails_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionSubmissions: [FieldsAppStoreVersionSubmissions_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAppClipDefaultExperiences: [FieldsAppClipDefaultExperiences_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, fieldsAlternativeDistributionPackages: [FieldsAlternativeDistributionPackages_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, include: [Include_appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelated]? = nil, limitAppStoreVersionLocalizations: Int? = nil, limitAppStoreVersionExperiments: Int? = nil, limitAppStoreVersionExperimentsV2: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppStoreVersionResponse> {
         var localVariablePath = "/v1/appClipDefaultExperiences/{id}/releaseWithAppStoreVersion"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[appStoreVersions]": (wrappedValue: fieldsAppStoreVersions?.encodeToJSON(), isExplode: false),
-            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
-            "fields[ageRatingDeclarations]": (wrappedValue: fieldsAgeRatingDeclarations?.encodeToJSON(), isExplode: false),
-            "fields[appStoreVersionLocalizations]": (wrappedValue: fieldsAppStoreVersionLocalizations?.encodeToJSON(), isExplode: false),
-            "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(), isExplode: false),
-            "fields[appStoreVersionPhasedReleases]": (wrappedValue: fieldsAppStoreVersionPhasedReleases?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterAppVersions]": (wrappedValue: fieldsGameCenterAppVersions?.encodeToJSON(), isExplode: false),
-            "fields[routingAppCoverages]": (wrappedValue: fieldsRoutingAppCoverages?.encodeToJSON(), isExplode: false),
-            "fields[appStoreReviewDetails]": (wrappedValue: fieldsAppStoreReviewDetails?.encodeToJSON(), isExplode: false),
-            "fields[appStoreVersionSubmissions]": (wrappedValue: fieldsAppStoreVersionSubmissions?.encodeToJSON(), isExplode: false),
-            "fields[appClipDefaultExperiences]": (wrappedValue: fieldsAppClipDefaultExperiences?.encodeToJSON(), isExplode: false),
-            "fields[appStoreVersionExperiments]": (wrappedValue: fieldsAppStoreVersionExperiments?.encodeToJSON(), isExplode: false),
-            "fields[alternativeDistributionPackages]": (wrappedValue: fieldsAlternativeDistributionPackages?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[appStoreVersionLocalizations]": (wrappedValue: limitAppStoreVersionLocalizations?.encodeToJSON(), isExplode: true),
-            "limit[appStoreVersionExperiments]": (wrappedValue: limitAppStoreVersionExperiments?.encodeToJSON(), isExplode: true),
-            "limit[appStoreVersionExperimentsV2]": (wrappedValue: limitAppStoreVersionExperimentsV2?.encodeToJSON(), isExplode: true),
+            "fields[appStoreVersions]": (wrappedValue: fieldsAppStoreVersions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[ageRatingDeclarations]": (wrappedValue: fieldsAgeRatingDeclarations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appStoreVersionLocalizations]": (wrappedValue: fieldsAppStoreVersionLocalizations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appStoreVersionPhasedReleases]": (wrappedValue: fieldsAppStoreVersionPhasedReleases?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[gameCenterAppVersions]": (wrappedValue: fieldsGameCenterAppVersions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[routingAppCoverages]": (wrappedValue: fieldsRoutingAppCoverages?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appStoreReviewDetails]": (wrappedValue: fieldsAppStoreReviewDetails?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appStoreVersionSubmissions]": (wrappedValue: fieldsAppStoreVersionSubmissions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appClipDefaultExperiences]": (wrappedValue: fieldsAppClipDefaultExperiences?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appStoreVersionExperiments]": (wrappedValue: fieldsAppStoreVersionExperiments?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[alternativeDistributionPackages]": (wrappedValue: fieldsAlternativeDistributionPackages?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[appStoreVersionLocalizations]": (wrappedValue: limitAppStoreVersionLocalizations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[appStoreVersionExperiments]": (wrappedValue: limitAppStoreVersionExperiments?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[appStoreVersionExperimentsV2]": (wrappedValue: limitAppStoreVersionExperimentsV2?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -893,9 +913,9 @@ open class AppClipDefaultExperiencesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -904,37 +924,40 @@ open class AppClipDefaultExperiencesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppStoreVersionResponse> 
      */
-    open class func appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppStoreVersionResponse> {
+    open class func appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppStoreVersionResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppClipDefaultExperienceReleaseWithAppStoreVersionLinkageResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelationship(id: String) async throws -> AppClipDefaultExperienceReleaseWithAppStoreVersionLinkageResponse {
-        return try await appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelationshipWithRequestBuilder(id: id).execute().body
+    open class func appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelationship(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppClipDefaultExperienceReleaseWithAppStoreVersionLinkageResponse {
+        return try await appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelationshipWithRequestBuilder(id: id, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppClipDefaultExperienceReleaseWithAppStoreVersionLinkageResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelationship(urlString: String) async throws -> AppClipDefaultExperienceReleaseWithAppStoreVersionLinkageResponse {
-        return try await appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelationshipWithRequestBuilder(urlString: urlString).execute().body
+    open class func appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelationship(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppClipDefaultExperienceReleaseWithAppStoreVersionLinkageResponse {
+        return try await appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelationshipWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -943,14 +966,15 @@ open class AppClipDefaultExperiencesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppClipDefaultExperienceReleaseWithAppStoreVersionLinkageResponse> 
      */
-    open class func appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelationshipWithRequestBuilder(id: String) -> RequestBuilder<AppClipDefaultExperienceReleaseWithAppStoreVersionLinkageResponse> {
+    open class func appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelationshipWithRequestBuilder(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppClipDefaultExperienceReleaseWithAppStoreVersionLinkageResponse> {
         var localVariablePath = "/v1/appClipDefaultExperiences/{id}/relationships/releaseWithAppStoreVersion"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -961,9 +985,9 @@ open class AppClipDefaultExperiencesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppClipDefaultExperienceReleaseWithAppStoreVersionLinkageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppClipDefaultExperienceReleaseWithAppStoreVersionLinkageResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -972,38 +996,41 @@ open class AppClipDefaultExperiencesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppClipDefaultExperienceReleaseWithAppStoreVersionLinkageResponse> 
      */
-    open class func appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<AppClipDefaultExperienceReleaseWithAppStoreVersionLinkageResponse> {
+    open class func appClipDefaultExperiencesReleaseWithAppStoreVersionGetToOneRelationshipWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppClipDefaultExperienceReleaseWithAppStoreVersionLinkageResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppClipDefaultExperienceReleaseWithAppStoreVersionLinkageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppClipDefaultExperienceReleaseWithAppStoreVersionLinkageResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter appClipDefaultExperienceReleaseWithAppStoreVersionLinkageRequest: (body) Related linkage 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appClipDefaultExperiencesReleaseWithAppStoreVersionUpdateToOneRelationship(id: String, appClipDefaultExperienceReleaseWithAppStoreVersionLinkageRequest: AppClipDefaultExperienceReleaseWithAppStoreVersionLinkageRequest) async throws {
-        return try await appClipDefaultExperiencesReleaseWithAppStoreVersionUpdateToOneRelationshipWithRequestBuilder(id: id, appClipDefaultExperienceReleaseWithAppStoreVersionLinkageRequest: appClipDefaultExperienceReleaseWithAppStoreVersionLinkageRequest).execute().body
+    open class func appClipDefaultExperiencesReleaseWithAppStoreVersionUpdateToOneRelationship(id: String, appClipDefaultExperienceReleaseWithAppStoreVersionLinkageRequest: AppClipDefaultExperienceReleaseWithAppStoreVersionLinkageRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await appClipDefaultExperiencesReleaseWithAppStoreVersionUpdateToOneRelationshipWithRequestBuilder(id: id, appClipDefaultExperienceReleaseWithAppStoreVersionLinkageRequest: appClipDefaultExperienceReleaseWithAppStoreVersionLinkageRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appClipDefaultExperiencesReleaseWithAppStoreVersionUpdateToOneRelationship(urlString: String) async throws {
-        return try await appClipDefaultExperiencesReleaseWithAppStoreVersionUpdateToOneRelationshipWithRequestBuilder(urlString: urlString).execute().body
+    open class func appClipDefaultExperiencesReleaseWithAppStoreVersionUpdateToOneRelationship(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await appClipDefaultExperiencesReleaseWithAppStoreVersionUpdateToOneRelationshipWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1013,15 +1040,16 @@ open class AppClipDefaultExperiencesAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter appClipDefaultExperienceReleaseWithAppStoreVersionLinkageRequest: (body) Related linkage 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func appClipDefaultExperiencesReleaseWithAppStoreVersionUpdateToOneRelationshipWithRequestBuilder(id: String, appClipDefaultExperienceReleaseWithAppStoreVersionLinkageRequest: AppClipDefaultExperienceReleaseWithAppStoreVersionLinkageRequest) -> RequestBuilder<Void> {
+    open class func appClipDefaultExperiencesReleaseWithAppStoreVersionUpdateToOneRelationshipWithRequestBuilder(id: String, appClipDefaultExperienceReleaseWithAppStoreVersionLinkageRequest: AppClipDefaultExperienceReleaseWithAppStoreVersionLinkageRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/appClipDefaultExperiences/{id}/relationships/releaseWithAppStoreVersion"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: appClipDefaultExperienceReleaseWithAppStoreVersionLinkageRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: appClipDefaultExperienceReleaseWithAppStoreVersionLinkageRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -1031,9 +1059,9 @@ open class AppClipDefaultExperiencesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -1042,38 +1070,41 @@ open class AppClipDefaultExperiencesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func appClipDefaultExperiencesReleaseWithAppStoreVersionUpdateToOneRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func appClipDefaultExperiencesReleaseWithAppStoreVersionUpdateToOneRelationshipWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter appClipDefaultExperienceUpdateRequest: (body) AppClipDefaultExperience representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppClipDefaultExperienceResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appClipDefaultExperiencesUpdateInstance(id: String, appClipDefaultExperienceUpdateRequest: AppClipDefaultExperienceUpdateRequest) async throws -> AppClipDefaultExperienceResponse {
-        return try await appClipDefaultExperiencesUpdateInstanceWithRequestBuilder(id: id, appClipDefaultExperienceUpdateRequest: appClipDefaultExperienceUpdateRequest).execute().body
+    open class func appClipDefaultExperiencesUpdateInstance(id: String, appClipDefaultExperienceUpdateRequest: AppClipDefaultExperienceUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppClipDefaultExperienceResponse {
+        return try await appClipDefaultExperiencesUpdateInstanceWithRequestBuilder(id: id, appClipDefaultExperienceUpdateRequest: appClipDefaultExperienceUpdateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppClipDefaultExperienceResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appClipDefaultExperiencesUpdateInstance(urlString: String) async throws -> AppClipDefaultExperienceResponse {
-        return try await appClipDefaultExperiencesUpdateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func appClipDefaultExperiencesUpdateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppClipDefaultExperienceResponse {
+        return try await appClipDefaultExperiencesUpdateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1083,15 +1114,16 @@ open class AppClipDefaultExperiencesAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter appClipDefaultExperienceUpdateRequest: (body) AppClipDefaultExperience representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppClipDefaultExperienceResponse> 
      */
-    open class func appClipDefaultExperiencesUpdateInstanceWithRequestBuilder(id: String, appClipDefaultExperienceUpdateRequest: AppClipDefaultExperienceUpdateRequest) -> RequestBuilder<AppClipDefaultExperienceResponse> {
+    open class func appClipDefaultExperiencesUpdateInstanceWithRequestBuilder(id: String, appClipDefaultExperienceUpdateRequest: AppClipDefaultExperienceUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppClipDefaultExperienceResponse> {
         var localVariablePath = "/v1/appClipDefaultExperiences/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: appClipDefaultExperienceUpdateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: appClipDefaultExperienceUpdateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -1101,9 +1133,9 @@ open class AppClipDefaultExperiencesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppClipDefaultExperienceResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppClipDefaultExperienceResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -1112,17 +1144,18 @@ open class AppClipDefaultExperiencesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppClipDefaultExperienceResponse> 
      */
-    open class func appClipDefaultExperiencesUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppClipDefaultExperienceResponse> {
+    open class func appClipDefaultExperiencesUpdateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppClipDefaultExperienceResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppClipDefaultExperienceResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppClipDefaultExperienceResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

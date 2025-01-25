@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct GameCenterMatchmakingRuleSetTestCreateRequest: Codable, JSONEncodable, Hashable {
+public struct GameCenterMatchmakingRuleSetTestCreateRequest: Sendable, Codable, JSONEncodable, Hashable {
 
     public var data: GameCenterMatchmakingRuleSetTestCreateRequestData
     public var included: [GameCenterMatchmakingRuleSetTestCreateRequestIncludedInner]?

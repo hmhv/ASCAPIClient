@@ -6,29 +6,28 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class WinBackOffersAPI {
 
     /**
 
      - parameter winBackOfferCreateRequest: (body) WinBackOffer representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: WinBackOfferResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func winBackOffersCreateInstance(winBackOfferCreateRequest: WinBackOfferCreateRequest) async throws -> WinBackOfferResponse {
-        return try await winBackOffersCreateInstanceWithRequestBuilder(winBackOfferCreateRequest: winBackOfferCreateRequest).execute().body
+    open class func winBackOffersCreateInstance(winBackOfferCreateRequest: WinBackOfferCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> WinBackOfferResponse {
+        return try await winBackOffersCreateInstanceWithRequestBuilder(winBackOfferCreateRequest: winBackOfferCreateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: WinBackOfferResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func winBackOffersCreateInstance(urlString: String) async throws -> WinBackOfferResponse {
-        return try await winBackOffersCreateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func winBackOffersCreateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> WinBackOfferResponse {
+        return try await winBackOffersCreateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -37,12 +36,13 @@ open class WinBackOffersAPI {
        - type: http
        - name: itc-bearer-token
      - parameter winBackOfferCreateRequest: (body) WinBackOffer representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<WinBackOfferResponse> 
      */
-    open class func winBackOffersCreateInstanceWithRequestBuilder(winBackOfferCreateRequest: WinBackOfferCreateRequest) -> RequestBuilder<WinBackOfferResponse> {
+    open class func winBackOffersCreateInstanceWithRequestBuilder(winBackOfferCreateRequest: WinBackOfferCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<WinBackOfferResponse> {
         let localVariablePath = "/v1/winBackOffers"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: winBackOfferCreateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: winBackOfferCreateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -52,9 +52,9 @@ open class WinBackOffersAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<WinBackOfferResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<WinBackOfferResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -63,37 +63,40 @@ open class WinBackOffersAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<WinBackOfferResponse> 
      */
-    open class func winBackOffersCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<WinBackOfferResponse> {
+    open class func winBackOffersCreateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<WinBackOfferResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<WinBackOfferResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<WinBackOfferResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func winBackOffersDeleteInstance(id: String) async throws {
-        return try await winBackOffersDeleteInstanceWithRequestBuilder(id: id).execute().body
+    open class func winBackOffersDeleteInstance(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await winBackOffersDeleteInstanceWithRequestBuilder(id: id, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func winBackOffersDeleteInstance(urlString: String) async throws {
-        return try await winBackOffersDeleteInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func winBackOffersDeleteInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await winBackOffersDeleteInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -102,14 +105,15 @@ open class WinBackOffersAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func winBackOffersDeleteInstanceWithRequestBuilder(id: String) -> RequestBuilder<Void> {
+    open class func winBackOffersDeleteInstanceWithRequestBuilder(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/winBackOffers/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -120,9 +124,9 @@ open class WinBackOffersAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -131,24 +135,25 @@ open class WinBackOffersAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func winBackOffersDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func winBackOffersDeleteInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsWinBackOffers
      */
-    public enum FieldsWinBackOffers_winBackOffersGetInstance: String, CaseIterable {
+    public enum FieldsWinBackOffers_winBackOffersGetInstance: String, Sendable, CaseIterable {
         case referencename = "referenceName"
         case offerid = "offerId"
         case duration = "duration"
@@ -167,7 +172,7 @@ open class WinBackOffersAPI {
     /**
      * enum for parameter fieldsWinBackOfferPrices
      */
-    public enum FieldsWinBackOfferPrices_winBackOffersGetInstance: String, CaseIterable {
+    public enum FieldsWinBackOfferPrices_winBackOffersGetInstance: String, Sendable, CaseIterable {
         case territory = "territory"
         case subscriptionpricepoint = "subscriptionPricePoint"
     }
@@ -175,7 +180,7 @@ open class WinBackOffersAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_winBackOffersGetInstance: String, CaseIterable {
+    public enum Include_winBackOffersGetInstance: String, Sendable, CaseIterable {
         case prices = "prices"
     }
 
@@ -186,20 +191,22 @@ open class WinBackOffersAPI {
      - parameter fieldsWinBackOfferPrices: (query) the fields to include for returned resources of type winBackOfferPrices (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitPrices: (query) maximum number of related prices returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: WinBackOfferResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func winBackOffersGetInstance(id: String, fieldsWinBackOffers: [FieldsWinBackOffers_winBackOffersGetInstance]? = nil, fieldsWinBackOfferPrices: [FieldsWinBackOfferPrices_winBackOffersGetInstance]? = nil, include: [Include_winBackOffersGetInstance]? = nil, limitPrices: Int? = nil) async throws -> WinBackOfferResponse {
-        return try await winBackOffersGetInstanceWithRequestBuilder(id: id, fieldsWinBackOffers: fieldsWinBackOffers, fieldsWinBackOfferPrices: fieldsWinBackOfferPrices, include: include, limitPrices: limitPrices).execute().body
+    open class func winBackOffersGetInstance(id: String, fieldsWinBackOffers: [FieldsWinBackOffers_winBackOffersGetInstance]? = nil, fieldsWinBackOfferPrices: [FieldsWinBackOfferPrices_winBackOffersGetInstance]? = nil, include: [Include_winBackOffersGetInstance]? = nil, limitPrices: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> WinBackOfferResponse {
+        return try await winBackOffersGetInstanceWithRequestBuilder(id: id, fieldsWinBackOffers: fieldsWinBackOffers, fieldsWinBackOfferPrices: fieldsWinBackOfferPrices, include: include, limitPrices: limitPrices, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: WinBackOfferResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func winBackOffersGetInstance(urlString: String) async throws -> WinBackOfferResponse {
-        return try await winBackOffersGetInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func winBackOffersGetInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> WinBackOfferResponse {
+        return try await winBackOffersGetInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -212,22 +219,23 @@ open class WinBackOffersAPI {
      - parameter fieldsWinBackOfferPrices: (query) the fields to include for returned resources of type winBackOfferPrices (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitPrices: (query) maximum number of related prices returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<WinBackOfferResponse> 
      */
-    open class func winBackOffersGetInstanceWithRequestBuilder(id: String, fieldsWinBackOffers: [FieldsWinBackOffers_winBackOffersGetInstance]? = nil, fieldsWinBackOfferPrices: [FieldsWinBackOfferPrices_winBackOffersGetInstance]? = nil, include: [Include_winBackOffersGetInstance]? = nil, limitPrices: Int? = nil) -> RequestBuilder<WinBackOfferResponse> {
+    open class func winBackOffersGetInstanceWithRequestBuilder(id: String, fieldsWinBackOffers: [FieldsWinBackOffers_winBackOffersGetInstance]? = nil, fieldsWinBackOfferPrices: [FieldsWinBackOfferPrices_winBackOffersGetInstance]? = nil, include: [Include_winBackOffersGetInstance]? = nil, limitPrices: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<WinBackOfferResponse> {
         var localVariablePath = "/v1/winBackOffers/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[winBackOffers]": (wrappedValue: fieldsWinBackOffers?.encodeToJSON(), isExplode: false),
-            "fields[winBackOfferPrices]": (wrappedValue: fieldsWinBackOfferPrices?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[prices]": (wrappedValue: limitPrices?.encodeToJSON(), isExplode: true),
+            "fields[winBackOffers]": (wrappedValue: fieldsWinBackOffers?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[winBackOfferPrices]": (wrappedValue: fieldsWinBackOfferPrices?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[prices]": (wrappedValue: limitPrices?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -236,9 +244,9 @@ open class WinBackOffersAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<WinBackOfferResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<WinBackOfferResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -247,24 +255,25 @@ open class WinBackOffersAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<WinBackOfferResponse> 
      */
-    open class func winBackOffersGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<WinBackOfferResponse> {
+    open class func winBackOffersGetInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<WinBackOfferResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<WinBackOfferResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<WinBackOfferResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsWinBackOfferPrices
      */
-    public enum FieldsWinBackOfferPrices_winBackOffersPricesGetToManyRelated: String, CaseIterable {
+    public enum FieldsWinBackOfferPrices_winBackOffersPricesGetToManyRelated: String, Sendable, CaseIterable {
         case territory = "territory"
         case subscriptionpricepoint = "subscriptionPricePoint"
     }
@@ -272,14 +281,14 @@ open class WinBackOffersAPI {
     /**
      * enum for parameter fieldsTerritories
      */
-    public enum FieldsTerritories_winBackOffersPricesGetToManyRelated: String, CaseIterable {
+    public enum FieldsTerritories_winBackOffersPricesGetToManyRelated: String, Sendable, CaseIterable {
         case currency = "currency"
     }
 
     /**
      * enum for parameter fieldsSubscriptionPricePoints
      */
-    public enum FieldsSubscriptionPricePoints_winBackOffersPricesGetToManyRelated: String, CaseIterable {
+    public enum FieldsSubscriptionPricePoints_winBackOffersPricesGetToManyRelated: String, Sendable, CaseIterable {
         case customerprice = "customerPrice"
         case proceeds = "proceeds"
         case proceedsyear2 = "proceedsYear2"
@@ -290,7 +299,7 @@ open class WinBackOffersAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_winBackOffersPricesGetToManyRelated: String, CaseIterable {
+    public enum Include_winBackOffersPricesGetToManyRelated: String, Sendable, CaseIterable {
         case territory = "territory"
         case subscriptionpricepoint = "subscriptionPricePoint"
     }
@@ -304,20 +313,22 @@ open class WinBackOffersAPI {
      - parameter fieldsSubscriptionPricePoints: (query) the fields to include for returned resources of type subscriptionPricePoints (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: WinBackOfferPricesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func winBackOffersPricesGetToManyRelated(id: String, filterTerritory: [String]? = nil, fieldsWinBackOfferPrices: [FieldsWinBackOfferPrices_winBackOffersPricesGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_winBackOffersPricesGetToManyRelated]? = nil, fieldsSubscriptionPricePoints: [FieldsSubscriptionPricePoints_winBackOffersPricesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_winBackOffersPricesGetToManyRelated]? = nil) async throws -> WinBackOfferPricesResponse {
-        return try await winBackOffersPricesGetToManyRelatedWithRequestBuilder(id: id, filterTerritory: filterTerritory, fieldsWinBackOfferPrices: fieldsWinBackOfferPrices, fieldsTerritories: fieldsTerritories, fieldsSubscriptionPricePoints: fieldsSubscriptionPricePoints, limit: limit, include: include).execute().body
+    open class func winBackOffersPricesGetToManyRelated(id: String, filterTerritory: [String]? = nil, fieldsWinBackOfferPrices: [FieldsWinBackOfferPrices_winBackOffersPricesGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_winBackOffersPricesGetToManyRelated]? = nil, fieldsSubscriptionPricePoints: [FieldsSubscriptionPricePoints_winBackOffersPricesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_winBackOffersPricesGetToManyRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> WinBackOfferPricesResponse {
+        return try await winBackOffersPricesGetToManyRelatedWithRequestBuilder(id: id, filterTerritory: filterTerritory, fieldsWinBackOfferPrices: fieldsWinBackOfferPrices, fieldsTerritories: fieldsTerritories, fieldsSubscriptionPricePoints: fieldsSubscriptionPricePoints, limit: limit, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: WinBackOfferPricesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func winBackOffersPricesGetToManyRelated(urlString: String) async throws -> WinBackOfferPricesResponse {
-        return try await winBackOffersPricesGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func winBackOffersPricesGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> WinBackOfferPricesResponse {
+        return try await winBackOffersPricesGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -332,24 +343,25 @@ open class WinBackOffersAPI {
      - parameter fieldsSubscriptionPricePoints: (query) the fields to include for returned resources of type subscriptionPricePoints (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<WinBackOfferPricesResponse> 
      */
-    open class func winBackOffersPricesGetToManyRelatedWithRequestBuilder(id: String, filterTerritory: [String]? = nil, fieldsWinBackOfferPrices: [FieldsWinBackOfferPrices_winBackOffersPricesGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_winBackOffersPricesGetToManyRelated]? = nil, fieldsSubscriptionPricePoints: [FieldsSubscriptionPricePoints_winBackOffersPricesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_winBackOffersPricesGetToManyRelated]? = nil) -> RequestBuilder<WinBackOfferPricesResponse> {
+    open class func winBackOffersPricesGetToManyRelatedWithRequestBuilder(id: String, filterTerritory: [String]? = nil, fieldsWinBackOfferPrices: [FieldsWinBackOfferPrices_winBackOffersPricesGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_winBackOffersPricesGetToManyRelated]? = nil, fieldsSubscriptionPricePoints: [FieldsSubscriptionPricePoints_winBackOffersPricesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_winBackOffersPricesGetToManyRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<WinBackOfferPricesResponse> {
         var localVariablePath = "/v1/winBackOffers/{id}/prices"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[territory]": (wrappedValue: filterTerritory?.encodeToJSON(), isExplode: false),
-            "fields[winBackOfferPrices]": (wrappedValue: fieldsWinBackOfferPrices?.encodeToJSON(), isExplode: false),
-            "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(), isExplode: false),
-            "fields[subscriptionPricePoints]": (wrappedValue: fieldsSubscriptionPricePoints?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "filter[territory]": (wrappedValue: filterTerritory?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[winBackOfferPrices]": (wrappedValue: fieldsWinBackOfferPrices?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[subscriptionPricePoints]": (wrappedValue: fieldsSubscriptionPricePoints?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -358,9 +370,9 @@ open class WinBackOffersAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<WinBackOfferPricesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<WinBackOfferPricesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -369,38 +381,41 @@ open class WinBackOffersAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<WinBackOfferPricesResponse> 
      */
-    open class func winBackOffersPricesGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<WinBackOfferPricesResponse> {
+    open class func winBackOffersPricesGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<WinBackOfferPricesResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<WinBackOfferPricesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<WinBackOfferPricesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter winBackOfferUpdateRequest: (body) WinBackOffer representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: WinBackOfferResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func winBackOffersUpdateInstance(id: String, winBackOfferUpdateRequest: WinBackOfferUpdateRequest) async throws -> WinBackOfferResponse {
-        return try await winBackOffersUpdateInstanceWithRequestBuilder(id: id, winBackOfferUpdateRequest: winBackOfferUpdateRequest).execute().body
+    open class func winBackOffersUpdateInstance(id: String, winBackOfferUpdateRequest: WinBackOfferUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> WinBackOfferResponse {
+        return try await winBackOffersUpdateInstanceWithRequestBuilder(id: id, winBackOfferUpdateRequest: winBackOfferUpdateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: WinBackOfferResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func winBackOffersUpdateInstance(urlString: String) async throws -> WinBackOfferResponse {
-        return try await winBackOffersUpdateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func winBackOffersUpdateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> WinBackOfferResponse {
+        return try await winBackOffersUpdateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -410,15 +425,16 @@ open class WinBackOffersAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter winBackOfferUpdateRequest: (body) WinBackOffer representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<WinBackOfferResponse> 
      */
-    open class func winBackOffersUpdateInstanceWithRequestBuilder(id: String, winBackOfferUpdateRequest: WinBackOfferUpdateRequest) -> RequestBuilder<WinBackOfferResponse> {
+    open class func winBackOffersUpdateInstanceWithRequestBuilder(id: String, winBackOfferUpdateRequest: WinBackOfferUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<WinBackOfferResponse> {
         var localVariablePath = "/v1/winBackOffers/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: winBackOfferUpdateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: winBackOfferUpdateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -428,9 +444,9 @@ open class WinBackOffersAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<WinBackOfferResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<WinBackOfferResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -439,17 +455,18 @@ open class WinBackOffersAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<WinBackOfferResponse> 
      */
-    open class func winBackOffersUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<WinBackOfferResponse> {
+    open class func winBackOffersUpdateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<WinBackOfferResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<WinBackOfferResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<WinBackOfferResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

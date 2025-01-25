@@ -6,13 +6,10 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct BuildBundleAttributes: Codable, JSONEncodable, Hashable {
+public struct BuildBundleAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum BundleType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum BundleType: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case app = "APP"
         case appClip = "APP_CLIP"
         case unknownDefaultOpenApi = "unknown_default_open_api"

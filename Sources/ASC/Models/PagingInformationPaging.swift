@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct PagingInformationPaging: Codable, JSONEncodable, Hashable {
+public struct PagingInformationPaging: Sendable, Codable, JSONEncodable, Hashable {
 
     public var total: Int?
     public var limit: Int

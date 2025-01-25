@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public enum CapabilityType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+public enum CapabilityType: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
     case icloud = "ICLOUD"
     case inAppPurchase = "IN_APP_PURCHASE"
     case gameCenter = "GAME_CENTER"

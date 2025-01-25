@@ -6,13 +6,10 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct SubscriptionAttributes: Codable, JSONEncodable, Hashable {
+public struct SubscriptionAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum State: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum State: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case missingMetadata = "MISSING_METADATA"
         case readyToSubmit = "READY_TO_SUBMIT"
         case waitingForReview = "WAITING_FOR_REVIEW"
@@ -25,7 +22,7 @@ public struct SubscriptionAttributes: Codable, JSONEncodable, Hashable {
         case rejected = "REJECTED"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
-    public enum SubscriptionPeriod: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum SubscriptionPeriod: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case oneWeek = "ONE_WEEK"
         case oneMonth = "ONE_MONTH"
         case twoMonths = "TWO_MONTHS"

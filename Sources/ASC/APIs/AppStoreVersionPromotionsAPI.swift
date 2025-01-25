@@ -6,29 +6,28 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class AppStoreVersionPromotionsAPI {
 
     /**
 
      - parameter appStoreVersionPromotionCreateRequest: (body) AppStoreVersionPromotion representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppStoreVersionPromotionResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionPromotionsCreateInstance(appStoreVersionPromotionCreateRequest: AppStoreVersionPromotionCreateRequest) async throws -> AppStoreVersionPromotionResponse {
-        return try await appStoreVersionPromotionsCreateInstanceWithRequestBuilder(appStoreVersionPromotionCreateRequest: appStoreVersionPromotionCreateRequest).execute().body
+    open class func appStoreVersionPromotionsCreateInstance(appStoreVersionPromotionCreateRequest: AppStoreVersionPromotionCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppStoreVersionPromotionResponse {
+        return try await appStoreVersionPromotionsCreateInstanceWithRequestBuilder(appStoreVersionPromotionCreateRequest: appStoreVersionPromotionCreateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppStoreVersionPromotionResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionPromotionsCreateInstance(urlString: String) async throws -> AppStoreVersionPromotionResponse {
-        return try await appStoreVersionPromotionsCreateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func appStoreVersionPromotionsCreateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppStoreVersionPromotionResponse {
+        return try await appStoreVersionPromotionsCreateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -37,12 +36,13 @@ open class AppStoreVersionPromotionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter appStoreVersionPromotionCreateRequest: (body) AppStoreVersionPromotion representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppStoreVersionPromotionResponse> 
      */
-    open class func appStoreVersionPromotionsCreateInstanceWithRequestBuilder(appStoreVersionPromotionCreateRequest: AppStoreVersionPromotionCreateRequest) -> RequestBuilder<AppStoreVersionPromotionResponse> {
+    open class func appStoreVersionPromotionsCreateInstanceWithRequestBuilder(appStoreVersionPromotionCreateRequest: AppStoreVersionPromotionCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppStoreVersionPromotionResponse> {
         let localVariablePath = "/v1/appStoreVersionPromotions"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: appStoreVersionPromotionCreateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: appStoreVersionPromotionCreateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -52,9 +52,9 @@ open class AppStoreVersionPromotionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionPromotionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionPromotionResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -63,17 +63,18 @@ open class AppStoreVersionPromotionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppStoreVersionPromotionResponse> 
      */
-    open class func appStoreVersionPromotionsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppStoreVersionPromotionResponse> {
+    open class func appStoreVersionPromotionsCreateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppStoreVersionPromotionResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionPromotionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionPromotionResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

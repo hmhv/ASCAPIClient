@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppClipHeaderImageRelationshipsAppClipDefaultExperienceLocalization: Codable, JSONEncodable, Hashable {
+public struct AppClipHeaderImageRelationshipsAppClipDefaultExperienceLocalization: Sendable, Codable, JSONEncodable, Hashable {
 
     public var data: AppClipDefaultExperienceRelationshipsAppClipDefaultExperienceLocalizationsDataInner?
 

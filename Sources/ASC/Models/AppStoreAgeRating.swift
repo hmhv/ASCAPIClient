@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public enum AppStoreAgeRating: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+public enum AppStoreAgeRating: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
     case fourPlus = "FOUR_PLUS"
     case ninePlus = "NINE_PLUS"
     case twelvePlus = "TWELVE_PLUS"

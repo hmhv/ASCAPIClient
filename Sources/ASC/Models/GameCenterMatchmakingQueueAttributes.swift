@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct GameCenterMatchmakingQueueAttributes: Codable, JSONEncodable, Hashable {
+public struct GameCenterMatchmakingQueueAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
     public var referenceName: String?
     public var classicMatchmakingBundleIds: [String]?

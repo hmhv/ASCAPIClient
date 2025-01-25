@@ -6,29 +6,28 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class BuildBetaNotificationsAPI {
 
     /**
 
      - parameter buildBetaNotificationCreateRequest: (body) BuildBetaNotification representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BuildBetaNotificationResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildBetaNotificationsCreateInstance(buildBetaNotificationCreateRequest: BuildBetaNotificationCreateRequest) async throws -> BuildBetaNotificationResponse {
-        return try await buildBetaNotificationsCreateInstanceWithRequestBuilder(buildBetaNotificationCreateRequest: buildBetaNotificationCreateRequest).execute().body
+    open class func buildBetaNotificationsCreateInstance(buildBetaNotificationCreateRequest: BuildBetaNotificationCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BuildBetaNotificationResponse {
+        return try await buildBetaNotificationsCreateInstanceWithRequestBuilder(buildBetaNotificationCreateRequest: buildBetaNotificationCreateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BuildBetaNotificationResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildBetaNotificationsCreateInstance(urlString: String) async throws -> BuildBetaNotificationResponse {
-        return try await buildBetaNotificationsCreateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func buildBetaNotificationsCreateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BuildBetaNotificationResponse {
+        return try await buildBetaNotificationsCreateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -37,12 +36,13 @@ open class BuildBetaNotificationsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter buildBetaNotificationCreateRequest: (body) BuildBetaNotification representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BuildBetaNotificationResponse> 
      */
-    open class func buildBetaNotificationsCreateInstanceWithRequestBuilder(buildBetaNotificationCreateRequest: BuildBetaNotificationCreateRequest) -> RequestBuilder<BuildBetaNotificationResponse> {
+    open class func buildBetaNotificationsCreateInstanceWithRequestBuilder(buildBetaNotificationCreateRequest: BuildBetaNotificationCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BuildBetaNotificationResponse> {
         let localVariablePath = "/v1/buildBetaNotifications"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: buildBetaNotificationCreateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: buildBetaNotificationCreateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -52,9 +52,9 @@ open class BuildBetaNotificationsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BuildBetaNotificationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BuildBetaNotificationResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -63,17 +63,18 @@ open class BuildBetaNotificationsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BuildBetaNotificationResponse> 
      */
-    open class func buildBetaNotificationsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<BuildBetaNotificationResponse> {
+    open class func buildBetaNotificationsCreateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BuildBetaNotificationResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BuildBetaNotificationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BuildBetaNotificationResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

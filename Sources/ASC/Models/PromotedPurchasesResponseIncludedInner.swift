@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public enum PromotedPurchasesResponseIncludedInner: Codable, JSONEncodable, Hashable {
+public enum PromotedPurchasesResponseIncludedInner: Sendable, Codable, JSONEncodable, Hashable {
     case typeInAppPurchaseV2(InAppPurchaseV2)
     case typePromotedPurchaseImage(PromotedPurchaseImage)
     case typeSubscription(Subscription)

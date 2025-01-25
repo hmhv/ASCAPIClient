@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct GameCenterAppVersionCompatibilityVersionsLinkagesResponse: Codable, JSONEncodable, Hashable {
+public struct GameCenterAppVersionCompatibilityVersionsLinkagesResponse: Sendable, Codable, JSONEncodable, Hashable {
 
     public var data: [AppStoreVersionRelationshipsGameCenterAppVersionData]
     public var links: PagedDocumentLinks

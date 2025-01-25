@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct FileLocation: Codable, JSONEncodable, Hashable {
+public struct FileLocation: Sendable, Codable, JSONEncodable, Hashable {
 
     public var path: String?
     public var lineNumber: Int?

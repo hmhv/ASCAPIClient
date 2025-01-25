@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public enum IconAssetType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+public enum IconAssetType: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
     case appStore = "APP_STORE"
     case messagesAppStore = "MESSAGES_APP_STORE"
     case watchAppStore = "WATCH_APP_STORE"

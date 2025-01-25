@@ -6,13 +6,10 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct TerritoryAvailabilityAttributes: Codable, JSONEncodable, Hashable {
+public struct TerritoryAvailabilityAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum ContentStatuses: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum ContentStatuses: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case available = "AVAILABLE"
         case availableForPreorderOnDate = "AVAILABLE_FOR_PREORDER_ON_DATE"
         case processingToNotAvailable = "PROCESSING_TO_NOT_AVAILABLE"

@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AlternativeDistributionKeysResponse: Codable, JSONEncodable, Hashable {
+public struct AlternativeDistributionKeysResponse: Sendable, Codable, JSONEncodable, Hashable {
 
     public var data: [AlternativeDistributionKey]
     public var links: PagedDocumentLinks

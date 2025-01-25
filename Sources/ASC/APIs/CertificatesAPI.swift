@@ -6,29 +6,28 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class CertificatesAPI {
 
     /**
 
      - parameter certificateCreateRequest: (body) Certificate representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: CertificateResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func certificatesCreateInstance(certificateCreateRequest: CertificateCreateRequest) async throws -> CertificateResponse {
-        return try await certificatesCreateInstanceWithRequestBuilder(certificateCreateRequest: certificateCreateRequest).execute().body
+    open class func certificatesCreateInstance(certificateCreateRequest: CertificateCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> CertificateResponse {
+        return try await certificatesCreateInstanceWithRequestBuilder(certificateCreateRequest: certificateCreateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: CertificateResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func certificatesCreateInstance(urlString: String) async throws -> CertificateResponse {
-        return try await certificatesCreateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func certificatesCreateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> CertificateResponse {
+        return try await certificatesCreateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -37,12 +36,13 @@ open class CertificatesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter certificateCreateRequest: (body) Certificate representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CertificateResponse> 
      */
-    open class func certificatesCreateInstanceWithRequestBuilder(certificateCreateRequest: CertificateCreateRequest) -> RequestBuilder<CertificateResponse> {
+    open class func certificatesCreateInstanceWithRequestBuilder(certificateCreateRequest: CertificateCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<CertificateResponse> {
         let localVariablePath = "/v1/certificates"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: certificateCreateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: certificateCreateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -52,9 +52,9 @@ open class CertificatesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CertificateResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CertificateResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -63,37 +63,40 @@ open class CertificatesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CertificateResponse> 
      */
-    open class func certificatesCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<CertificateResponse> {
+    open class func certificatesCreateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<CertificateResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CertificateResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CertificateResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func certificatesDeleteInstance(id: String) async throws {
-        return try await certificatesDeleteInstanceWithRequestBuilder(id: id).execute().body
+    open class func certificatesDeleteInstance(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await certificatesDeleteInstanceWithRequestBuilder(id: id, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func certificatesDeleteInstance(urlString: String) async throws {
-        return try await certificatesDeleteInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func certificatesDeleteInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await certificatesDeleteInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -102,14 +105,15 @@ open class CertificatesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func certificatesDeleteInstanceWithRequestBuilder(id: String) -> RequestBuilder<Void> {
+    open class func certificatesDeleteInstanceWithRequestBuilder(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/certificates/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -120,9 +124,9 @@ open class CertificatesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -131,24 +135,25 @@ open class CertificatesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func certificatesDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func certificatesDeleteInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter filterCertificateType
      */
-    public enum FilterCertificateType_certificatesGetCollection: String, CaseIterable {
+    public enum FilterCertificateType_certificatesGetCollection: String, Sendable, CaseIterable {
         case iosDevelopment = "IOS_DEVELOPMENT"
         case iosDistribution = "IOS_DISTRIBUTION"
         case macAppDistribution = "MAC_APP_DISTRIBUTION"
@@ -167,7 +172,7 @@ open class CertificatesAPI {
     /**
      * enum for parameter sort
      */
-    public enum Sort_certificatesGetCollection: String, CaseIterable {
+    public enum Sort_certificatesGetCollection: String, Sendable, CaseIterable {
         case displayname = "displayName"
         case displayname2 = "-displayName"
         case certificatetype = "certificateType"
@@ -181,7 +186,7 @@ open class CertificatesAPI {
     /**
      * enum for parameter fieldsCertificates
      */
-    public enum FieldsCertificates_certificatesGetCollection: String, CaseIterable {
+    public enum FieldsCertificates_certificatesGetCollection: String, Sendable, CaseIterable {
         case name = "name"
         case certificatetype = "certificateType"
         case displayname = "displayName"
@@ -200,20 +205,22 @@ open class CertificatesAPI {
      - parameter sort: (query) comma-separated list of sort expressions; resources will be sorted as specified (optional)
      - parameter fieldsCertificates: (query) the fields to include for returned resources of type certificates (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: CertificatesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func certificatesGetCollection(filterDisplayName: [String]? = nil, filterCertificateType: [FilterCertificateType_certificatesGetCollection]? = nil, filterSerialNumber: [String]? = nil, filterId: [String]? = nil, sort: [Sort_certificatesGetCollection]? = nil, fieldsCertificates: [FieldsCertificates_certificatesGetCollection]? = nil, limit: Int? = nil) async throws -> CertificatesResponse {
-        return try await certificatesGetCollectionWithRequestBuilder(filterDisplayName: filterDisplayName, filterCertificateType: filterCertificateType, filterSerialNumber: filterSerialNumber, filterId: filterId, sort: sort, fieldsCertificates: fieldsCertificates, limit: limit).execute().body
+    open class func certificatesGetCollection(filterDisplayName: [String]? = nil, filterCertificateType: [FilterCertificateType_certificatesGetCollection]? = nil, filterSerialNumber: [String]? = nil, filterId: [String]? = nil, sort: [Sort_certificatesGetCollection]? = nil, fieldsCertificates: [FieldsCertificates_certificatesGetCollection]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> CertificatesResponse {
+        return try await certificatesGetCollectionWithRequestBuilder(filterDisplayName: filterDisplayName, filterCertificateType: filterCertificateType, filterSerialNumber: filterSerialNumber, filterId: filterId, sort: sort, fieldsCertificates: fieldsCertificates, limit: limit, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: CertificatesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func certificatesGetCollection(urlString: String) async throws -> CertificatesResponse {
-        return try await certificatesGetCollectionWithRequestBuilder(urlString: urlString).execute().body
+    open class func certificatesGetCollection(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> CertificatesResponse {
+        return try await certificatesGetCollectionWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -228,22 +235,23 @@ open class CertificatesAPI {
      - parameter sort: (query) comma-separated list of sort expressions; resources will be sorted as specified (optional)
      - parameter fieldsCertificates: (query) the fields to include for returned resources of type certificates (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CertificatesResponse> 
      */
-    open class func certificatesGetCollectionWithRequestBuilder(filterDisplayName: [String]? = nil, filterCertificateType: [FilterCertificateType_certificatesGetCollection]? = nil, filterSerialNumber: [String]? = nil, filterId: [String]? = nil, sort: [Sort_certificatesGetCollection]? = nil, fieldsCertificates: [FieldsCertificates_certificatesGetCollection]? = nil, limit: Int? = nil) -> RequestBuilder<CertificatesResponse> {
+    open class func certificatesGetCollectionWithRequestBuilder(filterDisplayName: [String]? = nil, filterCertificateType: [FilterCertificateType_certificatesGetCollection]? = nil, filterSerialNumber: [String]? = nil, filterId: [String]? = nil, sort: [Sort_certificatesGetCollection]? = nil, fieldsCertificates: [FieldsCertificates_certificatesGetCollection]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<CertificatesResponse> {
         let localVariablePath = "/v1/certificates"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[displayName]": (wrappedValue: filterDisplayName?.encodeToJSON(), isExplode: false),
-            "filter[certificateType]": (wrappedValue: filterCertificateType?.encodeToJSON(), isExplode: false),
-            "filter[serialNumber]": (wrappedValue: filterSerialNumber?.encodeToJSON(), isExplode: false),
-            "filter[id]": (wrappedValue: filterId?.encodeToJSON(), isExplode: false),
-            "sort": (wrappedValue: sort?.encodeToJSON(), isExplode: false),
-            "fields[certificates]": (wrappedValue: fieldsCertificates?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "filter[displayName]": (wrappedValue: filterDisplayName?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[certificateType]": (wrappedValue: filterCertificateType?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[serialNumber]": (wrappedValue: filterSerialNumber?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[id]": (wrappedValue: filterId?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "sort": (wrappedValue: sort?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[certificates]": (wrappedValue: fieldsCertificates?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -252,9 +260,9 @@ open class CertificatesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CertificatesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CertificatesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -263,24 +271,25 @@ open class CertificatesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CertificatesResponse> 
      */
-    open class func certificatesGetCollectionWithRequestBuilder(urlString: String) -> RequestBuilder<CertificatesResponse> {
+    open class func certificatesGetCollectionWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<CertificatesResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CertificatesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CertificatesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsCertificates
      */
-    public enum FieldsCertificates_certificatesGetInstance: String, CaseIterable {
+    public enum FieldsCertificates_certificatesGetInstance: String, Sendable, CaseIterable {
         case name = "name"
         case certificatetype = "certificateType"
         case displayname = "displayName"
@@ -294,20 +303,22 @@ open class CertificatesAPI {
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsCertificates: (query) the fields to include for returned resources of type certificates (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: CertificateResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func certificatesGetInstance(id: String, fieldsCertificates: [FieldsCertificates_certificatesGetInstance]? = nil) async throws -> CertificateResponse {
-        return try await certificatesGetInstanceWithRequestBuilder(id: id, fieldsCertificates: fieldsCertificates).execute().body
+    open class func certificatesGetInstance(id: String, fieldsCertificates: [FieldsCertificates_certificatesGetInstance]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> CertificateResponse {
+        return try await certificatesGetInstanceWithRequestBuilder(id: id, fieldsCertificates: fieldsCertificates, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: CertificateResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func certificatesGetInstance(urlString: String) async throws -> CertificateResponse {
-        return try await certificatesGetInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func certificatesGetInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> CertificateResponse {
+        return try await certificatesGetInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -317,19 +328,20 @@ open class CertificatesAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsCertificates: (query) the fields to include for returned resources of type certificates (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CertificateResponse> 
      */
-    open class func certificatesGetInstanceWithRequestBuilder(id: String, fieldsCertificates: [FieldsCertificates_certificatesGetInstance]? = nil) -> RequestBuilder<CertificateResponse> {
+    open class func certificatesGetInstanceWithRequestBuilder(id: String, fieldsCertificates: [FieldsCertificates_certificatesGetInstance]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<CertificateResponse> {
         var localVariablePath = "/v1/certificates/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[certificates]": (wrappedValue: fieldsCertificates?.encodeToJSON(), isExplode: false),
+            "fields[certificates]": (wrappedValue: fieldsCertificates?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -338,9 +350,9 @@ open class CertificatesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CertificateResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CertificateResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -349,17 +361,18 @@ open class CertificatesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CertificateResponse> 
      */
-    open class func certificatesGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<CertificateResponse> {
+    open class func certificatesGetInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<CertificateResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CertificateResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CertificateResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

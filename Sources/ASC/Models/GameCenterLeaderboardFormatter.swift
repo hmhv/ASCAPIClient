@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public enum GameCenterLeaderboardFormatter: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+public enum GameCenterLeaderboardFormatter: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
     case integer = "INTEGER"
     case decimalPoint1Place = "DECIMAL_POINT_1_PLACE"
     case decimalPoint2Place = "DECIMAL_POINT_2_PLACE"

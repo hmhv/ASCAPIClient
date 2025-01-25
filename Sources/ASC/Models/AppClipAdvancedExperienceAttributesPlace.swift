@@ -6,13 +6,10 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppClipAdvancedExperienceAttributesPlace: Codable, JSONEncodable, Hashable {
+public struct AppClipAdvancedExperienceAttributesPlace: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum MapAction: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum MapAction: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case buyTickets = "BUY_TICKETS"
         case viewAvailability = "VIEW_AVAILABILITY"
         case viewPricing = "VIEW_PRICING"
@@ -28,7 +25,7 @@ public struct AppClipAdvancedExperienceAttributesPlace: Codable, JSONEncodable, 
         case theaterNowPlaying = "THEATER_NOW_PLAYING"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
-    public enum Relationship: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum Relationship: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case owner = "OWNER"
         case authorized = "AUTHORIZED"
         case other = "OTHER"

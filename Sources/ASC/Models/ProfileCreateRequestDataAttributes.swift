@@ -6,13 +6,10 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct ProfileCreateRequestDataAttributes: Codable, JSONEncodable, Hashable {
+public struct ProfileCreateRequestDataAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum ProfileType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum ProfileType: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case iosAppDevelopment = "IOS_APP_DEVELOPMENT"
         case iosAppStore = "IOS_APP_STORE"
         case iosAppAdhoc = "IOS_APP_ADHOC"

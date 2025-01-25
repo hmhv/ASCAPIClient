@@ -6,16 +6,13 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class AppPreviewSetsAPI {
 
     /**
      * enum for parameter fieldsAppPreviews
      */
-    public enum FieldsAppPreviews_appPreviewSetsAppPreviewsGetToManyRelated: String, CaseIterable {
+    public enum FieldsAppPreviews_appPreviewSetsAppPreviewsGetToManyRelated: String, Sendable, CaseIterable {
         case filesize = "fileSize"
         case filename = "fileName"
         case sourcefilechecksum = "sourceFileChecksum"
@@ -33,7 +30,7 @@ open class AppPreviewSetsAPI {
     /**
      * enum for parameter fieldsAppPreviewSets
      */
-    public enum FieldsAppPreviewSets_appPreviewSetsAppPreviewsGetToManyRelated: String, CaseIterable {
+    public enum FieldsAppPreviewSets_appPreviewSetsAppPreviewsGetToManyRelated: String, Sendable, CaseIterable {
         case previewtype = "previewType"
         case appstoreversionlocalization = "appStoreVersionLocalization"
         case appcustomproductpagelocalization = "appCustomProductPageLocalization"
@@ -44,7 +41,7 @@ open class AppPreviewSetsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_appPreviewSetsAppPreviewsGetToManyRelated: String, CaseIterable {
+    public enum Include_appPreviewSetsAppPreviewsGetToManyRelated: String, Sendable, CaseIterable {
         case apppreviewset = "appPreviewSet"
     }
 
@@ -55,20 +52,22 @@ open class AppPreviewSetsAPI {
      - parameter fieldsAppPreviewSets: (query) the fields to include for returned resources of type appPreviewSets (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppPreviewsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appPreviewSetsAppPreviewsGetToManyRelated(id: String, fieldsAppPreviews: [FieldsAppPreviews_appPreviewSetsAppPreviewsGetToManyRelated]? = nil, fieldsAppPreviewSets: [FieldsAppPreviewSets_appPreviewSetsAppPreviewsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appPreviewSetsAppPreviewsGetToManyRelated]? = nil) async throws -> AppPreviewsResponse {
-        return try await appPreviewSetsAppPreviewsGetToManyRelatedWithRequestBuilder(id: id, fieldsAppPreviews: fieldsAppPreviews, fieldsAppPreviewSets: fieldsAppPreviewSets, limit: limit, include: include).execute().body
+    open class func appPreviewSetsAppPreviewsGetToManyRelated(id: String, fieldsAppPreviews: [FieldsAppPreviews_appPreviewSetsAppPreviewsGetToManyRelated]? = nil, fieldsAppPreviewSets: [FieldsAppPreviewSets_appPreviewSetsAppPreviewsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appPreviewSetsAppPreviewsGetToManyRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppPreviewsResponse {
+        return try await appPreviewSetsAppPreviewsGetToManyRelatedWithRequestBuilder(id: id, fieldsAppPreviews: fieldsAppPreviews, fieldsAppPreviewSets: fieldsAppPreviewSets, limit: limit, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppPreviewsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appPreviewSetsAppPreviewsGetToManyRelated(urlString: String) async throws -> AppPreviewsResponse {
-        return try await appPreviewSetsAppPreviewsGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func appPreviewSetsAppPreviewsGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppPreviewsResponse {
+        return try await appPreviewSetsAppPreviewsGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -81,22 +80,23 @@ open class AppPreviewSetsAPI {
      - parameter fieldsAppPreviewSets: (query) the fields to include for returned resources of type appPreviewSets (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppPreviewsResponse> 
      */
-    open class func appPreviewSetsAppPreviewsGetToManyRelatedWithRequestBuilder(id: String, fieldsAppPreviews: [FieldsAppPreviews_appPreviewSetsAppPreviewsGetToManyRelated]? = nil, fieldsAppPreviewSets: [FieldsAppPreviewSets_appPreviewSetsAppPreviewsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appPreviewSetsAppPreviewsGetToManyRelated]? = nil) -> RequestBuilder<AppPreviewsResponse> {
+    open class func appPreviewSetsAppPreviewsGetToManyRelatedWithRequestBuilder(id: String, fieldsAppPreviews: [FieldsAppPreviews_appPreviewSetsAppPreviewsGetToManyRelated]? = nil, fieldsAppPreviewSets: [FieldsAppPreviewSets_appPreviewSetsAppPreviewsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appPreviewSetsAppPreviewsGetToManyRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppPreviewsResponse> {
         var localVariablePath = "/v1/appPreviewSets/{id}/appPreviews"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[appPreviews]": (wrappedValue: fieldsAppPreviews?.encodeToJSON(), isExplode: false),
-            "fields[appPreviewSets]": (wrappedValue: fieldsAppPreviewSets?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "fields[appPreviews]": (wrappedValue: fieldsAppPreviews?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appPreviewSets]": (wrappedValue: fieldsAppPreviewSets?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -105,9 +105,9 @@ open class AppPreviewSetsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppPreviewsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppPreviewsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -116,38 +116,41 @@ open class AppPreviewSetsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppPreviewsResponse> 
      */
-    open class func appPreviewSetsAppPreviewsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppPreviewsResponse> {
+    open class func appPreviewSetsAppPreviewsGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppPreviewsResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppPreviewsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppPreviewsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppPreviewSetAppPreviewsLinkagesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appPreviewSetsAppPreviewsGetToManyRelationship(id: String, limit: Int? = nil) async throws -> AppPreviewSetAppPreviewsLinkagesResponse {
-        return try await appPreviewSetsAppPreviewsGetToManyRelationshipWithRequestBuilder(id: id, limit: limit).execute().body
+    open class func appPreviewSetsAppPreviewsGetToManyRelationship(id: String, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppPreviewSetAppPreviewsLinkagesResponse {
+        return try await appPreviewSetsAppPreviewsGetToManyRelationshipWithRequestBuilder(id: id, limit: limit, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppPreviewSetAppPreviewsLinkagesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appPreviewSetsAppPreviewsGetToManyRelationship(urlString: String) async throws -> AppPreviewSetAppPreviewsLinkagesResponse {
-        return try await appPreviewSetsAppPreviewsGetToManyRelationshipWithRequestBuilder(urlString: urlString).execute().body
+    open class func appPreviewSetsAppPreviewsGetToManyRelationship(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppPreviewSetAppPreviewsLinkagesResponse {
+        return try await appPreviewSetsAppPreviewsGetToManyRelationshipWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -157,19 +160,20 @@ open class AppPreviewSetsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppPreviewSetAppPreviewsLinkagesResponse> 
      */
-    open class func appPreviewSetsAppPreviewsGetToManyRelationshipWithRequestBuilder(id: String, limit: Int? = nil) -> RequestBuilder<AppPreviewSetAppPreviewsLinkagesResponse> {
+    open class func appPreviewSetsAppPreviewsGetToManyRelationshipWithRequestBuilder(id: String, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppPreviewSetAppPreviewsLinkagesResponse> {
         var localVariablePath = "/v1/appPreviewSets/{id}/relationships/appPreviews"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -178,9 +182,9 @@ open class AppPreviewSetsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppPreviewSetAppPreviewsLinkagesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppPreviewSetAppPreviewsLinkagesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -189,38 +193,41 @@ open class AppPreviewSetsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppPreviewSetAppPreviewsLinkagesResponse> 
      */
-    open class func appPreviewSetsAppPreviewsGetToManyRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<AppPreviewSetAppPreviewsLinkagesResponse> {
+    open class func appPreviewSetsAppPreviewsGetToManyRelationshipWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppPreviewSetAppPreviewsLinkagesResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppPreviewSetAppPreviewsLinkagesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppPreviewSetAppPreviewsLinkagesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter appPreviewSetAppPreviewsLinkagesRequest: (body) List of related linkages 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appPreviewSetsAppPreviewsReplaceToManyRelationship(id: String, appPreviewSetAppPreviewsLinkagesRequest: AppPreviewSetAppPreviewsLinkagesRequest) async throws {
-        return try await appPreviewSetsAppPreviewsReplaceToManyRelationshipWithRequestBuilder(id: id, appPreviewSetAppPreviewsLinkagesRequest: appPreviewSetAppPreviewsLinkagesRequest).execute().body
+    open class func appPreviewSetsAppPreviewsReplaceToManyRelationship(id: String, appPreviewSetAppPreviewsLinkagesRequest: AppPreviewSetAppPreviewsLinkagesRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await appPreviewSetsAppPreviewsReplaceToManyRelationshipWithRequestBuilder(id: id, appPreviewSetAppPreviewsLinkagesRequest: appPreviewSetAppPreviewsLinkagesRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appPreviewSetsAppPreviewsReplaceToManyRelationship(urlString: String) async throws {
-        return try await appPreviewSetsAppPreviewsReplaceToManyRelationshipWithRequestBuilder(urlString: urlString).execute().body
+    open class func appPreviewSetsAppPreviewsReplaceToManyRelationship(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await appPreviewSetsAppPreviewsReplaceToManyRelationshipWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -230,15 +237,16 @@ open class AppPreviewSetsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter appPreviewSetAppPreviewsLinkagesRequest: (body) List of related linkages 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func appPreviewSetsAppPreviewsReplaceToManyRelationshipWithRequestBuilder(id: String, appPreviewSetAppPreviewsLinkagesRequest: AppPreviewSetAppPreviewsLinkagesRequest) -> RequestBuilder<Void> {
+    open class func appPreviewSetsAppPreviewsReplaceToManyRelationshipWithRequestBuilder(id: String, appPreviewSetAppPreviewsLinkagesRequest: AppPreviewSetAppPreviewsLinkagesRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/appPreviewSets/{id}/relationships/appPreviews"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: appPreviewSetAppPreviewsLinkagesRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: appPreviewSetAppPreviewsLinkagesRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -248,9 +256,9 @@ open class AppPreviewSetsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -259,37 +267,40 @@ open class AppPreviewSetsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func appPreviewSetsAppPreviewsReplaceToManyRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func appPreviewSetsAppPreviewsReplaceToManyRelationshipWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter appPreviewSetCreateRequest: (body) AppPreviewSet representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppPreviewSetResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appPreviewSetsCreateInstance(appPreviewSetCreateRequest: AppPreviewSetCreateRequest) async throws -> AppPreviewSetResponse {
-        return try await appPreviewSetsCreateInstanceWithRequestBuilder(appPreviewSetCreateRequest: appPreviewSetCreateRequest).execute().body
+    open class func appPreviewSetsCreateInstance(appPreviewSetCreateRequest: AppPreviewSetCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppPreviewSetResponse {
+        return try await appPreviewSetsCreateInstanceWithRequestBuilder(appPreviewSetCreateRequest: appPreviewSetCreateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppPreviewSetResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appPreviewSetsCreateInstance(urlString: String) async throws -> AppPreviewSetResponse {
-        return try await appPreviewSetsCreateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func appPreviewSetsCreateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppPreviewSetResponse {
+        return try await appPreviewSetsCreateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -298,12 +309,13 @@ open class AppPreviewSetsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter appPreviewSetCreateRequest: (body) AppPreviewSet representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppPreviewSetResponse> 
      */
-    open class func appPreviewSetsCreateInstanceWithRequestBuilder(appPreviewSetCreateRequest: AppPreviewSetCreateRequest) -> RequestBuilder<AppPreviewSetResponse> {
+    open class func appPreviewSetsCreateInstanceWithRequestBuilder(appPreviewSetCreateRequest: AppPreviewSetCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppPreviewSetResponse> {
         let localVariablePath = "/v1/appPreviewSets"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: appPreviewSetCreateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: appPreviewSetCreateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -313,9 +325,9 @@ open class AppPreviewSetsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppPreviewSetResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppPreviewSetResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -324,37 +336,40 @@ open class AppPreviewSetsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppPreviewSetResponse> 
      */
-    open class func appPreviewSetsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppPreviewSetResponse> {
+    open class func appPreviewSetsCreateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppPreviewSetResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppPreviewSetResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppPreviewSetResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appPreviewSetsDeleteInstance(id: String) async throws {
-        return try await appPreviewSetsDeleteInstanceWithRequestBuilder(id: id).execute().body
+    open class func appPreviewSetsDeleteInstance(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await appPreviewSetsDeleteInstanceWithRequestBuilder(id: id, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appPreviewSetsDeleteInstance(urlString: String) async throws {
-        return try await appPreviewSetsDeleteInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func appPreviewSetsDeleteInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await appPreviewSetsDeleteInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -363,14 +378,15 @@ open class AppPreviewSetsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func appPreviewSetsDeleteInstanceWithRequestBuilder(id: String) -> RequestBuilder<Void> {
+    open class func appPreviewSetsDeleteInstanceWithRequestBuilder(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/appPreviewSets/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -381,9 +397,9 @@ open class AppPreviewSetsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -392,24 +408,25 @@ open class AppPreviewSetsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func appPreviewSetsDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func appPreviewSetsDeleteInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsAppPreviewSets
      */
-    public enum FieldsAppPreviewSets_appPreviewSetsGetInstance: String, CaseIterable {
+    public enum FieldsAppPreviewSets_appPreviewSetsGetInstance: String, Sendable, CaseIterable {
         case previewtype = "previewType"
         case appstoreversionlocalization = "appStoreVersionLocalization"
         case appcustomproductpagelocalization = "appCustomProductPageLocalization"
@@ -420,7 +437,7 @@ open class AppPreviewSetsAPI {
     /**
      * enum for parameter fieldsAppPreviews
      */
-    public enum FieldsAppPreviews_appPreviewSetsGetInstance: String, CaseIterable {
+    public enum FieldsAppPreviews_appPreviewSetsGetInstance: String, Sendable, CaseIterable {
         case filesize = "fileSize"
         case filename = "fileName"
         case sourcefilechecksum = "sourceFileChecksum"
@@ -438,7 +455,7 @@ open class AppPreviewSetsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_appPreviewSetsGetInstance: String, CaseIterable {
+    public enum Include_appPreviewSetsGetInstance: String, Sendable, CaseIterable {
         case appstoreversionlocalization = "appStoreVersionLocalization"
         case appcustomproductpagelocalization = "appCustomProductPageLocalization"
         case appstoreversionexperimenttreatmentlocalization = "appStoreVersionExperimentTreatmentLocalization"
@@ -452,20 +469,22 @@ open class AppPreviewSetsAPI {
      - parameter fieldsAppPreviews: (query) the fields to include for returned resources of type appPreviews (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAppPreviews: (query) maximum number of related appPreviews returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppPreviewSetResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appPreviewSetsGetInstance(id: String, fieldsAppPreviewSets: [FieldsAppPreviewSets_appPreviewSetsGetInstance]? = nil, fieldsAppPreviews: [FieldsAppPreviews_appPreviewSetsGetInstance]? = nil, include: [Include_appPreviewSetsGetInstance]? = nil, limitAppPreviews: Int? = nil) async throws -> AppPreviewSetResponse {
-        return try await appPreviewSetsGetInstanceWithRequestBuilder(id: id, fieldsAppPreviewSets: fieldsAppPreviewSets, fieldsAppPreviews: fieldsAppPreviews, include: include, limitAppPreviews: limitAppPreviews).execute().body
+    open class func appPreviewSetsGetInstance(id: String, fieldsAppPreviewSets: [FieldsAppPreviewSets_appPreviewSetsGetInstance]? = nil, fieldsAppPreviews: [FieldsAppPreviews_appPreviewSetsGetInstance]? = nil, include: [Include_appPreviewSetsGetInstance]? = nil, limitAppPreviews: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppPreviewSetResponse {
+        return try await appPreviewSetsGetInstanceWithRequestBuilder(id: id, fieldsAppPreviewSets: fieldsAppPreviewSets, fieldsAppPreviews: fieldsAppPreviews, include: include, limitAppPreviews: limitAppPreviews, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppPreviewSetResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appPreviewSetsGetInstance(urlString: String) async throws -> AppPreviewSetResponse {
-        return try await appPreviewSetsGetInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func appPreviewSetsGetInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppPreviewSetResponse {
+        return try await appPreviewSetsGetInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -478,22 +497,23 @@ open class AppPreviewSetsAPI {
      - parameter fieldsAppPreviews: (query) the fields to include for returned resources of type appPreviews (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAppPreviews: (query) maximum number of related appPreviews returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppPreviewSetResponse> 
      */
-    open class func appPreviewSetsGetInstanceWithRequestBuilder(id: String, fieldsAppPreviewSets: [FieldsAppPreviewSets_appPreviewSetsGetInstance]? = nil, fieldsAppPreviews: [FieldsAppPreviews_appPreviewSetsGetInstance]? = nil, include: [Include_appPreviewSetsGetInstance]? = nil, limitAppPreviews: Int? = nil) -> RequestBuilder<AppPreviewSetResponse> {
+    open class func appPreviewSetsGetInstanceWithRequestBuilder(id: String, fieldsAppPreviewSets: [FieldsAppPreviewSets_appPreviewSetsGetInstance]? = nil, fieldsAppPreviews: [FieldsAppPreviews_appPreviewSetsGetInstance]? = nil, include: [Include_appPreviewSetsGetInstance]? = nil, limitAppPreviews: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppPreviewSetResponse> {
         var localVariablePath = "/v1/appPreviewSets/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[appPreviewSets]": (wrappedValue: fieldsAppPreviewSets?.encodeToJSON(), isExplode: false),
-            "fields[appPreviews]": (wrappedValue: fieldsAppPreviews?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[appPreviews]": (wrappedValue: limitAppPreviews?.encodeToJSON(), isExplode: true),
+            "fields[appPreviewSets]": (wrappedValue: fieldsAppPreviewSets?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appPreviews]": (wrappedValue: fieldsAppPreviews?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[appPreviews]": (wrappedValue: limitAppPreviews?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -502,9 +522,9 @@ open class AppPreviewSetsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppPreviewSetResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppPreviewSetResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -513,17 +533,18 @@ open class AppPreviewSetsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppPreviewSetResponse> 
      */
-    open class func appPreviewSetsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppPreviewSetResponse> {
+    open class func appPreviewSetsGetInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppPreviewSetResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppPreviewSetResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppPreviewSetResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

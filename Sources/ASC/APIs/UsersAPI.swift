@@ -6,29 +6,28 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class UsersAPI {
 
     /**
 
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func usersDeleteInstance(id: String) async throws {
-        return try await usersDeleteInstanceWithRequestBuilder(id: id).execute().body
+    open class func usersDeleteInstance(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await usersDeleteInstanceWithRequestBuilder(id: id, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func usersDeleteInstance(urlString: String) async throws {
-        return try await usersDeleteInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func usersDeleteInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await usersDeleteInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -37,14 +36,15 @@ open class UsersAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func usersDeleteInstanceWithRequestBuilder(id: String) -> RequestBuilder<Void> {
+    open class func usersDeleteInstanceWithRequestBuilder(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/users/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -55,9 +55,9 @@ open class UsersAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -66,24 +66,25 @@ open class UsersAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func usersDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func usersDeleteInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter filterRoles
      */
-    public enum FilterRoles_usersGetCollection: String, CaseIterable {
+    public enum FilterRoles_usersGetCollection: String, Sendable, CaseIterable {
         case admin = "ADMIN"
         case finance = "FINANCE"
         case accountHolder = "ACCOUNT_HOLDER"
@@ -102,7 +103,7 @@ open class UsersAPI {
     /**
      * enum for parameter sort
      */
-    public enum Sort_usersGetCollection: String, CaseIterable {
+    public enum Sort_usersGetCollection: String, Sendable, CaseIterable {
         case username = "username"
         case username2 = "-username"
         case lastname = "lastName"
@@ -112,7 +113,7 @@ open class UsersAPI {
     /**
      * enum for parameter fieldsUsers
      */
-    public enum FieldsUsers_usersGetCollection: String, CaseIterable {
+    public enum FieldsUsers_usersGetCollection: String, Sendable, CaseIterable {
         case username = "username"
         case firstname = "firstName"
         case lastname = "lastName"
@@ -125,7 +126,7 @@ open class UsersAPI {
     /**
      * enum for parameter fieldsApps
      */
-    public enum FieldsApps_usersGetCollection: String, CaseIterable {
+    public enum FieldsApps_usersGetCollection: String, Sendable, CaseIterable {
         case name = "name"
         case bundleid = "bundleId"
         case sku = "sku"
@@ -174,7 +175,7 @@ open class UsersAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_usersGetCollection: String, CaseIterable {
+    public enum Include_usersGetCollection: String, Sendable, CaseIterable {
         case visibleapps = "visibleApps"
     }
 
@@ -189,20 +190,22 @@ open class UsersAPI {
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitVisibleApps: (query) maximum number of related visibleApps returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: UsersResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func usersGetCollection(filterUsername: [String]? = nil, filterRoles: [FilterRoles_usersGetCollection]? = nil, filterVisibleApps: [String]? = nil, sort: [Sort_usersGetCollection]? = nil, fieldsUsers: [FieldsUsers_usersGetCollection]? = nil, fieldsApps: [FieldsApps_usersGetCollection]? = nil, limit: Int? = nil, include: [Include_usersGetCollection]? = nil, limitVisibleApps: Int? = nil) async throws -> UsersResponse {
-        return try await usersGetCollectionWithRequestBuilder(filterUsername: filterUsername, filterRoles: filterRoles, filterVisibleApps: filterVisibleApps, sort: sort, fieldsUsers: fieldsUsers, fieldsApps: fieldsApps, limit: limit, include: include, limitVisibleApps: limitVisibleApps).execute().body
+    open class func usersGetCollection(filterUsername: [String]? = nil, filterRoles: [FilterRoles_usersGetCollection]? = nil, filterVisibleApps: [String]? = nil, sort: [Sort_usersGetCollection]? = nil, fieldsUsers: [FieldsUsers_usersGetCollection]? = nil, fieldsApps: [FieldsApps_usersGetCollection]? = nil, limit: Int? = nil, include: [Include_usersGetCollection]? = nil, limitVisibleApps: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> UsersResponse {
+        return try await usersGetCollectionWithRequestBuilder(filterUsername: filterUsername, filterRoles: filterRoles, filterVisibleApps: filterVisibleApps, sort: sort, fieldsUsers: fieldsUsers, fieldsApps: fieldsApps, limit: limit, include: include, limitVisibleApps: limitVisibleApps, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: UsersResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func usersGetCollection(urlString: String) async throws -> UsersResponse {
-        return try await usersGetCollectionWithRequestBuilder(urlString: urlString).execute().body
+    open class func usersGetCollection(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> UsersResponse {
+        return try await usersGetCollectionWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -219,24 +222,25 @@ open class UsersAPI {
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitVisibleApps: (query) maximum number of related visibleApps returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<UsersResponse> 
      */
-    open class func usersGetCollectionWithRequestBuilder(filterUsername: [String]? = nil, filterRoles: [FilterRoles_usersGetCollection]? = nil, filterVisibleApps: [String]? = nil, sort: [Sort_usersGetCollection]? = nil, fieldsUsers: [FieldsUsers_usersGetCollection]? = nil, fieldsApps: [FieldsApps_usersGetCollection]? = nil, limit: Int? = nil, include: [Include_usersGetCollection]? = nil, limitVisibleApps: Int? = nil) -> RequestBuilder<UsersResponse> {
+    open class func usersGetCollectionWithRequestBuilder(filterUsername: [String]? = nil, filterRoles: [FilterRoles_usersGetCollection]? = nil, filterVisibleApps: [String]? = nil, sort: [Sort_usersGetCollection]? = nil, fieldsUsers: [FieldsUsers_usersGetCollection]? = nil, fieldsApps: [FieldsApps_usersGetCollection]? = nil, limit: Int? = nil, include: [Include_usersGetCollection]? = nil, limitVisibleApps: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<UsersResponse> {
         let localVariablePath = "/v1/users"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[username]": (wrappedValue: filterUsername?.encodeToJSON(), isExplode: false),
-            "filter[roles]": (wrappedValue: filterRoles?.encodeToJSON(), isExplode: false),
-            "filter[visibleApps]": (wrappedValue: filterVisibleApps?.encodeToJSON(), isExplode: false),
-            "sort": (wrappedValue: sort?.encodeToJSON(), isExplode: false),
-            "fields[users]": (wrappedValue: fieldsUsers?.encodeToJSON(), isExplode: false),
-            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[visibleApps]": (wrappedValue: limitVisibleApps?.encodeToJSON(), isExplode: true),
+            "filter[username]": (wrappedValue: filterUsername?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[roles]": (wrappedValue: filterRoles?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[visibleApps]": (wrappedValue: filterVisibleApps?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "sort": (wrappedValue: sort?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[users]": (wrappedValue: fieldsUsers?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[visibleApps]": (wrappedValue: limitVisibleApps?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -245,9 +249,9 @@ open class UsersAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<UsersResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<UsersResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -256,24 +260,25 @@ open class UsersAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<UsersResponse> 
      */
-    open class func usersGetCollectionWithRequestBuilder(urlString: String) -> RequestBuilder<UsersResponse> {
+    open class func usersGetCollectionWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<UsersResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<UsersResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<UsersResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsUsers
      */
-    public enum FieldsUsers_usersGetInstance: String, CaseIterable {
+    public enum FieldsUsers_usersGetInstance: String, Sendable, CaseIterable {
         case username = "username"
         case firstname = "firstName"
         case lastname = "lastName"
@@ -286,7 +291,7 @@ open class UsersAPI {
     /**
      * enum for parameter fieldsApps
      */
-    public enum FieldsApps_usersGetInstance: String, CaseIterable {
+    public enum FieldsApps_usersGetInstance: String, Sendable, CaseIterable {
         case name = "name"
         case bundleid = "bundleId"
         case sku = "sku"
@@ -335,7 +340,7 @@ open class UsersAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_usersGetInstance: String, CaseIterable {
+    public enum Include_usersGetInstance: String, Sendable, CaseIterable {
         case visibleapps = "visibleApps"
     }
 
@@ -346,20 +351,22 @@ open class UsersAPI {
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitVisibleApps: (query) maximum number of related visibleApps returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: UserResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func usersGetInstance(id: String, fieldsUsers: [FieldsUsers_usersGetInstance]? = nil, fieldsApps: [FieldsApps_usersGetInstance]? = nil, include: [Include_usersGetInstance]? = nil, limitVisibleApps: Int? = nil) async throws -> UserResponse {
-        return try await usersGetInstanceWithRequestBuilder(id: id, fieldsUsers: fieldsUsers, fieldsApps: fieldsApps, include: include, limitVisibleApps: limitVisibleApps).execute().body
+    open class func usersGetInstance(id: String, fieldsUsers: [FieldsUsers_usersGetInstance]? = nil, fieldsApps: [FieldsApps_usersGetInstance]? = nil, include: [Include_usersGetInstance]? = nil, limitVisibleApps: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> UserResponse {
+        return try await usersGetInstanceWithRequestBuilder(id: id, fieldsUsers: fieldsUsers, fieldsApps: fieldsApps, include: include, limitVisibleApps: limitVisibleApps, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: UserResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func usersGetInstance(urlString: String) async throws -> UserResponse {
-        return try await usersGetInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func usersGetInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> UserResponse {
+        return try await usersGetInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -372,22 +379,23 @@ open class UsersAPI {
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitVisibleApps: (query) maximum number of related visibleApps returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<UserResponse> 
      */
-    open class func usersGetInstanceWithRequestBuilder(id: String, fieldsUsers: [FieldsUsers_usersGetInstance]? = nil, fieldsApps: [FieldsApps_usersGetInstance]? = nil, include: [Include_usersGetInstance]? = nil, limitVisibleApps: Int? = nil) -> RequestBuilder<UserResponse> {
+    open class func usersGetInstanceWithRequestBuilder(id: String, fieldsUsers: [FieldsUsers_usersGetInstance]? = nil, fieldsApps: [FieldsApps_usersGetInstance]? = nil, include: [Include_usersGetInstance]? = nil, limitVisibleApps: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<UserResponse> {
         var localVariablePath = "/v1/users/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[users]": (wrappedValue: fieldsUsers?.encodeToJSON(), isExplode: false),
-            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[visibleApps]": (wrappedValue: limitVisibleApps?.encodeToJSON(), isExplode: true),
+            "fields[users]": (wrappedValue: fieldsUsers?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[visibleApps]": (wrappedValue: limitVisibleApps?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -396,9 +404,9 @@ open class UsersAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<UserResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<UserResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -407,38 +415,41 @@ open class UsersAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<UserResponse> 
      */
-    open class func usersGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<UserResponse> {
+    open class func usersGetInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<UserResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<UserResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<UserResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter userUpdateRequest: (body) User representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: UserResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func usersUpdateInstance(id: String, userUpdateRequest: UserUpdateRequest) async throws -> UserResponse {
-        return try await usersUpdateInstanceWithRequestBuilder(id: id, userUpdateRequest: userUpdateRequest).execute().body
+    open class func usersUpdateInstance(id: String, userUpdateRequest: UserUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> UserResponse {
+        return try await usersUpdateInstanceWithRequestBuilder(id: id, userUpdateRequest: userUpdateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: UserResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func usersUpdateInstance(urlString: String) async throws -> UserResponse {
-        return try await usersUpdateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func usersUpdateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> UserResponse {
+        return try await usersUpdateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -448,15 +459,16 @@ open class UsersAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter userUpdateRequest: (body) User representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<UserResponse> 
      */
-    open class func usersUpdateInstanceWithRequestBuilder(id: String, userUpdateRequest: UserUpdateRequest) -> RequestBuilder<UserResponse> {
+    open class func usersUpdateInstanceWithRequestBuilder(id: String, userUpdateRequest: UserUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<UserResponse> {
         var localVariablePath = "/v1/users/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: userUpdateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: userUpdateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -466,9 +478,9 @@ open class UsersAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<UserResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<UserResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -477,38 +489,41 @@ open class UsersAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<UserResponse> 
      */
-    open class func usersUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<UserResponse> {
+    open class func usersUpdateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<UserResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<UserResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<UserResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter userVisibleAppsLinkagesRequest: (body) List of related linkages 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func usersVisibleAppsCreateToManyRelationship(id: String, userVisibleAppsLinkagesRequest: UserVisibleAppsLinkagesRequest) async throws {
-        return try await usersVisibleAppsCreateToManyRelationshipWithRequestBuilder(id: id, userVisibleAppsLinkagesRequest: userVisibleAppsLinkagesRequest).execute().body
+    open class func usersVisibleAppsCreateToManyRelationship(id: String, userVisibleAppsLinkagesRequest: UserVisibleAppsLinkagesRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await usersVisibleAppsCreateToManyRelationshipWithRequestBuilder(id: id, userVisibleAppsLinkagesRequest: userVisibleAppsLinkagesRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func usersVisibleAppsCreateToManyRelationship(urlString: String) async throws {
-        return try await usersVisibleAppsCreateToManyRelationshipWithRequestBuilder(urlString: urlString).execute().body
+    open class func usersVisibleAppsCreateToManyRelationship(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await usersVisibleAppsCreateToManyRelationshipWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -518,15 +533,16 @@ open class UsersAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter userVisibleAppsLinkagesRequest: (body) List of related linkages 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func usersVisibleAppsCreateToManyRelationshipWithRequestBuilder(id: String, userVisibleAppsLinkagesRequest: UserVisibleAppsLinkagesRequest) -> RequestBuilder<Void> {
+    open class func usersVisibleAppsCreateToManyRelationshipWithRequestBuilder(id: String, userVisibleAppsLinkagesRequest: UserVisibleAppsLinkagesRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/users/{id}/relationships/visibleApps"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: userVisibleAppsLinkagesRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: userVisibleAppsLinkagesRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -536,9 +552,9 @@ open class UsersAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -547,38 +563,41 @@ open class UsersAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func usersVisibleAppsCreateToManyRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func usersVisibleAppsCreateToManyRelationshipWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter userVisibleAppsLinkagesRequest: (body) List of related linkages 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func usersVisibleAppsDeleteToManyRelationship(id: String, userVisibleAppsLinkagesRequest: UserVisibleAppsLinkagesRequest) async throws {
-        return try await usersVisibleAppsDeleteToManyRelationshipWithRequestBuilder(id: id, userVisibleAppsLinkagesRequest: userVisibleAppsLinkagesRequest).execute().body
+    open class func usersVisibleAppsDeleteToManyRelationship(id: String, userVisibleAppsLinkagesRequest: UserVisibleAppsLinkagesRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await usersVisibleAppsDeleteToManyRelationshipWithRequestBuilder(id: id, userVisibleAppsLinkagesRequest: userVisibleAppsLinkagesRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func usersVisibleAppsDeleteToManyRelationship(urlString: String) async throws {
-        return try await usersVisibleAppsDeleteToManyRelationshipWithRequestBuilder(urlString: urlString).execute().body
+    open class func usersVisibleAppsDeleteToManyRelationship(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await usersVisibleAppsDeleteToManyRelationshipWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -588,15 +607,16 @@ open class UsersAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter userVisibleAppsLinkagesRequest: (body) List of related linkages 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func usersVisibleAppsDeleteToManyRelationshipWithRequestBuilder(id: String, userVisibleAppsLinkagesRequest: UserVisibleAppsLinkagesRequest) -> RequestBuilder<Void> {
+    open class func usersVisibleAppsDeleteToManyRelationshipWithRequestBuilder(id: String, userVisibleAppsLinkagesRequest: UserVisibleAppsLinkagesRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/users/{id}/relationships/visibleApps"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: userVisibleAppsLinkagesRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: userVisibleAppsLinkagesRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -606,9 +626,9 @@ open class UsersAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -617,24 +637,25 @@ open class UsersAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func usersVisibleAppsDeleteToManyRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func usersVisibleAppsDeleteToManyRelationshipWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsApps
      */
-    public enum FieldsApps_usersVisibleAppsGetToManyRelated: String, CaseIterable {
+    public enum FieldsApps_usersVisibleAppsGetToManyRelated: String, Sendable, CaseIterable {
         case name = "name"
         case bundleid = "bundleId"
         case sku = "sku"
@@ -685,20 +706,22 @@ open class UsersAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppsWithoutIncludesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func usersVisibleAppsGetToManyRelated(id: String, fieldsApps: [FieldsApps_usersVisibleAppsGetToManyRelated]? = nil, limit: Int? = nil) async throws -> AppsWithoutIncludesResponse {
-        return try await usersVisibleAppsGetToManyRelatedWithRequestBuilder(id: id, fieldsApps: fieldsApps, limit: limit).execute().body
+    open class func usersVisibleAppsGetToManyRelated(id: String, fieldsApps: [FieldsApps_usersVisibleAppsGetToManyRelated]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppsWithoutIncludesResponse {
+        return try await usersVisibleAppsGetToManyRelatedWithRequestBuilder(id: id, fieldsApps: fieldsApps, limit: limit, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppsWithoutIncludesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func usersVisibleAppsGetToManyRelated(urlString: String) async throws -> AppsWithoutIncludesResponse {
-        return try await usersVisibleAppsGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func usersVisibleAppsGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppsWithoutIncludesResponse {
+        return try await usersVisibleAppsGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -709,20 +732,21 @@ open class UsersAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppsWithoutIncludesResponse> 
      */
-    open class func usersVisibleAppsGetToManyRelatedWithRequestBuilder(id: String, fieldsApps: [FieldsApps_usersVisibleAppsGetToManyRelated]? = nil, limit: Int? = nil) -> RequestBuilder<AppsWithoutIncludesResponse> {
+    open class func usersVisibleAppsGetToManyRelatedWithRequestBuilder(id: String, fieldsApps: [FieldsApps_usersVisibleAppsGetToManyRelated]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppsWithoutIncludesResponse> {
         var localVariablePath = "/v1/users/{id}/visibleApps"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -731,9 +755,9 @@ open class UsersAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppsWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppsWithoutIncludesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -742,38 +766,41 @@ open class UsersAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppsWithoutIncludesResponse> 
      */
-    open class func usersVisibleAppsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppsWithoutIncludesResponse> {
+    open class func usersVisibleAppsGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppsWithoutIncludesResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppsWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppsWithoutIncludesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: UserVisibleAppsLinkagesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func usersVisibleAppsGetToManyRelationship(id: String, limit: Int? = nil) async throws -> UserVisibleAppsLinkagesResponse {
-        return try await usersVisibleAppsGetToManyRelationshipWithRequestBuilder(id: id, limit: limit).execute().body
+    open class func usersVisibleAppsGetToManyRelationship(id: String, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> UserVisibleAppsLinkagesResponse {
+        return try await usersVisibleAppsGetToManyRelationshipWithRequestBuilder(id: id, limit: limit, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: UserVisibleAppsLinkagesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func usersVisibleAppsGetToManyRelationship(urlString: String) async throws -> UserVisibleAppsLinkagesResponse {
-        return try await usersVisibleAppsGetToManyRelationshipWithRequestBuilder(urlString: urlString).execute().body
+    open class func usersVisibleAppsGetToManyRelationship(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> UserVisibleAppsLinkagesResponse {
+        return try await usersVisibleAppsGetToManyRelationshipWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -783,19 +810,20 @@ open class UsersAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<UserVisibleAppsLinkagesResponse> 
      */
-    open class func usersVisibleAppsGetToManyRelationshipWithRequestBuilder(id: String, limit: Int? = nil) -> RequestBuilder<UserVisibleAppsLinkagesResponse> {
+    open class func usersVisibleAppsGetToManyRelationshipWithRequestBuilder(id: String, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<UserVisibleAppsLinkagesResponse> {
         var localVariablePath = "/v1/users/{id}/relationships/visibleApps"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -804,9 +832,9 @@ open class UsersAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<UserVisibleAppsLinkagesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<UserVisibleAppsLinkagesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -815,38 +843,41 @@ open class UsersAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<UserVisibleAppsLinkagesResponse> 
      */
-    open class func usersVisibleAppsGetToManyRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<UserVisibleAppsLinkagesResponse> {
+    open class func usersVisibleAppsGetToManyRelationshipWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<UserVisibleAppsLinkagesResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<UserVisibleAppsLinkagesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<UserVisibleAppsLinkagesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter userVisibleAppsLinkagesRequest: (body) List of related linkages 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func usersVisibleAppsReplaceToManyRelationship(id: String, userVisibleAppsLinkagesRequest: UserVisibleAppsLinkagesRequest) async throws {
-        return try await usersVisibleAppsReplaceToManyRelationshipWithRequestBuilder(id: id, userVisibleAppsLinkagesRequest: userVisibleAppsLinkagesRequest).execute().body
+    open class func usersVisibleAppsReplaceToManyRelationship(id: String, userVisibleAppsLinkagesRequest: UserVisibleAppsLinkagesRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await usersVisibleAppsReplaceToManyRelationshipWithRequestBuilder(id: id, userVisibleAppsLinkagesRequest: userVisibleAppsLinkagesRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func usersVisibleAppsReplaceToManyRelationship(urlString: String) async throws {
-        return try await usersVisibleAppsReplaceToManyRelationshipWithRequestBuilder(urlString: urlString).execute().body
+    open class func usersVisibleAppsReplaceToManyRelationship(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await usersVisibleAppsReplaceToManyRelationshipWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -856,15 +887,16 @@ open class UsersAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter userVisibleAppsLinkagesRequest: (body) List of related linkages 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func usersVisibleAppsReplaceToManyRelationshipWithRequestBuilder(id: String, userVisibleAppsLinkagesRequest: UserVisibleAppsLinkagesRequest) -> RequestBuilder<Void> {
+    open class func usersVisibleAppsReplaceToManyRelationshipWithRequestBuilder(id: String, userVisibleAppsLinkagesRequest: UserVisibleAppsLinkagesRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/users/{id}/relationships/visibleApps"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: userVisibleAppsLinkagesRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: userVisibleAppsLinkagesRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -874,9 +906,9 @@ open class UsersAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -885,17 +917,18 @@ open class UsersAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func usersVisibleAppsReplaceToManyRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func usersVisibleAppsReplaceToManyRelationshipWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

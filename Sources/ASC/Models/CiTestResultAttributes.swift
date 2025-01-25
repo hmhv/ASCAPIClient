@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct CiTestResultAttributes: Codable, JSONEncodable, Hashable {
+public struct CiTestResultAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
     public var className: String?
     public var name: String?

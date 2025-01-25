@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppClipAdvancedExperienceRelationshipsHeaderImage: Codable, JSONEncodable, Hashable {
+public struct AppClipAdvancedExperienceRelationshipsHeaderImage: Sendable, Codable, JSONEncodable, Hashable {
 
     public var data: AppClipAdvancedExperienceRelationshipsHeaderImageData?
 

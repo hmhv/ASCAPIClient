@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public enum CiExecutionProgress: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+public enum CiExecutionProgress: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
     case pending = "PENDING"
     case running = "RUNNING"
     case complete = "COMPLETE"

@@ -6,13 +6,10 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct SandboxTesterV2Attributes: Codable, JSONEncodable, Hashable {
+public struct SandboxTesterV2Attributes: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum SubscriptionRenewalRate: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum SubscriptionRenewalRate: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case monthlyRenewalEveryOneHour = "MONTHLY_RENEWAL_EVERY_ONE_HOUR"
         case monthlyRenewalEveryThirtyMinutes = "MONTHLY_RENEWAL_EVERY_THIRTY_MINUTES"
         case monthlyRenewalEveryFifteenMinutes = "MONTHLY_RENEWAL_EVERY_FIFTEEN_MINUTES"

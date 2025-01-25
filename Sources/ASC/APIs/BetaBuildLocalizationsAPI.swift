@@ -6,16 +6,13 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class BetaBuildLocalizationsAPI {
 
     /**
      * enum for parameter fieldsBuilds
      */
-    public enum FieldsBuilds_betaBuildLocalizationsBuildGetToOneRelated: String, CaseIterable {
+    public enum FieldsBuilds_betaBuildLocalizationsBuildGetToOneRelated: String, Sendable, CaseIterable {
         case version = "version"
         case uploadeddate = "uploadedDate"
         case expirationdate = "expirationDate"
@@ -46,20 +43,22 @@ open class BetaBuildLocalizationsAPI {
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BuildWithoutIncludesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaBuildLocalizationsBuildGetToOneRelated(id: String, fieldsBuilds: [FieldsBuilds_betaBuildLocalizationsBuildGetToOneRelated]? = nil) async throws -> BuildWithoutIncludesResponse {
-        return try await betaBuildLocalizationsBuildGetToOneRelatedWithRequestBuilder(id: id, fieldsBuilds: fieldsBuilds).execute().body
+    open class func betaBuildLocalizationsBuildGetToOneRelated(id: String, fieldsBuilds: [FieldsBuilds_betaBuildLocalizationsBuildGetToOneRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BuildWithoutIncludesResponse {
+        return try await betaBuildLocalizationsBuildGetToOneRelatedWithRequestBuilder(id: id, fieldsBuilds: fieldsBuilds, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BuildWithoutIncludesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaBuildLocalizationsBuildGetToOneRelated(urlString: String) async throws -> BuildWithoutIncludesResponse {
-        return try await betaBuildLocalizationsBuildGetToOneRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func betaBuildLocalizationsBuildGetToOneRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BuildWithoutIncludesResponse {
+        return try await betaBuildLocalizationsBuildGetToOneRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -69,19 +68,20 @@ open class BetaBuildLocalizationsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BuildWithoutIncludesResponse> 
      */
-    open class func betaBuildLocalizationsBuildGetToOneRelatedWithRequestBuilder(id: String, fieldsBuilds: [FieldsBuilds_betaBuildLocalizationsBuildGetToOneRelated]? = nil) -> RequestBuilder<BuildWithoutIncludesResponse> {
+    open class func betaBuildLocalizationsBuildGetToOneRelatedWithRequestBuilder(id: String, fieldsBuilds: [FieldsBuilds_betaBuildLocalizationsBuildGetToOneRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BuildWithoutIncludesResponse> {
         var localVariablePath = "/v1/betaBuildLocalizations/{id}/build"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(), isExplode: false),
+            "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -90,9 +90,9 @@ open class BetaBuildLocalizationsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BuildWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BuildWithoutIncludesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -101,37 +101,40 @@ open class BetaBuildLocalizationsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BuildWithoutIncludesResponse> 
      */
-    open class func betaBuildLocalizationsBuildGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<BuildWithoutIncludesResponse> {
+    open class func betaBuildLocalizationsBuildGetToOneRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BuildWithoutIncludesResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BuildWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BuildWithoutIncludesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter betaBuildLocalizationCreateRequest: (body) BetaBuildLocalization representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BetaBuildLocalizationResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaBuildLocalizationsCreateInstance(betaBuildLocalizationCreateRequest: BetaBuildLocalizationCreateRequest) async throws -> BetaBuildLocalizationResponse {
-        return try await betaBuildLocalizationsCreateInstanceWithRequestBuilder(betaBuildLocalizationCreateRequest: betaBuildLocalizationCreateRequest).execute().body
+    open class func betaBuildLocalizationsCreateInstance(betaBuildLocalizationCreateRequest: BetaBuildLocalizationCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BetaBuildLocalizationResponse {
+        return try await betaBuildLocalizationsCreateInstanceWithRequestBuilder(betaBuildLocalizationCreateRequest: betaBuildLocalizationCreateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BetaBuildLocalizationResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaBuildLocalizationsCreateInstance(urlString: String) async throws -> BetaBuildLocalizationResponse {
-        return try await betaBuildLocalizationsCreateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func betaBuildLocalizationsCreateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BetaBuildLocalizationResponse {
+        return try await betaBuildLocalizationsCreateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -140,12 +143,13 @@ open class BetaBuildLocalizationsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter betaBuildLocalizationCreateRequest: (body) BetaBuildLocalization representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BetaBuildLocalizationResponse> 
      */
-    open class func betaBuildLocalizationsCreateInstanceWithRequestBuilder(betaBuildLocalizationCreateRequest: BetaBuildLocalizationCreateRequest) -> RequestBuilder<BetaBuildLocalizationResponse> {
+    open class func betaBuildLocalizationsCreateInstanceWithRequestBuilder(betaBuildLocalizationCreateRequest: BetaBuildLocalizationCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BetaBuildLocalizationResponse> {
         let localVariablePath = "/v1/betaBuildLocalizations"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: betaBuildLocalizationCreateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: betaBuildLocalizationCreateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -155,9 +159,9 @@ open class BetaBuildLocalizationsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BetaBuildLocalizationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BetaBuildLocalizationResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -166,37 +170,40 @@ open class BetaBuildLocalizationsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BetaBuildLocalizationResponse> 
      */
-    open class func betaBuildLocalizationsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<BetaBuildLocalizationResponse> {
+    open class func betaBuildLocalizationsCreateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BetaBuildLocalizationResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BetaBuildLocalizationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BetaBuildLocalizationResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaBuildLocalizationsDeleteInstance(id: String) async throws {
-        return try await betaBuildLocalizationsDeleteInstanceWithRequestBuilder(id: id).execute().body
+    open class func betaBuildLocalizationsDeleteInstance(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await betaBuildLocalizationsDeleteInstanceWithRequestBuilder(id: id, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaBuildLocalizationsDeleteInstance(urlString: String) async throws {
-        return try await betaBuildLocalizationsDeleteInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func betaBuildLocalizationsDeleteInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await betaBuildLocalizationsDeleteInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -205,14 +212,15 @@ open class BetaBuildLocalizationsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func betaBuildLocalizationsDeleteInstanceWithRequestBuilder(id: String) -> RequestBuilder<Void> {
+    open class func betaBuildLocalizationsDeleteInstanceWithRequestBuilder(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/betaBuildLocalizations/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -223,9 +231,9 @@ open class BetaBuildLocalizationsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -234,24 +242,25 @@ open class BetaBuildLocalizationsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func betaBuildLocalizationsDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func betaBuildLocalizationsDeleteInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsBetaBuildLocalizations
      */
-    public enum FieldsBetaBuildLocalizations_betaBuildLocalizationsGetCollection: String, CaseIterable {
+    public enum FieldsBetaBuildLocalizations_betaBuildLocalizationsGetCollection: String, Sendable, CaseIterable {
         case whatsnew = "whatsNew"
         case locale = "locale"
         case build = "build"
@@ -260,7 +269,7 @@ open class BetaBuildLocalizationsAPI {
     /**
      * enum for parameter fieldsBuilds
      */
-    public enum FieldsBuilds_betaBuildLocalizationsGetCollection: String, CaseIterable {
+    public enum FieldsBuilds_betaBuildLocalizationsGetCollection: String, Sendable, CaseIterable {
         case version = "version"
         case uploadeddate = "uploadedDate"
         case expirationdate = "expirationDate"
@@ -290,7 +299,7 @@ open class BetaBuildLocalizationsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_betaBuildLocalizationsGetCollection: String, CaseIterable {
+    public enum Include_betaBuildLocalizationsGetCollection: String, Sendable, CaseIterable {
         case build = "build"
     }
 
@@ -302,20 +311,22 @@ open class BetaBuildLocalizationsAPI {
      - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BetaBuildLocalizationsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaBuildLocalizationsGetCollection(filterLocale: [String]? = nil, filterBuild: [String]? = nil, fieldsBetaBuildLocalizations: [FieldsBetaBuildLocalizations_betaBuildLocalizationsGetCollection]? = nil, fieldsBuilds: [FieldsBuilds_betaBuildLocalizationsGetCollection]? = nil, limit: Int? = nil, include: [Include_betaBuildLocalizationsGetCollection]? = nil) async throws -> BetaBuildLocalizationsResponse {
-        return try await betaBuildLocalizationsGetCollectionWithRequestBuilder(filterLocale: filterLocale, filterBuild: filterBuild, fieldsBetaBuildLocalizations: fieldsBetaBuildLocalizations, fieldsBuilds: fieldsBuilds, limit: limit, include: include).execute().body
+    open class func betaBuildLocalizationsGetCollection(filterLocale: [String]? = nil, filterBuild: [String]? = nil, fieldsBetaBuildLocalizations: [FieldsBetaBuildLocalizations_betaBuildLocalizationsGetCollection]? = nil, fieldsBuilds: [FieldsBuilds_betaBuildLocalizationsGetCollection]? = nil, limit: Int? = nil, include: [Include_betaBuildLocalizationsGetCollection]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BetaBuildLocalizationsResponse {
+        return try await betaBuildLocalizationsGetCollectionWithRequestBuilder(filterLocale: filterLocale, filterBuild: filterBuild, fieldsBetaBuildLocalizations: fieldsBetaBuildLocalizations, fieldsBuilds: fieldsBuilds, limit: limit, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BetaBuildLocalizationsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaBuildLocalizationsGetCollection(urlString: String) async throws -> BetaBuildLocalizationsResponse {
-        return try await betaBuildLocalizationsGetCollectionWithRequestBuilder(urlString: urlString).execute().body
+    open class func betaBuildLocalizationsGetCollection(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BetaBuildLocalizationsResponse {
+        return try await betaBuildLocalizationsGetCollectionWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -329,21 +340,22 @@ open class BetaBuildLocalizationsAPI {
      - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BetaBuildLocalizationsResponse> 
      */
-    open class func betaBuildLocalizationsGetCollectionWithRequestBuilder(filterLocale: [String]? = nil, filterBuild: [String]? = nil, fieldsBetaBuildLocalizations: [FieldsBetaBuildLocalizations_betaBuildLocalizationsGetCollection]? = nil, fieldsBuilds: [FieldsBuilds_betaBuildLocalizationsGetCollection]? = nil, limit: Int? = nil, include: [Include_betaBuildLocalizationsGetCollection]? = nil) -> RequestBuilder<BetaBuildLocalizationsResponse> {
+    open class func betaBuildLocalizationsGetCollectionWithRequestBuilder(filterLocale: [String]? = nil, filterBuild: [String]? = nil, fieldsBetaBuildLocalizations: [FieldsBetaBuildLocalizations_betaBuildLocalizationsGetCollection]? = nil, fieldsBuilds: [FieldsBuilds_betaBuildLocalizationsGetCollection]? = nil, limit: Int? = nil, include: [Include_betaBuildLocalizationsGetCollection]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BetaBuildLocalizationsResponse> {
         let localVariablePath = "/v1/betaBuildLocalizations"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[locale]": (wrappedValue: filterLocale?.encodeToJSON(), isExplode: false),
-            "filter[build]": (wrappedValue: filterBuild?.encodeToJSON(), isExplode: false),
-            "fields[betaBuildLocalizations]": (wrappedValue: fieldsBetaBuildLocalizations?.encodeToJSON(), isExplode: false),
-            "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "filter[locale]": (wrappedValue: filterLocale?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[build]": (wrappedValue: filterBuild?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[betaBuildLocalizations]": (wrappedValue: fieldsBetaBuildLocalizations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -352,9 +364,9 @@ open class BetaBuildLocalizationsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BetaBuildLocalizationsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BetaBuildLocalizationsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -363,24 +375,25 @@ open class BetaBuildLocalizationsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BetaBuildLocalizationsResponse> 
      */
-    open class func betaBuildLocalizationsGetCollectionWithRequestBuilder(urlString: String) -> RequestBuilder<BetaBuildLocalizationsResponse> {
+    open class func betaBuildLocalizationsGetCollectionWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BetaBuildLocalizationsResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BetaBuildLocalizationsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BetaBuildLocalizationsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsBetaBuildLocalizations
      */
-    public enum FieldsBetaBuildLocalizations_betaBuildLocalizationsGetInstance: String, CaseIterable {
+    public enum FieldsBetaBuildLocalizations_betaBuildLocalizationsGetInstance: String, Sendable, CaseIterable {
         case whatsnew = "whatsNew"
         case locale = "locale"
         case build = "build"
@@ -389,7 +402,7 @@ open class BetaBuildLocalizationsAPI {
     /**
      * enum for parameter fieldsBuilds
      */
-    public enum FieldsBuilds_betaBuildLocalizationsGetInstance: String, CaseIterable {
+    public enum FieldsBuilds_betaBuildLocalizationsGetInstance: String, Sendable, CaseIterable {
         case version = "version"
         case uploadeddate = "uploadedDate"
         case expirationdate = "expirationDate"
@@ -419,7 +432,7 @@ open class BetaBuildLocalizationsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_betaBuildLocalizationsGetInstance: String, CaseIterable {
+    public enum Include_betaBuildLocalizationsGetInstance: String, Sendable, CaseIterable {
         case build = "build"
     }
 
@@ -429,20 +442,22 @@ open class BetaBuildLocalizationsAPI {
      - parameter fieldsBetaBuildLocalizations: (query) the fields to include for returned resources of type betaBuildLocalizations (optional)
      - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BetaBuildLocalizationResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaBuildLocalizationsGetInstance(id: String, fieldsBetaBuildLocalizations: [FieldsBetaBuildLocalizations_betaBuildLocalizationsGetInstance]? = nil, fieldsBuilds: [FieldsBuilds_betaBuildLocalizationsGetInstance]? = nil, include: [Include_betaBuildLocalizationsGetInstance]? = nil) async throws -> BetaBuildLocalizationResponse {
-        return try await betaBuildLocalizationsGetInstanceWithRequestBuilder(id: id, fieldsBetaBuildLocalizations: fieldsBetaBuildLocalizations, fieldsBuilds: fieldsBuilds, include: include).execute().body
+    open class func betaBuildLocalizationsGetInstance(id: String, fieldsBetaBuildLocalizations: [FieldsBetaBuildLocalizations_betaBuildLocalizationsGetInstance]? = nil, fieldsBuilds: [FieldsBuilds_betaBuildLocalizationsGetInstance]? = nil, include: [Include_betaBuildLocalizationsGetInstance]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BetaBuildLocalizationResponse {
+        return try await betaBuildLocalizationsGetInstanceWithRequestBuilder(id: id, fieldsBetaBuildLocalizations: fieldsBetaBuildLocalizations, fieldsBuilds: fieldsBuilds, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BetaBuildLocalizationResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaBuildLocalizationsGetInstance(urlString: String) async throws -> BetaBuildLocalizationResponse {
-        return try await betaBuildLocalizationsGetInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func betaBuildLocalizationsGetInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BetaBuildLocalizationResponse {
+        return try await betaBuildLocalizationsGetInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -454,21 +469,22 @@ open class BetaBuildLocalizationsAPI {
      - parameter fieldsBetaBuildLocalizations: (query) the fields to include for returned resources of type betaBuildLocalizations (optional)
      - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BetaBuildLocalizationResponse> 
      */
-    open class func betaBuildLocalizationsGetInstanceWithRequestBuilder(id: String, fieldsBetaBuildLocalizations: [FieldsBetaBuildLocalizations_betaBuildLocalizationsGetInstance]? = nil, fieldsBuilds: [FieldsBuilds_betaBuildLocalizationsGetInstance]? = nil, include: [Include_betaBuildLocalizationsGetInstance]? = nil) -> RequestBuilder<BetaBuildLocalizationResponse> {
+    open class func betaBuildLocalizationsGetInstanceWithRequestBuilder(id: String, fieldsBetaBuildLocalizations: [FieldsBetaBuildLocalizations_betaBuildLocalizationsGetInstance]? = nil, fieldsBuilds: [FieldsBuilds_betaBuildLocalizationsGetInstance]? = nil, include: [Include_betaBuildLocalizationsGetInstance]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BetaBuildLocalizationResponse> {
         var localVariablePath = "/v1/betaBuildLocalizations/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[betaBuildLocalizations]": (wrappedValue: fieldsBetaBuildLocalizations?.encodeToJSON(), isExplode: false),
-            "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "fields[betaBuildLocalizations]": (wrappedValue: fieldsBetaBuildLocalizations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -477,9 +493,9 @@ open class BetaBuildLocalizationsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BetaBuildLocalizationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BetaBuildLocalizationResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -488,38 +504,41 @@ open class BetaBuildLocalizationsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BetaBuildLocalizationResponse> 
      */
-    open class func betaBuildLocalizationsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<BetaBuildLocalizationResponse> {
+    open class func betaBuildLocalizationsGetInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BetaBuildLocalizationResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BetaBuildLocalizationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BetaBuildLocalizationResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter betaBuildLocalizationUpdateRequest: (body) BetaBuildLocalization representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BetaBuildLocalizationResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaBuildLocalizationsUpdateInstance(id: String, betaBuildLocalizationUpdateRequest: BetaBuildLocalizationUpdateRequest) async throws -> BetaBuildLocalizationResponse {
-        return try await betaBuildLocalizationsUpdateInstanceWithRequestBuilder(id: id, betaBuildLocalizationUpdateRequest: betaBuildLocalizationUpdateRequest).execute().body
+    open class func betaBuildLocalizationsUpdateInstance(id: String, betaBuildLocalizationUpdateRequest: BetaBuildLocalizationUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BetaBuildLocalizationResponse {
+        return try await betaBuildLocalizationsUpdateInstanceWithRequestBuilder(id: id, betaBuildLocalizationUpdateRequest: betaBuildLocalizationUpdateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BetaBuildLocalizationResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaBuildLocalizationsUpdateInstance(urlString: String) async throws -> BetaBuildLocalizationResponse {
-        return try await betaBuildLocalizationsUpdateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func betaBuildLocalizationsUpdateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BetaBuildLocalizationResponse {
+        return try await betaBuildLocalizationsUpdateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -529,15 +548,16 @@ open class BetaBuildLocalizationsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter betaBuildLocalizationUpdateRequest: (body) BetaBuildLocalization representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BetaBuildLocalizationResponse> 
      */
-    open class func betaBuildLocalizationsUpdateInstanceWithRequestBuilder(id: String, betaBuildLocalizationUpdateRequest: BetaBuildLocalizationUpdateRequest) -> RequestBuilder<BetaBuildLocalizationResponse> {
+    open class func betaBuildLocalizationsUpdateInstanceWithRequestBuilder(id: String, betaBuildLocalizationUpdateRequest: BetaBuildLocalizationUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BetaBuildLocalizationResponse> {
         var localVariablePath = "/v1/betaBuildLocalizations/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: betaBuildLocalizationUpdateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: betaBuildLocalizationUpdateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -547,9 +567,9 @@ open class BetaBuildLocalizationsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BetaBuildLocalizationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BetaBuildLocalizationResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -558,17 +578,18 @@ open class BetaBuildLocalizationsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BetaBuildLocalizationResponse> 
      */
-    open class func betaBuildLocalizationsUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<BetaBuildLocalizationResponse> {
+    open class func betaBuildLocalizationsUpdateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BetaBuildLocalizationResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BetaBuildLocalizationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BetaBuildLocalizationResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

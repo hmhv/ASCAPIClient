@@ -6,16 +6,13 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class AppPricePointsAPI {
 
     /**
      * enum for parameter fieldsAppPricePoints
      */
-    public enum FieldsAppPricePoints_appPricePointsV3EqualizationsGetToManyRelated: String, CaseIterable {
+    public enum FieldsAppPricePoints_appPricePointsV3EqualizationsGetToManyRelated: String, Sendable, CaseIterable {
         case customerprice = "customerPrice"
         case proceeds = "proceeds"
         case app = "app"
@@ -26,7 +23,7 @@ open class AppPricePointsAPI {
     /**
      * enum for parameter fieldsApps
      */
-    public enum FieldsApps_appPricePointsV3EqualizationsGetToManyRelated: String, CaseIterable {
+    public enum FieldsApps_appPricePointsV3EqualizationsGetToManyRelated: String, Sendable, CaseIterable {
         case name = "name"
         case bundleid = "bundleId"
         case sku = "sku"
@@ -75,14 +72,14 @@ open class AppPricePointsAPI {
     /**
      * enum for parameter fieldsTerritories
      */
-    public enum FieldsTerritories_appPricePointsV3EqualizationsGetToManyRelated: String, CaseIterable {
+    public enum FieldsTerritories_appPricePointsV3EqualizationsGetToManyRelated: String, Sendable, CaseIterable {
         case currency = "currency"
     }
 
     /**
      * enum for parameter include
      */
-    public enum Include_appPricePointsV3EqualizationsGetToManyRelated: String, CaseIterable {
+    public enum Include_appPricePointsV3EqualizationsGetToManyRelated: String, Sendable, CaseIterable {
         case app = "app"
         case territory = "territory"
     }
@@ -96,20 +93,22 @@ open class AppPricePointsAPI {
      - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppPricePointsV3Response
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appPricePointsV3EqualizationsGetToManyRelated(id: String, filterTerritory: [String]? = nil, fieldsAppPricePoints: [FieldsAppPricePoints_appPricePointsV3EqualizationsGetToManyRelated]? = nil, fieldsApps: [FieldsApps_appPricePointsV3EqualizationsGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_appPricePointsV3EqualizationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appPricePointsV3EqualizationsGetToManyRelated]? = nil) async throws -> AppPricePointsV3Response {
-        return try await appPricePointsV3EqualizationsGetToManyRelatedWithRequestBuilder(id: id, filterTerritory: filterTerritory, fieldsAppPricePoints: fieldsAppPricePoints, fieldsApps: fieldsApps, fieldsTerritories: fieldsTerritories, limit: limit, include: include).execute().body
+    open class func appPricePointsV3EqualizationsGetToManyRelated(id: String, filterTerritory: [String]? = nil, fieldsAppPricePoints: [FieldsAppPricePoints_appPricePointsV3EqualizationsGetToManyRelated]? = nil, fieldsApps: [FieldsApps_appPricePointsV3EqualizationsGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_appPricePointsV3EqualizationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appPricePointsV3EqualizationsGetToManyRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppPricePointsV3Response {
+        return try await appPricePointsV3EqualizationsGetToManyRelatedWithRequestBuilder(id: id, filterTerritory: filterTerritory, fieldsAppPricePoints: fieldsAppPricePoints, fieldsApps: fieldsApps, fieldsTerritories: fieldsTerritories, limit: limit, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppPricePointsV3Response
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appPricePointsV3EqualizationsGetToManyRelated(urlString: String) async throws -> AppPricePointsV3Response {
-        return try await appPricePointsV3EqualizationsGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func appPricePointsV3EqualizationsGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppPricePointsV3Response {
+        return try await appPricePointsV3EqualizationsGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -124,24 +123,25 @@ open class AppPricePointsAPI {
      - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppPricePointsV3Response> 
      */
-    open class func appPricePointsV3EqualizationsGetToManyRelatedWithRequestBuilder(id: String, filterTerritory: [String]? = nil, fieldsAppPricePoints: [FieldsAppPricePoints_appPricePointsV3EqualizationsGetToManyRelated]? = nil, fieldsApps: [FieldsApps_appPricePointsV3EqualizationsGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_appPricePointsV3EqualizationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appPricePointsV3EqualizationsGetToManyRelated]? = nil) -> RequestBuilder<AppPricePointsV3Response> {
+    open class func appPricePointsV3EqualizationsGetToManyRelatedWithRequestBuilder(id: String, filterTerritory: [String]? = nil, fieldsAppPricePoints: [FieldsAppPricePoints_appPricePointsV3EqualizationsGetToManyRelated]? = nil, fieldsApps: [FieldsApps_appPricePointsV3EqualizationsGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_appPricePointsV3EqualizationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appPricePointsV3EqualizationsGetToManyRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppPricePointsV3Response> {
         var localVariablePath = "/v3/appPricePoints/{id}/equalizations"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[territory]": (wrappedValue: filterTerritory?.encodeToJSON(), isExplode: false),
-            "fields[appPricePoints]": (wrappedValue: fieldsAppPricePoints?.encodeToJSON(), isExplode: false),
-            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
-            "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "filter[territory]": (wrappedValue: filterTerritory?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appPricePoints]": (wrappedValue: fieldsAppPricePoints?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -150,9 +150,9 @@ open class AppPricePointsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppPricePointsV3Response>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppPricePointsV3Response>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -161,24 +161,25 @@ open class AppPricePointsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppPricePointsV3Response> 
      */
-    open class func appPricePointsV3EqualizationsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppPricePointsV3Response> {
+    open class func appPricePointsV3EqualizationsGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppPricePointsV3Response> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppPricePointsV3Response>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppPricePointsV3Response>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsAppPricePoints
      */
-    public enum FieldsAppPricePoints_appPricePointsV3GetInstance: String, CaseIterable {
+    public enum FieldsAppPricePoints_appPricePointsV3GetInstance: String, Sendable, CaseIterable {
         case customerprice = "customerPrice"
         case proceeds = "proceeds"
         case app = "app"
@@ -189,7 +190,7 @@ open class AppPricePointsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_appPricePointsV3GetInstance: String, CaseIterable {
+    public enum Include_appPricePointsV3GetInstance: String, Sendable, CaseIterable {
         case app = "app"
         case territory = "territory"
     }
@@ -199,20 +200,22 @@ open class AppPricePointsAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAppPricePoints: (query) the fields to include for returned resources of type appPricePoints (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppPricePointV3Response
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appPricePointsV3GetInstance(id: String, fieldsAppPricePoints: [FieldsAppPricePoints_appPricePointsV3GetInstance]? = nil, include: [Include_appPricePointsV3GetInstance]? = nil) async throws -> AppPricePointV3Response {
-        return try await appPricePointsV3GetInstanceWithRequestBuilder(id: id, fieldsAppPricePoints: fieldsAppPricePoints, include: include).execute().body
+    open class func appPricePointsV3GetInstance(id: String, fieldsAppPricePoints: [FieldsAppPricePoints_appPricePointsV3GetInstance]? = nil, include: [Include_appPricePointsV3GetInstance]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppPricePointV3Response {
+        return try await appPricePointsV3GetInstanceWithRequestBuilder(id: id, fieldsAppPricePoints: fieldsAppPricePoints, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppPricePointV3Response
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appPricePointsV3GetInstance(urlString: String) async throws -> AppPricePointV3Response {
-        return try await appPricePointsV3GetInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func appPricePointsV3GetInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppPricePointV3Response {
+        return try await appPricePointsV3GetInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -223,20 +226,21 @@ open class AppPricePointsAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAppPricePoints: (query) the fields to include for returned resources of type appPricePoints (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppPricePointV3Response> 
      */
-    open class func appPricePointsV3GetInstanceWithRequestBuilder(id: String, fieldsAppPricePoints: [FieldsAppPricePoints_appPricePointsV3GetInstance]? = nil, include: [Include_appPricePointsV3GetInstance]? = nil) -> RequestBuilder<AppPricePointV3Response> {
+    open class func appPricePointsV3GetInstanceWithRequestBuilder(id: String, fieldsAppPricePoints: [FieldsAppPricePoints_appPricePointsV3GetInstance]? = nil, include: [Include_appPricePointsV3GetInstance]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppPricePointV3Response> {
         var localVariablePath = "/v3/appPricePoints/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[appPricePoints]": (wrappedValue: fieldsAppPricePoints?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "fields[appPricePoints]": (wrappedValue: fieldsAppPricePoints?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -245,9 +249,9 @@ open class AppPricePointsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppPricePointV3Response>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppPricePointV3Response>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -256,17 +260,18 @@ open class AppPricePointsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppPricePointV3Response> 
      */
-    open class func appPricePointsV3GetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppPricePointV3Response> {
+    open class func appPricePointsV3GetInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppPricePointV3Response> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppPricePointV3Response>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppPricePointV3Response>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

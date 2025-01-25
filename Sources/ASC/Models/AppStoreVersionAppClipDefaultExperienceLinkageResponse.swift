@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppStoreVersionAppClipDefaultExperienceLinkageResponse: Codable, JSONEncodable, Hashable {
+public struct AppStoreVersionAppClipDefaultExperienceLinkageResponse: Sendable, Codable, JSONEncodable, Hashable {
 
     public var data: AppClipAppStoreReviewDetailRelationshipsAppClipDefaultExperienceData
     public var links: DocumentLinks

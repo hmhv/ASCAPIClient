@@ -6,16 +6,13 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class TerritoriesAPI {
 
     /**
      * enum for parameter fieldsTerritories
      */
-    public enum FieldsTerritories_territoriesGetCollection: String, CaseIterable {
+    public enum FieldsTerritories_territoriesGetCollection: String, Sendable, CaseIterable {
         case currency = "currency"
     }
 
@@ -23,20 +20,22 @@ open class TerritoriesAPI {
 
      - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: TerritoriesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func territoriesGetCollection(fieldsTerritories: [FieldsTerritories_territoriesGetCollection]? = nil, limit: Int? = nil) async throws -> TerritoriesResponse {
-        return try await territoriesGetCollectionWithRequestBuilder(fieldsTerritories: fieldsTerritories, limit: limit).execute().body
+    open class func territoriesGetCollection(fieldsTerritories: [FieldsTerritories_territoriesGetCollection]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> TerritoriesResponse {
+        return try await territoriesGetCollectionWithRequestBuilder(fieldsTerritories: fieldsTerritories, limit: limit, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: TerritoriesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func territoriesGetCollection(urlString: String) async throws -> TerritoriesResponse {
-        return try await territoriesGetCollectionWithRequestBuilder(urlString: urlString).execute().body
+    open class func territoriesGetCollection(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> TerritoriesResponse {
+        return try await territoriesGetCollectionWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -46,17 +45,18 @@ open class TerritoriesAPI {
        - name: itc-bearer-token
      - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<TerritoriesResponse> 
      */
-    open class func territoriesGetCollectionWithRequestBuilder(fieldsTerritories: [FieldsTerritories_territoriesGetCollection]? = nil, limit: Int? = nil) -> RequestBuilder<TerritoriesResponse> {
+    open class func territoriesGetCollectionWithRequestBuilder(fieldsTerritories: [FieldsTerritories_territoriesGetCollection]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<TerritoriesResponse> {
         let localVariablePath = "/v1/territories"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -65,9 +65,9 @@ open class TerritoriesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<TerritoriesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<TerritoriesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -76,17 +76,18 @@ open class TerritoriesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<TerritoriesResponse> 
      */
-    open class func territoriesGetCollectionWithRequestBuilder(urlString: String) -> RequestBuilder<TerritoriesResponse> {
+    open class func territoriesGetCollectionWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<TerritoriesResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<TerritoriesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<TerritoriesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

@@ -6,16 +6,13 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class BundleIdsAPI {
 
     /**
      * enum for parameter fieldsApps
      */
-    public enum FieldsApps_bundleIdsAppGetToOneRelated: String, CaseIterable {
+    public enum FieldsApps_bundleIdsAppGetToOneRelated: String, Sendable, CaseIterable {
         case name = "name"
         case bundleid = "bundleId"
         case sku = "sku"
@@ -65,20 +62,22 @@ open class BundleIdsAPI {
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppWithoutIncludesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func bundleIdsAppGetToOneRelated(id: String, fieldsApps: [FieldsApps_bundleIdsAppGetToOneRelated]? = nil) async throws -> AppWithoutIncludesResponse {
-        return try await bundleIdsAppGetToOneRelatedWithRequestBuilder(id: id, fieldsApps: fieldsApps).execute().body
+    open class func bundleIdsAppGetToOneRelated(id: String, fieldsApps: [FieldsApps_bundleIdsAppGetToOneRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppWithoutIncludesResponse {
+        return try await bundleIdsAppGetToOneRelatedWithRequestBuilder(id: id, fieldsApps: fieldsApps, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppWithoutIncludesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func bundleIdsAppGetToOneRelated(urlString: String) async throws -> AppWithoutIncludesResponse {
-        return try await bundleIdsAppGetToOneRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func bundleIdsAppGetToOneRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppWithoutIncludesResponse {
+        return try await bundleIdsAppGetToOneRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -88,19 +87,20 @@ open class BundleIdsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppWithoutIncludesResponse> 
      */
-    open class func bundleIdsAppGetToOneRelatedWithRequestBuilder(id: String, fieldsApps: [FieldsApps_bundleIdsAppGetToOneRelated]? = nil) -> RequestBuilder<AppWithoutIncludesResponse> {
+    open class func bundleIdsAppGetToOneRelatedWithRequestBuilder(id: String, fieldsApps: [FieldsApps_bundleIdsAppGetToOneRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppWithoutIncludesResponse> {
         var localVariablePath = "/v1/bundleIds/{id}/app"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
+            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -109,9 +109,9 @@ open class BundleIdsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppWithoutIncludesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -120,24 +120,25 @@ open class BundleIdsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppWithoutIncludesResponse> 
      */
-    open class func bundleIdsAppGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppWithoutIncludesResponse> {
+    open class func bundleIdsAppGetToOneRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppWithoutIncludesResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppWithoutIncludesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsBundleIdCapabilities
      */
-    public enum FieldsBundleIdCapabilities_bundleIdsBundleIdCapabilitiesGetToManyRelated: String, CaseIterable {
+    public enum FieldsBundleIdCapabilities_bundleIdsBundleIdCapabilitiesGetToManyRelated: String, Sendable, CaseIterable {
         case capabilitytype = "capabilityType"
         case settings = "settings"
     }
@@ -147,20 +148,22 @@ open class BundleIdsAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsBundleIdCapabilities: (query) the fields to include for returned resources of type bundleIdCapabilities (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BundleIdCapabilitiesWithoutIncludesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func bundleIdsBundleIdCapabilitiesGetToManyRelated(id: String, fieldsBundleIdCapabilities: [FieldsBundleIdCapabilities_bundleIdsBundleIdCapabilitiesGetToManyRelated]? = nil, limit: Int? = nil) async throws -> BundleIdCapabilitiesWithoutIncludesResponse {
-        return try await bundleIdsBundleIdCapabilitiesGetToManyRelatedWithRequestBuilder(id: id, fieldsBundleIdCapabilities: fieldsBundleIdCapabilities, limit: limit).execute().body
+    open class func bundleIdsBundleIdCapabilitiesGetToManyRelated(id: String, fieldsBundleIdCapabilities: [FieldsBundleIdCapabilities_bundleIdsBundleIdCapabilitiesGetToManyRelated]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BundleIdCapabilitiesWithoutIncludesResponse {
+        return try await bundleIdsBundleIdCapabilitiesGetToManyRelatedWithRequestBuilder(id: id, fieldsBundleIdCapabilities: fieldsBundleIdCapabilities, limit: limit, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BundleIdCapabilitiesWithoutIncludesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func bundleIdsBundleIdCapabilitiesGetToManyRelated(urlString: String) async throws -> BundleIdCapabilitiesWithoutIncludesResponse {
-        return try await bundleIdsBundleIdCapabilitiesGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func bundleIdsBundleIdCapabilitiesGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BundleIdCapabilitiesWithoutIncludesResponse {
+        return try await bundleIdsBundleIdCapabilitiesGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -171,20 +174,21 @@ open class BundleIdsAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsBundleIdCapabilities: (query) the fields to include for returned resources of type bundleIdCapabilities (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BundleIdCapabilitiesWithoutIncludesResponse> 
      */
-    open class func bundleIdsBundleIdCapabilitiesGetToManyRelatedWithRequestBuilder(id: String, fieldsBundleIdCapabilities: [FieldsBundleIdCapabilities_bundleIdsBundleIdCapabilitiesGetToManyRelated]? = nil, limit: Int? = nil) -> RequestBuilder<BundleIdCapabilitiesWithoutIncludesResponse> {
+    open class func bundleIdsBundleIdCapabilitiesGetToManyRelatedWithRequestBuilder(id: String, fieldsBundleIdCapabilities: [FieldsBundleIdCapabilities_bundleIdsBundleIdCapabilitiesGetToManyRelated]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BundleIdCapabilitiesWithoutIncludesResponse> {
         var localVariablePath = "/v1/bundleIds/{id}/bundleIdCapabilities"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[bundleIdCapabilities]": (wrappedValue: fieldsBundleIdCapabilities?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "fields[bundleIdCapabilities]": (wrappedValue: fieldsBundleIdCapabilities?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -193,9 +197,9 @@ open class BundleIdsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BundleIdCapabilitiesWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BundleIdCapabilitiesWithoutIncludesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -204,37 +208,40 @@ open class BundleIdsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BundleIdCapabilitiesWithoutIncludesResponse> 
      */
-    open class func bundleIdsBundleIdCapabilitiesGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<BundleIdCapabilitiesWithoutIncludesResponse> {
+    open class func bundleIdsBundleIdCapabilitiesGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BundleIdCapabilitiesWithoutIncludesResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BundleIdCapabilitiesWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BundleIdCapabilitiesWithoutIncludesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter bundleIdCreateRequest: (body) BundleId representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BundleIdResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func bundleIdsCreateInstance(bundleIdCreateRequest: BundleIdCreateRequest) async throws -> BundleIdResponse {
-        return try await bundleIdsCreateInstanceWithRequestBuilder(bundleIdCreateRequest: bundleIdCreateRequest).execute().body
+    open class func bundleIdsCreateInstance(bundleIdCreateRequest: BundleIdCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BundleIdResponse {
+        return try await bundleIdsCreateInstanceWithRequestBuilder(bundleIdCreateRequest: bundleIdCreateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BundleIdResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func bundleIdsCreateInstance(urlString: String) async throws -> BundleIdResponse {
-        return try await bundleIdsCreateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func bundleIdsCreateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BundleIdResponse {
+        return try await bundleIdsCreateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -243,12 +250,13 @@ open class BundleIdsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter bundleIdCreateRequest: (body) BundleId representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BundleIdResponse> 
      */
-    open class func bundleIdsCreateInstanceWithRequestBuilder(bundleIdCreateRequest: BundleIdCreateRequest) -> RequestBuilder<BundleIdResponse> {
+    open class func bundleIdsCreateInstanceWithRequestBuilder(bundleIdCreateRequest: BundleIdCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BundleIdResponse> {
         let localVariablePath = "/v1/bundleIds"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: bundleIdCreateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: bundleIdCreateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -258,9 +266,9 @@ open class BundleIdsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BundleIdResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BundleIdResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -269,37 +277,40 @@ open class BundleIdsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BundleIdResponse> 
      */
-    open class func bundleIdsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<BundleIdResponse> {
+    open class func bundleIdsCreateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BundleIdResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BundleIdResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BundleIdResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func bundleIdsDeleteInstance(id: String) async throws {
-        return try await bundleIdsDeleteInstanceWithRequestBuilder(id: id).execute().body
+    open class func bundleIdsDeleteInstance(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await bundleIdsDeleteInstanceWithRequestBuilder(id: id, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func bundleIdsDeleteInstance(urlString: String) async throws {
-        return try await bundleIdsDeleteInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func bundleIdsDeleteInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await bundleIdsDeleteInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -308,14 +319,15 @@ open class BundleIdsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func bundleIdsDeleteInstanceWithRequestBuilder(id: String) -> RequestBuilder<Void> {
+    open class func bundleIdsDeleteInstanceWithRequestBuilder(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/bundleIds/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -326,9 +338,9 @@ open class BundleIdsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -337,24 +349,25 @@ open class BundleIdsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func bundleIdsDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func bundleIdsDeleteInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter filterPlatform
      */
-    public enum FilterPlatform_bundleIdsGetCollection: String, CaseIterable {
+    public enum FilterPlatform_bundleIdsGetCollection: String, Sendable, CaseIterable {
         case ios = "IOS"
         case macOs = "MAC_OS"
         case universal = "UNIVERSAL"
@@ -363,7 +376,7 @@ open class BundleIdsAPI {
     /**
      * enum for parameter sort
      */
-    public enum Sort_bundleIdsGetCollection: String, CaseIterable {
+    public enum Sort_bundleIdsGetCollection: String, Sendable, CaseIterable {
         case name = "name"
         case name2 = "-name"
         case platform = "platform"
@@ -379,7 +392,7 @@ open class BundleIdsAPI {
     /**
      * enum for parameter fieldsBundleIds
      */
-    public enum FieldsBundleIds_bundleIdsGetCollection: String, CaseIterable {
+    public enum FieldsBundleIds_bundleIdsGetCollection: String, Sendable, CaseIterable {
         case name = "name"
         case platform = "platform"
         case identifier = "identifier"
@@ -392,7 +405,7 @@ open class BundleIdsAPI {
     /**
      * enum for parameter fieldsProfiles
      */
-    public enum FieldsProfiles_bundleIdsGetCollection: String, CaseIterable {
+    public enum FieldsProfiles_bundleIdsGetCollection: String, Sendable, CaseIterable {
         case name = "name"
         case platform = "platform"
         case profiletype = "profileType"
@@ -409,7 +422,7 @@ open class BundleIdsAPI {
     /**
      * enum for parameter fieldsBundleIdCapabilities
      */
-    public enum FieldsBundleIdCapabilities_bundleIdsGetCollection: String, CaseIterable {
+    public enum FieldsBundleIdCapabilities_bundleIdsGetCollection: String, Sendable, CaseIterable {
         case capabilitytype = "capabilityType"
         case settings = "settings"
     }
@@ -417,7 +430,7 @@ open class BundleIdsAPI {
     /**
      * enum for parameter fieldsApps
      */
-    public enum FieldsApps_bundleIdsGetCollection: String, CaseIterable {
+    public enum FieldsApps_bundleIdsGetCollection: String, Sendable, CaseIterable {
         case name = "name"
         case bundleid = "bundleId"
         case sku = "sku"
@@ -466,7 +479,7 @@ open class BundleIdsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_bundleIdsGetCollection: String, CaseIterable {
+    public enum Include_bundleIdsGetCollection: String, Sendable, CaseIterable {
         case profiles = "profiles"
         case bundleidcapabilities = "bundleIdCapabilities"
         case app = "app"
@@ -488,20 +501,22 @@ open class BundleIdsAPI {
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitBundleIdCapabilities: (query) maximum number of related bundleIdCapabilities returned (when they are included) (optional)
      - parameter limitProfiles: (query) maximum number of related profiles returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BundleIdsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func bundleIdsGetCollection(filterName: [String]? = nil, filterPlatform: [FilterPlatform_bundleIdsGetCollection]? = nil, filterIdentifier: [String]? = nil, filterSeedId: [String]? = nil, filterId: [String]? = nil, sort: [Sort_bundleIdsGetCollection]? = nil, fieldsBundleIds: [FieldsBundleIds_bundleIdsGetCollection]? = nil, fieldsProfiles: [FieldsProfiles_bundleIdsGetCollection]? = nil, fieldsBundleIdCapabilities: [FieldsBundleIdCapabilities_bundleIdsGetCollection]? = nil, fieldsApps: [FieldsApps_bundleIdsGetCollection]? = nil, limit: Int? = nil, include: [Include_bundleIdsGetCollection]? = nil, limitBundleIdCapabilities: Int? = nil, limitProfiles: Int? = nil) async throws -> BundleIdsResponse {
-        return try await bundleIdsGetCollectionWithRequestBuilder(filterName: filterName, filterPlatform: filterPlatform, filterIdentifier: filterIdentifier, filterSeedId: filterSeedId, filterId: filterId, sort: sort, fieldsBundleIds: fieldsBundleIds, fieldsProfiles: fieldsProfiles, fieldsBundleIdCapabilities: fieldsBundleIdCapabilities, fieldsApps: fieldsApps, limit: limit, include: include, limitBundleIdCapabilities: limitBundleIdCapabilities, limitProfiles: limitProfiles).execute().body
+    open class func bundleIdsGetCollection(filterName: [String]? = nil, filterPlatform: [FilterPlatform_bundleIdsGetCollection]? = nil, filterIdentifier: [String]? = nil, filterSeedId: [String]? = nil, filterId: [String]? = nil, sort: [Sort_bundleIdsGetCollection]? = nil, fieldsBundleIds: [FieldsBundleIds_bundleIdsGetCollection]? = nil, fieldsProfiles: [FieldsProfiles_bundleIdsGetCollection]? = nil, fieldsBundleIdCapabilities: [FieldsBundleIdCapabilities_bundleIdsGetCollection]? = nil, fieldsApps: [FieldsApps_bundleIdsGetCollection]? = nil, limit: Int? = nil, include: [Include_bundleIdsGetCollection]? = nil, limitBundleIdCapabilities: Int? = nil, limitProfiles: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BundleIdsResponse {
+        return try await bundleIdsGetCollectionWithRequestBuilder(filterName: filterName, filterPlatform: filterPlatform, filterIdentifier: filterIdentifier, filterSeedId: filterSeedId, filterId: filterId, sort: sort, fieldsBundleIds: fieldsBundleIds, fieldsProfiles: fieldsProfiles, fieldsBundleIdCapabilities: fieldsBundleIdCapabilities, fieldsApps: fieldsApps, limit: limit, include: include, limitBundleIdCapabilities: limitBundleIdCapabilities, limitProfiles: limitProfiles, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BundleIdsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func bundleIdsGetCollection(urlString: String) async throws -> BundleIdsResponse {
-        return try await bundleIdsGetCollectionWithRequestBuilder(urlString: urlString).execute().body
+    open class func bundleIdsGetCollection(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BundleIdsResponse {
+        return try await bundleIdsGetCollectionWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -523,29 +538,30 @@ open class BundleIdsAPI {
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitBundleIdCapabilities: (query) maximum number of related bundleIdCapabilities returned (when they are included) (optional)
      - parameter limitProfiles: (query) maximum number of related profiles returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BundleIdsResponse> 
      */
-    open class func bundleIdsGetCollectionWithRequestBuilder(filterName: [String]? = nil, filterPlatform: [FilterPlatform_bundleIdsGetCollection]? = nil, filterIdentifier: [String]? = nil, filterSeedId: [String]? = nil, filterId: [String]? = nil, sort: [Sort_bundleIdsGetCollection]? = nil, fieldsBundleIds: [FieldsBundleIds_bundleIdsGetCollection]? = nil, fieldsProfiles: [FieldsProfiles_bundleIdsGetCollection]? = nil, fieldsBundleIdCapabilities: [FieldsBundleIdCapabilities_bundleIdsGetCollection]? = nil, fieldsApps: [FieldsApps_bundleIdsGetCollection]? = nil, limit: Int? = nil, include: [Include_bundleIdsGetCollection]? = nil, limitBundleIdCapabilities: Int? = nil, limitProfiles: Int? = nil) -> RequestBuilder<BundleIdsResponse> {
+    open class func bundleIdsGetCollectionWithRequestBuilder(filterName: [String]? = nil, filterPlatform: [FilterPlatform_bundleIdsGetCollection]? = nil, filterIdentifier: [String]? = nil, filterSeedId: [String]? = nil, filterId: [String]? = nil, sort: [Sort_bundleIdsGetCollection]? = nil, fieldsBundleIds: [FieldsBundleIds_bundleIdsGetCollection]? = nil, fieldsProfiles: [FieldsProfiles_bundleIdsGetCollection]? = nil, fieldsBundleIdCapabilities: [FieldsBundleIdCapabilities_bundleIdsGetCollection]? = nil, fieldsApps: [FieldsApps_bundleIdsGetCollection]? = nil, limit: Int? = nil, include: [Include_bundleIdsGetCollection]? = nil, limitBundleIdCapabilities: Int? = nil, limitProfiles: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BundleIdsResponse> {
         let localVariablePath = "/v1/bundleIds"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[name]": (wrappedValue: filterName?.encodeToJSON(), isExplode: false),
-            "filter[platform]": (wrappedValue: filterPlatform?.encodeToJSON(), isExplode: false),
-            "filter[identifier]": (wrappedValue: filterIdentifier?.encodeToJSON(), isExplode: false),
-            "filter[seedId]": (wrappedValue: filterSeedId?.encodeToJSON(), isExplode: false),
-            "filter[id]": (wrappedValue: filterId?.encodeToJSON(), isExplode: false),
-            "sort": (wrappedValue: sort?.encodeToJSON(), isExplode: false),
-            "fields[bundleIds]": (wrappedValue: fieldsBundleIds?.encodeToJSON(), isExplode: false),
-            "fields[profiles]": (wrappedValue: fieldsProfiles?.encodeToJSON(), isExplode: false),
-            "fields[bundleIdCapabilities]": (wrappedValue: fieldsBundleIdCapabilities?.encodeToJSON(), isExplode: false),
-            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[bundleIdCapabilities]": (wrappedValue: limitBundleIdCapabilities?.encodeToJSON(), isExplode: true),
-            "limit[profiles]": (wrappedValue: limitProfiles?.encodeToJSON(), isExplode: true),
+            "filter[name]": (wrappedValue: filterName?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[platform]": (wrappedValue: filterPlatform?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[identifier]": (wrappedValue: filterIdentifier?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[seedId]": (wrappedValue: filterSeedId?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[id]": (wrappedValue: filterId?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "sort": (wrappedValue: sort?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[bundleIds]": (wrappedValue: fieldsBundleIds?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[profiles]": (wrappedValue: fieldsProfiles?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[bundleIdCapabilities]": (wrappedValue: fieldsBundleIdCapabilities?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[bundleIdCapabilities]": (wrappedValue: limitBundleIdCapabilities?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[profiles]": (wrappedValue: limitProfiles?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -554,9 +570,9 @@ open class BundleIdsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BundleIdsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BundleIdsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -565,24 +581,25 @@ open class BundleIdsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BundleIdsResponse> 
      */
-    open class func bundleIdsGetCollectionWithRequestBuilder(urlString: String) -> RequestBuilder<BundleIdsResponse> {
+    open class func bundleIdsGetCollectionWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BundleIdsResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BundleIdsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BundleIdsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsBundleIds
      */
-    public enum FieldsBundleIds_bundleIdsGetInstance: String, CaseIterable {
+    public enum FieldsBundleIds_bundleIdsGetInstance: String, Sendable, CaseIterable {
         case name = "name"
         case platform = "platform"
         case identifier = "identifier"
@@ -595,7 +612,7 @@ open class BundleIdsAPI {
     /**
      * enum for parameter fieldsProfiles
      */
-    public enum FieldsProfiles_bundleIdsGetInstance: String, CaseIterable {
+    public enum FieldsProfiles_bundleIdsGetInstance: String, Sendable, CaseIterable {
         case name = "name"
         case platform = "platform"
         case profiletype = "profileType"
@@ -612,7 +629,7 @@ open class BundleIdsAPI {
     /**
      * enum for parameter fieldsBundleIdCapabilities
      */
-    public enum FieldsBundleIdCapabilities_bundleIdsGetInstance: String, CaseIterable {
+    public enum FieldsBundleIdCapabilities_bundleIdsGetInstance: String, Sendable, CaseIterable {
         case capabilitytype = "capabilityType"
         case settings = "settings"
     }
@@ -620,7 +637,7 @@ open class BundleIdsAPI {
     /**
      * enum for parameter fieldsApps
      */
-    public enum FieldsApps_bundleIdsGetInstance: String, CaseIterable {
+    public enum FieldsApps_bundleIdsGetInstance: String, Sendable, CaseIterable {
         case name = "name"
         case bundleid = "bundleId"
         case sku = "sku"
@@ -669,7 +686,7 @@ open class BundleIdsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_bundleIdsGetInstance: String, CaseIterable {
+    public enum Include_bundleIdsGetInstance: String, Sendable, CaseIterable {
         case profiles = "profiles"
         case bundleidcapabilities = "bundleIdCapabilities"
         case app = "app"
@@ -685,20 +702,22 @@ open class BundleIdsAPI {
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitBundleIdCapabilities: (query) maximum number of related bundleIdCapabilities returned (when they are included) (optional)
      - parameter limitProfiles: (query) maximum number of related profiles returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BundleIdResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func bundleIdsGetInstance(id: String, fieldsBundleIds: [FieldsBundleIds_bundleIdsGetInstance]? = nil, fieldsProfiles: [FieldsProfiles_bundleIdsGetInstance]? = nil, fieldsBundleIdCapabilities: [FieldsBundleIdCapabilities_bundleIdsGetInstance]? = nil, fieldsApps: [FieldsApps_bundleIdsGetInstance]? = nil, include: [Include_bundleIdsGetInstance]? = nil, limitBundleIdCapabilities: Int? = nil, limitProfiles: Int? = nil) async throws -> BundleIdResponse {
-        return try await bundleIdsGetInstanceWithRequestBuilder(id: id, fieldsBundleIds: fieldsBundleIds, fieldsProfiles: fieldsProfiles, fieldsBundleIdCapabilities: fieldsBundleIdCapabilities, fieldsApps: fieldsApps, include: include, limitBundleIdCapabilities: limitBundleIdCapabilities, limitProfiles: limitProfiles).execute().body
+    open class func bundleIdsGetInstance(id: String, fieldsBundleIds: [FieldsBundleIds_bundleIdsGetInstance]? = nil, fieldsProfiles: [FieldsProfiles_bundleIdsGetInstance]? = nil, fieldsBundleIdCapabilities: [FieldsBundleIdCapabilities_bundleIdsGetInstance]? = nil, fieldsApps: [FieldsApps_bundleIdsGetInstance]? = nil, include: [Include_bundleIdsGetInstance]? = nil, limitBundleIdCapabilities: Int? = nil, limitProfiles: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BundleIdResponse {
+        return try await bundleIdsGetInstanceWithRequestBuilder(id: id, fieldsBundleIds: fieldsBundleIds, fieldsProfiles: fieldsProfiles, fieldsBundleIdCapabilities: fieldsBundleIdCapabilities, fieldsApps: fieldsApps, include: include, limitBundleIdCapabilities: limitBundleIdCapabilities, limitProfiles: limitProfiles, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BundleIdResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func bundleIdsGetInstance(urlString: String) async throws -> BundleIdResponse {
-        return try await bundleIdsGetInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func bundleIdsGetInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BundleIdResponse {
+        return try await bundleIdsGetInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -714,25 +733,26 @@ open class BundleIdsAPI {
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitBundleIdCapabilities: (query) maximum number of related bundleIdCapabilities returned (when they are included) (optional)
      - parameter limitProfiles: (query) maximum number of related profiles returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BundleIdResponse> 
      */
-    open class func bundleIdsGetInstanceWithRequestBuilder(id: String, fieldsBundleIds: [FieldsBundleIds_bundleIdsGetInstance]? = nil, fieldsProfiles: [FieldsProfiles_bundleIdsGetInstance]? = nil, fieldsBundleIdCapabilities: [FieldsBundleIdCapabilities_bundleIdsGetInstance]? = nil, fieldsApps: [FieldsApps_bundleIdsGetInstance]? = nil, include: [Include_bundleIdsGetInstance]? = nil, limitBundleIdCapabilities: Int? = nil, limitProfiles: Int? = nil) -> RequestBuilder<BundleIdResponse> {
+    open class func bundleIdsGetInstanceWithRequestBuilder(id: String, fieldsBundleIds: [FieldsBundleIds_bundleIdsGetInstance]? = nil, fieldsProfiles: [FieldsProfiles_bundleIdsGetInstance]? = nil, fieldsBundleIdCapabilities: [FieldsBundleIdCapabilities_bundleIdsGetInstance]? = nil, fieldsApps: [FieldsApps_bundleIdsGetInstance]? = nil, include: [Include_bundleIdsGetInstance]? = nil, limitBundleIdCapabilities: Int? = nil, limitProfiles: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BundleIdResponse> {
         var localVariablePath = "/v1/bundleIds/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[bundleIds]": (wrappedValue: fieldsBundleIds?.encodeToJSON(), isExplode: false),
-            "fields[profiles]": (wrappedValue: fieldsProfiles?.encodeToJSON(), isExplode: false),
-            "fields[bundleIdCapabilities]": (wrappedValue: fieldsBundleIdCapabilities?.encodeToJSON(), isExplode: false),
-            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[bundleIdCapabilities]": (wrappedValue: limitBundleIdCapabilities?.encodeToJSON(), isExplode: true),
-            "limit[profiles]": (wrappedValue: limitProfiles?.encodeToJSON(), isExplode: true),
+            "fields[bundleIds]": (wrappedValue: fieldsBundleIds?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[profiles]": (wrappedValue: fieldsProfiles?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[bundleIdCapabilities]": (wrappedValue: fieldsBundleIdCapabilities?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[bundleIdCapabilities]": (wrappedValue: limitBundleIdCapabilities?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[profiles]": (wrappedValue: limitProfiles?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -741,9 +761,9 @@ open class BundleIdsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BundleIdResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BundleIdResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -752,24 +772,25 @@ open class BundleIdsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BundleIdResponse> 
      */
-    open class func bundleIdsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<BundleIdResponse> {
+    open class func bundleIdsGetInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BundleIdResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BundleIdResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BundleIdResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsProfiles
      */
-    public enum FieldsProfiles_bundleIdsProfilesGetToManyRelated: String, CaseIterable {
+    public enum FieldsProfiles_bundleIdsProfilesGetToManyRelated: String, Sendable, CaseIterable {
         case name = "name"
         case platform = "platform"
         case profiletype = "profileType"
@@ -788,20 +809,22 @@ open class BundleIdsAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsProfiles: (query) the fields to include for returned resources of type profiles (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: ProfilesWithoutIncludesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func bundleIdsProfilesGetToManyRelated(id: String, fieldsProfiles: [FieldsProfiles_bundleIdsProfilesGetToManyRelated]? = nil, limit: Int? = nil) async throws -> ProfilesWithoutIncludesResponse {
-        return try await bundleIdsProfilesGetToManyRelatedWithRequestBuilder(id: id, fieldsProfiles: fieldsProfiles, limit: limit).execute().body
+    open class func bundleIdsProfilesGetToManyRelated(id: String, fieldsProfiles: [FieldsProfiles_bundleIdsProfilesGetToManyRelated]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> ProfilesWithoutIncludesResponse {
+        return try await bundleIdsProfilesGetToManyRelatedWithRequestBuilder(id: id, fieldsProfiles: fieldsProfiles, limit: limit, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: ProfilesWithoutIncludesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func bundleIdsProfilesGetToManyRelated(urlString: String) async throws -> ProfilesWithoutIncludesResponse {
-        return try await bundleIdsProfilesGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func bundleIdsProfilesGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> ProfilesWithoutIncludesResponse {
+        return try await bundleIdsProfilesGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -812,20 +835,21 @@ open class BundleIdsAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsProfiles: (query) the fields to include for returned resources of type profiles (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ProfilesWithoutIncludesResponse> 
      */
-    open class func bundleIdsProfilesGetToManyRelatedWithRequestBuilder(id: String, fieldsProfiles: [FieldsProfiles_bundleIdsProfilesGetToManyRelated]? = nil, limit: Int? = nil) -> RequestBuilder<ProfilesWithoutIncludesResponse> {
+    open class func bundleIdsProfilesGetToManyRelatedWithRequestBuilder(id: String, fieldsProfiles: [FieldsProfiles_bundleIdsProfilesGetToManyRelated]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<ProfilesWithoutIncludesResponse> {
         var localVariablePath = "/v1/bundleIds/{id}/profiles"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[profiles]": (wrappedValue: fieldsProfiles?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "fields[profiles]": (wrappedValue: fieldsProfiles?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -834,9 +858,9 @@ open class BundleIdsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<ProfilesWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<ProfilesWithoutIncludesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -845,38 +869,41 @@ open class BundleIdsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ProfilesWithoutIncludesResponse> 
      */
-    open class func bundleIdsProfilesGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<ProfilesWithoutIncludesResponse> {
+    open class func bundleIdsProfilesGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<ProfilesWithoutIncludesResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<ProfilesWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<ProfilesWithoutIncludesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter bundleIdUpdateRequest: (body) BundleId representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BundleIdResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func bundleIdsUpdateInstance(id: String, bundleIdUpdateRequest: BundleIdUpdateRequest) async throws -> BundleIdResponse {
-        return try await bundleIdsUpdateInstanceWithRequestBuilder(id: id, bundleIdUpdateRequest: bundleIdUpdateRequest).execute().body
+    open class func bundleIdsUpdateInstance(id: String, bundleIdUpdateRequest: BundleIdUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BundleIdResponse {
+        return try await bundleIdsUpdateInstanceWithRequestBuilder(id: id, bundleIdUpdateRequest: bundleIdUpdateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BundleIdResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func bundleIdsUpdateInstance(urlString: String) async throws -> BundleIdResponse {
-        return try await bundleIdsUpdateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func bundleIdsUpdateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BundleIdResponse {
+        return try await bundleIdsUpdateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -886,15 +913,16 @@ open class BundleIdsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter bundleIdUpdateRequest: (body) BundleId representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BundleIdResponse> 
      */
-    open class func bundleIdsUpdateInstanceWithRequestBuilder(id: String, bundleIdUpdateRequest: BundleIdUpdateRequest) -> RequestBuilder<BundleIdResponse> {
+    open class func bundleIdsUpdateInstanceWithRequestBuilder(id: String, bundleIdUpdateRequest: BundleIdUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BundleIdResponse> {
         var localVariablePath = "/v1/bundleIds/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: bundleIdUpdateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: bundleIdUpdateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -904,9 +932,9 @@ open class BundleIdsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BundleIdResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BundleIdResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -915,17 +943,18 @@ open class BundleIdsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BundleIdResponse> 
      */
-    open class func bundleIdsUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<BundleIdResponse> {
+    open class func bundleIdsUpdateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BundleIdResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BundleIdResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BundleIdResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

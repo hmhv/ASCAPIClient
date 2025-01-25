@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppStoreVersionExperimentTreatmentCreateRequestDataAttributes: Codable, JSONEncodable, Hashable {
+public struct AppStoreVersionExperimentTreatmentCreateRequestDataAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
     public var name: String
     public var appIconName: String?

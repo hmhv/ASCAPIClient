@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppClipDomainStatusResponse: Codable, JSONEncodable, Hashable {
+public struct AppClipDomainStatusResponse: Sendable, Codable, JSONEncodable, Hashable {
 
     public var data: AppClipDomainStatus
     public var links: DocumentLinks

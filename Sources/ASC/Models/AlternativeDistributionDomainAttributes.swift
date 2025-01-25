@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AlternativeDistributionDomainAttributes: Codable, JSONEncodable, Hashable {
+public struct AlternativeDistributionDomainAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
     public var domain: String?
     public var referenceName: String?

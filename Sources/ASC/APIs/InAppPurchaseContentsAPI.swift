@@ -6,16 +6,13 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class InAppPurchaseContentsAPI {
 
     /**
      * enum for parameter fieldsInAppPurchaseContents
      */
-    public enum FieldsInAppPurchaseContents_inAppPurchaseContentsGetInstance: String, CaseIterable {
+    public enum FieldsInAppPurchaseContents_inAppPurchaseContentsGetInstance: String, Sendable, CaseIterable {
         case filename = "fileName"
         case filesize = "fileSize"
         case url = "url"
@@ -26,7 +23,7 @@ open class InAppPurchaseContentsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_inAppPurchaseContentsGetInstance: String, CaseIterable {
+    public enum Include_inAppPurchaseContentsGetInstance: String, Sendable, CaseIterable {
         case inapppurchasev2 = "inAppPurchaseV2"
     }
 
@@ -35,20 +32,22 @@ open class InAppPurchaseContentsAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsInAppPurchaseContents: (query) the fields to include for returned resources of type inAppPurchaseContents (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: InAppPurchaseContentResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchaseContentsGetInstance(id: String, fieldsInAppPurchaseContents: [FieldsInAppPurchaseContents_inAppPurchaseContentsGetInstance]? = nil, include: [Include_inAppPurchaseContentsGetInstance]? = nil) async throws -> InAppPurchaseContentResponse {
-        return try await inAppPurchaseContentsGetInstanceWithRequestBuilder(id: id, fieldsInAppPurchaseContents: fieldsInAppPurchaseContents, include: include).execute().body
+    open class func inAppPurchaseContentsGetInstance(id: String, fieldsInAppPurchaseContents: [FieldsInAppPurchaseContents_inAppPurchaseContentsGetInstance]? = nil, include: [Include_inAppPurchaseContentsGetInstance]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> InAppPurchaseContentResponse {
+        return try await inAppPurchaseContentsGetInstanceWithRequestBuilder(id: id, fieldsInAppPurchaseContents: fieldsInAppPurchaseContents, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: InAppPurchaseContentResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchaseContentsGetInstance(urlString: String) async throws -> InAppPurchaseContentResponse {
-        return try await inAppPurchaseContentsGetInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func inAppPurchaseContentsGetInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> InAppPurchaseContentResponse {
+        return try await inAppPurchaseContentsGetInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -59,20 +58,21 @@ open class InAppPurchaseContentsAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsInAppPurchaseContents: (query) the fields to include for returned resources of type inAppPurchaseContents (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<InAppPurchaseContentResponse> 
      */
-    open class func inAppPurchaseContentsGetInstanceWithRequestBuilder(id: String, fieldsInAppPurchaseContents: [FieldsInAppPurchaseContents_inAppPurchaseContentsGetInstance]? = nil, include: [Include_inAppPurchaseContentsGetInstance]? = nil) -> RequestBuilder<InAppPurchaseContentResponse> {
+    open class func inAppPurchaseContentsGetInstanceWithRequestBuilder(id: String, fieldsInAppPurchaseContents: [FieldsInAppPurchaseContents_inAppPurchaseContentsGetInstance]? = nil, include: [Include_inAppPurchaseContentsGetInstance]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<InAppPurchaseContentResponse> {
         var localVariablePath = "/v1/inAppPurchaseContents/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[inAppPurchaseContents]": (wrappedValue: fieldsInAppPurchaseContents?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "fields[inAppPurchaseContents]": (wrappedValue: fieldsInAppPurchaseContents?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -81,9 +81,9 @@ open class InAppPurchaseContentsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseContentResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseContentResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -92,17 +92,18 @@ open class InAppPurchaseContentsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<InAppPurchaseContentResponse> 
      */
-    open class func inAppPurchaseContentsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<InAppPurchaseContentResponse> {
+    open class func inAppPurchaseContentsGetInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<InAppPurchaseContentResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseContentResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseContentResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct GameCenterAppVersionRelationships: Codable, JSONEncodable, Hashable {
+public struct GameCenterAppVersionRelationships: Sendable, Codable, JSONEncodable, Hashable {
 
     public var compatibilityVersions: GameCenterAppVersionRelationshipsCompatibilityVersions?
     public var appStoreVersion: AppClipDefaultExperienceRelationshipsReleaseWithAppStoreVersion?

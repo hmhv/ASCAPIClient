@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public enum BuildAudienceType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+public enum BuildAudienceType: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
     case internalOnly = "INTERNAL_ONLY"
     case appStoreEligible = "APP_STORE_ELIGIBLE"
     case unknownDefaultOpenApi = "unknown_default_open_api"

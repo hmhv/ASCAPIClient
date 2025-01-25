@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppStoreVersionRelationships: Codable, JSONEncodable, Hashable {
+public struct AppStoreVersionRelationships: Sendable, Codable, JSONEncodable, Hashable {
 
     public var app: AlternativeDistributionKeyCreateRequestDataRelationshipsApp?
     @available(*, deprecated, message: "This property is deprecated.")

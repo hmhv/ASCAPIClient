@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct SubscriptionGroupCreateRequestDataAttributes: Codable, JSONEncodable, Hashable {
+public struct SubscriptionGroupCreateRequestDataAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
     public var referenceName: String
 

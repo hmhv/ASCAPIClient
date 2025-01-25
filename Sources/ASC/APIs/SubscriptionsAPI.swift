@@ -6,16 +6,13 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class SubscriptionsAPI {
 
     /**
      * enum for parameter fieldsSubscriptionAppStoreReviewScreenshots
      */
-    public enum FieldsSubscriptionAppStoreReviewScreenshots_subscriptionsAppStoreReviewScreenshotGetToOneRelated: String, CaseIterable {
+    public enum FieldsSubscriptionAppStoreReviewScreenshots_subscriptionsAppStoreReviewScreenshotGetToOneRelated: String, Sendable, CaseIterable {
         case filesize = "fileSize"
         case filename = "fileName"
         case sourcefilechecksum = "sourceFileChecksum"
@@ -30,7 +27,7 @@ open class SubscriptionsAPI {
     /**
      * enum for parameter fieldsSubscriptions
      */
-    public enum FieldsSubscriptions_subscriptionsAppStoreReviewScreenshotGetToOneRelated: String, CaseIterable {
+    public enum FieldsSubscriptions_subscriptionsAppStoreReviewScreenshotGetToOneRelated: String, Sendable, CaseIterable {
         case name = "name"
         case productid = "productId"
         case familysharable = "familySharable"
@@ -55,7 +52,7 @@ open class SubscriptionsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_subscriptionsAppStoreReviewScreenshotGetToOneRelated: String, CaseIterable {
+    public enum Include_subscriptionsAppStoreReviewScreenshotGetToOneRelated: String, Sendable, CaseIterable {
         case subscription = "subscription"
     }
 
@@ -65,20 +62,22 @@ open class SubscriptionsAPI {
      - parameter fieldsSubscriptionAppStoreReviewScreenshots: (query) the fields to include for returned resources of type subscriptionAppStoreReviewScreenshots (optional)
      - parameter fieldsSubscriptions: (query) the fields to include for returned resources of type subscriptions (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: SubscriptionAppStoreReviewScreenshotResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionsAppStoreReviewScreenshotGetToOneRelated(id: String, fieldsSubscriptionAppStoreReviewScreenshots: [FieldsSubscriptionAppStoreReviewScreenshots_subscriptionsAppStoreReviewScreenshotGetToOneRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsAppStoreReviewScreenshotGetToOneRelated]? = nil, include: [Include_subscriptionsAppStoreReviewScreenshotGetToOneRelated]? = nil) async throws -> SubscriptionAppStoreReviewScreenshotResponse {
-        return try await subscriptionsAppStoreReviewScreenshotGetToOneRelatedWithRequestBuilder(id: id, fieldsSubscriptionAppStoreReviewScreenshots: fieldsSubscriptionAppStoreReviewScreenshots, fieldsSubscriptions: fieldsSubscriptions, include: include).execute().body
+    open class func subscriptionsAppStoreReviewScreenshotGetToOneRelated(id: String, fieldsSubscriptionAppStoreReviewScreenshots: [FieldsSubscriptionAppStoreReviewScreenshots_subscriptionsAppStoreReviewScreenshotGetToOneRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsAppStoreReviewScreenshotGetToOneRelated]? = nil, include: [Include_subscriptionsAppStoreReviewScreenshotGetToOneRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> SubscriptionAppStoreReviewScreenshotResponse {
+        return try await subscriptionsAppStoreReviewScreenshotGetToOneRelatedWithRequestBuilder(id: id, fieldsSubscriptionAppStoreReviewScreenshots: fieldsSubscriptionAppStoreReviewScreenshots, fieldsSubscriptions: fieldsSubscriptions, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: SubscriptionAppStoreReviewScreenshotResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionsAppStoreReviewScreenshotGetToOneRelated(urlString: String) async throws -> SubscriptionAppStoreReviewScreenshotResponse {
-        return try await subscriptionsAppStoreReviewScreenshotGetToOneRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func subscriptionsAppStoreReviewScreenshotGetToOneRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> SubscriptionAppStoreReviewScreenshotResponse {
+        return try await subscriptionsAppStoreReviewScreenshotGetToOneRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -90,21 +89,22 @@ open class SubscriptionsAPI {
      - parameter fieldsSubscriptionAppStoreReviewScreenshots: (query) the fields to include for returned resources of type subscriptionAppStoreReviewScreenshots (optional)
      - parameter fieldsSubscriptions: (query) the fields to include for returned resources of type subscriptions (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<SubscriptionAppStoreReviewScreenshotResponse> 
      */
-    open class func subscriptionsAppStoreReviewScreenshotGetToOneRelatedWithRequestBuilder(id: String, fieldsSubscriptionAppStoreReviewScreenshots: [FieldsSubscriptionAppStoreReviewScreenshots_subscriptionsAppStoreReviewScreenshotGetToOneRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsAppStoreReviewScreenshotGetToOneRelated]? = nil, include: [Include_subscriptionsAppStoreReviewScreenshotGetToOneRelated]? = nil) -> RequestBuilder<SubscriptionAppStoreReviewScreenshotResponse> {
+    open class func subscriptionsAppStoreReviewScreenshotGetToOneRelatedWithRequestBuilder(id: String, fieldsSubscriptionAppStoreReviewScreenshots: [FieldsSubscriptionAppStoreReviewScreenshots_subscriptionsAppStoreReviewScreenshotGetToOneRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsAppStoreReviewScreenshotGetToOneRelated]? = nil, include: [Include_subscriptionsAppStoreReviewScreenshotGetToOneRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<SubscriptionAppStoreReviewScreenshotResponse> {
         var localVariablePath = "/v1/subscriptions/{id}/appStoreReviewScreenshot"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[subscriptionAppStoreReviewScreenshots]": (wrappedValue: fieldsSubscriptionAppStoreReviewScreenshots?.encodeToJSON(), isExplode: false),
-            "fields[subscriptions]": (wrappedValue: fieldsSubscriptions?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "fields[subscriptionAppStoreReviewScreenshots]": (wrappedValue: fieldsSubscriptionAppStoreReviewScreenshots?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[subscriptions]": (wrappedValue: fieldsSubscriptions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -113,9 +113,9 @@ open class SubscriptionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<SubscriptionAppStoreReviewScreenshotResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<SubscriptionAppStoreReviewScreenshotResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -124,37 +124,40 @@ open class SubscriptionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<SubscriptionAppStoreReviewScreenshotResponse> 
      */
-    open class func subscriptionsAppStoreReviewScreenshotGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<SubscriptionAppStoreReviewScreenshotResponse> {
+    open class func subscriptionsAppStoreReviewScreenshotGetToOneRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<SubscriptionAppStoreReviewScreenshotResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<SubscriptionAppStoreReviewScreenshotResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<SubscriptionAppStoreReviewScreenshotResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter subscriptionCreateRequest: (body) Subscription representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: SubscriptionResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionsCreateInstance(subscriptionCreateRequest: SubscriptionCreateRequest) async throws -> SubscriptionResponse {
-        return try await subscriptionsCreateInstanceWithRequestBuilder(subscriptionCreateRequest: subscriptionCreateRequest).execute().body
+    open class func subscriptionsCreateInstance(subscriptionCreateRequest: SubscriptionCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> SubscriptionResponse {
+        return try await subscriptionsCreateInstanceWithRequestBuilder(subscriptionCreateRequest: subscriptionCreateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: SubscriptionResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionsCreateInstance(urlString: String) async throws -> SubscriptionResponse {
-        return try await subscriptionsCreateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func subscriptionsCreateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> SubscriptionResponse {
+        return try await subscriptionsCreateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -163,12 +166,13 @@ open class SubscriptionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter subscriptionCreateRequest: (body) Subscription representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<SubscriptionResponse> 
      */
-    open class func subscriptionsCreateInstanceWithRequestBuilder(subscriptionCreateRequest: SubscriptionCreateRequest) -> RequestBuilder<SubscriptionResponse> {
+    open class func subscriptionsCreateInstanceWithRequestBuilder(subscriptionCreateRequest: SubscriptionCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<SubscriptionResponse> {
         let localVariablePath = "/v1/subscriptions"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: subscriptionCreateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: subscriptionCreateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -178,9 +182,9 @@ open class SubscriptionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<SubscriptionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<SubscriptionResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -189,37 +193,40 @@ open class SubscriptionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<SubscriptionResponse> 
      */
-    open class func subscriptionsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<SubscriptionResponse> {
+    open class func subscriptionsCreateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<SubscriptionResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<SubscriptionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<SubscriptionResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionsDeleteInstance(id: String) async throws {
-        return try await subscriptionsDeleteInstanceWithRequestBuilder(id: id).execute().body
+    open class func subscriptionsDeleteInstance(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await subscriptionsDeleteInstanceWithRequestBuilder(id: id, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionsDeleteInstance(urlString: String) async throws {
-        return try await subscriptionsDeleteInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func subscriptionsDeleteInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await subscriptionsDeleteInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -228,14 +235,15 @@ open class SubscriptionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func subscriptionsDeleteInstanceWithRequestBuilder(id: String) -> RequestBuilder<Void> {
+    open class func subscriptionsDeleteInstanceWithRequestBuilder(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/subscriptions/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -246,9 +254,9 @@ open class SubscriptionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -257,24 +265,25 @@ open class SubscriptionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func subscriptionsDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func subscriptionsDeleteInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsSubscriptions
      */
-    public enum FieldsSubscriptions_subscriptionsGetInstance: String, CaseIterable {
+    public enum FieldsSubscriptions_subscriptionsGetInstance: String, Sendable, CaseIterable {
         case name = "name"
         case productid = "productId"
         case familysharable = "familySharable"
@@ -299,7 +308,7 @@ open class SubscriptionsAPI {
     /**
      * enum for parameter fieldsSubscriptionLocalizations
      */
-    public enum FieldsSubscriptionLocalizations_subscriptionsGetInstance: String, CaseIterable {
+    public enum FieldsSubscriptionLocalizations_subscriptionsGetInstance: String, Sendable, CaseIterable {
         case name = "name"
         case locale = "locale"
         case description = "description"
@@ -310,7 +319,7 @@ open class SubscriptionsAPI {
     /**
      * enum for parameter fieldsSubscriptionAppStoreReviewScreenshots
      */
-    public enum FieldsSubscriptionAppStoreReviewScreenshots_subscriptionsGetInstance: String, CaseIterable {
+    public enum FieldsSubscriptionAppStoreReviewScreenshots_subscriptionsGetInstance: String, Sendable, CaseIterable {
         case filesize = "fileSize"
         case filename = "fileName"
         case sourcefilechecksum = "sourceFileChecksum"
@@ -325,7 +334,7 @@ open class SubscriptionsAPI {
     /**
      * enum for parameter fieldsSubscriptionIntroductoryOffers
      */
-    public enum FieldsSubscriptionIntroductoryOffers_subscriptionsGetInstance: String, CaseIterable {
+    public enum FieldsSubscriptionIntroductoryOffers_subscriptionsGetInstance: String, Sendable, CaseIterable {
         case startdate = "startDate"
         case enddate = "endDate"
         case duration = "duration"
@@ -339,7 +348,7 @@ open class SubscriptionsAPI {
     /**
      * enum for parameter fieldsSubscriptionPromotionalOffers
      */
-    public enum FieldsSubscriptionPromotionalOffers_subscriptionsGetInstance: String, CaseIterable {
+    public enum FieldsSubscriptionPromotionalOffers_subscriptionsGetInstance: String, Sendable, CaseIterable {
         case name = "name"
         case offercode = "offerCode"
         case duration = "duration"
@@ -352,7 +361,7 @@ open class SubscriptionsAPI {
     /**
      * enum for parameter fieldsSubscriptionOfferCodes
      */
-    public enum FieldsSubscriptionOfferCodes_subscriptionsGetInstance: String, CaseIterable {
+    public enum FieldsSubscriptionOfferCodes_subscriptionsGetInstance: String, Sendable, CaseIterable {
         case name = "name"
         case customereligibilities = "customerEligibilities"
         case offereligibility = "offerEligibility"
@@ -370,7 +379,7 @@ open class SubscriptionsAPI {
     /**
      * enum for parameter fieldsSubscriptionPrices
      */
-    public enum FieldsSubscriptionPrices_subscriptionsGetInstance: String, CaseIterable {
+    public enum FieldsSubscriptionPrices_subscriptionsGetInstance: String, Sendable, CaseIterable {
         case startdate = "startDate"
         case preserved = "preserved"
         case territory = "territory"
@@ -380,7 +389,7 @@ open class SubscriptionsAPI {
     /**
      * enum for parameter fieldsPromotedPurchases
      */
-    public enum FieldsPromotedPurchases_subscriptionsGetInstance: String, CaseIterable {
+    public enum FieldsPromotedPurchases_subscriptionsGetInstance: String, Sendable, CaseIterable {
         case visibleforallusers = "visibleForAllUsers"
         case enabled = "enabled"
         case state = "state"
@@ -392,7 +401,7 @@ open class SubscriptionsAPI {
     /**
      * enum for parameter fieldsSubscriptionAvailabilities
      */
-    public enum FieldsSubscriptionAvailabilities_subscriptionsGetInstance: String, CaseIterable {
+    public enum FieldsSubscriptionAvailabilities_subscriptionsGetInstance: String, Sendable, CaseIterable {
         case availableinnewterritories = "availableInNewTerritories"
         case availableterritories = "availableTerritories"
     }
@@ -400,7 +409,7 @@ open class SubscriptionsAPI {
     /**
      * enum for parameter fieldsWinBackOffers
      */
-    public enum FieldsWinBackOffers_subscriptionsGetInstance: String, CaseIterable {
+    public enum FieldsWinBackOffers_subscriptionsGetInstance: String, Sendable, CaseIterable {
         case referencename = "referenceName"
         case offerid = "offerId"
         case duration = "duration"
@@ -419,7 +428,7 @@ open class SubscriptionsAPI {
     /**
      * enum for parameter fieldsSubscriptionImages
      */
-    public enum FieldsSubscriptionImages_subscriptionsGetInstance: String, CaseIterable {
+    public enum FieldsSubscriptionImages_subscriptionsGetInstance: String, Sendable, CaseIterable {
         case filesize = "fileSize"
         case filename = "fileName"
         case sourcefilechecksum = "sourceFileChecksum"
@@ -433,7 +442,7 @@ open class SubscriptionsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_subscriptionsGetInstance: String, CaseIterable {
+    public enum Include_subscriptionsGetInstance: String, Sendable, CaseIterable {
         case subscriptionlocalizations = "subscriptionLocalizations"
         case appstorereviewscreenshot = "appStoreReviewScreenshot"
         case group = "group"
@@ -469,20 +478,22 @@ open class SubscriptionsAPI {
      - parameter limitPromotionalOffers: (query) maximum number of related promotionalOffers returned (when they are included) (optional)
      - parameter limitSubscriptionLocalizations: (query) maximum number of related subscriptionLocalizations returned (when they are included) (optional)
      - parameter limitWinBackOffers: (query) maximum number of related winBackOffers returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: SubscriptionResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionsGetInstance(id: String, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsGetInstance]? = nil, fieldsSubscriptionLocalizations: [FieldsSubscriptionLocalizations_subscriptionsGetInstance]? = nil, fieldsSubscriptionAppStoreReviewScreenshots: [FieldsSubscriptionAppStoreReviewScreenshots_subscriptionsGetInstance]? = nil, fieldsSubscriptionIntroductoryOffers: [FieldsSubscriptionIntroductoryOffers_subscriptionsGetInstance]? = nil, fieldsSubscriptionPromotionalOffers: [FieldsSubscriptionPromotionalOffers_subscriptionsGetInstance]? = nil, fieldsSubscriptionOfferCodes: [FieldsSubscriptionOfferCodes_subscriptionsGetInstance]? = nil, fieldsSubscriptionPrices: [FieldsSubscriptionPrices_subscriptionsGetInstance]? = nil, fieldsPromotedPurchases: [FieldsPromotedPurchases_subscriptionsGetInstance]? = nil, fieldsSubscriptionAvailabilities: [FieldsSubscriptionAvailabilities_subscriptionsGetInstance]? = nil, fieldsWinBackOffers: [FieldsWinBackOffers_subscriptionsGetInstance]? = nil, fieldsSubscriptionImages: [FieldsSubscriptionImages_subscriptionsGetInstance]? = nil, include: [Include_subscriptionsGetInstance]? = nil, limitImages: Int? = nil, limitIntroductoryOffers: Int? = nil, limitOfferCodes: Int? = nil, limitPrices: Int? = nil, limitPromotionalOffers: Int? = nil, limitSubscriptionLocalizations: Int? = nil, limitWinBackOffers: Int? = nil) async throws -> SubscriptionResponse {
-        return try await subscriptionsGetInstanceWithRequestBuilder(id: id, fieldsSubscriptions: fieldsSubscriptions, fieldsSubscriptionLocalizations: fieldsSubscriptionLocalizations, fieldsSubscriptionAppStoreReviewScreenshots: fieldsSubscriptionAppStoreReviewScreenshots, fieldsSubscriptionIntroductoryOffers: fieldsSubscriptionIntroductoryOffers, fieldsSubscriptionPromotionalOffers: fieldsSubscriptionPromotionalOffers, fieldsSubscriptionOfferCodes: fieldsSubscriptionOfferCodes, fieldsSubscriptionPrices: fieldsSubscriptionPrices, fieldsPromotedPurchases: fieldsPromotedPurchases, fieldsSubscriptionAvailabilities: fieldsSubscriptionAvailabilities, fieldsWinBackOffers: fieldsWinBackOffers, fieldsSubscriptionImages: fieldsSubscriptionImages, include: include, limitImages: limitImages, limitIntroductoryOffers: limitIntroductoryOffers, limitOfferCodes: limitOfferCodes, limitPrices: limitPrices, limitPromotionalOffers: limitPromotionalOffers, limitSubscriptionLocalizations: limitSubscriptionLocalizations, limitWinBackOffers: limitWinBackOffers).execute().body
+    open class func subscriptionsGetInstance(id: String, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsGetInstance]? = nil, fieldsSubscriptionLocalizations: [FieldsSubscriptionLocalizations_subscriptionsGetInstance]? = nil, fieldsSubscriptionAppStoreReviewScreenshots: [FieldsSubscriptionAppStoreReviewScreenshots_subscriptionsGetInstance]? = nil, fieldsSubscriptionIntroductoryOffers: [FieldsSubscriptionIntroductoryOffers_subscriptionsGetInstance]? = nil, fieldsSubscriptionPromotionalOffers: [FieldsSubscriptionPromotionalOffers_subscriptionsGetInstance]? = nil, fieldsSubscriptionOfferCodes: [FieldsSubscriptionOfferCodes_subscriptionsGetInstance]? = nil, fieldsSubscriptionPrices: [FieldsSubscriptionPrices_subscriptionsGetInstance]? = nil, fieldsPromotedPurchases: [FieldsPromotedPurchases_subscriptionsGetInstance]? = nil, fieldsSubscriptionAvailabilities: [FieldsSubscriptionAvailabilities_subscriptionsGetInstance]? = nil, fieldsWinBackOffers: [FieldsWinBackOffers_subscriptionsGetInstance]? = nil, fieldsSubscriptionImages: [FieldsSubscriptionImages_subscriptionsGetInstance]? = nil, include: [Include_subscriptionsGetInstance]? = nil, limitImages: Int? = nil, limitIntroductoryOffers: Int? = nil, limitOfferCodes: Int? = nil, limitPrices: Int? = nil, limitPromotionalOffers: Int? = nil, limitSubscriptionLocalizations: Int? = nil, limitWinBackOffers: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> SubscriptionResponse {
+        return try await subscriptionsGetInstanceWithRequestBuilder(id: id, fieldsSubscriptions: fieldsSubscriptions, fieldsSubscriptionLocalizations: fieldsSubscriptionLocalizations, fieldsSubscriptionAppStoreReviewScreenshots: fieldsSubscriptionAppStoreReviewScreenshots, fieldsSubscriptionIntroductoryOffers: fieldsSubscriptionIntroductoryOffers, fieldsSubscriptionPromotionalOffers: fieldsSubscriptionPromotionalOffers, fieldsSubscriptionOfferCodes: fieldsSubscriptionOfferCodes, fieldsSubscriptionPrices: fieldsSubscriptionPrices, fieldsPromotedPurchases: fieldsPromotedPurchases, fieldsSubscriptionAvailabilities: fieldsSubscriptionAvailabilities, fieldsWinBackOffers: fieldsWinBackOffers, fieldsSubscriptionImages: fieldsSubscriptionImages, include: include, limitImages: limitImages, limitIntroductoryOffers: limitIntroductoryOffers, limitOfferCodes: limitOfferCodes, limitPrices: limitPrices, limitPromotionalOffers: limitPromotionalOffers, limitSubscriptionLocalizations: limitSubscriptionLocalizations, limitWinBackOffers: limitWinBackOffers, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: SubscriptionResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionsGetInstance(urlString: String) async throws -> SubscriptionResponse {
-        return try await subscriptionsGetInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func subscriptionsGetInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> SubscriptionResponse {
+        return try await subscriptionsGetInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -510,37 +521,38 @@ open class SubscriptionsAPI {
      - parameter limitPromotionalOffers: (query) maximum number of related promotionalOffers returned (when they are included) (optional)
      - parameter limitSubscriptionLocalizations: (query) maximum number of related subscriptionLocalizations returned (when they are included) (optional)
      - parameter limitWinBackOffers: (query) maximum number of related winBackOffers returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<SubscriptionResponse> 
      */
-    open class func subscriptionsGetInstanceWithRequestBuilder(id: String, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsGetInstance]? = nil, fieldsSubscriptionLocalizations: [FieldsSubscriptionLocalizations_subscriptionsGetInstance]? = nil, fieldsSubscriptionAppStoreReviewScreenshots: [FieldsSubscriptionAppStoreReviewScreenshots_subscriptionsGetInstance]? = nil, fieldsSubscriptionIntroductoryOffers: [FieldsSubscriptionIntroductoryOffers_subscriptionsGetInstance]? = nil, fieldsSubscriptionPromotionalOffers: [FieldsSubscriptionPromotionalOffers_subscriptionsGetInstance]? = nil, fieldsSubscriptionOfferCodes: [FieldsSubscriptionOfferCodes_subscriptionsGetInstance]? = nil, fieldsSubscriptionPrices: [FieldsSubscriptionPrices_subscriptionsGetInstance]? = nil, fieldsPromotedPurchases: [FieldsPromotedPurchases_subscriptionsGetInstance]? = nil, fieldsSubscriptionAvailabilities: [FieldsSubscriptionAvailabilities_subscriptionsGetInstance]? = nil, fieldsWinBackOffers: [FieldsWinBackOffers_subscriptionsGetInstance]? = nil, fieldsSubscriptionImages: [FieldsSubscriptionImages_subscriptionsGetInstance]? = nil, include: [Include_subscriptionsGetInstance]? = nil, limitImages: Int? = nil, limitIntroductoryOffers: Int? = nil, limitOfferCodes: Int? = nil, limitPrices: Int? = nil, limitPromotionalOffers: Int? = nil, limitSubscriptionLocalizations: Int? = nil, limitWinBackOffers: Int? = nil) -> RequestBuilder<SubscriptionResponse> {
+    open class func subscriptionsGetInstanceWithRequestBuilder(id: String, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsGetInstance]? = nil, fieldsSubscriptionLocalizations: [FieldsSubscriptionLocalizations_subscriptionsGetInstance]? = nil, fieldsSubscriptionAppStoreReviewScreenshots: [FieldsSubscriptionAppStoreReviewScreenshots_subscriptionsGetInstance]? = nil, fieldsSubscriptionIntroductoryOffers: [FieldsSubscriptionIntroductoryOffers_subscriptionsGetInstance]? = nil, fieldsSubscriptionPromotionalOffers: [FieldsSubscriptionPromotionalOffers_subscriptionsGetInstance]? = nil, fieldsSubscriptionOfferCodes: [FieldsSubscriptionOfferCodes_subscriptionsGetInstance]? = nil, fieldsSubscriptionPrices: [FieldsSubscriptionPrices_subscriptionsGetInstance]? = nil, fieldsPromotedPurchases: [FieldsPromotedPurchases_subscriptionsGetInstance]? = nil, fieldsSubscriptionAvailabilities: [FieldsSubscriptionAvailabilities_subscriptionsGetInstance]? = nil, fieldsWinBackOffers: [FieldsWinBackOffers_subscriptionsGetInstance]? = nil, fieldsSubscriptionImages: [FieldsSubscriptionImages_subscriptionsGetInstance]? = nil, include: [Include_subscriptionsGetInstance]? = nil, limitImages: Int? = nil, limitIntroductoryOffers: Int? = nil, limitOfferCodes: Int? = nil, limitPrices: Int? = nil, limitPromotionalOffers: Int? = nil, limitSubscriptionLocalizations: Int? = nil, limitWinBackOffers: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<SubscriptionResponse> {
         var localVariablePath = "/v1/subscriptions/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[subscriptions]": (wrappedValue: fieldsSubscriptions?.encodeToJSON(), isExplode: false),
-            "fields[subscriptionLocalizations]": (wrappedValue: fieldsSubscriptionLocalizations?.encodeToJSON(), isExplode: false),
-            "fields[subscriptionAppStoreReviewScreenshots]": (wrappedValue: fieldsSubscriptionAppStoreReviewScreenshots?.encodeToJSON(), isExplode: false),
-            "fields[subscriptionIntroductoryOffers]": (wrappedValue: fieldsSubscriptionIntroductoryOffers?.encodeToJSON(), isExplode: false),
-            "fields[subscriptionPromotionalOffers]": (wrappedValue: fieldsSubscriptionPromotionalOffers?.encodeToJSON(), isExplode: false),
-            "fields[subscriptionOfferCodes]": (wrappedValue: fieldsSubscriptionOfferCodes?.encodeToJSON(), isExplode: false),
-            "fields[subscriptionPrices]": (wrappedValue: fieldsSubscriptionPrices?.encodeToJSON(), isExplode: false),
-            "fields[promotedPurchases]": (wrappedValue: fieldsPromotedPurchases?.encodeToJSON(), isExplode: false),
-            "fields[subscriptionAvailabilities]": (wrappedValue: fieldsSubscriptionAvailabilities?.encodeToJSON(), isExplode: false),
-            "fields[winBackOffers]": (wrappedValue: fieldsWinBackOffers?.encodeToJSON(), isExplode: false),
-            "fields[subscriptionImages]": (wrappedValue: fieldsSubscriptionImages?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[images]": (wrappedValue: limitImages?.encodeToJSON(), isExplode: true),
-            "limit[introductoryOffers]": (wrappedValue: limitIntroductoryOffers?.encodeToJSON(), isExplode: true),
-            "limit[offerCodes]": (wrappedValue: limitOfferCodes?.encodeToJSON(), isExplode: true),
-            "limit[prices]": (wrappedValue: limitPrices?.encodeToJSON(), isExplode: true),
-            "limit[promotionalOffers]": (wrappedValue: limitPromotionalOffers?.encodeToJSON(), isExplode: true),
-            "limit[subscriptionLocalizations]": (wrappedValue: limitSubscriptionLocalizations?.encodeToJSON(), isExplode: true),
-            "limit[winBackOffers]": (wrappedValue: limitWinBackOffers?.encodeToJSON(), isExplode: true),
+            "fields[subscriptions]": (wrappedValue: fieldsSubscriptions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[subscriptionLocalizations]": (wrappedValue: fieldsSubscriptionLocalizations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[subscriptionAppStoreReviewScreenshots]": (wrappedValue: fieldsSubscriptionAppStoreReviewScreenshots?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[subscriptionIntroductoryOffers]": (wrappedValue: fieldsSubscriptionIntroductoryOffers?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[subscriptionPromotionalOffers]": (wrappedValue: fieldsSubscriptionPromotionalOffers?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[subscriptionOfferCodes]": (wrappedValue: fieldsSubscriptionOfferCodes?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[subscriptionPrices]": (wrappedValue: fieldsSubscriptionPrices?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[promotedPurchases]": (wrappedValue: fieldsPromotedPurchases?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[subscriptionAvailabilities]": (wrappedValue: fieldsSubscriptionAvailabilities?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[winBackOffers]": (wrappedValue: fieldsWinBackOffers?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[subscriptionImages]": (wrappedValue: fieldsSubscriptionImages?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[images]": (wrappedValue: limitImages?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[introductoryOffers]": (wrappedValue: limitIntroductoryOffers?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[offerCodes]": (wrappedValue: limitOfferCodes?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[prices]": (wrappedValue: limitPrices?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[promotionalOffers]": (wrappedValue: limitPromotionalOffers?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[subscriptionLocalizations]": (wrappedValue: limitSubscriptionLocalizations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[winBackOffers]": (wrappedValue: limitWinBackOffers?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -549,9 +561,9 @@ open class SubscriptionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<SubscriptionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<SubscriptionResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -560,24 +572,25 @@ open class SubscriptionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<SubscriptionResponse> 
      */
-    open class func subscriptionsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<SubscriptionResponse> {
+    open class func subscriptionsGetInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<SubscriptionResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<SubscriptionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<SubscriptionResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsSubscriptionImages
      */
-    public enum FieldsSubscriptionImages_subscriptionsImagesGetToManyRelated: String, CaseIterable {
+    public enum FieldsSubscriptionImages_subscriptionsImagesGetToManyRelated: String, Sendable, CaseIterable {
         case filesize = "fileSize"
         case filename = "fileName"
         case sourcefilechecksum = "sourceFileChecksum"
@@ -591,7 +604,7 @@ open class SubscriptionsAPI {
     /**
      * enum for parameter fieldsSubscriptions
      */
-    public enum FieldsSubscriptions_subscriptionsImagesGetToManyRelated: String, CaseIterable {
+    public enum FieldsSubscriptions_subscriptionsImagesGetToManyRelated: String, Sendable, CaseIterable {
         case name = "name"
         case productid = "productId"
         case familysharable = "familySharable"
@@ -616,7 +629,7 @@ open class SubscriptionsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_subscriptionsImagesGetToManyRelated: String, CaseIterable {
+    public enum Include_subscriptionsImagesGetToManyRelated: String, Sendable, CaseIterable {
         case subscription = "subscription"
     }
 
@@ -627,20 +640,22 @@ open class SubscriptionsAPI {
      - parameter fieldsSubscriptions: (query) the fields to include for returned resources of type subscriptions (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: SubscriptionImagesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionsImagesGetToManyRelated(id: String, fieldsSubscriptionImages: [FieldsSubscriptionImages_subscriptionsImagesGetToManyRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsImagesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionsImagesGetToManyRelated]? = nil) async throws -> SubscriptionImagesResponse {
-        return try await subscriptionsImagesGetToManyRelatedWithRequestBuilder(id: id, fieldsSubscriptionImages: fieldsSubscriptionImages, fieldsSubscriptions: fieldsSubscriptions, limit: limit, include: include).execute().body
+    open class func subscriptionsImagesGetToManyRelated(id: String, fieldsSubscriptionImages: [FieldsSubscriptionImages_subscriptionsImagesGetToManyRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsImagesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionsImagesGetToManyRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> SubscriptionImagesResponse {
+        return try await subscriptionsImagesGetToManyRelatedWithRequestBuilder(id: id, fieldsSubscriptionImages: fieldsSubscriptionImages, fieldsSubscriptions: fieldsSubscriptions, limit: limit, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: SubscriptionImagesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionsImagesGetToManyRelated(urlString: String) async throws -> SubscriptionImagesResponse {
-        return try await subscriptionsImagesGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func subscriptionsImagesGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> SubscriptionImagesResponse {
+        return try await subscriptionsImagesGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -653,22 +668,23 @@ open class SubscriptionsAPI {
      - parameter fieldsSubscriptions: (query) the fields to include for returned resources of type subscriptions (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<SubscriptionImagesResponse> 
      */
-    open class func subscriptionsImagesGetToManyRelatedWithRequestBuilder(id: String, fieldsSubscriptionImages: [FieldsSubscriptionImages_subscriptionsImagesGetToManyRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsImagesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionsImagesGetToManyRelated]? = nil) -> RequestBuilder<SubscriptionImagesResponse> {
+    open class func subscriptionsImagesGetToManyRelatedWithRequestBuilder(id: String, fieldsSubscriptionImages: [FieldsSubscriptionImages_subscriptionsImagesGetToManyRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsImagesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionsImagesGetToManyRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<SubscriptionImagesResponse> {
         var localVariablePath = "/v1/subscriptions/{id}/images"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[subscriptionImages]": (wrappedValue: fieldsSubscriptionImages?.encodeToJSON(), isExplode: false),
-            "fields[subscriptions]": (wrappedValue: fieldsSubscriptions?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "fields[subscriptionImages]": (wrappedValue: fieldsSubscriptionImages?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[subscriptions]": (wrappedValue: fieldsSubscriptions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -677,9 +693,9 @@ open class SubscriptionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<SubscriptionImagesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<SubscriptionImagesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -688,38 +704,41 @@ open class SubscriptionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<SubscriptionImagesResponse> 
      */
-    open class func subscriptionsImagesGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<SubscriptionImagesResponse> {
+    open class func subscriptionsImagesGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<SubscriptionImagesResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<SubscriptionImagesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<SubscriptionImagesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter subscriptionIntroductoryOffersLinkagesRequest: (body) List of related linkages 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionsIntroductoryOffersDeleteToManyRelationship(id: String, subscriptionIntroductoryOffersLinkagesRequest: SubscriptionIntroductoryOffersLinkagesRequest) async throws {
-        return try await subscriptionsIntroductoryOffersDeleteToManyRelationshipWithRequestBuilder(id: id, subscriptionIntroductoryOffersLinkagesRequest: subscriptionIntroductoryOffersLinkagesRequest).execute().body
+    open class func subscriptionsIntroductoryOffersDeleteToManyRelationship(id: String, subscriptionIntroductoryOffersLinkagesRequest: SubscriptionIntroductoryOffersLinkagesRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await subscriptionsIntroductoryOffersDeleteToManyRelationshipWithRequestBuilder(id: id, subscriptionIntroductoryOffersLinkagesRequest: subscriptionIntroductoryOffersLinkagesRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionsIntroductoryOffersDeleteToManyRelationship(urlString: String) async throws {
-        return try await subscriptionsIntroductoryOffersDeleteToManyRelationshipWithRequestBuilder(urlString: urlString).execute().body
+    open class func subscriptionsIntroductoryOffersDeleteToManyRelationship(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await subscriptionsIntroductoryOffersDeleteToManyRelationshipWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -729,15 +748,16 @@ open class SubscriptionsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter subscriptionIntroductoryOffersLinkagesRequest: (body) List of related linkages 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func subscriptionsIntroductoryOffersDeleteToManyRelationshipWithRequestBuilder(id: String, subscriptionIntroductoryOffersLinkagesRequest: SubscriptionIntroductoryOffersLinkagesRequest) -> RequestBuilder<Void> {
+    open class func subscriptionsIntroductoryOffersDeleteToManyRelationshipWithRequestBuilder(id: String, subscriptionIntroductoryOffersLinkagesRequest: SubscriptionIntroductoryOffersLinkagesRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/subscriptions/{id}/relationships/introductoryOffers"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: subscriptionIntroductoryOffersLinkagesRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: subscriptionIntroductoryOffersLinkagesRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -747,9 +767,9 @@ open class SubscriptionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -758,24 +778,25 @@ open class SubscriptionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func subscriptionsIntroductoryOffersDeleteToManyRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func subscriptionsIntroductoryOffersDeleteToManyRelationshipWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsSubscriptionIntroductoryOffers
      */
-    public enum FieldsSubscriptionIntroductoryOffers_subscriptionsIntroductoryOffersGetToManyRelated: String, CaseIterable {
+    public enum FieldsSubscriptionIntroductoryOffers_subscriptionsIntroductoryOffersGetToManyRelated: String, Sendable, CaseIterable {
         case startdate = "startDate"
         case enddate = "endDate"
         case duration = "duration"
@@ -789,7 +810,7 @@ open class SubscriptionsAPI {
     /**
      * enum for parameter fieldsSubscriptions
      */
-    public enum FieldsSubscriptions_subscriptionsIntroductoryOffersGetToManyRelated: String, CaseIterable {
+    public enum FieldsSubscriptions_subscriptionsIntroductoryOffersGetToManyRelated: String, Sendable, CaseIterable {
         case name = "name"
         case productid = "productId"
         case familysharable = "familySharable"
@@ -814,14 +835,14 @@ open class SubscriptionsAPI {
     /**
      * enum for parameter fieldsTerritories
      */
-    public enum FieldsTerritories_subscriptionsIntroductoryOffersGetToManyRelated: String, CaseIterable {
+    public enum FieldsTerritories_subscriptionsIntroductoryOffersGetToManyRelated: String, Sendable, CaseIterable {
         case currency = "currency"
     }
 
     /**
      * enum for parameter fieldsSubscriptionPricePoints
      */
-    public enum FieldsSubscriptionPricePoints_subscriptionsIntroductoryOffersGetToManyRelated: String, CaseIterable {
+    public enum FieldsSubscriptionPricePoints_subscriptionsIntroductoryOffersGetToManyRelated: String, Sendable, CaseIterable {
         case customerprice = "customerPrice"
         case proceeds = "proceeds"
         case proceedsyear2 = "proceedsYear2"
@@ -832,7 +853,7 @@ open class SubscriptionsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_subscriptionsIntroductoryOffersGetToManyRelated: String, CaseIterable {
+    public enum Include_subscriptionsIntroductoryOffersGetToManyRelated: String, Sendable, CaseIterable {
         case subscription = "subscription"
         case territory = "territory"
         case subscriptionpricepoint = "subscriptionPricePoint"
@@ -848,20 +869,22 @@ open class SubscriptionsAPI {
      - parameter fieldsSubscriptionPricePoints: (query) the fields to include for returned resources of type subscriptionPricePoints (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: SubscriptionIntroductoryOffersResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionsIntroductoryOffersGetToManyRelated(id: String, filterTerritory: [String]? = nil, fieldsSubscriptionIntroductoryOffers: [FieldsSubscriptionIntroductoryOffers_subscriptionsIntroductoryOffersGetToManyRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsIntroductoryOffersGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_subscriptionsIntroductoryOffersGetToManyRelated]? = nil, fieldsSubscriptionPricePoints: [FieldsSubscriptionPricePoints_subscriptionsIntroductoryOffersGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionsIntroductoryOffersGetToManyRelated]? = nil) async throws -> SubscriptionIntroductoryOffersResponse {
-        return try await subscriptionsIntroductoryOffersGetToManyRelatedWithRequestBuilder(id: id, filterTerritory: filterTerritory, fieldsSubscriptionIntroductoryOffers: fieldsSubscriptionIntroductoryOffers, fieldsSubscriptions: fieldsSubscriptions, fieldsTerritories: fieldsTerritories, fieldsSubscriptionPricePoints: fieldsSubscriptionPricePoints, limit: limit, include: include).execute().body
+    open class func subscriptionsIntroductoryOffersGetToManyRelated(id: String, filterTerritory: [String]? = nil, fieldsSubscriptionIntroductoryOffers: [FieldsSubscriptionIntroductoryOffers_subscriptionsIntroductoryOffersGetToManyRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsIntroductoryOffersGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_subscriptionsIntroductoryOffersGetToManyRelated]? = nil, fieldsSubscriptionPricePoints: [FieldsSubscriptionPricePoints_subscriptionsIntroductoryOffersGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionsIntroductoryOffersGetToManyRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> SubscriptionIntroductoryOffersResponse {
+        return try await subscriptionsIntroductoryOffersGetToManyRelatedWithRequestBuilder(id: id, filterTerritory: filterTerritory, fieldsSubscriptionIntroductoryOffers: fieldsSubscriptionIntroductoryOffers, fieldsSubscriptions: fieldsSubscriptions, fieldsTerritories: fieldsTerritories, fieldsSubscriptionPricePoints: fieldsSubscriptionPricePoints, limit: limit, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: SubscriptionIntroductoryOffersResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionsIntroductoryOffersGetToManyRelated(urlString: String) async throws -> SubscriptionIntroductoryOffersResponse {
-        return try await subscriptionsIntroductoryOffersGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func subscriptionsIntroductoryOffersGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> SubscriptionIntroductoryOffersResponse {
+        return try await subscriptionsIntroductoryOffersGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -877,25 +900,26 @@ open class SubscriptionsAPI {
      - parameter fieldsSubscriptionPricePoints: (query) the fields to include for returned resources of type subscriptionPricePoints (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<SubscriptionIntroductoryOffersResponse> 
      */
-    open class func subscriptionsIntroductoryOffersGetToManyRelatedWithRequestBuilder(id: String, filterTerritory: [String]? = nil, fieldsSubscriptionIntroductoryOffers: [FieldsSubscriptionIntroductoryOffers_subscriptionsIntroductoryOffersGetToManyRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsIntroductoryOffersGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_subscriptionsIntroductoryOffersGetToManyRelated]? = nil, fieldsSubscriptionPricePoints: [FieldsSubscriptionPricePoints_subscriptionsIntroductoryOffersGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionsIntroductoryOffersGetToManyRelated]? = nil) -> RequestBuilder<SubscriptionIntroductoryOffersResponse> {
+    open class func subscriptionsIntroductoryOffersGetToManyRelatedWithRequestBuilder(id: String, filterTerritory: [String]? = nil, fieldsSubscriptionIntroductoryOffers: [FieldsSubscriptionIntroductoryOffers_subscriptionsIntroductoryOffersGetToManyRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsIntroductoryOffersGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_subscriptionsIntroductoryOffersGetToManyRelated]? = nil, fieldsSubscriptionPricePoints: [FieldsSubscriptionPricePoints_subscriptionsIntroductoryOffersGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionsIntroductoryOffersGetToManyRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<SubscriptionIntroductoryOffersResponse> {
         var localVariablePath = "/v1/subscriptions/{id}/introductoryOffers"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[territory]": (wrappedValue: filterTerritory?.encodeToJSON(), isExplode: false),
-            "fields[subscriptionIntroductoryOffers]": (wrappedValue: fieldsSubscriptionIntroductoryOffers?.encodeToJSON(), isExplode: false),
-            "fields[subscriptions]": (wrappedValue: fieldsSubscriptions?.encodeToJSON(), isExplode: false),
-            "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(), isExplode: false),
-            "fields[subscriptionPricePoints]": (wrappedValue: fieldsSubscriptionPricePoints?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "filter[territory]": (wrappedValue: filterTerritory?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[subscriptionIntroductoryOffers]": (wrappedValue: fieldsSubscriptionIntroductoryOffers?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[subscriptions]": (wrappedValue: fieldsSubscriptions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[subscriptionPricePoints]": (wrappedValue: fieldsSubscriptionPricePoints?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -904,9 +928,9 @@ open class SubscriptionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<SubscriptionIntroductoryOffersResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<SubscriptionIntroductoryOffersResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -915,38 +939,41 @@ open class SubscriptionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<SubscriptionIntroductoryOffersResponse> 
      */
-    open class func subscriptionsIntroductoryOffersGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<SubscriptionIntroductoryOffersResponse> {
+    open class func subscriptionsIntroductoryOffersGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<SubscriptionIntroductoryOffersResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<SubscriptionIntroductoryOffersResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<SubscriptionIntroductoryOffersResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: SubscriptionIntroductoryOffersLinkagesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionsIntroductoryOffersGetToManyRelationship(id: String, limit: Int? = nil) async throws -> SubscriptionIntroductoryOffersLinkagesResponse {
-        return try await subscriptionsIntroductoryOffersGetToManyRelationshipWithRequestBuilder(id: id, limit: limit).execute().body
+    open class func subscriptionsIntroductoryOffersGetToManyRelationship(id: String, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> SubscriptionIntroductoryOffersLinkagesResponse {
+        return try await subscriptionsIntroductoryOffersGetToManyRelationshipWithRequestBuilder(id: id, limit: limit, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: SubscriptionIntroductoryOffersLinkagesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionsIntroductoryOffersGetToManyRelationship(urlString: String) async throws -> SubscriptionIntroductoryOffersLinkagesResponse {
-        return try await subscriptionsIntroductoryOffersGetToManyRelationshipWithRequestBuilder(urlString: urlString).execute().body
+    open class func subscriptionsIntroductoryOffersGetToManyRelationship(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> SubscriptionIntroductoryOffersLinkagesResponse {
+        return try await subscriptionsIntroductoryOffersGetToManyRelationshipWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -956,19 +983,20 @@ open class SubscriptionsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<SubscriptionIntroductoryOffersLinkagesResponse> 
      */
-    open class func subscriptionsIntroductoryOffersGetToManyRelationshipWithRequestBuilder(id: String, limit: Int? = nil) -> RequestBuilder<SubscriptionIntroductoryOffersLinkagesResponse> {
+    open class func subscriptionsIntroductoryOffersGetToManyRelationshipWithRequestBuilder(id: String, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<SubscriptionIntroductoryOffersLinkagesResponse> {
         var localVariablePath = "/v1/subscriptions/{id}/relationships/introductoryOffers"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -977,9 +1005,9 @@ open class SubscriptionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<SubscriptionIntroductoryOffersLinkagesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<SubscriptionIntroductoryOffersLinkagesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -988,24 +1016,25 @@ open class SubscriptionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<SubscriptionIntroductoryOffersLinkagesResponse> 
      */
-    open class func subscriptionsIntroductoryOffersGetToManyRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<SubscriptionIntroductoryOffersLinkagesResponse> {
+    open class func subscriptionsIntroductoryOffersGetToManyRelationshipWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<SubscriptionIntroductoryOffersLinkagesResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<SubscriptionIntroductoryOffersLinkagesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<SubscriptionIntroductoryOffersLinkagesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsSubscriptionOfferCodes
      */
-    public enum FieldsSubscriptionOfferCodes_subscriptionsOfferCodesGetToManyRelated: String, CaseIterable {
+    public enum FieldsSubscriptionOfferCodes_subscriptionsOfferCodesGetToManyRelated: String, Sendable, CaseIterable {
         case name = "name"
         case customereligibilities = "customerEligibilities"
         case offereligibility = "offerEligibility"
@@ -1023,7 +1052,7 @@ open class SubscriptionsAPI {
     /**
      * enum for parameter fieldsSubscriptions
      */
-    public enum FieldsSubscriptions_subscriptionsOfferCodesGetToManyRelated: String, CaseIterable {
+    public enum FieldsSubscriptions_subscriptionsOfferCodesGetToManyRelated: String, Sendable, CaseIterable {
         case name = "name"
         case productid = "productId"
         case familysharable = "familySharable"
@@ -1048,7 +1077,7 @@ open class SubscriptionsAPI {
     /**
      * enum for parameter fieldsSubscriptionOfferCodeOneTimeUseCodes
      */
-    public enum FieldsSubscriptionOfferCodeOneTimeUseCodes_subscriptionsOfferCodesGetToManyRelated: String, CaseIterable {
+    public enum FieldsSubscriptionOfferCodeOneTimeUseCodes_subscriptionsOfferCodesGetToManyRelated: String, Sendable, CaseIterable {
         case numberofcodes = "numberOfCodes"
         case createddate = "createdDate"
         case expirationdate = "expirationDate"
@@ -1060,7 +1089,7 @@ open class SubscriptionsAPI {
     /**
      * enum for parameter fieldsSubscriptionOfferCodeCustomCodes
      */
-    public enum FieldsSubscriptionOfferCodeCustomCodes_subscriptionsOfferCodesGetToManyRelated: String, CaseIterable {
+    public enum FieldsSubscriptionOfferCodeCustomCodes_subscriptionsOfferCodesGetToManyRelated: String, Sendable, CaseIterable {
         case customcode = "customCode"
         case numberofcodes = "numberOfCodes"
         case createddate = "createdDate"
@@ -1072,7 +1101,7 @@ open class SubscriptionsAPI {
     /**
      * enum for parameter fieldsSubscriptionOfferCodePrices
      */
-    public enum FieldsSubscriptionOfferCodePrices_subscriptionsOfferCodesGetToManyRelated: String, CaseIterable {
+    public enum FieldsSubscriptionOfferCodePrices_subscriptionsOfferCodesGetToManyRelated: String, Sendable, CaseIterable {
         case territory = "territory"
         case subscriptionpricepoint = "subscriptionPricePoint"
     }
@@ -1080,7 +1109,7 @@ open class SubscriptionsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_subscriptionsOfferCodesGetToManyRelated: String, CaseIterable {
+    public enum Include_subscriptionsOfferCodesGetToManyRelated: String, Sendable, CaseIterable {
         case subscription = "subscription"
         case onetimeusecodes = "oneTimeUseCodes"
         case customcodes = "customCodes"
@@ -1101,20 +1130,22 @@ open class SubscriptionsAPI {
      - parameter limitOneTimeUseCodes: (query) maximum number of related oneTimeUseCodes returned (when they are included) (optional)
      - parameter limitCustomCodes: (query) maximum number of related customCodes returned (when they are included) (optional)
      - parameter limitPrices: (query) maximum number of related prices returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: SubscriptionOfferCodesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionsOfferCodesGetToManyRelated(id: String, filterTerritory: [String]? = nil, fieldsSubscriptionOfferCodes: [FieldsSubscriptionOfferCodes_subscriptionsOfferCodesGetToManyRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsOfferCodesGetToManyRelated]? = nil, fieldsSubscriptionOfferCodeOneTimeUseCodes: [FieldsSubscriptionOfferCodeOneTimeUseCodes_subscriptionsOfferCodesGetToManyRelated]? = nil, fieldsSubscriptionOfferCodeCustomCodes: [FieldsSubscriptionOfferCodeCustomCodes_subscriptionsOfferCodesGetToManyRelated]? = nil, fieldsSubscriptionOfferCodePrices: [FieldsSubscriptionOfferCodePrices_subscriptionsOfferCodesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionsOfferCodesGetToManyRelated]? = nil, limitOneTimeUseCodes: Int? = nil, limitCustomCodes: Int? = nil, limitPrices: Int? = nil) async throws -> SubscriptionOfferCodesResponse {
-        return try await subscriptionsOfferCodesGetToManyRelatedWithRequestBuilder(id: id, filterTerritory: filterTerritory, fieldsSubscriptionOfferCodes: fieldsSubscriptionOfferCodes, fieldsSubscriptions: fieldsSubscriptions, fieldsSubscriptionOfferCodeOneTimeUseCodes: fieldsSubscriptionOfferCodeOneTimeUseCodes, fieldsSubscriptionOfferCodeCustomCodes: fieldsSubscriptionOfferCodeCustomCodes, fieldsSubscriptionOfferCodePrices: fieldsSubscriptionOfferCodePrices, limit: limit, include: include, limitOneTimeUseCodes: limitOneTimeUseCodes, limitCustomCodes: limitCustomCodes, limitPrices: limitPrices).execute().body
+    open class func subscriptionsOfferCodesGetToManyRelated(id: String, filterTerritory: [String]? = nil, fieldsSubscriptionOfferCodes: [FieldsSubscriptionOfferCodes_subscriptionsOfferCodesGetToManyRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsOfferCodesGetToManyRelated]? = nil, fieldsSubscriptionOfferCodeOneTimeUseCodes: [FieldsSubscriptionOfferCodeOneTimeUseCodes_subscriptionsOfferCodesGetToManyRelated]? = nil, fieldsSubscriptionOfferCodeCustomCodes: [FieldsSubscriptionOfferCodeCustomCodes_subscriptionsOfferCodesGetToManyRelated]? = nil, fieldsSubscriptionOfferCodePrices: [FieldsSubscriptionOfferCodePrices_subscriptionsOfferCodesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionsOfferCodesGetToManyRelated]? = nil, limitOneTimeUseCodes: Int? = nil, limitCustomCodes: Int? = nil, limitPrices: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> SubscriptionOfferCodesResponse {
+        return try await subscriptionsOfferCodesGetToManyRelatedWithRequestBuilder(id: id, filterTerritory: filterTerritory, fieldsSubscriptionOfferCodes: fieldsSubscriptionOfferCodes, fieldsSubscriptions: fieldsSubscriptions, fieldsSubscriptionOfferCodeOneTimeUseCodes: fieldsSubscriptionOfferCodeOneTimeUseCodes, fieldsSubscriptionOfferCodeCustomCodes: fieldsSubscriptionOfferCodeCustomCodes, fieldsSubscriptionOfferCodePrices: fieldsSubscriptionOfferCodePrices, limit: limit, include: include, limitOneTimeUseCodes: limitOneTimeUseCodes, limitCustomCodes: limitCustomCodes, limitPrices: limitPrices, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: SubscriptionOfferCodesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionsOfferCodesGetToManyRelated(urlString: String) async throws -> SubscriptionOfferCodesResponse {
-        return try await subscriptionsOfferCodesGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func subscriptionsOfferCodesGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> SubscriptionOfferCodesResponse {
+        return try await subscriptionsOfferCodesGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1134,29 +1165,30 @@ open class SubscriptionsAPI {
      - parameter limitOneTimeUseCodes: (query) maximum number of related oneTimeUseCodes returned (when they are included) (optional)
      - parameter limitCustomCodes: (query) maximum number of related customCodes returned (when they are included) (optional)
      - parameter limitPrices: (query) maximum number of related prices returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<SubscriptionOfferCodesResponse> 
      */
-    open class func subscriptionsOfferCodesGetToManyRelatedWithRequestBuilder(id: String, filterTerritory: [String]? = nil, fieldsSubscriptionOfferCodes: [FieldsSubscriptionOfferCodes_subscriptionsOfferCodesGetToManyRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsOfferCodesGetToManyRelated]? = nil, fieldsSubscriptionOfferCodeOneTimeUseCodes: [FieldsSubscriptionOfferCodeOneTimeUseCodes_subscriptionsOfferCodesGetToManyRelated]? = nil, fieldsSubscriptionOfferCodeCustomCodes: [FieldsSubscriptionOfferCodeCustomCodes_subscriptionsOfferCodesGetToManyRelated]? = nil, fieldsSubscriptionOfferCodePrices: [FieldsSubscriptionOfferCodePrices_subscriptionsOfferCodesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionsOfferCodesGetToManyRelated]? = nil, limitOneTimeUseCodes: Int? = nil, limitCustomCodes: Int? = nil, limitPrices: Int? = nil) -> RequestBuilder<SubscriptionOfferCodesResponse> {
+    open class func subscriptionsOfferCodesGetToManyRelatedWithRequestBuilder(id: String, filterTerritory: [String]? = nil, fieldsSubscriptionOfferCodes: [FieldsSubscriptionOfferCodes_subscriptionsOfferCodesGetToManyRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsOfferCodesGetToManyRelated]? = nil, fieldsSubscriptionOfferCodeOneTimeUseCodes: [FieldsSubscriptionOfferCodeOneTimeUseCodes_subscriptionsOfferCodesGetToManyRelated]? = nil, fieldsSubscriptionOfferCodeCustomCodes: [FieldsSubscriptionOfferCodeCustomCodes_subscriptionsOfferCodesGetToManyRelated]? = nil, fieldsSubscriptionOfferCodePrices: [FieldsSubscriptionOfferCodePrices_subscriptionsOfferCodesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionsOfferCodesGetToManyRelated]? = nil, limitOneTimeUseCodes: Int? = nil, limitCustomCodes: Int? = nil, limitPrices: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<SubscriptionOfferCodesResponse> {
         var localVariablePath = "/v1/subscriptions/{id}/offerCodes"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[territory]": (wrappedValue: filterTerritory?.encodeToJSON(), isExplode: false),
-            "fields[subscriptionOfferCodes]": (wrappedValue: fieldsSubscriptionOfferCodes?.encodeToJSON(), isExplode: false),
-            "fields[subscriptions]": (wrappedValue: fieldsSubscriptions?.encodeToJSON(), isExplode: false),
-            "fields[subscriptionOfferCodeOneTimeUseCodes]": (wrappedValue: fieldsSubscriptionOfferCodeOneTimeUseCodes?.encodeToJSON(), isExplode: false),
-            "fields[subscriptionOfferCodeCustomCodes]": (wrappedValue: fieldsSubscriptionOfferCodeCustomCodes?.encodeToJSON(), isExplode: false),
-            "fields[subscriptionOfferCodePrices]": (wrappedValue: fieldsSubscriptionOfferCodePrices?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[oneTimeUseCodes]": (wrappedValue: limitOneTimeUseCodes?.encodeToJSON(), isExplode: true),
-            "limit[customCodes]": (wrappedValue: limitCustomCodes?.encodeToJSON(), isExplode: true),
-            "limit[prices]": (wrappedValue: limitPrices?.encodeToJSON(), isExplode: true),
+            "filter[territory]": (wrappedValue: filterTerritory?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[subscriptionOfferCodes]": (wrappedValue: fieldsSubscriptionOfferCodes?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[subscriptions]": (wrappedValue: fieldsSubscriptions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[subscriptionOfferCodeOneTimeUseCodes]": (wrappedValue: fieldsSubscriptionOfferCodeOneTimeUseCodes?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[subscriptionOfferCodeCustomCodes]": (wrappedValue: fieldsSubscriptionOfferCodeCustomCodes?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[subscriptionOfferCodePrices]": (wrappedValue: fieldsSubscriptionOfferCodePrices?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[oneTimeUseCodes]": (wrappedValue: limitOneTimeUseCodes?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[customCodes]": (wrappedValue: limitCustomCodes?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[prices]": (wrappedValue: limitPrices?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -1165,9 +1197,9 @@ open class SubscriptionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<SubscriptionOfferCodesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<SubscriptionOfferCodesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -1176,24 +1208,25 @@ open class SubscriptionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<SubscriptionOfferCodesResponse> 
      */
-    open class func subscriptionsOfferCodesGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<SubscriptionOfferCodesResponse> {
+    open class func subscriptionsOfferCodesGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<SubscriptionOfferCodesResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<SubscriptionOfferCodesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<SubscriptionOfferCodesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsSubscriptionPricePoints
      */
-    public enum FieldsSubscriptionPricePoints_subscriptionsPricePointsGetToManyRelated: String, CaseIterable {
+    public enum FieldsSubscriptionPricePoints_subscriptionsPricePointsGetToManyRelated: String, Sendable, CaseIterable {
         case customerprice = "customerPrice"
         case proceeds = "proceeds"
         case proceedsyear2 = "proceedsYear2"
@@ -1204,14 +1237,14 @@ open class SubscriptionsAPI {
     /**
      * enum for parameter fieldsTerritories
      */
-    public enum FieldsTerritories_subscriptionsPricePointsGetToManyRelated: String, CaseIterable {
+    public enum FieldsTerritories_subscriptionsPricePointsGetToManyRelated: String, Sendable, CaseIterable {
         case currency = "currency"
     }
 
     /**
      * enum for parameter include
      */
-    public enum Include_subscriptionsPricePointsGetToManyRelated: String, CaseIterable {
+    public enum Include_subscriptionsPricePointsGetToManyRelated: String, Sendable, CaseIterable {
         case territory = "territory"
     }
 
@@ -1223,20 +1256,22 @@ open class SubscriptionsAPI {
      - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: SubscriptionPricePointsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionsPricePointsGetToManyRelated(id: String, filterTerritory: [String]? = nil, fieldsSubscriptionPricePoints: [FieldsSubscriptionPricePoints_subscriptionsPricePointsGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_subscriptionsPricePointsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionsPricePointsGetToManyRelated]? = nil) async throws -> SubscriptionPricePointsResponse {
-        return try await subscriptionsPricePointsGetToManyRelatedWithRequestBuilder(id: id, filterTerritory: filterTerritory, fieldsSubscriptionPricePoints: fieldsSubscriptionPricePoints, fieldsTerritories: fieldsTerritories, limit: limit, include: include).execute().body
+    open class func subscriptionsPricePointsGetToManyRelated(id: String, filterTerritory: [String]? = nil, fieldsSubscriptionPricePoints: [FieldsSubscriptionPricePoints_subscriptionsPricePointsGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_subscriptionsPricePointsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionsPricePointsGetToManyRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> SubscriptionPricePointsResponse {
+        return try await subscriptionsPricePointsGetToManyRelatedWithRequestBuilder(id: id, filterTerritory: filterTerritory, fieldsSubscriptionPricePoints: fieldsSubscriptionPricePoints, fieldsTerritories: fieldsTerritories, limit: limit, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: SubscriptionPricePointsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionsPricePointsGetToManyRelated(urlString: String) async throws -> SubscriptionPricePointsResponse {
-        return try await subscriptionsPricePointsGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func subscriptionsPricePointsGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> SubscriptionPricePointsResponse {
+        return try await subscriptionsPricePointsGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1250,23 +1285,24 @@ open class SubscriptionsAPI {
      - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<SubscriptionPricePointsResponse> 
      */
-    open class func subscriptionsPricePointsGetToManyRelatedWithRequestBuilder(id: String, filterTerritory: [String]? = nil, fieldsSubscriptionPricePoints: [FieldsSubscriptionPricePoints_subscriptionsPricePointsGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_subscriptionsPricePointsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionsPricePointsGetToManyRelated]? = nil) -> RequestBuilder<SubscriptionPricePointsResponse> {
+    open class func subscriptionsPricePointsGetToManyRelatedWithRequestBuilder(id: String, filterTerritory: [String]? = nil, fieldsSubscriptionPricePoints: [FieldsSubscriptionPricePoints_subscriptionsPricePointsGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_subscriptionsPricePointsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionsPricePointsGetToManyRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<SubscriptionPricePointsResponse> {
         var localVariablePath = "/v1/subscriptions/{id}/pricePoints"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[territory]": (wrappedValue: filterTerritory?.encodeToJSON(), isExplode: false),
-            "fields[subscriptionPricePoints]": (wrappedValue: fieldsSubscriptionPricePoints?.encodeToJSON(), isExplode: false),
-            "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "filter[territory]": (wrappedValue: filterTerritory?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[subscriptionPricePoints]": (wrappedValue: fieldsSubscriptionPricePoints?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -1275,9 +1311,9 @@ open class SubscriptionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<SubscriptionPricePointsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<SubscriptionPricePointsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -1286,38 +1322,41 @@ open class SubscriptionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<SubscriptionPricePointsResponse> 
      */
-    open class func subscriptionsPricePointsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<SubscriptionPricePointsResponse> {
+    open class func subscriptionsPricePointsGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<SubscriptionPricePointsResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<SubscriptionPricePointsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<SubscriptionPricePointsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter subscriptionPricesLinkagesRequest: (body) List of related linkages 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionsPricesDeleteToManyRelationship(id: String, subscriptionPricesLinkagesRequest: SubscriptionPricesLinkagesRequest) async throws {
-        return try await subscriptionsPricesDeleteToManyRelationshipWithRequestBuilder(id: id, subscriptionPricesLinkagesRequest: subscriptionPricesLinkagesRequest).execute().body
+    open class func subscriptionsPricesDeleteToManyRelationship(id: String, subscriptionPricesLinkagesRequest: SubscriptionPricesLinkagesRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await subscriptionsPricesDeleteToManyRelationshipWithRequestBuilder(id: id, subscriptionPricesLinkagesRequest: subscriptionPricesLinkagesRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionsPricesDeleteToManyRelationship(urlString: String) async throws {
-        return try await subscriptionsPricesDeleteToManyRelationshipWithRequestBuilder(urlString: urlString).execute().body
+    open class func subscriptionsPricesDeleteToManyRelationship(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await subscriptionsPricesDeleteToManyRelationshipWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1327,15 +1366,16 @@ open class SubscriptionsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter subscriptionPricesLinkagesRequest: (body) List of related linkages 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func subscriptionsPricesDeleteToManyRelationshipWithRequestBuilder(id: String, subscriptionPricesLinkagesRequest: SubscriptionPricesLinkagesRequest) -> RequestBuilder<Void> {
+    open class func subscriptionsPricesDeleteToManyRelationshipWithRequestBuilder(id: String, subscriptionPricesLinkagesRequest: SubscriptionPricesLinkagesRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/subscriptions/{id}/relationships/prices"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: subscriptionPricesLinkagesRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: subscriptionPricesLinkagesRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -1345,9 +1385,9 @@ open class SubscriptionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -1356,24 +1396,25 @@ open class SubscriptionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func subscriptionsPricesDeleteToManyRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func subscriptionsPricesDeleteToManyRelationshipWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsSubscriptionPrices
      */
-    public enum FieldsSubscriptionPrices_subscriptionsPricesGetToManyRelated: String, CaseIterable {
+    public enum FieldsSubscriptionPrices_subscriptionsPricesGetToManyRelated: String, Sendable, CaseIterable {
         case startdate = "startDate"
         case preserved = "preserved"
         case territory = "territory"
@@ -1383,14 +1424,14 @@ open class SubscriptionsAPI {
     /**
      * enum for parameter fieldsTerritories
      */
-    public enum FieldsTerritories_subscriptionsPricesGetToManyRelated: String, CaseIterable {
+    public enum FieldsTerritories_subscriptionsPricesGetToManyRelated: String, Sendable, CaseIterable {
         case currency = "currency"
     }
 
     /**
      * enum for parameter fieldsSubscriptionPricePoints
      */
-    public enum FieldsSubscriptionPricePoints_subscriptionsPricesGetToManyRelated: String, CaseIterable {
+    public enum FieldsSubscriptionPricePoints_subscriptionsPricesGetToManyRelated: String, Sendable, CaseIterable {
         case customerprice = "customerPrice"
         case proceeds = "proceeds"
         case proceedsyear2 = "proceedsYear2"
@@ -1401,7 +1442,7 @@ open class SubscriptionsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_subscriptionsPricesGetToManyRelated: String, CaseIterable {
+    public enum Include_subscriptionsPricesGetToManyRelated: String, Sendable, CaseIterable {
         case territory = "territory"
         case subscriptionpricepoint = "subscriptionPricePoint"
     }
@@ -1416,20 +1457,22 @@ open class SubscriptionsAPI {
      - parameter fieldsSubscriptionPricePoints: (query) the fields to include for returned resources of type subscriptionPricePoints (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: SubscriptionPricesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionsPricesGetToManyRelated(id: String, filterSubscriptionPricePoint: [String]? = nil, filterTerritory: [String]? = nil, fieldsSubscriptionPrices: [FieldsSubscriptionPrices_subscriptionsPricesGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_subscriptionsPricesGetToManyRelated]? = nil, fieldsSubscriptionPricePoints: [FieldsSubscriptionPricePoints_subscriptionsPricesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionsPricesGetToManyRelated]? = nil) async throws -> SubscriptionPricesResponse {
-        return try await subscriptionsPricesGetToManyRelatedWithRequestBuilder(id: id, filterSubscriptionPricePoint: filterSubscriptionPricePoint, filterTerritory: filterTerritory, fieldsSubscriptionPrices: fieldsSubscriptionPrices, fieldsTerritories: fieldsTerritories, fieldsSubscriptionPricePoints: fieldsSubscriptionPricePoints, limit: limit, include: include).execute().body
+    open class func subscriptionsPricesGetToManyRelated(id: String, filterSubscriptionPricePoint: [String]? = nil, filterTerritory: [String]? = nil, fieldsSubscriptionPrices: [FieldsSubscriptionPrices_subscriptionsPricesGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_subscriptionsPricesGetToManyRelated]? = nil, fieldsSubscriptionPricePoints: [FieldsSubscriptionPricePoints_subscriptionsPricesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionsPricesGetToManyRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> SubscriptionPricesResponse {
+        return try await subscriptionsPricesGetToManyRelatedWithRequestBuilder(id: id, filterSubscriptionPricePoint: filterSubscriptionPricePoint, filterTerritory: filterTerritory, fieldsSubscriptionPrices: fieldsSubscriptionPrices, fieldsTerritories: fieldsTerritories, fieldsSubscriptionPricePoints: fieldsSubscriptionPricePoints, limit: limit, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: SubscriptionPricesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionsPricesGetToManyRelated(urlString: String) async throws -> SubscriptionPricesResponse {
-        return try await subscriptionsPricesGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func subscriptionsPricesGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> SubscriptionPricesResponse {
+        return try await subscriptionsPricesGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1445,25 +1488,26 @@ open class SubscriptionsAPI {
      - parameter fieldsSubscriptionPricePoints: (query) the fields to include for returned resources of type subscriptionPricePoints (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<SubscriptionPricesResponse> 
      */
-    open class func subscriptionsPricesGetToManyRelatedWithRequestBuilder(id: String, filterSubscriptionPricePoint: [String]? = nil, filterTerritory: [String]? = nil, fieldsSubscriptionPrices: [FieldsSubscriptionPrices_subscriptionsPricesGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_subscriptionsPricesGetToManyRelated]? = nil, fieldsSubscriptionPricePoints: [FieldsSubscriptionPricePoints_subscriptionsPricesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionsPricesGetToManyRelated]? = nil) -> RequestBuilder<SubscriptionPricesResponse> {
+    open class func subscriptionsPricesGetToManyRelatedWithRequestBuilder(id: String, filterSubscriptionPricePoint: [String]? = nil, filterTerritory: [String]? = nil, fieldsSubscriptionPrices: [FieldsSubscriptionPrices_subscriptionsPricesGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_subscriptionsPricesGetToManyRelated]? = nil, fieldsSubscriptionPricePoints: [FieldsSubscriptionPricePoints_subscriptionsPricesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionsPricesGetToManyRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<SubscriptionPricesResponse> {
         var localVariablePath = "/v1/subscriptions/{id}/prices"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[subscriptionPricePoint]": (wrappedValue: filterSubscriptionPricePoint?.encodeToJSON(), isExplode: false),
-            "filter[territory]": (wrappedValue: filterTerritory?.encodeToJSON(), isExplode: false),
-            "fields[subscriptionPrices]": (wrappedValue: fieldsSubscriptionPrices?.encodeToJSON(), isExplode: false),
-            "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(), isExplode: false),
-            "fields[subscriptionPricePoints]": (wrappedValue: fieldsSubscriptionPricePoints?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "filter[subscriptionPricePoint]": (wrappedValue: filterSubscriptionPricePoint?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[territory]": (wrappedValue: filterTerritory?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[subscriptionPrices]": (wrappedValue: fieldsSubscriptionPrices?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[subscriptionPricePoints]": (wrappedValue: fieldsSubscriptionPricePoints?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -1472,9 +1516,9 @@ open class SubscriptionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<SubscriptionPricesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<SubscriptionPricesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -1483,38 +1527,41 @@ open class SubscriptionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<SubscriptionPricesResponse> 
      */
-    open class func subscriptionsPricesGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<SubscriptionPricesResponse> {
+    open class func subscriptionsPricesGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<SubscriptionPricesResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<SubscriptionPricesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<SubscriptionPricesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: SubscriptionPricesLinkagesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionsPricesGetToManyRelationship(id: String, limit: Int? = nil) async throws -> SubscriptionPricesLinkagesResponse {
-        return try await subscriptionsPricesGetToManyRelationshipWithRequestBuilder(id: id, limit: limit).execute().body
+    open class func subscriptionsPricesGetToManyRelationship(id: String, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> SubscriptionPricesLinkagesResponse {
+        return try await subscriptionsPricesGetToManyRelationshipWithRequestBuilder(id: id, limit: limit, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: SubscriptionPricesLinkagesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionsPricesGetToManyRelationship(urlString: String) async throws -> SubscriptionPricesLinkagesResponse {
-        return try await subscriptionsPricesGetToManyRelationshipWithRequestBuilder(urlString: urlString).execute().body
+    open class func subscriptionsPricesGetToManyRelationship(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> SubscriptionPricesLinkagesResponse {
+        return try await subscriptionsPricesGetToManyRelationshipWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1524,19 +1571,20 @@ open class SubscriptionsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<SubscriptionPricesLinkagesResponse> 
      */
-    open class func subscriptionsPricesGetToManyRelationshipWithRequestBuilder(id: String, limit: Int? = nil) -> RequestBuilder<SubscriptionPricesLinkagesResponse> {
+    open class func subscriptionsPricesGetToManyRelationshipWithRequestBuilder(id: String, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<SubscriptionPricesLinkagesResponse> {
         var localVariablePath = "/v1/subscriptions/{id}/relationships/prices"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -1545,9 +1593,9 @@ open class SubscriptionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<SubscriptionPricesLinkagesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<SubscriptionPricesLinkagesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -1556,24 +1604,25 @@ open class SubscriptionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<SubscriptionPricesLinkagesResponse> 
      */
-    open class func subscriptionsPricesGetToManyRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<SubscriptionPricesLinkagesResponse> {
+    open class func subscriptionsPricesGetToManyRelationshipWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<SubscriptionPricesLinkagesResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<SubscriptionPricesLinkagesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<SubscriptionPricesLinkagesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsPromotedPurchases
      */
-    public enum FieldsPromotedPurchases_subscriptionsPromotedPurchaseGetToOneRelated: String, CaseIterable {
+    public enum FieldsPromotedPurchases_subscriptionsPromotedPurchaseGetToOneRelated: String, Sendable, CaseIterable {
         case visibleforallusers = "visibleForAllUsers"
         case enabled = "enabled"
         case state = "state"
@@ -1585,7 +1634,7 @@ open class SubscriptionsAPI {
     /**
      * enum for parameter fieldsInAppPurchases
      */
-    public enum FieldsInAppPurchases_subscriptionsPromotedPurchaseGetToOneRelated: String, CaseIterable {
+    public enum FieldsInAppPurchases_subscriptionsPromotedPurchaseGetToOneRelated: String, Sendable, CaseIterable {
         case name = "name"
         case productid = "productId"
         case inapppurchasetype = "inAppPurchaseType"
@@ -1606,7 +1655,7 @@ open class SubscriptionsAPI {
     /**
      * enum for parameter fieldsSubscriptions
      */
-    public enum FieldsSubscriptions_subscriptionsPromotedPurchaseGetToOneRelated: String, CaseIterable {
+    public enum FieldsSubscriptions_subscriptionsPromotedPurchaseGetToOneRelated: String, Sendable, CaseIterable {
         case name = "name"
         case productid = "productId"
         case familysharable = "familySharable"
@@ -1631,7 +1680,7 @@ open class SubscriptionsAPI {
     /**
      * enum for parameter fieldsPromotedPurchaseImages
      */
-    public enum FieldsPromotedPurchaseImages_subscriptionsPromotedPurchaseGetToOneRelated: String, CaseIterable {
+    public enum FieldsPromotedPurchaseImages_subscriptionsPromotedPurchaseGetToOneRelated: String, Sendable, CaseIterable {
         case filesize = "fileSize"
         case filename = "fileName"
         case sourcefilechecksum = "sourceFileChecksum"
@@ -1646,7 +1695,7 @@ open class SubscriptionsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_subscriptionsPromotedPurchaseGetToOneRelated: String, CaseIterable {
+    public enum Include_subscriptionsPromotedPurchaseGetToOneRelated: String, Sendable, CaseIterable {
         case inapppurchasev2 = "inAppPurchaseV2"
         case subscription = "subscription"
         case promotionimages = "promotionImages"
@@ -1661,20 +1710,22 @@ open class SubscriptionsAPI {
      - parameter fieldsPromotedPurchaseImages: (query) the fields to include for returned resources of type promotedPurchaseImages (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitPromotionImages: (query) maximum number of related promotionImages returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: PromotedPurchaseResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionsPromotedPurchaseGetToOneRelated(id: String, fieldsPromotedPurchases: [FieldsPromotedPurchases_subscriptionsPromotedPurchaseGetToOneRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_subscriptionsPromotedPurchaseGetToOneRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsPromotedPurchaseGetToOneRelated]? = nil, fieldsPromotedPurchaseImages: [FieldsPromotedPurchaseImages_subscriptionsPromotedPurchaseGetToOneRelated]? = nil, include: [Include_subscriptionsPromotedPurchaseGetToOneRelated]? = nil, limitPromotionImages: Int? = nil) async throws -> PromotedPurchaseResponse {
-        return try await subscriptionsPromotedPurchaseGetToOneRelatedWithRequestBuilder(id: id, fieldsPromotedPurchases: fieldsPromotedPurchases, fieldsInAppPurchases: fieldsInAppPurchases, fieldsSubscriptions: fieldsSubscriptions, fieldsPromotedPurchaseImages: fieldsPromotedPurchaseImages, include: include, limitPromotionImages: limitPromotionImages).execute().body
+    open class func subscriptionsPromotedPurchaseGetToOneRelated(id: String, fieldsPromotedPurchases: [FieldsPromotedPurchases_subscriptionsPromotedPurchaseGetToOneRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_subscriptionsPromotedPurchaseGetToOneRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsPromotedPurchaseGetToOneRelated]? = nil, fieldsPromotedPurchaseImages: [FieldsPromotedPurchaseImages_subscriptionsPromotedPurchaseGetToOneRelated]? = nil, include: [Include_subscriptionsPromotedPurchaseGetToOneRelated]? = nil, limitPromotionImages: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> PromotedPurchaseResponse {
+        return try await subscriptionsPromotedPurchaseGetToOneRelatedWithRequestBuilder(id: id, fieldsPromotedPurchases: fieldsPromotedPurchases, fieldsInAppPurchases: fieldsInAppPurchases, fieldsSubscriptions: fieldsSubscriptions, fieldsPromotedPurchaseImages: fieldsPromotedPurchaseImages, include: include, limitPromotionImages: limitPromotionImages, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: PromotedPurchaseResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionsPromotedPurchaseGetToOneRelated(urlString: String) async throws -> PromotedPurchaseResponse {
-        return try await subscriptionsPromotedPurchaseGetToOneRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func subscriptionsPromotedPurchaseGetToOneRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> PromotedPurchaseResponse {
+        return try await subscriptionsPromotedPurchaseGetToOneRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1689,24 +1740,25 @@ open class SubscriptionsAPI {
      - parameter fieldsPromotedPurchaseImages: (query) the fields to include for returned resources of type promotedPurchaseImages (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitPromotionImages: (query) maximum number of related promotionImages returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<PromotedPurchaseResponse> 
      */
-    open class func subscriptionsPromotedPurchaseGetToOneRelatedWithRequestBuilder(id: String, fieldsPromotedPurchases: [FieldsPromotedPurchases_subscriptionsPromotedPurchaseGetToOneRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_subscriptionsPromotedPurchaseGetToOneRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsPromotedPurchaseGetToOneRelated]? = nil, fieldsPromotedPurchaseImages: [FieldsPromotedPurchaseImages_subscriptionsPromotedPurchaseGetToOneRelated]? = nil, include: [Include_subscriptionsPromotedPurchaseGetToOneRelated]? = nil, limitPromotionImages: Int? = nil) -> RequestBuilder<PromotedPurchaseResponse> {
+    open class func subscriptionsPromotedPurchaseGetToOneRelatedWithRequestBuilder(id: String, fieldsPromotedPurchases: [FieldsPromotedPurchases_subscriptionsPromotedPurchaseGetToOneRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_subscriptionsPromotedPurchaseGetToOneRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsPromotedPurchaseGetToOneRelated]? = nil, fieldsPromotedPurchaseImages: [FieldsPromotedPurchaseImages_subscriptionsPromotedPurchaseGetToOneRelated]? = nil, include: [Include_subscriptionsPromotedPurchaseGetToOneRelated]? = nil, limitPromotionImages: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<PromotedPurchaseResponse> {
         var localVariablePath = "/v1/subscriptions/{id}/promotedPurchase"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[promotedPurchases]": (wrappedValue: fieldsPromotedPurchases?.encodeToJSON(), isExplode: false),
-            "fields[inAppPurchases]": (wrappedValue: fieldsInAppPurchases?.encodeToJSON(), isExplode: false),
-            "fields[subscriptions]": (wrappedValue: fieldsSubscriptions?.encodeToJSON(), isExplode: false),
-            "fields[promotedPurchaseImages]": (wrappedValue: fieldsPromotedPurchaseImages?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[promotionImages]": (wrappedValue: limitPromotionImages?.encodeToJSON(), isExplode: true),
+            "fields[promotedPurchases]": (wrappedValue: fieldsPromotedPurchases?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[inAppPurchases]": (wrappedValue: fieldsInAppPurchases?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[subscriptions]": (wrappedValue: fieldsSubscriptions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[promotedPurchaseImages]": (wrappedValue: fieldsPromotedPurchaseImages?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[promotionImages]": (wrappedValue: limitPromotionImages?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -1715,9 +1767,9 @@ open class SubscriptionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<PromotedPurchaseResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<PromotedPurchaseResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -1726,24 +1778,25 @@ open class SubscriptionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<PromotedPurchaseResponse> 
      */
-    open class func subscriptionsPromotedPurchaseGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<PromotedPurchaseResponse> {
+    open class func subscriptionsPromotedPurchaseGetToOneRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<PromotedPurchaseResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<PromotedPurchaseResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<PromotedPurchaseResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsSubscriptionPromotionalOffers
      */
-    public enum FieldsSubscriptionPromotionalOffers_subscriptionsPromotionalOffersGetToManyRelated: String, CaseIterable {
+    public enum FieldsSubscriptionPromotionalOffers_subscriptionsPromotionalOffersGetToManyRelated: String, Sendable, CaseIterable {
         case name = "name"
         case offercode = "offerCode"
         case duration = "duration"
@@ -1756,7 +1809,7 @@ open class SubscriptionsAPI {
     /**
      * enum for parameter fieldsSubscriptions
      */
-    public enum FieldsSubscriptions_subscriptionsPromotionalOffersGetToManyRelated: String, CaseIterable {
+    public enum FieldsSubscriptions_subscriptionsPromotionalOffersGetToManyRelated: String, Sendable, CaseIterable {
         case name = "name"
         case productid = "productId"
         case familysharable = "familySharable"
@@ -1781,7 +1834,7 @@ open class SubscriptionsAPI {
     /**
      * enum for parameter fieldsSubscriptionPromotionalOfferPrices
      */
-    public enum FieldsSubscriptionPromotionalOfferPrices_subscriptionsPromotionalOffersGetToManyRelated: String, CaseIterable {
+    public enum FieldsSubscriptionPromotionalOfferPrices_subscriptionsPromotionalOffersGetToManyRelated: String, Sendable, CaseIterable {
         case territory = "territory"
         case subscriptionpricepoint = "subscriptionPricePoint"
     }
@@ -1789,7 +1842,7 @@ open class SubscriptionsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_subscriptionsPromotionalOffersGetToManyRelated: String, CaseIterable {
+    public enum Include_subscriptionsPromotionalOffersGetToManyRelated: String, Sendable, CaseIterable {
         case subscription = "subscription"
         case prices = "prices"
     }
@@ -1804,20 +1857,22 @@ open class SubscriptionsAPI {
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitPrices: (query) maximum number of related prices returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: SubscriptionPromotionalOffersResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionsPromotionalOffersGetToManyRelated(id: String, filterTerritory: [String]? = nil, fieldsSubscriptionPromotionalOffers: [FieldsSubscriptionPromotionalOffers_subscriptionsPromotionalOffersGetToManyRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsPromotionalOffersGetToManyRelated]? = nil, fieldsSubscriptionPromotionalOfferPrices: [FieldsSubscriptionPromotionalOfferPrices_subscriptionsPromotionalOffersGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionsPromotionalOffersGetToManyRelated]? = nil, limitPrices: Int? = nil) async throws -> SubscriptionPromotionalOffersResponse {
-        return try await subscriptionsPromotionalOffersGetToManyRelatedWithRequestBuilder(id: id, filterTerritory: filterTerritory, fieldsSubscriptionPromotionalOffers: fieldsSubscriptionPromotionalOffers, fieldsSubscriptions: fieldsSubscriptions, fieldsSubscriptionPromotionalOfferPrices: fieldsSubscriptionPromotionalOfferPrices, limit: limit, include: include, limitPrices: limitPrices).execute().body
+    open class func subscriptionsPromotionalOffersGetToManyRelated(id: String, filterTerritory: [String]? = nil, fieldsSubscriptionPromotionalOffers: [FieldsSubscriptionPromotionalOffers_subscriptionsPromotionalOffersGetToManyRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsPromotionalOffersGetToManyRelated]? = nil, fieldsSubscriptionPromotionalOfferPrices: [FieldsSubscriptionPromotionalOfferPrices_subscriptionsPromotionalOffersGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionsPromotionalOffersGetToManyRelated]? = nil, limitPrices: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> SubscriptionPromotionalOffersResponse {
+        return try await subscriptionsPromotionalOffersGetToManyRelatedWithRequestBuilder(id: id, filterTerritory: filterTerritory, fieldsSubscriptionPromotionalOffers: fieldsSubscriptionPromotionalOffers, fieldsSubscriptions: fieldsSubscriptions, fieldsSubscriptionPromotionalOfferPrices: fieldsSubscriptionPromotionalOfferPrices, limit: limit, include: include, limitPrices: limitPrices, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: SubscriptionPromotionalOffersResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionsPromotionalOffersGetToManyRelated(urlString: String) async throws -> SubscriptionPromotionalOffersResponse {
-        return try await subscriptionsPromotionalOffersGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func subscriptionsPromotionalOffersGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> SubscriptionPromotionalOffersResponse {
+        return try await subscriptionsPromotionalOffersGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1833,25 +1888,26 @@ open class SubscriptionsAPI {
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitPrices: (query) maximum number of related prices returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<SubscriptionPromotionalOffersResponse> 
      */
-    open class func subscriptionsPromotionalOffersGetToManyRelatedWithRequestBuilder(id: String, filterTerritory: [String]? = nil, fieldsSubscriptionPromotionalOffers: [FieldsSubscriptionPromotionalOffers_subscriptionsPromotionalOffersGetToManyRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsPromotionalOffersGetToManyRelated]? = nil, fieldsSubscriptionPromotionalOfferPrices: [FieldsSubscriptionPromotionalOfferPrices_subscriptionsPromotionalOffersGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionsPromotionalOffersGetToManyRelated]? = nil, limitPrices: Int? = nil) -> RequestBuilder<SubscriptionPromotionalOffersResponse> {
+    open class func subscriptionsPromotionalOffersGetToManyRelatedWithRequestBuilder(id: String, filterTerritory: [String]? = nil, fieldsSubscriptionPromotionalOffers: [FieldsSubscriptionPromotionalOffers_subscriptionsPromotionalOffersGetToManyRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsPromotionalOffersGetToManyRelated]? = nil, fieldsSubscriptionPromotionalOfferPrices: [FieldsSubscriptionPromotionalOfferPrices_subscriptionsPromotionalOffersGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionsPromotionalOffersGetToManyRelated]? = nil, limitPrices: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<SubscriptionPromotionalOffersResponse> {
         var localVariablePath = "/v1/subscriptions/{id}/promotionalOffers"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[territory]": (wrappedValue: filterTerritory?.encodeToJSON(), isExplode: false),
-            "fields[subscriptionPromotionalOffers]": (wrappedValue: fieldsSubscriptionPromotionalOffers?.encodeToJSON(), isExplode: false),
-            "fields[subscriptions]": (wrappedValue: fieldsSubscriptions?.encodeToJSON(), isExplode: false),
-            "fields[subscriptionPromotionalOfferPrices]": (wrappedValue: fieldsSubscriptionPromotionalOfferPrices?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[prices]": (wrappedValue: limitPrices?.encodeToJSON(), isExplode: true),
+            "filter[territory]": (wrappedValue: filterTerritory?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[subscriptionPromotionalOffers]": (wrappedValue: fieldsSubscriptionPromotionalOffers?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[subscriptions]": (wrappedValue: fieldsSubscriptions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[subscriptionPromotionalOfferPrices]": (wrappedValue: fieldsSubscriptionPromotionalOfferPrices?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[prices]": (wrappedValue: limitPrices?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -1860,9 +1916,9 @@ open class SubscriptionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<SubscriptionPromotionalOffersResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<SubscriptionPromotionalOffersResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -1871,24 +1927,25 @@ open class SubscriptionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<SubscriptionPromotionalOffersResponse> 
      */
-    open class func subscriptionsPromotionalOffersGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<SubscriptionPromotionalOffersResponse> {
+    open class func subscriptionsPromotionalOffersGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<SubscriptionPromotionalOffersResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<SubscriptionPromotionalOffersResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<SubscriptionPromotionalOffersResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsSubscriptionAvailabilities
      */
-    public enum FieldsSubscriptionAvailabilities_subscriptionsSubscriptionAvailabilityGetToOneRelated: String, CaseIterable {
+    public enum FieldsSubscriptionAvailabilities_subscriptionsSubscriptionAvailabilityGetToOneRelated: String, Sendable, CaseIterable {
         case availableinnewterritories = "availableInNewTerritories"
         case availableterritories = "availableTerritories"
     }
@@ -1896,14 +1953,14 @@ open class SubscriptionsAPI {
     /**
      * enum for parameter fieldsTerritories
      */
-    public enum FieldsTerritories_subscriptionsSubscriptionAvailabilityGetToOneRelated: String, CaseIterable {
+    public enum FieldsTerritories_subscriptionsSubscriptionAvailabilityGetToOneRelated: String, Sendable, CaseIterable {
         case currency = "currency"
     }
 
     /**
      * enum for parameter include
      */
-    public enum Include_subscriptionsSubscriptionAvailabilityGetToOneRelated: String, CaseIterable {
+    public enum Include_subscriptionsSubscriptionAvailabilityGetToOneRelated: String, Sendable, CaseIterable {
         case availableterritories = "availableTerritories"
     }
 
@@ -1914,20 +1971,22 @@ open class SubscriptionsAPI {
      - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAvailableTerritories: (query) maximum number of related availableTerritories returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: SubscriptionAvailabilityResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionsSubscriptionAvailabilityGetToOneRelated(id: String, fieldsSubscriptionAvailabilities: [FieldsSubscriptionAvailabilities_subscriptionsSubscriptionAvailabilityGetToOneRelated]? = nil, fieldsTerritories: [FieldsTerritories_subscriptionsSubscriptionAvailabilityGetToOneRelated]? = nil, include: [Include_subscriptionsSubscriptionAvailabilityGetToOneRelated]? = nil, limitAvailableTerritories: Int? = nil) async throws -> SubscriptionAvailabilityResponse {
-        return try await subscriptionsSubscriptionAvailabilityGetToOneRelatedWithRequestBuilder(id: id, fieldsSubscriptionAvailabilities: fieldsSubscriptionAvailabilities, fieldsTerritories: fieldsTerritories, include: include, limitAvailableTerritories: limitAvailableTerritories).execute().body
+    open class func subscriptionsSubscriptionAvailabilityGetToOneRelated(id: String, fieldsSubscriptionAvailabilities: [FieldsSubscriptionAvailabilities_subscriptionsSubscriptionAvailabilityGetToOneRelated]? = nil, fieldsTerritories: [FieldsTerritories_subscriptionsSubscriptionAvailabilityGetToOneRelated]? = nil, include: [Include_subscriptionsSubscriptionAvailabilityGetToOneRelated]? = nil, limitAvailableTerritories: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> SubscriptionAvailabilityResponse {
+        return try await subscriptionsSubscriptionAvailabilityGetToOneRelatedWithRequestBuilder(id: id, fieldsSubscriptionAvailabilities: fieldsSubscriptionAvailabilities, fieldsTerritories: fieldsTerritories, include: include, limitAvailableTerritories: limitAvailableTerritories, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: SubscriptionAvailabilityResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionsSubscriptionAvailabilityGetToOneRelated(urlString: String) async throws -> SubscriptionAvailabilityResponse {
-        return try await subscriptionsSubscriptionAvailabilityGetToOneRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func subscriptionsSubscriptionAvailabilityGetToOneRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> SubscriptionAvailabilityResponse {
+        return try await subscriptionsSubscriptionAvailabilityGetToOneRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1940,22 +1999,23 @@ open class SubscriptionsAPI {
      - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAvailableTerritories: (query) maximum number of related availableTerritories returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<SubscriptionAvailabilityResponse> 
      */
-    open class func subscriptionsSubscriptionAvailabilityGetToOneRelatedWithRequestBuilder(id: String, fieldsSubscriptionAvailabilities: [FieldsSubscriptionAvailabilities_subscriptionsSubscriptionAvailabilityGetToOneRelated]? = nil, fieldsTerritories: [FieldsTerritories_subscriptionsSubscriptionAvailabilityGetToOneRelated]? = nil, include: [Include_subscriptionsSubscriptionAvailabilityGetToOneRelated]? = nil, limitAvailableTerritories: Int? = nil) -> RequestBuilder<SubscriptionAvailabilityResponse> {
+    open class func subscriptionsSubscriptionAvailabilityGetToOneRelatedWithRequestBuilder(id: String, fieldsSubscriptionAvailabilities: [FieldsSubscriptionAvailabilities_subscriptionsSubscriptionAvailabilityGetToOneRelated]? = nil, fieldsTerritories: [FieldsTerritories_subscriptionsSubscriptionAvailabilityGetToOneRelated]? = nil, include: [Include_subscriptionsSubscriptionAvailabilityGetToOneRelated]? = nil, limitAvailableTerritories: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<SubscriptionAvailabilityResponse> {
         var localVariablePath = "/v1/subscriptions/{id}/subscriptionAvailability"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[subscriptionAvailabilities]": (wrappedValue: fieldsSubscriptionAvailabilities?.encodeToJSON(), isExplode: false),
-            "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[availableTerritories]": (wrappedValue: limitAvailableTerritories?.encodeToJSON(), isExplode: true),
+            "fields[subscriptionAvailabilities]": (wrappedValue: fieldsSubscriptionAvailabilities?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[availableTerritories]": (wrappedValue: limitAvailableTerritories?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -1964,9 +2024,9 @@ open class SubscriptionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<SubscriptionAvailabilityResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<SubscriptionAvailabilityResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -1975,24 +2035,25 @@ open class SubscriptionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<SubscriptionAvailabilityResponse> 
      */
-    open class func subscriptionsSubscriptionAvailabilityGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<SubscriptionAvailabilityResponse> {
+    open class func subscriptionsSubscriptionAvailabilityGetToOneRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<SubscriptionAvailabilityResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<SubscriptionAvailabilityResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<SubscriptionAvailabilityResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsSubscriptionLocalizations
      */
-    public enum FieldsSubscriptionLocalizations_subscriptionsSubscriptionLocalizationsGetToManyRelated: String, CaseIterable {
+    public enum FieldsSubscriptionLocalizations_subscriptionsSubscriptionLocalizationsGetToManyRelated: String, Sendable, CaseIterable {
         case name = "name"
         case locale = "locale"
         case description = "description"
@@ -2003,7 +2064,7 @@ open class SubscriptionsAPI {
     /**
      * enum for parameter fieldsSubscriptions
      */
-    public enum FieldsSubscriptions_subscriptionsSubscriptionLocalizationsGetToManyRelated: String, CaseIterable {
+    public enum FieldsSubscriptions_subscriptionsSubscriptionLocalizationsGetToManyRelated: String, Sendable, CaseIterable {
         case name = "name"
         case productid = "productId"
         case familysharable = "familySharable"
@@ -2028,7 +2089,7 @@ open class SubscriptionsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_subscriptionsSubscriptionLocalizationsGetToManyRelated: String, CaseIterable {
+    public enum Include_subscriptionsSubscriptionLocalizationsGetToManyRelated: String, Sendable, CaseIterable {
         case subscription = "subscription"
     }
 
@@ -2039,20 +2100,22 @@ open class SubscriptionsAPI {
      - parameter fieldsSubscriptions: (query) the fields to include for returned resources of type subscriptions (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: SubscriptionLocalizationsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionsSubscriptionLocalizationsGetToManyRelated(id: String, fieldsSubscriptionLocalizations: [FieldsSubscriptionLocalizations_subscriptionsSubscriptionLocalizationsGetToManyRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsSubscriptionLocalizationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionsSubscriptionLocalizationsGetToManyRelated]? = nil) async throws -> SubscriptionLocalizationsResponse {
-        return try await subscriptionsSubscriptionLocalizationsGetToManyRelatedWithRequestBuilder(id: id, fieldsSubscriptionLocalizations: fieldsSubscriptionLocalizations, fieldsSubscriptions: fieldsSubscriptions, limit: limit, include: include).execute().body
+    open class func subscriptionsSubscriptionLocalizationsGetToManyRelated(id: String, fieldsSubscriptionLocalizations: [FieldsSubscriptionLocalizations_subscriptionsSubscriptionLocalizationsGetToManyRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsSubscriptionLocalizationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionsSubscriptionLocalizationsGetToManyRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> SubscriptionLocalizationsResponse {
+        return try await subscriptionsSubscriptionLocalizationsGetToManyRelatedWithRequestBuilder(id: id, fieldsSubscriptionLocalizations: fieldsSubscriptionLocalizations, fieldsSubscriptions: fieldsSubscriptions, limit: limit, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: SubscriptionLocalizationsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionsSubscriptionLocalizationsGetToManyRelated(urlString: String) async throws -> SubscriptionLocalizationsResponse {
-        return try await subscriptionsSubscriptionLocalizationsGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func subscriptionsSubscriptionLocalizationsGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> SubscriptionLocalizationsResponse {
+        return try await subscriptionsSubscriptionLocalizationsGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -2065,22 +2128,23 @@ open class SubscriptionsAPI {
      - parameter fieldsSubscriptions: (query) the fields to include for returned resources of type subscriptions (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<SubscriptionLocalizationsResponse> 
      */
-    open class func subscriptionsSubscriptionLocalizationsGetToManyRelatedWithRequestBuilder(id: String, fieldsSubscriptionLocalizations: [FieldsSubscriptionLocalizations_subscriptionsSubscriptionLocalizationsGetToManyRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsSubscriptionLocalizationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionsSubscriptionLocalizationsGetToManyRelated]? = nil) -> RequestBuilder<SubscriptionLocalizationsResponse> {
+    open class func subscriptionsSubscriptionLocalizationsGetToManyRelatedWithRequestBuilder(id: String, fieldsSubscriptionLocalizations: [FieldsSubscriptionLocalizations_subscriptionsSubscriptionLocalizationsGetToManyRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_subscriptionsSubscriptionLocalizationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionsSubscriptionLocalizationsGetToManyRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<SubscriptionLocalizationsResponse> {
         var localVariablePath = "/v1/subscriptions/{id}/subscriptionLocalizations"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[subscriptionLocalizations]": (wrappedValue: fieldsSubscriptionLocalizations?.encodeToJSON(), isExplode: false),
-            "fields[subscriptions]": (wrappedValue: fieldsSubscriptions?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "fields[subscriptionLocalizations]": (wrappedValue: fieldsSubscriptionLocalizations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[subscriptions]": (wrappedValue: fieldsSubscriptions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -2089,9 +2153,9 @@ open class SubscriptionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<SubscriptionLocalizationsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<SubscriptionLocalizationsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -2100,38 +2164,41 @@ open class SubscriptionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<SubscriptionLocalizationsResponse> 
      */
-    open class func subscriptionsSubscriptionLocalizationsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<SubscriptionLocalizationsResponse> {
+    open class func subscriptionsSubscriptionLocalizationsGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<SubscriptionLocalizationsResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<SubscriptionLocalizationsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<SubscriptionLocalizationsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter subscriptionUpdateRequest: (body) Subscription representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: SubscriptionResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionsUpdateInstance(id: String, subscriptionUpdateRequest: SubscriptionUpdateRequest) async throws -> SubscriptionResponse {
-        return try await subscriptionsUpdateInstanceWithRequestBuilder(id: id, subscriptionUpdateRequest: subscriptionUpdateRequest).execute().body
+    open class func subscriptionsUpdateInstance(id: String, subscriptionUpdateRequest: SubscriptionUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> SubscriptionResponse {
+        return try await subscriptionsUpdateInstanceWithRequestBuilder(id: id, subscriptionUpdateRequest: subscriptionUpdateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: SubscriptionResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionsUpdateInstance(urlString: String) async throws -> SubscriptionResponse {
-        return try await subscriptionsUpdateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func subscriptionsUpdateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> SubscriptionResponse {
+        return try await subscriptionsUpdateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -2141,15 +2208,16 @@ open class SubscriptionsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter subscriptionUpdateRequest: (body) Subscription representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<SubscriptionResponse> 
      */
-    open class func subscriptionsUpdateInstanceWithRequestBuilder(id: String, subscriptionUpdateRequest: SubscriptionUpdateRequest) -> RequestBuilder<SubscriptionResponse> {
+    open class func subscriptionsUpdateInstanceWithRequestBuilder(id: String, subscriptionUpdateRequest: SubscriptionUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<SubscriptionResponse> {
         var localVariablePath = "/v1/subscriptions/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: subscriptionUpdateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: subscriptionUpdateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -2159,9 +2227,9 @@ open class SubscriptionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<SubscriptionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<SubscriptionResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -2170,24 +2238,25 @@ open class SubscriptionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<SubscriptionResponse> 
      */
-    open class func subscriptionsUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<SubscriptionResponse> {
+    open class func subscriptionsUpdateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<SubscriptionResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<SubscriptionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<SubscriptionResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsWinBackOffers
      */
-    public enum FieldsWinBackOffers_subscriptionsWinBackOffersGetToManyRelated: String, CaseIterable {
+    public enum FieldsWinBackOffers_subscriptionsWinBackOffersGetToManyRelated: String, Sendable, CaseIterable {
         case referencename = "referenceName"
         case offerid = "offerId"
         case duration = "duration"
@@ -2206,7 +2275,7 @@ open class SubscriptionsAPI {
     /**
      * enum for parameter fieldsWinBackOfferPrices
      */
-    public enum FieldsWinBackOfferPrices_subscriptionsWinBackOffersGetToManyRelated: String, CaseIterable {
+    public enum FieldsWinBackOfferPrices_subscriptionsWinBackOffersGetToManyRelated: String, Sendable, CaseIterable {
         case territory = "territory"
         case subscriptionpricepoint = "subscriptionPricePoint"
     }
@@ -2214,7 +2283,7 @@ open class SubscriptionsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_subscriptionsWinBackOffersGetToManyRelated: String, CaseIterable {
+    public enum Include_subscriptionsWinBackOffersGetToManyRelated: String, Sendable, CaseIterable {
         case prices = "prices"
     }
 
@@ -2226,20 +2295,22 @@ open class SubscriptionsAPI {
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitPrices: (query) maximum number of related prices returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: WinBackOffersResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionsWinBackOffersGetToManyRelated(id: String, fieldsWinBackOffers: [FieldsWinBackOffers_subscriptionsWinBackOffersGetToManyRelated]? = nil, fieldsWinBackOfferPrices: [FieldsWinBackOfferPrices_subscriptionsWinBackOffersGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionsWinBackOffersGetToManyRelated]? = nil, limitPrices: Int? = nil) async throws -> WinBackOffersResponse {
-        return try await subscriptionsWinBackOffersGetToManyRelatedWithRequestBuilder(id: id, fieldsWinBackOffers: fieldsWinBackOffers, fieldsWinBackOfferPrices: fieldsWinBackOfferPrices, limit: limit, include: include, limitPrices: limitPrices).execute().body
+    open class func subscriptionsWinBackOffersGetToManyRelated(id: String, fieldsWinBackOffers: [FieldsWinBackOffers_subscriptionsWinBackOffersGetToManyRelated]? = nil, fieldsWinBackOfferPrices: [FieldsWinBackOfferPrices_subscriptionsWinBackOffersGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionsWinBackOffersGetToManyRelated]? = nil, limitPrices: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> WinBackOffersResponse {
+        return try await subscriptionsWinBackOffersGetToManyRelatedWithRequestBuilder(id: id, fieldsWinBackOffers: fieldsWinBackOffers, fieldsWinBackOfferPrices: fieldsWinBackOfferPrices, limit: limit, include: include, limitPrices: limitPrices, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: WinBackOffersResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionsWinBackOffersGetToManyRelated(urlString: String) async throws -> WinBackOffersResponse {
-        return try await subscriptionsWinBackOffersGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func subscriptionsWinBackOffersGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> WinBackOffersResponse {
+        return try await subscriptionsWinBackOffersGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -2253,23 +2324,24 @@ open class SubscriptionsAPI {
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitPrices: (query) maximum number of related prices returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<WinBackOffersResponse> 
      */
-    open class func subscriptionsWinBackOffersGetToManyRelatedWithRequestBuilder(id: String, fieldsWinBackOffers: [FieldsWinBackOffers_subscriptionsWinBackOffersGetToManyRelated]? = nil, fieldsWinBackOfferPrices: [FieldsWinBackOfferPrices_subscriptionsWinBackOffersGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionsWinBackOffersGetToManyRelated]? = nil, limitPrices: Int? = nil) -> RequestBuilder<WinBackOffersResponse> {
+    open class func subscriptionsWinBackOffersGetToManyRelatedWithRequestBuilder(id: String, fieldsWinBackOffers: [FieldsWinBackOffers_subscriptionsWinBackOffersGetToManyRelated]? = nil, fieldsWinBackOfferPrices: [FieldsWinBackOfferPrices_subscriptionsWinBackOffersGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_subscriptionsWinBackOffersGetToManyRelated]? = nil, limitPrices: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<WinBackOffersResponse> {
         var localVariablePath = "/v1/subscriptions/{id}/winBackOffers"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[winBackOffers]": (wrappedValue: fieldsWinBackOffers?.encodeToJSON(), isExplode: false),
-            "fields[winBackOfferPrices]": (wrappedValue: fieldsWinBackOfferPrices?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[prices]": (wrappedValue: limitPrices?.encodeToJSON(), isExplode: true),
+            "fields[winBackOffers]": (wrappedValue: fieldsWinBackOffers?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[winBackOfferPrices]": (wrappedValue: fieldsWinBackOfferPrices?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[prices]": (wrappedValue: limitPrices?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -2278,9 +2350,9 @@ open class SubscriptionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<WinBackOffersResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<WinBackOffersResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -2289,17 +2361,18 @@ open class SubscriptionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<WinBackOffersResponse> 
      */
-    open class func subscriptionsWinBackOffersGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<WinBackOffersResponse> {
+    open class func subscriptionsWinBackOffersGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<WinBackOffersResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<WinBackOffersResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<WinBackOffersResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

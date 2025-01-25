@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct DiagnosticLogsProductDataInner: Codable, JSONEncodable, Hashable {
+public struct DiagnosticLogsProductDataInner: Sendable, Codable, JSONEncodable, Hashable {
 
     public var signatureId: String?
     public var diagnosticInsights: [DiagnosticLogsProductDataInnerDiagnosticInsightsInner]?

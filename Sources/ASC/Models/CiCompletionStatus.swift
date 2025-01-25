@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public enum CiCompletionStatus: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+public enum CiCompletionStatus: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
     case succeeded = "SUCCEEDED"
     case failed = "FAILED"
     case errored = "ERRORED"

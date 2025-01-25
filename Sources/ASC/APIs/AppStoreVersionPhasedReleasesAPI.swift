@@ -6,29 +6,28 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class AppStoreVersionPhasedReleasesAPI {
 
     /**
 
      - parameter appStoreVersionPhasedReleaseCreateRequest: (body) AppStoreVersionPhasedRelease representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppStoreVersionPhasedReleaseResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionPhasedReleasesCreateInstance(appStoreVersionPhasedReleaseCreateRequest: AppStoreVersionPhasedReleaseCreateRequest) async throws -> AppStoreVersionPhasedReleaseResponse {
-        return try await appStoreVersionPhasedReleasesCreateInstanceWithRequestBuilder(appStoreVersionPhasedReleaseCreateRequest: appStoreVersionPhasedReleaseCreateRequest).execute().body
+    open class func appStoreVersionPhasedReleasesCreateInstance(appStoreVersionPhasedReleaseCreateRequest: AppStoreVersionPhasedReleaseCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppStoreVersionPhasedReleaseResponse {
+        return try await appStoreVersionPhasedReleasesCreateInstanceWithRequestBuilder(appStoreVersionPhasedReleaseCreateRequest: appStoreVersionPhasedReleaseCreateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppStoreVersionPhasedReleaseResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionPhasedReleasesCreateInstance(urlString: String) async throws -> AppStoreVersionPhasedReleaseResponse {
-        return try await appStoreVersionPhasedReleasesCreateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func appStoreVersionPhasedReleasesCreateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppStoreVersionPhasedReleaseResponse {
+        return try await appStoreVersionPhasedReleasesCreateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -37,12 +36,13 @@ open class AppStoreVersionPhasedReleasesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter appStoreVersionPhasedReleaseCreateRequest: (body) AppStoreVersionPhasedRelease representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppStoreVersionPhasedReleaseResponse> 
      */
-    open class func appStoreVersionPhasedReleasesCreateInstanceWithRequestBuilder(appStoreVersionPhasedReleaseCreateRequest: AppStoreVersionPhasedReleaseCreateRequest) -> RequestBuilder<AppStoreVersionPhasedReleaseResponse> {
+    open class func appStoreVersionPhasedReleasesCreateInstanceWithRequestBuilder(appStoreVersionPhasedReleaseCreateRequest: AppStoreVersionPhasedReleaseCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppStoreVersionPhasedReleaseResponse> {
         let localVariablePath = "/v1/appStoreVersionPhasedReleases"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: appStoreVersionPhasedReleaseCreateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: appStoreVersionPhasedReleaseCreateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -52,9 +52,9 @@ open class AppStoreVersionPhasedReleasesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionPhasedReleaseResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionPhasedReleaseResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -63,37 +63,40 @@ open class AppStoreVersionPhasedReleasesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppStoreVersionPhasedReleaseResponse> 
      */
-    open class func appStoreVersionPhasedReleasesCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppStoreVersionPhasedReleaseResponse> {
+    open class func appStoreVersionPhasedReleasesCreateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppStoreVersionPhasedReleaseResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionPhasedReleaseResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionPhasedReleaseResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionPhasedReleasesDeleteInstance(id: String) async throws {
-        return try await appStoreVersionPhasedReleasesDeleteInstanceWithRequestBuilder(id: id).execute().body
+    open class func appStoreVersionPhasedReleasesDeleteInstance(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await appStoreVersionPhasedReleasesDeleteInstanceWithRequestBuilder(id: id, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionPhasedReleasesDeleteInstance(urlString: String) async throws {
-        return try await appStoreVersionPhasedReleasesDeleteInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func appStoreVersionPhasedReleasesDeleteInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await appStoreVersionPhasedReleasesDeleteInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -102,14 +105,15 @@ open class AppStoreVersionPhasedReleasesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func appStoreVersionPhasedReleasesDeleteInstanceWithRequestBuilder(id: String) -> RequestBuilder<Void> {
+    open class func appStoreVersionPhasedReleasesDeleteInstanceWithRequestBuilder(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/appStoreVersionPhasedReleases/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -120,9 +124,9 @@ open class AppStoreVersionPhasedReleasesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -131,38 +135,41 @@ open class AppStoreVersionPhasedReleasesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func appStoreVersionPhasedReleasesDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func appStoreVersionPhasedReleasesDeleteInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter appStoreVersionPhasedReleaseUpdateRequest: (body) AppStoreVersionPhasedRelease representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppStoreVersionPhasedReleaseResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionPhasedReleasesUpdateInstance(id: String, appStoreVersionPhasedReleaseUpdateRequest: AppStoreVersionPhasedReleaseUpdateRequest) async throws -> AppStoreVersionPhasedReleaseResponse {
-        return try await appStoreVersionPhasedReleasesUpdateInstanceWithRequestBuilder(id: id, appStoreVersionPhasedReleaseUpdateRequest: appStoreVersionPhasedReleaseUpdateRequest).execute().body
+    open class func appStoreVersionPhasedReleasesUpdateInstance(id: String, appStoreVersionPhasedReleaseUpdateRequest: AppStoreVersionPhasedReleaseUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppStoreVersionPhasedReleaseResponse {
+        return try await appStoreVersionPhasedReleasesUpdateInstanceWithRequestBuilder(id: id, appStoreVersionPhasedReleaseUpdateRequest: appStoreVersionPhasedReleaseUpdateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppStoreVersionPhasedReleaseResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionPhasedReleasesUpdateInstance(urlString: String) async throws -> AppStoreVersionPhasedReleaseResponse {
-        return try await appStoreVersionPhasedReleasesUpdateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func appStoreVersionPhasedReleasesUpdateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppStoreVersionPhasedReleaseResponse {
+        return try await appStoreVersionPhasedReleasesUpdateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -172,15 +179,16 @@ open class AppStoreVersionPhasedReleasesAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter appStoreVersionPhasedReleaseUpdateRequest: (body) AppStoreVersionPhasedRelease representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppStoreVersionPhasedReleaseResponse> 
      */
-    open class func appStoreVersionPhasedReleasesUpdateInstanceWithRequestBuilder(id: String, appStoreVersionPhasedReleaseUpdateRequest: AppStoreVersionPhasedReleaseUpdateRequest) -> RequestBuilder<AppStoreVersionPhasedReleaseResponse> {
+    open class func appStoreVersionPhasedReleasesUpdateInstanceWithRequestBuilder(id: String, appStoreVersionPhasedReleaseUpdateRequest: AppStoreVersionPhasedReleaseUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppStoreVersionPhasedReleaseResponse> {
         var localVariablePath = "/v1/appStoreVersionPhasedReleases/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: appStoreVersionPhasedReleaseUpdateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: appStoreVersionPhasedReleaseUpdateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -190,9 +198,9 @@ open class AppStoreVersionPhasedReleasesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionPhasedReleaseResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionPhasedReleaseResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -201,17 +209,18 @@ open class AppStoreVersionPhasedReleasesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppStoreVersionPhasedReleaseResponse> 
      */
-    open class func appStoreVersionPhasedReleasesUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppStoreVersionPhasedReleaseResponse> {
+    open class func appStoreVersionPhasedReleasesUpdateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppStoreVersionPhasedReleaseResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionPhasedReleaseResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionPhasedReleaseResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

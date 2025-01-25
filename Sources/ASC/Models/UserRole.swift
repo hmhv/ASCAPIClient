@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public enum UserRole: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+public enum UserRole: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
     case admin = "ADMIN"
     case finance = "FINANCE"
     case accountHolder = "ACCOUNT_HOLDER"

@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public enum Platform: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+public enum Platform: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
     case ios = "IOS"
     case macOs = "MAC_OS"
     case tvOs = "TV_OS"

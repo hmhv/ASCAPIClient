@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppStoreVersionBuildLinkageResponse: Codable, JSONEncodable, Hashable {
+public struct AppStoreVersionBuildLinkageResponse: Sendable, Codable, JSONEncodable, Hashable {
 
     public var data: AppEncryptionDeclarationRelationshipsBuildsDataInner
     public var links: DocumentLinks

@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct PreviewFrameImage: Codable, JSONEncodable, Hashable {
+public struct PreviewFrameImage: Sendable, Codable, JSONEncodable, Hashable {
 
     public var image: ImageAsset?
     public var state: AppMediaPreviewFrameImageState?

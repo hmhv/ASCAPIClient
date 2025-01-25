@@ -6,13 +6,10 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppMediaPreviewFrameImageState: Codable, JSONEncodable, Hashable {
+public struct AppMediaPreviewFrameImageState: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum State: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum State: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case processing = "PROCESSING"
         case complete = "COMPLETE"
         case failed = "FAILED"

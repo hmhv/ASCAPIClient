@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct BuildIconAttributes: Codable, JSONEncodable, Hashable {
+public struct BuildIconAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
     public var name: String?
     public var iconAsset: ImageAsset?

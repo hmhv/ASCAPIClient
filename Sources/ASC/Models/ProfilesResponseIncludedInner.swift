@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public enum ProfilesResponseIncludedInner: Codable, JSONEncodable, Hashable {
+public enum ProfilesResponseIncludedInner: Sendable, Codable, JSONEncodable, Hashable {
     case typeBundleId(BundleId)
     case typeCertificate(Certificate)
     case typeDevice(Device)

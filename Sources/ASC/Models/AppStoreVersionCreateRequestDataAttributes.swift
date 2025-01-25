@@ -6,18 +6,15 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppStoreVersionCreateRequestDataAttributes: Codable, JSONEncodable, Hashable {
+public struct AppStoreVersionCreateRequestDataAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum ReviewType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum ReviewType: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case appStore = "APP_STORE"
         case notarization = "NOTARIZATION"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
-    public enum ReleaseType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum ReleaseType: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case manual = "MANUAL"
         case afterApproval = "AFTER_APPROVAL"
         case scheduled = "SCHEDULED"

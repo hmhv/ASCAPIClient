@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppCustomProductPageLocalizationAttributes: Codable, JSONEncodable, Hashable {
+public struct AppCustomProductPageLocalizationAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
     public var locale: String?
     public var promotionalText: String?

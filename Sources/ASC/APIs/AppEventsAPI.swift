@@ -6,29 +6,28 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class AppEventsAPI {
 
     /**
 
      - parameter appEventCreateRequest: (body) AppEvent representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppEventResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appEventsCreateInstance(appEventCreateRequest: AppEventCreateRequest) async throws -> AppEventResponse {
-        return try await appEventsCreateInstanceWithRequestBuilder(appEventCreateRequest: appEventCreateRequest).execute().body
+    open class func appEventsCreateInstance(appEventCreateRequest: AppEventCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppEventResponse {
+        return try await appEventsCreateInstanceWithRequestBuilder(appEventCreateRequest: appEventCreateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppEventResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appEventsCreateInstance(urlString: String) async throws -> AppEventResponse {
-        return try await appEventsCreateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func appEventsCreateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppEventResponse {
+        return try await appEventsCreateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -37,12 +36,13 @@ open class AppEventsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter appEventCreateRequest: (body) AppEvent representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppEventResponse> 
      */
-    open class func appEventsCreateInstanceWithRequestBuilder(appEventCreateRequest: AppEventCreateRequest) -> RequestBuilder<AppEventResponse> {
+    open class func appEventsCreateInstanceWithRequestBuilder(appEventCreateRequest: AppEventCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppEventResponse> {
         let localVariablePath = "/v1/appEvents"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: appEventCreateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: appEventCreateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -52,9 +52,9 @@ open class AppEventsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppEventResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppEventResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -63,37 +63,40 @@ open class AppEventsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppEventResponse> 
      */
-    open class func appEventsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppEventResponse> {
+    open class func appEventsCreateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppEventResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppEventResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppEventResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appEventsDeleteInstance(id: String) async throws {
-        return try await appEventsDeleteInstanceWithRequestBuilder(id: id).execute().body
+    open class func appEventsDeleteInstance(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await appEventsDeleteInstanceWithRequestBuilder(id: id, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appEventsDeleteInstance(urlString: String) async throws {
-        return try await appEventsDeleteInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func appEventsDeleteInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await appEventsDeleteInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -102,14 +105,15 @@ open class AppEventsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func appEventsDeleteInstanceWithRequestBuilder(id: String) -> RequestBuilder<Void> {
+    open class func appEventsDeleteInstanceWithRequestBuilder(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/appEvents/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -120,9 +124,9 @@ open class AppEventsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -131,24 +135,25 @@ open class AppEventsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func appEventsDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func appEventsDeleteInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsAppEvents
      */
-    public enum FieldsAppEvents_appEventsGetInstance: String, CaseIterable {
+    public enum FieldsAppEvents_appEventsGetInstance: String, Sendable, CaseIterable {
         case referencename = "referenceName"
         case badge = "badge"
         case eventstate = "eventState"
@@ -165,7 +170,7 @@ open class AppEventsAPI {
     /**
      * enum for parameter fieldsAppEventLocalizations
      */
-    public enum FieldsAppEventLocalizations_appEventsGetInstance: String, CaseIterable {
+    public enum FieldsAppEventLocalizations_appEventsGetInstance: String, Sendable, CaseIterable {
         case locale = "locale"
         case name = "name"
         case shortdescription = "shortDescription"
@@ -178,7 +183,7 @@ open class AppEventsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_appEventsGetInstance: String, CaseIterable {
+    public enum Include_appEventsGetInstance: String, Sendable, CaseIterable {
         case localizations = "localizations"
     }
 
@@ -189,20 +194,22 @@ open class AppEventsAPI {
      - parameter fieldsAppEventLocalizations: (query) the fields to include for returned resources of type appEventLocalizations (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitLocalizations: (query) maximum number of related localizations returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppEventResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appEventsGetInstance(id: String, fieldsAppEvents: [FieldsAppEvents_appEventsGetInstance]? = nil, fieldsAppEventLocalizations: [FieldsAppEventLocalizations_appEventsGetInstance]? = nil, include: [Include_appEventsGetInstance]? = nil, limitLocalizations: Int? = nil) async throws -> AppEventResponse {
-        return try await appEventsGetInstanceWithRequestBuilder(id: id, fieldsAppEvents: fieldsAppEvents, fieldsAppEventLocalizations: fieldsAppEventLocalizations, include: include, limitLocalizations: limitLocalizations).execute().body
+    open class func appEventsGetInstance(id: String, fieldsAppEvents: [FieldsAppEvents_appEventsGetInstance]? = nil, fieldsAppEventLocalizations: [FieldsAppEventLocalizations_appEventsGetInstance]? = nil, include: [Include_appEventsGetInstance]? = nil, limitLocalizations: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppEventResponse {
+        return try await appEventsGetInstanceWithRequestBuilder(id: id, fieldsAppEvents: fieldsAppEvents, fieldsAppEventLocalizations: fieldsAppEventLocalizations, include: include, limitLocalizations: limitLocalizations, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppEventResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appEventsGetInstance(urlString: String) async throws -> AppEventResponse {
-        return try await appEventsGetInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func appEventsGetInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppEventResponse {
+        return try await appEventsGetInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -215,22 +222,23 @@ open class AppEventsAPI {
      - parameter fieldsAppEventLocalizations: (query) the fields to include for returned resources of type appEventLocalizations (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitLocalizations: (query) maximum number of related localizations returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppEventResponse> 
      */
-    open class func appEventsGetInstanceWithRequestBuilder(id: String, fieldsAppEvents: [FieldsAppEvents_appEventsGetInstance]? = nil, fieldsAppEventLocalizations: [FieldsAppEventLocalizations_appEventsGetInstance]? = nil, include: [Include_appEventsGetInstance]? = nil, limitLocalizations: Int? = nil) -> RequestBuilder<AppEventResponse> {
+    open class func appEventsGetInstanceWithRequestBuilder(id: String, fieldsAppEvents: [FieldsAppEvents_appEventsGetInstance]? = nil, fieldsAppEventLocalizations: [FieldsAppEventLocalizations_appEventsGetInstance]? = nil, include: [Include_appEventsGetInstance]? = nil, limitLocalizations: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppEventResponse> {
         var localVariablePath = "/v1/appEvents/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[appEvents]": (wrappedValue: fieldsAppEvents?.encodeToJSON(), isExplode: false),
-            "fields[appEventLocalizations]": (wrappedValue: fieldsAppEventLocalizations?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[localizations]": (wrappedValue: limitLocalizations?.encodeToJSON(), isExplode: true),
+            "fields[appEvents]": (wrappedValue: fieldsAppEvents?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appEventLocalizations]": (wrappedValue: fieldsAppEventLocalizations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[localizations]": (wrappedValue: limitLocalizations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -239,9 +247,9 @@ open class AppEventsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppEventResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppEventResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -250,24 +258,25 @@ open class AppEventsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppEventResponse> 
      */
-    open class func appEventsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppEventResponse> {
+    open class func appEventsGetInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppEventResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppEventResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppEventResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsAppEventLocalizations
      */
-    public enum FieldsAppEventLocalizations_appEventsLocalizationsGetToManyRelated: String, CaseIterable {
+    public enum FieldsAppEventLocalizations_appEventsLocalizationsGetToManyRelated: String, Sendable, CaseIterable {
         case locale = "locale"
         case name = "name"
         case shortdescription = "shortDescription"
@@ -280,7 +289,7 @@ open class AppEventsAPI {
     /**
      * enum for parameter fieldsAppEvents
      */
-    public enum FieldsAppEvents_appEventsLocalizationsGetToManyRelated: String, CaseIterable {
+    public enum FieldsAppEvents_appEventsLocalizationsGetToManyRelated: String, Sendable, CaseIterable {
         case referencename = "referenceName"
         case badge = "badge"
         case eventstate = "eventState"
@@ -297,7 +306,7 @@ open class AppEventsAPI {
     /**
      * enum for parameter fieldsAppEventScreenshots
      */
-    public enum FieldsAppEventScreenshots_appEventsLocalizationsGetToManyRelated: String, CaseIterable {
+    public enum FieldsAppEventScreenshots_appEventsLocalizationsGetToManyRelated: String, Sendable, CaseIterable {
         case filesize = "fileSize"
         case filename = "fileName"
         case imageasset = "imageAsset"
@@ -311,7 +320,7 @@ open class AppEventsAPI {
     /**
      * enum for parameter fieldsAppEventVideoClips
      */
-    public enum FieldsAppEventVideoClips_appEventsLocalizationsGetToManyRelated: String, CaseIterable {
+    public enum FieldsAppEventVideoClips_appEventsLocalizationsGetToManyRelated: String, Sendable, CaseIterable {
         case filesize = "fileSize"
         case filename = "fileName"
         case previewframetimecode = "previewFrameTimeCode"
@@ -328,7 +337,7 @@ open class AppEventsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_appEventsLocalizationsGetToManyRelated: String, CaseIterable {
+    public enum Include_appEventsLocalizationsGetToManyRelated: String, Sendable, CaseIterable {
         case appevent = "appEvent"
         case appeventscreenshots = "appEventScreenshots"
         case appeventvideoclips = "appEventVideoClips"
@@ -345,20 +354,22 @@ open class AppEventsAPI {
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAppEventScreenshots: (query) maximum number of related appEventScreenshots returned (when they are included) (optional)
      - parameter limitAppEventVideoClips: (query) maximum number of related appEventVideoClips returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppEventLocalizationsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appEventsLocalizationsGetToManyRelated(id: String, fieldsAppEventLocalizations: [FieldsAppEventLocalizations_appEventsLocalizationsGetToManyRelated]? = nil, fieldsAppEvents: [FieldsAppEvents_appEventsLocalizationsGetToManyRelated]? = nil, fieldsAppEventScreenshots: [FieldsAppEventScreenshots_appEventsLocalizationsGetToManyRelated]? = nil, fieldsAppEventVideoClips: [FieldsAppEventVideoClips_appEventsLocalizationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appEventsLocalizationsGetToManyRelated]? = nil, limitAppEventScreenshots: Int? = nil, limitAppEventVideoClips: Int? = nil) async throws -> AppEventLocalizationsResponse {
-        return try await appEventsLocalizationsGetToManyRelatedWithRequestBuilder(id: id, fieldsAppEventLocalizations: fieldsAppEventLocalizations, fieldsAppEvents: fieldsAppEvents, fieldsAppEventScreenshots: fieldsAppEventScreenshots, fieldsAppEventVideoClips: fieldsAppEventVideoClips, limit: limit, include: include, limitAppEventScreenshots: limitAppEventScreenshots, limitAppEventVideoClips: limitAppEventVideoClips).execute().body
+    open class func appEventsLocalizationsGetToManyRelated(id: String, fieldsAppEventLocalizations: [FieldsAppEventLocalizations_appEventsLocalizationsGetToManyRelated]? = nil, fieldsAppEvents: [FieldsAppEvents_appEventsLocalizationsGetToManyRelated]? = nil, fieldsAppEventScreenshots: [FieldsAppEventScreenshots_appEventsLocalizationsGetToManyRelated]? = nil, fieldsAppEventVideoClips: [FieldsAppEventVideoClips_appEventsLocalizationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appEventsLocalizationsGetToManyRelated]? = nil, limitAppEventScreenshots: Int? = nil, limitAppEventVideoClips: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppEventLocalizationsResponse {
+        return try await appEventsLocalizationsGetToManyRelatedWithRequestBuilder(id: id, fieldsAppEventLocalizations: fieldsAppEventLocalizations, fieldsAppEvents: fieldsAppEvents, fieldsAppEventScreenshots: fieldsAppEventScreenshots, fieldsAppEventVideoClips: fieldsAppEventVideoClips, limit: limit, include: include, limitAppEventScreenshots: limitAppEventScreenshots, limitAppEventVideoClips: limitAppEventVideoClips, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppEventLocalizationsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appEventsLocalizationsGetToManyRelated(urlString: String) async throws -> AppEventLocalizationsResponse {
-        return try await appEventsLocalizationsGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func appEventsLocalizationsGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppEventLocalizationsResponse {
+        return try await appEventsLocalizationsGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -375,26 +386,27 @@ open class AppEventsAPI {
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAppEventScreenshots: (query) maximum number of related appEventScreenshots returned (when they are included) (optional)
      - parameter limitAppEventVideoClips: (query) maximum number of related appEventVideoClips returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppEventLocalizationsResponse> 
      */
-    open class func appEventsLocalizationsGetToManyRelatedWithRequestBuilder(id: String, fieldsAppEventLocalizations: [FieldsAppEventLocalizations_appEventsLocalizationsGetToManyRelated]? = nil, fieldsAppEvents: [FieldsAppEvents_appEventsLocalizationsGetToManyRelated]? = nil, fieldsAppEventScreenshots: [FieldsAppEventScreenshots_appEventsLocalizationsGetToManyRelated]? = nil, fieldsAppEventVideoClips: [FieldsAppEventVideoClips_appEventsLocalizationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appEventsLocalizationsGetToManyRelated]? = nil, limitAppEventScreenshots: Int? = nil, limitAppEventVideoClips: Int? = nil) -> RequestBuilder<AppEventLocalizationsResponse> {
+    open class func appEventsLocalizationsGetToManyRelatedWithRequestBuilder(id: String, fieldsAppEventLocalizations: [FieldsAppEventLocalizations_appEventsLocalizationsGetToManyRelated]? = nil, fieldsAppEvents: [FieldsAppEvents_appEventsLocalizationsGetToManyRelated]? = nil, fieldsAppEventScreenshots: [FieldsAppEventScreenshots_appEventsLocalizationsGetToManyRelated]? = nil, fieldsAppEventVideoClips: [FieldsAppEventVideoClips_appEventsLocalizationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appEventsLocalizationsGetToManyRelated]? = nil, limitAppEventScreenshots: Int? = nil, limitAppEventVideoClips: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppEventLocalizationsResponse> {
         var localVariablePath = "/v1/appEvents/{id}/localizations"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[appEventLocalizations]": (wrappedValue: fieldsAppEventLocalizations?.encodeToJSON(), isExplode: false),
-            "fields[appEvents]": (wrappedValue: fieldsAppEvents?.encodeToJSON(), isExplode: false),
-            "fields[appEventScreenshots]": (wrappedValue: fieldsAppEventScreenshots?.encodeToJSON(), isExplode: false),
-            "fields[appEventVideoClips]": (wrappedValue: fieldsAppEventVideoClips?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[appEventScreenshots]": (wrappedValue: limitAppEventScreenshots?.encodeToJSON(), isExplode: true),
-            "limit[appEventVideoClips]": (wrappedValue: limitAppEventVideoClips?.encodeToJSON(), isExplode: true),
+            "fields[appEventLocalizations]": (wrappedValue: fieldsAppEventLocalizations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appEvents]": (wrappedValue: fieldsAppEvents?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appEventScreenshots]": (wrappedValue: fieldsAppEventScreenshots?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appEventVideoClips]": (wrappedValue: fieldsAppEventVideoClips?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[appEventScreenshots]": (wrappedValue: limitAppEventScreenshots?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[appEventVideoClips]": (wrappedValue: limitAppEventVideoClips?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -403,9 +415,9 @@ open class AppEventsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppEventLocalizationsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppEventLocalizationsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -414,38 +426,41 @@ open class AppEventsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppEventLocalizationsResponse> 
      */
-    open class func appEventsLocalizationsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppEventLocalizationsResponse> {
+    open class func appEventsLocalizationsGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppEventLocalizationsResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppEventLocalizationsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppEventLocalizationsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter appEventUpdateRequest: (body) AppEvent representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppEventResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appEventsUpdateInstance(id: String, appEventUpdateRequest: AppEventUpdateRequest) async throws -> AppEventResponse {
-        return try await appEventsUpdateInstanceWithRequestBuilder(id: id, appEventUpdateRequest: appEventUpdateRequest).execute().body
+    open class func appEventsUpdateInstance(id: String, appEventUpdateRequest: AppEventUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppEventResponse {
+        return try await appEventsUpdateInstanceWithRequestBuilder(id: id, appEventUpdateRequest: appEventUpdateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppEventResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appEventsUpdateInstance(urlString: String) async throws -> AppEventResponse {
-        return try await appEventsUpdateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func appEventsUpdateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppEventResponse {
+        return try await appEventsUpdateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -455,15 +470,16 @@ open class AppEventsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter appEventUpdateRequest: (body) AppEvent representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppEventResponse> 
      */
-    open class func appEventsUpdateInstanceWithRequestBuilder(id: String, appEventUpdateRequest: AppEventUpdateRequest) -> RequestBuilder<AppEventResponse> {
+    open class func appEventsUpdateInstanceWithRequestBuilder(id: String, appEventUpdateRequest: AppEventUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppEventResponse> {
         var localVariablePath = "/v1/appEvents/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: appEventUpdateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: appEventUpdateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -473,9 +489,9 @@ open class AppEventsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppEventResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppEventResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -484,17 +500,18 @@ open class AppEventsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppEventResponse> 
      */
-    open class func appEventsUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppEventResponse> {
+    open class func appEventsUpdateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppEventResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppEventResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppEventResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

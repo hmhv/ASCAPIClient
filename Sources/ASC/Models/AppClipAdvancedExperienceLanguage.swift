@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public enum AppClipAdvancedExperienceLanguage: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+public enum AppClipAdvancedExperienceLanguage: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
     case ar = "AR"
     case ca = "CA"
     case cs = "CS"

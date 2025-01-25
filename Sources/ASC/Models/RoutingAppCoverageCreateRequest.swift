@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct RoutingAppCoverageCreateRequest: Codable, JSONEncodable, Hashable {
+public struct RoutingAppCoverageCreateRequest: Sendable, Codable, JSONEncodable, Hashable {
 
     public var data: RoutingAppCoverageCreateRequestData
 

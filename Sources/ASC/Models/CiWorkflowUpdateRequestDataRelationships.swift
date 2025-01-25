@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct CiWorkflowUpdateRequestDataRelationships: Codable, JSONEncodable, Hashable {
+public struct CiWorkflowUpdateRequestDataRelationships: Sendable, Codable, JSONEncodable, Hashable {
 
     public var xcodeVersion: CiWorkflowRelationshipsXcodeVersion?
     public var macOsVersion: CiWorkflowRelationshipsMacOsVersion?

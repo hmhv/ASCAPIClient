@@ -6,16 +6,13 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class AppPriceSchedulesAPI {
 
     /**
      * enum for parameter fieldsAppPrices
      */
-    public enum FieldsAppPrices_appPriceSchedulesAutomaticPricesGetToManyRelated: String, CaseIterable {
+    public enum FieldsAppPrices_appPriceSchedulesAutomaticPricesGetToManyRelated: String, Sendable, CaseIterable {
         case manual = "manual"
         case startdate = "startDate"
         case enddate = "endDate"
@@ -26,7 +23,7 @@ open class AppPriceSchedulesAPI {
     /**
      * enum for parameter fieldsAppPricePoints
      */
-    public enum FieldsAppPricePoints_appPriceSchedulesAutomaticPricesGetToManyRelated: String, CaseIterable {
+    public enum FieldsAppPricePoints_appPriceSchedulesAutomaticPricesGetToManyRelated: String, Sendable, CaseIterable {
         case customerprice = "customerPrice"
         case proceeds = "proceeds"
         case app = "app"
@@ -37,14 +34,14 @@ open class AppPriceSchedulesAPI {
     /**
      * enum for parameter fieldsTerritories
      */
-    public enum FieldsTerritories_appPriceSchedulesAutomaticPricesGetToManyRelated: String, CaseIterable {
+    public enum FieldsTerritories_appPriceSchedulesAutomaticPricesGetToManyRelated: String, Sendable, CaseIterable {
         case currency = "currency"
     }
 
     /**
      * enum for parameter include
      */
-    public enum Include_appPriceSchedulesAutomaticPricesGetToManyRelated: String, CaseIterable {
+    public enum Include_appPriceSchedulesAutomaticPricesGetToManyRelated: String, Sendable, CaseIterable {
         case apppricepoint = "appPricePoint"
         case territory = "territory"
     }
@@ -60,20 +57,22 @@ open class AppPriceSchedulesAPI {
      - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppPricesV2Response
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appPriceSchedulesAutomaticPricesGetToManyRelated(id: String, filterStartDate: [String]? = nil, filterEndDate: [String]? = nil, filterTerritory: [String]? = nil, fieldsAppPrices: [FieldsAppPrices_appPriceSchedulesAutomaticPricesGetToManyRelated]? = nil, fieldsAppPricePoints: [FieldsAppPricePoints_appPriceSchedulesAutomaticPricesGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_appPriceSchedulesAutomaticPricesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appPriceSchedulesAutomaticPricesGetToManyRelated]? = nil) async throws -> AppPricesV2Response {
-        return try await appPriceSchedulesAutomaticPricesGetToManyRelatedWithRequestBuilder(id: id, filterStartDate: filterStartDate, filterEndDate: filterEndDate, filterTerritory: filterTerritory, fieldsAppPrices: fieldsAppPrices, fieldsAppPricePoints: fieldsAppPricePoints, fieldsTerritories: fieldsTerritories, limit: limit, include: include).execute().body
+    open class func appPriceSchedulesAutomaticPricesGetToManyRelated(id: String, filterStartDate: [String]? = nil, filterEndDate: [String]? = nil, filterTerritory: [String]? = nil, fieldsAppPrices: [FieldsAppPrices_appPriceSchedulesAutomaticPricesGetToManyRelated]? = nil, fieldsAppPricePoints: [FieldsAppPricePoints_appPriceSchedulesAutomaticPricesGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_appPriceSchedulesAutomaticPricesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appPriceSchedulesAutomaticPricesGetToManyRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppPricesV2Response {
+        return try await appPriceSchedulesAutomaticPricesGetToManyRelatedWithRequestBuilder(id: id, filterStartDate: filterStartDate, filterEndDate: filterEndDate, filterTerritory: filterTerritory, fieldsAppPrices: fieldsAppPrices, fieldsAppPricePoints: fieldsAppPricePoints, fieldsTerritories: fieldsTerritories, limit: limit, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppPricesV2Response
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appPriceSchedulesAutomaticPricesGetToManyRelated(urlString: String) async throws -> AppPricesV2Response {
-        return try await appPriceSchedulesAutomaticPricesGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func appPriceSchedulesAutomaticPricesGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppPricesV2Response {
+        return try await appPriceSchedulesAutomaticPricesGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -90,26 +89,27 @@ open class AppPriceSchedulesAPI {
      - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppPricesV2Response> 
      */
-    open class func appPriceSchedulesAutomaticPricesGetToManyRelatedWithRequestBuilder(id: String, filterStartDate: [String]? = nil, filterEndDate: [String]? = nil, filterTerritory: [String]? = nil, fieldsAppPrices: [FieldsAppPrices_appPriceSchedulesAutomaticPricesGetToManyRelated]? = nil, fieldsAppPricePoints: [FieldsAppPricePoints_appPriceSchedulesAutomaticPricesGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_appPriceSchedulesAutomaticPricesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appPriceSchedulesAutomaticPricesGetToManyRelated]? = nil) -> RequestBuilder<AppPricesV2Response> {
+    open class func appPriceSchedulesAutomaticPricesGetToManyRelatedWithRequestBuilder(id: String, filterStartDate: [String]? = nil, filterEndDate: [String]? = nil, filterTerritory: [String]? = nil, fieldsAppPrices: [FieldsAppPrices_appPriceSchedulesAutomaticPricesGetToManyRelated]? = nil, fieldsAppPricePoints: [FieldsAppPricePoints_appPriceSchedulesAutomaticPricesGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_appPriceSchedulesAutomaticPricesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appPriceSchedulesAutomaticPricesGetToManyRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppPricesV2Response> {
         var localVariablePath = "/v1/appPriceSchedules/{id}/automaticPrices"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[startDate]": (wrappedValue: filterStartDate?.encodeToJSON(), isExplode: false),
-            "filter[endDate]": (wrappedValue: filterEndDate?.encodeToJSON(), isExplode: false),
-            "filter[territory]": (wrappedValue: filterTerritory?.encodeToJSON(), isExplode: false),
-            "fields[appPrices]": (wrappedValue: fieldsAppPrices?.encodeToJSON(), isExplode: false),
-            "fields[appPricePoints]": (wrappedValue: fieldsAppPricePoints?.encodeToJSON(), isExplode: false),
-            "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "filter[startDate]": (wrappedValue: filterStartDate?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[endDate]": (wrappedValue: filterEndDate?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[territory]": (wrappedValue: filterTerritory?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appPrices]": (wrappedValue: fieldsAppPrices?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appPricePoints]": (wrappedValue: fieldsAppPricePoints?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -118,9 +118,9 @@ open class AppPriceSchedulesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppPricesV2Response>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppPricesV2Response>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -129,24 +129,25 @@ open class AppPriceSchedulesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppPricesV2Response> 
      */
-    open class func appPriceSchedulesAutomaticPricesGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppPricesV2Response> {
+    open class func appPriceSchedulesAutomaticPricesGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppPricesV2Response> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppPricesV2Response>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppPricesV2Response>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsTerritories
      */
-    public enum FieldsTerritories_appPriceSchedulesBaseTerritoryGetToOneRelated: String, CaseIterable {
+    public enum FieldsTerritories_appPriceSchedulesBaseTerritoryGetToOneRelated: String, Sendable, CaseIterable {
         case currency = "currency"
     }
 
@@ -154,20 +155,22 @@ open class AppPriceSchedulesAPI {
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: TerritoryResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appPriceSchedulesBaseTerritoryGetToOneRelated(id: String, fieldsTerritories: [FieldsTerritories_appPriceSchedulesBaseTerritoryGetToOneRelated]? = nil) async throws -> TerritoryResponse {
-        return try await appPriceSchedulesBaseTerritoryGetToOneRelatedWithRequestBuilder(id: id, fieldsTerritories: fieldsTerritories).execute().body
+    open class func appPriceSchedulesBaseTerritoryGetToOneRelated(id: String, fieldsTerritories: [FieldsTerritories_appPriceSchedulesBaseTerritoryGetToOneRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> TerritoryResponse {
+        return try await appPriceSchedulesBaseTerritoryGetToOneRelatedWithRequestBuilder(id: id, fieldsTerritories: fieldsTerritories, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: TerritoryResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appPriceSchedulesBaseTerritoryGetToOneRelated(urlString: String) async throws -> TerritoryResponse {
-        return try await appPriceSchedulesBaseTerritoryGetToOneRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func appPriceSchedulesBaseTerritoryGetToOneRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> TerritoryResponse {
+        return try await appPriceSchedulesBaseTerritoryGetToOneRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -177,19 +180,20 @@ open class AppPriceSchedulesAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<TerritoryResponse> 
      */
-    open class func appPriceSchedulesBaseTerritoryGetToOneRelatedWithRequestBuilder(id: String, fieldsTerritories: [FieldsTerritories_appPriceSchedulesBaseTerritoryGetToOneRelated]? = nil) -> RequestBuilder<TerritoryResponse> {
+    open class func appPriceSchedulesBaseTerritoryGetToOneRelatedWithRequestBuilder(id: String, fieldsTerritories: [FieldsTerritories_appPriceSchedulesBaseTerritoryGetToOneRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<TerritoryResponse> {
         var localVariablePath = "/v1/appPriceSchedules/{id}/baseTerritory"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(), isExplode: false),
+            "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -198,9 +202,9 @@ open class AppPriceSchedulesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<TerritoryResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<TerritoryResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -209,37 +213,40 @@ open class AppPriceSchedulesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<TerritoryResponse> 
      */
-    open class func appPriceSchedulesBaseTerritoryGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<TerritoryResponse> {
+    open class func appPriceSchedulesBaseTerritoryGetToOneRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<TerritoryResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<TerritoryResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<TerritoryResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter appPriceScheduleCreateRequest: (body) AppPriceSchedule representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppPriceScheduleResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appPriceSchedulesCreateInstance(appPriceScheduleCreateRequest: AppPriceScheduleCreateRequest) async throws -> AppPriceScheduleResponse {
-        return try await appPriceSchedulesCreateInstanceWithRequestBuilder(appPriceScheduleCreateRequest: appPriceScheduleCreateRequest).execute().body
+    open class func appPriceSchedulesCreateInstance(appPriceScheduleCreateRequest: AppPriceScheduleCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppPriceScheduleResponse {
+        return try await appPriceSchedulesCreateInstanceWithRequestBuilder(appPriceScheduleCreateRequest: appPriceScheduleCreateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppPriceScheduleResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appPriceSchedulesCreateInstance(urlString: String) async throws -> AppPriceScheduleResponse {
-        return try await appPriceSchedulesCreateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func appPriceSchedulesCreateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppPriceScheduleResponse {
+        return try await appPriceSchedulesCreateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -248,12 +255,13 @@ open class AppPriceSchedulesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter appPriceScheduleCreateRequest: (body) AppPriceSchedule representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppPriceScheduleResponse> 
      */
-    open class func appPriceSchedulesCreateInstanceWithRequestBuilder(appPriceScheduleCreateRequest: AppPriceScheduleCreateRequest) -> RequestBuilder<AppPriceScheduleResponse> {
+    open class func appPriceSchedulesCreateInstanceWithRequestBuilder(appPriceScheduleCreateRequest: AppPriceScheduleCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppPriceScheduleResponse> {
         let localVariablePath = "/v1/appPriceSchedules"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: appPriceScheduleCreateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: appPriceScheduleCreateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -263,9 +271,9 @@ open class AppPriceSchedulesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppPriceScheduleResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppPriceScheduleResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -274,24 +282,25 @@ open class AppPriceSchedulesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppPriceScheduleResponse> 
      */
-    open class func appPriceSchedulesCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppPriceScheduleResponse> {
+    open class func appPriceSchedulesCreateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppPriceScheduleResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppPriceScheduleResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppPriceScheduleResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsAppPriceSchedules
      */
-    public enum FieldsAppPriceSchedules_appPriceSchedulesGetInstance: String, CaseIterable {
+    public enum FieldsAppPriceSchedules_appPriceSchedulesGetInstance: String, Sendable, CaseIterable {
         case app = "app"
         case baseterritory = "baseTerritory"
         case manualprices = "manualPrices"
@@ -301,14 +310,14 @@ open class AppPriceSchedulesAPI {
     /**
      * enum for parameter fieldsTerritories
      */
-    public enum FieldsTerritories_appPriceSchedulesGetInstance: String, CaseIterable {
+    public enum FieldsTerritories_appPriceSchedulesGetInstance: String, Sendable, CaseIterable {
         case currency = "currency"
     }
 
     /**
      * enum for parameter fieldsAppPrices
      */
-    public enum FieldsAppPrices_appPriceSchedulesGetInstance: String, CaseIterable {
+    public enum FieldsAppPrices_appPriceSchedulesGetInstance: String, Sendable, CaseIterable {
         case manual = "manual"
         case startdate = "startDate"
         case enddate = "endDate"
@@ -319,7 +328,7 @@ open class AppPriceSchedulesAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_appPriceSchedulesGetInstance: String, CaseIterable {
+    public enum Include_appPriceSchedulesGetInstance: String, Sendable, CaseIterable {
         case app = "app"
         case baseterritory = "baseTerritory"
         case manualprices = "manualPrices"
@@ -335,20 +344,22 @@ open class AppPriceSchedulesAPI {
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAutomaticPrices: (query) maximum number of related automaticPrices returned (when they are included) (optional)
      - parameter limitManualPrices: (query) maximum number of related manualPrices returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppPriceScheduleResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appPriceSchedulesGetInstance(id: String, fieldsAppPriceSchedules: [FieldsAppPriceSchedules_appPriceSchedulesGetInstance]? = nil, fieldsTerritories: [FieldsTerritories_appPriceSchedulesGetInstance]? = nil, fieldsAppPrices: [FieldsAppPrices_appPriceSchedulesGetInstance]? = nil, include: [Include_appPriceSchedulesGetInstance]? = nil, limitAutomaticPrices: Int? = nil, limitManualPrices: Int? = nil) async throws -> AppPriceScheduleResponse {
-        return try await appPriceSchedulesGetInstanceWithRequestBuilder(id: id, fieldsAppPriceSchedules: fieldsAppPriceSchedules, fieldsTerritories: fieldsTerritories, fieldsAppPrices: fieldsAppPrices, include: include, limitAutomaticPrices: limitAutomaticPrices, limitManualPrices: limitManualPrices).execute().body
+    open class func appPriceSchedulesGetInstance(id: String, fieldsAppPriceSchedules: [FieldsAppPriceSchedules_appPriceSchedulesGetInstance]? = nil, fieldsTerritories: [FieldsTerritories_appPriceSchedulesGetInstance]? = nil, fieldsAppPrices: [FieldsAppPrices_appPriceSchedulesGetInstance]? = nil, include: [Include_appPriceSchedulesGetInstance]? = nil, limitAutomaticPrices: Int? = nil, limitManualPrices: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppPriceScheduleResponse {
+        return try await appPriceSchedulesGetInstanceWithRequestBuilder(id: id, fieldsAppPriceSchedules: fieldsAppPriceSchedules, fieldsTerritories: fieldsTerritories, fieldsAppPrices: fieldsAppPrices, include: include, limitAutomaticPrices: limitAutomaticPrices, limitManualPrices: limitManualPrices, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppPriceScheduleResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appPriceSchedulesGetInstance(urlString: String) async throws -> AppPriceScheduleResponse {
-        return try await appPriceSchedulesGetInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func appPriceSchedulesGetInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppPriceScheduleResponse {
+        return try await appPriceSchedulesGetInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -363,24 +374,25 @@ open class AppPriceSchedulesAPI {
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAutomaticPrices: (query) maximum number of related automaticPrices returned (when they are included) (optional)
      - parameter limitManualPrices: (query) maximum number of related manualPrices returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppPriceScheduleResponse> 
      */
-    open class func appPriceSchedulesGetInstanceWithRequestBuilder(id: String, fieldsAppPriceSchedules: [FieldsAppPriceSchedules_appPriceSchedulesGetInstance]? = nil, fieldsTerritories: [FieldsTerritories_appPriceSchedulesGetInstance]? = nil, fieldsAppPrices: [FieldsAppPrices_appPriceSchedulesGetInstance]? = nil, include: [Include_appPriceSchedulesGetInstance]? = nil, limitAutomaticPrices: Int? = nil, limitManualPrices: Int? = nil) -> RequestBuilder<AppPriceScheduleResponse> {
+    open class func appPriceSchedulesGetInstanceWithRequestBuilder(id: String, fieldsAppPriceSchedules: [FieldsAppPriceSchedules_appPriceSchedulesGetInstance]? = nil, fieldsTerritories: [FieldsTerritories_appPriceSchedulesGetInstance]? = nil, fieldsAppPrices: [FieldsAppPrices_appPriceSchedulesGetInstance]? = nil, include: [Include_appPriceSchedulesGetInstance]? = nil, limitAutomaticPrices: Int? = nil, limitManualPrices: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppPriceScheduleResponse> {
         var localVariablePath = "/v1/appPriceSchedules/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[appPriceSchedules]": (wrappedValue: fieldsAppPriceSchedules?.encodeToJSON(), isExplode: false),
-            "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(), isExplode: false),
-            "fields[appPrices]": (wrappedValue: fieldsAppPrices?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[automaticPrices]": (wrappedValue: limitAutomaticPrices?.encodeToJSON(), isExplode: true),
-            "limit[manualPrices]": (wrappedValue: limitManualPrices?.encodeToJSON(), isExplode: true),
+            "fields[appPriceSchedules]": (wrappedValue: fieldsAppPriceSchedules?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appPrices]": (wrappedValue: fieldsAppPrices?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[automaticPrices]": (wrappedValue: limitAutomaticPrices?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[manualPrices]": (wrappedValue: limitManualPrices?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -389,9 +401,9 @@ open class AppPriceSchedulesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppPriceScheduleResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppPriceScheduleResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -400,24 +412,25 @@ open class AppPriceSchedulesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppPriceScheduleResponse> 
      */
-    open class func appPriceSchedulesGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppPriceScheduleResponse> {
+    open class func appPriceSchedulesGetInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppPriceScheduleResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppPriceScheduleResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppPriceScheduleResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsAppPrices
      */
-    public enum FieldsAppPrices_appPriceSchedulesManualPricesGetToManyRelated: String, CaseIterable {
+    public enum FieldsAppPrices_appPriceSchedulesManualPricesGetToManyRelated: String, Sendable, CaseIterable {
         case manual = "manual"
         case startdate = "startDate"
         case enddate = "endDate"
@@ -428,7 +441,7 @@ open class AppPriceSchedulesAPI {
     /**
      * enum for parameter fieldsAppPricePoints
      */
-    public enum FieldsAppPricePoints_appPriceSchedulesManualPricesGetToManyRelated: String, CaseIterable {
+    public enum FieldsAppPricePoints_appPriceSchedulesManualPricesGetToManyRelated: String, Sendable, CaseIterable {
         case customerprice = "customerPrice"
         case proceeds = "proceeds"
         case app = "app"
@@ -439,14 +452,14 @@ open class AppPriceSchedulesAPI {
     /**
      * enum for parameter fieldsTerritories
      */
-    public enum FieldsTerritories_appPriceSchedulesManualPricesGetToManyRelated: String, CaseIterable {
+    public enum FieldsTerritories_appPriceSchedulesManualPricesGetToManyRelated: String, Sendable, CaseIterable {
         case currency = "currency"
     }
 
     /**
      * enum for parameter include
      */
-    public enum Include_appPriceSchedulesManualPricesGetToManyRelated: String, CaseIterable {
+    public enum Include_appPriceSchedulesManualPricesGetToManyRelated: String, Sendable, CaseIterable {
         case apppricepoint = "appPricePoint"
         case territory = "territory"
     }
@@ -462,20 +475,22 @@ open class AppPriceSchedulesAPI {
      - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppPricesV2Response
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appPriceSchedulesManualPricesGetToManyRelated(id: String, filterStartDate: [String]? = nil, filterEndDate: [String]? = nil, filterTerritory: [String]? = nil, fieldsAppPrices: [FieldsAppPrices_appPriceSchedulesManualPricesGetToManyRelated]? = nil, fieldsAppPricePoints: [FieldsAppPricePoints_appPriceSchedulesManualPricesGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_appPriceSchedulesManualPricesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appPriceSchedulesManualPricesGetToManyRelated]? = nil) async throws -> AppPricesV2Response {
-        return try await appPriceSchedulesManualPricesGetToManyRelatedWithRequestBuilder(id: id, filterStartDate: filterStartDate, filterEndDate: filterEndDate, filterTerritory: filterTerritory, fieldsAppPrices: fieldsAppPrices, fieldsAppPricePoints: fieldsAppPricePoints, fieldsTerritories: fieldsTerritories, limit: limit, include: include).execute().body
+    open class func appPriceSchedulesManualPricesGetToManyRelated(id: String, filterStartDate: [String]? = nil, filterEndDate: [String]? = nil, filterTerritory: [String]? = nil, fieldsAppPrices: [FieldsAppPrices_appPriceSchedulesManualPricesGetToManyRelated]? = nil, fieldsAppPricePoints: [FieldsAppPricePoints_appPriceSchedulesManualPricesGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_appPriceSchedulesManualPricesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appPriceSchedulesManualPricesGetToManyRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppPricesV2Response {
+        return try await appPriceSchedulesManualPricesGetToManyRelatedWithRequestBuilder(id: id, filterStartDate: filterStartDate, filterEndDate: filterEndDate, filterTerritory: filterTerritory, fieldsAppPrices: fieldsAppPrices, fieldsAppPricePoints: fieldsAppPricePoints, fieldsTerritories: fieldsTerritories, limit: limit, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppPricesV2Response
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appPriceSchedulesManualPricesGetToManyRelated(urlString: String) async throws -> AppPricesV2Response {
-        return try await appPriceSchedulesManualPricesGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func appPriceSchedulesManualPricesGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppPricesV2Response {
+        return try await appPriceSchedulesManualPricesGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -492,26 +507,27 @@ open class AppPriceSchedulesAPI {
      - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppPricesV2Response> 
      */
-    open class func appPriceSchedulesManualPricesGetToManyRelatedWithRequestBuilder(id: String, filterStartDate: [String]? = nil, filterEndDate: [String]? = nil, filterTerritory: [String]? = nil, fieldsAppPrices: [FieldsAppPrices_appPriceSchedulesManualPricesGetToManyRelated]? = nil, fieldsAppPricePoints: [FieldsAppPricePoints_appPriceSchedulesManualPricesGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_appPriceSchedulesManualPricesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appPriceSchedulesManualPricesGetToManyRelated]? = nil) -> RequestBuilder<AppPricesV2Response> {
+    open class func appPriceSchedulesManualPricesGetToManyRelatedWithRequestBuilder(id: String, filterStartDate: [String]? = nil, filterEndDate: [String]? = nil, filterTerritory: [String]? = nil, fieldsAppPrices: [FieldsAppPrices_appPriceSchedulesManualPricesGetToManyRelated]? = nil, fieldsAppPricePoints: [FieldsAppPricePoints_appPriceSchedulesManualPricesGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_appPriceSchedulesManualPricesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appPriceSchedulesManualPricesGetToManyRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppPricesV2Response> {
         var localVariablePath = "/v1/appPriceSchedules/{id}/manualPrices"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[startDate]": (wrappedValue: filterStartDate?.encodeToJSON(), isExplode: false),
-            "filter[endDate]": (wrappedValue: filterEndDate?.encodeToJSON(), isExplode: false),
-            "filter[territory]": (wrappedValue: filterTerritory?.encodeToJSON(), isExplode: false),
-            "fields[appPrices]": (wrappedValue: fieldsAppPrices?.encodeToJSON(), isExplode: false),
-            "fields[appPricePoints]": (wrappedValue: fieldsAppPricePoints?.encodeToJSON(), isExplode: false),
-            "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "filter[startDate]": (wrappedValue: filterStartDate?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[endDate]": (wrappedValue: filterEndDate?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[territory]": (wrappedValue: filterTerritory?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appPrices]": (wrappedValue: fieldsAppPrices?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appPricePoints]": (wrappedValue: fieldsAppPricePoints?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -520,9 +536,9 @@ open class AppPriceSchedulesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppPricesV2Response>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppPricesV2Response>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -531,17 +547,18 @@ open class AppPriceSchedulesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppPricesV2Response> 
      */
-    open class func appPriceSchedulesManualPricesGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppPricesV2Response> {
+    open class func appPriceSchedulesManualPricesGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppPricesV2Response> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppPricesV2Response>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppPricesV2Response>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

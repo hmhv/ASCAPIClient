@@ -6,13 +6,10 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppAttributes: Codable, JSONEncodable, Hashable {
+public struct AppAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum ContentRightsDeclaration: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum ContentRightsDeclaration: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case doesNotUseThirdPartyContent = "DOES_NOT_USE_THIRD_PARTY_CONTENT"
         case usesThirdPartyContent = "USES_THIRD_PARTY_CONTENT"
         case unknownDefaultOpenApi = "unknown_default_open_api"

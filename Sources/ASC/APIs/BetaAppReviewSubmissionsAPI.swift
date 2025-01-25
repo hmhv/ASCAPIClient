@@ -6,16 +6,13 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class BetaAppReviewSubmissionsAPI {
 
     /**
      * enum for parameter fieldsBuilds
      */
-    public enum FieldsBuilds_betaAppReviewSubmissionsBuildGetToOneRelated: String, CaseIterable {
+    public enum FieldsBuilds_betaAppReviewSubmissionsBuildGetToOneRelated: String, Sendable, CaseIterable {
         case version = "version"
         case uploadeddate = "uploadedDate"
         case expirationdate = "expirationDate"
@@ -46,20 +43,22 @@ open class BetaAppReviewSubmissionsAPI {
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BuildWithoutIncludesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaAppReviewSubmissionsBuildGetToOneRelated(id: String, fieldsBuilds: [FieldsBuilds_betaAppReviewSubmissionsBuildGetToOneRelated]? = nil) async throws -> BuildWithoutIncludesResponse {
-        return try await betaAppReviewSubmissionsBuildGetToOneRelatedWithRequestBuilder(id: id, fieldsBuilds: fieldsBuilds).execute().body
+    open class func betaAppReviewSubmissionsBuildGetToOneRelated(id: String, fieldsBuilds: [FieldsBuilds_betaAppReviewSubmissionsBuildGetToOneRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BuildWithoutIncludesResponse {
+        return try await betaAppReviewSubmissionsBuildGetToOneRelatedWithRequestBuilder(id: id, fieldsBuilds: fieldsBuilds, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BuildWithoutIncludesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaAppReviewSubmissionsBuildGetToOneRelated(urlString: String) async throws -> BuildWithoutIncludesResponse {
-        return try await betaAppReviewSubmissionsBuildGetToOneRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func betaAppReviewSubmissionsBuildGetToOneRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BuildWithoutIncludesResponse {
+        return try await betaAppReviewSubmissionsBuildGetToOneRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -69,19 +68,20 @@ open class BetaAppReviewSubmissionsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BuildWithoutIncludesResponse> 
      */
-    open class func betaAppReviewSubmissionsBuildGetToOneRelatedWithRequestBuilder(id: String, fieldsBuilds: [FieldsBuilds_betaAppReviewSubmissionsBuildGetToOneRelated]? = nil) -> RequestBuilder<BuildWithoutIncludesResponse> {
+    open class func betaAppReviewSubmissionsBuildGetToOneRelatedWithRequestBuilder(id: String, fieldsBuilds: [FieldsBuilds_betaAppReviewSubmissionsBuildGetToOneRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BuildWithoutIncludesResponse> {
         var localVariablePath = "/v1/betaAppReviewSubmissions/{id}/build"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(), isExplode: false),
+            "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -90,9 +90,9 @@ open class BetaAppReviewSubmissionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BuildWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BuildWithoutIncludesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -101,37 +101,40 @@ open class BetaAppReviewSubmissionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BuildWithoutIncludesResponse> 
      */
-    open class func betaAppReviewSubmissionsBuildGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<BuildWithoutIncludesResponse> {
+    open class func betaAppReviewSubmissionsBuildGetToOneRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BuildWithoutIncludesResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BuildWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BuildWithoutIncludesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter betaAppReviewSubmissionCreateRequest: (body) BetaAppReviewSubmission representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BetaAppReviewSubmissionResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaAppReviewSubmissionsCreateInstance(betaAppReviewSubmissionCreateRequest: BetaAppReviewSubmissionCreateRequest) async throws -> BetaAppReviewSubmissionResponse {
-        return try await betaAppReviewSubmissionsCreateInstanceWithRequestBuilder(betaAppReviewSubmissionCreateRequest: betaAppReviewSubmissionCreateRequest).execute().body
+    open class func betaAppReviewSubmissionsCreateInstance(betaAppReviewSubmissionCreateRequest: BetaAppReviewSubmissionCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BetaAppReviewSubmissionResponse {
+        return try await betaAppReviewSubmissionsCreateInstanceWithRequestBuilder(betaAppReviewSubmissionCreateRequest: betaAppReviewSubmissionCreateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BetaAppReviewSubmissionResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaAppReviewSubmissionsCreateInstance(urlString: String) async throws -> BetaAppReviewSubmissionResponse {
-        return try await betaAppReviewSubmissionsCreateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func betaAppReviewSubmissionsCreateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BetaAppReviewSubmissionResponse {
+        return try await betaAppReviewSubmissionsCreateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -140,12 +143,13 @@ open class BetaAppReviewSubmissionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter betaAppReviewSubmissionCreateRequest: (body) BetaAppReviewSubmission representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BetaAppReviewSubmissionResponse> 
      */
-    open class func betaAppReviewSubmissionsCreateInstanceWithRequestBuilder(betaAppReviewSubmissionCreateRequest: BetaAppReviewSubmissionCreateRequest) -> RequestBuilder<BetaAppReviewSubmissionResponse> {
+    open class func betaAppReviewSubmissionsCreateInstanceWithRequestBuilder(betaAppReviewSubmissionCreateRequest: BetaAppReviewSubmissionCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BetaAppReviewSubmissionResponse> {
         let localVariablePath = "/v1/betaAppReviewSubmissions"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: betaAppReviewSubmissionCreateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: betaAppReviewSubmissionCreateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -155,9 +159,9 @@ open class BetaAppReviewSubmissionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BetaAppReviewSubmissionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BetaAppReviewSubmissionResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -166,24 +170,25 @@ open class BetaAppReviewSubmissionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BetaAppReviewSubmissionResponse> 
      */
-    open class func betaAppReviewSubmissionsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<BetaAppReviewSubmissionResponse> {
+    open class func betaAppReviewSubmissionsCreateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BetaAppReviewSubmissionResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BetaAppReviewSubmissionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BetaAppReviewSubmissionResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter filterBetaReviewState
      */
-    public enum FilterBetaReviewState_betaAppReviewSubmissionsGetCollection: String, CaseIterable {
+    public enum FilterBetaReviewState_betaAppReviewSubmissionsGetCollection: String, Sendable, CaseIterable {
         case waitingForReview = "WAITING_FOR_REVIEW"
         case inReview = "IN_REVIEW"
         case rejected = "REJECTED"
@@ -193,7 +198,7 @@ open class BetaAppReviewSubmissionsAPI {
     /**
      * enum for parameter fieldsBetaAppReviewSubmissions
      */
-    public enum FieldsBetaAppReviewSubmissions_betaAppReviewSubmissionsGetCollection: String, CaseIterable {
+    public enum FieldsBetaAppReviewSubmissions_betaAppReviewSubmissionsGetCollection: String, Sendable, CaseIterable {
         case betareviewstate = "betaReviewState"
         case submitteddate = "submittedDate"
         case build = "build"
@@ -202,7 +207,7 @@ open class BetaAppReviewSubmissionsAPI {
     /**
      * enum for parameter fieldsBuilds
      */
-    public enum FieldsBuilds_betaAppReviewSubmissionsGetCollection: String, CaseIterable {
+    public enum FieldsBuilds_betaAppReviewSubmissionsGetCollection: String, Sendable, CaseIterable {
         case version = "version"
         case uploadeddate = "uploadedDate"
         case expirationdate = "expirationDate"
@@ -232,7 +237,7 @@ open class BetaAppReviewSubmissionsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_betaAppReviewSubmissionsGetCollection: String, CaseIterable {
+    public enum Include_betaAppReviewSubmissionsGetCollection: String, Sendable, CaseIterable {
         case build = "build"
     }
 
@@ -244,20 +249,22 @@ open class BetaAppReviewSubmissionsAPI {
      - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BetaAppReviewSubmissionsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaAppReviewSubmissionsGetCollection(filterBuild: [String], filterBetaReviewState: [FilterBetaReviewState_betaAppReviewSubmissionsGetCollection]? = nil, fieldsBetaAppReviewSubmissions: [FieldsBetaAppReviewSubmissions_betaAppReviewSubmissionsGetCollection]? = nil, fieldsBuilds: [FieldsBuilds_betaAppReviewSubmissionsGetCollection]? = nil, limit: Int? = nil, include: [Include_betaAppReviewSubmissionsGetCollection]? = nil) async throws -> BetaAppReviewSubmissionsResponse {
-        return try await betaAppReviewSubmissionsGetCollectionWithRequestBuilder(filterBuild: filterBuild, filterBetaReviewState: filterBetaReviewState, fieldsBetaAppReviewSubmissions: fieldsBetaAppReviewSubmissions, fieldsBuilds: fieldsBuilds, limit: limit, include: include).execute().body
+    open class func betaAppReviewSubmissionsGetCollection(filterBuild: [String], filterBetaReviewState: [FilterBetaReviewState_betaAppReviewSubmissionsGetCollection]? = nil, fieldsBetaAppReviewSubmissions: [FieldsBetaAppReviewSubmissions_betaAppReviewSubmissionsGetCollection]? = nil, fieldsBuilds: [FieldsBuilds_betaAppReviewSubmissionsGetCollection]? = nil, limit: Int? = nil, include: [Include_betaAppReviewSubmissionsGetCollection]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BetaAppReviewSubmissionsResponse {
+        return try await betaAppReviewSubmissionsGetCollectionWithRequestBuilder(filterBuild: filterBuild, filterBetaReviewState: filterBetaReviewState, fieldsBetaAppReviewSubmissions: fieldsBetaAppReviewSubmissions, fieldsBuilds: fieldsBuilds, limit: limit, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BetaAppReviewSubmissionsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaAppReviewSubmissionsGetCollection(urlString: String) async throws -> BetaAppReviewSubmissionsResponse {
-        return try await betaAppReviewSubmissionsGetCollectionWithRequestBuilder(urlString: urlString).execute().body
+    open class func betaAppReviewSubmissionsGetCollection(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BetaAppReviewSubmissionsResponse {
+        return try await betaAppReviewSubmissionsGetCollectionWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -271,21 +278,22 @@ open class BetaAppReviewSubmissionsAPI {
      - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BetaAppReviewSubmissionsResponse> 
      */
-    open class func betaAppReviewSubmissionsGetCollectionWithRequestBuilder(filterBuild: [String], filterBetaReviewState: [FilterBetaReviewState_betaAppReviewSubmissionsGetCollection]? = nil, fieldsBetaAppReviewSubmissions: [FieldsBetaAppReviewSubmissions_betaAppReviewSubmissionsGetCollection]? = nil, fieldsBuilds: [FieldsBuilds_betaAppReviewSubmissionsGetCollection]? = nil, limit: Int? = nil, include: [Include_betaAppReviewSubmissionsGetCollection]? = nil) -> RequestBuilder<BetaAppReviewSubmissionsResponse> {
+    open class func betaAppReviewSubmissionsGetCollectionWithRequestBuilder(filterBuild: [String], filterBetaReviewState: [FilterBetaReviewState_betaAppReviewSubmissionsGetCollection]? = nil, fieldsBetaAppReviewSubmissions: [FieldsBetaAppReviewSubmissions_betaAppReviewSubmissionsGetCollection]? = nil, fieldsBuilds: [FieldsBuilds_betaAppReviewSubmissionsGetCollection]? = nil, limit: Int? = nil, include: [Include_betaAppReviewSubmissionsGetCollection]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BetaAppReviewSubmissionsResponse> {
         let localVariablePath = "/v1/betaAppReviewSubmissions"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[betaReviewState]": (wrappedValue: filterBetaReviewState?.encodeToJSON(), isExplode: false),
-            "filter[build]": (wrappedValue: filterBuild.encodeToJSON(), isExplode: false),
-            "fields[betaAppReviewSubmissions]": (wrappedValue: fieldsBetaAppReviewSubmissions?.encodeToJSON(), isExplode: false),
-            "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "filter[betaReviewState]": (wrappedValue: filterBetaReviewState?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[build]": (wrappedValue: filterBuild.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[betaAppReviewSubmissions]": (wrappedValue: fieldsBetaAppReviewSubmissions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -294,9 +302,9 @@ open class BetaAppReviewSubmissionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BetaAppReviewSubmissionsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BetaAppReviewSubmissionsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -305,24 +313,25 @@ open class BetaAppReviewSubmissionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BetaAppReviewSubmissionsResponse> 
      */
-    open class func betaAppReviewSubmissionsGetCollectionWithRequestBuilder(urlString: String) -> RequestBuilder<BetaAppReviewSubmissionsResponse> {
+    open class func betaAppReviewSubmissionsGetCollectionWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BetaAppReviewSubmissionsResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BetaAppReviewSubmissionsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BetaAppReviewSubmissionsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsBetaAppReviewSubmissions
      */
-    public enum FieldsBetaAppReviewSubmissions_betaAppReviewSubmissionsGetInstance: String, CaseIterable {
+    public enum FieldsBetaAppReviewSubmissions_betaAppReviewSubmissionsGetInstance: String, Sendable, CaseIterable {
         case betareviewstate = "betaReviewState"
         case submitteddate = "submittedDate"
         case build = "build"
@@ -331,7 +340,7 @@ open class BetaAppReviewSubmissionsAPI {
     /**
      * enum for parameter fieldsBuilds
      */
-    public enum FieldsBuilds_betaAppReviewSubmissionsGetInstance: String, CaseIterable {
+    public enum FieldsBuilds_betaAppReviewSubmissionsGetInstance: String, Sendable, CaseIterable {
         case version = "version"
         case uploadeddate = "uploadedDate"
         case expirationdate = "expirationDate"
@@ -361,7 +370,7 @@ open class BetaAppReviewSubmissionsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_betaAppReviewSubmissionsGetInstance: String, CaseIterable {
+    public enum Include_betaAppReviewSubmissionsGetInstance: String, Sendable, CaseIterable {
         case build = "build"
     }
 
@@ -371,20 +380,22 @@ open class BetaAppReviewSubmissionsAPI {
      - parameter fieldsBetaAppReviewSubmissions: (query) the fields to include for returned resources of type betaAppReviewSubmissions (optional)
      - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BetaAppReviewSubmissionResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaAppReviewSubmissionsGetInstance(id: String, fieldsBetaAppReviewSubmissions: [FieldsBetaAppReviewSubmissions_betaAppReviewSubmissionsGetInstance]? = nil, fieldsBuilds: [FieldsBuilds_betaAppReviewSubmissionsGetInstance]? = nil, include: [Include_betaAppReviewSubmissionsGetInstance]? = nil) async throws -> BetaAppReviewSubmissionResponse {
-        return try await betaAppReviewSubmissionsGetInstanceWithRequestBuilder(id: id, fieldsBetaAppReviewSubmissions: fieldsBetaAppReviewSubmissions, fieldsBuilds: fieldsBuilds, include: include).execute().body
+    open class func betaAppReviewSubmissionsGetInstance(id: String, fieldsBetaAppReviewSubmissions: [FieldsBetaAppReviewSubmissions_betaAppReviewSubmissionsGetInstance]? = nil, fieldsBuilds: [FieldsBuilds_betaAppReviewSubmissionsGetInstance]? = nil, include: [Include_betaAppReviewSubmissionsGetInstance]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BetaAppReviewSubmissionResponse {
+        return try await betaAppReviewSubmissionsGetInstanceWithRequestBuilder(id: id, fieldsBetaAppReviewSubmissions: fieldsBetaAppReviewSubmissions, fieldsBuilds: fieldsBuilds, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BetaAppReviewSubmissionResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaAppReviewSubmissionsGetInstance(urlString: String) async throws -> BetaAppReviewSubmissionResponse {
-        return try await betaAppReviewSubmissionsGetInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func betaAppReviewSubmissionsGetInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BetaAppReviewSubmissionResponse {
+        return try await betaAppReviewSubmissionsGetInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -396,21 +407,22 @@ open class BetaAppReviewSubmissionsAPI {
      - parameter fieldsBetaAppReviewSubmissions: (query) the fields to include for returned resources of type betaAppReviewSubmissions (optional)
      - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BetaAppReviewSubmissionResponse> 
      */
-    open class func betaAppReviewSubmissionsGetInstanceWithRequestBuilder(id: String, fieldsBetaAppReviewSubmissions: [FieldsBetaAppReviewSubmissions_betaAppReviewSubmissionsGetInstance]? = nil, fieldsBuilds: [FieldsBuilds_betaAppReviewSubmissionsGetInstance]? = nil, include: [Include_betaAppReviewSubmissionsGetInstance]? = nil) -> RequestBuilder<BetaAppReviewSubmissionResponse> {
+    open class func betaAppReviewSubmissionsGetInstanceWithRequestBuilder(id: String, fieldsBetaAppReviewSubmissions: [FieldsBetaAppReviewSubmissions_betaAppReviewSubmissionsGetInstance]? = nil, fieldsBuilds: [FieldsBuilds_betaAppReviewSubmissionsGetInstance]? = nil, include: [Include_betaAppReviewSubmissionsGetInstance]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BetaAppReviewSubmissionResponse> {
         var localVariablePath = "/v1/betaAppReviewSubmissions/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[betaAppReviewSubmissions]": (wrappedValue: fieldsBetaAppReviewSubmissions?.encodeToJSON(), isExplode: false),
-            "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "fields[betaAppReviewSubmissions]": (wrappedValue: fieldsBetaAppReviewSubmissions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -419,9 +431,9 @@ open class BetaAppReviewSubmissionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BetaAppReviewSubmissionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BetaAppReviewSubmissionResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -430,17 +442,18 @@ open class BetaAppReviewSubmissionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BetaAppReviewSubmissionResponse> 
      */
-    open class func betaAppReviewSubmissionsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<BetaAppReviewSubmissionResponse> {
+    open class func betaAppReviewSubmissionsGetInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BetaAppReviewSubmissionResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BetaAppReviewSubmissionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BetaAppReviewSubmissionResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

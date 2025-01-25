@@ -6,29 +6,28 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class GameCenterAchievementImagesAPI {
 
     /**
 
      - parameter gameCenterAchievementImageCreateRequest: (body) GameCenterAchievementImage representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterAchievementImageResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterAchievementImagesCreateInstance(gameCenterAchievementImageCreateRequest: GameCenterAchievementImageCreateRequest) async throws -> GameCenterAchievementImageResponse {
-        return try await gameCenterAchievementImagesCreateInstanceWithRequestBuilder(gameCenterAchievementImageCreateRequest: gameCenterAchievementImageCreateRequest).execute().body
+    open class func gameCenterAchievementImagesCreateInstance(gameCenterAchievementImageCreateRequest: GameCenterAchievementImageCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterAchievementImageResponse {
+        return try await gameCenterAchievementImagesCreateInstanceWithRequestBuilder(gameCenterAchievementImageCreateRequest: gameCenterAchievementImageCreateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterAchievementImageResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterAchievementImagesCreateInstance(urlString: String) async throws -> GameCenterAchievementImageResponse {
-        return try await gameCenterAchievementImagesCreateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func gameCenterAchievementImagesCreateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterAchievementImageResponse {
+        return try await gameCenterAchievementImagesCreateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -37,12 +36,13 @@ open class GameCenterAchievementImagesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter gameCenterAchievementImageCreateRequest: (body) GameCenterAchievementImage representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterAchievementImageResponse> 
      */
-    open class func gameCenterAchievementImagesCreateInstanceWithRequestBuilder(gameCenterAchievementImageCreateRequest: GameCenterAchievementImageCreateRequest) -> RequestBuilder<GameCenterAchievementImageResponse> {
+    open class func gameCenterAchievementImagesCreateInstanceWithRequestBuilder(gameCenterAchievementImageCreateRequest: GameCenterAchievementImageCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterAchievementImageResponse> {
         let localVariablePath = "/v1/gameCenterAchievementImages"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: gameCenterAchievementImageCreateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: gameCenterAchievementImageCreateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -52,9 +52,9 @@ open class GameCenterAchievementImagesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterAchievementImageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterAchievementImageResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -63,37 +63,40 @@ open class GameCenterAchievementImagesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterAchievementImageResponse> 
      */
-    open class func gameCenterAchievementImagesCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterAchievementImageResponse> {
+    open class func gameCenterAchievementImagesCreateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterAchievementImageResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterAchievementImageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterAchievementImageResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterAchievementImagesDeleteInstance(id: String) async throws {
-        return try await gameCenterAchievementImagesDeleteInstanceWithRequestBuilder(id: id).execute().body
+    open class func gameCenterAchievementImagesDeleteInstance(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await gameCenterAchievementImagesDeleteInstanceWithRequestBuilder(id: id, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterAchievementImagesDeleteInstance(urlString: String) async throws {
-        return try await gameCenterAchievementImagesDeleteInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func gameCenterAchievementImagesDeleteInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await gameCenterAchievementImagesDeleteInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -102,14 +105,15 @@ open class GameCenterAchievementImagesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func gameCenterAchievementImagesDeleteInstanceWithRequestBuilder(id: String) -> RequestBuilder<Void> {
+    open class func gameCenterAchievementImagesDeleteInstanceWithRequestBuilder(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/gameCenterAchievementImages/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -120,9 +124,9 @@ open class GameCenterAchievementImagesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -131,24 +135,25 @@ open class GameCenterAchievementImagesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func gameCenterAchievementImagesDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func gameCenterAchievementImagesDeleteInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsGameCenterAchievementImages
      */
-    public enum FieldsGameCenterAchievementImages_gameCenterAchievementImagesGetInstance: String, CaseIterable {
+    public enum FieldsGameCenterAchievementImages_gameCenterAchievementImagesGetInstance: String, Sendable, CaseIterable {
         case filesize = "fileSize"
         case filename = "fileName"
         case imageasset = "imageAsset"
@@ -160,7 +165,7 @@ open class GameCenterAchievementImagesAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_gameCenterAchievementImagesGetInstance: String, CaseIterable {
+    public enum Include_gameCenterAchievementImagesGetInstance: String, Sendable, CaseIterable {
         case gamecenterachievementlocalization = "gameCenterAchievementLocalization"
     }
 
@@ -169,20 +174,22 @@ open class GameCenterAchievementImagesAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsGameCenterAchievementImages: (query) the fields to include for returned resources of type gameCenterAchievementImages (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterAchievementImageResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterAchievementImagesGetInstance(id: String, fieldsGameCenterAchievementImages: [FieldsGameCenterAchievementImages_gameCenterAchievementImagesGetInstance]? = nil, include: [Include_gameCenterAchievementImagesGetInstance]? = nil) async throws -> GameCenterAchievementImageResponse {
-        return try await gameCenterAchievementImagesGetInstanceWithRequestBuilder(id: id, fieldsGameCenterAchievementImages: fieldsGameCenterAchievementImages, include: include).execute().body
+    open class func gameCenterAchievementImagesGetInstance(id: String, fieldsGameCenterAchievementImages: [FieldsGameCenterAchievementImages_gameCenterAchievementImagesGetInstance]? = nil, include: [Include_gameCenterAchievementImagesGetInstance]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterAchievementImageResponse {
+        return try await gameCenterAchievementImagesGetInstanceWithRequestBuilder(id: id, fieldsGameCenterAchievementImages: fieldsGameCenterAchievementImages, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterAchievementImageResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterAchievementImagesGetInstance(urlString: String) async throws -> GameCenterAchievementImageResponse {
-        return try await gameCenterAchievementImagesGetInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func gameCenterAchievementImagesGetInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterAchievementImageResponse {
+        return try await gameCenterAchievementImagesGetInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -193,20 +200,21 @@ open class GameCenterAchievementImagesAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsGameCenterAchievementImages: (query) the fields to include for returned resources of type gameCenterAchievementImages (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterAchievementImageResponse> 
      */
-    open class func gameCenterAchievementImagesGetInstanceWithRequestBuilder(id: String, fieldsGameCenterAchievementImages: [FieldsGameCenterAchievementImages_gameCenterAchievementImagesGetInstance]? = nil, include: [Include_gameCenterAchievementImagesGetInstance]? = nil) -> RequestBuilder<GameCenterAchievementImageResponse> {
+    open class func gameCenterAchievementImagesGetInstanceWithRequestBuilder(id: String, fieldsGameCenterAchievementImages: [FieldsGameCenterAchievementImages_gameCenterAchievementImagesGetInstance]? = nil, include: [Include_gameCenterAchievementImagesGetInstance]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterAchievementImageResponse> {
         var localVariablePath = "/v1/gameCenterAchievementImages/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[gameCenterAchievementImages]": (wrappedValue: fieldsGameCenterAchievementImages?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "fields[gameCenterAchievementImages]": (wrappedValue: fieldsGameCenterAchievementImages?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -215,9 +223,9 @@ open class GameCenterAchievementImagesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterAchievementImageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterAchievementImageResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -226,38 +234,41 @@ open class GameCenterAchievementImagesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterAchievementImageResponse> 
      */
-    open class func gameCenterAchievementImagesGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterAchievementImageResponse> {
+    open class func gameCenterAchievementImagesGetInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterAchievementImageResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterAchievementImageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterAchievementImageResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter gameCenterAchievementImageUpdateRequest: (body) GameCenterAchievementImage representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterAchievementImageResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterAchievementImagesUpdateInstance(id: String, gameCenterAchievementImageUpdateRequest: GameCenterAchievementImageUpdateRequest) async throws -> GameCenterAchievementImageResponse {
-        return try await gameCenterAchievementImagesUpdateInstanceWithRequestBuilder(id: id, gameCenterAchievementImageUpdateRequest: gameCenterAchievementImageUpdateRequest).execute().body
+    open class func gameCenterAchievementImagesUpdateInstance(id: String, gameCenterAchievementImageUpdateRequest: GameCenterAchievementImageUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterAchievementImageResponse {
+        return try await gameCenterAchievementImagesUpdateInstanceWithRequestBuilder(id: id, gameCenterAchievementImageUpdateRequest: gameCenterAchievementImageUpdateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterAchievementImageResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterAchievementImagesUpdateInstance(urlString: String) async throws -> GameCenterAchievementImageResponse {
-        return try await gameCenterAchievementImagesUpdateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func gameCenterAchievementImagesUpdateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterAchievementImageResponse {
+        return try await gameCenterAchievementImagesUpdateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -267,15 +278,16 @@ open class GameCenterAchievementImagesAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter gameCenterAchievementImageUpdateRequest: (body) GameCenterAchievementImage representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterAchievementImageResponse> 
      */
-    open class func gameCenterAchievementImagesUpdateInstanceWithRequestBuilder(id: String, gameCenterAchievementImageUpdateRequest: GameCenterAchievementImageUpdateRequest) -> RequestBuilder<GameCenterAchievementImageResponse> {
+    open class func gameCenterAchievementImagesUpdateInstanceWithRequestBuilder(id: String, gameCenterAchievementImageUpdateRequest: GameCenterAchievementImageUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterAchievementImageResponse> {
         var localVariablePath = "/v1/gameCenterAchievementImages/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: gameCenterAchievementImageUpdateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: gameCenterAchievementImageUpdateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -285,9 +297,9 @@ open class GameCenterAchievementImagesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterAchievementImageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterAchievementImageResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -296,17 +308,18 @@ open class GameCenterAchievementImagesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterAchievementImageResponse> 
      */
-    open class func gameCenterAchievementImagesUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterAchievementImageResponse> {
+    open class func gameCenterAchievementImagesUpdateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterAchievementImageResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterAchievementImageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterAchievementImageResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

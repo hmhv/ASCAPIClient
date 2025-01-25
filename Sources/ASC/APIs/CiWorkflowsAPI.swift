@@ -6,16 +6,13 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class CiWorkflowsAPI {
 
     /**
      * enum for parameter sort
      */
-    public enum Sort_ciWorkflowsBuildRunsGetToManyRelated: String, CaseIterable {
+    public enum Sort_ciWorkflowsBuildRunsGetToManyRelated: String, Sendable, CaseIterable {
         case number = "number"
         case number2 = "-number"
     }
@@ -23,7 +20,7 @@ open class CiWorkflowsAPI {
     /**
      * enum for parameter fieldsCiBuildRuns
      */
-    public enum FieldsCiBuildRuns_ciWorkflowsBuildRunsGetToManyRelated: String, CaseIterable {
+    public enum FieldsCiBuildRuns_ciWorkflowsBuildRunsGetToManyRelated: String, Sendable, CaseIterable {
         case number = "number"
         case createddate = "createdDate"
         case starteddate = "startedDate"
@@ -48,7 +45,7 @@ open class CiWorkflowsAPI {
     /**
      * enum for parameter fieldsBuilds
      */
-    public enum FieldsBuilds_ciWorkflowsBuildRunsGetToManyRelated: String, CaseIterable {
+    public enum FieldsBuilds_ciWorkflowsBuildRunsGetToManyRelated: String, Sendable, CaseIterable {
         case version = "version"
         case uploadeddate = "uploadedDate"
         case expirationdate = "expirationDate"
@@ -78,7 +75,7 @@ open class CiWorkflowsAPI {
     /**
      * enum for parameter fieldsCiWorkflows
      */
-    public enum FieldsCiWorkflows_ciWorkflowsBuildRunsGetToManyRelated: String, CaseIterable {
+    public enum FieldsCiWorkflows_ciWorkflowsBuildRunsGetToManyRelated: String, Sendable, CaseIterable {
         case name = "name"
         case description = "description"
         case branchstartcondition = "branchStartCondition"
@@ -104,7 +101,7 @@ open class CiWorkflowsAPI {
     /**
      * enum for parameter fieldsCiProducts
      */
-    public enum FieldsCiProducts_ciWorkflowsBuildRunsGetToManyRelated: String, CaseIterable {
+    public enum FieldsCiProducts_ciWorkflowsBuildRunsGetToManyRelated: String, Sendable, CaseIterable {
         case name = "name"
         case createddate = "createdDate"
         case producttype = "productType"
@@ -119,7 +116,7 @@ open class CiWorkflowsAPI {
     /**
      * enum for parameter fieldsScmGitReferences
      */
-    public enum FieldsScmGitReferences_ciWorkflowsBuildRunsGetToManyRelated: String, CaseIterable {
+    public enum FieldsScmGitReferences_ciWorkflowsBuildRunsGetToManyRelated: String, Sendable, CaseIterable {
         case name = "name"
         case canonicalname = "canonicalName"
         case isdeleted = "isDeleted"
@@ -130,7 +127,7 @@ open class CiWorkflowsAPI {
     /**
      * enum for parameter fieldsScmPullRequests
      */
-    public enum FieldsScmPullRequests_ciWorkflowsBuildRunsGetToManyRelated: String, CaseIterable {
+    public enum FieldsScmPullRequests_ciWorkflowsBuildRunsGetToManyRelated: String, Sendable, CaseIterable {
         case title = "title"
         case number = "number"
         case weburl = "webUrl"
@@ -148,7 +145,7 @@ open class CiWorkflowsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_ciWorkflowsBuildRunsGetToManyRelated: String, CaseIterable {
+    public enum Include_ciWorkflowsBuildRunsGetToManyRelated: String, Sendable, CaseIterable {
         case builds = "builds"
         case workflow = "workflow"
         case product = "product"
@@ -171,20 +168,22 @@ open class CiWorkflowsAPI {
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitBuilds: (query) maximum number of related builds returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: CiBuildRunsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciWorkflowsBuildRunsGetToManyRelated(id: String, filterBuilds: [String]? = nil, sort: [Sort_ciWorkflowsBuildRunsGetToManyRelated]? = nil, fieldsCiBuildRuns: [FieldsCiBuildRuns_ciWorkflowsBuildRunsGetToManyRelated]? = nil, fieldsBuilds: [FieldsBuilds_ciWorkflowsBuildRunsGetToManyRelated]? = nil, fieldsCiWorkflows: [FieldsCiWorkflows_ciWorkflowsBuildRunsGetToManyRelated]? = nil, fieldsCiProducts: [FieldsCiProducts_ciWorkflowsBuildRunsGetToManyRelated]? = nil, fieldsScmGitReferences: [FieldsScmGitReferences_ciWorkflowsBuildRunsGetToManyRelated]? = nil, fieldsScmPullRequests: [FieldsScmPullRequests_ciWorkflowsBuildRunsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_ciWorkflowsBuildRunsGetToManyRelated]? = nil, limitBuilds: Int? = nil) async throws -> CiBuildRunsResponse {
-        return try await ciWorkflowsBuildRunsGetToManyRelatedWithRequestBuilder(id: id, filterBuilds: filterBuilds, sort: sort, fieldsCiBuildRuns: fieldsCiBuildRuns, fieldsBuilds: fieldsBuilds, fieldsCiWorkflows: fieldsCiWorkflows, fieldsCiProducts: fieldsCiProducts, fieldsScmGitReferences: fieldsScmGitReferences, fieldsScmPullRequests: fieldsScmPullRequests, limit: limit, include: include, limitBuilds: limitBuilds).execute().body
+    open class func ciWorkflowsBuildRunsGetToManyRelated(id: String, filterBuilds: [String]? = nil, sort: [Sort_ciWorkflowsBuildRunsGetToManyRelated]? = nil, fieldsCiBuildRuns: [FieldsCiBuildRuns_ciWorkflowsBuildRunsGetToManyRelated]? = nil, fieldsBuilds: [FieldsBuilds_ciWorkflowsBuildRunsGetToManyRelated]? = nil, fieldsCiWorkflows: [FieldsCiWorkflows_ciWorkflowsBuildRunsGetToManyRelated]? = nil, fieldsCiProducts: [FieldsCiProducts_ciWorkflowsBuildRunsGetToManyRelated]? = nil, fieldsScmGitReferences: [FieldsScmGitReferences_ciWorkflowsBuildRunsGetToManyRelated]? = nil, fieldsScmPullRequests: [FieldsScmPullRequests_ciWorkflowsBuildRunsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_ciWorkflowsBuildRunsGetToManyRelated]? = nil, limitBuilds: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> CiBuildRunsResponse {
+        return try await ciWorkflowsBuildRunsGetToManyRelatedWithRequestBuilder(id: id, filterBuilds: filterBuilds, sort: sort, fieldsCiBuildRuns: fieldsCiBuildRuns, fieldsBuilds: fieldsBuilds, fieldsCiWorkflows: fieldsCiWorkflows, fieldsCiProducts: fieldsCiProducts, fieldsScmGitReferences: fieldsScmGitReferences, fieldsScmPullRequests: fieldsScmPullRequests, limit: limit, include: include, limitBuilds: limitBuilds, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: CiBuildRunsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciWorkflowsBuildRunsGetToManyRelated(urlString: String) async throws -> CiBuildRunsResponse {
-        return try await ciWorkflowsBuildRunsGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func ciWorkflowsBuildRunsGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> CiBuildRunsResponse {
+        return try await ciWorkflowsBuildRunsGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -204,29 +203,30 @@ open class CiWorkflowsAPI {
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitBuilds: (query) maximum number of related builds returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CiBuildRunsResponse> 
      */
-    open class func ciWorkflowsBuildRunsGetToManyRelatedWithRequestBuilder(id: String, filterBuilds: [String]? = nil, sort: [Sort_ciWorkflowsBuildRunsGetToManyRelated]? = nil, fieldsCiBuildRuns: [FieldsCiBuildRuns_ciWorkflowsBuildRunsGetToManyRelated]? = nil, fieldsBuilds: [FieldsBuilds_ciWorkflowsBuildRunsGetToManyRelated]? = nil, fieldsCiWorkflows: [FieldsCiWorkflows_ciWorkflowsBuildRunsGetToManyRelated]? = nil, fieldsCiProducts: [FieldsCiProducts_ciWorkflowsBuildRunsGetToManyRelated]? = nil, fieldsScmGitReferences: [FieldsScmGitReferences_ciWorkflowsBuildRunsGetToManyRelated]? = nil, fieldsScmPullRequests: [FieldsScmPullRequests_ciWorkflowsBuildRunsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_ciWorkflowsBuildRunsGetToManyRelated]? = nil, limitBuilds: Int? = nil) -> RequestBuilder<CiBuildRunsResponse> {
+    open class func ciWorkflowsBuildRunsGetToManyRelatedWithRequestBuilder(id: String, filterBuilds: [String]? = nil, sort: [Sort_ciWorkflowsBuildRunsGetToManyRelated]? = nil, fieldsCiBuildRuns: [FieldsCiBuildRuns_ciWorkflowsBuildRunsGetToManyRelated]? = nil, fieldsBuilds: [FieldsBuilds_ciWorkflowsBuildRunsGetToManyRelated]? = nil, fieldsCiWorkflows: [FieldsCiWorkflows_ciWorkflowsBuildRunsGetToManyRelated]? = nil, fieldsCiProducts: [FieldsCiProducts_ciWorkflowsBuildRunsGetToManyRelated]? = nil, fieldsScmGitReferences: [FieldsScmGitReferences_ciWorkflowsBuildRunsGetToManyRelated]? = nil, fieldsScmPullRequests: [FieldsScmPullRequests_ciWorkflowsBuildRunsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_ciWorkflowsBuildRunsGetToManyRelated]? = nil, limitBuilds: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<CiBuildRunsResponse> {
         var localVariablePath = "/v1/ciWorkflows/{id}/buildRuns"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[builds]": (wrappedValue: filterBuilds?.encodeToJSON(), isExplode: false),
-            "sort": (wrappedValue: sort?.encodeToJSON(), isExplode: false),
-            "fields[ciBuildRuns]": (wrappedValue: fieldsCiBuildRuns?.encodeToJSON(), isExplode: false),
-            "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(), isExplode: false),
-            "fields[ciWorkflows]": (wrappedValue: fieldsCiWorkflows?.encodeToJSON(), isExplode: false),
-            "fields[ciProducts]": (wrappedValue: fieldsCiProducts?.encodeToJSON(), isExplode: false),
-            "fields[scmGitReferences]": (wrappedValue: fieldsScmGitReferences?.encodeToJSON(), isExplode: false),
-            "fields[scmPullRequests]": (wrappedValue: fieldsScmPullRequests?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[builds]": (wrappedValue: limitBuilds?.encodeToJSON(), isExplode: true),
+            "filter[builds]": (wrappedValue: filterBuilds?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "sort": (wrappedValue: sort?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[ciBuildRuns]": (wrappedValue: fieldsCiBuildRuns?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[ciWorkflows]": (wrappedValue: fieldsCiWorkflows?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[ciProducts]": (wrappedValue: fieldsCiProducts?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[scmGitReferences]": (wrappedValue: fieldsScmGitReferences?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[scmPullRequests]": (wrappedValue: fieldsScmPullRequests?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[builds]": (wrappedValue: limitBuilds?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -235,9 +235,9 @@ open class CiWorkflowsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CiBuildRunsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CiBuildRunsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -246,37 +246,40 @@ open class CiWorkflowsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CiBuildRunsResponse> 
      */
-    open class func ciWorkflowsBuildRunsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<CiBuildRunsResponse> {
+    open class func ciWorkflowsBuildRunsGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<CiBuildRunsResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CiBuildRunsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CiBuildRunsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter ciWorkflowCreateRequest: (body) CiWorkflow representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: CiWorkflowResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciWorkflowsCreateInstance(ciWorkflowCreateRequest: CiWorkflowCreateRequest) async throws -> CiWorkflowResponse {
-        return try await ciWorkflowsCreateInstanceWithRequestBuilder(ciWorkflowCreateRequest: ciWorkflowCreateRequest).execute().body
+    open class func ciWorkflowsCreateInstance(ciWorkflowCreateRequest: CiWorkflowCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> CiWorkflowResponse {
+        return try await ciWorkflowsCreateInstanceWithRequestBuilder(ciWorkflowCreateRequest: ciWorkflowCreateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: CiWorkflowResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciWorkflowsCreateInstance(urlString: String) async throws -> CiWorkflowResponse {
-        return try await ciWorkflowsCreateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func ciWorkflowsCreateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> CiWorkflowResponse {
+        return try await ciWorkflowsCreateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -285,12 +288,13 @@ open class CiWorkflowsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter ciWorkflowCreateRequest: (body) CiWorkflow representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CiWorkflowResponse> 
      */
-    open class func ciWorkflowsCreateInstanceWithRequestBuilder(ciWorkflowCreateRequest: CiWorkflowCreateRequest) -> RequestBuilder<CiWorkflowResponse> {
+    open class func ciWorkflowsCreateInstanceWithRequestBuilder(ciWorkflowCreateRequest: CiWorkflowCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<CiWorkflowResponse> {
         let localVariablePath = "/v1/ciWorkflows"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: ciWorkflowCreateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: ciWorkflowCreateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -300,9 +304,9 @@ open class CiWorkflowsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CiWorkflowResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CiWorkflowResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -311,37 +315,40 @@ open class CiWorkflowsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CiWorkflowResponse> 
      */
-    open class func ciWorkflowsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<CiWorkflowResponse> {
+    open class func ciWorkflowsCreateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<CiWorkflowResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CiWorkflowResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CiWorkflowResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciWorkflowsDeleteInstance(id: String) async throws {
-        return try await ciWorkflowsDeleteInstanceWithRequestBuilder(id: id).execute().body
+    open class func ciWorkflowsDeleteInstance(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await ciWorkflowsDeleteInstanceWithRequestBuilder(id: id, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciWorkflowsDeleteInstance(urlString: String) async throws {
-        return try await ciWorkflowsDeleteInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func ciWorkflowsDeleteInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await ciWorkflowsDeleteInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -350,14 +357,15 @@ open class CiWorkflowsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func ciWorkflowsDeleteInstanceWithRequestBuilder(id: String) -> RequestBuilder<Void> {
+    open class func ciWorkflowsDeleteInstanceWithRequestBuilder(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/ciWorkflows/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -368,9 +376,9 @@ open class CiWorkflowsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -379,24 +387,25 @@ open class CiWorkflowsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func ciWorkflowsDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func ciWorkflowsDeleteInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsCiWorkflows
      */
-    public enum FieldsCiWorkflows_ciWorkflowsGetInstance: String, CaseIterable {
+    public enum FieldsCiWorkflows_ciWorkflowsGetInstance: String, Sendable, CaseIterable {
         case name = "name"
         case description = "description"
         case branchstartcondition = "branchStartCondition"
@@ -422,7 +431,7 @@ open class CiWorkflowsAPI {
     /**
      * enum for parameter fieldsScmRepositories
      */
-    public enum FieldsScmRepositories_ciWorkflowsGetInstance: String, CaseIterable {
+    public enum FieldsScmRepositories_ciWorkflowsGetInstance: String, Sendable, CaseIterable {
         case lastaccesseddate = "lastAccessedDate"
         case httpcloneurl = "httpCloneUrl"
         case sshcloneurl = "sshCloneUrl"
@@ -437,7 +446,7 @@ open class CiWorkflowsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_ciWorkflowsGetInstance: String, CaseIterable {
+    public enum Include_ciWorkflowsGetInstance: String, Sendable, CaseIterable {
         case product = "product"
         case repository = "repository"
         case xcodeversion = "xcodeVersion"
@@ -450,20 +459,22 @@ open class CiWorkflowsAPI {
      - parameter fieldsCiWorkflows: (query) the fields to include for returned resources of type ciWorkflows (optional)
      - parameter fieldsScmRepositories: (query) the fields to include for returned resources of type scmRepositories (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: CiWorkflowResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciWorkflowsGetInstance(id: String, fieldsCiWorkflows: [FieldsCiWorkflows_ciWorkflowsGetInstance]? = nil, fieldsScmRepositories: [FieldsScmRepositories_ciWorkflowsGetInstance]? = nil, include: [Include_ciWorkflowsGetInstance]? = nil) async throws -> CiWorkflowResponse {
-        return try await ciWorkflowsGetInstanceWithRequestBuilder(id: id, fieldsCiWorkflows: fieldsCiWorkflows, fieldsScmRepositories: fieldsScmRepositories, include: include).execute().body
+    open class func ciWorkflowsGetInstance(id: String, fieldsCiWorkflows: [FieldsCiWorkflows_ciWorkflowsGetInstance]? = nil, fieldsScmRepositories: [FieldsScmRepositories_ciWorkflowsGetInstance]? = nil, include: [Include_ciWorkflowsGetInstance]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> CiWorkflowResponse {
+        return try await ciWorkflowsGetInstanceWithRequestBuilder(id: id, fieldsCiWorkflows: fieldsCiWorkflows, fieldsScmRepositories: fieldsScmRepositories, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: CiWorkflowResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciWorkflowsGetInstance(urlString: String) async throws -> CiWorkflowResponse {
-        return try await ciWorkflowsGetInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func ciWorkflowsGetInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> CiWorkflowResponse {
+        return try await ciWorkflowsGetInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -475,21 +486,22 @@ open class CiWorkflowsAPI {
      - parameter fieldsCiWorkflows: (query) the fields to include for returned resources of type ciWorkflows (optional)
      - parameter fieldsScmRepositories: (query) the fields to include for returned resources of type scmRepositories (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CiWorkflowResponse> 
      */
-    open class func ciWorkflowsGetInstanceWithRequestBuilder(id: String, fieldsCiWorkflows: [FieldsCiWorkflows_ciWorkflowsGetInstance]? = nil, fieldsScmRepositories: [FieldsScmRepositories_ciWorkflowsGetInstance]? = nil, include: [Include_ciWorkflowsGetInstance]? = nil) -> RequestBuilder<CiWorkflowResponse> {
+    open class func ciWorkflowsGetInstanceWithRequestBuilder(id: String, fieldsCiWorkflows: [FieldsCiWorkflows_ciWorkflowsGetInstance]? = nil, fieldsScmRepositories: [FieldsScmRepositories_ciWorkflowsGetInstance]? = nil, include: [Include_ciWorkflowsGetInstance]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<CiWorkflowResponse> {
         var localVariablePath = "/v1/ciWorkflows/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[ciWorkflows]": (wrappedValue: fieldsCiWorkflows?.encodeToJSON(), isExplode: false),
-            "fields[scmRepositories]": (wrappedValue: fieldsScmRepositories?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "fields[ciWorkflows]": (wrappedValue: fieldsCiWorkflows?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[scmRepositories]": (wrappedValue: fieldsScmRepositories?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -498,9 +510,9 @@ open class CiWorkflowsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CiWorkflowResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CiWorkflowResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -509,24 +521,25 @@ open class CiWorkflowsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CiWorkflowResponse> 
      */
-    open class func ciWorkflowsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<CiWorkflowResponse> {
+    open class func ciWorkflowsGetInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<CiWorkflowResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CiWorkflowResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CiWorkflowResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsScmRepositories
      */
-    public enum FieldsScmRepositories_ciWorkflowsRepositoryGetToOneRelated: String, CaseIterable {
+    public enum FieldsScmRepositories_ciWorkflowsRepositoryGetToOneRelated: String, Sendable, CaseIterable {
         case lastaccesseddate = "lastAccessedDate"
         case httpcloneurl = "httpCloneUrl"
         case sshcloneurl = "sshCloneUrl"
@@ -541,7 +554,7 @@ open class CiWorkflowsAPI {
     /**
      * enum for parameter fieldsScmProviders
      */
-    public enum FieldsScmProviders_ciWorkflowsRepositoryGetToOneRelated: String, CaseIterable {
+    public enum FieldsScmProviders_ciWorkflowsRepositoryGetToOneRelated: String, Sendable, CaseIterable {
         case scmprovidertype = "scmProviderType"
         case url = "url"
         case repositories = "repositories"
@@ -550,7 +563,7 @@ open class CiWorkflowsAPI {
     /**
      * enum for parameter fieldsScmGitReferences
      */
-    public enum FieldsScmGitReferences_ciWorkflowsRepositoryGetToOneRelated: String, CaseIterable {
+    public enum FieldsScmGitReferences_ciWorkflowsRepositoryGetToOneRelated: String, Sendable, CaseIterable {
         case name = "name"
         case canonicalname = "canonicalName"
         case isdeleted = "isDeleted"
@@ -561,7 +574,7 @@ open class CiWorkflowsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_ciWorkflowsRepositoryGetToOneRelated: String, CaseIterable {
+    public enum Include_ciWorkflowsRepositoryGetToOneRelated: String, Sendable, CaseIterable {
         case scmprovider = "scmProvider"
         case defaultbranch = "defaultBranch"
     }
@@ -573,20 +586,22 @@ open class CiWorkflowsAPI {
      - parameter fieldsScmProviders: (query) the fields to include for returned resources of type scmProviders (optional)
      - parameter fieldsScmGitReferences: (query) the fields to include for returned resources of type scmGitReferences (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: ScmRepositoryResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciWorkflowsRepositoryGetToOneRelated(id: String, fieldsScmRepositories: [FieldsScmRepositories_ciWorkflowsRepositoryGetToOneRelated]? = nil, fieldsScmProviders: [FieldsScmProviders_ciWorkflowsRepositoryGetToOneRelated]? = nil, fieldsScmGitReferences: [FieldsScmGitReferences_ciWorkflowsRepositoryGetToOneRelated]? = nil, include: [Include_ciWorkflowsRepositoryGetToOneRelated]? = nil) async throws -> ScmRepositoryResponse {
-        return try await ciWorkflowsRepositoryGetToOneRelatedWithRequestBuilder(id: id, fieldsScmRepositories: fieldsScmRepositories, fieldsScmProviders: fieldsScmProviders, fieldsScmGitReferences: fieldsScmGitReferences, include: include).execute().body
+    open class func ciWorkflowsRepositoryGetToOneRelated(id: String, fieldsScmRepositories: [FieldsScmRepositories_ciWorkflowsRepositoryGetToOneRelated]? = nil, fieldsScmProviders: [FieldsScmProviders_ciWorkflowsRepositoryGetToOneRelated]? = nil, fieldsScmGitReferences: [FieldsScmGitReferences_ciWorkflowsRepositoryGetToOneRelated]? = nil, include: [Include_ciWorkflowsRepositoryGetToOneRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> ScmRepositoryResponse {
+        return try await ciWorkflowsRepositoryGetToOneRelatedWithRequestBuilder(id: id, fieldsScmRepositories: fieldsScmRepositories, fieldsScmProviders: fieldsScmProviders, fieldsScmGitReferences: fieldsScmGitReferences, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: ScmRepositoryResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciWorkflowsRepositoryGetToOneRelated(urlString: String) async throws -> ScmRepositoryResponse {
-        return try await ciWorkflowsRepositoryGetToOneRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func ciWorkflowsRepositoryGetToOneRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> ScmRepositoryResponse {
+        return try await ciWorkflowsRepositoryGetToOneRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -599,22 +614,23 @@ open class CiWorkflowsAPI {
      - parameter fieldsScmProviders: (query) the fields to include for returned resources of type scmProviders (optional)
      - parameter fieldsScmGitReferences: (query) the fields to include for returned resources of type scmGitReferences (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ScmRepositoryResponse> 
      */
-    open class func ciWorkflowsRepositoryGetToOneRelatedWithRequestBuilder(id: String, fieldsScmRepositories: [FieldsScmRepositories_ciWorkflowsRepositoryGetToOneRelated]? = nil, fieldsScmProviders: [FieldsScmProviders_ciWorkflowsRepositoryGetToOneRelated]? = nil, fieldsScmGitReferences: [FieldsScmGitReferences_ciWorkflowsRepositoryGetToOneRelated]? = nil, include: [Include_ciWorkflowsRepositoryGetToOneRelated]? = nil) -> RequestBuilder<ScmRepositoryResponse> {
+    open class func ciWorkflowsRepositoryGetToOneRelatedWithRequestBuilder(id: String, fieldsScmRepositories: [FieldsScmRepositories_ciWorkflowsRepositoryGetToOneRelated]? = nil, fieldsScmProviders: [FieldsScmProviders_ciWorkflowsRepositoryGetToOneRelated]? = nil, fieldsScmGitReferences: [FieldsScmGitReferences_ciWorkflowsRepositoryGetToOneRelated]? = nil, include: [Include_ciWorkflowsRepositoryGetToOneRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<ScmRepositoryResponse> {
         var localVariablePath = "/v1/ciWorkflows/{id}/repository"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[scmRepositories]": (wrappedValue: fieldsScmRepositories?.encodeToJSON(), isExplode: false),
-            "fields[scmProviders]": (wrappedValue: fieldsScmProviders?.encodeToJSON(), isExplode: false),
-            "fields[scmGitReferences]": (wrappedValue: fieldsScmGitReferences?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "fields[scmRepositories]": (wrappedValue: fieldsScmRepositories?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[scmProviders]": (wrappedValue: fieldsScmProviders?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[scmGitReferences]": (wrappedValue: fieldsScmGitReferences?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -623,9 +639,9 @@ open class CiWorkflowsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<ScmRepositoryResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<ScmRepositoryResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -634,38 +650,41 @@ open class CiWorkflowsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ScmRepositoryResponse> 
      */
-    open class func ciWorkflowsRepositoryGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<ScmRepositoryResponse> {
+    open class func ciWorkflowsRepositoryGetToOneRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<ScmRepositoryResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<ScmRepositoryResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<ScmRepositoryResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter ciWorkflowUpdateRequest: (body) CiWorkflow representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: CiWorkflowResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciWorkflowsUpdateInstance(id: String, ciWorkflowUpdateRequest: CiWorkflowUpdateRequest) async throws -> CiWorkflowResponse {
-        return try await ciWorkflowsUpdateInstanceWithRequestBuilder(id: id, ciWorkflowUpdateRequest: ciWorkflowUpdateRequest).execute().body
+    open class func ciWorkflowsUpdateInstance(id: String, ciWorkflowUpdateRequest: CiWorkflowUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> CiWorkflowResponse {
+        return try await ciWorkflowsUpdateInstanceWithRequestBuilder(id: id, ciWorkflowUpdateRequest: ciWorkflowUpdateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: CiWorkflowResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciWorkflowsUpdateInstance(urlString: String) async throws -> CiWorkflowResponse {
-        return try await ciWorkflowsUpdateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func ciWorkflowsUpdateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> CiWorkflowResponse {
+        return try await ciWorkflowsUpdateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -675,15 +694,16 @@ open class CiWorkflowsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter ciWorkflowUpdateRequest: (body) CiWorkflow representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CiWorkflowResponse> 
      */
-    open class func ciWorkflowsUpdateInstanceWithRequestBuilder(id: String, ciWorkflowUpdateRequest: CiWorkflowUpdateRequest) -> RequestBuilder<CiWorkflowResponse> {
+    open class func ciWorkflowsUpdateInstanceWithRequestBuilder(id: String, ciWorkflowUpdateRequest: CiWorkflowUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<CiWorkflowResponse> {
         var localVariablePath = "/v1/ciWorkflows/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: ciWorkflowUpdateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: ciWorkflowUpdateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -693,9 +713,9 @@ open class CiWorkflowsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CiWorkflowResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CiWorkflowResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -704,17 +724,18 @@ open class CiWorkflowsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CiWorkflowResponse> 
      */
-    open class func ciWorkflowsUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<CiWorkflowResponse> {
+    open class func ciWorkflowsUpdateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<CiWorkflowResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CiWorkflowResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CiWorkflowResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

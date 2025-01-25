@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct XcodeMetricsInsights: Codable, JSONEncodable, Hashable {
+public struct XcodeMetricsInsights: Sendable, Codable, JSONEncodable, Hashable {
 
     public var trendingUp: [MetricsInsight]?
     public var regressions: [MetricsInsight]?

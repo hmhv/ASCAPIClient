@@ -6,13 +6,10 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct BuildAttributes: Codable, JSONEncodable, Hashable {
+public struct BuildAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum ProcessingState: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum ProcessingState: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case processing = "PROCESSING"
         case failed = "FAILED"
         case invalid = "INVALID"

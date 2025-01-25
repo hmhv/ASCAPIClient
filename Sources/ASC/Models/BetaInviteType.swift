@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public enum BetaInviteType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+public enum BetaInviteType: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
     case email = "EMAIL"
     case publicLink = "PUBLIC_LINK"
     case unknownDefaultOpenApi = "unknown_default_open_api"

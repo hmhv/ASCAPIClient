@@ -6,13 +6,10 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppClipHeaderImage: Codable, JSONEncodable, Hashable {
+public struct AppClipHeaderImage: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum ModelType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum ModelType: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case appclipheaderimages = "appClipHeaderImages"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }

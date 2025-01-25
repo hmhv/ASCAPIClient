@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public enum CiActionType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+public enum CiActionType: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
     case build = "BUILD"
     case analyze = "ANALYZE"
     case test = "TEST"

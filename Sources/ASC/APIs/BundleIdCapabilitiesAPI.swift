@@ -6,29 +6,28 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class BundleIdCapabilitiesAPI {
 
     /**
 
      - parameter bundleIdCapabilityCreateRequest: (body) BundleIdCapability representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BundleIdCapabilityResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func bundleIdCapabilitiesCreateInstance(bundleIdCapabilityCreateRequest: BundleIdCapabilityCreateRequest) async throws -> BundleIdCapabilityResponse {
-        return try await bundleIdCapabilitiesCreateInstanceWithRequestBuilder(bundleIdCapabilityCreateRequest: bundleIdCapabilityCreateRequest).execute().body
+    open class func bundleIdCapabilitiesCreateInstance(bundleIdCapabilityCreateRequest: BundleIdCapabilityCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BundleIdCapabilityResponse {
+        return try await bundleIdCapabilitiesCreateInstanceWithRequestBuilder(bundleIdCapabilityCreateRequest: bundleIdCapabilityCreateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BundleIdCapabilityResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func bundleIdCapabilitiesCreateInstance(urlString: String) async throws -> BundleIdCapabilityResponse {
-        return try await bundleIdCapabilitiesCreateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func bundleIdCapabilitiesCreateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BundleIdCapabilityResponse {
+        return try await bundleIdCapabilitiesCreateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -37,12 +36,13 @@ open class BundleIdCapabilitiesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter bundleIdCapabilityCreateRequest: (body) BundleIdCapability representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BundleIdCapabilityResponse> 
      */
-    open class func bundleIdCapabilitiesCreateInstanceWithRequestBuilder(bundleIdCapabilityCreateRequest: BundleIdCapabilityCreateRequest) -> RequestBuilder<BundleIdCapabilityResponse> {
+    open class func bundleIdCapabilitiesCreateInstanceWithRequestBuilder(bundleIdCapabilityCreateRequest: BundleIdCapabilityCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BundleIdCapabilityResponse> {
         let localVariablePath = "/v1/bundleIdCapabilities"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: bundleIdCapabilityCreateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: bundleIdCapabilityCreateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -52,9 +52,9 @@ open class BundleIdCapabilitiesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BundleIdCapabilityResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BundleIdCapabilityResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -63,37 +63,40 @@ open class BundleIdCapabilitiesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BundleIdCapabilityResponse> 
      */
-    open class func bundleIdCapabilitiesCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<BundleIdCapabilityResponse> {
+    open class func bundleIdCapabilitiesCreateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BundleIdCapabilityResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BundleIdCapabilityResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BundleIdCapabilityResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func bundleIdCapabilitiesDeleteInstance(id: String) async throws {
-        return try await bundleIdCapabilitiesDeleteInstanceWithRequestBuilder(id: id).execute().body
+    open class func bundleIdCapabilitiesDeleteInstance(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await bundleIdCapabilitiesDeleteInstanceWithRequestBuilder(id: id, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func bundleIdCapabilitiesDeleteInstance(urlString: String) async throws {
-        return try await bundleIdCapabilitiesDeleteInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func bundleIdCapabilitiesDeleteInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await bundleIdCapabilitiesDeleteInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -102,14 +105,15 @@ open class BundleIdCapabilitiesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func bundleIdCapabilitiesDeleteInstanceWithRequestBuilder(id: String) -> RequestBuilder<Void> {
+    open class func bundleIdCapabilitiesDeleteInstanceWithRequestBuilder(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/bundleIdCapabilities/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -120,9 +124,9 @@ open class BundleIdCapabilitiesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -131,38 +135,41 @@ open class BundleIdCapabilitiesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func bundleIdCapabilitiesDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func bundleIdCapabilitiesDeleteInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter bundleIdCapabilityUpdateRequest: (body) BundleIdCapability representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BundleIdCapabilityResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func bundleIdCapabilitiesUpdateInstance(id: String, bundleIdCapabilityUpdateRequest: BundleIdCapabilityUpdateRequest) async throws -> BundleIdCapabilityResponse {
-        return try await bundleIdCapabilitiesUpdateInstanceWithRequestBuilder(id: id, bundleIdCapabilityUpdateRequest: bundleIdCapabilityUpdateRequest).execute().body
+    open class func bundleIdCapabilitiesUpdateInstance(id: String, bundleIdCapabilityUpdateRequest: BundleIdCapabilityUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BundleIdCapabilityResponse {
+        return try await bundleIdCapabilitiesUpdateInstanceWithRequestBuilder(id: id, bundleIdCapabilityUpdateRequest: bundleIdCapabilityUpdateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BundleIdCapabilityResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func bundleIdCapabilitiesUpdateInstance(urlString: String) async throws -> BundleIdCapabilityResponse {
-        return try await bundleIdCapabilitiesUpdateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func bundleIdCapabilitiesUpdateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BundleIdCapabilityResponse {
+        return try await bundleIdCapabilitiesUpdateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -172,15 +179,16 @@ open class BundleIdCapabilitiesAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter bundleIdCapabilityUpdateRequest: (body) BundleIdCapability representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BundleIdCapabilityResponse> 
      */
-    open class func bundleIdCapabilitiesUpdateInstanceWithRequestBuilder(id: String, bundleIdCapabilityUpdateRequest: BundleIdCapabilityUpdateRequest) -> RequestBuilder<BundleIdCapabilityResponse> {
+    open class func bundleIdCapabilitiesUpdateInstanceWithRequestBuilder(id: String, bundleIdCapabilityUpdateRequest: BundleIdCapabilityUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BundleIdCapabilityResponse> {
         var localVariablePath = "/v1/bundleIdCapabilities/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: bundleIdCapabilityUpdateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: bundleIdCapabilityUpdateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -190,9 +198,9 @@ open class BundleIdCapabilitiesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BundleIdCapabilityResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BundleIdCapabilityResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -201,17 +209,18 @@ open class BundleIdCapabilitiesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BundleIdCapabilityResponse> 
      */
-    open class func bundleIdCapabilitiesUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<BundleIdCapabilityResponse> {
+    open class func bundleIdCapabilitiesUpdateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BundleIdCapabilityResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BundleIdCapabilityResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BundleIdCapabilityResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

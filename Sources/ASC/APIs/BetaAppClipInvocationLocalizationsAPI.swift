@@ -6,29 +6,28 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class BetaAppClipInvocationLocalizationsAPI {
 
     /**
 
      - parameter betaAppClipInvocationLocalizationCreateRequest: (body) BetaAppClipInvocationLocalization representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BetaAppClipInvocationLocalizationResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaAppClipInvocationLocalizationsCreateInstance(betaAppClipInvocationLocalizationCreateRequest: BetaAppClipInvocationLocalizationCreateRequest) async throws -> BetaAppClipInvocationLocalizationResponse {
-        return try await betaAppClipInvocationLocalizationsCreateInstanceWithRequestBuilder(betaAppClipInvocationLocalizationCreateRequest: betaAppClipInvocationLocalizationCreateRequest).execute().body
+    open class func betaAppClipInvocationLocalizationsCreateInstance(betaAppClipInvocationLocalizationCreateRequest: BetaAppClipInvocationLocalizationCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BetaAppClipInvocationLocalizationResponse {
+        return try await betaAppClipInvocationLocalizationsCreateInstanceWithRequestBuilder(betaAppClipInvocationLocalizationCreateRequest: betaAppClipInvocationLocalizationCreateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BetaAppClipInvocationLocalizationResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaAppClipInvocationLocalizationsCreateInstance(urlString: String) async throws -> BetaAppClipInvocationLocalizationResponse {
-        return try await betaAppClipInvocationLocalizationsCreateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func betaAppClipInvocationLocalizationsCreateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BetaAppClipInvocationLocalizationResponse {
+        return try await betaAppClipInvocationLocalizationsCreateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -37,12 +36,13 @@ open class BetaAppClipInvocationLocalizationsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter betaAppClipInvocationLocalizationCreateRequest: (body) BetaAppClipInvocationLocalization representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BetaAppClipInvocationLocalizationResponse> 
      */
-    open class func betaAppClipInvocationLocalizationsCreateInstanceWithRequestBuilder(betaAppClipInvocationLocalizationCreateRequest: BetaAppClipInvocationLocalizationCreateRequest) -> RequestBuilder<BetaAppClipInvocationLocalizationResponse> {
+    open class func betaAppClipInvocationLocalizationsCreateInstanceWithRequestBuilder(betaAppClipInvocationLocalizationCreateRequest: BetaAppClipInvocationLocalizationCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BetaAppClipInvocationLocalizationResponse> {
         let localVariablePath = "/v1/betaAppClipInvocationLocalizations"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: betaAppClipInvocationLocalizationCreateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: betaAppClipInvocationLocalizationCreateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -52,9 +52,9 @@ open class BetaAppClipInvocationLocalizationsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BetaAppClipInvocationLocalizationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BetaAppClipInvocationLocalizationResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -63,37 +63,40 @@ open class BetaAppClipInvocationLocalizationsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BetaAppClipInvocationLocalizationResponse> 
      */
-    open class func betaAppClipInvocationLocalizationsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<BetaAppClipInvocationLocalizationResponse> {
+    open class func betaAppClipInvocationLocalizationsCreateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BetaAppClipInvocationLocalizationResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BetaAppClipInvocationLocalizationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BetaAppClipInvocationLocalizationResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaAppClipInvocationLocalizationsDeleteInstance(id: String) async throws {
-        return try await betaAppClipInvocationLocalizationsDeleteInstanceWithRequestBuilder(id: id).execute().body
+    open class func betaAppClipInvocationLocalizationsDeleteInstance(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await betaAppClipInvocationLocalizationsDeleteInstanceWithRequestBuilder(id: id, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaAppClipInvocationLocalizationsDeleteInstance(urlString: String) async throws {
-        return try await betaAppClipInvocationLocalizationsDeleteInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func betaAppClipInvocationLocalizationsDeleteInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await betaAppClipInvocationLocalizationsDeleteInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -102,14 +105,15 @@ open class BetaAppClipInvocationLocalizationsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func betaAppClipInvocationLocalizationsDeleteInstanceWithRequestBuilder(id: String) -> RequestBuilder<Void> {
+    open class func betaAppClipInvocationLocalizationsDeleteInstanceWithRequestBuilder(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/betaAppClipInvocationLocalizations/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -120,9 +124,9 @@ open class BetaAppClipInvocationLocalizationsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -131,38 +135,41 @@ open class BetaAppClipInvocationLocalizationsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func betaAppClipInvocationLocalizationsDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func betaAppClipInvocationLocalizationsDeleteInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter betaAppClipInvocationLocalizationUpdateRequest: (body) BetaAppClipInvocationLocalization representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BetaAppClipInvocationLocalizationResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaAppClipInvocationLocalizationsUpdateInstance(id: String, betaAppClipInvocationLocalizationUpdateRequest: BetaAppClipInvocationLocalizationUpdateRequest) async throws -> BetaAppClipInvocationLocalizationResponse {
-        return try await betaAppClipInvocationLocalizationsUpdateInstanceWithRequestBuilder(id: id, betaAppClipInvocationLocalizationUpdateRequest: betaAppClipInvocationLocalizationUpdateRequest).execute().body
+    open class func betaAppClipInvocationLocalizationsUpdateInstance(id: String, betaAppClipInvocationLocalizationUpdateRequest: BetaAppClipInvocationLocalizationUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BetaAppClipInvocationLocalizationResponse {
+        return try await betaAppClipInvocationLocalizationsUpdateInstanceWithRequestBuilder(id: id, betaAppClipInvocationLocalizationUpdateRequest: betaAppClipInvocationLocalizationUpdateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BetaAppClipInvocationLocalizationResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaAppClipInvocationLocalizationsUpdateInstance(urlString: String) async throws -> BetaAppClipInvocationLocalizationResponse {
-        return try await betaAppClipInvocationLocalizationsUpdateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func betaAppClipInvocationLocalizationsUpdateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BetaAppClipInvocationLocalizationResponse {
+        return try await betaAppClipInvocationLocalizationsUpdateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -172,15 +179,16 @@ open class BetaAppClipInvocationLocalizationsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter betaAppClipInvocationLocalizationUpdateRequest: (body) BetaAppClipInvocationLocalization representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BetaAppClipInvocationLocalizationResponse> 
      */
-    open class func betaAppClipInvocationLocalizationsUpdateInstanceWithRequestBuilder(id: String, betaAppClipInvocationLocalizationUpdateRequest: BetaAppClipInvocationLocalizationUpdateRequest) -> RequestBuilder<BetaAppClipInvocationLocalizationResponse> {
+    open class func betaAppClipInvocationLocalizationsUpdateInstanceWithRequestBuilder(id: String, betaAppClipInvocationLocalizationUpdateRequest: BetaAppClipInvocationLocalizationUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BetaAppClipInvocationLocalizationResponse> {
         var localVariablePath = "/v1/betaAppClipInvocationLocalizations/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: betaAppClipInvocationLocalizationUpdateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: betaAppClipInvocationLocalizationUpdateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -190,9 +198,9 @@ open class BetaAppClipInvocationLocalizationsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BetaAppClipInvocationLocalizationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BetaAppClipInvocationLocalizationResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -201,17 +209,18 @@ open class BetaAppClipInvocationLocalizationsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BetaAppClipInvocationLocalizationResponse> 
      */
-    open class func betaAppClipInvocationLocalizationsUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<BetaAppClipInvocationLocalizationResponse> {
+    open class func betaAppClipInvocationLocalizationsUpdateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BetaAppClipInvocationLocalizationResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BetaAppClipInvocationLocalizationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BetaAppClipInvocationLocalizationResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

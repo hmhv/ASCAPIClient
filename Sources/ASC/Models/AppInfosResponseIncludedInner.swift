@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public enum AppInfosResponseIncludedInner: Codable, JSONEncodable, Hashable {
+public enum AppInfosResponseIncludedInner: Sendable, Codable, JSONEncodable, Hashable {
     case typeAgeRatingDeclaration(AgeRatingDeclaration)
     case typeApp(App)
     case typeAppCategory(AppCategory)

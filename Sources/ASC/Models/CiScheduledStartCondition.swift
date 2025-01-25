@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct CiScheduledStartCondition: Codable, JSONEncodable, Hashable {
+public struct CiScheduledStartCondition: Sendable, Codable, JSONEncodable, Hashable {
 
     public var source: CiBranchPatterns?
     public var schedule: CiScheduledStartConditionSchedule?

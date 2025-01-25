@@ -6,16 +6,13 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class FinanceReportsAPI {
 
     /**
      * enum for parameter filterReportType
      */
-    public enum FilterReportType_financeReportsGetCollection: String, CaseIterable {
+    public enum FilterReportType_financeReportsGetCollection: String, Sendable, CaseIterable {
         case financial = "FINANCIAL"
         case financeDetail = "FINANCE_DETAIL"
     }
@@ -26,20 +23,22 @@ open class FinanceReportsAPI {
      - parameter filterReportType: (query) filter by attribute &#39;reportType&#39; 
      - parameter filterRegionCode: (query) filter by attribute &#39;regionCode&#39; 
      - parameter filterReportDate: (query) filter by attribute &#39;reportDate&#39; 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: URL
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func financeReportsGetCollection(filterVendorNumber: [String], filterReportType: [FilterReportType_financeReportsGetCollection], filterRegionCode: [String], filterReportDate: [String]) async throws -> URL {
-        return try await financeReportsGetCollectionWithRequestBuilder(filterVendorNumber: filterVendorNumber, filterReportType: filterReportType, filterRegionCode: filterRegionCode, filterReportDate: filterReportDate).execute().body
+    open class func financeReportsGetCollection(filterVendorNumber: [String], filterReportType: [FilterReportType_financeReportsGetCollection], filterRegionCode: [String], filterReportDate: [String], apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> URL {
+        return try await financeReportsGetCollectionWithRequestBuilder(filterVendorNumber: filterVendorNumber, filterReportType: filterReportType, filterRegionCode: filterRegionCode, filterReportDate: filterReportDate, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: URL
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func financeReportsGetCollection(urlString: String) async throws -> URL {
-        return try await financeReportsGetCollectionWithRequestBuilder(urlString: urlString).execute().body
+    open class func financeReportsGetCollection(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> URL {
+        return try await financeReportsGetCollectionWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -51,19 +50,20 @@ open class FinanceReportsAPI {
      - parameter filterReportType: (query) filter by attribute &#39;reportType&#39; 
      - parameter filterRegionCode: (query) filter by attribute &#39;regionCode&#39; 
      - parameter filterReportDate: (query) filter by attribute &#39;reportDate&#39; 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<URL> 
      */
-    open class func financeReportsGetCollectionWithRequestBuilder(filterVendorNumber: [String], filterReportType: [FilterReportType_financeReportsGetCollection], filterRegionCode: [String], filterReportDate: [String]) -> RequestBuilder<URL> {
+    open class func financeReportsGetCollectionWithRequestBuilder(filterVendorNumber: [String], filterReportType: [FilterReportType_financeReportsGetCollection], filterRegionCode: [String], filterReportDate: [String], apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<URL> {
         let localVariablePath = "/v1/financeReports"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[vendorNumber]": (wrappedValue: filterVendorNumber.encodeToJSON(), isExplode: false),
-            "filter[reportType]": (wrappedValue: filterReportType.encodeToJSON(), isExplode: false),
-            "filter[regionCode]": (wrappedValue: filterRegionCode.encodeToJSON(), isExplode: false),
-            "filter[reportDate]": (wrappedValue: filterReportDate.encodeToJSON(), isExplode: false),
+            "filter[vendorNumber]": (wrappedValue: filterVendorNumber.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[reportType]": (wrappedValue: filterReportType.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[regionCode]": (wrappedValue: filterRegionCode.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[reportDate]": (wrappedValue: filterReportDate.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -72,9 +72,9 @@ open class FinanceReportsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<URL>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<URL>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -83,17 +83,18 @@ open class FinanceReportsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<URL> 
      */
-    open class func financeReportsGetCollectionWithRequestBuilder(urlString: String) -> RequestBuilder<URL> {
+    open class func financeReportsGetCollectionWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<URL> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<URL>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<URL>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

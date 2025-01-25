@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct CiIssuesResponse: Codable, JSONEncodable, Hashable {
+public struct CiIssuesResponse: Sendable, Codable, JSONEncodable, Hashable {
 
     public var data: [CiIssue]
     public var links: PagedDocumentLinks

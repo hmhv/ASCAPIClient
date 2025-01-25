@@ -6,13 +6,10 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppInfoAttributes: Codable, JSONEncodable, Hashable {
+public struct AppInfoAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum State: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum State: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case accepted = "ACCEPTED"
         case developerRejected = "DEVELOPER_REJECTED"
         case inReview = "IN_REVIEW"
@@ -25,12 +22,12 @@ public struct AppInfoAttributes: Codable, JSONEncodable, Hashable {
         case waitingForReview = "WAITING_FOR_REVIEW"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
-    public enum AustraliaAgeRating: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum AustraliaAgeRating: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case fifteen = "FIFTEEN"
         case eighteen = "EIGHTEEN"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
-    public enum BrazilAgeRatingV2: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum BrazilAgeRatingV2: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case selfRatedL = "SELF_RATED_L"
         case selfRatedTen = "SELF_RATED_TEN"
         case selfRatedTwelve = "SELF_RATED_TWELVE"
@@ -45,11 +42,11 @@ public struct AppInfoAttributes: Codable, JSONEncodable, Hashable {
         case officialEighteen = "OFFICIAL_EIGHTEEN"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
-    public enum FranceAgeRating: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum FranceAgeRating: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case eighteen = "EIGHTEEN"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
-    public enum KoreaAgeRating: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum KoreaAgeRating: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case all = "ALL"
         case twelve = "TWELVE"
         case fifteen = "FIFTEEN"

@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct ScmRepositoryRelationships: Codable, JSONEncodable, Hashable {
+public struct ScmRepositoryRelationships: Sendable, Codable, JSONEncodable, Hashable {
 
     public var scmProvider: ScmRepositoryRelationshipsScmProvider?
     public var defaultBranch: CiBuildRunRelationshipsSourceBranchOrTag?

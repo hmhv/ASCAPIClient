@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct ErrorLinksAssociatedOneOf: Codable, JSONEncodable, Hashable {
+public struct ErrorLinksAssociatedOneOf: Sendable, Codable, JSONEncodable, Hashable {
 
     public var href: String?
     public var meta: ErrorLinksAssociatedOneOfMeta?

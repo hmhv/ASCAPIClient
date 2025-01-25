@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppStoreVersionPhasedReleaseAttributes: Codable, JSONEncodable, Hashable {
+public struct AppStoreVersionPhasedReleaseAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
     public var phasedReleaseState: PhasedReleaseState?
     public var startDate: Date?

@@ -6,13 +6,10 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppClipAdvancedExperienceAttributesPlaceDisplayPoint: Codable, JSONEncodable, Hashable {
+public struct AppClipAdvancedExperienceAttributesPlaceDisplayPoint: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum Source: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum Source: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case calculated = "CALCULATED"
         case manuallyPlaced = "MANUALLY_PLACED"
         case unknownDefaultOpenApi = "unknown_default_open_api"

@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct GameCenterLeaderboardImageCreateRequestDataRelationships: Codable, JSONEncodable, Hashable {
+public struct GameCenterLeaderboardImageCreateRequestDataRelationships: Sendable, Codable, JSONEncodable, Hashable {
 
     public var gameCenterLeaderboardLocalization: GameCenterLeaderboardImageCreateRequestDataRelationshipsGameCenterLeaderboardLocalization
 

@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct SandboxTestersClearPurchaseHistoryRequestV2CreateRequest: Codable, JSONEncodable, Hashable {
+public struct SandboxTestersClearPurchaseHistoryRequestV2CreateRequest: Sendable, Codable, JSONEncodable, Hashable {
 
     public var data: SandboxTestersClearPurchaseHistoryRequestV2CreateRequestData
 

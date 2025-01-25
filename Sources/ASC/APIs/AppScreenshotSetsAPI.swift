@@ -6,16 +6,13 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class AppScreenshotSetsAPI {
 
     /**
      * enum for parameter fieldsAppScreenshots
      */
-    public enum FieldsAppScreenshots_appScreenshotSetsAppScreenshotsGetToManyRelated: String, CaseIterable {
+    public enum FieldsAppScreenshots_appScreenshotSetsAppScreenshotsGetToManyRelated: String, Sendable, CaseIterable {
         case filesize = "fileSize"
         case filename = "fileName"
         case sourcefilechecksum = "sourceFileChecksum"
@@ -30,7 +27,7 @@ open class AppScreenshotSetsAPI {
     /**
      * enum for parameter fieldsAppScreenshotSets
      */
-    public enum FieldsAppScreenshotSets_appScreenshotSetsAppScreenshotsGetToManyRelated: String, CaseIterable {
+    public enum FieldsAppScreenshotSets_appScreenshotSetsAppScreenshotsGetToManyRelated: String, Sendable, CaseIterable {
         case screenshotdisplaytype = "screenshotDisplayType"
         case appstoreversionlocalization = "appStoreVersionLocalization"
         case appcustomproductpagelocalization = "appCustomProductPageLocalization"
@@ -41,7 +38,7 @@ open class AppScreenshotSetsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_appScreenshotSetsAppScreenshotsGetToManyRelated: String, CaseIterable {
+    public enum Include_appScreenshotSetsAppScreenshotsGetToManyRelated: String, Sendable, CaseIterable {
         case appscreenshotset = "appScreenshotSet"
     }
 
@@ -52,20 +49,22 @@ open class AppScreenshotSetsAPI {
      - parameter fieldsAppScreenshotSets: (query) the fields to include for returned resources of type appScreenshotSets (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppScreenshotsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appScreenshotSetsAppScreenshotsGetToManyRelated(id: String, fieldsAppScreenshots: [FieldsAppScreenshots_appScreenshotSetsAppScreenshotsGetToManyRelated]? = nil, fieldsAppScreenshotSets: [FieldsAppScreenshotSets_appScreenshotSetsAppScreenshotsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appScreenshotSetsAppScreenshotsGetToManyRelated]? = nil) async throws -> AppScreenshotsResponse {
-        return try await appScreenshotSetsAppScreenshotsGetToManyRelatedWithRequestBuilder(id: id, fieldsAppScreenshots: fieldsAppScreenshots, fieldsAppScreenshotSets: fieldsAppScreenshotSets, limit: limit, include: include).execute().body
+    open class func appScreenshotSetsAppScreenshotsGetToManyRelated(id: String, fieldsAppScreenshots: [FieldsAppScreenshots_appScreenshotSetsAppScreenshotsGetToManyRelated]? = nil, fieldsAppScreenshotSets: [FieldsAppScreenshotSets_appScreenshotSetsAppScreenshotsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appScreenshotSetsAppScreenshotsGetToManyRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppScreenshotsResponse {
+        return try await appScreenshotSetsAppScreenshotsGetToManyRelatedWithRequestBuilder(id: id, fieldsAppScreenshots: fieldsAppScreenshots, fieldsAppScreenshotSets: fieldsAppScreenshotSets, limit: limit, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppScreenshotsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appScreenshotSetsAppScreenshotsGetToManyRelated(urlString: String) async throws -> AppScreenshotsResponse {
-        return try await appScreenshotSetsAppScreenshotsGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func appScreenshotSetsAppScreenshotsGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppScreenshotsResponse {
+        return try await appScreenshotSetsAppScreenshotsGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -78,22 +77,23 @@ open class AppScreenshotSetsAPI {
      - parameter fieldsAppScreenshotSets: (query) the fields to include for returned resources of type appScreenshotSets (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppScreenshotsResponse> 
      */
-    open class func appScreenshotSetsAppScreenshotsGetToManyRelatedWithRequestBuilder(id: String, fieldsAppScreenshots: [FieldsAppScreenshots_appScreenshotSetsAppScreenshotsGetToManyRelated]? = nil, fieldsAppScreenshotSets: [FieldsAppScreenshotSets_appScreenshotSetsAppScreenshotsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appScreenshotSetsAppScreenshotsGetToManyRelated]? = nil) -> RequestBuilder<AppScreenshotsResponse> {
+    open class func appScreenshotSetsAppScreenshotsGetToManyRelatedWithRequestBuilder(id: String, fieldsAppScreenshots: [FieldsAppScreenshots_appScreenshotSetsAppScreenshotsGetToManyRelated]? = nil, fieldsAppScreenshotSets: [FieldsAppScreenshotSets_appScreenshotSetsAppScreenshotsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appScreenshotSetsAppScreenshotsGetToManyRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppScreenshotsResponse> {
         var localVariablePath = "/v1/appScreenshotSets/{id}/appScreenshots"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[appScreenshots]": (wrappedValue: fieldsAppScreenshots?.encodeToJSON(), isExplode: false),
-            "fields[appScreenshotSets]": (wrappedValue: fieldsAppScreenshotSets?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "fields[appScreenshots]": (wrappedValue: fieldsAppScreenshots?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appScreenshotSets]": (wrappedValue: fieldsAppScreenshotSets?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -102,9 +102,9 @@ open class AppScreenshotSetsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppScreenshotsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppScreenshotsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -113,38 +113,41 @@ open class AppScreenshotSetsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppScreenshotsResponse> 
      */
-    open class func appScreenshotSetsAppScreenshotsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppScreenshotsResponse> {
+    open class func appScreenshotSetsAppScreenshotsGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppScreenshotsResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppScreenshotsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppScreenshotsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppScreenshotSetAppScreenshotsLinkagesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appScreenshotSetsAppScreenshotsGetToManyRelationship(id: String, limit: Int? = nil) async throws -> AppScreenshotSetAppScreenshotsLinkagesResponse {
-        return try await appScreenshotSetsAppScreenshotsGetToManyRelationshipWithRequestBuilder(id: id, limit: limit).execute().body
+    open class func appScreenshotSetsAppScreenshotsGetToManyRelationship(id: String, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppScreenshotSetAppScreenshotsLinkagesResponse {
+        return try await appScreenshotSetsAppScreenshotsGetToManyRelationshipWithRequestBuilder(id: id, limit: limit, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppScreenshotSetAppScreenshotsLinkagesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appScreenshotSetsAppScreenshotsGetToManyRelationship(urlString: String) async throws -> AppScreenshotSetAppScreenshotsLinkagesResponse {
-        return try await appScreenshotSetsAppScreenshotsGetToManyRelationshipWithRequestBuilder(urlString: urlString).execute().body
+    open class func appScreenshotSetsAppScreenshotsGetToManyRelationship(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppScreenshotSetAppScreenshotsLinkagesResponse {
+        return try await appScreenshotSetsAppScreenshotsGetToManyRelationshipWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -154,19 +157,20 @@ open class AppScreenshotSetsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppScreenshotSetAppScreenshotsLinkagesResponse> 
      */
-    open class func appScreenshotSetsAppScreenshotsGetToManyRelationshipWithRequestBuilder(id: String, limit: Int? = nil) -> RequestBuilder<AppScreenshotSetAppScreenshotsLinkagesResponse> {
+    open class func appScreenshotSetsAppScreenshotsGetToManyRelationshipWithRequestBuilder(id: String, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppScreenshotSetAppScreenshotsLinkagesResponse> {
         var localVariablePath = "/v1/appScreenshotSets/{id}/relationships/appScreenshots"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -175,9 +179,9 @@ open class AppScreenshotSetsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppScreenshotSetAppScreenshotsLinkagesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppScreenshotSetAppScreenshotsLinkagesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -186,38 +190,41 @@ open class AppScreenshotSetsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppScreenshotSetAppScreenshotsLinkagesResponse> 
      */
-    open class func appScreenshotSetsAppScreenshotsGetToManyRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<AppScreenshotSetAppScreenshotsLinkagesResponse> {
+    open class func appScreenshotSetsAppScreenshotsGetToManyRelationshipWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppScreenshotSetAppScreenshotsLinkagesResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppScreenshotSetAppScreenshotsLinkagesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppScreenshotSetAppScreenshotsLinkagesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter appScreenshotSetAppScreenshotsLinkagesRequest: (body) List of related linkages 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appScreenshotSetsAppScreenshotsReplaceToManyRelationship(id: String, appScreenshotSetAppScreenshotsLinkagesRequest: AppScreenshotSetAppScreenshotsLinkagesRequest) async throws {
-        return try await appScreenshotSetsAppScreenshotsReplaceToManyRelationshipWithRequestBuilder(id: id, appScreenshotSetAppScreenshotsLinkagesRequest: appScreenshotSetAppScreenshotsLinkagesRequest).execute().body
+    open class func appScreenshotSetsAppScreenshotsReplaceToManyRelationship(id: String, appScreenshotSetAppScreenshotsLinkagesRequest: AppScreenshotSetAppScreenshotsLinkagesRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await appScreenshotSetsAppScreenshotsReplaceToManyRelationshipWithRequestBuilder(id: id, appScreenshotSetAppScreenshotsLinkagesRequest: appScreenshotSetAppScreenshotsLinkagesRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appScreenshotSetsAppScreenshotsReplaceToManyRelationship(urlString: String) async throws {
-        return try await appScreenshotSetsAppScreenshotsReplaceToManyRelationshipWithRequestBuilder(urlString: urlString).execute().body
+    open class func appScreenshotSetsAppScreenshotsReplaceToManyRelationship(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await appScreenshotSetsAppScreenshotsReplaceToManyRelationshipWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -227,15 +234,16 @@ open class AppScreenshotSetsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter appScreenshotSetAppScreenshotsLinkagesRequest: (body) List of related linkages 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func appScreenshotSetsAppScreenshotsReplaceToManyRelationshipWithRequestBuilder(id: String, appScreenshotSetAppScreenshotsLinkagesRequest: AppScreenshotSetAppScreenshotsLinkagesRequest) -> RequestBuilder<Void> {
+    open class func appScreenshotSetsAppScreenshotsReplaceToManyRelationshipWithRequestBuilder(id: String, appScreenshotSetAppScreenshotsLinkagesRequest: AppScreenshotSetAppScreenshotsLinkagesRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/appScreenshotSets/{id}/relationships/appScreenshots"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: appScreenshotSetAppScreenshotsLinkagesRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: appScreenshotSetAppScreenshotsLinkagesRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -245,9 +253,9 @@ open class AppScreenshotSetsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -256,37 +264,40 @@ open class AppScreenshotSetsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func appScreenshotSetsAppScreenshotsReplaceToManyRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func appScreenshotSetsAppScreenshotsReplaceToManyRelationshipWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter appScreenshotSetCreateRequest: (body) AppScreenshotSet representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppScreenshotSetResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appScreenshotSetsCreateInstance(appScreenshotSetCreateRequest: AppScreenshotSetCreateRequest) async throws -> AppScreenshotSetResponse {
-        return try await appScreenshotSetsCreateInstanceWithRequestBuilder(appScreenshotSetCreateRequest: appScreenshotSetCreateRequest).execute().body
+    open class func appScreenshotSetsCreateInstance(appScreenshotSetCreateRequest: AppScreenshotSetCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppScreenshotSetResponse {
+        return try await appScreenshotSetsCreateInstanceWithRequestBuilder(appScreenshotSetCreateRequest: appScreenshotSetCreateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppScreenshotSetResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appScreenshotSetsCreateInstance(urlString: String) async throws -> AppScreenshotSetResponse {
-        return try await appScreenshotSetsCreateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func appScreenshotSetsCreateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppScreenshotSetResponse {
+        return try await appScreenshotSetsCreateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -295,12 +306,13 @@ open class AppScreenshotSetsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter appScreenshotSetCreateRequest: (body) AppScreenshotSet representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppScreenshotSetResponse> 
      */
-    open class func appScreenshotSetsCreateInstanceWithRequestBuilder(appScreenshotSetCreateRequest: AppScreenshotSetCreateRequest) -> RequestBuilder<AppScreenshotSetResponse> {
+    open class func appScreenshotSetsCreateInstanceWithRequestBuilder(appScreenshotSetCreateRequest: AppScreenshotSetCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppScreenshotSetResponse> {
         let localVariablePath = "/v1/appScreenshotSets"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: appScreenshotSetCreateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: appScreenshotSetCreateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -310,9 +322,9 @@ open class AppScreenshotSetsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppScreenshotSetResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppScreenshotSetResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -321,37 +333,40 @@ open class AppScreenshotSetsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppScreenshotSetResponse> 
      */
-    open class func appScreenshotSetsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppScreenshotSetResponse> {
+    open class func appScreenshotSetsCreateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppScreenshotSetResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppScreenshotSetResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppScreenshotSetResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appScreenshotSetsDeleteInstance(id: String) async throws {
-        return try await appScreenshotSetsDeleteInstanceWithRequestBuilder(id: id).execute().body
+    open class func appScreenshotSetsDeleteInstance(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await appScreenshotSetsDeleteInstanceWithRequestBuilder(id: id, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appScreenshotSetsDeleteInstance(urlString: String) async throws {
-        return try await appScreenshotSetsDeleteInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func appScreenshotSetsDeleteInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await appScreenshotSetsDeleteInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -360,14 +375,15 @@ open class AppScreenshotSetsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func appScreenshotSetsDeleteInstanceWithRequestBuilder(id: String) -> RequestBuilder<Void> {
+    open class func appScreenshotSetsDeleteInstanceWithRequestBuilder(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/appScreenshotSets/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -378,9 +394,9 @@ open class AppScreenshotSetsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -389,24 +405,25 @@ open class AppScreenshotSetsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func appScreenshotSetsDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func appScreenshotSetsDeleteInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsAppScreenshotSets
      */
-    public enum FieldsAppScreenshotSets_appScreenshotSetsGetInstance: String, CaseIterable {
+    public enum FieldsAppScreenshotSets_appScreenshotSetsGetInstance: String, Sendable, CaseIterable {
         case screenshotdisplaytype = "screenshotDisplayType"
         case appstoreversionlocalization = "appStoreVersionLocalization"
         case appcustomproductpagelocalization = "appCustomProductPageLocalization"
@@ -417,7 +434,7 @@ open class AppScreenshotSetsAPI {
     /**
      * enum for parameter fieldsAppScreenshots
      */
-    public enum FieldsAppScreenshots_appScreenshotSetsGetInstance: String, CaseIterable {
+    public enum FieldsAppScreenshots_appScreenshotSetsGetInstance: String, Sendable, CaseIterable {
         case filesize = "fileSize"
         case filename = "fileName"
         case sourcefilechecksum = "sourceFileChecksum"
@@ -432,7 +449,7 @@ open class AppScreenshotSetsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_appScreenshotSetsGetInstance: String, CaseIterable {
+    public enum Include_appScreenshotSetsGetInstance: String, Sendable, CaseIterable {
         case appstoreversionlocalization = "appStoreVersionLocalization"
         case appcustomproductpagelocalization = "appCustomProductPageLocalization"
         case appstoreversionexperimenttreatmentlocalization = "appStoreVersionExperimentTreatmentLocalization"
@@ -446,20 +463,22 @@ open class AppScreenshotSetsAPI {
      - parameter fieldsAppScreenshots: (query) the fields to include for returned resources of type appScreenshots (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAppScreenshots: (query) maximum number of related appScreenshots returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppScreenshotSetResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appScreenshotSetsGetInstance(id: String, fieldsAppScreenshotSets: [FieldsAppScreenshotSets_appScreenshotSetsGetInstance]? = nil, fieldsAppScreenshots: [FieldsAppScreenshots_appScreenshotSetsGetInstance]? = nil, include: [Include_appScreenshotSetsGetInstance]? = nil, limitAppScreenshots: Int? = nil) async throws -> AppScreenshotSetResponse {
-        return try await appScreenshotSetsGetInstanceWithRequestBuilder(id: id, fieldsAppScreenshotSets: fieldsAppScreenshotSets, fieldsAppScreenshots: fieldsAppScreenshots, include: include, limitAppScreenshots: limitAppScreenshots).execute().body
+    open class func appScreenshotSetsGetInstance(id: String, fieldsAppScreenshotSets: [FieldsAppScreenshotSets_appScreenshotSetsGetInstance]? = nil, fieldsAppScreenshots: [FieldsAppScreenshots_appScreenshotSetsGetInstance]? = nil, include: [Include_appScreenshotSetsGetInstance]? = nil, limitAppScreenshots: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppScreenshotSetResponse {
+        return try await appScreenshotSetsGetInstanceWithRequestBuilder(id: id, fieldsAppScreenshotSets: fieldsAppScreenshotSets, fieldsAppScreenshots: fieldsAppScreenshots, include: include, limitAppScreenshots: limitAppScreenshots, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppScreenshotSetResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appScreenshotSetsGetInstance(urlString: String) async throws -> AppScreenshotSetResponse {
-        return try await appScreenshotSetsGetInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func appScreenshotSetsGetInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppScreenshotSetResponse {
+        return try await appScreenshotSetsGetInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -472,22 +491,23 @@ open class AppScreenshotSetsAPI {
      - parameter fieldsAppScreenshots: (query) the fields to include for returned resources of type appScreenshots (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAppScreenshots: (query) maximum number of related appScreenshots returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppScreenshotSetResponse> 
      */
-    open class func appScreenshotSetsGetInstanceWithRequestBuilder(id: String, fieldsAppScreenshotSets: [FieldsAppScreenshotSets_appScreenshotSetsGetInstance]? = nil, fieldsAppScreenshots: [FieldsAppScreenshots_appScreenshotSetsGetInstance]? = nil, include: [Include_appScreenshotSetsGetInstance]? = nil, limitAppScreenshots: Int? = nil) -> RequestBuilder<AppScreenshotSetResponse> {
+    open class func appScreenshotSetsGetInstanceWithRequestBuilder(id: String, fieldsAppScreenshotSets: [FieldsAppScreenshotSets_appScreenshotSetsGetInstance]? = nil, fieldsAppScreenshots: [FieldsAppScreenshots_appScreenshotSetsGetInstance]? = nil, include: [Include_appScreenshotSetsGetInstance]? = nil, limitAppScreenshots: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppScreenshotSetResponse> {
         var localVariablePath = "/v1/appScreenshotSets/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[appScreenshotSets]": (wrappedValue: fieldsAppScreenshotSets?.encodeToJSON(), isExplode: false),
-            "fields[appScreenshots]": (wrappedValue: fieldsAppScreenshots?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[appScreenshots]": (wrappedValue: limitAppScreenshots?.encodeToJSON(), isExplode: true),
+            "fields[appScreenshotSets]": (wrappedValue: fieldsAppScreenshotSets?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appScreenshots]": (wrappedValue: fieldsAppScreenshots?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[appScreenshots]": (wrappedValue: limitAppScreenshots?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -496,9 +516,9 @@ open class AppScreenshotSetsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppScreenshotSetResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppScreenshotSetResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -507,17 +527,18 @@ open class AppScreenshotSetsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppScreenshotSetResponse> 
      */
-    open class func appScreenshotSetsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppScreenshotSetResponse> {
+    open class func appScreenshotSetsGetInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppScreenshotSetResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppScreenshotSetResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppScreenshotSetResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

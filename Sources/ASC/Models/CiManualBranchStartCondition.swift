@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct CiManualBranchStartCondition: Codable, JSONEncodable, Hashable {
+public struct CiManualBranchStartCondition: Sendable, Codable, JSONEncodable, Hashable {
 
     public var source: CiBranchPatterns?
 

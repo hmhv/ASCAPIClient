@@ -6,29 +6,28 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class PromotedPurchasesAPI {
 
     /**
 
      - parameter promotedPurchaseCreateRequest: (body) PromotedPurchase representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: PromotedPurchaseResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func promotedPurchasesCreateInstance(promotedPurchaseCreateRequest: PromotedPurchaseCreateRequest) async throws -> PromotedPurchaseResponse {
-        return try await promotedPurchasesCreateInstanceWithRequestBuilder(promotedPurchaseCreateRequest: promotedPurchaseCreateRequest).execute().body
+    open class func promotedPurchasesCreateInstance(promotedPurchaseCreateRequest: PromotedPurchaseCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> PromotedPurchaseResponse {
+        return try await promotedPurchasesCreateInstanceWithRequestBuilder(promotedPurchaseCreateRequest: promotedPurchaseCreateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: PromotedPurchaseResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func promotedPurchasesCreateInstance(urlString: String) async throws -> PromotedPurchaseResponse {
-        return try await promotedPurchasesCreateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func promotedPurchasesCreateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> PromotedPurchaseResponse {
+        return try await promotedPurchasesCreateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -37,12 +36,13 @@ open class PromotedPurchasesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter promotedPurchaseCreateRequest: (body) PromotedPurchase representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<PromotedPurchaseResponse> 
      */
-    open class func promotedPurchasesCreateInstanceWithRequestBuilder(promotedPurchaseCreateRequest: PromotedPurchaseCreateRequest) -> RequestBuilder<PromotedPurchaseResponse> {
+    open class func promotedPurchasesCreateInstanceWithRequestBuilder(promotedPurchaseCreateRequest: PromotedPurchaseCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<PromotedPurchaseResponse> {
         let localVariablePath = "/v1/promotedPurchases"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: promotedPurchaseCreateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: promotedPurchaseCreateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -52,9 +52,9 @@ open class PromotedPurchasesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<PromotedPurchaseResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<PromotedPurchaseResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -63,37 +63,40 @@ open class PromotedPurchasesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<PromotedPurchaseResponse> 
      */
-    open class func promotedPurchasesCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<PromotedPurchaseResponse> {
+    open class func promotedPurchasesCreateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<PromotedPurchaseResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<PromotedPurchaseResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<PromotedPurchaseResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func promotedPurchasesDeleteInstance(id: String) async throws {
-        return try await promotedPurchasesDeleteInstanceWithRequestBuilder(id: id).execute().body
+    open class func promotedPurchasesDeleteInstance(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await promotedPurchasesDeleteInstanceWithRequestBuilder(id: id, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func promotedPurchasesDeleteInstance(urlString: String) async throws {
-        return try await promotedPurchasesDeleteInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func promotedPurchasesDeleteInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await promotedPurchasesDeleteInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -102,14 +105,15 @@ open class PromotedPurchasesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func promotedPurchasesDeleteInstanceWithRequestBuilder(id: String) -> RequestBuilder<Void> {
+    open class func promotedPurchasesDeleteInstanceWithRequestBuilder(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/promotedPurchases/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -120,9 +124,9 @@ open class PromotedPurchasesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -131,24 +135,25 @@ open class PromotedPurchasesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func promotedPurchasesDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func promotedPurchasesDeleteInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsPromotedPurchases
      */
-    public enum FieldsPromotedPurchases_promotedPurchasesGetInstance: String, CaseIterable {
+    public enum FieldsPromotedPurchases_promotedPurchasesGetInstance: String, Sendable, CaseIterable {
         case visibleforallusers = "visibleForAllUsers"
         case enabled = "enabled"
         case state = "state"
@@ -160,7 +165,7 @@ open class PromotedPurchasesAPI {
     /**
      * enum for parameter fieldsPromotedPurchaseImages
      */
-    public enum FieldsPromotedPurchaseImages_promotedPurchasesGetInstance: String, CaseIterable {
+    public enum FieldsPromotedPurchaseImages_promotedPurchasesGetInstance: String, Sendable, CaseIterable {
         case filesize = "fileSize"
         case filename = "fileName"
         case sourcefilechecksum = "sourceFileChecksum"
@@ -175,7 +180,7 @@ open class PromotedPurchasesAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_promotedPurchasesGetInstance: String, CaseIterable {
+    public enum Include_promotedPurchasesGetInstance: String, Sendable, CaseIterable {
         case inapppurchasev2 = "inAppPurchaseV2"
         case subscription = "subscription"
         case promotionimages = "promotionImages"
@@ -188,20 +193,22 @@ open class PromotedPurchasesAPI {
      - parameter fieldsPromotedPurchaseImages: (query) the fields to include for returned resources of type promotedPurchaseImages (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitPromotionImages: (query) maximum number of related promotionImages returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: PromotedPurchaseResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func promotedPurchasesGetInstance(id: String, fieldsPromotedPurchases: [FieldsPromotedPurchases_promotedPurchasesGetInstance]? = nil, fieldsPromotedPurchaseImages: [FieldsPromotedPurchaseImages_promotedPurchasesGetInstance]? = nil, include: [Include_promotedPurchasesGetInstance]? = nil, limitPromotionImages: Int? = nil) async throws -> PromotedPurchaseResponse {
-        return try await promotedPurchasesGetInstanceWithRequestBuilder(id: id, fieldsPromotedPurchases: fieldsPromotedPurchases, fieldsPromotedPurchaseImages: fieldsPromotedPurchaseImages, include: include, limitPromotionImages: limitPromotionImages).execute().body
+    open class func promotedPurchasesGetInstance(id: String, fieldsPromotedPurchases: [FieldsPromotedPurchases_promotedPurchasesGetInstance]? = nil, fieldsPromotedPurchaseImages: [FieldsPromotedPurchaseImages_promotedPurchasesGetInstance]? = nil, include: [Include_promotedPurchasesGetInstance]? = nil, limitPromotionImages: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> PromotedPurchaseResponse {
+        return try await promotedPurchasesGetInstanceWithRequestBuilder(id: id, fieldsPromotedPurchases: fieldsPromotedPurchases, fieldsPromotedPurchaseImages: fieldsPromotedPurchaseImages, include: include, limitPromotionImages: limitPromotionImages, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: PromotedPurchaseResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func promotedPurchasesGetInstance(urlString: String) async throws -> PromotedPurchaseResponse {
-        return try await promotedPurchasesGetInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func promotedPurchasesGetInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> PromotedPurchaseResponse {
+        return try await promotedPurchasesGetInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -214,22 +221,23 @@ open class PromotedPurchasesAPI {
      - parameter fieldsPromotedPurchaseImages: (query) the fields to include for returned resources of type promotedPurchaseImages (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitPromotionImages: (query) maximum number of related promotionImages returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<PromotedPurchaseResponse> 
      */
-    open class func promotedPurchasesGetInstanceWithRequestBuilder(id: String, fieldsPromotedPurchases: [FieldsPromotedPurchases_promotedPurchasesGetInstance]? = nil, fieldsPromotedPurchaseImages: [FieldsPromotedPurchaseImages_promotedPurchasesGetInstance]? = nil, include: [Include_promotedPurchasesGetInstance]? = nil, limitPromotionImages: Int? = nil) -> RequestBuilder<PromotedPurchaseResponse> {
+    open class func promotedPurchasesGetInstanceWithRequestBuilder(id: String, fieldsPromotedPurchases: [FieldsPromotedPurchases_promotedPurchasesGetInstance]? = nil, fieldsPromotedPurchaseImages: [FieldsPromotedPurchaseImages_promotedPurchasesGetInstance]? = nil, include: [Include_promotedPurchasesGetInstance]? = nil, limitPromotionImages: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<PromotedPurchaseResponse> {
         var localVariablePath = "/v1/promotedPurchases/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[promotedPurchases]": (wrappedValue: fieldsPromotedPurchases?.encodeToJSON(), isExplode: false),
-            "fields[promotedPurchaseImages]": (wrappedValue: fieldsPromotedPurchaseImages?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[promotionImages]": (wrappedValue: limitPromotionImages?.encodeToJSON(), isExplode: true),
+            "fields[promotedPurchases]": (wrappedValue: fieldsPromotedPurchases?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[promotedPurchaseImages]": (wrappedValue: fieldsPromotedPurchaseImages?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[promotionImages]": (wrappedValue: limitPromotionImages?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -238,9 +246,9 @@ open class PromotedPurchasesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<PromotedPurchaseResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<PromotedPurchaseResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -249,24 +257,25 @@ open class PromotedPurchasesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<PromotedPurchaseResponse> 
      */
-    open class func promotedPurchasesGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<PromotedPurchaseResponse> {
+    open class func promotedPurchasesGetInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<PromotedPurchaseResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<PromotedPurchaseResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<PromotedPurchaseResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsPromotedPurchaseImages
      */
-    public enum FieldsPromotedPurchaseImages_promotedPurchasesPromotionImagesGetToManyRelated: String, CaseIterable {
+    public enum FieldsPromotedPurchaseImages_promotedPurchasesPromotionImagesGetToManyRelated: String, Sendable, CaseIterable {
         case filesize = "fileSize"
         case filename = "fileName"
         case sourcefilechecksum = "sourceFileChecksum"
@@ -281,7 +290,7 @@ open class PromotedPurchasesAPI {
     /**
      * enum for parameter fieldsPromotedPurchases
      */
-    public enum FieldsPromotedPurchases_promotedPurchasesPromotionImagesGetToManyRelated: String, CaseIterable {
+    public enum FieldsPromotedPurchases_promotedPurchasesPromotionImagesGetToManyRelated: String, Sendable, CaseIterable {
         case visibleforallusers = "visibleForAllUsers"
         case enabled = "enabled"
         case state = "state"
@@ -293,7 +302,7 @@ open class PromotedPurchasesAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_promotedPurchasesPromotionImagesGetToManyRelated: String, CaseIterable {
+    public enum Include_promotedPurchasesPromotionImagesGetToManyRelated: String, Sendable, CaseIterable {
         case promotedpurchase = "promotedPurchase"
     }
 
@@ -304,22 +313,24 @@ open class PromotedPurchasesAPI {
      - parameter fieldsPromotedPurchases: (query) the fields to include for returned resources of type promotedPurchases (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: PromotedPurchaseImagesResponse
      */
     @available(*, deprecated, message: "This operation is deprecated.")
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func promotedPurchasesPromotionImagesGetToManyRelated(id: String, fieldsPromotedPurchaseImages: [FieldsPromotedPurchaseImages_promotedPurchasesPromotionImagesGetToManyRelated]? = nil, fieldsPromotedPurchases: [FieldsPromotedPurchases_promotedPurchasesPromotionImagesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_promotedPurchasesPromotionImagesGetToManyRelated]? = nil) async throws -> PromotedPurchaseImagesResponse {
-        return try await promotedPurchasesPromotionImagesGetToManyRelatedWithRequestBuilder(id: id, fieldsPromotedPurchaseImages: fieldsPromotedPurchaseImages, fieldsPromotedPurchases: fieldsPromotedPurchases, limit: limit, include: include).execute().body
+    open class func promotedPurchasesPromotionImagesGetToManyRelated(id: String, fieldsPromotedPurchaseImages: [FieldsPromotedPurchaseImages_promotedPurchasesPromotionImagesGetToManyRelated]? = nil, fieldsPromotedPurchases: [FieldsPromotedPurchases_promotedPurchasesPromotionImagesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_promotedPurchasesPromotionImagesGetToManyRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> PromotedPurchaseImagesResponse {
+        return try await promotedPurchasesPromotionImagesGetToManyRelatedWithRequestBuilder(id: id, fieldsPromotedPurchaseImages: fieldsPromotedPurchaseImages, fieldsPromotedPurchases: fieldsPromotedPurchases, limit: limit, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: PromotedPurchaseImagesResponse
      */
     @available(*, deprecated, message: "This operation is deprecated.")
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func promotedPurchasesPromotionImagesGetToManyRelated(urlString: String) async throws -> PromotedPurchaseImagesResponse {
-        return try await promotedPurchasesPromotionImagesGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func promotedPurchasesPromotionImagesGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> PromotedPurchaseImagesResponse {
+        return try await promotedPurchasesPromotionImagesGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -332,23 +343,24 @@ open class PromotedPurchasesAPI {
      - parameter fieldsPromotedPurchases: (query) the fields to include for returned resources of type promotedPurchases (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<PromotedPurchaseImagesResponse> 
      */
     @available(*, deprecated, message: "This operation is deprecated.")
-    open class func promotedPurchasesPromotionImagesGetToManyRelatedWithRequestBuilder(id: String, fieldsPromotedPurchaseImages: [FieldsPromotedPurchaseImages_promotedPurchasesPromotionImagesGetToManyRelated]? = nil, fieldsPromotedPurchases: [FieldsPromotedPurchases_promotedPurchasesPromotionImagesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_promotedPurchasesPromotionImagesGetToManyRelated]? = nil) -> RequestBuilder<PromotedPurchaseImagesResponse> {
+    open class func promotedPurchasesPromotionImagesGetToManyRelatedWithRequestBuilder(id: String, fieldsPromotedPurchaseImages: [FieldsPromotedPurchaseImages_promotedPurchasesPromotionImagesGetToManyRelated]? = nil, fieldsPromotedPurchases: [FieldsPromotedPurchases_promotedPurchasesPromotionImagesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_promotedPurchasesPromotionImagesGetToManyRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<PromotedPurchaseImagesResponse> {
         var localVariablePath = "/v1/promotedPurchases/{id}/promotionImages"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[promotedPurchaseImages]": (wrappedValue: fieldsPromotedPurchaseImages?.encodeToJSON(), isExplode: false),
-            "fields[promotedPurchases]": (wrappedValue: fieldsPromotedPurchases?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "fields[promotedPurchaseImages]": (wrappedValue: fieldsPromotedPurchaseImages?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[promotedPurchases]": (wrappedValue: fieldsPromotedPurchases?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -357,9 +369,9 @@ open class PromotedPurchasesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<PromotedPurchaseImagesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<PromotedPurchaseImagesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -368,39 +380,42 @@ open class PromotedPurchasesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<PromotedPurchaseImagesResponse> 
      */
     @available(*, deprecated, message: "This operation is deprecated.")
-    open class func promotedPurchasesPromotionImagesGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<PromotedPurchaseImagesResponse> {
+    open class func promotedPurchasesPromotionImagesGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<PromotedPurchaseImagesResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<PromotedPurchaseImagesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<PromotedPurchaseImagesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter promotedPurchaseUpdateRequest: (body) PromotedPurchase representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: PromotedPurchaseResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func promotedPurchasesUpdateInstance(id: String, promotedPurchaseUpdateRequest: PromotedPurchaseUpdateRequest) async throws -> PromotedPurchaseResponse {
-        return try await promotedPurchasesUpdateInstanceWithRequestBuilder(id: id, promotedPurchaseUpdateRequest: promotedPurchaseUpdateRequest).execute().body
+    open class func promotedPurchasesUpdateInstance(id: String, promotedPurchaseUpdateRequest: PromotedPurchaseUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> PromotedPurchaseResponse {
+        return try await promotedPurchasesUpdateInstanceWithRequestBuilder(id: id, promotedPurchaseUpdateRequest: promotedPurchaseUpdateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: PromotedPurchaseResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func promotedPurchasesUpdateInstance(urlString: String) async throws -> PromotedPurchaseResponse {
-        return try await promotedPurchasesUpdateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func promotedPurchasesUpdateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> PromotedPurchaseResponse {
+        return try await promotedPurchasesUpdateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -410,15 +425,16 @@ open class PromotedPurchasesAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter promotedPurchaseUpdateRequest: (body) PromotedPurchase representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<PromotedPurchaseResponse> 
      */
-    open class func promotedPurchasesUpdateInstanceWithRequestBuilder(id: String, promotedPurchaseUpdateRequest: PromotedPurchaseUpdateRequest) -> RequestBuilder<PromotedPurchaseResponse> {
+    open class func promotedPurchasesUpdateInstanceWithRequestBuilder(id: String, promotedPurchaseUpdateRequest: PromotedPurchaseUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<PromotedPurchaseResponse> {
         var localVariablePath = "/v1/promotedPurchases/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: promotedPurchaseUpdateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: promotedPurchaseUpdateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -428,9 +444,9 @@ open class PromotedPurchasesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<PromotedPurchaseResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<PromotedPurchaseResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -439,17 +455,18 @@ open class PromotedPurchasesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<PromotedPurchaseResponse> 
      */
-    open class func promotedPurchasesUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<PromotedPurchaseResponse> {
+    open class func promotedPurchasesUpdateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<PromotedPurchaseResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<PromotedPurchaseResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<PromotedPurchaseResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

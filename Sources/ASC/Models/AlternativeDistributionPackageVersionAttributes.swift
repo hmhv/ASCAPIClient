@@ -6,13 +6,10 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AlternativeDistributionPackageVersionAttributes: Codable, JSONEncodable, Hashable {
+public struct AlternativeDistributionPackageVersionAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum State: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum State: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case completed = "COMPLETED"
         case replaced = "REPLACED"
         case unknownDefaultOpenApi = "unknown_default_open_api"

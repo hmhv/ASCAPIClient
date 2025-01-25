@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppEncryptionDeclarationCreateRequest: Codable, JSONEncodable, Hashable {
+public struct AppEncryptionDeclarationCreateRequest: Sendable, Codable, JSONEncodable, Hashable {
 
     public var data: AppEncryptionDeclarationCreateRequestData
 

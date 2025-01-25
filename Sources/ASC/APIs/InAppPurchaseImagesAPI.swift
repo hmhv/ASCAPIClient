@@ -6,29 +6,28 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class InAppPurchaseImagesAPI {
 
     /**
 
      - parameter inAppPurchaseImageCreateRequest: (body) InAppPurchaseImage representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: InAppPurchaseImageResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchaseImagesCreateInstance(inAppPurchaseImageCreateRequest: InAppPurchaseImageCreateRequest) async throws -> InAppPurchaseImageResponse {
-        return try await inAppPurchaseImagesCreateInstanceWithRequestBuilder(inAppPurchaseImageCreateRequest: inAppPurchaseImageCreateRequest).execute().body
+    open class func inAppPurchaseImagesCreateInstance(inAppPurchaseImageCreateRequest: InAppPurchaseImageCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> InAppPurchaseImageResponse {
+        return try await inAppPurchaseImagesCreateInstanceWithRequestBuilder(inAppPurchaseImageCreateRequest: inAppPurchaseImageCreateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: InAppPurchaseImageResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchaseImagesCreateInstance(urlString: String) async throws -> InAppPurchaseImageResponse {
-        return try await inAppPurchaseImagesCreateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func inAppPurchaseImagesCreateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> InAppPurchaseImageResponse {
+        return try await inAppPurchaseImagesCreateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -37,12 +36,13 @@ open class InAppPurchaseImagesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter inAppPurchaseImageCreateRequest: (body) InAppPurchaseImage representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<InAppPurchaseImageResponse> 
      */
-    open class func inAppPurchaseImagesCreateInstanceWithRequestBuilder(inAppPurchaseImageCreateRequest: InAppPurchaseImageCreateRequest) -> RequestBuilder<InAppPurchaseImageResponse> {
+    open class func inAppPurchaseImagesCreateInstanceWithRequestBuilder(inAppPurchaseImageCreateRequest: InAppPurchaseImageCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<InAppPurchaseImageResponse> {
         let localVariablePath = "/v1/inAppPurchaseImages"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: inAppPurchaseImageCreateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: inAppPurchaseImageCreateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -52,9 +52,9 @@ open class InAppPurchaseImagesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseImageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseImageResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -63,37 +63,40 @@ open class InAppPurchaseImagesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<InAppPurchaseImageResponse> 
      */
-    open class func inAppPurchaseImagesCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<InAppPurchaseImageResponse> {
+    open class func inAppPurchaseImagesCreateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<InAppPurchaseImageResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseImageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseImageResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchaseImagesDeleteInstance(id: String) async throws {
-        return try await inAppPurchaseImagesDeleteInstanceWithRequestBuilder(id: id).execute().body
+    open class func inAppPurchaseImagesDeleteInstance(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await inAppPurchaseImagesDeleteInstanceWithRequestBuilder(id: id, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchaseImagesDeleteInstance(urlString: String) async throws {
-        return try await inAppPurchaseImagesDeleteInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func inAppPurchaseImagesDeleteInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await inAppPurchaseImagesDeleteInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -102,14 +105,15 @@ open class InAppPurchaseImagesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func inAppPurchaseImagesDeleteInstanceWithRequestBuilder(id: String) -> RequestBuilder<Void> {
+    open class func inAppPurchaseImagesDeleteInstanceWithRequestBuilder(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/inAppPurchaseImages/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -120,9 +124,9 @@ open class InAppPurchaseImagesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -131,24 +135,25 @@ open class InAppPurchaseImagesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func inAppPurchaseImagesDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func inAppPurchaseImagesDeleteInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsInAppPurchaseImages
      */
-    public enum FieldsInAppPurchaseImages_inAppPurchaseImagesGetInstance: String, CaseIterable {
+    public enum FieldsInAppPurchaseImages_inAppPurchaseImagesGetInstance: String, Sendable, CaseIterable {
         case filesize = "fileSize"
         case filename = "fileName"
         case sourcefilechecksum = "sourceFileChecksum"
@@ -162,7 +167,7 @@ open class InAppPurchaseImagesAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_inAppPurchaseImagesGetInstance: String, CaseIterable {
+    public enum Include_inAppPurchaseImagesGetInstance: String, Sendable, CaseIterable {
         case inapppurchase = "inAppPurchase"
     }
 
@@ -171,20 +176,22 @@ open class InAppPurchaseImagesAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsInAppPurchaseImages: (query) the fields to include for returned resources of type inAppPurchaseImages (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: InAppPurchaseImageResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchaseImagesGetInstance(id: String, fieldsInAppPurchaseImages: [FieldsInAppPurchaseImages_inAppPurchaseImagesGetInstance]? = nil, include: [Include_inAppPurchaseImagesGetInstance]? = nil) async throws -> InAppPurchaseImageResponse {
-        return try await inAppPurchaseImagesGetInstanceWithRequestBuilder(id: id, fieldsInAppPurchaseImages: fieldsInAppPurchaseImages, include: include).execute().body
+    open class func inAppPurchaseImagesGetInstance(id: String, fieldsInAppPurchaseImages: [FieldsInAppPurchaseImages_inAppPurchaseImagesGetInstance]? = nil, include: [Include_inAppPurchaseImagesGetInstance]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> InAppPurchaseImageResponse {
+        return try await inAppPurchaseImagesGetInstanceWithRequestBuilder(id: id, fieldsInAppPurchaseImages: fieldsInAppPurchaseImages, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: InAppPurchaseImageResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchaseImagesGetInstance(urlString: String) async throws -> InAppPurchaseImageResponse {
-        return try await inAppPurchaseImagesGetInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func inAppPurchaseImagesGetInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> InAppPurchaseImageResponse {
+        return try await inAppPurchaseImagesGetInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -195,20 +202,21 @@ open class InAppPurchaseImagesAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsInAppPurchaseImages: (query) the fields to include for returned resources of type inAppPurchaseImages (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<InAppPurchaseImageResponse> 
      */
-    open class func inAppPurchaseImagesGetInstanceWithRequestBuilder(id: String, fieldsInAppPurchaseImages: [FieldsInAppPurchaseImages_inAppPurchaseImagesGetInstance]? = nil, include: [Include_inAppPurchaseImagesGetInstance]? = nil) -> RequestBuilder<InAppPurchaseImageResponse> {
+    open class func inAppPurchaseImagesGetInstanceWithRequestBuilder(id: String, fieldsInAppPurchaseImages: [FieldsInAppPurchaseImages_inAppPurchaseImagesGetInstance]? = nil, include: [Include_inAppPurchaseImagesGetInstance]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<InAppPurchaseImageResponse> {
         var localVariablePath = "/v1/inAppPurchaseImages/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[inAppPurchaseImages]": (wrappedValue: fieldsInAppPurchaseImages?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "fields[inAppPurchaseImages]": (wrappedValue: fieldsInAppPurchaseImages?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -217,9 +225,9 @@ open class InAppPurchaseImagesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseImageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseImageResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -228,38 +236,41 @@ open class InAppPurchaseImagesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<InAppPurchaseImageResponse> 
      */
-    open class func inAppPurchaseImagesGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<InAppPurchaseImageResponse> {
+    open class func inAppPurchaseImagesGetInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<InAppPurchaseImageResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseImageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseImageResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter inAppPurchaseImageUpdateRequest: (body) InAppPurchaseImage representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: InAppPurchaseImageResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchaseImagesUpdateInstance(id: String, inAppPurchaseImageUpdateRequest: InAppPurchaseImageUpdateRequest) async throws -> InAppPurchaseImageResponse {
-        return try await inAppPurchaseImagesUpdateInstanceWithRequestBuilder(id: id, inAppPurchaseImageUpdateRequest: inAppPurchaseImageUpdateRequest).execute().body
+    open class func inAppPurchaseImagesUpdateInstance(id: String, inAppPurchaseImageUpdateRequest: InAppPurchaseImageUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> InAppPurchaseImageResponse {
+        return try await inAppPurchaseImagesUpdateInstanceWithRequestBuilder(id: id, inAppPurchaseImageUpdateRequest: inAppPurchaseImageUpdateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: InAppPurchaseImageResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchaseImagesUpdateInstance(urlString: String) async throws -> InAppPurchaseImageResponse {
-        return try await inAppPurchaseImagesUpdateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func inAppPurchaseImagesUpdateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> InAppPurchaseImageResponse {
+        return try await inAppPurchaseImagesUpdateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -269,15 +280,16 @@ open class InAppPurchaseImagesAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter inAppPurchaseImageUpdateRequest: (body) InAppPurchaseImage representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<InAppPurchaseImageResponse> 
      */
-    open class func inAppPurchaseImagesUpdateInstanceWithRequestBuilder(id: String, inAppPurchaseImageUpdateRequest: InAppPurchaseImageUpdateRequest) -> RequestBuilder<InAppPurchaseImageResponse> {
+    open class func inAppPurchaseImagesUpdateInstanceWithRequestBuilder(id: String, inAppPurchaseImageUpdateRequest: InAppPurchaseImageUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<InAppPurchaseImageResponse> {
         var localVariablePath = "/v1/inAppPurchaseImages/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: inAppPurchaseImageUpdateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: inAppPurchaseImageUpdateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -287,9 +299,9 @@ open class InAppPurchaseImagesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseImageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseImageResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -298,17 +310,18 @@ open class InAppPurchaseImagesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<InAppPurchaseImageResponse> 
      */
-    open class func inAppPurchaseImagesUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<InAppPurchaseImageResponse> {
+    open class func inAppPurchaseImagesUpdateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<InAppPurchaseImageResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseImageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseImageResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

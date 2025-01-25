@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public enum TerritoryCode: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+public enum TerritoryCode: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
     case abw = "ABW"
     case afg = "AFG"
     case ago = "AGO"

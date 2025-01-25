@@ -6,13 +6,10 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct DeviceAttributes: Codable, JSONEncodable, Hashable {
+public struct DeviceAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum DeviceClass: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum DeviceClass: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case appleWatch = "APPLE_WATCH"
         case ipad = "IPAD"
         case iphone = "IPHONE"
@@ -21,7 +18,7 @@ public struct DeviceAttributes: Codable, JSONEncodable, Hashable {
         case mac = "MAC"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
-    public enum Status: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum Status: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case enabled = "ENABLED"
         case disabled = "DISABLED"
         case unknownDefaultOpenApi = "unknown_default_open_api"

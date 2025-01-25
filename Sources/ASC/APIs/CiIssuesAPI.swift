@@ -6,16 +6,13 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class CiIssuesAPI {
 
     /**
      * enum for parameter fieldsCiIssues
      */
-    public enum FieldsCiIssues_ciIssuesGetInstance: String, CaseIterable {
+    public enum FieldsCiIssues_ciIssuesGetInstance: String, Sendable, CaseIterable {
         case issuetype = "issueType"
         case message = "message"
         case filesource = "fileSource"
@@ -26,20 +23,22 @@ open class CiIssuesAPI {
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsCiIssues: (query) the fields to include for returned resources of type ciIssues (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: CiIssueResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciIssuesGetInstance(id: String, fieldsCiIssues: [FieldsCiIssues_ciIssuesGetInstance]? = nil) async throws -> CiIssueResponse {
-        return try await ciIssuesGetInstanceWithRequestBuilder(id: id, fieldsCiIssues: fieldsCiIssues).execute().body
+    open class func ciIssuesGetInstance(id: String, fieldsCiIssues: [FieldsCiIssues_ciIssuesGetInstance]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> CiIssueResponse {
+        return try await ciIssuesGetInstanceWithRequestBuilder(id: id, fieldsCiIssues: fieldsCiIssues, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: CiIssueResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciIssuesGetInstance(urlString: String) async throws -> CiIssueResponse {
-        return try await ciIssuesGetInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func ciIssuesGetInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> CiIssueResponse {
+        return try await ciIssuesGetInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -49,19 +48,20 @@ open class CiIssuesAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsCiIssues: (query) the fields to include for returned resources of type ciIssues (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CiIssueResponse> 
      */
-    open class func ciIssuesGetInstanceWithRequestBuilder(id: String, fieldsCiIssues: [FieldsCiIssues_ciIssuesGetInstance]? = nil) -> RequestBuilder<CiIssueResponse> {
+    open class func ciIssuesGetInstanceWithRequestBuilder(id: String, fieldsCiIssues: [FieldsCiIssues_ciIssuesGetInstance]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<CiIssueResponse> {
         var localVariablePath = "/v1/ciIssues/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[ciIssues]": (wrappedValue: fieldsCiIssues?.encodeToJSON(), isExplode: false),
+            "fields[ciIssues]": (wrappedValue: fieldsCiIssues?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -70,9 +70,9 @@ open class CiIssuesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CiIssueResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CiIssueResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -81,17 +81,18 @@ open class CiIssuesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CiIssueResponse> 
      */
-    open class func ciIssuesGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<CiIssueResponse> {
+    open class func ciIssuesGetInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<CiIssueResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CiIssueResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CiIssueResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

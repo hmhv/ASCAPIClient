@@ -6,13 +6,10 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppMediaAssetState: Codable, JSONEncodable, Hashable {
+public struct AppMediaAssetState: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum State: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum State: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case awaitingUpload = "AWAITING_UPLOAD"
         case uploadComplete = "UPLOAD_COMPLETE"
         case complete = "COMPLETE"

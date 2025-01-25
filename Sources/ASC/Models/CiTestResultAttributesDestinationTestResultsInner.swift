@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct CiTestResultAttributesDestinationTestResultsInner: Codable, JSONEncodable, Hashable {
+public struct CiTestResultAttributesDestinationTestResultsInner: Sendable, Codable, JSONEncodable, Hashable {
 
     public var uuid: String?
     public var deviceName: String?

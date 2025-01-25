@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppPriceV2Relationships: Codable, JSONEncodable, Hashable {
+public struct AppPriceV2Relationships: Sendable, Codable, JSONEncodable, Hashable {
 
     public var appPricePoint: AppPriceV2RelationshipsAppPricePoint?
     public var territory: AppPricePointV3RelationshipsTerritory?

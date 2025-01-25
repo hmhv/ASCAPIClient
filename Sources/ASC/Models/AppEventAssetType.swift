@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public enum AppEventAssetType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+public enum AppEventAssetType: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
     case eventCard = "EVENT_CARD"
     case eventDetailsPage = "EVENT_DETAILS_PAGE"
     case unknownDefaultOpenApi = "unknown_default_open_api"

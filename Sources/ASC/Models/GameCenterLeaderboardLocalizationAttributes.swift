@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct GameCenterLeaderboardLocalizationAttributes: Codable, JSONEncodable, Hashable {
+public struct GameCenterLeaderboardLocalizationAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
     public var locale: String?
     public var name: String?

@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct GameCenterLeaderboardSetGameCenterLeaderboardsLinkagesRequest: Codable, JSONEncodable, Hashable {
+public struct GameCenterLeaderboardSetGameCenterLeaderboardsLinkagesRequest: Sendable, Codable, JSONEncodable, Hashable {
 
     public var data: [GameCenterDetailRelationshipsGameCenterLeaderboardsDataInner]
 

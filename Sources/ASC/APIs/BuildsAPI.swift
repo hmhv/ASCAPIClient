@@ -6,16 +6,13 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class BuildsAPI {
 
     /**
      * enum for parameter fieldsAppEncryptionDeclarations
      */
-    public enum FieldsAppEncryptionDeclarations_buildsAppEncryptionDeclarationGetToOneRelated: String, CaseIterable {
+    public enum FieldsAppEncryptionDeclarations_buildsAppEncryptionDeclarationGetToOneRelated: String, Sendable, CaseIterable {
         case appdescription = "appDescription"
         case createddate = "createdDate"
         case usesencryption = "usesEncryption"
@@ -39,20 +36,22 @@ open class BuildsAPI {
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAppEncryptionDeclarations: (query) the fields to include for returned resources of type appEncryptionDeclarations (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppEncryptionDeclarationWithoutIncludesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildsAppEncryptionDeclarationGetToOneRelated(id: String, fieldsAppEncryptionDeclarations: [FieldsAppEncryptionDeclarations_buildsAppEncryptionDeclarationGetToOneRelated]? = nil) async throws -> AppEncryptionDeclarationWithoutIncludesResponse {
-        return try await buildsAppEncryptionDeclarationGetToOneRelatedWithRequestBuilder(id: id, fieldsAppEncryptionDeclarations: fieldsAppEncryptionDeclarations).execute().body
+    open class func buildsAppEncryptionDeclarationGetToOneRelated(id: String, fieldsAppEncryptionDeclarations: [FieldsAppEncryptionDeclarations_buildsAppEncryptionDeclarationGetToOneRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppEncryptionDeclarationWithoutIncludesResponse {
+        return try await buildsAppEncryptionDeclarationGetToOneRelatedWithRequestBuilder(id: id, fieldsAppEncryptionDeclarations: fieldsAppEncryptionDeclarations, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppEncryptionDeclarationWithoutIncludesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildsAppEncryptionDeclarationGetToOneRelated(urlString: String) async throws -> AppEncryptionDeclarationWithoutIncludesResponse {
-        return try await buildsAppEncryptionDeclarationGetToOneRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func buildsAppEncryptionDeclarationGetToOneRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppEncryptionDeclarationWithoutIncludesResponse {
+        return try await buildsAppEncryptionDeclarationGetToOneRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -62,19 +61,20 @@ open class BuildsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAppEncryptionDeclarations: (query) the fields to include for returned resources of type appEncryptionDeclarations (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppEncryptionDeclarationWithoutIncludesResponse> 
      */
-    open class func buildsAppEncryptionDeclarationGetToOneRelatedWithRequestBuilder(id: String, fieldsAppEncryptionDeclarations: [FieldsAppEncryptionDeclarations_buildsAppEncryptionDeclarationGetToOneRelated]? = nil) -> RequestBuilder<AppEncryptionDeclarationWithoutIncludesResponse> {
+    open class func buildsAppEncryptionDeclarationGetToOneRelatedWithRequestBuilder(id: String, fieldsAppEncryptionDeclarations: [FieldsAppEncryptionDeclarations_buildsAppEncryptionDeclarationGetToOneRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppEncryptionDeclarationWithoutIncludesResponse> {
         var localVariablePath = "/v1/builds/{id}/appEncryptionDeclaration"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[appEncryptionDeclarations]": (wrappedValue: fieldsAppEncryptionDeclarations?.encodeToJSON(), isExplode: false),
+            "fields[appEncryptionDeclarations]": (wrappedValue: fieldsAppEncryptionDeclarations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -83,9 +83,9 @@ open class BuildsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppEncryptionDeclarationWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppEncryptionDeclarationWithoutIncludesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -94,37 +94,40 @@ open class BuildsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppEncryptionDeclarationWithoutIncludesResponse> 
      */
-    open class func buildsAppEncryptionDeclarationGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppEncryptionDeclarationWithoutIncludesResponse> {
+    open class func buildsAppEncryptionDeclarationGetToOneRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppEncryptionDeclarationWithoutIncludesResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppEncryptionDeclarationWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppEncryptionDeclarationWithoutIncludesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BuildAppEncryptionDeclarationLinkageResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildsAppEncryptionDeclarationGetToOneRelationship(id: String) async throws -> BuildAppEncryptionDeclarationLinkageResponse {
-        return try await buildsAppEncryptionDeclarationGetToOneRelationshipWithRequestBuilder(id: id).execute().body
+    open class func buildsAppEncryptionDeclarationGetToOneRelationship(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BuildAppEncryptionDeclarationLinkageResponse {
+        return try await buildsAppEncryptionDeclarationGetToOneRelationshipWithRequestBuilder(id: id, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BuildAppEncryptionDeclarationLinkageResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildsAppEncryptionDeclarationGetToOneRelationship(urlString: String) async throws -> BuildAppEncryptionDeclarationLinkageResponse {
-        return try await buildsAppEncryptionDeclarationGetToOneRelationshipWithRequestBuilder(urlString: urlString).execute().body
+    open class func buildsAppEncryptionDeclarationGetToOneRelationship(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BuildAppEncryptionDeclarationLinkageResponse {
+        return try await buildsAppEncryptionDeclarationGetToOneRelationshipWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -133,14 +136,15 @@ open class BuildsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BuildAppEncryptionDeclarationLinkageResponse> 
      */
-    open class func buildsAppEncryptionDeclarationGetToOneRelationshipWithRequestBuilder(id: String) -> RequestBuilder<BuildAppEncryptionDeclarationLinkageResponse> {
+    open class func buildsAppEncryptionDeclarationGetToOneRelationshipWithRequestBuilder(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BuildAppEncryptionDeclarationLinkageResponse> {
         var localVariablePath = "/v1/builds/{id}/relationships/appEncryptionDeclaration"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -151,9 +155,9 @@ open class BuildsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BuildAppEncryptionDeclarationLinkageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BuildAppEncryptionDeclarationLinkageResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -162,38 +166,41 @@ open class BuildsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BuildAppEncryptionDeclarationLinkageResponse> 
      */
-    open class func buildsAppEncryptionDeclarationGetToOneRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<BuildAppEncryptionDeclarationLinkageResponse> {
+    open class func buildsAppEncryptionDeclarationGetToOneRelationshipWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BuildAppEncryptionDeclarationLinkageResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BuildAppEncryptionDeclarationLinkageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BuildAppEncryptionDeclarationLinkageResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter buildAppEncryptionDeclarationLinkageRequest: (body) Related linkage 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildsAppEncryptionDeclarationUpdateToOneRelationship(id: String, buildAppEncryptionDeclarationLinkageRequest: BuildAppEncryptionDeclarationLinkageRequest) async throws {
-        return try await buildsAppEncryptionDeclarationUpdateToOneRelationshipWithRequestBuilder(id: id, buildAppEncryptionDeclarationLinkageRequest: buildAppEncryptionDeclarationLinkageRequest).execute().body
+    open class func buildsAppEncryptionDeclarationUpdateToOneRelationship(id: String, buildAppEncryptionDeclarationLinkageRequest: BuildAppEncryptionDeclarationLinkageRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await buildsAppEncryptionDeclarationUpdateToOneRelationshipWithRequestBuilder(id: id, buildAppEncryptionDeclarationLinkageRequest: buildAppEncryptionDeclarationLinkageRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildsAppEncryptionDeclarationUpdateToOneRelationship(urlString: String) async throws {
-        return try await buildsAppEncryptionDeclarationUpdateToOneRelationshipWithRequestBuilder(urlString: urlString).execute().body
+    open class func buildsAppEncryptionDeclarationUpdateToOneRelationship(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await buildsAppEncryptionDeclarationUpdateToOneRelationshipWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -203,15 +210,16 @@ open class BuildsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter buildAppEncryptionDeclarationLinkageRequest: (body) Related linkage 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func buildsAppEncryptionDeclarationUpdateToOneRelationshipWithRequestBuilder(id: String, buildAppEncryptionDeclarationLinkageRequest: BuildAppEncryptionDeclarationLinkageRequest) -> RequestBuilder<Void> {
+    open class func buildsAppEncryptionDeclarationUpdateToOneRelationshipWithRequestBuilder(id: String, buildAppEncryptionDeclarationLinkageRequest: BuildAppEncryptionDeclarationLinkageRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/builds/{id}/relationships/appEncryptionDeclaration"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: buildAppEncryptionDeclarationLinkageRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: buildAppEncryptionDeclarationLinkageRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -221,9 +229,9 @@ open class BuildsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -232,24 +240,25 @@ open class BuildsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func buildsAppEncryptionDeclarationUpdateToOneRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func buildsAppEncryptionDeclarationUpdateToOneRelationshipWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsApps
      */
-    public enum FieldsApps_buildsAppGetToOneRelated: String, CaseIterable {
+    public enum FieldsApps_buildsAppGetToOneRelated: String, Sendable, CaseIterable {
         case name = "name"
         case bundleid = "bundleId"
         case sku = "sku"
@@ -299,20 +308,22 @@ open class BuildsAPI {
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppWithoutIncludesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildsAppGetToOneRelated(id: String, fieldsApps: [FieldsApps_buildsAppGetToOneRelated]? = nil) async throws -> AppWithoutIncludesResponse {
-        return try await buildsAppGetToOneRelatedWithRequestBuilder(id: id, fieldsApps: fieldsApps).execute().body
+    open class func buildsAppGetToOneRelated(id: String, fieldsApps: [FieldsApps_buildsAppGetToOneRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppWithoutIncludesResponse {
+        return try await buildsAppGetToOneRelatedWithRequestBuilder(id: id, fieldsApps: fieldsApps, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppWithoutIncludesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildsAppGetToOneRelated(urlString: String) async throws -> AppWithoutIncludesResponse {
-        return try await buildsAppGetToOneRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func buildsAppGetToOneRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppWithoutIncludesResponse {
+        return try await buildsAppGetToOneRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -322,19 +333,20 @@ open class BuildsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppWithoutIncludesResponse> 
      */
-    open class func buildsAppGetToOneRelatedWithRequestBuilder(id: String, fieldsApps: [FieldsApps_buildsAppGetToOneRelated]? = nil) -> RequestBuilder<AppWithoutIncludesResponse> {
+    open class func buildsAppGetToOneRelatedWithRequestBuilder(id: String, fieldsApps: [FieldsApps_buildsAppGetToOneRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppWithoutIncludesResponse> {
         var localVariablePath = "/v1/builds/{id}/app"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
+            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -343,9 +355,9 @@ open class BuildsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppWithoutIncludesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -354,24 +366,25 @@ open class BuildsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppWithoutIncludesResponse> 
      */
-    open class func buildsAppGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppWithoutIncludesResponse> {
+    open class func buildsAppGetToOneRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppWithoutIncludesResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppWithoutIncludesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsAppStoreVersions
      */
-    public enum FieldsAppStoreVersions_buildsAppStoreVersionGetToOneRelated: String, CaseIterable {
+    public enum FieldsAppStoreVersions_buildsAppStoreVersionGetToOneRelated: String, Sendable, CaseIterable {
         case platform = "platform"
         case versionstring = "versionString"
         case appstorestate = "appStoreState"
@@ -401,7 +414,7 @@ open class BuildsAPI {
     /**
      * enum for parameter fieldsApps
      */
-    public enum FieldsApps_buildsAppStoreVersionGetToOneRelated: String, CaseIterable {
+    public enum FieldsApps_buildsAppStoreVersionGetToOneRelated: String, Sendable, CaseIterable {
         case name = "name"
         case bundleid = "bundleId"
         case sku = "sku"
@@ -450,7 +463,7 @@ open class BuildsAPI {
     /**
      * enum for parameter fieldsAgeRatingDeclarations
      */
-    public enum FieldsAgeRatingDeclarations_buildsAppStoreVersionGetToOneRelated: String, CaseIterable {
+    public enum FieldsAgeRatingDeclarations_buildsAppStoreVersionGetToOneRelated: String, Sendable, CaseIterable {
         case alcoholtobaccoordruguseorreferences = "alcoholTobaccoOrDrugUseOrReferences"
         case contests = "contests"
         case gamblingandcontests = "gamblingAndContests"
@@ -476,7 +489,7 @@ open class BuildsAPI {
     /**
      * enum for parameter fieldsAppStoreVersionLocalizations
      */
-    public enum FieldsAppStoreVersionLocalizations_buildsAppStoreVersionGetToOneRelated: String, CaseIterable {
+    public enum FieldsAppStoreVersionLocalizations_buildsAppStoreVersionGetToOneRelated: String, Sendable, CaseIterable {
         case description = "description"
         case locale = "locale"
         case keywords = "keywords"
@@ -492,7 +505,7 @@ open class BuildsAPI {
     /**
      * enum for parameter fieldsBuilds
      */
-    public enum FieldsBuilds_buildsAppStoreVersionGetToOneRelated: String, CaseIterable {
+    public enum FieldsBuilds_buildsAppStoreVersionGetToOneRelated: String, Sendable, CaseIterable {
         case version = "version"
         case uploadeddate = "uploadedDate"
         case expirationdate = "expirationDate"
@@ -522,7 +535,7 @@ open class BuildsAPI {
     /**
      * enum for parameter fieldsAppStoreVersionPhasedReleases
      */
-    public enum FieldsAppStoreVersionPhasedReleases_buildsAppStoreVersionGetToOneRelated: String, CaseIterable {
+    public enum FieldsAppStoreVersionPhasedReleases_buildsAppStoreVersionGetToOneRelated: String, Sendable, CaseIterable {
         case phasedreleasestate = "phasedReleaseState"
         case startdate = "startDate"
         case totalpauseduration = "totalPauseDuration"
@@ -532,7 +545,7 @@ open class BuildsAPI {
     /**
      * enum for parameter fieldsGameCenterAppVersions
      */
-    public enum FieldsGameCenterAppVersions_buildsAppStoreVersionGetToOneRelated: String, CaseIterable {
+    public enum FieldsGameCenterAppVersions_buildsAppStoreVersionGetToOneRelated: String, Sendable, CaseIterable {
         case enabled = "enabled"
         case compatibilityversions = "compatibilityVersions"
         case appstoreversion = "appStoreVersion"
@@ -541,7 +554,7 @@ open class BuildsAPI {
     /**
      * enum for parameter fieldsRoutingAppCoverages
      */
-    public enum FieldsRoutingAppCoverages_buildsAppStoreVersionGetToOneRelated: String, CaseIterable {
+    public enum FieldsRoutingAppCoverages_buildsAppStoreVersionGetToOneRelated: String, Sendable, CaseIterable {
         case filesize = "fileSize"
         case filename = "fileName"
         case sourcefilechecksum = "sourceFileChecksum"
@@ -553,7 +566,7 @@ open class BuildsAPI {
     /**
      * enum for parameter fieldsAppStoreReviewDetails
      */
-    public enum FieldsAppStoreReviewDetails_buildsAppStoreVersionGetToOneRelated: String, CaseIterable {
+    public enum FieldsAppStoreReviewDetails_buildsAppStoreVersionGetToOneRelated: String, Sendable, CaseIterable {
         case contactfirstname = "contactFirstName"
         case contactlastname = "contactLastName"
         case contactphone = "contactPhone"
@@ -569,14 +582,14 @@ open class BuildsAPI {
     /**
      * enum for parameter fieldsAppStoreVersionSubmissions
      */
-    public enum FieldsAppStoreVersionSubmissions_buildsAppStoreVersionGetToOneRelated: String, CaseIterable {
+    public enum FieldsAppStoreVersionSubmissions_buildsAppStoreVersionGetToOneRelated: String, Sendable, CaseIterable {
         case appstoreversion = "appStoreVersion"
     }
 
     /**
      * enum for parameter fieldsAppClipDefaultExperiences
      */
-    public enum FieldsAppClipDefaultExperiences_buildsAppStoreVersionGetToOneRelated: String, CaseIterable {
+    public enum FieldsAppClipDefaultExperiences_buildsAppStoreVersionGetToOneRelated: String, Sendable, CaseIterable {
         case action = "action"
         case appclip = "appClip"
         case releasewithappstoreversion = "releaseWithAppStoreVersion"
@@ -587,7 +600,7 @@ open class BuildsAPI {
     /**
      * enum for parameter fieldsAppStoreVersionExperiments
      */
-    public enum FieldsAppStoreVersionExperiments_buildsAppStoreVersionGetToOneRelated: String, CaseIterable {
+    public enum FieldsAppStoreVersionExperiments_buildsAppStoreVersionGetToOneRelated: String, Sendable, CaseIterable {
         case name = "name"
         case trafficproportion = "trafficProportion"
         case state = "state"
@@ -605,14 +618,14 @@ open class BuildsAPI {
     /**
      * enum for parameter fieldsAlternativeDistributionPackages
      */
-    public enum FieldsAlternativeDistributionPackages_buildsAppStoreVersionGetToOneRelated: String, CaseIterable {
+    public enum FieldsAlternativeDistributionPackages_buildsAppStoreVersionGetToOneRelated: String, Sendable, CaseIterable {
         case versions = "versions"
     }
 
     /**
      * enum for parameter include
      */
-    public enum Include_buildsAppStoreVersionGetToOneRelated: String, CaseIterable {
+    public enum Include_buildsAppStoreVersionGetToOneRelated: String, Sendable, CaseIterable {
         case app = "app"
         case ageratingdeclaration = "ageRatingDeclaration"
         case appstoreversionlocalizations = "appStoreVersionLocalizations"
@@ -648,20 +661,22 @@ open class BuildsAPI {
      - parameter limitAppStoreVersionLocalizations: (query) maximum number of related appStoreVersionLocalizations returned (when they are included) (optional)
      - parameter limitAppStoreVersionExperiments: (query) maximum number of related appStoreVersionExperiments returned (when they are included) (optional)
      - parameter limitAppStoreVersionExperimentsV2: (query) maximum number of related appStoreVersionExperimentsV2 returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppStoreVersionResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildsAppStoreVersionGetToOneRelated(id: String, fieldsAppStoreVersions: [FieldsAppStoreVersions_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsApps: [FieldsApps_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAgeRatingDeclarations: [FieldsAgeRatingDeclarations_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionLocalizations: [FieldsAppStoreVersionLocalizations_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsBuilds: [FieldsBuilds_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionPhasedReleases: [FieldsAppStoreVersionPhasedReleases_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsGameCenterAppVersions: [FieldsGameCenterAppVersions_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsRoutingAppCoverages: [FieldsRoutingAppCoverages_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreReviewDetails: [FieldsAppStoreReviewDetails_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionSubmissions: [FieldsAppStoreVersionSubmissions_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppClipDefaultExperiences: [FieldsAppClipDefaultExperiences_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAlternativeDistributionPackages: [FieldsAlternativeDistributionPackages_buildsAppStoreVersionGetToOneRelated]? = nil, include: [Include_buildsAppStoreVersionGetToOneRelated]? = nil, limitAppStoreVersionLocalizations: Int? = nil, limitAppStoreVersionExperiments: Int? = nil, limitAppStoreVersionExperimentsV2: Int? = nil) async throws -> AppStoreVersionResponse {
-        return try await buildsAppStoreVersionGetToOneRelatedWithRequestBuilder(id: id, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsApps: fieldsApps, fieldsAgeRatingDeclarations: fieldsAgeRatingDeclarations, fieldsAppStoreVersionLocalizations: fieldsAppStoreVersionLocalizations, fieldsBuilds: fieldsBuilds, fieldsAppStoreVersionPhasedReleases: fieldsAppStoreVersionPhasedReleases, fieldsGameCenterAppVersions: fieldsGameCenterAppVersions, fieldsRoutingAppCoverages: fieldsRoutingAppCoverages, fieldsAppStoreReviewDetails: fieldsAppStoreReviewDetails, fieldsAppStoreVersionSubmissions: fieldsAppStoreVersionSubmissions, fieldsAppClipDefaultExperiences: fieldsAppClipDefaultExperiences, fieldsAppStoreVersionExperiments: fieldsAppStoreVersionExperiments, fieldsAlternativeDistributionPackages: fieldsAlternativeDistributionPackages, include: include, limitAppStoreVersionLocalizations: limitAppStoreVersionLocalizations, limitAppStoreVersionExperiments: limitAppStoreVersionExperiments, limitAppStoreVersionExperimentsV2: limitAppStoreVersionExperimentsV2).execute().body
+    open class func buildsAppStoreVersionGetToOneRelated(id: String, fieldsAppStoreVersions: [FieldsAppStoreVersions_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsApps: [FieldsApps_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAgeRatingDeclarations: [FieldsAgeRatingDeclarations_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionLocalizations: [FieldsAppStoreVersionLocalizations_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsBuilds: [FieldsBuilds_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionPhasedReleases: [FieldsAppStoreVersionPhasedReleases_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsGameCenterAppVersions: [FieldsGameCenterAppVersions_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsRoutingAppCoverages: [FieldsRoutingAppCoverages_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreReviewDetails: [FieldsAppStoreReviewDetails_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionSubmissions: [FieldsAppStoreVersionSubmissions_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppClipDefaultExperiences: [FieldsAppClipDefaultExperiences_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAlternativeDistributionPackages: [FieldsAlternativeDistributionPackages_buildsAppStoreVersionGetToOneRelated]? = nil, include: [Include_buildsAppStoreVersionGetToOneRelated]? = nil, limitAppStoreVersionLocalizations: Int? = nil, limitAppStoreVersionExperiments: Int? = nil, limitAppStoreVersionExperimentsV2: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppStoreVersionResponse {
+        return try await buildsAppStoreVersionGetToOneRelatedWithRequestBuilder(id: id, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsApps: fieldsApps, fieldsAgeRatingDeclarations: fieldsAgeRatingDeclarations, fieldsAppStoreVersionLocalizations: fieldsAppStoreVersionLocalizations, fieldsBuilds: fieldsBuilds, fieldsAppStoreVersionPhasedReleases: fieldsAppStoreVersionPhasedReleases, fieldsGameCenterAppVersions: fieldsGameCenterAppVersions, fieldsRoutingAppCoverages: fieldsRoutingAppCoverages, fieldsAppStoreReviewDetails: fieldsAppStoreReviewDetails, fieldsAppStoreVersionSubmissions: fieldsAppStoreVersionSubmissions, fieldsAppClipDefaultExperiences: fieldsAppClipDefaultExperiences, fieldsAppStoreVersionExperiments: fieldsAppStoreVersionExperiments, fieldsAlternativeDistributionPackages: fieldsAlternativeDistributionPackages, include: include, limitAppStoreVersionLocalizations: limitAppStoreVersionLocalizations, limitAppStoreVersionExperiments: limitAppStoreVersionExperiments, limitAppStoreVersionExperimentsV2: limitAppStoreVersionExperimentsV2, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppStoreVersionResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildsAppStoreVersionGetToOneRelated(urlString: String) async throws -> AppStoreVersionResponse {
-        return try await buildsAppStoreVersionGetToOneRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func buildsAppStoreVersionGetToOneRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppStoreVersionResponse {
+        return try await buildsAppStoreVersionGetToOneRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -687,35 +702,36 @@ open class BuildsAPI {
      - parameter limitAppStoreVersionLocalizations: (query) maximum number of related appStoreVersionLocalizations returned (when they are included) (optional)
      - parameter limitAppStoreVersionExperiments: (query) maximum number of related appStoreVersionExperiments returned (when they are included) (optional)
      - parameter limitAppStoreVersionExperimentsV2: (query) maximum number of related appStoreVersionExperimentsV2 returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppStoreVersionResponse> 
      */
-    open class func buildsAppStoreVersionGetToOneRelatedWithRequestBuilder(id: String, fieldsAppStoreVersions: [FieldsAppStoreVersions_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsApps: [FieldsApps_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAgeRatingDeclarations: [FieldsAgeRatingDeclarations_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionLocalizations: [FieldsAppStoreVersionLocalizations_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsBuilds: [FieldsBuilds_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionPhasedReleases: [FieldsAppStoreVersionPhasedReleases_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsGameCenterAppVersions: [FieldsGameCenterAppVersions_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsRoutingAppCoverages: [FieldsRoutingAppCoverages_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreReviewDetails: [FieldsAppStoreReviewDetails_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionSubmissions: [FieldsAppStoreVersionSubmissions_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppClipDefaultExperiences: [FieldsAppClipDefaultExperiences_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAlternativeDistributionPackages: [FieldsAlternativeDistributionPackages_buildsAppStoreVersionGetToOneRelated]? = nil, include: [Include_buildsAppStoreVersionGetToOneRelated]? = nil, limitAppStoreVersionLocalizations: Int? = nil, limitAppStoreVersionExperiments: Int? = nil, limitAppStoreVersionExperimentsV2: Int? = nil) -> RequestBuilder<AppStoreVersionResponse> {
+    open class func buildsAppStoreVersionGetToOneRelatedWithRequestBuilder(id: String, fieldsAppStoreVersions: [FieldsAppStoreVersions_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsApps: [FieldsApps_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAgeRatingDeclarations: [FieldsAgeRatingDeclarations_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionLocalizations: [FieldsAppStoreVersionLocalizations_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsBuilds: [FieldsBuilds_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionPhasedReleases: [FieldsAppStoreVersionPhasedReleases_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsGameCenterAppVersions: [FieldsGameCenterAppVersions_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsRoutingAppCoverages: [FieldsRoutingAppCoverages_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreReviewDetails: [FieldsAppStoreReviewDetails_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionSubmissions: [FieldsAppStoreVersionSubmissions_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppClipDefaultExperiences: [FieldsAppClipDefaultExperiences_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_buildsAppStoreVersionGetToOneRelated]? = nil, fieldsAlternativeDistributionPackages: [FieldsAlternativeDistributionPackages_buildsAppStoreVersionGetToOneRelated]? = nil, include: [Include_buildsAppStoreVersionGetToOneRelated]? = nil, limitAppStoreVersionLocalizations: Int? = nil, limitAppStoreVersionExperiments: Int? = nil, limitAppStoreVersionExperimentsV2: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppStoreVersionResponse> {
         var localVariablePath = "/v1/builds/{id}/appStoreVersion"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[appStoreVersions]": (wrappedValue: fieldsAppStoreVersions?.encodeToJSON(), isExplode: false),
-            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
-            "fields[ageRatingDeclarations]": (wrappedValue: fieldsAgeRatingDeclarations?.encodeToJSON(), isExplode: false),
-            "fields[appStoreVersionLocalizations]": (wrappedValue: fieldsAppStoreVersionLocalizations?.encodeToJSON(), isExplode: false),
-            "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(), isExplode: false),
-            "fields[appStoreVersionPhasedReleases]": (wrappedValue: fieldsAppStoreVersionPhasedReleases?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterAppVersions]": (wrappedValue: fieldsGameCenterAppVersions?.encodeToJSON(), isExplode: false),
-            "fields[routingAppCoverages]": (wrappedValue: fieldsRoutingAppCoverages?.encodeToJSON(), isExplode: false),
-            "fields[appStoreReviewDetails]": (wrappedValue: fieldsAppStoreReviewDetails?.encodeToJSON(), isExplode: false),
-            "fields[appStoreVersionSubmissions]": (wrappedValue: fieldsAppStoreVersionSubmissions?.encodeToJSON(), isExplode: false),
-            "fields[appClipDefaultExperiences]": (wrappedValue: fieldsAppClipDefaultExperiences?.encodeToJSON(), isExplode: false),
-            "fields[appStoreVersionExperiments]": (wrappedValue: fieldsAppStoreVersionExperiments?.encodeToJSON(), isExplode: false),
-            "fields[alternativeDistributionPackages]": (wrappedValue: fieldsAlternativeDistributionPackages?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[appStoreVersionLocalizations]": (wrappedValue: limitAppStoreVersionLocalizations?.encodeToJSON(), isExplode: true),
-            "limit[appStoreVersionExperiments]": (wrappedValue: limitAppStoreVersionExperiments?.encodeToJSON(), isExplode: true),
-            "limit[appStoreVersionExperimentsV2]": (wrappedValue: limitAppStoreVersionExperimentsV2?.encodeToJSON(), isExplode: true),
+            "fields[appStoreVersions]": (wrappedValue: fieldsAppStoreVersions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[ageRatingDeclarations]": (wrappedValue: fieldsAgeRatingDeclarations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appStoreVersionLocalizations]": (wrappedValue: fieldsAppStoreVersionLocalizations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appStoreVersionPhasedReleases]": (wrappedValue: fieldsAppStoreVersionPhasedReleases?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[gameCenterAppVersions]": (wrappedValue: fieldsGameCenterAppVersions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[routingAppCoverages]": (wrappedValue: fieldsRoutingAppCoverages?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appStoreReviewDetails]": (wrappedValue: fieldsAppStoreReviewDetails?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appStoreVersionSubmissions]": (wrappedValue: fieldsAppStoreVersionSubmissions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appClipDefaultExperiences]": (wrappedValue: fieldsAppClipDefaultExperiences?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appStoreVersionExperiments]": (wrappedValue: fieldsAppStoreVersionExperiments?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[alternativeDistributionPackages]": (wrappedValue: fieldsAlternativeDistributionPackages?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[appStoreVersionLocalizations]": (wrappedValue: limitAppStoreVersionLocalizations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[appStoreVersionExperiments]": (wrappedValue: limitAppStoreVersionExperiments?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[appStoreVersionExperimentsV2]": (wrappedValue: limitAppStoreVersionExperimentsV2?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -724,9 +740,9 @@ open class BuildsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -735,24 +751,25 @@ open class BuildsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppStoreVersionResponse> 
      */
-    open class func buildsAppStoreVersionGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppStoreVersionResponse> {
+    open class func buildsAppStoreVersionGetToOneRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppStoreVersionResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsBetaAppReviewSubmissions
      */
-    public enum FieldsBetaAppReviewSubmissions_buildsBetaAppReviewSubmissionGetToOneRelated: String, CaseIterable {
+    public enum FieldsBetaAppReviewSubmissions_buildsBetaAppReviewSubmissionGetToOneRelated: String, Sendable, CaseIterable {
         case betareviewstate = "betaReviewState"
         case submitteddate = "submittedDate"
         case build = "build"
@@ -762,20 +779,22 @@ open class BuildsAPI {
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsBetaAppReviewSubmissions: (query) the fields to include for returned resources of type betaAppReviewSubmissions (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BetaAppReviewSubmissionWithoutIncludesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildsBetaAppReviewSubmissionGetToOneRelated(id: String, fieldsBetaAppReviewSubmissions: [FieldsBetaAppReviewSubmissions_buildsBetaAppReviewSubmissionGetToOneRelated]? = nil) async throws -> BetaAppReviewSubmissionWithoutIncludesResponse {
-        return try await buildsBetaAppReviewSubmissionGetToOneRelatedWithRequestBuilder(id: id, fieldsBetaAppReviewSubmissions: fieldsBetaAppReviewSubmissions).execute().body
+    open class func buildsBetaAppReviewSubmissionGetToOneRelated(id: String, fieldsBetaAppReviewSubmissions: [FieldsBetaAppReviewSubmissions_buildsBetaAppReviewSubmissionGetToOneRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BetaAppReviewSubmissionWithoutIncludesResponse {
+        return try await buildsBetaAppReviewSubmissionGetToOneRelatedWithRequestBuilder(id: id, fieldsBetaAppReviewSubmissions: fieldsBetaAppReviewSubmissions, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BetaAppReviewSubmissionWithoutIncludesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildsBetaAppReviewSubmissionGetToOneRelated(urlString: String) async throws -> BetaAppReviewSubmissionWithoutIncludesResponse {
-        return try await buildsBetaAppReviewSubmissionGetToOneRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func buildsBetaAppReviewSubmissionGetToOneRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BetaAppReviewSubmissionWithoutIncludesResponse {
+        return try await buildsBetaAppReviewSubmissionGetToOneRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -785,19 +804,20 @@ open class BuildsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsBetaAppReviewSubmissions: (query) the fields to include for returned resources of type betaAppReviewSubmissions (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BetaAppReviewSubmissionWithoutIncludesResponse> 
      */
-    open class func buildsBetaAppReviewSubmissionGetToOneRelatedWithRequestBuilder(id: String, fieldsBetaAppReviewSubmissions: [FieldsBetaAppReviewSubmissions_buildsBetaAppReviewSubmissionGetToOneRelated]? = nil) -> RequestBuilder<BetaAppReviewSubmissionWithoutIncludesResponse> {
+    open class func buildsBetaAppReviewSubmissionGetToOneRelatedWithRequestBuilder(id: String, fieldsBetaAppReviewSubmissions: [FieldsBetaAppReviewSubmissions_buildsBetaAppReviewSubmissionGetToOneRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BetaAppReviewSubmissionWithoutIncludesResponse> {
         var localVariablePath = "/v1/builds/{id}/betaAppReviewSubmission"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[betaAppReviewSubmissions]": (wrappedValue: fieldsBetaAppReviewSubmissions?.encodeToJSON(), isExplode: false),
+            "fields[betaAppReviewSubmissions]": (wrappedValue: fieldsBetaAppReviewSubmissions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -806,9 +826,9 @@ open class BuildsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BetaAppReviewSubmissionWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BetaAppReviewSubmissionWithoutIncludesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -817,24 +837,25 @@ open class BuildsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BetaAppReviewSubmissionWithoutIncludesResponse> 
      */
-    open class func buildsBetaAppReviewSubmissionGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<BetaAppReviewSubmissionWithoutIncludesResponse> {
+    open class func buildsBetaAppReviewSubmissionGetToOneRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BetaAppReviewSubmissionWithoutIncludesResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BetaAppReviewSubmissionWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BetaAppReviewSubmissionWithoutIncludesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsBetaBuildLocalizations
      */
-    public enum FieldsBetaBuildLocalizations_buildsBetaBuildLocalizationsGetToManyRelated: String, CaseIterable {
+    public enum FieldsBetaBuildLocalizations_buildsBetaBuildLocalizationsGetToManyRelated: String, Sendable, CaseIterable {
         case whatsnew = "whatsNew"
         case locale = "locale"
         case build = "build"
@@ -845,20 +866,22 @@ open class BuildsAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsBetaBuildLocalizations: (query) the fields to include for returned resources of type betaBuildLocalizations (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BetaBuildLocalizationsWithoutIncludesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildsBetaBuildLocalizationsGetToManyRelated(id: String, fieldsBetaBuildLocalizations: [FieldsBetaBuildLocalizations_buildsBetaBuildLocalizationsGetToManyRelated]? = nil, limit: Int? = nil) async throws -> BetaBuildLocalizationsWithoutIncludesResponse {
-        return try await buildsBetaBuildLocalizationsGetToManyRelatedWithRequestBuilder(id: id, fieldsBetaBuildLocalizations: fieldsBetaBuildLocalizations, limit: limit).execute().body
+    open class func buildsBetaBuildLocalizationsGetToManyRelated(id: String, fieldsBetaBuildLocalizations: [FieldsBetaBuildLocalizations_buildsBetaBuildLocalizationsGetToManyRelated]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BetaBuildLocalizationsWithoutIncludesResponse {
+        return try await buildsBetaBuildLocalizationsGetToManyRelatedWithRequestBuilder(id: id, fieldsBetaBuildLocalizations: fieldsBetaBuildLocalizations, limit: limit, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BetaBuildLocalizationsWithoutIncludesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildsBetaBuildLocalizationsGetToManyRelated(urlString: String) async throws -> BetaBuildLocalizationsWithoutIncludesResponse {
-        return try await buildsBetaBuildLocalizationsGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func buildsBetaBuildLocalizationsGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BetaBuildLocalizationsWithoutIncludesResponse {
+        return try await buildsBetaBuildLocalizationsGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -869,20 +892,21 @@ open class BuildsAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsBetaBuildLocalizations: (query) the fields to include for returned resources of type betaBuildLocalizations (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BetaBuildLocalizationsWithoutIncludesResponse> 
      */
-    open class func buildsBetaBuildLocalizationsGetToManyRelatedWithRequestBuilder(id: String, fieldsBetaBuildLocalizations: [FieldsBetaBuildLocalizations_buildsBetaBuildLocalizationsGetToManyRelated]? = nil, limit: Int? = nil) -> RequestBuilder<BetaBuildLocalizationsWithoutIncludesResponse> {
+    open class func buildsBetaBuildLocalizationsGetToManyRelatedWithRequestBuilder(id: String, fieldsBetaBuildLocalizations: [FieldsBetaBuildLocalizations_buildsBetaBuildLocalizationsGetToManyRelated]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BetaBuildLocalizationsWithoutIncludesResponse> {
         var localVariablePath = "/v1/builds/{id}/betaBuildLocalizations"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[betaBuildLocalizations]": (wrappedValue: fieldsBetaBuildLocalizations?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "fields[betaBuildLocalizations]": (wrappedValue: fieldsBetaBuildLocalizations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -891,9 +915,9 @@ open class BuildsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BetaBuildLocalizationsWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BetaBuildLocalizationsWithoutIncludesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -902,38 +926,41 @@ open class BuildsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BetaBuildLocalizationsWithoutIncludesResponse> 
      */
-    open class func buildsBetaBuildLocalizationsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<BetaBuildLocalizationsWithoutIncludesResponse> {
+    open class func buildsBetaBuildLocalizationsGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BetaBuildLocalizationsWithoutIncludesResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BetaBuildLocalizationsWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BetaBuildLocalizationsWithoutIncludesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter limit: (query) maximum number of groups to return per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BetaBuildUsagesV1MetricResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildsBetaBuildUsagesGetMetrics(id: String, limit: Int? = nil) async throws -> BetaBuildUsagesV1MetricResponse {
-        return try await buildsBetaBuildUsagesGetMetricsWithRequestBuilder(id: id, limit: limit).execute().body
+    open class func buildsBetaBuildUsagesGetMetrics(id: String, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BetaBuildUsagesV1MetricResponse {
+        return try await buildsBetaBuildUsagesGetMetricsWithRequestBuilder(id: id, limit: limit, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BetaBuildUsagesV1MetricResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildsBetaBuildUsagesGetMetrics(urlString: String) async throws -> BetaBuildUsagesV1MetricResponse {
-        return try await buildsBetaBuildUsagesGetMetricsWithRequestBuilder(urlString: urlString).execute().body
+    open class func buildsBetaBuildUsagesGetMetrics(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BetaBuildUsagesV1MetricResponse {
+        return try await buildsBetaBuildUsagesGetMetricsWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -943,19 +970,20 @@ open class BuildsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter limit: (query) maximum number of groups to return per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BetaBuildUsagesV1MetricResponse> 
      */
-    open class func buildsBetaBuildUsagesGetMetricsWithRequestBuilder(id: String, limit: Int? = nil) -> RequestBuilder<BetaBuildUsagesV1MetricResponse> {
+    open class func buildsBetaBuildUsagesGetMetricsWithRequestBuilder(id: String, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BetaBuildUsagesV1MetricResponse> {
         var localVariablePath = "/v1/builds/{id}/metrics/betaBuildUsages"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -964,9 +992,9 @@ open class BuildsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BetaBuildUsagesV1MetricResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BetaBuildUsagesV1MetricResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -975,38 +1003,41 @@ open class BuildsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BetaBuildUsagesV1MetricResponse> 
      */
-    open class func buildsBetaBuildUsagesGetMetricsWithRequestBuilder(urlString: String) -> RequestBuilder<BetaBuildUsagesV1MetricResponse> {
+    open class func buildsBetaBuildUsagesGetMetricsWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BetaBuildUsagesV1MetricResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BetaBuildUsagesV1MetricResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BetaBuildUsagesV1MetricResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter buildBetaGroupsLinkagesRequest: (body) List of related linkages 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildsBetaGroupsCreateToManyRelationship(id: String, buildBetaGroupsLinkagesRequest: BuildBetaGroupsLinkagesRequest) async throws {
-        return try await buildsBetaGroupsCreateToManyRelationshipWithRequestBuilder(id: id, buildBetaGroupsLinkagesRequest: buildBetaGroupsLinkagesRequest).execute().body
+    open class func buildsBetaGroupsCreateToManyRelationship(id: String, buildBetaGroupsLinkagesRequest: BuildBetaGroupsLinkagesRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await buildsBetaGroupsCreateToManyRelationshipWithRequestBuilder(id: id, buildBetaGroupsLinkagesRequest: buildBetaGroupsLinkagesRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildsBetaGroupsCreateToManyRelationship(urlString: String) async throws {
-        return try await buildsBetaGroupsCreateToManyRelationshipWithRequestBuilder(urlString: urlString).execute().body
+    open class func buildsBetaGroupsCreateToManyRelationship(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await buildsBetaGroupsCreateToManyRelationshipWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1016,15 +1047,16 @@ open class BuildsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter buildBetaGroupsLinkagesRequest: (body) List of related linkages 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func buildsBetaGroupsCreateToManyRelationshipWithRequestBuilder(id: String, buildBetaGroupsLinkagesRequest: BuildBetaGroupsLinkagesRequest) -> RequestBuilder<Void> {
+    open class func buildsBetaGroupsCreateToManyRelationshipWithRequestBuilder(id: String, buildBetaGroupsLinkagesRequest: BuildBetaGroupsLinkagesRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/builds/{id}/relationships/betaGroups"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: buildBetaGroupsLinkagesRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: buildBetaGroupsLinkagesRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -1034,9 +1066,9 @@ open class BuildsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -1045,38 +1077,41 @@ open class BuildsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func buildsBetaGroupsCreateToManyRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func buildsBetaGroupsCreateToManyRelationshipWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter buildBetaGroupsLinkagesRequest: (body) List of related linkages 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildsBetaGroupsDeleteToManyRelationship(id: String, buildBetaGroupsLinkagesRequest: BuildBetaGroupsLinkagesRequest) async throws {
-        return try await buildsBetaGroupsDeleteToManyRelationshipWithRequestBuilder(id: id, buildBetaGroupsLinkagesRequest: buildBetaGroupsLinkagesRequest).execute().body
+    open class func buildsBetaGroupsDeleteToManyRelationship(id: String, buildBetaGroupsLinkagesRequest: BuildBetaGroupsLinkagesRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await buildsBetaGroupsDeleteToManyRelationshipWithRequestBuilder(id: id, buildBetaGroupsLinkagesRequest: buildBetaGroupsLinkagesRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildsBetaGroupsDeleteToManyRelationship(urlString: String) async throws {
-        return try await buildsBetaGroupsDeleteToManyRelationshipWithRequestBuilder(urlString: urlString).execute().body
+    open class func buildsBetaGroupsDeleteToManyRelationship(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await buildsBetaGroupsDeleteToManyRelationshipWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1086,15 +1121,16 @@ open class BuildsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter buildBetaGroupsLinkagesRequest: (body) List of related linkages 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func buildsBetaGroupsDeleteToManyRelationshipWithRequestBuilder(id: String, buildBetaGroupsLinkagesRequest: BuildBetaGroupsLinkagesRequest) -> RequestBuilder<Void> {
+    open class func buildsBetaGroupsDeleteToManyRelationshipWithRequestBuilder(id: String, buildBetaGroupsLinkagesRequest: BuildBetaGroupsLinkagesRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/builds/{id}/relationships/betaGroups"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: buildBetaGroupsLinkagesRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: buildBetaGroupsLinkagesRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -1104,9 +1140,9 @@ open class BuildsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -1115,24 +1151,25 @@ open class BuildsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func buildsBetaGroupsDeleteToManyRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func buildsBetaGroupsDeleteToManyRelationshipWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsBuildBetaDetails
      */
-    public enum FieldsBuildBetaDetails_buildsBuildBetaDetailGetToOneRelated: String, CaseIterable {
+    public enum FieldsBuildBetaDetails_buildsBuildBetaDetailGetToOneRelated: String, Sendable, CaseIterable {
         case autonotifyenabled = "autoNotifyEnabled"
         case internalbuildstate = "internalBuildState"
         case externalbuildstate = "externalBuildState"
@@ -1142,7 +1179,7 @@ open class BuildsAPI {
     /**
      * enum for parameter fieldsBuilds
      */
-    public enum FieldsBuilds_buildsBuildBetaDetailGetToOneRelated: String, CaseIterable {
+    public enum FieldsBuilds_buildsBuildBetaDetailGetToOneRelated: String, Sendable, CaseIterable {
         case version = "version"
         case uploadeddate = "uploadedDate"
         case expirationdate = "expirationDate"
@@ -1172,7 +1209,7 @@ open class BuildsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_buildsBuildBetaDetailGetToOneRelated: String, CaseIterable {
+    public enum Include_buildsBuildBetaDetailGetToOneRelated: String, Sendable, CaseIterable {
         case build = "build"
     }
 
@@ -1182,20 +1219,22 @@ open class BuildsAPI {
      - parameter fieldsBuildBetaDetails: (query) the fields to include for returned resources of type buildBetaDetails (optional)
      - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BuildBetaDetailResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildsBuildBetaDetailGetToOneRelated(id: String, fieldsBuildBetaDetails: [FieldsBuildBetaDetails_buildsBuildBetaDetailGetToOneRelated]? = nil, fieldsBuilds: [FieldsBuilds_buildsBuildBetaDetailGetToOneRelated]? = nil, include: [Include_buildsBuildBetaDetailGetToOneRelated]? = nil) async throws -> BuildBetaDetailResponse {
-        return try await buildsBuildBetaDetailGetToOneRelatedWithRequestBuilder(id: id, fieldsBuildBetaDetails: fieldsBuildBetaDetails, fieldsBuilds: fieldsBuilds, include: include).execute().body
+    open class func buildsBuildBetaDetailGetToOneRelated(id: String, fieldsBuildBetaDetails: [FieldsBuildBetaDetails_buildsBuildBetaDetailGetToOneRelated]? = nil, fieldsBuilds: [FieldsBuilds_buildsBuildBetaDetailGetToOneRelated]? = nil, include: [Include_buildsBuildBetaDetailGetToOneRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BuildBetaDetailResponse {
+        return try await buildsBuildBetaDetailGetToOneRelatedWithRequestBuilder(id: id, fieldsBuildBetaDetails: fieldsBuildBetaDetails, fieldsBuilds: fieldsBuilds, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BuildBetaDetailResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildsBuildBetaDetailGetToOneRelated(urlString: String) async throws -> BuildBetaDetailResponse {
-        return try await buildsBuildBetaDetailGetToOneRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func buildsBuildBetaDetailGetToOneRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BuildBetaDetailResponse {
+        return try await buildsBuildBetaDetailGetToOneRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1207,21 +1246,22 @@ open class BuildsAPI {
      - parameter fieldsBuildBetaDetails: (query) the fields to include for returned resources of type buildBetaDetails (optional)
      - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BuildBetaDetailResponse> 
      */
-    open class func buildsBuildBetaDetailGetToOneRelatedWithRequestBuilder(id: String, fieldsBuildBetaDetails: [FieldsBuildBetaDetails_buildsBuildBetaDetailGetToOneRelated]? = nil, fieldsBuilds: [FieldsBuilds_buildsBuildBetaDetailGetToOneRelated]? = nil, include: [Include_buildsBuildBetaDetailGetToOneRelated]? = nil) -> RequestBuilder<BuildBetaDetailResponse> {
+    open class func buildsBuildBetaDetailGetToOneRelatedWithRequestBuilder(id: String, fieldsBuildBetaDetails: [FieldsBuildBetaDetails_buildsBuildBetaDetailGetToOneRelated]? = nil, fieldsBuilds: [FieldsBuilds_buildsBuildBetaDetailGetToOneRelated]? = nil, include: [Include_buildsBuildBetaDetailGetToOneRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BuildBetaDetailResponse> {
         var localVariablePath = "/v1/builds/{id}/buildBetaDetail"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[buildBetaDetails]": (wrappedValue: fieldsBuildBetaDetails?.encodeToJSON(), isExplode: false),
-            "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "fields[buildBetaDetails]": (wrappedValue: fieldsBuildBetaDetails?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -1230,9 +1270,9 @@ open class BuildsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BuildBetaDetailResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BuildBetaDetailResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -1241,24 +1281,25 @@ open class BuildsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BuildBetaDetailResponse> 
      */
-    open class func buildsBuildBetaDetailGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<BuildBetaDetailResponse> {
+    open class func buildsBuildBetaDetailGetToOneRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BuildBetaDetailResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BuildBetaDetailResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BuildBetaDetailResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter filterDiagnosticType
      */
-    public enum FilterDiagnosticType_buildsDiagnosticSignaturesGetToManyRelated: String, CaseIterable {
+    public enum FilterDiagnosticType_buildsDiagnosticSignaturesGetToManyRelated: String, Sendable, CaseIterable {
         case diskWrites = "DISK_WRITES"
         case hangs = "HANGS"
         case launches = "LAUNCHES"
@@ -1267,7 +1308,7 @@ open class BuildsAPI {
     /**
      * enum for parameter fieldsDiagnosticSignatures
      */
-    public enum FieldsDiagnosticSignatures_buildsDiagnosticSignaturesGetToManyRelated: String, CaseIterable {
+    public enum FieldsDiagnosticSignatures_buildsDiagnosticSignaturesGetToManyRelated: String, Sendable, CaseIterable {
         case diagnostictype = "diagnosticType"
         case signature = "signature"
         case weight = "weight"
@@ -1281,20 +1322,22 @@ open class BuildsAPI {
      - parameter filterDiagnosticType: (query) filter by attribute &#39;diagnosticType&#39; (optional)
      - parameter fieldsDiagnosticSignatures: (query) the fields to include for returned resources of type diagnosticSignatures (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: DiagnosticSignaturesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildsDiagnosticSignaturesGetToManyRelated(id: String, filterDiagnosticType: [FilterDiagnosticType_buildsDiagnosticSignaturesGetToManyRelated]? = nil, fieldsDiagnosticSignatures: [FieldsDiagnosticSignatures_buildsDiagnosticSignaturesGetToManyRelated]? = nil, limit: Int? = nil) async throws -> DiagnosticSignaturesResponse {
-        return try await buildsDiagnosticSignaturesGetToManyRelatedWithRequestBuilder(id: id, filterDiagnosticType: filterDiagnosticType, fieldsDiagnosticSignatures: fieldsDiagnosticSignatures, limit: limit).execute().body
+    open class func buildsDiagnosticSignaturesGetToManyRelated(id: String, filterDiagnosticType: [FilterDiagnosticType_buildsDiagnosticSignaturesGetToManyRelated]? = nil, fieldsDiagnosticSignatures: [FieldsDiagnosticSignatures_buildsDiagnosticSignaturesGetToManyRelated]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> DiagnosticSignaturesResponse {
+        return try await buildsDiagnosticSignaturesGetToManyRelatedWithRequestBuilder(id: id, filterDiagnosticType: filterDiagnosticType, fieldsDiagnosticSignatures: fieldsDiagnosticSignatures, limit: limit, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: DiagnosticSignaturesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildsDiagnosticSignaturesGetToManyRelated(urlString: String) async throws -> DiagnosticSignaturesResponse {
-        return try await buildsDiagnosticSignaturesGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func buildsDiagnosticSignaturesGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> DiagnosticSignaturesResponse {
+        return try await buildsDiagnosticSignaturesGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1306,21 +1349,22 @@ open class BuildsAPI {
      - parameter filterDiagnosticType: (query) filter by attribute &#39;diagnosticType&#39; (optional)
      - parameter fieldsDiagnosticSignatures: (query) the fields to include for returned resources of type diagnosticSignatures (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<DiagnosticSignaturesResponse> 
      */
-    open class func buildsDiagnosticSignaturesGetToManyRelatedWithRequestBuilder(id: String, filterDiagnosticType: [FilterDiagnosticType_buildsDiagnosticSignaturesGetToManyRelated]? = nil, fieldsDiagnosticSignatures: [FieldsDiagnosticSignatures_buildsDiagnosticSignaturesGetToManyRelated]? = nil, limit: Int? = nil) -> RequestBuilder<DiagnosticSignaturesResponse> {
+    open class func buildsDiagnosticSignaturesGetToManyRelatedWithRequestBuilder(id: String, filterDiagnosticType: [FilterDiagnosticType_buildsDiagnosticSignaturesGetToManyRelated]? = nil, fieldsDiagnosticSignatures: [FieldsDiagnosticSignatures_buildsDiagnosticSignaturesGetToManyRelated]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<DiagnosticSignaturesResponse> {
         var localVariablePath = "/v1/builds/{id}/diagnosticSignatures"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[diagnosticType]": (wrappedValue: filterDiagnosticType?.encodeToJSON(), isExplode: false),
-            "fields[diagnosticSignatures]": (wrappedValue: fieldsDiagnosticSignatures?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "filter[diagnosticType]": (wrappedValue: filterDiagnosticType?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[diagnosticSignatures]": (wrappedValue: fieldsDiagnosticSignatures?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -1329,9 +1373,9 @@ open class BuildsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<DiagnosticSignaturesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<DiagnosticSignaturesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -1340,24 +1384,25 @@ open class BuildsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<DiagnosticSignaturesResponse> 
      */
-    open class func buildsDiagnosticSignaturesGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<DiagnosticSignaturesResponse> {
+    open class func buildsDiagnosticSignaturesGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<DiagnosticSignaturesResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<DiagnosticSignaturesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<DiagnosticSignaturesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter filterProcessingState
      */
-    public enum FilterProcessingState_buildsGetCollection: String, CaseIterable {
+    public enum FilterProcessingState_buildsGetCollection: String, Sendable, CaseIterable {
         case processing = "PROCESSING"
         case failed = "FAILED"
         case invalid = "INVALID"
@@ -1367,7 +1412,7 @@ open class BuildsAPI {
     /**
      * enum for parameter filterBetaAppReviewSubmissionBetaReviewState
      */
-    public enum FilterBetaAppReviewSubmissionBetaReviewState_buildsGetCollection: String, CaseIterable {
+    public enum FilterBetaAppReviewSubmissionBetaReviewState_buildsGetCollection: String, Sendable, CaseIterable {
         case waitingForReview = "WAITING_FOR_REVIEW"
         case inReview = "IN_REVIEW"
         case rejected = "REJECTED"
@@ -1377,7 +1422,7 @@ open class BuildsAPI {
     /**
      * enum for parameter filterPreReleaseVersionPlatform
      */
-    public enum FilterPreReleaseVersionPlatform_buildsGetCollection: String, CaseIterable {
+    public enum FilterPreReleaseVersionPlatform_buildsGetCollection: String, Sendable, CaseIterable {
         case ios = "IOS"
         case macOs = "MAC_OS"
         case tvOs = "TV_OS"
@@ -1387,7 +1432,7 @@ open class BuildsAPI {
     /**
      * enum for parameter filterBuildAudienceType
      */
-    public enum FilterBuildAudienceType_buildsGetCollection: String, CaseIterable {
+    public enum FilterBuildAudienceType_buildsGetCollection: String, Sendable, CaseIterable {
         case internalOnly = "INTERNAL_ONLY"
         case appStoreEligible = "APP_STORE_ELIGIBLE"
     }
@@ -1395,7 +1440,7 @@ open class BuildsAPI {
     /**
      * enum for parameter sort
      */
-    public enum Sort_buildsGetCollection: String, CaseIterable {
+    public enum Sort_buildsGetCollection: String, Sendable, CaseIterable {
         case version = "version"
         case version2 = "-version"
         case uploadeddate = "uploadedDate"
@@ -1407,7 +1452,7 @@ open class BuildsAPI {
     /**
      * enum for parameter fieldsBuilds
      */
-    public enum FieldsBuilds_buildsGetCollection: String, CaseIterable {
+    public enum FieldsBuilds_buildsGetCollection: String, Sendable, CaseIterable {
         case version = "version"
         case uploadeddate = "uploadedDate"
         case expirationdate = "expirationDate"
@@ -1437,7 +1482,7 @@ open class BuildsAPI {
     /**
      * enum for parameter fieldsPreReleaseVersions
      */
-    public enum FieldsPreReleaseVersions_buildsGetCollection: String, CaseIterable {
+    public enum FieldsPreReleaseVersions_buildsGetCollection: String, Sendable, CaseIterable {
         case version = "version"
         case platform = "platform"
         case builds = "builds"
@@ -1447,7 +1492,7 @@ open class BuildsAPI {
     /**
      * enum for parameter fieldsBetaTesters
      */
-    public enum FieldsBetaTesters_buildsGetCollection: String, CaseIterable {
+    public enum FieldsBetaTesters_buildsGetCollection: String, Sendable, CaseIterable {
         case firstname = "firstName"
         case lastname = "lastName"
         case email = "email"
@@ -1461,7 +1506,7 @@ open class BuildsAPI {
     /**
      * enum for parameter fieldsBetaBuildLocalizations
      */
-    public enum FieldsBetaBuildLocalizations_buildsGetCollection: String, CaseIterable {
+    public enum FieldsBetaBuildLocalizations_buildsGetCollection: String, Sendable, CaseIterable {
         case whatsnew = "whatsNew"
         case locale = "locale"
         case build = "build"
@@ -1470,7 +1515,7 @@ open class BuildsAPI {
     /**
      * enum for parameter fieldsAppEncryptionDeclarations
      */
-    public enum FieldsAppEncryptionDeclarations_buildsGetCollection: String, CaseIterable {
+    public enum FieldsAppEncryptionDeclarations_buildsGetCollection: String, Sendable, CaseIterable {
         case appdescription = "appDescription"
         case createddate = "createdDate"
         case usesencryption = "usesEncryption"
@@ -1493,7 +1538,7 @@ open class BuildsAPI {
     /**
      * enum for parameter fieldsBetaAppReviewSubmissions
      */
-    public enum FieldsBetaAppReviewSubmissions_buildsGetCollection: String, CaseIterable {
+    public enum FieldsBetaAppReviewSubmissions_buildsGetCollection: String, Sendable, CaseIterable {
         case betareviewstate = "betaReviewState"
         case submitteddate = "submittedDate"
         case build = "build"
@@ -1502,7 +1547,7 @@ open class BuildsAPI {
     /**
      * enum for parameter fieldsApps
      */
-    public enum FieldsApps_buildsGetCollection: String, CaseIterable {
+    public enum FieldsApps_buildsGetCollection: String, Sendable, CaseIterable {
         case name = "name"
         case bundleid = "bundleId"
         case sku = "sku"
@@ -1551,7 +1596,7 @@ open class BuildsAPI {
     /**
      * enum for parameter fieldsBuildBetaDetails
      */
-    public enum FieldsBuildBetaDetails_buildsGetCollection: String, CaseIterable {
+    public enum FieldsBuildBetaDetails_buildsGetCollection: String, Sendable, CaseIterable {
         case autonotifyenabled = "autoNotifyEnabled"
         case internalbuildstate = "internalBuildState"
         case externalbuildstate = "externalBuildState"
@@ -1561,7 +1606,7 @@ open class BuildsAPI {
     /**
      * enum for parameter fieldsAppStoreVersions
      */
-    public enum FieldsAppStoreVersions_buildsGetCollection: String, CaseIterable {
+    public enum FieldsAppStoreVersions_buildsGetCollection: String, Sendable, CaseIterable {
         case platform = "platform"
         case versionstring = "versionString"
         case appstorestate = "appStoreState"
@@ -1591,7 +1636,7 @@ open class BuildsAPI {
     /**
      * enum for parameter fieldsBuildIcons
      */
-    public enum FieldsBuildIcons_buildsGetCollection: String, CaseIterable {
+    public enum FieldsBuildIcons_buildsGetCollection: String, Sendable, CaseIterable {
         case name = "name"
         case iconasset = "iconAsset"
         case icontype = "iconType"
@@ -1600,7 +1645,7 @@ open class BuildsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_buildsGetCollection: String, CaseIterable {
+    public enum Include_buildsGetCollection: String, Sendable, CaseIterable {
         case prereleaseversion = "preReleaseVersion"
         case individualtesters = "individualTesters"
         case betagroups = "betaGroups"
@@ -1647,20 +1692,22 @@ open class BuildsAPI {
      - parameter limitBuildBundles: (query) maximum number of related buildBundles returned (when they are included) (optional)
      - parameter limitIcons: (query) maximum number of related icons returned (when they are included) (optional)
      - parameter limitIndividualTesters: (query) maximum number of related individualTesters returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BuildsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildsGetCollection(filterVersion: [String]? = nil, filterExpired: [String]? = nil, filterProcessingState: [FilterProcessingState_buildsGetCollection]? = nil, filterBetaAppReviewSubmissionBetaReviewState: [FilterBetaAppReviewSubmissionBetaReviewState_buildsGetCollection]? = nil, filterUsesNonExemptEncryption: [String]? = nil, filterPreReleaseVersionVersion: [String]? = nil, filterPreReleaseVersionPlatform: [FilterPreReleaseVersionPlatform_buildsGetCollection]? = nil, filterBuildAudienceType: [FilterBuildAudienceType_buildsGetCollection]? = nil, filterPreReleaseVersion: [String]? = nil, filterApp: [String]? = nil, filterBetaGroups: [String]? = nil, filterAppStoreVersion: [String]? = nil, filterId: [String]? = nil, sort: [Sort_buildsGetCollection]? = nil, fieldsBuilds: [FieldsBuilds_buildsGetCollection]? = nil, fieldsPreReleaseVersions: [FieldsPreReleaseVersions_buildsGetCollection]? = nil, fieldsBetaTesters: [FieldsBetaTesters_buildsGetCollection]? = nil, fieldsBetaBuildLocalizations: [FieldsBetaBuildLocalizations_buildsGetCollection]? = nil, fieldsAppEncryptionDeclarations: [FieldsAppEncryptionDeclarations_buildsGetCollection]? = nil, fieldsBetaAppReviewSubmissions: [FieldsBetaAppReviewSubmissions_buildsGetCollection]? = nil, fieldsApps: [FieldsApps_buildsGetCollection]? = nil, fieldsBuildBetaDetails: [FieldsBuildBetaDetails_buildsGetCollection]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_buildsGetCollection]? = nil, fieldsBuildIcons: [FieldsBuildIcons_buildsGetCollection]? = nil, limit: Int? = nil, include: [Include_buildsGetCollection]? = nil, limitBetaBuildLocalizations: Int? = nil, limitBetaGroups: Int? = nil, limitBuildBundles: Int? = nil, limitIcons: Int? = nil, limitIndividualTesters: Int? = nil) async throws -> BuildsResponse {
-        return try await buildsGetCollectionWithRequestBuilder(filterVersion: filterVersion, filterExpired: filterExpired, filterProcessingState: filterProcessingState, filterBetaAppReviewSubmissionBetaReviewState: filterBetaAppReviewSubmissionBetaReviewState, filterUsesNonExemptEncryption: filterUsesNonExemptEncryption, filterPreReleaseVersionVersion: filterPreReleaseVersionVersion, filterPreReleaseVersionPlatform: filterPreReleaseVersionPlatform, filterBuildAudienceType: filterBuildAudienceType, filterPreReleaseVersion: filterPreReleaseVersion, filterApp: filterApp, filterBetaGroups: filterBetaGroups, filterAppStoreVersion: filterAppStoreVersion, filterId: filterId, sort: sort, fieldsBuilds: fieldsBuilds, fieldsPreReleaseVersions: fieldsPreReleaseVersions, fieldsBetaTesters: fieldsBetaTesters, fieldsBetaBuildLocalizations: fieldsBetaBuildLocalizations, fieldsAppEncryptionDeclarations: fieldsAppEncryptionDeclarations, fieldsBetaAppReviewSubmissions: fieldsBetaAppReviewSubmissions, fieldsApps: fieldsApps, fieldsBuildBetaDetails: fieldsBuildBetaDetails, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsBuildIcons: fieldsBuildIcons, limit: limit, include: include, limitBetaBuildLocalizations: limitBetaBuildLocalizations, limitBetaGroups: limitBetaGroups, limitBuildBundles: limitBuildBundles, limitIcons: limitIcons, limitIndividualTesters: limitIndividualTesters).execute().body
+    open class func buildsGetCollection(filterVersion: [String]? = nil, filterExpired: [String]? = nil, filterProcessingState: [FilterProcessingState_buildsGetCollection]? = nil, filterBetaAppReviewSubmissionBetaReviewState: [FilterBetaAppReviewSubmissionBetaReviewState_buildsGetCollection]? = nil, filterUsesNonExemptEncryption: [String]? = nil, filterPreReleaseVersionVersion: [String]? = nil, filterPreReleaseVersionPlatform: [FilterPreReleaseVersionPlatform_buildsGetCollection]? = nil, filterBuildAudienceType: [FilterBuildAudienceType_buildsGetCollection]? = nil, filterPreReleaseVersion: [String]? = nil, filterApp: [String]? = nil, filterBetaGroups: [String]? = nil, filterAppStoreVersion: [String]? = nil, filterId: [String]? = nil, sort: [Sort_buildsGetCollection]? = nil, fieldsBuilds: [FieldsBuilds_buildsGetCollection]? = nil, fieldsPreReleaseVersions: [FieldsPreReleaseVersions_buildsGetCollection]? = nil, fieldsBetaTesters: [FieldsBetaTesters_buildsGetCollection]? = nil, fieldsBetaBuildLocalizations: [FieldsBetaBuildLocalizations_buildsGetCollection]? = nil, fieldsAppEncryptionDeclarations: [FieldsAppEncryptionDeclarations_buildsGetCollection]? = nil, fieldsBetaAppReviewSubmissions: [FieldsBetaAppReviewSubmissions_buildsGetCollection]? = nil, fieldsApps: [FieldsApps_buildsGetCollection]? = nil, fieldsBuildBetaDetails: [FieldsBuildBetaDetails_buildsGetCollection]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_buildsGetCollection]? = nil, fieldsBuildIcons: [FieldsBuildIcons_buildsGetCollection]? = nil, limit: Int? = nil, include: [Include_buildsGetCollection]? = nil, limitBetaBuildLocalizations: Int? = nil, limitBetaGroups: Int? = nil, limitBuildBundles: Int? = nil, limitIcons: Int? = nil, limitIndividualTesters: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BuildsResponse {
+        return try await buildsGetCollectionWithRequestBuilder(filterVersion: filterVersion, filterExpired: filterExpired, filterProcessingState: filterProcessingState, filterBetaAppReviewSubmissionBetaReviewState: filterBetaAppReviewSubmissionBetaReviewState, filterUsesNonExemptEncryption: filterUsesNonExemptEncryption, filterPreReleaseVersionVersion: filterPreReleaseVersionVersion, filterPreReleaseVersionPlatform: filterPreReleaseVersionPlatform, filterBuildAudienceType: filterBuildAudienceType, filterPreReleaseVersion: filterPreReleaseVersion, filterApp: filterApp, filterBetaGroups: filterBetaGroups, filterAppStoreVersion: filterAppStoreVersion, filterId: filterId, sort: sort, fieldsBuilds: fieldsBuilds, fieldsPreReleaseVersions: fieldsPreReleaseVersions, fieldsBetaTesters: fieldsBetaTesters, fieldsBetaBuildLocalizations: fieldsBetaBuildLocalizations, fieldsAppEncryptionDeclarations: fieldsAppEncryptionDeclarations, fieldsBetaAppReviewSubmissions: fieldsBetaAppReviewSubmissions, fieldsApps: fieldsApps, fieldsBuildBetaDetails: fieldsBuildBetaDetails, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsBuildIcons: fieldsBuildIcons, limit: limit, include: include, limitBetaBuildLocalizations: limitBetaBuildLocalizations, limitBetaGroups: limitBetaGroups, limitBuildBundles: limitBuildBundles, limitIcons: limitIcons, limitIndividualTesters: limitIndividualTesters, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BuildsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildsGetCollection(urlString: String) async throws -> BuildsResponse {
-        return try await buildsGetCollectionWithRequestBuilder(urlString: urlString).execute().body
+    open class func buildsGetCollection(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BuildsResponse {
+        return try await buildsGetCollectionWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1699,46 +1746,47 @@ open class BuildsAPI {
      - parameter limitBuildBundles: (query) maximum number of related buildBundles returned (when they are included) (optional)
      - parameter limitIcons: (query) maximum number of related icons returned (when they are included) (optional)
      - parameter limitIndividualTesters: (query) maximum number of related individualTesters returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BuildsResponse> 
      */
-    open class func buildsGetCollectionWithRequestBuilder(filterVersion: [String]? = nil, filterExpired: [String]? = nil, filterProcessingState: [FilterProcessingState_buildsGetCollection]? = nil, filterBetaAppReviewSubmissionBetaReviewState: [FilterBetaAppReviewSubmissionBetaReviewState_buildsGetCollection]? = nil, filterUsesNonExemptEncryption: [String]? = nil, filterPreReleaseVersionVersion: [String]? = nil, filterPreReleaseVersionPlatform: [FilterPreReleaseVersionPlatform_buildsGetCollection]? = nil, filterBuildAudienceType: [FilterBuildAudienceType_buildsGetCollection]? = nil, filterPreReleaseVersion: [String]? = nil, filterApp: [String]? = nil, filterBetaGroups: [String]? = nil, filterAppStoreVersion: [String]? = nil, filterId: [String]? = nil, sort: [Sort_buildsGetCollection]? = nil, fieldsBuilds: [FieldsBuilds_buildsGetCollection]? = nil, fieldsPreReleaseVersions: [FieldsPreReleaseVersions_buildsGetCollection]? = nil, fieldsBetaTesters: [FieldsBetaTesters_buildsGetCollection]? = nil, fieldsBetaBuildLocalizations: [FieldsBetaBuildLocalizations_buildsGetCollection]? = nil, fieldsAppEncryptionDeclarations: [FieldsAppEncryptionDeclarations_buildsGetCollection]? = nil, fieldsBetaAppReviewSubmissions: [FieldsBetaAppReviewSubmissions_buildsGetCollection]? = nil, fieldsApps: [FieldsApps_buildsGetCollection]? = nil, fieldsBuildBetaDetails: [FieldsBuildBetaDetails_buildsGetCollection]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_buildsGetCollection]? = nil, fieldsBuildIcons: [FieldsBuildIcons_buildsGetCollection]? = nil, limit: Int? = nil, include: [Include_buildsGetCollection]? = nil, limitBetaBuildLocalizations: Int? = nil, limitBetaGroups: Int? = nil, limitBuildBundles: Int? = nil, limitIcons: Int? = nil, limitIndividualTesters: Int? = nil) -> RequestBuilder<BuildsResponse> {
+    open class func buildsGetCollectionWithRequestBuilder(filterVersion: [String]? = nil, filterExpired: [String]? = nil, filterProcessingState: [FilterProcessingState_buildsGetCollection]? = nil, filterBetaAppReviewSubmissionBetaReviewState: [FilterBetaAppReviewSubmissionBetaReviewState_buildsGetCollection]? = nil, filterUsesNonExemptEncryption: [String]? = nil, filterPreReleaseVersionVersion: [String]? = nil, filterPreReleaseVersionPlatform: [FilterPreReleaseVersionPlatform_buildsGetCollection]? = nil, filterBuildAudienceType: [FilterBuildAudienceType_buildsGetCollection]? = nil, filterPreReleaseVersion: [String]? = nil, filterApp: [String]? = nil, filterBetaGroups: [String]? = nil, filterAppStoreVersion: [String]? = nil, filterId: [String]? = nil, sort: [Sort_buildsGetCollection]? = nil, fieldsBuilds: [FieldsBuilds_buildsGetCollection]? = nil, fieldsPreReleaseVersions: [FieldsPreReleaseVersions_buildsGetCollection]? = nil, fieldsBetaTesters: [FieldsBetaTesters_buildsGetCollection]? = nil, fieldsBetaBuildLocalizations: [FieldsBetaBuildLocalizations_buildsGetCollection]? = nil, fieldsAppEncryptionDeclarations: [FieldsAppEncryptionDeclarations_buildsGetCollection]? = nil, fieldsBetaAppReviewSubmissions: [FieldsBetaAppReviewSubmissions_buildsGetCollection]? = nil, fieldsApps: [FieldsApps_buildsGetCollection]? = nil, fieldsBuildBetaDetails: [FieldsBuildBetaDetails_buildsGetCollection]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_buildsGetCollection]? = nil, fieldsBuildIcons: [FieldsBuildIcons_buildsGetCollection]? = nil, limit: Int? = nil, include: [Include_buildsGetCollection]? = nil, limitBetaBuildLocalizations: Int? = nil, limitBetaGroups: Int? = nil, limitBuildBundles: Int? = nil, limitIcons: Int? = nil, limitIndividualTesters: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BuildsResponse> {
         let localVariablePath = "/v1/builds"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[version]": (wrappedValue: filterVersion?.encodeToJSON(), isExplode: false),
-            "filter[expired]": (wrappedValue: filterExpired?.encodeToJSON(), isExplode: false),
-            "filter[processingState]": (wrappedValue: filterProcessingState?.encodeToJSON(), isExplode: false),
-            "filter[betaAppReviewSubmission.betaReviewState]": (wrappedValue: filterBetaAppReviewSubmissionBetaReviewState?.encodeToJSON(), isExplode: false),
-            "filter[usesNonExemptEncryption]": (wrappedValue: filterUsesNonExemptEncryption?.encodeToJSON(), isExplode: false),
-            "filter[preReleaseVersion.version]": (wrappedValue: filterPreReleaseVersionVersion?.encodeToJSON(), isExplode: false),
-            "filter[preReleaseVersion.platform]": (wrappedValue: filterPreReleaseVersionPlatform?.encodeToJSON(), isExplode: false),
-            "filter[buildAudienceType]": (wrappedValue: filterBuildAudienceType?.encodeToJSON(), isExplode: false),
-            "filter[preReleaseVersion]": (wrappedValue: filterPreReleaseVersion?.encodeToJSON(), isExplode: false),
-            "filter[app]": (wrappedValue: filterApp?.encodeToJSON(), isExplode: false),
-            "filter[betaGroups]": (wrappedValue: filterBetaGroups?.encodeToJSON(), isExplode: false),
-            "filter[appStoreVersion]": (wrappedValue: filterAppStoreVersion?.encodeToJSON(), isExplode: false),
-            "filter[id]": (wrappedValue: filterId?.encodeToJSON(), isExplode: false),
-            "sort": (wrappedValue: sort?.encodeToJSON(), isExplode: false),
-            "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(), isExplode: false),
-            "fields[preReleaseVersions]": (wrappedValue: fieldsPreReleaseVersions?.encodeToJSON(), isExplode: false),
-            "fields[betaTesters]": (wrappedValue: fieldsBetaTesters?.encodeToJSON(), isExplode: false),
-            "fields[betaBuildLocalizations]": (wrappedValue: fieldsBetaBuildLocalizations?.encodeToJSON(), isExplode: false),
-            "fields[appEncryptionDeclarations]": (wrappedValue: fieldsAppEncryptionDeclarations?.encodeToJSON(), isExplode: false),
-            "fields[betaAppReviewSubmissions]": (wrappedValue: fieldsBetaAppReviewSubmissions?.encodeToJSON(), isExplode: false),
-            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
-            "fields[buildBetaDetails]": (wrappedValue: fieldsBuildBetaDetails?.encodeToJSON(), isExplode: false),
-            "fields[appStoreVersions]": (wrappedValue: fieldsAppStoreVersions?.encodeToJSON(), isExplode: false),
-            "fields[buildIcons]": (wrappedValue: fieldsBuildIcons?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[betaBuildLocalizations]": (wrappedValue: limitBetaBuildLocalizations?.encodeToJSON(), isExplode: true),
-            "limit[betaGroups]": (wrappedValue: limitBetaGroups?.encodeToJSON(), isExplode: true),
-            "limit[buildBundles]": (wrappedValue: limitBuildBundles?.encodeToJSON(), isExplode: true),
-            "limit[icons]": (wrappedValue: limitIcons?.encodeToJSON(), isExplode: true),
-            "limit[individualTesters]": (wrappedValue: limitIndividualTesters?.encodeToJSON(), isExplode: true),
+            "filter[version]": (wrappedValue: filterVersion?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[expired]": (wrappedValue: filterExpired?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[processingState]": (wrappedValue: filterProcessingState?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[betaAppReviewSubmission.betaReviewState]": (wrappedValue: filterBetaAppReviewSubmissionBetaReviewState?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[usesNonExemptEncryption]": (wrappedValue: filterUsesNonExemptEncryption?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[preReleaseVersion.version]": (wrappedValue: filterPreReleaseVersionVersion?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[preReleaseVersion.platform]": (wrappedValue: filterPreReleaseVersionPlatform?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[buildAudienceType]": (wrappedValue: filterBuildAudienceType?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[preReleaseVersion]": (wrappedValue: filterPreReleaseVersion?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[app]": (wrappedValue: filterApp?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[betaGroups]": (wrappedValue: filterBetaGroups?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[appStoreVersion]": (wrappedValue: filterAppStoreVersion?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[id]": (wrappedValue: filterId?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "sort": (wrappedValue: sort?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[preReleaseVersions]": (wrappedValue: fieldsPreReleaseVersions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[betaTesters]": (wrappedValue: fieldsBetaTesters?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[betaBuildLocalizations]": (wrappedValue: fieldsBetaBuildLocalizations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appEncryptionDeclarations]": (wrappedValue: fieldsAppEncryptionDeclarations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[betaAppReviewSubmissions]": (wrappedValue: fieldsBetaAppReviewSubmissions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[buildBetaDetails]": (wrappedValue: fieldsBuildBetaDetails?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appStoreVersions]": (wrappedValue: fieldsAppStoreVersions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[buildIcons]": (wrappedValue: fieldsBuildIcons?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[betaBuildLocalizations]": (wrappedValue: limitBetaBuildLocalizations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[betaGroups]": (wrappedValue: limitBetaGroups?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[buildBundles]": (wrappedValue: limitBuildBundles?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[icons]": (wrappedValue: limitIcons?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[individualTesters]": (wrappedValue: limitIndividualTesters?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -1747,9 +1795,9 @@ open class BuildsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BuildsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BuildsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -1758,24 +1806,25 @@ open class BuildsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BuildsResponse> 
      */
-    open class func buildsGetCollectionWithRequestBuilder(urlString: String) -> RequestBuilder<BuildsResponse> {
+    open class func buildsGetCollectionWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BuildsResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BuildsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BuildsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsBuilds
      */
-    public enum FieldsBuilds_buildsGetInstance: String, CaseIterable {
+    public enum FieldsBuilds_buildsGetInstance: String, Sendable, CaseIterable {
         case version = "version"
         case uploadeddate = "uploadedDate"
         case expirationdate = "expirationDate"
@@ -1805,7 +1854,7 @@ open class BuildsAPI {
     /**
      * enum for parameter fieldsPreReleaseVersions
      */
-    public enum FieldsPreReleaseVersions_buildsGetInstance: String, CaseIterable {
+    public enum FieldsPreReleaseVersions_buildsGetInstance: String, Sendable, CaseIterable {
         case version = "version"
         case platform = "platform"
         case builds = "builds"
@@ -1815,7 +1864,7 @@ open class BuildsAPI {
     /**
      * enum for parameter fieldsBetaTesters
      */
-    public enum FieldsBetaTesters_buildsGetInstance: String, CaseIterable {
+    public enum FieldsBetaTesters_buildsGetInstance: String, Sendable, CaseIterable {
         case firstname = "firstName"
         case lastname = "lastName"
         case email = "email"
@@ -1829,7 +1878,7 @@ open class BuildsAPI {
     /**
      * enum for parameter fieldsBetaBuildLocalizations
      */
-    public enum FieldsBetaBuildLocalizations_buildsGetInstance: String, CaseIterable {
+    public enum FieldsBetaBuildLocalizations_buildsGetInstance: String, Sendable, CaseIterable {
         case whatsnew = "whatsNew"
         case locale = "locale"
         case build = "build"
@@ -1838,7 +1887,7 @@ open class BuildsAPI {
     /**
      * enum for parameter fieldsAppEncryptionDeclarations
      */
-    public enum FieldsAppEncryptionDeclarations_buildsGetInstance: String, CaseIterable {
+    public enum FieldsAppEncryptionDeclarations_buildsGetInstance: String, Sendable, CaseIterable {
         case appdescription = "appDescription"
         case createddate = "createdDate"
         case usesencryption = "usesEncryption"
@@ -1861,7 +1910,7 @@ open class BuildsAPI {
     /**
      * enum for parameter fieldsBetaAppReviewSubmissions
      */
-    public enum FieldsBetaAppReviewSubmissions_buildsGetInstance: String, CaseIterable {
+    public enum FieldsBetaAppReviewSubmissions_buildsGetInstance: String, Sendable, CaseIterable {
         case betareviewstate = "betaReviewState"
         case submitteddate = "submittedDate"
         case build = "build"
@@ -1870,7 +1919,7 @@ open class BuildsAPI {
     /**
      * enum for parameter fieldsApps
      */
-    public enum FieldsApps_buildsGetInstance: String, CaseIterable {
+    public enum FieldsApps_buildsGetInstance: String, Sendable, CaseIterable {
         case name = "name"
         case bundleid = "bundleId"
         case sku = "sku"
@@ -1919,7 +1968,7 @@ open class BuildsAPI {
     /**
      * enum for parameter fieldsBuildBetaDetails
      */
-    public enum FieldsBuildBetaDetails_buildsGetInstance: String, CaseIterable {
+    public enum FieldsBuildBetaDetails_buildsGetInstance: String, Sendable, CaseIterable {
         case autonotifyenabled = "autoNotifyEnabled"
         case internalbuildstate = "internalBuildState"
         case externalbuildstate = "externalBuildState"
@@ -1929,7 +1978,7 @@ open class BuildsAPI {
     /**
      * enum for parameter fieldsAppStoreVersions
      */
-    public enum FieldsAppStoreVersions_buildsGetInstance: String, CaseIterable {
+    public enum FieldsAppStoreVersions_buildsGetInstance: String, Sendable, CaseIterable {
         case platform = "platform"
         case versionstring = "versionString"
         case appstorestate = "appStoreState"
@@ -1959,7 +2008,7 @@ open class BuildsAPI {
     /**
      * enum for parameter fieldsBuildIcons
      */
-    public enum FieldsBuildIcons_buildsGetInstance: String, CaseIterable {
+    public enum FieldsBuildIcons_buildsGetInstance: String, Sendable, CaseIterable {
         case name = "name"
         case iconasset = "iconAsset"
         case icontype = "iconType"
@@ -1968,7 +2017,7 @@ open class BuildsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_buildsGetInstance: String, CaseIterable {
+    public enum Include_buildsGetInstance: String, Sendable, CaseIterable {
         case prereleaseversion = "preReleaseVersion"
         case individualtesters = "individualTesters"
         case betagroups = "betaGroups"
@@ -2001,20 +2050,22 @@ open class BuildsAPI {
      - parameter limitBuildBundles: (query) maximum number of related buildBundles returned (when they are included) (optional)
      - parameter limitIcons: (query) maximum number of related icons returned (when they are included) (optional)
      - parameter limitIndividualTesters: (query) maximum number of related individualTesters returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BuildResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildsGetInstance(id: String, fieldsBuilds: [FieldsBuilds_buildsGetInstance]? = nil, fieldsPreReleaseVersions: [FieldsPreReleaseVersions_buildsGetInstance]? = nil, fieldsBetaTesters: [FieldsBetaTesters_buildsGetInstance]? = nil, fieldsBetaBuildLocalizations: [FieldsBetaBuildLocalizations_buildsGetInstance]? = nil, fieldsAppEncryptionDeclarations: [FieldsAppEncryptionDeclarations_buildsGetInstance]? = nil, fieldsBetaAppReviewSubmissions: [FieldsBetaAppReviewSubmissions_buildsGetInstance]? = nil, fieldsApps: [FieldsApps_buildsGetInstance]? = nil, fieldsBuildBetaDetails: [FieldsBuildBetaDetails_buildsGetInstance]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_buildsGetInstance]? = nil, fieldsBuildIcons: [FieldsBuildIcons_buildsGetInstance]? = nil, include: [Include_buildsGetInstance]? = nil, limitBetaBuildLocalizations: Int? = nil, limitBetaGroups: Int? = nil, limitBuildBundles: Int? = nil, limitIcons: Int? = nil, limitIndividualTesters: Int? = nil) async throws -> BuildResponse {
-        return try await buildsGetInstanceWithRequestBuilder(id: id, fieldsBuilds: fieldsBuilds, fieldsPreReleaseVersions: fieldsPreReleaseVersions, fieldsBetaTesters: fieldsBetaTesters, fieldsBetaBuildLocalizations: fieldsBetaBuildLocalizations, fieldsAppEncryptionDeclarations: fieldsAppEncryptionDeclarations, fieldsBetaAppReviewSubmissions: fieldsBetaAppReviewSubmissions, fieldsApps: fieldsApps, fieldsBuildBetaDetails: fieldsBuildBetaDetails, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsBuildIcons: fieldsBuildIcons, include: include, limitBetaBuildLocalizations: limitBetaBuildLocalizations, limitBetaGroups: limitBetaGroups, limitBuildBundles: limitBuildBundles, limitIcons: limitIcons, limitIndividualTesters: limitIndividualTesters).execute().body
+    open class func buildsGetInstance(id: String, fieldsBuilds: [FieldsBuilds_buildsGetInstance]? = nil, fieldsPreReleaseVersions: [FieldsPreReleaseVersions_buildsGetInstance]? = nil, fieldsBetaTesters: [FieldsBetaTesters_buildsGetInstance]? = nil, fieldsBetaBuildLocalizations: [FieldsBetaBuildLocalizations_buildsGetInstance]? = nil, fieldsAppEncryptionDeclarations: [FieldsAppEncryptionDeclarations_buildsGetInstance]? = nil, fieldsBetaAppReviewSubmissions: [FieldsBetaAppReviewSubmissions_buildsGetInstance]? = nil, fieldsApps: [FieldsApps_buildsGetInstance]? = nil, fieldsBuildBetaDetails: [FieldsBuildBetaDetails_buildsGetInstance]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_buildsGetInstance]? = nil, fieldsBuildIcons: [FieldsBuildIcons_buildsGetInstance]? = nil, include: [Include_buildsGetInstance]? = nil, limitBetaBuildLocalizations: Int? = nil, limitBetaGroups: Int? = nil, limitBuildBundles: Int? = nil, limitIcons: Int? = nil, limitIndividualTesters: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BuildResponse {
+        return try await buildsGetInstanceWithRequestBuilder(id: id, fieldsBuilds: fieldsBuilds, fieldsPreReleaseVersions: fieldsPreReleaseVersions, fieldsBetaTesters: fieldsBetaTesters, fieldsBetaBuildLocalizations: fieldsBetaBuildLocalizations, fieldsAppEncryptionDeclarations: fieldsAppEncryptionDeclarations, fieldsBetaAppReviewSubmissions: fieldsBetaAppReviewSubmissions, fieldsApps: fieldsApps, fieldsBuildBetaDetails: fieldsBuildBetaDetails, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsBuildIcons: fieldsBuildIcons, include: include, limitBetaBuildLocalizations: limitBetaBuildLocalizations, limitBetaGroups: limitBetaGroups, limitBuildBundles: limitBuildBundles, limitIcons: limitIcons, limitIndividualTesters: limitIndividualTesters, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BuildResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildsGetInstance(urlString: String) async throws -> BuildResponse {
-        return try await buildsGetInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func buildsGetInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BuildResponse {
+        return try await buildsGetInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -2039,34 +2090,35 @@ open class BuildsAPI {
      - parameter limitBuildBundles: (query) maximum number of related buildBundles returned (when they are included) (optional)
      - parameter limitIcons: (query) maximum number of related icons returned (when they are included) (optional)
      - parameter limitIndividualTesters: (query) maximum number of related individualTesters returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BuildResponse> 
      */
-    open class func buildsGetInstanceWithRequestBuilder(id: String, fieldsBuilds: [FieldsBuilds_buildsGetInstance]? = nil, fieldsPreReleaseVersions: [FieldsPreReleaseVersions_buildsGetInstance]? = nil, fieldsBetaTesters: [FieldsBetaTesters_buildsGetInstance]? = nil, fieldsBetaBuildLocalizations: [FieldsBetaBuildLocalizations_buildsGetInstance]? = nil, fieldsAppEncryptionDeclarations: [FieldsAppEncryptionDeclarations_buildsGetInstance]? = nil, fieldsBetaAppReviewSubmissions: [FieldsBetaAppReviewSubmissions_buildsGetInstance]? = nil, fieldsApps: [FieldsApps_buildsGetInstance]? = nil, fieldsBuildBetaDetails: [FieldsBuildBetaDetails_buildsGetInstance]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_buildsGetInstance]? = nil, fieldsBuildIcons: [FieldsBuildIcons_buildsGetInstance]? = nil, include: [Include_buildsGetInstance]? = nil, limitBetaBuildLocalizations: Int? = nil, limitBetaGroups: Int? = nil, limitBuildBundles: Int? = nil, limitIcons: Int? = nil, limitIndividualTesters: Int? = nil) -> RequestBuilder<BuildResponse> {
+    open class func buildsGetInstanceWithRequestBuilder(id: String, fieldsBuilds: [FieldsBuilds_buildsGetInstance]? = nil, fieldsPreReleaseVersions: [FieldsPreReleaseVersions_buildsGetInstance]? = nil, fieldsBetaTesters: [FieldsBetaTesters_buildsGetInstance]? = nil, fieldsBetaBuildLocalizations: [FieldsBetaBuildLocalizations_buildsGetInstance]? = nil, fieldsAppEncryptionDeclarations: [FieldsAppEncryptionDeclarations_buildsGetInstance]? = nil, fieldsBetaAppReviewSubmissions: [FieldsBetaAppReviewSubmissions_buildsGetInstance]? = nil, fieldsApps: [FieldsApps_buildsGetInstance]? = nil, fieldsBuildBetaDetails: [FieldsBuildBetaDetails_buildsGetInstance]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_buildsGetInstance]? = nil, fieldsBuildIcons: [FieldsBuildIcons_buildsGetInstance]? = nil, include: [Include_buildsGetInstance]? = nil, limitBetaBuildLocalizations: Int? = nil, limitBetaGroups: Int? = nil, limitBuildBundles: Int? = nil, limitIcons: Int? = nil, limitIndividualTesters: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BuildResponse> {
         var localVariablePath = "/v1/builds/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(), isExplode: false),
-            "fields[preReleaseVersions]": (wrappedValue: fieldsPreReleaseVersions?.encodeToJSON(), isExplode: false),
-            "fields[betaTesters]": (wrappedValue: fieldsBetaTesters?.encodeToJSON(), isExplode: false),
-            "fields[betaBuildLocalizations]": (wrappedValue: fieldsBetaBuildLocalizations?.encodeToJSON(), isExplode: false),
-            "fields[appEncryptionDeclarations]": (wrappedValue: fieldsAppEncryptionDeclarations?.encodeToJSON(), isExplode: false),
-            "fields[betaAppReviewSubmissions]": (wrappedValue: fieldsBetaAppReviewSubmissions?.encodeToJSON(), isExplode: false),
-            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
-            "fields[buildBetaDetails]": (wrappedValue: fieldsBuildBetaDetails?.encodeToJSON(), isExplode: false),
-            "fields[appStoreVersions]": (wrappedValue: fieldsAppStoreVersions?.encodeToJSON(), isExplode: false),
-            "fields[buildIcons]": (wrappedValue: fieldsBuildIcons?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[betaBuildLocalizations]": (wrappedValue: limitBetaBuildLocalizations?.encodeToJSON(), isExplode: true),
-            "limit[betaGroups]": (wrappedValue: limitBetaGroups?.encodeToJSON(), isExplode: true),
-            "limit[buildBundles]": (wrappedValue: limitBuildBundles?.encodeToJSON(), isExplode: true),
-            "limit[icons]": (wrappedValue: limitIcons?.encodeToJSON(), isExplode: true),
-            "limit[individualTesters]": (wrappedValue: limitIndividualTesters?.encodeToJSON(), isExplode: true),
+            "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[preReleaseVersions]": (wrappedValue: fieldsPreReleaseVersions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[betaTesters]": (wrappedValue: fieldsBetaTesters?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[betaBuildLocalizations]": (wrappedValue: fieldsBetaBuildLocalizations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appEncryptionDeclarations]": (wrappedValue: fieldsAppEncryptionDeclarations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[betaAppReviewSubmissions]": (wrappedValue: fieldsBetaAppReviewSubmissions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[buildBetaDetails]": (wrappedValue: fieldsBuildBetaDetails?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appStoreVersions]": (wrappedValue: fieldsAppStoreVersions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[buildIcons]": (wrappedValue: fieldsBuildIcons?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[betaBuildLocalizations]": (wrappedValue: limitBetaBuildLocalizations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[betaGroups]": (wrappedValue: limitBetaGroups?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[buildBundles]": (wrappedValue: limitBuildBundles?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[icons]": (wrappedValue: limitIcons?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[individualTesters]": (wrappedValue: limitIndividualTesters?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -2075,9 +2127,9 @@ open class BuildsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BuildResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BuildResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -2086,24 +2138,25 @@ open class BuildsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BuildResponse> 
      */
-    open class func buildsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<BuildResponse> {
+    open class func buildsGetInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BuildResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BuildResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BuildResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsBuildIcons
      */
-    public enum FieldsBuildIcons_buildsIconsGetToManyRelated: String, CaseIterable {
+    public enum FieldsBuildIcons_buildsIconsGetToManyRelated: String, Sendable, CaseIterable {
         case name = "name"
         case iconasset = "iconAsset"
         case icontype = "iconType"
@@ -2114,20 +2167,22 @@ open class BuildsAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsBuildIcons: (query) the fields to include for returned resources of type buildIcons (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BuildIconsWithoutIncludesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildsIconsGetToManyRelated(id: String, fieldsBuildIcons: [FieldsBuildIcons_buildsIconsGetToManyRelated]? = nil, limit: Int? = nil) async throws -> BuildIconsWithoutIncludesResponse {
-        return try await buildsIconsGetToManyRelatedWithRequestBuilder(id: id, fieldsBuildIcons: fieldsBuildIcons, limit: limit).execute().body
+    open class func buildsIconsGetToManyRelated(id: String, fieldsBuildIcons: [FieldsBuildIcons_buildsIconsGetToManyRelated]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BuildIconsWithoutIncludesResponse {
+        return try await buildsIconsGetToManyRelatedWithRequestBuilder(id: id, fieldsBuildIcons: fieldsBuildIcons, limit: limit, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BuildIconsWithoutIncludesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildsIconsGetToManyRelated(urlString: String) async throws -> BuildIconsWithoutIncludesResponse {
-        return try await buildsIconsGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func buildsIconsGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BuildIconsWithoutIncludesResponse {
+        return try await buildsIconsGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -2138,20 +2193,21 @@ open class BuildsAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsBuildIcons: (query) the fields to include for returned resources of type buildIcons (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BuildIconsWithoutIncludesResponse> 
      */
-    open class func buildsIconsGetToManyRelatedWithRequestBuilder(id: String, fieldsBuildIcons: [FieldsBuildIcons_buildsIconsGetToManyRelated]? = nil, limit: Int? = nil) -> RequestBuilder<BuildIconsWithoutIncludesResponse> {
+    open class func buildsIconsGetToManyRelatedWithRequestBuilder(id: String, fieldsBuildIcons: [FieldsBuildIcons_buildsIconsGetToManyRelated]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BuildIconsWithoutIncludesResponse> {
         var localVariablePath = "/v1/builds/{id}/icons"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[buildIcons]": (wrappedValue: fieldsBuildIcons?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "fields[buildIcons]": (wrappedValue: fieldsBuildIcons?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -2160,9 +2216,9 @@ open class BuildsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BuildIconsWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BuildIconsWithoutIncludesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -2171,38 +2227,41 @@ open class BuildsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BuildIconsWithoutIncludesResponse> 
      */
-    open class func buildsIconsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<BuildIconsWithoutIncludesResponse> {
+    open class func buildsIconsGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BuildIconsWithoutIncludesResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BuildIconsWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BuildIconsWithoutIncludesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter buildIndividualTestersLinkagesRequest: (body) List of related linkages 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildsIndividualTestersCreateToManyRelationship(id: String, buildIndividualTestersLinkagesRequest: BuildIndividualTestersLinkagesRequest) async throws {
-        return try await buildsIndividualTestersCreateToManyRelationshipWithRequestBuilder(id: id, buildIndividualTestersLinkagesRequest: buildIndividualTestersLinkagesRequest).execute().body
+    open class func buildsIndividualTestersCreateToManyRelationship(id: String, buildIndividualTestersLinkagesRequest: BuildIndividualTestersLinkagesRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await buildsIndividualTestersCreateToManyRelationshipWithRequestBuilder(id: id, buildIndividualTestersLinkagesRequest: buildIndividualTestersLinkagesRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildsIndividualTestersCreateToManyRelationship(urlString: String) async throws {
-        return try await buildsIndividualTestersCreateToManyRelationshipWithRequestBuilder(urlString: urlString).execute().body
+    open class func buildsIndividualTestersCreateToManyRelationship(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await buildsIndividualTestersCreateToManyRelationshipWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -2212,15 +2271,16 @@ open class BuildsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter buildIndividualTestersLinkagesRequest: (body) List of related linkages 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func buildsIndividualTestersCreateToManyRelationshipWithRequestBuilder(id: String, buildIndividualTestersLinkagesRequest: BuildIndividualTestersLinkagesRequest) -> RequestBuilder<Void> {
+    open class func buildsIndividualTestersCreateToManyRelationshipWithRequestBuilder(id: String, buildIndividualTestersLinkagesRequest: BuildIndividualTestersLinkagesRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/builds/{id}/relationships/individualTesters"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: buildIndividualTestersLinkagesRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: buildIndividualTestersLinkagesRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -2230,9 +2290,9 @@ open class BuildsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -2241,38 +2301,41 @@ open class BuildsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func buildsIndividualTestersCreateToManyRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func buildsIndividualTestersCreateToManyRelationshipWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter buildIndividualTestersLinkagesRequest: (body) List of related linkages 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildsIndividualTestersDeleteToManyRelationship(id: String, buildIndividualTestersLinkagesRequest: BuildIndividualTestersLinkagesRequest) async throws {
-        return try await buildsIndividualTestersDeleteToManyRelationshipWithRequestBuilder(id: id, buildIndividualTestersLinkagesRequest: buildIndividualTestersLinkagesRequest).execute().body
+    open class func buildsIndividualTestersDeleteToManyRelationship(id: String, buildIndividualTestersLinkagesRequest: BuildIndividualTestersLinkagesRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await buildsIndividualTestersDeleteToManyRelationshipWithRequestBuilder(id: id, buildIndividualTestersLinkagesRequest: buildIndividualTestersLinkagesRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildsIndividualTestersDeleteToManyRelationship(urlString: String) async throws {
-        return try await buildsIndividualTestersDeleteToManyRelationshipWithRequestBuilder(urlString: urlString).execute().body
+    open class func buildsIndividualTestersDeleteToManyRelationship(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await buildsIndividualTestersDeleteToManyRelationshipWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -2282,15 +2345,16 @@ open class BuildsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter buildIndividualTestersLinkagesRequest: (body) List of related linkages 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func buildsIndividualTestersDeleteToManyRelationshipWithRequestBuilder(id: String, buildIndividualTestersLinkagesRequest: BuildIndividualTestersLinkagesRequest) -> RequestBuilder<Void> {
+    open class func buildsIndividualTestersDeleteToManyRelationshipWithRequestBuilder(id: String, buildIndividualTestersLinkagesRequest: BuildIndividualTestersLinkagesRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/builds/{id}/relationships/individualTesters"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: buildIndividualTestersLinkagesRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: buildIndividualTestersLinkagesRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -2300,9 +2364,9 @@ open class BuildsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -2311,24 +2375,25 @@ open class BuildsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func buildsIndividualTestersDeleteToManyRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func buildsIndividualTestersDeleteToManyRelationshipWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsBetaTesters
      */
-    public enum FieldsBetaTesters_buildsIndividualTestersGetToManyRelated: String, CaseIterable {
+    public enum FieldsBetaTesters_buildsIndividualTestersGetToManyRelated: String, Sendable, CaseIterable {
         case firstname = "firstName"
         case lastname = "lastName"
         case email = "email"
@@ -2344,20 +2409,22 @@ open class BuildsAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsBetaTesters: (query) the fields to include for returned resources of type betaTesters (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BetaTestersWithoutIncludesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildsIndividualTestersGetToManyRelated(id: String, fieldsBetaTesters: [FieldsBetaTesters_buildsIndividualTestersGetToManyRelated]? = nil, limit: Int? = nil) async throws -> BetaTestersWithoutIncludesResponse {
-        return try await buildsIndividualTestersGetToManyRelatedWithRequestBuilder(id: id, fieldsBetaTesters: fieldsBetaTesters, limit: limit).execute().body
+    open class func buildsIndividualTestersGetToManyRelated(id: String, fieldsBetaTesters: [FieldsBetaTesters_buildsIndividualTestersGetToManyRelated]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BetaTestersWithoutIncludesResponse {
+        return try await buildsIndividualTestersGetToManyRelatedWithRequestBuilder(id: id, fieldsBetaTesters: fieldsBetaTesters, limit: limit, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BetaTestersWithoutIncludesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildsIndividualTestersGetToManyRelated(urlString: String) async throws -> BetaTestersWithoutIncludesResponse {
-        return try await buildsIndividualTestersGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func buildsIndividualTestersGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BetaTestersWithoutIncludesResponse {
+        return try await buildsIndividualTestersGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -2368,20 +2435,21 @@ open class BuildsAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsBetaTesters: (query) the fields to include for returned resources of type betaTesters (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BetaTestersWithoutIncludesResponse> 
      */
-    open class func buildsIndividualTestersGetToManyRelatedWithRequestBuilder(id: String, fieldsBetaTesters: [FieldsBetaTesters_buildsIndividualTestersGetToManyRelated]? = nil, limit: Int? = nil) -> RequestBuilder<BetaTestersWithoutIncludesResponse> {
+    open class func buildsIndividualTestersGetToManyRelatedWithRequestBuilder(id: String, fieldsBetaTesters: [FieldsBetaTesters_buildsIndividualTestersGetToManyRelated]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BetaTestersWithoutIncludesResponse> {
         var localVariablePath = "/v1/builds/{id}/individualTesters"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[betaTesters]": (wrappedValue: fieldsBetaTesters?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "fields[betaTesters]": (wrappedValue: fieldsBetaTesters?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -2390,9 +2458,9 @@ open class BuildsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BetaTestersWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BetaTestersWithoutIncludesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -2401,38 +2469,41 @@ open class BuildsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BetaTestersWithoutIncludesResponse> 
      */
-    open class func buildsIndividualTestersGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<BetaTestersWithoutIncludesResponse> {
+    open class func buildsIndividualTestersGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BetaTestersWithoutIncludesResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BetaTestersWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BetaTestersWithoutIncludesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BuildIndividualTestersLinkagesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildsIndividualTestersGetToManyRelationship(id: String, limit: Int? = nil) async throws -> BuildIndividualTestersLinkagesResponse {
-        return try await buildsIndividualTestersGetToManyRelationshipWithRequestBuilder(id: id, limit: limit).execute().body
+    open class func buildsIndividualTestersGetToManyRelationship(id: String, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BuildIndividualTestersLinkagesResponse {
+        return try await buildsIndividualTestersGetToManyRelationshipWithRequestBuilder(id: id, limit: limit, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BuildIndividualTestersLinkagesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildsIndividualTestersGetToManyRelationship(urlString: String) async throws -> BuildIndividualTestersLinkagesResponse {
-        return try await buildsIndividualTestersGetToManyRelationshipWithRequestBuilder(urlString: urlString).execute().body
+    open class func buildsIndividualTestersGetToManyRelationship(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BuildIndividualTestersLinkagesResponse {
+        return try await buildsIndividualTestersGetToManyRelationshipWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -2442,19 +2513,20 @@ open class BuildsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BuildIndividualTestersLinkagesResponse> 
      */
-    open class func buildsIndividualTestersGetToManyRelationshipWithRequestBuilder(id: String, limit: Int? = nil) -> RequestBuilder<BuildIndividualTestersLinkagesResponse> {
+    open class func buildsIndividualTestersGetToManyRelationshipWithRequestBuilder(id: String, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BuildIndividualTestersLinkagesResponse> {
         var localVariablePath = "/v1/builds/{id}/relationships/individualTesters"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -2463,9 +2535,9 @@ open class BuildsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BuildIndividualTestersLinkagesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BuildIndividualTestersLinkagesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -2474,31 +2546,32 @@ open class BuildsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BuildIndividualTestersLinkagesResponse> 
      */
-    open class func buildsIndividualTestersGetToManyRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<BuildIndividualTestersLinkagesResponse> {
+    open class func buildsIndividualTestersGetToManyRelationshipWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BuildIndividualTestersLinkagesResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BuildIndividualTestersLinkagesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BuildIndividualTestersLinkagesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter filterPlatform
      */
-    public enum FilterPlatform_buildsPerfPowerMetricsGetToManyRelated: String, CaseIterable {
+    public enum FilterPlatform_buildsPerfPowerMetricsGetToManyRelated: String, Sendable, CaseIterable {
         case ios = "IOS"
     }
 
     /**
      * enum for parameter filterMetricType
      */
-    public enum FilterMetricType_buildsPerfPowerMetricsGetToManyRelated: String, CaseIterable {
+    public enum FilterMetricType_buildsPerfPowerMetricsGetToManyRelated: String, Sendable, CaseIterable {
         case disk = "DISK"
         case hang = "HANG"
         case battery = "BATTERY"
@@ -2514,20 +2587,22 @@ open class BuildsAPI {
      - parameter filterPlatform: (query) filter by attribute &#39;platform&#39; (optional)
      - parameter filterMetricType: (query) filter by attribute &#39;metricType&#39; (optional)
      - parameter filterDeviceType: (query) filter by attribute &#39;deviceType&#39; (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: XcodeMetrics
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildsPerfPowerMetricsGetToManyRelated(id: String, filterPlatform: [FilterPlatform_buildsPerfPowerMetricsGetToManyRelated]? = nil, filterMetricType: [FilterMetricType_buildsPerfPowerMetricsGetToManyRelated]? = nil, filterDeviceType: [String]? = nil) async throws -> XcodeMetrics {
-        return try await buildsPerfPowerMetricsGetToManyRelatedWithRequestBuilder(id: id, filterPlatform: filterPlatform, filterMetricType: filterMetricType, filterDeviceType: filterDeviceType).execute().body
+    open class func buildsPerfPowerMetricsGetToManyRelated(id: String, filterPlatform: [FilterPlatform_buildsPerfPowerMetricsGetToManyRelated]? = nil, filterMetricType: [FilterMetricType_buildsPerfPowerMetricsGetToManyRelated]? = nil, filterDeviceType: [String]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> XcodeMetrics {
+        return try await buildsPerfPowerMetricsGetToManyRelatedWithRequestBuilder(id: id, filterPlatform: filterPlatform, filterMetricType: filterMetricType, filterDeviceType: filterDeviceType, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: XcodeMetrics
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildsPerfPowerMetricsGetToManyRelated(urlString: String) async throws -> XcodeMetrics {
-        return try await buildsPerfPowerMetricsGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func buildsPerfPowerMetricsGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> XcodeMetrics {
+        return try await buildsPerfPowerMetricsGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -2539,21 +2614,22 @@ open class BuildsAPI {
      - parameter filterPlatform: (query) filter by attribute &#39;platform&#39; (optional)
      - parameter filterMetricType: (query) filter by attribute &#39;metricType&#39; (optional)
      - parameter filterDeviceType: (query) filter by attribute &#39;deviceType&#39; (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<XcodeMetrics> 
      */
-    open class func buildsPerfPowerMetricsGetToManyRelatedWithRequestBuilder(id: String, filterPlatform: [FilterPlatform_buildsPerfPowerMetricsGetToManyRelated]? = nil, filterMetricType: [FilterMetricType_buildsPerfPowerMetricsGetToManyRelated]? = nil, filterDeviceType: [String]? = nil) -> RequestBuilder<XcodeMetrics> {
+    open class func buildsPerfPowerMetricsGetToManyRelatedWithRequestBuilder(id: String, filterPlatform: [FilterPlatform_buildsPerfPowerMetricsGetToManyRelated]? = nil, filterMetricType: [FilterMetricType_buildsPerfPowerMetricsGetToManyRelated]? = nil, filterDeviceType: [String]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<XcodeMetrics> {
         var localVariablePath = "/v1/builds/{id}/perfPowerMetrics"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[platform]": (wrappedValue: filterPlatform?.encodeToJSON(), isExplode: false),
-            "filter[metricType]": (wrappedValue: filterMetricType?.encodeToJSON(), isExplode: false),
-            "filter[deviceType]": (wrappedValue: filterDeviceType?.encodeToJSON(), isExplode: false),
+            "filter[platform]": (wrappedValue: filterPlatform?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[metricType]": (wrappedValue: filterMetricType?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[deviceType]": (wrappedValue: filterDeviceType?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -2562,9 +2638,9 @@ open class BuildsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<XcodeMetrics>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<XcodeMetrics>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -2573,24 +2649,25 @@ open class BuildsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<XcodeMetrics> 
      */
-    open class func buildsPerfPowerMetricsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<XcodeMetrics> {
+    open class func buildsPerfPowerMetricsGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<XcodeMetrics> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<XcodeMetrics>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<XcodeMetrics>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsPreReleaseVersions
      */
-    public enum FieldsPreReleaseVersions_buildsPreReleaseVersionGetToOneRelated: String, CaseIterable {
+    public enum FieldsPreReleaseVersions_buildsPreReleaseVersionGetToOneRelated: String, Sendable, CaseIterable {
         case version = "version"
         case platform = "platform"
         case builds = "builds"
@@ -2601,20 +2678,22 @@ open class BuildsAPI {
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsPreReleaseVersions: (query) the fields to include for returned resources of type preReleaseVersions (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: PrereleaseVersionWithoutIncludesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildsPreReleaseVersionGetToOneRelated(id: String, fieldsPreReleaseVersions: [FieldsPreReleaseVersions_buildsPreReleaseVersionGetToOneRelated]? = nil) async throws -> PrereleaseVersionWithoutIncludesResponse {
-        return try await buildsPreReleaseVersionGetToOneRelatedWithRequestBuilder(id: id, fieldsPreReleaseVersions: fieldsPreReleaseVersions).execute().body
+    open class func buildsPreReleaseVersionGetToOneRelated(id: String, fieldsPreReleaseVersions: [FieldsPreReleaseVersions_buildsPreReleaseVersionGetToOneRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> PrereleaseVersionWithoutIncludesResponse {
+        return try await buildsPreReleaseVersionGetToOneRelatedWithRequestBuilder(id: id, fieldsPreReleaseVersions: fieldsPreReleaseVersions, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: PrereleaseVersionWithoutIncludesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildsPreReleaseVersionGetToOneRelated(urlString: String) async throws -> PrereleaseVersionWithoutIncludesResponse {
-        return try await buildsPreReleaseVersionGetToOneRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func buildsPreReleaseVersionGetToOneRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> PrereleaseVersionWithoutIncludesResponse {
+        return try await buildsPreReleaseVersionGetToOneRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -2624,19 +2703,20 @@ open class BuildsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsPreReleaseVersions: (query) the fields to include for returned resources of type preReleaseVersions (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<PrereleaseVersionWithoutIncludesResponse> 
      */
-    open class func buildsPreReleaseVersionGetToOneRelatedWithRequestBuilder(id: String, fieldsPreReleaseVersions: [FieldsPreReleaseVersions_buildsPreReleaseVersionGetToOneRelated]? = nil) -> RequestBuilder<PrereleaseVersionWithoutIncludesResponse> {
+    open class func buildsPreReleaseVersionGetToOneRelatedWithRequestBuilder(id: String, fieldsPreReleaseVersions: [FieldsPreReleaseVersions_buildsPreReleaseVersionGetToOneRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<PrereleaseVersionWithoutIncludesResponse> {
         var localVariablePath = "/v1/builds/{id}/preReleaseVersion"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[preReleaseVersions]": (wrappedValue: fieldsPreReleaseVersions?.encodeToJSON(), isExplode: false),
+            "fields[preReleaseVersions]": (wrappedValue: fieldsPreReleaseVersions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -2645,9 +2725,9 @@ open class BuildsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<PrereleaseVersionWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<PrereleaseVersionWithoutIncludesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -2656,38 +2736,41 @@ open class BuildsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<PrereleaseVersionWithoutIncludesResponse> 
      */
-    open class func buildsPreReleaseVersionGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<PrereleaseVersionWithoutIncludesResponse> {
+    open class func buildsPreReleaseVersionGetToOneRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<PrereleaseVersionWithoutIncludesResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<PrereleaseVersionWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<PrereleaseVersionWithoutIncludesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter buildUpdateRequest: (body) Build representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BuildResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildsUpdateInstance(id: String, buildUpdateRequest: BuildUpdateRequest) async throws -> BuildResponse {
-        return try await buildsUpdateInstanceWithRequestBuilder(id: id, buildUpdateRequest: buildUpdateRequest).execute().body
+    open class func buildsUpdateInstance(id: String, buildUpdateRequest: BuildUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BuildResponse {
+        return try await buildsUpdateInstanceWithRequestBuilder(id: id, buildUpdateRequest: buildUpdateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BuildResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildsUpdateInstance(urlString: String) async throws -> BuildResponse {
-        return try await buildsUpdateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func buildsUpdateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BuildResponse {
+        return try await buildsUpdateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -2697,15 +2780,16 @@ open class BuildsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter buildUpdateRequest: (body) Build representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BuildResponse> 
      */
-    open class func buildsUpdateInstanceWithRequestBuilder(id: String, buildUpdateRequest: BuildUpdateRequest) -> RequestBuilder<BuildResponse> {
+    open class func buildsUpdateInstanceWithRequestBuilder(id: String, buildUpdateRequest: BuildUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BuildResponse> {
         var localVariablePath = "/v1/builds/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: buildUpdateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: buildUpdateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -2715,9 +2799,9 @@ open class BuildsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BuildResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BuildResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -2726,17 +2810,18 @@ open class BuildsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BuildResponse> 
      */
-    open class func buildsUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<BuildResponse> {
+    open class func buildsUpdateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BuildResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BuildResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BuildResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

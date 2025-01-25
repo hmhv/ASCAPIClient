@@ -6,13 +6,10 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct SubscriptionPricePoint: Codable, JSONEncodable, Hashable {
+public struct SubscriptionPricePoint: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum ModelType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum ModelType: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case subscriptionpricepoints = "subscriptionPricePoints"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }

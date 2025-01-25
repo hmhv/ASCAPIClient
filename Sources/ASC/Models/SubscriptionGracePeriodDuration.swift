@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public enum SubscriptionGracePeriodDuration: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+public enum SubscriptionGracePeriodDuration: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
     case threeDays = "THREE_DAYS"
     case sixteenDays = "SIXTEEN_DAYS"
     case twentyEightDays = "TWENTY_EIGHT_DAYS"

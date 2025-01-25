@@ -6,29 +6,28 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class SubscriptionGroupSubmissionsAPI {
 
     /**
 
      - parameter subscriptionGroupSubmissionCreateRequest: (body) SubscriptionGroupSubmission representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: SubscriptionGroupSubmissionResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionGroupSubmissionsCreateInstance(subscriptionGroupSubmissionCreateRequest: SubscriptionGroupSubmissionCreateRequest) async throws -> SubscriptionGroupSubmissionResponse {
-        return try await subscriptionGroupSubmissionsCreateInstanceWithRequestBuilder(subscriptionGroupSubmissionCreateRequest: subscriptionGroupSubmissionCreateRequest).execute().body
+    open class func subscriptionGroupSubmissionsCreateInstance(subscriptionGroupSubmissionCreateRequest: SubscriptionGroupSubmissionCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> SubscriptionGroupSubmissionResponse {
+        return try await subscriptionGroupSubmissionsCreateInstanceWithRequestBuilder(subscriptionGroupSubmissionCreateRequest: subscriptionGroupSubmissionCreateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: SubscriptionGroupSubmissionResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionGroupSubmissionsCreateInstance(urlString: String) async throws -> SubscriptionGroupSubmissionResponse {
-        return try await subscriptionGroupSubmissionsCreateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func subscriptionGroupSubmissionsCreateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> SubscriptionGroupSubmissionResponse {
+        return try await subscriptionGroupSubmissionsCreateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -37,12 +36,13 @@ open class SubscriptionGroupSubmissionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter subscriptionGroupSubmissionCreateRequest: (body) SubscriptionGroupSubmission representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<SubscriptionGroupSubmissionResponse> 
      */
-    open class func subscriptionGroupSubmissionsCreateInstanceWithRequestBuilder(subscriptionGroupSubmissionCreateRequest: SubscriptionGroupSubmissionCreateRequest) -> RequestBuilder<SubscriptionGroupSubmissionResponse> {
+    open class func subscriptionGroupSubmissionsCreateInstanceWithRequestBuilder(subscriptionGroupSubmissionCreateRequest: SubscriptionGroupSubmissionCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<SubscriptionGroupSubmissionResponse> {
         let localVariablePath = "/v1/subscriptionGroupSubmissions"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: subscriptionGroupSubmissionCreateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: subscriptionGroupSubmissionCreateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -52,9 +52,9 @@ open class SubscriptionGroupSubmissionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<SubscriptionGroupSubmissionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<SubscriptionGroupSubmissionResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -63,17 +63,18 @@ open class SubscriptionGroupSubmissionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<SubscriptionGroupSubmissionResponse> 
      */
-    open class func subscriptionGroupSubmissionsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<SubscriptionGroupSubmissionResponse> {
+    open class func subscriptionGroupSubmissionsCreateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<SubscriptionGroupSubmissionResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<SubscriptionGroupSubmissionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<SubscriptionGroupSubmissionResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

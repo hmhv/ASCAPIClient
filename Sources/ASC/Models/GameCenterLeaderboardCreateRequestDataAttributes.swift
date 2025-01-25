@@ -6,18 +6,15 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct GameCenterLeaderboardCreateRequestDataAttributes: Codable, JSONEncodable, Hashable {
+public struct GameCenterLeaderboardCreateRequestDataAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum SubmissionType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum SubmissionType: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case bestScore = "BEST_SCORE"
         case mostRecentScore = "MOST_RECENT_SCORE"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
-    public enum ScoreSortType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum ScoreSortType: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case asc = "ASC"
         case desc = "DESC"
         case unknownDefaultOpenApi = "unknown_default_open_api"

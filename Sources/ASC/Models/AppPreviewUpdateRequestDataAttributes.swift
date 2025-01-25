@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppPreviewUpdateRequestDataAttributes: Codable, JSONEncodable, Hashable {
+public struct AppPreviewUpdateRequestDataAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
     public var sourceFileChecksum: String?
     public var previewFrameTimeCode: String?

@@ -6,13 +6,10 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AnalyticsReportAttributes: Codable, JSONEncodable, Hashable {
+public struct AnalyticsReportAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum Category: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum Category: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case appUsage = "APP_USAGE"
         case appStoreEngagement = "APP_STORE_ENGAGEMENT"
         case commerce = "COMMERCE"

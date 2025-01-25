@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public enum InAppPurchaseState: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+public enum InAppPurchaseState: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
     case missingMetadata = "MISSING_METADATA"
     case waitingForUpload = "WAITING_FOR_UPLOAD"
     case processingContent = "PROCESSING_CONTENT"

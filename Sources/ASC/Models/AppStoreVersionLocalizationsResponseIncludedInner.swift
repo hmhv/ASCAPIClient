@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public enum AppStoreVersionLocalizationsResponseIncludedInner: Codable, JSONEncodable, Hashable {
+public enum AppStoreVersionLocalizationsResponseIncludedInner: Sendable, Codable, JSONEncodable, Hashable {
     case typeAppPreviewSet(AppPreviewSet)
     case typeAppScreenshotSet(AppScreenshotSet)
     case typeAppStoreVersion(AppStoreVersion)

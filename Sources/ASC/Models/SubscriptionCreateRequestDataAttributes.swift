@@ -6,13 +6,10 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct SubscriptionCreateRequestDataAttributes: Codable, JSONEncodable, Hashable {
+public struct SubscriptionCreateRequestDataAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum SubscriptionPeriod: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum SubscriptionPeriod: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case oneWeek = "ONE_WEEK"
         case oneMonth = "ONE_MONTH"
         case twoMonths = "TWO_MONTHS"

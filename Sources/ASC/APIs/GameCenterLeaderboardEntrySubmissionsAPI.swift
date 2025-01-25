@@ -6,29 +6,28 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class GameCenterLeaderboardEntrySubmissionsAPI {
 
     /**
 
      - parameter gameCenterLeaderboardEntrySubmissionCreateRequest: (body) GameCenterLeaderboardEntrySubmission representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterLeaderboardEntrySubmissionResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterLeaderboardEntrySubmissionsCreateInstance(gameCenterLeaderboardEntrySubmissionCreateRequest: GameCenterLeaderboardEntrySubmissionCreateRequest) async throws -> GameCenterLeaderboardEntrySubmissionResponse {
-        return try await gameCenterLeaderboardEntrySubmissionsCreateInstanceWithRequestBuilder(gameCenterLeaderboardEntrySubmissionCreateRequest: gameCenterLeaderboardEntrySubmissionCreateRequest).execute().body
+    open class func gameCenterLeaderboardEntrySubmissionsCreateInstance(gameCenterLeaderboardEntrySubmissionCreateRequest: GameCenterLeaderboardEntrySubmissionCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterLeaderboardEntrySubmissionResponse {
+        return try await gameCenterLeaderboardEntrySubmissionsCreateInstanceWithRequestBuilder(gameCenterLeaderboardEntrySubmissionCreateRequest: gameCenterLeaderboardEntrySubmissionCreateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterLeaderboardEntrySubmissionResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterLeaderboardEntrySubmissionsCreateInstance(urlString: String) async throws -> GameCenterLeaderboardEntrySubmissionResponse {
-        return try await gameCenterLeaderboardEntrySubmissionsCreateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func gameCenterLeaderboardEntrySubmissionsCreateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterLeaderboardEntrySubmissionResponse {
+        return try await gameCenterLeaderboardEntrySubmissionsCreateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -37,12 +36,13 @@ open class GameCenterLeaderboardEntrySubmissionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter gameCenterLeaderboardEntrySubmissionCreateRequest: (body) GameCenterLeaderboardEntrySubmission representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterLeaderboardEntrySubmissionResponse> 
      */
-    open class func gameCenterLeaderboardEntrySubmissionsCreateInstanceWithRequestBuilder(gameCenterLeaderboardEntrySubmissionCreateRequest: GameCenterLeaderboardEntrySubmissionCreateRequest) -> RequestBuilder<GameCenterLeaderboardEntrySubmissionResponse> {
+    open class func gameCenterLeaderboardEntrySubmissionsCreateInstanceWithRequestBuilder(gameCenterLeaderboardEntrySubmissionCreateRequest: GameCenterLeaderboardEntrySubmissionCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterLeaderboardEntrySubmissionResponse> {
         let localVariablePath = "/v1/gameCenterLeaderboardEntrySubmissions"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: gameCenterLeaderboardEntrySubmissionCreateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: gameCenterLeaderboardEntrySubmissionCreateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -52,9 +52,9 @@ open class GameCenterLeaderboardEntrySubmissionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardEntrySubmissionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardEntrySubmissionResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -63,17 +63,18 @@ open class GameCenterLeaderboardEntrySubmissionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterLeaderboardEntrySubmissionResponse> 
      */
-    open class func gameCenterLeaderboardEntrySubmissionsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterLeaderboardEntrySubmissionResponse> {
+    open class func gameCenterLeaderboardEntrySubmissionsCreateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterLeaderboardEntrySubmissionResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardEntrySubmissionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterLeaderboardEntrySubmissionResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public enum InternalBetaState: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+public enum InternalBetaState: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
     case processing = "PROCESSING"
     case processingException = "PROCESSING_EXCEPTION"
     case missingExportCompliance = "MISSING_EXPORT_COMPLIANCE"

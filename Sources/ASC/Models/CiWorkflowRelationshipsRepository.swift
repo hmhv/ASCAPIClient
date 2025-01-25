@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct CiWorkflowRelationshipsRepository: Codable, JSONEncodable, Hashable {
+public struct CiWorkflowRelationshipsRepository: Sendable, Codable, JSONEncodable, Hashable {
 
     public var links: RelationshipLinks?
     public var data: CiProductRelationshipsPrimaryRepositoriesDataInner?

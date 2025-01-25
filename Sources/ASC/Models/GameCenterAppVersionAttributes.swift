@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct GameCenterAppVersionAttributes: Codable, JSONEncodable, Hashable {
+public struct GameCenterAppVersionAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
     public var enabled: Bool?
 

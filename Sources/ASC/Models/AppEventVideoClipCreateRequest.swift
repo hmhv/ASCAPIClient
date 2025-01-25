@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppEventVideoClipCreateRequest: Codable, JSONEncodable, Hashable {
+public struct AppEventVideoClipCreateRequest: Sendable, Codable, JSONEncodable, Hashable {
 
     public var data: AppEventVideoClipCreateRequestData
 

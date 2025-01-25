@@ -6,13 +6,10 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppClipDefaultExperienceCreateRequestData: Codable, JSONEncodable, Hashable {
+public struct AppClipDefaultExperienceCreateRequestData: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum ModelType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum ModelType: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case appclipdefaultexperiences = "appClipDefaultExperiences"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }

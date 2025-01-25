@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AlternativeDistributionPackageResponse: Codable, JSONEncodable, Hashable {
+public struct AlternativeDistributionPackageResponse: Sendable, Codable, JSONEncodable, Hashable {
 
     public var data: AlternativeDistributionPackage
     public var included: [AlternativeDistributionPackageVersion]?

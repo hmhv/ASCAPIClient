@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct CiWorkflowResponse: Codable, JSONEncodable, Hashable {
+public struct CiWorkflowResponse: Sendable, Codable, JSONEncodable, Hashable {
 
     public var data: CiWorkflow
     public var included: [CiWorkflowsResponseIncludedInner]?

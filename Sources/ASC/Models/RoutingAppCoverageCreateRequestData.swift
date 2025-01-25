@@ -6,13 +6,10 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct RoutingAppCoverageCreateRequestData: Codable, JSONEncodable, Hashable {
+public struct RoutingAppCoverageCreateRequestData: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum ModelType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum ModelType: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case routingappcoverages = "routingAppCoverages"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }

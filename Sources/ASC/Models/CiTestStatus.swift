@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public enum CiTestStatus: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+public enum CiTestStatus: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
     case success = "SUCCESS"
     case failure = "FAILURE"
     case mixed = "MIXED"

@@ -6,16 +6,13 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class AppInfosAPI {
 
     /**
      * enum for parameter fieldsAgeRatingDeclarations
      */
-    public enum FieldsAgeRatingDeclarations_appInfosAgeRatingDeclarationGetToOneRelated: String, CaseIterable {
+    public enum FieldsAgeRatingDeclarations_appInfosAgeRatingDeclarationGetToOneRelated: String, Sendable, CaseIterable {
         case alcoholtobaccoordruguseorreferences = "alcoholTobaccoOrDrugUseOrReferences"
         case contests = "contests"
         case gamblingandcontests = "gamblingAndContests"
@@ -42,20 +39,22 @@ open class AppInfosAPI {
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAgeRatingDeclarations: (query) the fields to include for returned resources of type ageRatingDeclarations (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AgeRatingDeclarationResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appInfosAgeRatingDeclarationGetToOneRelated(id: String, fieldsAgeRatingDeclarations: [FieldsAgeRatingDeclarations_appInfosAgeRatingDeclarationGetToOneRelated]? = nil) async throws -> AgeRatingDeclarationResponse {
-        return try await appInfosAgeRatingDeclarationGetToOneRelatedWithRequestBuilder(id: id, fieldsAgeRatingDeclarations: fieldsAgeRatingDeclarations).execute().body
+    open class func appInfosAgeRatingDeclarationGetToOneRelated(id: String, fieldsAgeRatingDeclarations: [FieldsAgeRatingDeclarations_appInfosAgeRatingDeclarationGetToOneRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AgeRatingDeclarationResponse {
+        return try await appInfosAgeRatingDeclarationGetToOneRelatedWithRequestBuilder(id: id, fieldsAgeRatingDeclarations: fieldsAgeRatingDeclarations, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AgeRatingDeclarationResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appInfosAgeRatingDeclarationGetToOneRelated(urlString: String) async throws -> AgeRatingDeclarationResponse {
-        return try await appInfosAgeRatingDeclarationGetToOneRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func appInfosAgeRatingDeclarationGetToOneRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AgeRatingDeclarationResponse {
+        return try await appInfosAgeRatingDeclarationGetToOneRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -65,19 +64,20 @@ open class AppInfosAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAgeRatingDeclarations: (query) the fields to include for returned resources of type ageRatingDeclarations (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AgeRatingDeclarationResponse> 
      */
-    open class func appInfosAgeRatingDeclarationGetToOneRelatedWithRequestBuilder(id: String, fieldsAgeRatingDeclarations: [FieldsAgeRatingDeclarations_appInfosAgeRatingDeclarationGetToOneRelated]? = nil) -> RequestBuilder<AgeRatingDeclarationResponse> {
+    open class func appInfosAgeRatingDeclarationGetToOneRelatedWithRequestBuilder(id: String, fieldsAgeRatingDeclarations: [FieldsAgeRatingDeclarations_appInfosAgeRatingDeclarationGetToOneRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AgeRatingDeclarationResponse> {
         var localVariablePath = "/v1/appInfos/{id}/ageRatingDeclaration"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[ageRatingDeclarations]": (wrappedValue: fieldsAgeRatingDeclarations?.encodeToJSON(), isExplode: false),
+            "fields[ageRatingDeclarations]": (wrappedValue: fieldsAgeRatingDeclarations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -86,9 +86,9 @@ open class AppInfosAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AgeRatingDeclarationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AgeRatingDeclarationResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -97,24 +97,25 @@ open class AppInfosAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AgeRatingDeclarationResponse> 
      */
-    open class func appInfosAgeRatingDeclarationGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AgeRatingDeclarationResponse> {
+    open class func appInfosAgeRatingDeclarationGetToOneRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AgeRatingDeclarationResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AgeRatingDeclarationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AgeRatingDeclarationResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsAppInfoLocalizations
      */
-    public enum FieldsAppInfoLocalizations_appInfosAppInfoLocalizationsGetToManyRelated: String, CaseIterable {
+    public enum FieldsAppInfoLocalizations_appInfosAppInfoLocalizationsGetToManyRelated: String, Sendable, CaseIterable {
         case locale = "locale"
         case name = "name"
         case subtitle = "subtitle"
@@ -127,7 +128,7 @@ open class AppInfosAPI {
     /**
      * enum for parameter fieldsAppInfos
      */
-    public enum FieldsAppInfos_appInfosAppInfoLocalizationsGetToManyRelated: String, CaseIterable {
+    public enum FieldsAppInfos_appInfosAppInfoLocalizationsGetToManyRelated: String, Sendable, CaseIterable {
         case appstorestate = "appStoreState"
         case state = "state"
         case appstoreagerating = "appStoreAgeRating"
@@ -151,7 +152,7 @@ open class AppInfosAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_appInfosAppInfoLocalizationsGetToManyRelated: String, CaseIterable {
+    public enum Include_appInfosAppInfoLocalizationsGetToManyRelated: String, Sendable, CaseIterable {
         case appinfo = "appInfo"
     }
 
@@ -163,20 +164,22 @@ open class AppInfosAPI {
      - parameter fieldsAppInfos: (query) the fields to include for returned resources of type appInfos (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppInfoLocalizationsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appInfosAppInfoLocalizationsGetToManyRelated(id: String, filterLocale: [String]? = nil, fieldsAppInfoLocalizations: [FieldsAppInfoLocalizations_appInfosAppInfoLocalizationsGetToManyRelated]? = nil, fieldsAppInfos: [FieldsAppInfos_appInfosAppInfoLocalizationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appInfosAppInfoLocalizationsGetToManyRelated]? = nil) async throws -> AppInfoLocalizationsResponse {
-        return try await appInfosAppInfoLocalizationsGetToManyRelatedWithRequestBuilder(id: id, filterLocale: filterLocale, fieldsAppInfoLocalizations: fieldsAppInfoLocalizations, fieldsAppInfos: fieldsAppInfos, limit: limit, include: include).execute().body
+    open class func appInfosAppInfoLocalizationsGetToManyRelated(id: String, filterLocale: [String]? = nil, fieldsAppInfoLocalizations: [FieldsAppInfoLocalizations_appInfosAppInfoLocalizationsGetToManyRelated]? = nil, fieldsAppInfos: [FieldsAppInfos_appInfosAppInfoLocalizationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appInfosAppInfoLocalizationsGetToManyRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppInfoLocalizationsResponse {
+        return try await appInfosAppInfoLocalizationsGetToManyRelatedWithRequestBuilder(id: id, filterLocale: filterLocale, fieldsAppInfoLocalizations: fieldsAppInfoLocalizations, fieldsAppInfos: fieldsAppInfos, limit: limit, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppInfoLocalizationsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appInfosAppInfoLocalizationsGetToManyRelated(urlString: String) async throws -> AppInfoLocalizationsResponse {
-        return try await appInfosAppInfoLocalizationsGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func appInfosAppInfoLocalizationsGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppInfoLocalizationsResponse {
+        return try await appInfosAppInfoLocalizationsGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -190,23 +193,24 @@ open class AppInfosAPI {
      - parameter fieldsAppInfos: (query) the fields to include for returned resources of type appInfos (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppInfoLocalizationsResponse> 
      */
-    open class func appInfosAppInfoLocalizationsGetToManyRelatedWithRequestBuilder(id: String, filterLocale: [String]? = nil, fieldsAppInfoLocalizations: [FieldsAppInfoLocalizations_appInfosAppInfoLocalizationsGetToManyRelated]? = nil, fieldsAppInfos: [FieldsAppInfos_appInfosAppInfoLocalizationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appInfosAppInfoLocalizationsGetToManyRelated]? = nil) -> RequestBuilder<AppInfoLocalizationsResponse> {
+    open class func appInfosAppInfoLocalizationsGetToManyRelatedWithRequestBuilder(id: String, filterLocale: [String]? = nil, fieldsAppInfoLocalizations: [FieldsAppInfoLocalizations_appInfosAppInfoLocalizationsGetToManyRelated]? = nil, fieldsAppInfos: [FieldsAppInfos_appInfosAppInfoLocalizationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appInfosAppInfoLocalizationsGetToManyRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppInfoLocalizationsResponse> {
         var localVariablePath = "/v1/appInfos/{id}/appInfoLocalizations"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[locale]": (wrappedValue: filterLocale?.encodeToJSON(), isExplode: false),
-            "fields[appInfoLocalizations]": (wrappedValue: fieldsAppInfoLocalizations?.encodeToJSON(), isExplode: false),
-            "fields[appInfos]": (wrappedValue: fieldsAppInfos?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "filter[locale]": (wrappedValue: filterLocale?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appInfoLocalizations]": (wrappedValue: fieldsAppInfoLocalizations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appInfos]": (wrappedValue: fieldsAppInfos?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -215,9 +219,9 @@ open class AppInfosAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppInfoLocalizationsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppInfoLocalizationsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -226,24 +230,25 @@ open class AppInfosAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppInfoLocalizationsResponse> 
      */
-    open class func appInfosAppInfoLocalizationsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppInfoLocalizationsResponse> {
+    open class func appInfosAppInfoLocalizationsGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppInfoLocalizationsResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppInfoLocalizationsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppInfoLocalizationsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsAppInfos
      */
-    public enum FieldsAppInfos_appInfosGetInstance: String, CaseIterable {
+    public enum FieldsAppInfos_appInfosGetInstance: String, Sendable, CaseIterable {
         case appstorestate = "appStoreState"
         case state = "state"
         case appstoreagerating = "appStoreAgeRating"
@@ -267,7 +272,7 @@ open class AppInfosAPI {
     /**
      * enum for parameter fieldsAgeRatingDeclarations
      */
-    public enum FieldsAgeRatingDeclarations_appInfosGetInstance: String, CaseIterable {
+    public enum FieldsAgeRatingDeclarations_appInfosGetInstance: String, Sendable, CaseIterable {
         case alcoholtobaccoordruguseorreferences = "alcoholTobaccoOrDrugUseOrReferences"
         case contests = "contests"
         case gamblingandcontests = "gamblingAndContests"
@@ -293,7 +298,7 @@ open class AppInfosAPI {
     /**
      * enum for parameter fieldsAppInfoLocalizations
      */
-    public enum FieldsAppInfoLocalizations_appInfosGetInstance: String, CaseIterable {
+    public enum FieldsAppInfoLocalizations_appInfosGetInstance: String, Sendable, CaseIterable {
         case locale = "locale"
         case name = "name"
         case subtitle = "subtitle"
@@ -306,7 +311,7 @@ open class AppInfosAPI {
     /**
      * enum for parameter fieldsAppCategories
      */
-    public enum FieldsAppCategories_appInfosGetInstance: String, CaseIterable {
+    public enum FieldsAppCategories_appInfosGetInstance: String, Sendable, CaseIterable {
         case platforms = "platforms"
         case subcategories = "subcategories"
         case parent = "parent"
@@ -315,7 +320,7 @@ open class AppInfosAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_appInfosGetInstance: String, CaseIterable {
+    public enum Include_appInfosGetInstance: String, Sendable, CaseIterable {
         case app = "app"
         case ageratingdeclaration = "ageRatingDeclaration"
         case appinfolocalizations = "appInfoLocalizations"
@@ -336,20 +341,22 @@ open class AppInfosAPI {
      - parameter fieldsAppCategories: (query) the fields to include for returned resources of type appCategories (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAppInfoLocalizations: (query) maximum number of related appInfoLocalizations returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppInfoResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appInfosGetInstance(id: String, fieldsAppInfos: [FieldsAppInfos_appInfosGetInstance]? = nil, fieldsAgeRatingDeclarations: [FieldsAgeRatingDeclarations_appInfosGetInstance]? = nil, fieldsAppInfoLocalizations: [FieldsAppInfoLocalizations_appInfosGetInstance]? = nil, fieldsAppCategories: [FieldsAppCategories_appInfosGetInstance]? = nil, include: [Include_appInfosGetInstance]? = nil, limitAppInfoLocalizations: Int? = nil) async throws -> AppInfoResponse {
-        return try await appInfosGetInstanceWithRequestBuilder(id: id, fieldsAppInfos: fieldsAppInfos, fieldsAgeRatingDeclarations: fieldsAgeRatingDeclarations, fieldsAppInfoLocalizations: fieldsAppInfoLocalizations, fieldsAppCategories: fieldsAppCategories, include: include, limitAppInfoLocalizations: limitAppInfoLocalizations).execute().body
+    open class func appInfosGetInstance(id: String, fieldsAppInfos: [FieldsAppInfos_appInfosGetInstance]? = nil, fieldsAgeRatingDeclarations: [FieldsAgeRatingDeclarations_appInfosGetInstance]? = nil, fieldsAppInfoLocalizations: [FieldsAppInfoLocalizations_appInfosGetInstance]? = nil, fieldsAppCategories: [FieldsAppCategories_appInfosGetInstance]? = nil, include: [Include_appInfosGetInstance]? = nil, limitAppInfoLocalizations: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppInfoResponse {
+        return try await appInfosGetInstanceWithRequestBuilder(id: id, fieldsAppInfos: fieldsAppInfos, fieldsAgeRatingDeclarations: fieldsAgeRatingDeclarations, fieldsAppInfoLocalizations: fieldsAppInfoLocalizations, fieldsAppCategories: fieldsAppCategories, include: include, limitAppInfoLocalizations: limitAppInfoLocalizations, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppInfoResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appInfosGetInstance(urlString: String) async throws -> AppInfoResponse {
-        return try await appInfosGetInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func appInfosGetInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppInfoResponse {
+        return try await appInfosGetInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -364,24 +371,25 @@ open class AppInfosAPI {
      - parameter fieldsAppCategories: (query) the fields to include for returned resources of type appCategories (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAppInfoLocalizations: (query) maximum number of related appInfoLocalizations returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppInfoResponse> 
      */
-    open class func appInfosGetInstanceWithRequestBuilder(id: String, fieldsAppInfos: [FieldsAppInfos_appInfosGetInstance]? = nil, fieldsAgeRatingDeclarations: [FieldsAgeRatingDeclarations_appInfosGetInstance]? = nil, fieldsAppInfoLocalizations: [FieldsAppInfoLocalizations_appInfosGetInstance]? = nil, fieldsAppCategories: [FieldsAppCategories_appInfosGetInstance]? = nil, include: [Include_appInfosGetInstance]? = nil, limitAppInfoLocalizations: Int? = nil) -> RequestBuilder<AppInfoResponse> {
+    open class func appInfosGetInstanceWithRequestBuilder(id: String, fieldsAppInfos: [FieldsAppInfos_appInfosGetInstance]? = nil, fieldsAgeRatingDeclarations: [FieldsAgeRatingDeclarations_appInfosGetInstance]? = nil, fieldsAppInfoLocalizations: [FieldsAppInfoLocalizations_appInfosGetInstance]? = nil, fieldsAppCategories: [FieldsAppCategories_appInfosGetInstance]? = nil, include: [Include_appInfosGetInstance]? = nil, limitAppInfoLocalizations: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppInfoResponse> {
         var localVariablePath = "/v1/appInfos/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[appInfos]": (wrappedValue: fieldsAppInfos?.encodeToJSON(), isExplode: false),
-            "fields[ageRatingDeclarations]": (wrappedValue: fieldsAgeRatingDeclarations?.encodeToJSON(), isExplode: false),
-            "fields[appInfoLocalizations]": (wrappedValue: fieldsAppInfoLocalizations?.encodeToJSON(), isExplode: false),
-            "fields[appCategories]": (wrappedValue: fieldsAppCategories?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[appInfoLocalizations]": (wrappedValue: limitAppInfoLocalizations?.encodeToJSON(), isExplode: true),
+            "fields[appInfos]": (wrappedValue: fieldsAppInfos?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[ageRatingDeclarations]": (wrappedValue: fieldsAgeRatingDeclarations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appInfoLocalizations]": (wrappedValue: fieldsAppInfoLocalizations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appCategories]": (wrappedValue: fieldsAppCategories?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[appInfoLocalizations]": (wrappedValue: limitAppInfoLocalizations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -390,9 +398,9 @@ open class AppInfosAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppInfoResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppInfoResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -401,24 +409,25 @@ open class AppInfosAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppInfoResponse> 
      */
-    open class func appInfosGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppInfoResponse> {
+    open class func appInfosGetInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppInfoResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppInfoResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppInfoResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsAppCategories
      */
-    public enum FieldsAppCategories_appInfosPrimaryCategoryGetToOneRelated: String, CaseIterable {
+    public enum FieldsAppCategories_appInfosPrimaryCategoryGetToOneRelated: String, Sendable, CaseIterable {
         case platforms = "platforms"
         case subcategories = "subcategories"
         case parent = "parent"
@@ -427,7 +436,7 @@ open class AppInfosAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_appInfosPrimaryCategoryGetToOneRelated: String, CaseIterable {
+    public enum Include_appInfosPrimaryCategoryGetToOneRelated: String, Sendable, CaseIterable {
         case subcategories = "subcategories"
         case parent = "parent"
     }
@@ -438,20 +447,22 @@ open class AppInfosAPI {
      - parameter fieldsAppCategories: (query) the fields to include for returned resources of type appCategories (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitSubcategories: (query) maximum number of related subcategories returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppCategoryResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appInfosPrimaryCategoryGetToOneRelated(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosPrimaryCategoryGetToOneRelated]? = nil, include: [Include_appInfosPrimaryCategoryGetToOneRelated]? = nil, limitSubcategories: Int? = nil) async throws -> AppCategoryResponse {
-        return try await appInfosPrimaryCategoryGetToOneRelatedWithRequestBuilder(id: id, fieldsAppCategories: fieldsAppCategories, include: include, limitSubcategories: limitSubcategories).execute().body
+    open class func appInfosPrimaryCategoryGetToOneRelated(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosPrimaryCategoryGetToOneRelated]? = nil, include: [Include_appInfosPrimaryCategoryGetToOneRelated]? = nil, limitSubcategories: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppCategoryResponse {
+        return try await appInfosPrimaryCategoryGetToOneRelatedWithRequestBuilder(id: id, fieldsAppCategories: fieldsAppCategories, include: include, limitSubcategories: limitSubcategories, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppCategoryResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appInfosPrimaryCategoryGetToOneRelated(urlString: String) async throws -> AppCategoryResponse {
-        return try await appInfosPrimaryCategoryGetToOneRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func appInfosPrimaryCategoryGetToOneRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppCategoryResponse {
+        return try await appInfosPrimaryCategoryGetToOneRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -463,21 +474,22 @@ open class AppInfosAPI {
      - parameter fieldsAppCategories: (query) the fields to include for returned resources of type appCategories (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitSubcategories: (query) maximum number of related subcategories returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppCategoryResponse> 
      */
-    open class func appInfosPrimaryCategoryGetToOneRelatedWithRequestBuilder(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosPrimaryCategoryGetToOneRelated]? = nil, include: [Include_appInfosPrimaryCategoryGetToOneRelated]? = nil, limitSubcategories: Int? = nil) -> RequestBuilder<AppCategoryResponse> {
+    open class func appInfosPrimaryCategoryGetToOneRelatedWithRequestBuilder(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosPrimaryCategoryGetToOneRelated]? = nil, include: [Include_appInfosPrimaryCategoryGetToOneRelated]? = nil, limitSubcategories: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppCategoryResponse> {
         var localVariablePath = "/v1/appInfos/{id}/primaryCategory"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[appCategories]": (wrappedValue: fieldsAppCategories?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[subcategories]": (wrappedValue: limitSubcategories?.encodeToJSON(), isExplode: true),
+            "fields[appCategories]": (wrappedValue: fieldsAppCategories?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[subcategories]": (wrappedValue: limitSubcategories?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -486,9 +498,9 @@ open class AppInfosAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppCategoryResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppCategoryResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -497,24 +509,25 @@ open class AppInfosAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppCategoryResponse> 
      */
-    open class func appInfosPrimaryCategoryGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppCategoryResponse> {
+    open class func appInfosPrimaryCategoryGetToOneRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppCategoryResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppCategoryResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppCategoryResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsAppCategories
      */
-    public enum FieldsAppCategories_appInfosPrimarySubcategoryOneGetToOneRelated: String, CaseIterable {
+    public enum FieldsAppCategories_appInfosPrimarySubcategoryOneGetToOneRelated: String, Sendable, CaseIterable {
         case platforms = "platforms"
         case subcategories = "subcategories"
         case parent = "parent"
@@ -523,7 +536,7 @@ open class AppInfosAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_appInfosPrimarySubcategoryOneGetToOneRelated: String, CaseIterable {
+    public enum Include_appInfosPrimarySubcategoryOneGetToOneRelated: String, Sendable, CaseIterable {
         case subcategories = "subcategories"
         case parent = "parent"
     }
@@ -534,20 +547,22 @@ open class AppInfosAPI {
      - parameter fieldsAppCategories: (query) the fields to include for returned resources of type appCategories (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitSubcategories: (query) maximum number of related subcategories returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppCategoryResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appInfosPrimarySubcategoryOneGetToOneRelated(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosPrimarySubcategoryOneGetToOneRelated]? = nil, include: [Include_appInfosPrimarySubcategoryOneGetToOneRelated]? = nil, limitSubcategories: Int? = nil) async throws -> AppCategoryResponse {
-        return try await appInfosPrimarySubcategoryOneGetToOneRelatedWithRequestBuilder(id: id, fieldsAppCategories: fieldsAppCategories, include: include, limitSubcategories: limitSubcategories).execute().body
+    open class func appInfosPrimarySubcategoryOneGetToOneRelated(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosPrimarySubcategoryOneGetToOneRelated]? = nil, include: [Include_appInfosPrimarySubcategoryOneGetToOneRelated]? = nil, limitSubcategories: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppCategoryResponse {
+        return try await appInfosPrimarySubcategoryOneGetToOneRelatedWithRequestBuilder(id: id, fieldsAppCategories: fieldsAppCategories, include: include, limitSubcategories: limitSubcategories, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppCategoryResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appInfosPrimarySubcategoryOneGetToOneRelated(urlString: String) async throws -> AppCategoryResponse {
-        return try await appInfosPrimarySubcategoryOneGetToOneRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func appInfosPrimarySubcategoryOneGetToOneRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppCategoryResponse {
+        return try await appInfosPrimarySubcategoryOneGetToOneRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -559,21 +574,22 @@ open class AppInfosAPI {
      - parameter fieldsAppCategories: (query) the fields to include for returned resources of type appCategories (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitSubcategories: (query) maximum number of related subcategories returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppCategoryResponse> 
      */
-    open class func appInfosPrimarySubcategoryOneGetToOneRelatedWithRequestBuilder(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosPrimarySubcategoryOneGetToOneRelated]? = nil, include: [Include_appInfosPrimarySubcategoryOneGetToOneRelated]? = nil, limitSubcategories: Int? = nil) -> RequestBuilder<AppCategoryResponse> {
+    open class func appInfosPrimarySubcategoryOneGetToOneRelatedWithRequestBuilder(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosPrimarySubcategoryOneGetToOneRelated]? = nil, include: [Include_appInfosPrimarySubcategoryOneGetToOneRelated]? = nil, limitSubcategories: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppCategoryResponse> {
         var localVariablePath = "/v1/appInfos/{id}/primarySubcategoryOne"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[appCategories]": (wrappedValue: fieldsAppCategories?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[subcategories]": (wrappedValue: limitSubcategories?.encodeToJSON(), isExplode: true),
+            "fields[appCategories]": (wrappedValue: fieldsAppCategories?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[subcategories]": (wrappedValue: limitSubcategories?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -582,9 +598,9 @@ open class AppInfosAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppCategoryResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppCategoryResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -593,24 +609,25 @@ open class AppInfosAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppCategoryResponse> 
      */
-    open class func appInfosPrimarySubcategoryOneGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppCategoryResponse> {
+    open class func appInfosPrimarySubcategoryOneGetToOneRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppCategoryResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppCategoryResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppCategoryResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsAppCategories
      */
-    public enum FieldsAppCategories_appInfosPrimarySubcategoryTwoGetToOneRelated: String, CaseIterable {
+    public enum FieldsAppCategories_appInfosPrimarySubcategoryTwoGetToOneRelated: String, Sendable, CaseIterable {
         case platforms = "platforms"
         case subcategories = "subcategories"
         case parent = "parent"
@@ -619,7 +636,7 @@ open class AppInfosAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_appInfosPrimarySubcategoryTwoGetToOneRelated: String, CaseIterable {
+    public enum Include_appInfosPrimarySubcategoryTwoGetToOneRelated: String, Sendable, CaseIterable {
         case subcategories = "subcategories"
         case parent = "parent"
     }
@@ -630,20 +647,22 @@ open class AppInfosAPI {
      - parameter fieldsAppCategories: (query) the fields to include for returned resources of type appCategories (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitSubcategories: (query) maximum number of related subcategories returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppCategoryResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appInfosPrimarySubcategoryTwoGetToOneRelated(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosPrimarySubcategoryTwoGetToOneRelated]? = nil, include: [Include_appInfosPrimarySubcategoryTwoGetToOneRelated]? = nil, limitSubcategories: Int? = nil) async throws -> AppCategoryResponse {
-        return try await appInfosPrimarySubcategoryTwoGetToOneRelatedWithRequestBuilder(id: id, fieldsAppCategories: fieldsAppCategories, include: include, limitSubcategories: limitSubcategories).execute().body
+    open class func appInfosPrimarySubcategoryTwoGetToOneRelated(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosPrimarySubcategoryTwoGetToOneRelated]? = nil, include: [Include_appInfosPrimarySubcategoryTwoGetToOneRelated]? = nil, limitSubcategories: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppCategoryResponse {
+        return try await appInfosPrimarySubcategoryTwoGetToOneRelatedWithRequestBuilder(id: id, fieldsAppCategories: fieldsAppCategories, include: include, limitSubcategories: limitSubcategories, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppCategoryResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appInfosPrimarySubcategoryTwoGetToOneRelated(urlString: String) async throws -> AppCategoryResponse {
-        return try await appInfosPrimarySubcategoryTwoGetToOneRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func appInfosPrimarySubcategoryTwoGetToOneRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppCategoryResponse {
+        return try await appInfosPrimarySubcategoryTwoGetToOneRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -655,21 +674,22 @@ open class AppInfosAPI {
      - parameter fieldsAppCategories: (query) the fields to include for returned resources of type appCategories (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitSubcategories: (query) maximum number of related subcategories returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppCategoryResponse> 
      */
-    open class func appInfosPrimarySubcategoryTwoGetToOneRelatedWithRequestBuilder(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosPrimarySubcategoryTwoGetToOneRelated]? = nil, include: [Include_appInfosPrimarySubcategoryTwoGetToOneRelated]? = nil, limitSubcategories: Int? = nil) -> RequestBuilder<AppCategoryResponse> {
+    open class func appInfosPrimarySubcategoryTwoGetToOneRelatedWithRequestBuilder(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosPrimarySubcategoryTwoGetToOneRelated]? = nil, include: [Include_appInfosPrimarySubcategoryTwoGetToOneRelated]? = nil, limitSubcategories: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppCategoryResponse> {
         var localVariablePath = "/v1/appInfos/{id}/primarySubcategoryTwo"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[appCategories]": (wrappedValue: fieldsAppCategories?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[subcategories]": (wrappedValue: limitSubcategories?.encodeToJSON(), isExplode: true),
+            "fields[appCategories]": (wrappedValue: fieldsAppCategories?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[subcategories]": (wrappedValue: limitSubcategories?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -678,9 +698,9 @@ open class AppInfosAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppCategoryResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppCategoryResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -689,24 +709,25 @@ open class AppInfosAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppCategoryResponse> 
      */
-    open class func appInfosPrimarySubcategoryTwoGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppCategoryResponse> {
+    open class func appInfosPrimarySubcategoryTwoGetToOneRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppCategoryResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppCategoryResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppCategoryResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsAppCategories
      */
-    public enum FieldsAppCategories_appInfosSecondaryCategoryGetToOneRelated: String, CaseIterable {
+    public enum FieldsAppCategories_appInfosSecondaryCategoryGetToOneRelated: String, Sendable, CaseIterable {
         case platforms = "platforms"
         case subcategories = "subcategories"
         case parent = "parent"
@@ -715,7 +736,7 @@ open class AppInfosAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_appInfosSecondaryCategoryGetToOneRelated: String, CaseIterable {
+    public enum Include_appInfosSecondaryCategoryGetToOneRelated: String, Sendable, CaseIterable {
         case subcategories = "subcategories"
         case parent = "parent"
     }
@@ -726,20 +747,22 @@ open class AppInfosAPI {
      - parameter fieldsAppCategories: (query) the fields to include for returned resources of type appCategories (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitSubcategories: (query) maximum number of related subcategories returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppCategoryResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appInfosSecondaryCategoryGetToOneRelated(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosSecondaryCategoryGetToOneRelated]? = nil, include: [Include_appInfosSecondaryCategoryGetToOneRelated]? = nil, limitSubcategories: Int? = nil) async throws -> AppCategoryResponse {
-        return try await appInfosSecondaryCategoryGetToOneRelatedWithRequestBuilder(id: id, fieldsAppCategories: fieldsAppCategories, include: include, limitSubcategories: limitSubcategories).execute().body
+    open class func appInfosSecondaryCategoryGetToOneRelated(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosSecondaryCategoryGetToOneRelated]? = nil, include: [Include_appInfosSecondaryCategoryGetToOneRelated]? = nil, limitSubcategories: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppCategoryResponse {
+        return try await appInfosSecondaryCategoryGetToOneRelatedWithRequestBuilder(id: id, fieldsAppCategories: fieldsAppCategories, include: include, limitSubcategories: limitSubcategories, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppCategoryResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appInfosSecondaryCategoryGetToOneRelated(urlString: String) async throws -> AppCategoryResponse {
-        return try await appInfosSecondaryCategoryGetToOneRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func appInfosSecondaryCategoryGetToOneRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppCategoryResponse {
+        return try await appInfosSecondaryCategoryGetToOneRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -751,21 +774,22 @@ open class AppInfosAPI {
      - parameter fieldsAppCategories: (query) the fields to include for returned resources of type appCategories (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitSubcategories: (query) maximum number of related subcategories returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppCategoryResponse> 
      */
-    open class func appInfosSecondaryCategoryGetToOneRelatedWithRequestBuilder(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosSecondaryCategoryGetToOneRelated]? = nil, include: [Include_appInfosSecondaryCategoryGetToOneRelated]? = nil, limitSubcategories: Int? = nil) -> RequestBuilder<AppCategoryResponse> {
+    open class func appInfosSecondaryCategoryGetToOneRelatedWithRequestBuilder(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosSecondaryCategoryGetToOneRelated]? = nil, include: [Include_appInfosSecondaryCategoryGetToOneRelated]? = nil, limitSubcategories: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppCategoryResponse> {
         var localVariablePath = "/v1/appInfos/{id}/secondaryCategory"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[appCategories]": (wrappedValue: fieldsAppCategories?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[subcategories]": (wrappedValue: limitSubcategories?.encodeToJSON(), isExplode: true),
+            "fields[appCategories]": (wrappedValue: fieldsAppCategories?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[subcategories]": (wrappedValue: limitSubcategories?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -774,9 +798,9 @@ open class AppInfosAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppCategoryResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppCategoryResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -785,24 +809,25 @@ open class AppInfosAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppCategoryResponse> 
      */
-    open class func appInfosSecondaryCategoryGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppCategoryResponse> {
+    open class func appInfosSecondaryCategoryGetToOneRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppCategoryResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppCategoryResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppCategoryResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsAppCategories
      */
-    public enum FieldsAppCategories_appInfosSecondarySubcategoryOneGetToOneRelated: String, CaseIterable {
+    public enum FieldsAppCategories_appInfosSecondarySubcategoryOneGetToOneRelated: String, Sendable, CaseIterable {
         case platforms = "platforms"
         case subcategories = "subcategories"
         case parent = "parent"
@@ -811,7 +836,7 @@ open class AppInfosAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_appInfosSecondarySubcategoryOneGetToOneRelated: String, CaseIterable {
+    public enum Include_appInfosSecondarySubcategoryOneGetToOneRelated: String, Sendable, CaseIterable {
         case subcategories = "subcategories"
         case parent = "parent"
     }
@@ -822,20 +847,22 @@ open class AppInfosAPI {
      - parameter fieldsAppCategories: (query) the fields to include for returned resources of type appCategories (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitSubcategories: (query) maximum number of related subcategories returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppCategoryResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appInfosSecondarySubcategoryOneGetToOneRelated(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosSecondarySubcategoryOneGetToOneRelated]? = nil, include: [Include_appInfosSecondarySubcategoryOneGetToOneRelated]? = nil, limitSubcategories: Int? = nil) async throws -> AppCategoryResponse {
-        return try await appInfosSecondarySubcategoryOneGetToOneRelatedWithRequestBuilder(id: id, fieldsAppCategories: fieldsAppCategories, include: include, limitSubcategories: limitSubcategories).execute().body
+    open class func appInfosSecondarySubcategoryOneGetToOneRelated(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosSecondarySubcategoryOneGetToOneRelated]? = nil, include: [Include_appInfosSecondarySubcategoryOneGetToOneRelated]? = nil, limitSubcategories: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppCategoryResponse {
+        return try await appInfosSecondarySubcategoryOneGetToOneRelatedWithRequestBuilder(id: id, fieldsAppCategories: fieldsAppCategories, include: include, limitSubcategories: limitSubcategories, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppCategoryResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appInfosSecondarySubcategoryOneGetToOneRelated(urlString: String) async throws -> AppCategoryResponse {
-        return try await appInfosSecondarySubcategoryOneGetToOneRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func appInfosSecondarySubcategoryOneGetToOneRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppCategoryResponse {
+        return try await appInfosSecondarySubcategoryOneGetToOneRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -847,21 +874,22 @@ open class AppInfosAPI {
      - parameter fieldsAppCategories: (query) the fields to include for returned resources of type appCategories (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitSubcategories: (query) maximum number of related subcategories returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppCategoryResponse> 
      */
-    open class func appInfosSecondarySubcategoryOneGetToOneRelatedWithRequestBuilder(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosSecondarySubcategoryOneGetToOneRelated]? = nil, include: [Include_appInfosSecondarySubcategoryOneGetToOneRelated]? = nil, limitSubcategories: Int? = nil) -> RequestBuilder<AppCategoryResponse> {
+    open class func appInfosSecondarySubcategoryOneGetToOneRelatedWithRequestBuilder(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosSecondarySubcategoryOneGetToOneRelated]? = nil, include: [Include_appInfosSecondarySubcategoryOneGetToOneRelated]? = nil, limitSubcategories: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppCategoryResponse> {
         var localVariablePath = "/v1/appInfos/{id}/secondarySubcategoryOne"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[appCategories]": (wrappedValue: fieldsAppCategories?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[subcategories]": (wrappedValue: limitSubcategories?.encodeToJSON(), isExplode: true),
+            "fields[appCategories]": (wrappedValue: fieldsAppCategories?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[subcategories]": (wrappedValue: limitSubcategories?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -870,9 +898,9 @@ open class AppInfosAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppCategoryResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppCategoryResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -881,24 +909,25 @@ open class AppInfosAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppCategoryResponse> 
      */
-    open class func appInfosSecondarySubcategoryOneGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppCategoryResponse> {
+    open class func appInfosSecondarySubcategoryOneGetToOneRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppCategoryResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppCategoryResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppCategoryResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsAppCategories
      */
-    public enum FieldsAppCategories_appInfosSecondarySubcategoryTwoGetToOneRelated: String, CaseIterable {
+    public enum FieldsAppCategories_appInfosSecondarySubcategoryTwoGetToOneRelated: String, Sendable, CaseIterable {
         case platforms = "platforms"
         case subcategories = "subcategories"
         case parent = "parent"
@@ -907,7 +936,7 @@ open class AppInfosAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_appInfosSecondarySubcategoryTwoGetToOneRelated: String, CaseIterable {
+    public enum Include_appInfosSecondarySubcategoryTwoGetToOneRelated: String, Sendable, CaseIterable {
         case subcategories = "subcategories"
         case parent = "parent"
     }
@@ -918,20 +947,22 @@ open class AppInfosAPI {
      - parameter fieldsAppCategories: (query) the fields to include for returned resources of type appCategories (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitSubcategories: (query) maximum number of related subcategories returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppCategoryResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appInfosSecondarySubcategoryTwoGetToOneRelated(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosSecondarySubcategoryTwoGetToOneRelated]? = nil, include: [Include_appInfosSecondarySubcategoryTwoGetToOneRelated]? = nil, limitSubcategories: Int? = nil) async throws -> AppCategoryResponse {
-        return try await appInfosSecondarySubcategoryTwoGetToOneRelatedWithRequestBuilder(id: id, fieldsAppCategories: fieldsAppCategories, include: include, limitSubcategories: limitSubcategories).execute().body
+    open class func appInfosSecondarySubcategoryTwoGetToOneRelated(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosSecondarySubcategoryTwoGetToOneRelated]? = nil, include: [Include_appInfosSecondarySubcategoryTwoGetToOneRelated]? = nil, limitSubcategories: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppCategoryResponse {
+        return try await appInfosSecondarySubcategoryTwoGetToOneRelatedWithRequestBuilder(id: id, fieldsAppCategories: fieldsAppCategories, include: include, limitSubcategories: limitSubcategories, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppCategoryResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appInfosSecondarySubcategoryTwoGetToOneRelated(urlString: String) async throws -> AppCategoryResponse {
-        return try await appInfosSecondarySubcategoryTwoGetToOneRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func appInfosSecondarySubcategoryTwoGetToOneRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppCategoryResponse {
+        return try await appInfosSecondarySubcategoryTwoGetToOneRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -943,21 +974,22 @@ open class AppInfosAPI {
      - parameter fieldsAppCategories: (query) the fields to include for returned resources of type appCategories (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitSubcategories: (query) maximum number of related subcategories returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppCategoryResponse> 
      */
-    open class func appInfosSecondarySubcategoryTwoGetToOneRelatedWithRequestBuilder(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosSecondarySubcategoryTwoGetToOneRelated]? = nil, include: [Include_appInfosSecondarySubcategoryTwoGetToOneRelated]? = nil, limitSubcategories: Int? = nil) -> RequestBuilder<AppCategoryResponse> {
+    open class func appInfosSecondarySubcategoryTwoGetToOneRelatedWithRequestBuilder(id: String, fieldsAppCategories: [FieldsAppCategories_appInfosSecondarySubcategoryTwoGetToOneRelated]? = nil, include: [Include_appInfosSecondarySubcategoryTwoGetToOneRelated]? = nil, limitSubcategories: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppCategoryResponse> {
         var localVariablePath = "/v1/appInfos/{id}/secondarySubcategoryTwo"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[appCategories]": (wrappedValue: fieldsAppCategories?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[subcategories]": (wrappedValue: limitSubcategories?.encodeToJSON(), isExplode: true),
+            "fields[appCategories]": (wrappedValue: fieldsAppCategories?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[subcategories]": (wrappedValue: limitSubcategories?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -966,9 +998,9 @@ open class AppInfosAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppCategoryResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppCategoryResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -977,38 +1009,41 @@ open class AppInfosAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppCategoryResponse> 
      */
-    open class func appInfosSecondarySubcategoryTwoGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppCategoryResponse> {
+    open class func appInfosSecondarySubcategoryTwoGetToOneRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppCategoryResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppCategoryResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppCategoryResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter appInfoUpdateRequest: (body) AppInfo representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppInfoResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appInfosUpdateInstance(id: String, appInfoUpdateRequest: AppInfoUpdateRequest) async throws -> AppInfoResponse {
-        return try await appInfosUpdateInstanceWithRequestBuilder(id: id, appInfoUpdateRequest: appInfoUpdateRequest).execute().body
+    open class func appInfosUpdateInstance(id: String, appInfoUpdateRequest: AppInfoUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppInfoResponse {
+        return try await appInfosUpdateInstanceWithRequestBuilder(id: id, appInfoUpdateRequest: appInfoUpdateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppInfoResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appInfosUpdateInstance(urlString: String) async throws -> AppInfoResponse {
-        return try await appInfosUpdateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func appInfosUpdateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppInfoResponse {
+        return try await appInfosUpdateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1018,15 +1053,16 @@ open class AppInfosAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter appInfoUpdateRequest: (body) AppInfo representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppInfoResponse> 
      */
-    open class func appInfosUpdateInstanceWithRequestBuilder(id: String, appInfoUpdateRequest: AppInfoUpdateRequest) -> RequestBuilder<AppInfoResponse> {
+    open class func appInfosUpdateInstanceWithRequestBuilder(id: String, appInfoUpdateRequest: AppInfoUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppInfoResponse> {
         var localVariablePath = "/v1/appInfos/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: appInfoUpdateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: appInfoUpdateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -1036,9 +1072,9 @@ open class AppInfosAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppInfoResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppInfoResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -1047,17 +1083,18 @@ open class AppInfosAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppInfoResponse> 
      */
-    open class func appInfosUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppInfoResponse> {
+    open class func appInfosUpdateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppInfoResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppInfoResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppInfoResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

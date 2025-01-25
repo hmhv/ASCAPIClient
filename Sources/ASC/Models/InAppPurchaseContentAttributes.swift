@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct InAppPurchaseContentAttributes: Codable, JSONEncodable, Hashable {
+public struct InAppPurchaseContentAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
     public var fileName: String?
     public var fileSize: Int?

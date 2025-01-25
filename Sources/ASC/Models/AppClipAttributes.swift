@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppClipAttributes: Codable, JSONEncodable, Hashable {
+public struct AppClipAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
     public var bundleId: String?
 

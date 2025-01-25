@@ -6,13 +6,10 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppEventLocalizationCreateRequestData: Codable, JSONEncodable, Hashable {
+public struct AppEventLocalizationCreateRequestData: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum ModelType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum ModelType: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case appeventlocalizations = "appEventLocalizations"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }

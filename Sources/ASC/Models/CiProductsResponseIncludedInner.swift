@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public enum CiProductsResponseIncludedInner: Codable, JSONEncodable, Hashable {
+public enum CiProductsResponseIncludedInner: Sendable, Codable, JSONEncodable, Hashable {
     case typeApp(App)
     case typeBundleId(BundleId)
     case typeScmRepository(ScmRepository)

@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct CiBranchPatternsPatternsInner: Codable, JSONEncodable, Hashable {
+public struct CiBranchPatternsPatternsInner: Sendable, Codable, JSONEncodable, Hashable {
 
     public var pattern: String?
     public var isPrefix: Bool?

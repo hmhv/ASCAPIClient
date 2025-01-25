@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct BetaAppLocalizationCreateRequest: Codable, JSONEncodable, Hashable {
+public struct BetaAppLocalizationCreateRequest: Sendable, Codable, JSONEncodable, Hashable {
 
     public var data: BetaAppLocalizationCreateRequestData
 

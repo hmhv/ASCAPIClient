@@ -6,16 +6,13 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class InAppPurchasesAPI {
 
     /**
      * enum for parameter fieldsInAppPurchases
      */
-    public enum FieldsInAppPurchases_inAppPurchasesGetInstance: String, CaseIterable {
+    public enum FieldsInAppPurchases_inAppPurchasesGetInstance: String, Sendable, CaseIterable {
         case referencename = "referenceName"
         case productid = "productId"
         case inapppurchasetype = "inAppPurchaseType"
@@ -26,7 +23,7 @@ open class InAppPurchasesAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_inAppPurchasesGetInstance: String, CaseIterable {
+    public enum Include_inAppPurchasesGetInstance: String, Sendable, CaseIterable {
         case apps = "apps"
     }
 
@@ -36,22 +33,24 @@ open class InAppPurchasesAPI {
      - parameter fieldsInAppPurchases: (query) the fields to include for returned resources of type inAppPurchases (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitApps: (query) maximum number of related apps returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: InAppPurchaseResponse
      */
     @available(*, deprecated, message: "This operation is deprecated.")
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchasesGetInstance(id: String, fieldsInAppPurchases: [FieldsInAppPurchases_inAppPurchasesGetInstance]? = nil, include: [Include_inAppPurchasesGetInstance]? = nil, limitApps: Int? = nil) async throws -> InAppPurchaseResponse {
-        return try await inAppPurchasesGetInstanceWithRequestBuilder(id: id, fieldsInAppPurchases: fieldsInAppPurchases, include: include, limitApps: limitApps).execute().body
+    open class func inAppPurchasesGetInstance(id: String, fieldsInAppPurchases: [FieldsInAppPurchases_inAppPurchasesGetInstance]? = nil, include: [Include_inAppPurchasesGetInstance]? = nil, limitApps: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> InAppPurchaseResponse {
+        return try await inAppPurchasesGetInstanceWithRequestBuilder(id: id, fieldsInAppPurchases: fieldsInAppPurchases, include: include, limitApps: limitApps, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: InAppPurchaseResponse
      */
     @available(*, deprecated, message: "This operation is deprecated.")
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchasesGetInstance(urlString: String) async throws -> InAppPurchaseResponse {
-        return try await inAppPurchasesGetInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func inAppPurchasesGetInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> InAppPurchaseResponse {
+        return try await inAppPurchasesGetInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -63,22 +62,23 @@ open class InAppPurchasesAPI {
      - parameter fieldsInAppPurchases: (query) the fields to include for returned resources of type inAppPurchases (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitApps: (query) maximum number of related apps returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<InAppPurchaseResponse> 
      */
     @available(*, deprecated, message: "This operation is deprecated.")
-    open class func inAppPurchasesGetInstanceWithRequestBuilder(id: String, fieldsInAppPurchases: [FieldsInAppPurchases_inAppPurchasesGetInstance]? = nil, include: [Include_inAppPurchasesGetInstance]? = nil, limitApps: Int? = nil) -> RequestBuilder<InAppPurchaseResponse> {
+    open class func inAppPurchasesGetInstanceWithRequestBuilder(id: String, fieldsInAppPurchases: [FieldsInAppPurchases_inAppPurchasesGetInstance]? = nil, include: [Include_inAppPurchasesGetInstance]? = nil, limitApps: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<InAppPurchaseResponse> {
         var localVariablePath = "/v1/inAppPurchases/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[inAppPurchases]": (wrappedValue: fieldsInAppPurchases?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[apps]": (wrappedValue: limitApps?.encodeToJSON(), isExplode: true),
+            "fields[inAppPurchases]": (wrappedValue: fieldsInAppPurchases?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[apps]": (wrappedValue: limitApps?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -87,9 +87,9 @@ open class InAppPurchasesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -98,25 +98,26 @@ open class InAppPurchasesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<InAppPurchaseResponse> 
      */
     @available(*, deprecated, message: "This operation is deprecated.")
-    open class func inAppPurchasesGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<InAppPurchaseResponse> {
+    open class func inAppPurchasesGetInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<InAppPurchaseResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsInAppPurchaseAppStoreReviewScreenshots
      */
-    public enum FieldsInAppPurchaseAppStoreReviewScreenshots_inAppPurchasesV2AppStoreReviewScreenshotGetToOneRelated: String, CaseIterable {
+    public enum FieldsInAppPurchaseAppStoreReviewScreenshots_inAppPurchasesV2AppStoreReviewScreenshotGetToOneRelated: String, Sendable, CaseIterable {
         case filesize = "fileSize"
         case filename = "fileName"
         case sourcefilechecksum = "sourceFileChecksum"
@@ -131,7 +132,7 @@ open class InAppPurchasesAPI {
     /**
      * enum for parameter fieldsInAppPurchases
      */
-    public enum FieldsInAppPurchases_inAppPurchasesV2AppStoreReviewScreenshotGetToOneRelated: String, CaseIterable {
+    public enum FieldsInAppPurchases_inAppPurchasesV2AppStoreReviewScreenshotGetToOneRelated: String, Sendable, CaseIterable {
         case name = "name"
         case productid = "productId"
         case inapppurchasetype = "inAppPurchaseType"
@@ -152,7 +153,7 @@ open class InAppPurchasesAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_inAppPurchasesV2AppStoreReviewScreenshotGetToOneRelated: String, CaseIterable {
+    public enum Include_inAppPurchasesV2AppStoreReviewScreenshotGetToOneRelated: String, Sendable, CaseIterable {
         case inapppurchasev2 = "inAppPurchaseV2"
     }
 
@@ -162,20 +163,22 @@ open class InAppPurchasesAPI {
      - parameter fieldsInAppPurchaseAppStoreReviewScreenshots: (query) the fields to include for returned resources of type inAppPurchaseAppStoreReviewScreenshots (optional)
      - parameter fieldsInAppPurchases: (query) the fields to include for returned resources of type inAppPurchases (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: InAppPurchaseAppStoreReviewScreenshotResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchasesV2AppStoreReviewScreenshotGetToOneRelated(id: String, fieldsInAppPurchaseAppStoreReviewScreenshots: [FieldsInAppPurchaseAppStoreReviewScreenshots_inAppPurchasesV2AppStoreReviewScreenshotGetToOneRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_inAppPurchasesV2AppStoreReviewScreenshotGetToOneRelated]? = nil, include: [Include_inAppPurchasesV2AppStoreReviewScreenshotGetToOneRelated]? = nil) async throws -> InAppPurchaseAppStoreReviewScreenshotResponse {
-        return try await inAppPurchasesV2AppStoreReviewScreenshotGetToOneRelatedWithRequestBuilder(id: id, fieldsInAppPurchaseAppStoreReviewScreenshots: fieldsInAppPurchaseAppStoreReviewScreenshots, fieldsInAppPurchases: fieldsInAppPurchases, include: include).execute().body
+    open class func inAppPurchasesV2AppStoreReviewScreenshotGetToOneRelated(id: String, fieldsInAppPurchaseAppStoreReviewScreenshots: [FieldsInAppPurchaseAppStoreReviewScreenshots_inAppPurchasesV2AppStoreReviewScreenshotGetToOneRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_inAppPurchasesV2AppStoreReviewScreenshotGetToOneRelated]? = nil, include: [Include_inAppPurchasesV2AppStoreReviewScreenshotGetToOneRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> InAppPurchaseAppStoreReviewScreenshotResponse {
+        return try await inAppPurchasesV2AppStoreReviewScreenshotGetToOneRelatedWithRequestBuilder(id: id, fieldsInAppPurchaseAppStoreReviewScreenshots: fieldsInAppPurchaseAppStoreReviewScreenshots, fieldsInAppPurchases: fieldsInAppPurchases, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: InAppPurchaseAppStoreReviewScreenshotResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchasesV2AppStoreReviewScreenshotGetToOneRelated(urlString: String) async throws -> InAppPurchaseAppStoreReviewScreenshotResponse {
-        return try await inAppPurchasesV2AppStoreReviewScreenshotGetToOneRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func inAppPurchasesV2AppStoreReviewScreenshotGetToOneRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> InAppPurchaseAppStoreReviewScreenshotResponse {
+        return try await inAppPurchasesV2AppStoreReviewScreenshotGetToOneRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -187,21 +190,22 @@ open class InAppPurchasesAPI {
      - parameter fieldsInAppPurchaseAppStoreReviewScreenshots: (query) the fields to include for returned resources of type inAppPurchaseAppStoreReviewScreenshots (optional)
      - parameter fieldsInAppPurchases: (query) the fields to include for returned resources of type inAppPurchases (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<InAppPurchaseAppStoreReviewScreenshotResponse> 
      */
-    open class func inAppPurchasesV2AppStoreReviewScreenshotGetToOneRelatedWithRequestBuilder(id: String, fieldsInAppPurchaseAppStoreReviewScreenshots: [FieldsInAppPurchaseAppStoreReviewScreenshots_inAppPurchasesV2AppStoreReviewScreenshotGetToOneRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_inAppPurchasesV2AppStoreReviewScreenshotGetToOneRelated]? = nil, include: [Include_inAppPurchasesV2AppStoreReviewScreenshotGetToOneRelated]? = nil) -> RequestBuilder<InAppPurchaseAppStoreReviewScreenshotResponse> {
+    open class func inAppPurchasesV2AppStoreReviewScreenshotGetToOneRelatedWithRequestBuilder(id: String, fieldsInAppPurchaseAppStoreReviewScreenshots: [FieldsInAppPurchaseAppStoreReviewScreenshots_inAppPurchasesV2AppStoreReviewScreenshotGetToOneRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_inAppPurchasesV2AppStoreReviewScreenshotGetToOneRelated]? = nil, include: [Include_inAppPurchasesV2AppStoreReviewScreenshotGetToOneRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<InAppPurchaseAppStoreReviewScreenshotResponse> {
         var localVariablePath = "/v2/inAppPurchases/{id}/appStoreReviewScreenshot"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[inAppPurchaseAppStoreReviewScreenshots]": (wrappedValue: fieldsInAppPurchaseAppStoreReviewScreenshots?.encodeToJSON(), isExplode: false),
-            "fields[inAppPurchases]": (wrappedValue: fieldsInAppPurchases?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "fields[inAppPurchaseAppStoreReviewScreenshots]": (wrappedValue: fieldsInAppPurchaseAppStoreReviewScreenshots?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[inAppPurchases]": (wrappedValue: fieldsInAppPurchases?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -210,9 +214,9 @@ open class InAppPurchasesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseAppStoreReviewScreenshotResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseAppStoreReviewScreenshotResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -221,24 +225,25 @@ open class InAppPurchasesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<InAppPurchaseAppStoreReviewScreenshotResponse> 
      */
-    open class func inAppPurchasesV2AppStoreReviewScreenshotGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<InAppPurchaseAppStoreReviewScreenshotResponse> {
+    open class func inAppPurchasesV2AppStoreReviewScreenshotGetToOneRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<InAppPurchaseAppStoreReviewScreenshotResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseAppStoreReviewScreenshotResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseAppStoreReviewScreenshotResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsInAppPurchaseContents
      */
-    public enum FieldsInAppPurchaseContents_inAppPurchasesV2ContentGetToOneRelated: String, CaseIterable {
+    public enum FieldsInAppPurchaseContents_inAppPurchasesV2ContentGetToOneRelated: String, Sendable, CaseIterable {
         case filename = "fileName"
         case filesize = "fileSize"
         case url = "url"
@@ -249,7 +254,7 @@ open class InAppPurchasesAPI {
     /**
      * enum for parameter fieldsInAppPurchases
      */
-    public enum FieldsInAppPurchases_inAppPurchasesV2ContentGetToOneRelated: String, CaseIterable {
+    public enum FieldsInAppPurchases_inAppPurchasesV2ContentGetToOneRelated: String, Sendable, CaseIterable {
         case name = "name"
         case productid = "productId"
         case inapppurchasetype = "inAppPurchaseType"
@@ -270,7 +275,7 @@ open class InAppPurchasesAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_inAppPurchasesV2ContentGetToOneRelated: String, CaseIterable {
+    public enum Include_inAppPurchasesV2ContentGetToOneRelated: String, Sendable, CaseIterable {
         case inapppurchasev2 = "inAppPurchaseV2"
     }
 
@@ -280,20 +285,22 @@ open class InAppPurchasesAPI {
      - parameter fieldsInAppPurchaseContents: (query) the fields to include for returned resources of type inAppPurchaseContents (optional)
      - parameter fieldsInAppPurchases: (query) the fields to include for returned resources of type inAppPurchases (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: InAppPurchaseContentResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchasesV2ContentGetToOneRelated(id: String, fieldsInAppPurchaseContents: [FieldsInAppPurchaseContents_inAppPurchasesV2ContentGetToOneRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_inAppPurchasesV2ContentGetToOneRelated]? = nil, include: [Include_inAppPurchasesV2ContentGetToOneRelated]? = nil) async throws -> InAppPurchaseContentResponse {
-        return try await inAppPurchasesV2ContentGetToOneRelatedWithRequestBuilder(id: id, fieldsInAppPurchaseContents: fieldsInAppPurchaseContents, fieldsInAppPurchases: fieldsInAppPurchases, include: include).execute().body
+    open class func inAppPurchasesV2ContentGetToOneRelated(id: String, fieldsInAppPurchaseContents: [FieldsInAppPurchaseContents_inAppPurchasesV2ContentGetToOneRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_inAppPurchasesV2ContentGetToOneRelated]? = nil, include: [Include_inAppPurchasesV2ContentGetToOneRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> InAppPurchaseContentResponse {
+        return try await inAppPurchasesV2ContentGetToOneRelatedWithRequestBuilder(id: id, fieldsInAppPurchaseContents: fieldsInAppPurchaseContents, fieldsInAppPurchases: fieldsInAppPurchases, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: InAppPurchaseContentResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchasesV2ContentGetToOneRelated(urlString: String) async throws -> InAppPurchaseContentResponse {
-        return try await inAppPurchasesV2ContentGetToOneRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func inAppPurchasesV2ContentGetToOneRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> InAppPurchaseContentResponse {
+        return try await inAppPurchasesV2ContentGetToOneRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -305,21 +312,22 @@ open class InAppPurchasesAPI {
      - parameter fieldsInAppPurchaseContents: (query) the fields to include for returned resources of type inAppPurchaseContents (optional)
      - parameter fieldsInAppPurchases: (query) the fields to include for returned resources of type inAppPurchases (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<InAppPurchaseContentResponse> 
      */
-    open class func inAppPurchasesV2ContentGetToOneRelatedWithRequestBuilder(id: String, fieldsInAppPurchaseContents: [FieldsInAppPurchaseContents_inAppPurchasesV2ContentGetToOneRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_inAppPurchasesV2ContentGetToOneRelated]? = nil, include: [Include_inAppPurchasesV2ContentGetToOneRelated]? = nil) -> RequestBuilder<InAppPurchaseContentResponse> {
+    open class func inAppPurchasesV2ContentGetToOneRelatedWithRequestBuilder(id: String, fieldsInAppPurchaseContents: [FieldsInAppPurchaseContents_inAppPurchasesV2ContentGetToOneRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_inAppPurchasesV2ContentGetToOneRelated]? = nil, include: [Include_inAppPurchasesV2ContentGetToOneRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<InAppPurchaseContentResponse> {
         var localVariablePath = "/v2/inAppPurchases/{id}/content"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[inAppPurchaseContents]": (wrappedValue: fieldsInAppPurchaseContents?.encodeToJSON(), isExplode: false),
-            "fields[inAppPurchases]": (wrappedValue: fieldsInAppPurchases?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "fields[inAppPurchaseContents]": (wrappedValue: fieldsInAppPurchaseContents?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[inAppPurchases]": (wrappedValue: fieldsInAppPurchases?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -328,9 +336,9 @@ open class InAppPurchasesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseContentResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseContentResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -339,37 +347,40 @@ open class InAppPurchasesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<InAppPurchaseContentResponse> 
      */
-    open class func inAppPurchasesV2ContentGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<InAppPurchaseContentResponse> {
+    open class func inAppPurchasesV2ContentGetToOneRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<InAppPurchaseContentResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseContentResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseContentResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter inAppPurchaseV2CreateRequest: (body) InAppPurchase representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: InAppPurchaseV2Response
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchasesV2CreateInstance(inAppPurchaseV2CreateRequest: InAppPurchaseV2CreateRequest) async throws -> InAppPurchaseV2Response {
-        return try await inAppPurchasesV2CreateInstanceWithRequestBuilder(inAppPurchaseV2CreateRequest: inAppPurchaseV2CreateRequest).execute().body
+    open class func inAppPurchasesV2CreateInstance(inAppPurchaseV2CreateRequest: InAppPurchaseV2CreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> InAppPurchaseV2Response {
+        return try await inAppPurchasesV2CreateInstanceWithRequestBuilder(inAppPurchaseV2CreateRequest: inAppPurchaseV2CreateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: InAppPurchaseV2Response
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchasesV2CreateInstance(urlString: String) async throws -> InAppPurchaseV2Response {
-        return try await inAppPurchasesV2CreateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func inAppPurchasesV2CreateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> InAppPurchaseV2Response {
+        return try await inAppPurchasesV2CreateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -378,12 +389,13 @@ open class InAppPurchasesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter inAppPurchaseV2CreateRequest: (body) InAppPurchase representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<InAppPurchaseV2Response> 
      */
-    open class func inAppPurchasesV2CreateInstanceWithRequestBuilder(inAppPurchaseV2CreateRequest: InAppPurchaseV2CreateRequest) -> RequestBuilder<InAppPurchaseV2Response> {
+    open class func inAppPurchasesV2CreateInstanceWithRequestBuilder(inAppPurchaseV2CreateRequest: InAppPurchaseV2CreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<InAppPurchaseV2Response> {
         let localVariablePath = "/v2/inAppPurchases"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: inAppPurchaseV2CreateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: inAppPurchaseV2CreateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -393,9 +405,9 @@ open class InAppPurchasesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseV2Response>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseV2Response>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -404,37 +416,40 @@ open class InAppPurchasesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<InAppPurchaseV2Response> 
      */
-    open class func inAppPurchasesV2CreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<InAppPurchaseV2Response> {
+    open class func inAppPurchasesV2CreateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<InAppPurchaseV2Response> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseV2Response>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseV2Response>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchasesV2DeleteInstance(id: String) async throws {
-        return try await inAppPurchasesV2DeleteInstanceWithRequestBuilder(id: id).execute().body
+    open class func inAppPurchasesV2DeleteInstance(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await inAppPurchasesV2DeleteInstanceWithRequestBuilder(id: id, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchasesV2DeleteInstance(urlString: String) async throws {
-        return try await inAppPurchasesV2DeleteInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func inAppPurchasesV2DeleteInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await inAppPurchasesV2DeleteInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -443,14 +458,15 @@ open class InAppPurchasesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func inAppPurchasesV2DeleteInstanceWithRequestBuilder(id: String) -> RequestBuilder<Void> {
+    open class func inAppPurchasesV2DeleteInstanceWithRequestBuilder(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v2/inAppPurchases/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -461,9 +477,9 @@ open class InAppPurchasesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -472,24 +488,25 @@ open class InAppPurchasesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func inAppPurchasesV2DeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func inAppPurchasesV2DeleteInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsInAppPurchases
      */
-    public enum FieldsInAppPurchases_inAppPurchasesV2GetInstance: String, CaseIterable {
+    public enum FieldsInAppPurchases_inAppPurchasesV2GetInstance: String, Sendable, CaseIterable {
         case name = "name"
         case productid = "productId"
         case inapppurchasetype = "inAppPurchaseType"
@@ -510,7 +527,7 @@ open class InAppPurchasesAPI {
     /**
      * enum for parameter fieldsInAppPurchaseLocalizations
      */
-    public enum FieldsInAppPurchaseLocalizations_inAppPurchasesV2GetInstance: String, CaseIterable {
+    public enum FieldsInAppPurchaseLocalizations_inAppPurchasesV2GetInstance: String, Sendable, CaseIterable {
         case name = "name"
         case locale = "locale"
         case description = "description"
@@ -521,7 +538,7 @@ open class InAppPurchasesAPI {
     /**
      * enum for parameter fieldsInAppPurchasePricePoints
      */
-    public enum FieldsInAppPurchasePricePoints_inAppPurchasesV2GetInstance: String, CaseIterable {
+    public enum FieldsInAppPurchasePricePoints_inAppPurchasesV2GetInstance: String, Sendable, CaseIterable {
         case customerprice = "customerPrice"
         case proceeds = "proceeds"
         case territory = "territory"
@@ -531,7 +548,7 @@ open class InAppPurchasesAPI {
     /**
      * enum for parameter fieldsInAppPurchaseContents
      */
-    public enum FieldsInAppPurchaseContents_inAppPurchasesV2GetInstance: String, CaseIterable {
+    public enum FieldsInAppPurchaseContents_inAppPurchasesV2GetInstance: String, Sendable, CaseIterable {
         case filename = "fileName"
         case filesize = "fileSize"
         case url = "url"
@@ -542,7 +559,7 @@ open class InAppPurchasesAPI {
     /**
      * enum for parameter fieldsInAppPurchaseAppStoreReviewScreenshots
      */
-    public enum FieldsInAppPurchaseAppStoreReviewScreenshots_inAppPurchasesV2GetInstance: String, CaseIterable {
+    public enum FieldsInAppPurchaseAppStoreReviewScreenshots_inAppPurchasesV2GetInstance: String, Sendable, CaseIterable {
         case filesize = "fileSize"
         case filename = "fileName"
         case sourcefilechecksum = "sourceFileChecksum"
@@ -557,7 +574,7 @@ open class InAppPurchasesAPI {
     /**
      * enum for parameter fieldsPromotedPurchases
      */
-    public enum FieldsPromotedPurchases_inAppPurchasesV2GetInstance: String, CaseIterable {
+    public enum FieldsPromotedPurchases_inAppPurchasesV2GetInstance: String, Sendable, CaseIterable {
         case visibleforallusers = "visibleForAllUsers"
         case enabled = "enabled"
         case state = "state"
@@ -569,7 +586,7 @@ open class InAppPurchasesAPI {
     /**
      * enum for parameter fieldsInAppPurchasePriceSchedules
      */
-    public enum FieldsInAppPurchasePriceSchedules_inAppPurchasesV2GetInstance: String, CaseIterable {
+    public enum FieldsInAppPurchasePriceSchedules_inAppPurchasesV2GetInstance: String, Sendable, CaseIterable {
         case baseterritory = "baseTerritory"
         case manualprices = "manualPrices"
         case automaticprices = "automaticPrices"
@@ -578,7 +595,7 @@ open class InAppPurchasesAPI {
     /**
      * enum for parameter fieldsInAppPurchaseAvailabilities
      */
-    public enum FieldsInAppPurchaseAvailabilities_inAppPurchasesV2GetInstance: String, CaseIterable {
+    public enum FieldsInAppPurchaseAvailabilities_inAppPurchasesV2GetInstance: String, Sendable, CaseIterable {
         case availableinnewterritories = "availableInNewTerritories"
         case availableterritories = "availableTerritories"
     }
@@ -586,7 +603,7 @@ open class InAppPurchasesAPI {
     /**
      * enum for parameter fieldsInAppPurchaseImages
      */
-    public enum FieldsInAppPurchaseImages_inAppPurchasesV2GetInstance: String, CaseIterable {
+    public enum FieldsInAppPurchaseImages_inAppPurchasesV2GetInstance: String, Sendable, CaseIterable {
         case filesize = "fileSize"
         case filename = "fileName"
         case sourcefilechecksum = "sourceFileChecksum"
@@ -600,7 +617,7 @@ open class InAppPurchasesAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_inAppPurchasesV2GetInstance: String, CaseIterable {
+    public enum Include_inAppPurchasesV2GetInstance: String, Sendable, CaseIterable {
         case inapppurchaselocalizations = "inAppPurchaseLocalizations"
         case pricepoints = "pricePoints"
         case content = "content"
@@ -627,20 +644,22 @@ open class InAppPurchasesAPI {
      - parameter limitImages: (query) maximum number of related images returned (when they are included) (optional)
      - parameter limitInAppPurchaseLocalizations: (query) maximum number of related inAppPurchaseLocalizations returned (when they are included) (optional)
      - parameter limitPricePoints: (query) maximum number of related pricePoints returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: InAppPurchaseV2Response
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchasesV2GetInstance(id: String, fieldsInAppPurchases: [FieldsInAppPurchases_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchaseLocalizations: [FieldsInAppPurchaseLocalizations_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchasePricePoints: [FieldsInAppPurchasePricePoints_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchaseContents: [FieldsInAppPurchaseContents_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchaseAppStoreReviewScreenshots: [FieldsInAppPurchaseAppStoreReviewScreenshots_inAppPurchasesV2GetInstance]? = nil, fieldsPromotedPurchases: [FieldsPromotedPurchases_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchasePriceSchedules: [FieldsInAppPurchasePriceSchedules_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchaseAvailabilities: [FieldsInAppPurchaseAvailabilities_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchaseImages: [FieldsInAppPurchaseImages_inAppPurchasesV2GetInstance]? = nil, include: [Include_inAppPurchasesV2GetInstance]? = nil, limitImages: Int? = nil, limitInAppPurchaseLocalizations: Int? = nil, limitPricePoints: Int? = nil) async throws -> InAppPurchaseV2Response {
-        return try await inAppPurchasesV2GetInstanceWithRequestBuilder(id: id, fieldsInAppPurchases: fieldsInAppPurchases, fieldsInAppPurchaseLocalizations: fieldsInAppPurchaseLocalizations, fieldsInAppPurchasePricePoints: fieldsInAppPurchasePricePoints, fieldsInAppPurchaseContents: fieldsInAppPurchaseContents, fieldsInAppPurchaseAppStoreReviewScreenshots: fieldsInAppPurchaseAppStoreReviewScreenshots, fieldsPromotedPurchases: fieldsPromotedPurchases, fieldsInAppPurchasePriceSchedules: fieldsInAppPurchasePriceSchedules, fieldsInAppPurchaseAvailabilities: fieldsInAppPurchaseAvailabilities, fieldsInAppPurchaseImages: fieldsInAppPurchaseImages, include: include, limitImages: limitImages, limitInAppPurchaseLocalizations: limitInAppPurchaseLocalizations, limitPricePoints: limitPricePoints).execute().body
+    open class func inAppPurchasesV2GetInstance(id: String, fieldsInAppPurchases: [FieldsInAppPurchases_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchaseLocalizations: [FieldsInAppPurchaseLocalizations_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchasePricePoints: [FieldsInAppPurchasePricePoints_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchaseContents: [FieldsInAppPurchaseContents_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchaseAppStoreReviewScreenshots: [FieldsInAppPurchaseAppStoreReviewScreenshots_inAppPurchasesV2GetInstance]? = nil, fieldsPromotedPurchases: [FieldsPromotedPurchases_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchasePriceSchedules: [FieldsInAppPurchasePriceSchedules_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchaseAvailabilities: [FieldsInAppPurchaseAvailabilities_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchaseImages: [FieldsInAppPurchaseImages_inAppPurchasesV2GetInstance]? = nil, include: [Include_inAppPurchasesV2GetInstance]? = nil, limitImages: Int? = nil, limitInAppPurchaseLocalizations: Int? = nil, limitPricePoints: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> InAppPurchaseV2Response {
+        return try await inAppPurchasesV2GetInstanceWithRequestBuilder(id: id, fieldsInAppPurchases: fieldsInAppPurchases, fieldsInAppPurchaseLocalizations: fieldsInAppPurchaseLocalizations, fieldsInAppPurchasePricePoints: fieldsInAppPurchasePricePoints, fieldsInAppPurchaseContents: fieldsInAppPurchaseContents, fieldsInAppPurchaseAppStoreReviewScreenshots: fieldsInAppPurchaseAppStoreReviewScreenshots, fieldsPromotedPurchases: fieldsPromotedPurchases, fieldsInAppPurchasePriceSchedules: fieldsInAppPurchasePriceSchedules, fieldsInAppPurchaseAvailabilities: fieldsInAppPurchaseAvailabilities, fieldsInAppPurchaseImages: fieldsInAppPurchaseImages, include: include, limitImages: limitImages, limitInAppPurchaseLocalizations: limitInAppPurchaseLocalizations, limitPricePoints: limitPricePoints, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: InAppPurchaseV2Response
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchasesV2GetInstance(urlString: String) async throws -> InAppPurchaseV2Response {
-        return try await inAppPurchasesV2GetInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func inAppPurchasesV2GetInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> InAppPurchaseV2Response {
+        return try await inAppPurchasesV2GetInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -662,31 +681,32 @@ open class InAppPurchasesAPI {
      - parameter limitImages: (query) maximum number of related images returned (when they are included) (optional)
      - parameter limitInAppPurchaseLocalizations: (query) maximum number of related inAppPurchaseLocalizations returned (when they are included) (optional)
      - parameter limitPricePoints: (query) maximum number of related pricePoints returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<InAppPurchaseV2Response> 
      */
-    open class func inAppPurchasesV2GetInstanceWithRequestBuilder(id: String, fieldsInAppPurchases: [FieldsInAppPurchases_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchaseLocalizations: [FieldsInAppPurchaseLocalizations_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchasePricePoints: [FieldsInAppPurchasePricePoints_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchaseContents: [FieldsInAppPurchaseContents_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchaseAppStoreReviewScreenshots: [FieldsInAppPurchaseAppStoreReviewScreenshots_inAppPurchasesV2GetInstance]? = nil, fieldsPromotedPurchases: [FieldsPromotedPurchases_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchasePriceSchedules: [FieldsInAppPurchasePriceSchedules_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchaseAvailabilities: [FieldsInAppPurchaseAvailabilities_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchaseImages: [FieldsInAppPurchaseImages_inAppPurchasesV2GetInstance]? = nil, include: [Include_inAppPurchasesV2GetInstance]? = nil, limitImages: Int? = nil, limitInAppPurchaseLocalizations: Int? = nil, limitPricePoints: Int? = nil) -> RequestBuilder<InAppPurchaseV2Response> {
+    open class func inAppPurchasesV2GetInstanceWithRequestBuilder(id: String, fieldsInAppPurchases: [FieldsInAppPurchases_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchaseLocalizations: [FieldsInAppPurchaseLocalizations_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchasePricePoints: [FieldsInAppPurchasePricePoints_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchaseContents: [FieldsInAppPurchaseContents_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchaseAppStoreReviewScreenshots: [FieldsInAppPurchaseAppStoreReviewScreenshots_inAppPurchasesV2GetInstance]? = nil, fieldsPromotedPurchases: [FieldsPromotedPurchases_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchasePriceSchedules: [FieldsInAppPurchasePriceSchedules_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchaseAvailabilities: [FieldsInAppPurchaseAvailabilities_inAppPurchasesV2GetInstance]? = nil, fieldsInAppPurchaseImages: [FieldsInAppPurchaseImages_inAppPurchasesV2GetInstance]? = nil, include: [Include_inAppPurchasesV2GetInstance]? = nil, limitImages: Int? = nil, limitInAppPurchaseLocalizations: Int? = nil, limitPricePoints: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<InAppPurchaseV2Response> {
         var localVariablePath = "/v2/inAppPurchases/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[inAppPurchases]": (wrappedValue: fieldsInAppPurchases?.encodeToJSON(), isExplode: false),
-            "fields[inAppPurchaseLocalizations]": (wrappedValue: fieldsInAppPurchaseLocalizations?.encodeToJSON(), isExplode: false),
-            "fields[inAppPurchasePricePoints]": (wrappedValue: fieldsInAppPurchasePricePoints?.encodeToJSON(), isExplode: false),
-            "fields[inAppPurchaseContents]": (wrappedValue: fieldsInAppPurchaseContents?.encodeToJSON(), isExplode: false),
-            "fields[inAppPurchaseAppStoreReviewScreenshots]": (wrappedValue: fieldsInAppPurchaseAppStoreReviewScreenshots?.encodeToJSON(), isExplode: false),
-            "fields[promotedPurchases]": (wrappedValue: fieldsPromotedPurchases?.encodeToJSON(), isExplode: false),
-            "fields[inAppPurchasePriceSchedules]": (wrappedValue: fieldsInAppPurchasePriceSchedules?.encodeToJSON(), isExplode: false),
-            "fields[inAppPurchaseAvailabilities]": (wrappedValue: fieldsInAppPurchaseAvailabilities?.encodeToJSON(), isExplode: false),
-            "fields[inAppPurchaseImages]": (wrappedValue: fieldsInAppPurchaseImages?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[images]": (wrappedValue: limitImages?.encodeToJSON(), isExplode: true),
-            "limit[inAppPurchaseLocalizations]": (wrappedValue: limitInAppPurchaseLocalizations?.encodeToJSON(), isExplode: true),
-            "limit[pricePoints]": (wrappedValue: limitPricePoints?.encodeToJSON(), isExplode: true),
+            "fields[inAppPurchases]": (wrappedValue: fieldsInAppPurchases?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[inAppPurchaseLocalizations]": (wrappedValue: fieldsInAppPurchaseLocalizations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[inAppPurchasePricePoints]": (wrappedValue: fieldsInAppPurchasePricePoints?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[inAppPurchaseContents]": (wrappedValue: fieldsInAppPurchaseContents?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[inAppPurchaseAppStoreReviewScreenshots]": (wrappedValue: fieldsInAppPurchaseAppStoreReviewScreenshots?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[promotedPurchases]": (wrappedValue: fieldsPromotedPurchases?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[inAppPurchasePriceSchedules]": (wrappedValue: fieldsInAppPurchasePriceSchedules?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[inAppPurchaseAvailabilities]": (wrappedValue: fieldsInAppPurchaseAvailabilities?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[inAppPurchaseImages]": (wrappedValue: fieldsInAppPurchaseImages?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[images]": (wrappedValue: limitImages?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[inAppPurchaseLocalizations]": (wrappedValue: limitInAppPurchaseLocalizations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[pricePoints]": (wrappedValue: limitPricePoints?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -695,9 +715,9 @@ open class InAppPurchasesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseV2Response>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseV2Response>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -706,24 +726,25 @@ open class InAppPurchasesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<InAppPurchaseV2Response> 
      */
-    open class func inAppPurchasesV2GetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<InAppPurchaseV2Response> {
+    open class func inAppPurchasesV2GetInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<InAppPurchaseV2Response> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseV2Response>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseV2Response>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsInAppPurchasePriceSchedules
      */
-    public enum FieldsInAppPurchasePriceSchedules_inAppPurchasesV2IapPriceScheduleGetToOneRelated: String, CaseIterable {
+    public enum FieldsInAppPurchasePriceSchedules_inAppPurchasesV2IapPriceScheduleGetToOneRelated: String, Sendable, CaseIterable {
         case baseterritory = "baseTerritory"
         case manualprices = "manualPrices"
         case automaticprices = "automaticPrices"
@@ -732,14 +753,14 @@ open class InAppPurchasesAPI {
     /**
      * enum for parameter fieldsTerritories
      */
-    public enum FieldsTerritories_inAppPurchasesV2IapPriceScheduleGetToOneRelated: String, CaseIterable {
+    public enum FieldsTerritories_inAppPurchasesV2IapPriceScheduleGetToOneRelated: String, Sendable, CaseIterable {
         case currency = "currency"
     }
 
     /**
      * enum for parameter fieldsInAppPurchasePrices
      */
-    public enum FieldsInAppPurchasePrices_inAppPurchasesV2IapPriceScheduleGetToOneRelated: String, CaseIterable {
+    public enum FieldsInAppPurchasePrices_inAppPurchasesV2IapPriceScheduleGetToOneRelated: String, Sendable, CaseIterable {
         case startdate = "startDate"
         case enddate = "endDate"
         case manual = "manual"
@@ -750,7 +771,7 @@ open class InAppPurchasesAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_inAppPurchasesV2IapPriceScheduleGetToOneRelated: String, CaseIterable {
+    public enum Include_inAppPurchasesV2IapPriceScheduleGetToOneRelated: String, Sendable, CaseIterable {
         case baseterritory = "baseTerritory"
         case manualprices = "manualPrices"
         case automaticprices = "automaticPrices"
@@ -765,20 +786,22 @@ open class InAppPurchasesAPI {
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitManualPrices: (query) maximum number of related manualPrices returned (when they are included) (optional)
      - parameter limitAutomaticPrices: (query) maximum number of related automaticPrices returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: InAppPurchasePriceScheduleResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchasesV2IapPriceScheduleGetToOneRelated(id: String, fieldsInAppPurchasePriceSchedules: [FieldsInAppPurchasePriceSchedules_inAppPurchasesV2IapPriceScheduleGetToOneRelated]? = nil, fieldsTerritories: [FieldsTerritories_inAppPurchasesV2IapPriceScheduleGetToOneRelated]? = nil, fieldsInAppPurchasePrices: [FieldsInAppPurchasePrices_inAppPurchasesV2IapPriceScheduleGetToOneRelated]? = nil, include: [Include_inAppPurchasesV2IapPriceScheduleGetToOneRelated]? = nil, limitManualPrices: Int? = nil, limitAutomaticPrices: Int? = nil) async throws -> InAppPurchasePriceScheduleResponse {
-        return try await inAppPurchasesV2IapPriceScheduleGetToOneRelatedWithRequestBuilder(id: id, fieldsInAppPurchasePriceSchedules: fieldsInAppPurchasePriceSchedules, fieldsTerritories: fieldsTerritories, fieldsInAppPurchasePrices: fieldsInAppPurchasePrices, include: include, limitManualPrices: limitManualPrices, limitAutomaticPrices: limitAutomaticPrices).execute().body
+    open class func inAppPurchasesV2IapPriceScheduleGetToOneRelated(id: String, fieldsInAppPurchasePriceSchedules: [FieldsInAppPurchasePriceSchedules_inAppPurchasesV2IapPriceScheduleGetToOneRelated]? = nil, fieldsTerritories: [FieldsTerritories_inAppPurchasesV2IapPriceScheduleGetToOneRelated]? = nil, fieldsInAppPurchasePrices: [FieldsInAppPurchasePrices_inAppPurchasesV2IapPriceScheduleGetToOneRelated]? = nil, include: [Include_inAppPurchasesV2IapPriceScheduleGetToOneRelated]? = nil, limitManualPrices: Int? = nil, limitAutomaticPrices: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> InAppPurchasePriceScheduleResponse {
+        return try await inAppPurchasesV2IapPriceScheduleGetToOneRelatedWithRequestBuilder(id: id, fieldsInAppPurchasePriceSchedules: fieldsInAppPurchasePriceSchedules, fieldsTerritories: fieldsTerritories, fieldsInAppPurchasePrices: fieldsInAppPurchasePrices, include: include, limitManualPrices: limitManualPrices, limitAutomaticPrices: limitAutomaticPrices, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: InAppPurchasePriceScheduleResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchasesV2IapPriceScheduleGetToOneRelated(urlString: String) async throws -> InAppPurchasePriceScheduleResponse {
-        return try await inAppPurchasesV2IapPriceScheduleGetToOneRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func inAppPurchasesV2IapPriceScheduleGetToOneRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> InAppPurchasePriceScheduleResponse {
+        return try await inAppPurchasesV2IapPriceScheduleGetToOneRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -793,24 +816,25 @@ open class InAppPurchasesAPI {
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitManualPrices: (query) maximum number of related manualPrices returned (when they are included) (optional)
      - parameter limitAutomaticPrices: (query) maximum number of related automaticPrices returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<InAppPurchasePriceScheduleResponse> 
      */
-    open class func inAppPurchasesV2IapPriceScheduleGetToOneRelatedWithRequestBuilder(id: String, fieldsInAppPurchasePriceSchedules: [FieldsInAppPurchasePriceSchedules_inAppPurchasesV2IapPriceScheduleGetToOneRelated]? = nil, fieldsTerritories: [FieldsTerritories_inAppPurchasesV2IapPriceScheduleGetToOneRelated]? = nil, fieldsInAppPurchasePrices: [FieldsInAppPurchasePrices_inAppPurchasesV2IapPriceScheduleGetToOneRelated]? = nil, include: [Include_inAppPurchasesV2IapPriceScheduleGetToOneRelated]? = nil, limitManualPrices: Int? = nil, limitAutomaticPrices: Int? = nil) -> RequestBuilder<InAppPurchasePriceScheduleResponse> {
+    open class func inAppPurchasesV2IapPriceScheduleGetToOneRelatedWithRequestBuilder(id: String, fieldsInAppPurchasePriceSchedules: [FieldsInAppPurchasePriceSchedules_inAppPurchasesV2IapPriceScheduleGetToOneRelated]? = nil, fieldsTerritories: [FieldsTerritories_inAppPurchasesV2IapPriceScheduleGetToOneRelated]? = nil, fieldsInAppPurchasePrices: [FieldsInAppPurchasePrices_inAppPurchasesV2IapPriceScheduleGetToOneRelated]? = nil, include: [Include_inAppPurchasesV2IapPriceScheduleGetToOneRelated]? = nil, limitManualPrices: Int? = nil, limitAutomaticPrices: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<InAppPurchasePriceScheduleResponse> {
         var localVariablePath = "/v2/inAppPurchases/{id}/iapPriceSchedule"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[inAppPurchasePriceSchedules]": (wrappedValue: fieldsInAppPurchasePriceSchedules?.encodeToJSON(), isExplode: false),
-            "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(), isExplode: false),
-            "fields[inAppPurchasePrices]": (wrappedValue: fieldsInAppPurchasePrices?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[manualPrices]": (wrappedValue: limitManualPrices?.encodeToJSON(), isExplode: true),
-            "limit[automaticPrices]": (wrappedValue: limitAutomaticPrices?.encodeToJSON(), isExplode: true),
+            "fields[inAppPurchasePriceSchedules]": (wrappedValue: fieldsInAppPurchasePriceSchedules?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[inAppPurchasePrices]": (wrappedValue: fieldsInAppPurchasePrices?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[manualPrices]": (wrappedValue: limitManualPrices?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[automaticPrices]": (wrappedValue: limitAutomaticPrices?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -819,9 +843,9 @@ open class InAppPurchasesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<InAppPurchasePriceScheduleResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<InAppPurchasePriceScheduleResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -830,24 +854,25 @@ open class InAppPurchasesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<InAppPurchasePriceScheduleResponse> 
      */
-    open class func inAppPurchasesV2IapPriceScheduleGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<InAppPurchasePriceScheduleResponse> {
+    open class func inAppPurchasesV2IapPriceScheduleGetToOneRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<InAppPurchasePriceScheduleResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<InAppPurchasePriceScheduleResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<InAppPurchasePriceScheduleResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsInAppPurchaseImages
      */
-    public enum FieldsInAppPurchaseImages_inAppPurchasesV2ImagesGetToManyRelated: String, CaseIterable {
+    public enum FieldsInAppPurchaseImages_inAppPurchasesV2ImagesGetToManyRelated: String, Sendable, CaseIterable {
         case filesize = "fileSize"
         case filename = "fileName"
         case sourcefilechecksum = "sourceFileChecksum"
@@ -861,7 +886,7 @@ open class InAppPurchasesAPI {
     /**
      * enum for parameter fieldsInAppPurchases
      */
-    public enum FieldsInAppPurchases_inAppPurchasesV2ImagesGetToManyRelated: String, CaseIterable {
+    public enum FieldsInAppPurchases_inAppPurchasesV2ImagesGetToManyRelated: String, Sendable, CaseIterable {
         case name = "name"
         case productid = "productId"
         case inapppurchasetype = "inAppPurchaseType"
@@ -882,7 +907,7 @@ open class InAppPurchasesAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_inAppPurchasesV2ImagesGetToManyRelated: String, CaseIterable {
+    public enum Include_inAppPurchasesV2ImagesGetToManyRelated: String, Sendable, CaseIterable {
         case inapppurchase = "inAppPurchase"
     }
 
@@ -893,20 +918,22 @@ open class InAppPurchasesAPI {
      - parameter fieldsInAppPurchases: (query) the fields to include for returned resources of type inAppPurchases (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: InAppPurchaseImagesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchasesV2ImagesGetToManyRelated(id: String, fieldsInAppPurchaseImages: [FieldsInAppPurchaseImages_inAppPurchasesV2ImagesGetToManyRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_inAppPurchasesV2ImagesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_inAppPurchasesV2ImagesGetToManyRelated]? = nil) async throws -> InAppPurchaseImagesResponse {
-        return try await inAppPurchasesV2ImagesGetToManyRelatedWithRequestBuilder(id: id, fieldsInAppPurchaseImages: fieldsInAppPurchaseImages, fieldsInAppPurchases: fieldsInAppPurchases, limit: limit, include: include).execute().body
+    open class func inAppPurchasesV2ImagesGetToManyRelated(id: String, fieldsInAppPurchaseImages: [FieldsInAppPurchaseImages_inAppPurchasesV2ImagesGetToManyRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_inAppPurchasesV2ImagesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_inAppPurchasesV2ImagesGetToManyRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> InAppPurchaseImagesResponse {
+        return try await inAppPurchasesV2ImagesGetToManyRelatedWithRequestBuilder(id: id, fieldsInAppPurchaseImages: fieldsInAppPurchaseImages, fieldsInAppPurchases: fieldsInAppPurchases, limit: limit, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: InAppPurchaseImagesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchasesV2ImagesGetToManyRelated(urlString: String) async throws -> InAppPurchaseImagesResponse {
-        return try await inAppPurchasesV2ImagesGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func inAppPurchasesV2ImagesGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> InAppPurchaseImagesResponse {
+        return try await inAppPurchasesV2ImagesGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -919,22 +946,23 @@ open class InAppPurchasesAPI {
      - parameter fieldsInAppPurchases: (query) the fields to include for returned resources of type inAppPurchases (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<InAppPurchaseImagesResponse> 
      */
-    open class func inAppPurchasesV2ImagesGetToManyRelatedWithRequestBuilder(id: String, fieldsInAppPurchaseImages: [FieldsInAppPurchaseImages_inAppPurchasesV2ImagesGetToManyRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_inAppPurchasesV2ImagesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_inAppPurchasesV2ImagesGetToManyRelated]? = nil) -> RequestBuilder<InAppPurchaseImagesResponse> {
+    open class func inAppPurchasesV2ImagesGetToManyRelatedWithRequestBuilder(id: String, fieldsInAppPurchaseImages: [FieldsInAppPurchaseImages_inAppPurchasesV2ImagesGetToManyRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_inAppPurchasesV2ImagesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_inAppPurchasesV2ImagesGetToManyRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<InAppPurchaseImagesResponse> {
         var localVariablePath = "/v2/inAppPurchases/{id}/images"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[inAppPurchaseImages]": (wrappedValue: fieldsInAppPurchaseImages?.encodeToJSON(), isExplode: false),
-            "fields[inAppPurchases]": (wrappedValue: fieldsInAppPurchases?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "fields[inAppPurchaseImages]": (wrappedValue: fieldsInAppPurchaseImages?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[inAppPurchases]": (wrappedValue: fieldsInAppPurchases?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -943,9 +971,9 @@ open class InAppPurchasesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseImagesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseImagesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -954,24 +982,25 @@ open class InAppPurchasesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<InAppPurchaseImagesResponse> 
      */
-    open class func inAppPurchasesV2ImagesGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<InAppPurchaseImagesResponse> {
+    open class func inAppPurchasesV2ImagesGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<InAppPurchaseImagesResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseImagesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseImagesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsInAppPurchaseAvailabilities
      */
-    public enum FieldsInAppPurchaseAvailabilities_inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelated: String, CaseIterable {
+    public enum FieldsInAppPurchaseAvailabilities_inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelated: String, Sendable, CaseIterable {
         case availableinnewterritories = "availableInNewTerritories"
         case availableterritories = "availableTerritories"
     }
@@ -979,14 +1008,14 @@ open class InAppPurchasesAPI {
     /**
      * enum for parameter fieldsTerritories
      */
-    public enum FieldsTerritories_inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelated: String, CaseIterable {
+    public enum FieldsTerritories_inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelated: String, Sendable, CaseIterable {
         case currency = "currency"
     }
 
     /**
      * enum for parameter include
      */
-    public enum Include_inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelated: String, CaseIterable {
+    public enum Include_inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelated: String, Sendable, CaseIterable {
         case availableterritories = "availableTerritories"
     }
 
@@ -997,20 +1026,22 @@ open class InAppPurchasesAPI {
      - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAvailableTerritories: (query) maximum number of related availableTerritories returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: InAppPurchaseAvailabilityResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelated(id: String, fieldsInAppPurchaseAvailabilities: [FieldsInAppPurchaseAvailabilities_inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelated]? = nil, fieldsTerritories: [FieldsTerritories_inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelated]? = nil, include: [Include_inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelated]? = nil, limitAvailableTerritories: Int? = nil) async throws -> InAppPurchaseAvailabilityResponse {
-        return try await inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelatedWithRequestBuilder(id: id, fieldsInAppPurchaseAvailabilities: fieldsInAppPurchaseAvailabilities, fieldsTerritories: fieldsTerritories, include: include, limitAvailableTerritories: limitAvailableTerritories).execute().body
+    open class func inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelated(id: String, fieldsInAppPurchaseAvailabilities: [FieldsInAppPurchaseAvailabilities_inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelated]? = nil, fieldsTerritories: [FieldsTerritories_inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelated]? = nil, include: [Include_inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelated]? = nil, limitAvailableTerritories: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> InAppPurchaseAvailabilityResponse {
+        return try await inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelatedWithRequestBuilder(id: id, fieldsInAppPurchaseAvailabilities: fieldsInAppPurchaseAvailabilities, fieldsTerritories: fieldsTerritories, include: include, limitAvailableTerritories: limitAvailableTerritories, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: InAppPurchaseAvailabilityResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelated(urlString: String) async throws -> InAppPurchaseAvailabilityResponse {
-        return try await inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> InAppPurchaseAvailabilityResponse {
+        return try await inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1023,22 +1054,23 @@ open class InAppPurchasesAPI {
      - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAvailableTerritories: (query) maximum number of related availableTerritories returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<InAppPurchaseAvailabilityResponse> 
      */
-    open class func inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelatedWithRequestBuilder(id: String, fieldsInAppPurchaseAvailabilities: [FieldsInAppPurchaseAvailabilities_inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelated]? = nil, fieldsTerritories: [FieldsTerritories_inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelated]? = nil, include: [Include_inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelated]? = nil, limitAvailableTerritories: Int? = nil) -> RequestBuilder<InAppPurchaseAvailabilityResponse> {
+    open class func inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelatedWithRequestBuilder(id: String, fieldsInAppPurchaseAvailabilities: [FieldsInAppPurchaseAvailabilities_inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelated]? = nil, fieldsTerritories: [FieldsTerritories_inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelated]? = nil, include: [Include_inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelated]? = nil, limitAvailableTerritories: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<InAppPurchaseAvailabilityResponse> {
         var localVariablePath = "/v2/inAppPurchases/{id}/inAppPurchaseAvailability"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[inAppPurchaseAvailabilities]": (wrappedValue: fieldsInAppPurchaseAvailabilities?.encodeToJSON(), isExplode: false),
-            "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[availableTerritories]": (wrappedValue: limitAvailableTerritories?.encodeToJSON(), isExplode: true),
+            "fields[inAppPurchaseAvailabilities]": (wrappedValue: fieldsInAppPurchaseAvailabilities?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[availableTerritories]": (wrappedValue: limitAvailableTerritories?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -1047,9 +1079,9 @@ open class InAppPurchasesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseAvailabilityResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseAvailabilityResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -1058,24 +1090,25 @@ open class InAppPurchasesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<InAppPurchaseAvailabilityResponse> 
      */
-    open class func inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<InAppPurchaseAvailabilityResponse> {
+    open class func inAppPurchasesV2InAppPurchaseAvailabilityGetToOneRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<InAppPurchaseAvailabilityResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseAvailabilityResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseAvailabilityResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsInAppPurchaseLocalizations
      */
-    public enum FieldsInAppPurchaseLocalizations_inAppPurchasesV2InAppPurchaseLocalizationsGetToManyRelated: String, CaseIterable {
+    public enum FieldsInAppPurchaseLocalizations_inAppPurchasesV2InAppPurchaseLocalizationsGetToManyRelated: String, Sendable, CaseIterable {
         case name = "name"
         case locale = "locale"
         case description = "description"
@@ -1086,7 +1119,7 @@ open class InAppPurchasesAPI {
     /**
      * enum for parameter fieldsInAppPurchases
      */
-    public enum FieldsInAppPurchases_inAppPurchasesV2InAppPurchaseLocalizationsGetToManyRelated: String, CaseIterable {
+    public enum FieldsInAppPurchases_inAppPurchasesV2InAppPurchaseLocalizationsGetToManyRelated: String, Sendable, CaseIterable {
         case name = "name"
         case productid = "productId"
         case inapppurchasetype = "inAppPurchaseType"
@@ -1107,7 +1140,7 @@ open class InAppPurchasesAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_inAppPurchasesV2InAppPurchaseLocalizationsGetToManyRelated: String, CaseIterable {
+    public enum Include_inAppPurchasesV2InAppPurchaseLocalizationsGetToManyRelated: String, Sendable, CaseIterable {
         case inapppurchasev2 = "inAppPurchaseV2"
     }
 
@@ -1118,20 +1151,22 @@ open class InAppPurchasesAPI {
      - parameter fieldsInAppPurchases: (query) the fields to include for returned resources of type inAppPurchases (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: InAppPurchaseLocalizationsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchasesV2InAppPurchaseLocalizationsGetToManyRelated(id: String, fieldsInAppPurchaseLocalizations: [FieldsInAppPurchaseLocalizations_inAppPurchasesV2InAppPurchaseLocalizationsGetToManyRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_inAppPurchasesV2InAppPurchaseLocalizationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_inAppPurchasesV2InAppPurchaseLocalizationsGetToManyRelated]? = nil) async throws -> InAppPurchaseLocalizationsResponse {
-        return try await inAppPurchasesV2InAppPurchaseLocalizationsGetToManyRelatedWithRequestBuilder(id: id, fieldsInAppPurchaseLocalizations: fieldsInAppPurchaseLocalizations, fieldsInAppPurchases: fieldsInAppPurchases, limit: limit, include: include).execute().body
+    open class func inAppPurchasesV2InAppPurchaseLocalizationsGetToManyRelated(id: String, fieldsInAppPurchaseLocalizations: [FieldsInAppPurchaseLocalizations_inAppPurchasesV2InAppPurchaseLocalizationsGetToManyRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_inAppPurchasesV2InAppPurchaseLocalizationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_inAppPurchasesV2InAppPurchaseLocalizationsGetToManyRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> InAppPurchaseLocalizationsResponse {
+        return try await inAppPurchasesV2InAppPurchaseLocalizationsGetToManyRelatedWithRequestBuilder(id: id, fieldsInAppPurchaseLocalizations: fieldsInAppPurchaseLocalizations, fieldsInAppPurchases: fieldsInAppPurchases, limit: limit, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: InAppPurchaseLocalizationsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchasesV2InAppPurchaseLocalizationsGetToManyRelated(urlString: String) async throws -> InAppPurchaseLocalizationsResponse {
-        return try await inAppPurchasesV2InAppPurchaseLocalizationsGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func inAppPurchasesV2InAppPurchaseLocalizationsGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> InAppPurchaseLocalizationsResponse {
+        return try await inAppPurchasesV2InAppPurchaseLocalizationsGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1144,22 +1179,23 @@ open class InAppPurchasesAPI {
      - parameter fieldsInAppPurchases: (query) the fields to include for returned resources of type inAppPurchases (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<InAppPurchaseLocalizationsResponse> 
      */
-    open class func inAppPurchasesV2InAppPurchaseLocalizationsGetToManyRelatedWithRequestBuilder(id: String, fieldsInAppPurchaseLocalizations: [FieldsInAppPurchaseLocalizations_inAppPurchasesV2InAppPurchaseLocalizationsGetToManyRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_inAppPurchasesV2InAppPurchaseLocalizationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_inAppPurchasesV2InAppPurchaseLocalizationsGetToManyRelated]? = nil) -> RequestBuilder<InAppPurchaseLocalizationsResponse> {
+    open class func inAppPurchasesV2InAppPurchaseLocalizationsGetToManyRelatedWithRequestBuilder(id: String, fieldsInAppPurchaseLocalizations: [FieldsInAppPurchaseLocalizations_inAppPurchasesV2InAppPurchaseLocalizationsGetToManyRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_inAppPurchasesV2InAppPurchaseLocalizationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_inAppPurchasesV2InAppPurchaseLocalizationsGetToManyRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<InAppPurchaseLocalizationsResponse> {
         var localVariablePath = "/v2/inAppPurchases/{id}/inAppPurchaseLocalizations"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[inAppPurchaseLocalizations]": (wrappedValue: fieldsInAppPurchaseLocalizations?.encodeToJSON(), isExplode: false),
-            "fields[inAppPurchases]": (wrappedValue: fieldsInAppPurchases?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "fields[inAppPurchaseLocalizations]": (wrappedValue: fieldsInAppPurchaseLocalizations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[inAppPurchases]": (wrappedValue: fieldsInAppPurchases?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -1168,9 +1204,9 @@ open class InAppPurchasesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseLocalizationsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseLocalizationsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -1179,24 +1215,25 @@ open class InAppPurchasesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<InAppPurchaseLocalizationsResponse> 
      */
-    open class func inAppPurchasesV2InAppPurchaseLocalizationsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<InAppPurchaseLocalizationsResponse> {
+    open class func inAppPurchasesV2InAppPurchaseLocalizationsGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<InAppPurchaseLocalizationsResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseLocalizationsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseLocalizationsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsInAppPurchasePricePoints
      */
-    public enum FieldsInAppPurchasePricePoints_inAppPurchasesV2PricePointsGetToManyRelated: String, CaseIterable {
+    public enum FieldsInAppPurchasePricePoints_inAppPurchasesV2PricePointsGetToManyRelated: String, Sendable, CaseIterable {
         case customerprice = "customerPrice"
         case proceeds = "proceeds"
         case territory = "territory"
@@ -1206,14 +1243,14 @@ open class InAppPurchasesAPI {
     /**
      * enum for parameter fieldsTerritories
      */
-    public enum FieldsTerritories_inAppPurchasesV2PricePointsGetToManyRelated: String, CaseIterable {
+    public enum FieldsTerritories_inAppPurchasesV2PricePointsGetToManyRelated: String, Sendable, CaseIterable {
         case currency = "currency"
     }
 
     /**
      * enum for parameter include
      */
-    public enum Include_inAppPurchasesV2PricePointsGetToManyRelated: String, CaseIterable {
+    public enum Include_inAppPurchasesV2PricePointsGetToManyRelated: String, Sendable, CaseIterable {
         case territory = "territory"
     }
 
@@ -1225,20 +1262,22 @@ open class InAppPurchasesAPI {
      - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: InAppPurchasePricePointsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchasesV2PricePointsGetToManyRelated(id: String, filterTerritory: [String]? = nil, fieldsInAppPurchasePricePoints: [FieldsInAppPurchasePricePoints_inAppPurchasesV2PricePointsGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_inAppPurchasesV2PricePointsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_inAppPurchasesV2PricePointsGetToManyRelated]? = nil) async throws -> InAppPurchasePricePointsResponse {
-        return try await inAppPurchasesV2PricePointsGetToManyRelatedWithRequestBuilder(id: id, filterTerritory: filterTerritory, fieldsInAppPurchasePricePoints: fieldsInAppPurchasePricePoints, fieldsTerritories: fieldsTerritories, limit: limit, include: include).execute().body
+    open class func inAppPurchasesV2PricePointsGetToManyRelated(id: String, filterTerritory: [String]? = nil, fieldsInAppPurchasePricePoints: [FieldsInAppPurchasePricePoints_inAppPurchasesV2PricePointsGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_inAppPurchasesV2PricePointsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_inAppPurchasesV2PricePointsGetToManyRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> InAppPurchasePricePointsResponse {
+        return try await inAppPurchasesV2PricePointsGetToManyRelatedWithRequestBuilder(id: id, filterTerritory: filterTerritory, fieldsInAppPurchasePricePoints: fieldsInAppPurchasePricePoints, fieldsTerritories: fieldsTerritories, limit: limit, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: InAppPurchasePricePointsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchasesV2PricePointsGetToManyRelated(urlString: String) async throws -> InAppPurchasePricePointsResponse {
-        return try await inAppPurchasesV2PricePointsGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func inAppPurchasesV2PricePointsGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> InAppPurchasePricePointsResponse {
+        return try await inAppPurchasesV2PricePointsGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1252,23 +1291,24 @@ open class InAppPurchasesAPI {
      - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<InAppPurchasePricePointsResponse> 
      */
-    open class func inAppPurchasesV2PricePointsGetToManyRelatedWithRequestBuilder(id: String, filterTerritory: [String]? = nil, fieldsInAppPurchasePricePoints: [FieldsInAppPurchasePricePoints_inAppPurchasesV2PricePointsGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_inAppPurchasesV2PricePointsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_inAppPurchasesV2PricePointsGetToManyRelated]? = nil) -> RequestBuilder<InAppPurchasePricePointsResponse> {
+    open class func inAppPurchasesV2PricePointsGetToManyRelatedWithRequestBuilder(id: String, filterTerritory: [String]? = nil, fieldsInAppPurchasePricePoints: [FieldsInAppPurchasePricePoints_inAppPurchasesV2PricePointsGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_inAppPurchasesV2PricePointsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_inAppPurchasesV2PricePointsGetToManyRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<InAppPurchasePricePointsResponse> {
         var localVariablePath = "/v2/inAppPurchases/{id}/pricePoints"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[territory]": (wrappedValue: filterTerritory?.encodeToJSON(), isExplode: false),
-            "fields[inAppPurchasePricePoints]": (wrappedValue: fieldsInAppPurchasePricePoints?.encodeToJSON(), isExplode: false),
-            "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "filter[territory]": (wrappedValue: filterTerritory?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[inAppPurchasePricePoints]": (wrappedValue: fieldsInAppPurchasePricePoints?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -1277,9 +1317,9 @@ open class InAppPurchasesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<InAppPurchasePricePointsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<InAppPurchasePricePointsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -1288,24 +1328,25 @@ open class InAppPurchasesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<InAppPurchasePricePointsResponse> 
      */
-    open class func inAppPurchasesV2PricePointsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<InAppPurchasePricePointsResponse> {
+    open class func inAppPurchasesV2PricePointsGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<InAppPurchasePricePointsResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<InAppPurchasePricePointsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<InAppPurchasePricePointsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsPromotedPurchases
      */
-    public enum FieldsPromotedPurchases_inAppPurchasesV2PromotedPurchaseGetToOneRelated: String, CaseIterable {
+    public enum FieldsPromotedPurchases_inAppPurchasesV2PromotedPurchaseGetToOneRelated: String, Sendable, CaseIterable {
         case visibleforallusers = "visibleForAllUsers"
         case enabled = "enabled"
         case state = "state"
@@ -1317,7 +1358,7 @@ open class InAppPurchasesAPI {
     /**
      * enum for parameter fieldsInAppPurchases
      */
-    public enum FieldsInAppPurchases_inAppPurchasesV2PromotedPurchaseGetToOneRelated: String, CaseIterable {
+    public enum FieldsInAppPurchases_inAppPurchasesV2PromotedPurchaseGetToOneRelated: String, Sendable, CaseIterable {
         case name = "name"
         case productid = "productId"
         case inapppurchasetype = "inAppPurchaseType"
@@ -1338,7 +1379,7 @@ open class InAppPurchasesAPI {
     /**
      * enum for parameter fieldsSubscriptions
      */
-    public enum FieldsSubscriptions_inAppPurchasesV2PromotedPurchaseGetToOneRelated: String, CaseIterable {
+    public enum FieldsSubscriptions_inAppPurchasesV2PromotedPurchaseGetToOneRelated: String, Sendable, CaseIterable {
         case name = "name"
         case productid = "productId"
         case familysharable = "familySharable"
@@ -1363,7 +1404,7 @@ open class InAppPurchasesAPI {
     /**
      * enum for parameter fieldsPromotedPurchaseImages
      */
-    public enum FieldsPromotedPurchaseImages_inAppPurchasesV2PromotedPurchaseGetToOneRelated: String, CaseIterable {
+    public enum FieldsPromotedPurchaseImages_inAppPurchasesV2PromotedPurchaseGetToOneRelated: String, Sendable, CaseIterable {
         case filesize = "fileSize"
         case filename = "fileName"
         case sourcefilechecksum = "sourceFileChecksum"
@@ -1378,7 +1419,7 @@ open class InAppPurchasesAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_inAppPurchasesV2PromotedPurchaseGetToOneRelated: String, CaseIterable {
+    public enum Include_inAppPurchasesV2PromotedPurchaseGetToOneRelated: String, Sendable, CaseIterable {
         case inapppurchasev2 = "inAppPurchaseV2"
         case subscription = "subscription"
         case promotionimages = "promotionImages"
@@ -1393,20 +1434,22 @@ open class InAppPurchasesAPI {
      - parameter fieldsPromotedPurchaseImages: (query) the fields to include for returned resources of type promotedPurchaseImages (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitPromotionImages: (query) maximum number of related promotionImages returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: PromotedPurchaseResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchasesV2PromotedPurchaseGetToOneRelated(id: String, fieldsPromotedPurchases: [FieldsPromotedPurchases_inAppPurchasesV2PromotedPurchaseGetToOneRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_inAppPurchasesV2PromotedPurchaseGetToOneRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_inAppPurchasesV2PromotedPurchaseGetToOneRelated]? = nil, fieldsPromotedPurchaseImages: [FieldsPromotedPurchaseImages_inAppPurchasesV2PromotedPurchaseGetToOneRelated]? = nil, include: [Include_inAppPurchasesV2PromotedPurchaseGetToOneRelated]? = nil, limitPromotionImages: Int? = nil) async throws -> PromotedPurchaseResponse {
-        return try await inAppPurchasesV2PromotedPurchaseGetToOneRelatedWithRequestBuilder(id: id, fieldsPromotedPurchases: fieldsPromotedPurchases, fieldsInAppPurchases: fieldsInAppPurchases, fieldsSubscriptions: fieldsSubscriptions, fieldsPromotedPurchaseImages: fieldsPromotedPurchaseImages, include: include, limitPromotionImages: limitPromotionImages).execute().body
+    open class func inAppPurchasesV2PromotedPurchaseGetToOneRelated(id: String, fieldsPromotedPurchases: [FieldsPromotedPurchases_inAppPurchasesV2PromotedPurchaseGetToOneRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_inAppPurchasesV2PromotedPurchaseGetToOneRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_inAppPurchasesV2PromotedPurchaseGetToOneRelated]? = nil, fieldsPromotedPurchaseImages: [FieldsPromotedPurchaseImages_inAppPurchasesV2PromotedPurchaseGetToOneRelated]? = nil, include: [Include_inAppPurchasesV2PromotedPurchaseGetToOneRelated]? = nil, limitPromotionImages: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> PromotedPurchaseResponse {
+        return try await inAppPurchasesV2PromotedPurchaseGetToOneRelatedWithRequestBuilder(id: id, fieldsPromotedPurchases: fieldsPromotedPurchases, fieldsInAppPurchases: fieldsInAppPurchases, fieldsSubscriptions: fieldsSubscriptions, fieldsPromotedPurchaseImages: fieldsPromotedPurchaseImages, include: include, limitPromotionImages: limitPromotionImages, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: PromotedPurchaseResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchasesV2PromotedPurchaseGetToOneRelated(urlString: String) async throws -> PromotedPurchaseResponse {
-        return try await inAppPurchasesV2PromotedPurchaseGetToOneRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func inAppPurchasesV2PromotedPurchaseGetToOneRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> PromotedPurchaseResponse {
+        return try await inAppPurchasesV2PromotedPurchaseGetToOneRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1421,24 +1464,25 @@ open class InAppPurchasesAPI {
      - parameter fieldsPromotedPurchaseImages: (query) the fields to include for returned resources of type promotedPurchaseImages (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitPromotionImages: (query) maximum number of related promotionImages returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<PromotedPurchaseResponse> 
      */
-    open class func inAppPurchasesV2PromotedPurchaseGetToOneRelatedWithRequestBuilder(id: String, fieldsPromotedPurchases: [FieldsPromotedPurchases_inAppPurchasesV2PromotedPurchaseGetToOneRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_inAppPurchasesV2PromotedPurchaseGetToOneRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_inAppPurchasesV2PromotedPurchaseGetToOneRelated]? = nil, fieldsPromotedPurchaseImages: [FieldsPromotedPurchaseImages_inAppPurchasesV2PromotedPurchaseGetToOneRelated]? = nil, include: [Include_inAppPurchasesV2PromotedPurchaseGetToOneRelated]? = nil, limitPromotionImages: Int? = nil) -> RequestBuilder<PromotedPurchaseResponse> {
+    open class func inAppPurchasesV2PromotedPurchaseGetToOneRelatedWithRequestBuilder(id: String, fieldsPromotedPurchases: [FieldsPromotedPurchases_inAppPurchasesV2PromotedPurchaseGetToOneRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_inAppPurchasesV2PromotedPurchaseGetToOneRelated]? = nil, fieldsSubscriptions: [FieldsSubscriptions_inAppPurchasesV2PromotedPurchaseGetToOneRelated]? = nil, fieldsPromotedPurchaseImages: [FieldsPromotedPurchaseImages_inAppPurchasesV2PromotedPurchaseGetToOneRelated]? = nil, include: [Include_inAppPurchasesV2PromotedPurchaseGetToOneRelated]? = nil, limitPromotionImages: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<PromotedPurchaseResponse> {
         var localVariablePath = "/v2/inAppPurchases/{id}/promotedPurchase"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[promotedPurchases]": (wrappedValue: fieldsPromotedPurchases?.encodeToJSON(), isExplode: false),
-            "fields[inAppPurchases]": (wrappedValue: fieldsInAppPurchases?.encodeToJSON(), isExplode: false),
-            "fields[subscriptions]": (wrappedValue: fieldsSubscriptions?.encodeToJSON(), isExplode: false),
-            "fields[promotedPurchaseImages]": (wrappedValue: fieldsPromotedPurchaseImages?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[promotionImages]": (wrappedValue: limitPromotionImages?.encodeToJSON(), isExplode: true),
+            "fields[promotedPurchases]": (wrappedValue: fieldsPromotedPurchases?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[inAppPurchases]": (wrappedValue: fieldsInAppPurchases?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[subscriptions]": (wrappedValue: fieldsSubscriptions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[promotedPurchaseImages]": (wrappedValue: fieldsPromotedPurchaseImages?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[promotionImages]": (wrappedValue: limitPromotionImages?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -1447,9 +1491,9 @@ open class InAppPurchasesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<PromotedPurchaseResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<PromotedPurchaseResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -1458,38 +1502,41 @@ open class InAppPurchasesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<PromotedPurchaseResponse> 
      */
-    open class func inAppPurchasesV2PromotedPurchaseGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<PromotedPurchaseResponse> {
+    open class func inAppPurchasesV2PromotedPurchaseGetToOneRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<PromotedPurchaseResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<PromotedPurchaseResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<PromotedPurchaseResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter inAppPurchaseV2UpdateRequest: (body) InAppPurchase representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: InAppPurchaseV2Response
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchasesV2UpdateInstance(id: String, inAppPurchaseV2UpdateRequest: InAppPurchaseV2UpdateRequest) async throws -> InAppPurchaseV2Response {
-        return try await inAppPurchasesV2UpdateInstanceWithRequestBuilder(id: id, inAppPurchaseV2UpdateRequest: inAppPurchaseV2UpdateRequest).execute().body
+    open class func inAppPurchasesV2UpdateInstance(id: String, inAppPurchaseV2UpdateRequest: InAppPurchaseV2UpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> InAppPurchaseV2Response {
+        return try await inAppPurchasesV2UpdateInstanceWithRequestBuilder(id: id, inAppPurchaseV2UpdateRequest: inAppPurchaseV2UpdateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: InAppPurchaseV2Response
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchasesV2UpdateInstance(urlString: String) async throws -> InAppPurchaseV2Response {
-        return try await inAppPurchasesV2UpdateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func inAppPurchasesV2UpdateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> InAppPurchaseV2Response {
+        return try await inAppPurchasesV2UpdateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1499,15 +1546,16 @@ open class InAppPurchasesAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter inAppPurchaseV2UpdateRequest: (body) InAppPurchase representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<InAppPurchaseV2Response> 
      */
-    open class func inAppPurchasesV2UpdateInstanceWithRequestBuilder(id: String, inAppPurchaseV2UpdateRequest: InAppPurchaseV2UpdateRequest) -> RequestBuilder<InAppPurchaseV2Response> {
+    open class func inAppPurchasesV2UpdateInstanceWithRequestBuilder(id: String, inAppPurchaseV2UpdateRequest: InAppPurchaseV2UpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<InAppPurchaseV2Response> {
         var localVariablePath = "/v2/inAppPurchases/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: inAppPurchaseV2UpdateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: inAppPurchaseV2UpdateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -1517,9 +1565,9 @@ open class InAppPurchasesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseV2Response>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseV2Response>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -1528,17 +1576,18 @@ open class InAppPurchasesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<InAppPurchaseV2Response> 
      */
-    open class func inAppPurchasesV2UpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<InAppPurchaseV2Response> {
+    open class func inAppPurchasesV2UpdateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<InAppPurchaseV2Response> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseV2Response>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseV2Response>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

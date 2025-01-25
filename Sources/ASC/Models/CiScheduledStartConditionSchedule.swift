@@ -6,19 +6,16 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct CiScheduledStartConditionSchedule: Codable, JSONEncodable, Hashable {
+public struct CiScheduledStartConditionSchedule: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum Frequency: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum Frequency: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case weekly = "WEEKLY"
         case daily = "DAILY"
         case hourly = "HOURLY"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
-    public enum Days: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum Days: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case sunday = "SUNDAY"
         case monday = "MONDAY"
         case tuesday = "TUESDAY"

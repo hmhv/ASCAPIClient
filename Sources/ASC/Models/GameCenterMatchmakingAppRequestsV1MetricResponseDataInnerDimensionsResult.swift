@@ -6,13 +6,10 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct GameCenterMatchmakingAppRequestsV1MetricResponseDataInnerDimensionsResult: Codable, JSONEncodable, Hashable {
+public struct GameCenterMatchmakingAppRequestsV1MetricResponseDataInnerDimensionsResult: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum ModelData: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum ModelData: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case matched = "MATCHED"
         case canceled = "CANCELED"
         case expired = "EXPIRED"

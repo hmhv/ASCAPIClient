@@ -6,13 +6,10 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct CiFilesAndFoldersRule: Codable, JSONEncodable, Hashable {
+public struct CiFilesAndFoldersRule: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum Mode: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum Mode: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case startIfAnyFileMatches = "START_IF_ANY_FILE_MATCHES"
         case doNotStartIfAllFilesMatch = "DO_NOT_START_IF_ALL_FILES_MATCH"
         case unknownDefaultOpenApi = "unknown_default_open_api"

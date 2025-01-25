@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppPreviewCreateRequestDataRelationshipsAppPreviewSet: Codable, JSONEncodable, Hashable {
+public struct AppPreviewCreateRequestDataRelationshipsAppPreviewSet: Sendable, Codable, JSONEncodable, Hashable {
 
     public var data: AppCustomProductPageLocalizationRelationshipsAppPreviewSetsDataInner
 

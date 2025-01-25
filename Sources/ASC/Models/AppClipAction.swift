@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public enum AppClipAction: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+public enum AppClipAction: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
     case _open = "OPEN"
     case view = "VIEW"
     case play = "PLAY"

@@ -6,13 +6,10 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AnalyticsReportRequestAttributes: Codable, JSONEncodable, Hashable {
+public struct AnalyticsReportRequestAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum AccessType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum AccessType: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case oneTimeSnapshot = "ONE_TIME_SNAPSHOT"
         case ongoing = "ONGOING"
         case unknownDefaultOpenApi = "unknown_default_open_api"

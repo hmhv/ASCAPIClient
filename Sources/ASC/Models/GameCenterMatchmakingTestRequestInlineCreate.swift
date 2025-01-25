@@ -6,13 +6,10 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct GameCenterMatchmakingTestRequestInlineCreate: Codable, JSONEncodable, Hashable {
+public struct GameCenterMatchmakingTestRequestInlineCreate: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum ModelType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum ModelType: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case gamecentermatchmakingtestrequests = "gameCenterMatchmakingTestRequests"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }

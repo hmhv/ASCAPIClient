@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppCategoriesWithoutIncludesResponse: Codable, JSONEncodable, Hashable {
+public struct AppCategoriesWithoutIncludesResponse: Sendable, Codable, JSONEncodable, Hashable {
 
     public var data: [AppCategory]
     public var links: PagedDocumentLinks

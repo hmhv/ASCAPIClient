@@ -6,12 +6,9 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 @available(*, deprecated, message: "This schema is deprecated.")
-public struct AppStoreVersionSubmissionCreateRequest: Codable, JSONEncodable, Hashable {
+public struct AppStoreVersionSubmissionCreateRequest: Sendable, Codable, JSONEncodable, Hashable {
 
     public var data: AppStoreVersionSubmissionCreateRequestData
 

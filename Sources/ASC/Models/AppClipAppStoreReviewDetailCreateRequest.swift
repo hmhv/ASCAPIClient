@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppClipAppStoreReviewDetailCreateRequest: Codable, JSONEncodable, Hashable {
+public struct AppClipAppStoreReviewDetailCreateRequest: Sendable, Codable, JSONEncodable, Hashable {
 
     public var data: AppClipAppStoreReviewDetailCreateRequestData
 

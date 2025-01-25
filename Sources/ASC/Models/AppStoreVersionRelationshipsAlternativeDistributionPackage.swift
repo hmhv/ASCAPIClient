@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppStoreVersionRelationshipsAlternativeDistributionPackage: Codable, JSONEncodable, Hashable {
+public struct AppStoreVersionRelationshipsAlternativeDistributionPackage: Sendable, Codable, JSONEncodable, Hashable {
 
     public var links: RelationshipLinks?
     public var data: AlternativeDistributionPackageVersionRelationshipsAlternativeDistributionPackageData?

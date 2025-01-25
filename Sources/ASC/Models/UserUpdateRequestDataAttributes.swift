@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct UserUpdateRequestDataAttributes: Codable, JSONEncodable, Hashable {
+public struct UserUpdateRequestDataAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
     public var roles: [UserRole]?
     public var allAppsVisible: Bool?

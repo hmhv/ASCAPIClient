@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct BetaAppLocalizationUpdateRequestDataAttributes: Codable, JSONEncodable, Hashable {
+public struct BetaAppLocalizationUpdateRequestDataAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
     public var feedbackEmail: String?
     public var marketingUrl: String?

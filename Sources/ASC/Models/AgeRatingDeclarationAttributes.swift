@@ -6,91 +6,88 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AgeRatingDeclarationAttributes: Codable, JSONEncodable, Hashable {
+public struct AgeRatingDeclarationAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum AlcoholTobaccoOrDrugUseOrReferences: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum AlcoholTobaccoOrDrugUseOrReferences: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case _none = "NONE"
         case infrequentOrMild = "INFREQUENT_OR_MILD"
         case frequentOrIntense = "FREQUENT_OR_INTENSE"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
-    public enum Contests: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum Contests: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case _none = "NONE"
         case infrequentOrMild = "INFREQUENT_OR_MILD"
         case frequentOrIntense = "FREQUENT_OR_INTENSE"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
-    public enum GamblingSimulated: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum GamblingSimulated: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case _none = "NONE"
         case infrequentOrMild = "INFREQUENT_OR_MILD"
         case frequentOrIntense = "FREQUENT_OR_INTENSE"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
-    public enum MedicalOrTreatmentInformation: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum MedicalOrTreatmentInformation: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case _none = "NONE"
         case infrequentOrMild = "INFREQUENT_OR_MILD"
         case frequentOrIntense = "FREQUENT_OR_INTENSE"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
-    public enum ProfanityOrCrudeHumor: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum ProfanityOrCrudeHumor: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case _none = "NONE"
         case infrequentOrMild = "INFREQUENT_OR_MILD"
         case frequentOrIntense = "FREQUENT_OR_INTENSE"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
-    public enum SexualContentGraphicAndNudity: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum SexualContentGraphicAndNudity: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case _none = "NONE"
         case infrequentOrMild = "INFREQUENT_OR_MILD"
         case frequentOrIntense = "FREQUENT_OR_INTENSE"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
-    public enum SexualContentOrNudity: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum SexualContentOrNudity: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case _none = "NONE"
         case infrequentOrMild = "INFREQUENT_OR_MILD"
         case frequentOrIntense = "FREQUENT_OR_INTENSE"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
-    public enum HorrorOrFearThemes: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum HorrorOrFearThemes: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case _none = "NONE"
         case infrequentOrMild = "INFREQUENT_OR_MILD"
         case frequentOrIntense = "FREQUENT_OR_INTENSE"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
-    public enum MatureOrSuggestiveThemes: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum MatureOrSuggestiveThemes: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case _none = "NONE"
         case infrequentOrMild = "INFREQUENT_OR_MILD"
         case frequentOrIntense = "FREQUENT_OR_INTENSE"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
-    public enum ViolenceCartoonOrFantasy: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum ViolenceCartoonOrFantasy: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case _none = "NONE"
         case infrequentOrMild = "INFREQUENT_OR_MILD"
         case frequentOrIntense = "FREQUENT_OR_INTENSE"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
-    public enum ViolenceRealisticProlongedGraphicOrSadistic: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum ViolenceRealisticProlongedGraphicOrSadistic: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case _none = "NONE"
         case infrequentOrMild = "INFREQUENT_OR_MILD"
         case frequentOrIntense = "FREQUENT_OR_INTENSE"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
-    public enum ViolenceRealistic: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum ViolenceRealistic: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case _none = "NONE"
         case infrequentOrMild = "INFREQUENT_OR_MILD"
         case frequentOrIntense = "FREQUENT_OR_INTENSE"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
-    public enum AgeRatingOverride: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum AgeRatingOverride: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case _none = "NONE"
         case seventeenPlus = "SEVENTEEN_PLUS"
         case unrated = "UNRATED"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
-    public enum KoreaAgeRatingOverride: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum KoreaAgeRatingOverride: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case _none = "NONE"
         case fifteenPlus = "FIFTEEN_PLUS"
         case nineteenPlus = "NINETEEN_PLUS"

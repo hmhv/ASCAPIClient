@@ -6,29 +6,28 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class EndUserLicenseAgreementsAPI {
 
     /**
 
      - parameter endUserLicenseAgreementCreateRequest: (body) EndUserLicenseAgreement representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: EndUserLicenseAgreementResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func endUserLicenseAgreementsCreateInstance(endUserLicenseAgreementCreateRequest: EndUserLicenseAgreementCreateRequest) async throws -> EndUserLicenseAgreementResponse {
-        return try await endUserLicenseAgreementsCreateInstanceWithRequestBuilder(endUserLicenseAgreementCreateRequest: endUserLicenseAgreementCreateRequest).execute().body
+    open class func endUserLicenseAgreementsCreateInstance(endUserLicenseAgreementCreateRequest: EndUserLicenseAgreementCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> EndUserLicenseAgreementResponse {
+        return try await endUserLicenseAgreementsCreateInstanceWithRequestBuilder(endUserLicenseAgreementCreateRequest: endUserLicenseAgreementCreateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: EndUserLicenseAgreementResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func endUserLicenseAgreementsCreateInstance(urlString: String) async throws -> EndUserLicenseAgreementResponse {
-        return try await endUserLicenseAgreementsCreateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func endUserLicenseAgreementsCreateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> EndUserLicenseAgreementResponse {
+        return try await endUserLicenseAgreementsCreateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -37,12 +36,13 @@ open class EndUserLicenseAgreementsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter endUserLicenseAgreementCreateRequest: (body) EndUserLicenseAgreement representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<EndUserLicenseAgreementResponse> 
      */
-    open class func endUserLicenseAgreementsCreateInstanceWithRequestBuilder(endUserLicenseAgreementCreateRequest: EndUserLicenseAgreementCreateRequest) -> RequestBuilder<EndUserLicenseAgreementResponse> {
+    open class func endUserLicenseAgreementsCreateInstanceWithRequestBuilder(endUserLicenseAgreementCreateRequest: EndUserLicenseAgreementCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<EndUserLicenseAgreementResponse> {
         let localVariablePath = "/v1/endUserLicenseAgreements"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: endUserLicenseAgreementCreateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: endUserLicenseAgreementCreateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -52,9 +52,9 @@ open class EndUserLicenseAgreementsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<EndUserLicenseAgreementResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<EndUserLicenseAgreementResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -63,37 +63,40 @@ open class EndUserLicenseAgreementsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<EndUserLicenseAgreementResponse> 
      */
-    open class func endUserLicenseAgreementsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<EndUserLicenseAgreementResponse> {
+    open class func endUserLicenseAgreementsCreateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<EndUserLicenseAgreementResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<EndUserLicenseAgreementResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<EndUserLicenseAgreementResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func endUserLicenseAgreementsDeleteInstance(id: String) async throws {
-        return try await endUserLicenseAgreementsDeleteInstanceWithRequestBuilder(id: id).execute().body
+    open class func endUserLicenseAgreementsDeleteInstance(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await endUserLicenseAgreementsDeleteInstanceWithRequestBuilder(id: id, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func endUserLicenseAgreementsDeleteInstance(urlString: String) async throws {
-        return try await endUserLicenseAgreementsDeleteInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func endUserLicenseAgreementsDeleteInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await endUserLicenseAgreementsDeleteInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -102,14 +105,15 @@ open class EndUserLicenseAgreementsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func endUserLicenseAgreementsDeleteInstanceWithRequestBuilder(id: String) -> RequestBuilder<Void> {
+    open class func endUserLicenseAgreementsDeleteInstanceWithRequestBuilder(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/endUserLicenseAgreements/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -120,9 +124,9 @@ open class EndUserLicenseAgreementsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -131,24 +135,25 @@ open class EndUserLicenseAgreementsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func endUserLicenseAgreementsDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func endUserLicenseAgreementsDeleteInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsEndUserLicenseAgreements
      */
-    public enum FieldsEndUserLicenseAgreements_endUserLicenseAgreementsGetInstance: String, CaseIterable {
+    public enum FieldsEndUserLicenseAgreements_endUserLicenseAgreementsGetInstance: String, Sendable, CaseIterable {
         case agreementtext = "agreementText"
         case app = "app"
         case territories = "territories"
@@ -157,14 +162,14 @@ open class EndUserLicenseAgreementsAPI {
     /**
      * enum for parameter fieldsTerritories
      */
-    public enum FieldsTerritories_endUserLicenseAgreementsGetInstance: String, CaseIterable {
+    public enum FieldsTerritories_endUserLicenseAgreementsGetInstance: String, Sendable, CaseIterable {
         case currency = "currency"
     }
 
     /**
      * enum for parameter include
      */
-    public enum Include_endUserLicenseAgreementsGetInstance: String, CaseIterable {
+    public enum Include_endUserLicenseAgreementsGetInstance: String, Sendable, CaseIterable {
         case app = "app"
         case territories = "territories"
     }
@@ -176,20 +181,22 @@ open class EndUserLicenseAgreementsAPI {
      - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitTerritories: (query) maximum number of related territories returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: EndUserLicenseAgreementResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func endUserLicenseAgreementsGetInstance(id: String, fieldsEndUserLicenseAgreements: [FieldsEndUserLicenseAgreements_endUserLicenseAgreementsGetInstance]? = nil, fieldsTerritories: [FieldsTerritories_endUserLicenseAgreementsGetInstance]? = nil, include: [Include_endUserLicenseAgreementsGetInstance]? = nil, limitTerritories: Int? = nil) async throws -> EndUserLicenseAgreementResponse {
-        return try await endUserLicenseAgreementsGetInstanceWithRequestBuilder(id: id, fieldsEndUserLicenseAgreements: fieldsEndUserLicenseAgreements, fieldsTerritories: fieldsTerritories, include: include, limitTerritories: limitTerritories).execute().body
+    open class func endUserLicenseAgreementsGetInstance(id: String, fieldsEndUserLicenseAgreements: [FieldsEndUserLicenseAgreements_endUserLicenseAgreementsGetInstance]? = nil, fieldsTerritories: [FieldsTerritories_endUserLicenseAgreementsGetInstance]? = nil, include: [Include_endUserLicenseAgreementsGetInstance]? = nil, limitTerritories: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> EndUserLicenseAgreementResponse {
+        return try await endUserLicenseAgreementsGetInstanceWithRequestBuilder(id: id, fieldsEndUserLicenseAgreements: fieldsEndUserLicenseAgreements, fieldsTerritories: fieldsTerritories, include: include, limitTerritories: limitTerritories, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: EndUserLicenseAgreementResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func endUserLicenseAgreementsGetInstance(urlString: String) async throws -> EndUserLicenseAgreementResponse {
-        return try await endUserLicenseAgreementsGetInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func endUserLicenseAgreementsGetInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> EndUserLicenseAgreementResponse {
+        return try await endUserLicenseAgreementsGetInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -202,22 +209,23 @@ open class EndUserLicenseAgreementsAPI {
      - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitTerritories: (query) maximum number of related territories returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<EndUserLicenseAgreementResponse> 
      */
-    open class func endUserLicenseAgreementsGetInstanceWithRequestBuilder(id: String, fieldsEndUserLicenseAgreements: [FieldsEndUserLicenseAgreements_endUserLicenseAgreementsGetInstance]? = nil, fieldsTerritories: [FieldsTerritories_endUserLicenseAgreementsGetInstance]? = nil, include: [Include_endUserLicenseAgreementsGetInstance]? = nil, limitTerritories: Int? = nil) -> RequestBuilder<EndUserLicenseAgreementResponse> {
+    open class func endUserLicenseAgreementsGetInstanceWithRequestBuilder(id: String, fieldsEndUserLicenseAgreements: [FieldsEndUserLicenseAgreements_endUserLicenseAgreementsGetInstance]? = nil, fieldsTerritories: [FieldsTerritories_endUserLicenseAgreementsGetInstance]? = nil, include: [Include_endUserLicenseAgreementsGetInstance]? = nil, limitTerritories: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<EndUserLicenseAgreementResponse> {
         var localVariablePath = "/v1/endUserLicenseAgreements/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[endUserLicenseAgreements]": (wrappedValue: fieldsEndUserLicenseAgreements?.encodeToJSON(), isExplode: false),
-            "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[territories]": (wrappedValue: limitTerritories?.encodeToJSON(), isExplode: true),
+            "fields[endUserLicenseAgreements]": (wrappedValue: fieldsEndUserLicenseAgreements?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[territories]": (wrappedValue: limitTerritories?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -226,9 +234,9 @@ open class EndUserLicenseAgreementsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<EndUserLicenseAgreementResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<EndUserLicenseAgreementResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -237,24 +245,25 @@ open class EndUserLicenseAgreementsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<EndUserLicenseAgreementResponse> 
      */
-    open class func endUserLicenseAgreementsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<EndUserLicenseAgreementResponse> {
+    open class func endUserLicenseAgreementsGetInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<EndUserLicenseAgreementResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<EndUserLicenseAgreementResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<EndUserLicenseAgreementResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsTerritories
      */
-    public enum FieldsTerritories_endUserLicenseAgreementsTerritoriesGetToManyRelated: String, CaseIterable {
+    public enum FieldsTerritories_endUserLicenseAgreementsTerritoriesGetToManyRelated: String, Sendable, CaseIterable {
         case currency = "currency"
     }
 
@@ -263,20 +272,22 @@ open class EndUserLicenseAgreementsAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: TerritoriesWithoutIncludesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func endUserLicenseAgreementsTerritoriesGetToManyRelated(id: String, fieldsTerritories: [FieldsTerritories_endUserLicenseAgreementsTerritoriesGetToManyRelated]? = nil, limit: Int? = nil) async throws -> TerritoriesWithoutIncludesResponse {
-        return try await endUserLicenseAgreementsTerritoriesGetToManyRelatedWithRequestBuilder(id: id, fieldsTerritories: fieldsTerritories, limit: limit).execute().body
+    open class func endUserLicenseAgreementsTerritoriesGetToManyRelated(id: String, fieldsTerritories: [FieldsTerritories_endUserLicenseAgreementsTerritoriesGetToManyRelated]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> TerritoriesWithoutIncludesResponse {
+        return try await endUserLicenseAgreementsTerritoriesGetToManyRelatedWithRequestBuilder(id: id, fieldsTerritories: fieldsTerritories, limit: limit, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: TerritoriesWithoutIncludesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func endUserLicenseAgreementsTerritoriesGetToManyRelated(urlString: String) async throws -> TerritoriesWithoutIncludesResponse {
-        return try await endUserLicenseAgreementsTerritoriesGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func endUserLicenseAgreementsTerritoriesGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> TerritoriesWithoutIncludesResponse {
+        return try await endUserLicenseAgreementsTerritoriesGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -287,20 +298,21 @@ open class EndUserLicenseAgreementsAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<TerritoriesWithoutIncludesResponse> 
      */
-    open class func endUserLicenseAgreementsTerritoriesGetToManyRelatedWithRequestBuilder(id: String, fieldsTerritories: [FieldsTerritories_endUserLicenseAgreementsTerritoriesGetToManyRelated]? = nil, limit: Int? = nil) -> RequestBuilder<TerritoriesWithoutIncludesResponse> {
+    open class func endUserLicenseAgreementsTerritoriesGetToManyRelatedWithRequestBuilder(id: String, fieldsTerritories: [FieldsTerritories_endUserLicenseAgreementsTerritoriesGetToManyRelated]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<TerritoriesWithoutIncludesResponse> {
         var localVariablePath = "/v1/endUserLicenseAgreements/{id}/territories"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -309,9 +321,9 @@ open class EndUserLicenseAgreementsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<TerritoriesWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<TerritoriesWithoutIncludesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -320,38 +332,41 @@ open class EndUserLicenseAgreementsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<TerritoriesWithoutIncludesResponse> 
      */
-    open class func endUserLicenseAgreementsTerritoriesGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<TerritoriesWithoutIncludesResponse> {
+    open class func endUserLicenseAgreementsTerritoriesGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<TerritoriesWithoutIncludesResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<TerritoriesWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<TerritoriesWithoutIncludesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter endUserLicenseAgreementUpdateRequest: (body) EndUserLicenseAgreement representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: EndUserLicenseAgreementResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func endUserLicenseAgreementsUpdateInstance(id: String, endUserLicenseAgreementUpdateRequest: EndUserLicenseAgreementUpdateRequest) async throws -> EndUserLicenseAgreementResponse {
-        return try await endUserLicenseAgreementsUpdateInstanceWithRequestBuilder(id: id, endUserLicenseAgreementUpdateRequest: endUserLicenseAgreementUpdateRequest).execute().body
+    open class func endUserLicenseAgreementsUpdateInstance(id: String, endUserLicenseAgreementUpdateRequest: EndUserLicenseAgreementUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> EndUserLicenseAgreementResponse {
+        return try await endUserLicenseAgreementsUpdateInstanceWithRequestBuilder(id: id, endUserLicenseAgreementUpdateRequest: endUserLicenseAgreementUpdateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: EndUserLicenseAgreementResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func endUserLicenseAgreementsUpdateInstance(urlString: String) async throws -> EndUserLicenseAgreementResponse {
-        return try await endUserLicenseAgreementsUpdateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func endUserLicenseAgreementsUpdateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> EndUserLicenseAgreementResponse {
+        return try await endUserLicenseAgreementsUpdateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -361,15 +376,16 @@ open class EndUserLicenseAgreementsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter endUserLicenseAgreementUpdateRequest: (body) EndUserLicenseAgreement representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<EndUserLicenseAgreementResponse> 
      */
-    open class func endUserLicenseAgreementsUpdateInstanceWithRequestBuilder(id: String, endUserLicenseAgreementUpdateRequest: EndUserLicenseAgreementUpdateRequest) -> RequestBuilder<EndUserLicenseAgreementResponse> {
+    open class func endUserLicenseAgreementsUpdateInstanceWithRequestBuilder(id: String, endUserLicenseAgreementUpdateRequest: EndUserLicenseAgreementUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<EndUserLicenseAgreementResponse> {
         var localVariablePath = "/v1/endUserLicenseAgreements/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: endUserLicenseAgreementUpdateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: endUserLicenseAgreementUpdateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -379,9 +395,9 @@ open class EndUserLicenseAgreementsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<EndUserLicenseAgreementResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<EndUserLicenseAgreementResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -390,17 +406,18 @@ open class EndUserLicenseAgreementsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<EndUserLicenseAgreementResponse> 
      */
-    open class func endUserLicenseAgreementsUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<EndUserLicenseAgreementResponse> {
+    open class func endUserLicenseAgreementsUpdateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<EndUserLicenseAgreementResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<EndUserLicenseAgreementResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<EndUserLicenseAgreementResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

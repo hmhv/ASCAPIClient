@@ -6,13 +6,10 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct CustomerReviewResponseV1Attributes: Codable, JSONEncodable, Hashable {
+public struct CustomerReviewResponseV1Attributes: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum State: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum State: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case published = "PUBLISHED"
         case pendingPublish = "PENDING_PUBLISH"
         case unknownDefaultOpenApi = "unknown_default_open_api"

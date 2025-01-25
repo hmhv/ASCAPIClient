@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct CiBuildRunAttributesSourceCommit: Codable, JSONEncodable, Hashable {
+public struct CiBuildRunAttributesSourceCommit: Sendable, Codable, JSONEncodable, Hashable {
 
     public var commitSha: String?
     public var message: String?

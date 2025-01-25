@@ -6,16 +6,13 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class ProfilesAPI {
 
     /**
      * enum for parameter fieldsBundleIds
      */
-    public enum FieldsBundleIds_profilesBundleIdGetToOneRelated: String, CaseIterable {
+    public enum FieldsBundleIds_profilesBundleIdGetToOneRelated: String, Sendable, CaseIterable {
         case name = "name"
         case platform = "platform"
         case identifier = "identifier"
@@ -29,20 +26,22 @@ open class ProfilesAPI {
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsBundleIds: (query) the fields to include for returned resources of type bundleIds (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BundleIdWithoutIncludesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func profilesBundleIdGetToOneRelated(id: String, fieldsBundleIds: [FieldsBundleIds_profilesBundleIdGetToOneRelated]? = nil) async throws -> BundleIdWithoutIncludesResponse {
-        return try await profilesBundleIdGetToOneRelatedWithRequestBuilder(id: id, fieldsBundleIds: fieldsBundleIds).execute().body
+    open class func profilesBundleIdGetToOneRelated(id: String, fieldsBundleIds: [FieldsBundleIds_profilesBundleIdGetToOneRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BundleIdWithoutIncludesResponse {
+        return try await profilesBundleIdGetToOneRelatedWithRequestBuilder(id: id, fieldsBundleIds: fieldsBundleIds, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BundleIdWithoutIncludesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func profilesBundleIdGetToOneRelated(urlString: String) async throws -> BundleIdWithoutIncludesResponse {
-        return try await profilesBundleIdGetToOneRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func profilesBundleIdGetToOneRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BundleIdWithoutIncludesResponse {
+        return try await profilesBundleIdGetToOneRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -52,19 +51,20 @@ open class ProfilesAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsBundleIds: (query) the fields to include for returned resources of type bundleIds (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BundleIdWithoutIncludesResponse> 
      */
-    open class func profilesBundleIdGetToOneRelatedWithRequestBuilder(id: String, fieldsBundleIds: [FieldsBundleIds_profilesBundleIdGetToOneRelated]? = nil) -> RequestBuilder<BundleIdWithoutIncludesResponse> {
+    open class func profilesBundleIdGetToOneRelatedWithRequestBuilder(id: String, fieldsBundleIds: [FieldsBundleIds_profilesBundleIdGetToOneRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BundleIdWithoutIncludesResponse> {
         var localVariablePath = "/v1/profiles/{id}/bundleId"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[bundleIds]": (wrappedValue: fieldsBundleIds?.encodeToJSON(), isExplode: false),
+            "fields[bundleIds]": (wrappedValue: fieldsBundleIds?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -73,9 +73,9 @@ open class ProfilesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BundleIdWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BundleIdWithoutIncludesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -84,24 +84,25 @@ open class ProfilesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BundleIdWithoutIncludesResponse> 
      */
-    open class func profilesBundleIdGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<BundleIdWithoutIncludesResponse> {
+    open class func profilesBundleIdGetToOneRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BundleIdWithoutIncludesResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BundleIdWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BundleIdWithoutIncludesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsCertificates
      */
-    public enum FieldsCertificates_profilesCertificatesGetToManyRelated: String, CaseIterable {
+    public enum FieldsCertificates_profilesCertificatesGetToManyRelated: String, Sendable, CaseIterable {
         case name = "name"
         case certificatetype = "certificateType"
         case displayname = "displayName"
@@ -116,20 +117,22 @@ open class ProfilesAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsCertificates: (query) the fields to include for returned resources of type certificates (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: CertificatesWithoutIncludesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func profilesCertificatesGetToManyRelated(id: String, fieldsCertificates: [FieldsCertificates_profilesCertificatesGetToManyRelated]? = nil, limit: Int? = nil) async throws -> CertificatesWithoutIncludesResponse {
-        return try await profilesCertificatesGetToManyRelatedWithRequestBuilder(id: id, fieldsCertificates: fieldsCertificates, limit: limit).execute().body
+    open class func profilesCertificatesGetToManyRelated(id: String, fieldsCertificates: [FieldsCertificates_profilesCertificatesGetToManyRelated]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> CertificatesWithoutIncludesResponse {
+        return try await profilesCertificatesGetToManyRelatedWithRequestBuilder(id: id, fieldsCertificates: fieldsCertificates, limit: limit, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: CertificatesWithoutIncludesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func profilesCertificatesGetToManyRelated(urlString: String) async throws -> CertificatesWithoutIncludesResponse {
-        return try await profilesCertificatesGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func profilesCertificatesGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> CertificatesWithoutIncludesResponse {
+        return try await profilesCertificatesGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -140,20 +143,21 @@ open class ProfilesAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsCertificates: (query) the fields to include for returned resources of type certificates (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CertificatesWithoutIncludesResponse> 
      */
-    open class func profilesCertificatesGetToManyRelatedWithRequestBuilder(id: String, fieldsCertificates: [FieldsCertificates_profilesCertificatesGetToManyRelated]? = nil, limit: Int? = nil) -> RequestBuilder<CertificatesWithoutIncludesResponse> {
+    open class func profilesCertificatesGetToManyRelatedWithRequestBuilder(id: String, fieldsCertificates: [FieldsCertificates_profilesCertificatesGetToManyRelated]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<CertificatesWithoutIncludesResponse> {
         var localVariablePath = "/v1/profiles/{id}/certificates"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[certificates]": (wrappedValue: fieldsCertificates?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "fields[certificates]": (wrappedValue: fieldsCertificates?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -162,9 +166,9 @@ open class ProfilesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CertificatesWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CertificatesWithoutIncludesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -173,37 +177,40 @@ open class ProfilesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CertificatesWithoutIncludesResponse> 
      */
-    open class func profilesCertificatesGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<CertificatesWithoutIncludesResponse> {
+    open class func profilesCertificatesGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<CertificatesWithoutIncludesResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CertificatesWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CertificatesWithoutIncludesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter profileCreateRequest: (body) Profile representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: ProfileResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func profilesCreateInstance(profileCreateRequest: ProfileCreateRequest) async throws -> ProfileResponse {
-        return try await profilesCreateInstanceWithRequestBuilder(profileCreateRequest: profileCreateRequest).execute().body
+    open class func profilesCreateInstance(profileCreateRequest: ProfileCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> ProfileResponse {
+        return try await profilesCreateInstanceWithRequestBuilder(profileCreateRequest: profileCreateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: ProfileResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func profilesCreateInstance(urlString: String) async throws -> ProfileResponse {
-        return try await profilesCreateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func profilesCreateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> ProfileResponse {
+        return try await profilesCreateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -212,12 +219,13 @@ open class ProfilesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter profileCreateRequest: (body) Profile representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ProfileResponse> 
      */
-    open class func profilesCreateInstanceWithRequestBuilder(profileCreateRequest: ProfileCreateRequest) -> RequestBuilder<ProfileResponse> {
+    open class func profilesCreateInstanceWithRequestBuilder(profileCreateRequest: ProfileCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<ProfileResponse> {
         let localVariablePath = "/v1/profiles"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: profileCreateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: profileCreateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -227,9 +235,9 @@ open class ProfilesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<ProfileResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<ProfileResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -238,37 +246,40 @@ open class ProfilesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ProfileResponse> 
      */
-    open class func profilesCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<ProfileResponse> {
+    open class func profilesCreateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<ProfileResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<ProfileResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<ProfileResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func profilesDeleteInstance(id: String) async throws {
-        return try await profilesDeleteInstanceWithRequestBuilder(id: id).execute().body
+    open class func profilesDeleteInstance(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await profilesDeleteInstanceWithRequestBuilder(id: id, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func profilesDeleteInstance(urlString: String) async throws {
-        return try await profilesDeleteInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func profilesDeleteInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await profilesDeleteInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -277,14 +288,15 @@ open class ProfilesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func profilesDeleteInstanceWithRequestBuilder(id: String) -> RequestBuilder<Void> {
+    open class func profilesDeleteInstanceWithRequestBuilder(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/profiles/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -295,9 +307,9 @@ open class ProfilesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -306,24 +318,25 @@ open class ProfilesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func profilesDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func profilesDeleteInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsDevices
      */
-    public enum FieldsDevices_profilesDevicesGetToManyRelated: String, CaseIterable {
+    public enum FieldsDevices_profilesDevicesGetToManyRelated: String, Sendable, CaseIterable {
         case name = "name"
         case platform = "platform"
         case udid = "udid"
@@ -338,20 +351,22 @@ open class ProfilesAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsDevices: (query) the fields to include for returned resources of type devices (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: DevicesWithoutIncludesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func profilesDevicesGetToManyRelated(id: String, fieldsDevices: [FieldsDevices_profilesDevicesGetToManyRelated]? = nil, limit: Int? = nil) async throws -> DevicesWithoutIncludesResponse {
-        return try await profilesDevicesGetToManyRelatedWithRequestBuilder(id: id, fieldsDevices: fieldsDevices, limit: limit).execute().body
+    open class func profilesDevicesGetToManyRelated(id: String, fieldsDevices: [FieldsDevices_profilesDevicesGetToManyRelated]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> DevicesWithoutIncludesResponse {
+        return try await profilesDevicesGetToManyRelatedWithRequestBuilder(id: id, fieldsDevices: fieldsDevices, limit: limit, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: DevicesWithoutIncludesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func profilesDevicesGetToManyRelated(urlString: String) async throws -> DevicesWithoutIncludesResponse {
-        return try await profilesDevicesGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func profilesDevicesGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> DevicesWithoutIncludesResponse {
+        return try await profilesDevicesGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -362,20 +377,21 @@ open class ProfilesAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsDevices: (query) the fields to include for returned resources of type devices (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<DevicesWithoutIncludesResponse> 
      */
-    open class func profilesDevicesGetToManyRelatedWithRequestBuilder(id: String, fieldsDevices: [FieldsDevices_profilesDevicesGetToManyRelated]? = nil, limit: Int? = nil) -> RequestBuilder<DevicesWithoutIncludesResponse> {
+    open class func profilesDevicesGetToManyRelatedWithRequestBuilder(id: String, fieldsDevices: [FieldsDevices_profilesDevicesGetToManyRelated]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<DevicesWithoutIncludesResponse> {
         var localVariablePath = "/v1/profiles/{id}/devices"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[devices]": (wrappedValue: fieldsDevices?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "fields[devices]": (wrappedValue: fieldsDevices?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -384,9 +400,9 @@ open class ProfilesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<DevicesWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<DevicesWithoutIncludesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -395,24 +411,25 @@ open class ProfilesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<DevicesWithoutIncludesResponse> 
      */
-    open class func profilesDevicesGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<DevicesWithoutIncludesResponse> {
+    open class func profilesDevicesGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<DevicesWithoutIncludesResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<DevicesWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<DevicesWithoutIncludesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter filterProfileType
      */
-    public enum FilterProfileType_profilesGetCollection: String, CaseIterable {
+    public enum FilterProfileType_profilesGetCollection: String, Sendable, CaseIterable {
         case iosAppDevelopment = "IOS_APP_DEVELOPMENT"
         case iosAppStore = "IOS_APP_STORE"
         case iosAppAdhoc = "IOS_APP_ADHOC"
@@ -432,7 +449,7 @@ open class ProfilesAPI {
     /**
      * enum for parameter filterProfileState
      */
-    public enum FilterProfileState_profilesGetCollection: String, CaseIterable {
+    public enum FilterProfileState_profilesGetCollection: String, Sendable, CaseIterable {
         case active = "ACTIVE"
         case invalid = "INVALID"
     }
@@ -440,7 +457,7 @@ open class ProfilesAPI {
     /**
      * enum for parameter sort
      */
-    public enum Sort_profilesGetCollection: String, CaseIterable {
+    public enum Sort_profilesGetCollection: String, Sendable, CaseIterable {
         case name = "name"
         case name2 = "-name"
         case profiletype = "profileType"
@@ -454,7 +471,7 @@ open class ProfilesAPI {
     /**
      * enum for parameter fieldsProfiles
      */
-    public enum FieldsProfiles_profilesGetCollection: String, CaseIterable {
+    public enum FieldsProfiles_profilesGetCollection: String, Sendable, CaseIterable {
         case name = "name"
         case platform = "platform"
         case profiletype = "profileType"
@@ -471,7 +488,7 @@ open class ProfilesAPI {
     /**
      * enum for parameter fieldsBundleIds
      */
-    public enum FieldsBundleIds_profilesGetCollection: String, CaseIterable {
+    public enum FieldsBundleIds_profilesGetCollection: String, Sendable, CaseIterable {
         case name = "name"
         case platform = "platform"
         case identifier = "identifier"
@@ -484,7 +501,7 @@ open class ProfilesAPI {
     /**
      * enum for parameter fieldsDevices
      */
-    public enum FieldsDevices_profilesGetCollection: String, CaseIterable {
+    public enum FieldsDevices_profilesGetCollection: String, Sendable, CaseIterable {
         case name = "name"
         case platform = "platform"
         case udid = "udid"
@@ -497,7 +514,7 @@ open class ProfilesAPI {
     /**
      * enum for parameter fieldsCertificates
      */
-    public enum FieldsCertificates_profilesGetCollection: String, CaseIterable {
+    public enum FieldsCertificates_profilesGetCollection: String, Sendable, CaseIterable {
         case name = "name"
         case certificatetype = "certificateType"
         case displayname = "displayName"
@@ -510,7 +527,7 @@ open class ProfilesAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_profilesGetCollection: String, CaseIterable {
+    public enum Include_profilesGetCollection: String, Sendable, CaseIterable {
         case bundleid = "bundleId"
         case devices = "devices"
         case certificates = "certificates"
@@ -531,20 +548,22 @@ open class ProfilesAPI {
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitCertificates: (query) maximum number of related certificates returned (when they are included) (optional)
      - parameter limitDevices: (query) maximum number of related devices returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: ProfilesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func profilesGetCollection(filterName: [String]? = nil, filterProfileType: [FilterProfileType_profilesGetCollection]? = nil, filterProfileState: [FilterProfileState_profilesGetCollection]? = nil, filterId: [String]? = nil, sort: [Sort_profilesGetCollection]? = nil, fieldsProfiles: [FieldsProfiles_profilesGetCollection]? = nil, fieldsBundleIds: [FieldsBundleIds_profilesGetCollection]? = nil, fieldsDevices: [FieldsDevices_profilesGetCollection]? = nil, fieldsCertificates: [FieldsCertificates_profilesGetCollection]? = nil, limit: Int? = nil, include: [Include_profilesGetCollection]? = nil, limitCertificates: Int? = nil, limitDevices: Int? = nil) async throws -> ProfilesResponse {
-        return try await profilesGetCollectionWithRequestBuilder(filterName: filterName, filterProfileType: filterProfileType, filterProfileState: filterProfileState, filterId: filterId, sort: sort, fieldsProfiles: fieldsProfiles, fieldsBundleIds: fieldsBundleIds, fieldsDevices: fieldsDevices, fieldsCertificates: fieldsCertificates, limit: limit, include: include, limitCertificates: limitCertificates, limitDevices: limitDevices).execute().body
+    open class func profilesGetCollection(filterName: [String]? = nil, filterProfileType: [FilterProfileType_profilesGetCollection]? = nil, filterProfileState: [FilterProfileState_profilesGetCollection]? = nil, filterId: [String]? = nil, sort: [Sort_profilesGetCollection]? = nil, fieldsProfiles: [FieldsProfiles_profilesGetCollection]? = nil, fieldsBundleIds: [FieldsBundleIds_profilesGetCollection]? = nil, fieldsDevices: [FieldsDevices_profilesGetCollection]? = nil, fieldsCertificates: [FieldsCertificates_profilesGetCollection]? = nil, limit: Int? = nil, include: [Include_profilesGetCollection]? = nil, limitCertificates: Int? = nil, limitDevices: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> ProfilesResponse {
+        return try await profilesGetCollectionWithRequestBuilder(filterName: filterName, filterProfileType: filterProfileType, filterProfileState: filterProfileState, filterId: filterId, sort: sort, fieldsProfiles: fieldsProfiles, fieldsBundleIds: fieldsBundleIds, fieldsDevices: fieldsDevices, fieldsCertificates: fieldsCertificates, limit: limit, include: include, limitCertificates: limitCertificates, limitDevices: limitDevices, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: ProfilesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func profilesGetCollection(urlString: String) async throws -> ProfilesResponse {
-        return try await profilesGetCollectionWithRequestBuilder(urlString: urlString).execute().body
+    open class func profilesGetCollection(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> ProfilesResponse {
+        return try await profilesGetCollectionWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -565,28 +584,29 @@ open class ProfilesAPI {
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitCertificates: (query) maximum number of related certificates returned (when they are included) (optional)
      - parameter limitDevices: (query) maximum number of related devices returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ProfilesResponse> 
      */
-    open class func profilesGetCollectionWithRequestBuilder(filterName: [String]? = nil, filterProfileType: [FilterProfileType_profilesGetCollection]? = nil, filterProfileState: [FilterProfileState_profilesGetCollection]? = nil, filterId: [String]? = nil, sort: [Sort_profilesGetCollection]? = nil, fieldsProfiles: [FieldsProfiles_profilesGetCollection]? = nil, fieldsBundleIds: [FieldsBundleIds_profilesGetCollection]? = nil, fieldsDevices: [FieldsDevices_profilesGetCollection]? = nil, fieldsCertificates: [FieldsCertificates_profilesGetCollection]? = nil, limit: Int? = nil, include: [Include_profilesGetCollection]? = nil, limitCertificates: Int? = nil, limitDevices: Int? = nil) -> RequestBuilder<ProfilesResponse> {
+    open class func profilesGetCollectionWithRequestBuilder(filterName: [String]? = nil, filterProfileType: [FilterProfileType_profilesGetCollection]? = nil, filterProfileState: [FilterProfileState_profilesGetCollection]? = nil, filterId: [String]? = nil, sort: [Sort_profilesGetCollection]? = nil, fieldsProfiles: [FieldsProfiles_profilesGetCollection]? = nil, fieldsBundleIds: [FieldsBundleIds_profilesGetCollection]? = nil, fieldsDevices: [FieldsDevices_profilesGetCollection]? = nil, fieldsCertificates: [FieldsCertificates_profilesGetCollection]? = nil, limit: Int? = nil, include: [Include_profilesGetCollection]? = nil, limitCertificates: Int? = nil, limitDevices: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<ProfilesResponse> {
         let localVariablePath = "/v1/profiles"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[name]": (wrappedValue: filterName?.encodeToJSON(), isExplode: false),
-            "filter[profileType]": (wrappedValue: filterProfileType?.encodeToJSON(), isExplode: false),
-            "filter[profileState]": (wrappedValue: filterProfileState?.encodeToJSON(), isExplode: false),
-            "filter[id]": (wrappedValue: filterId?.encodeToJSON(), isExplode: false),
-            "sort": (wrappedValue: sort?.encodeToJSON(), isExplode: false),
-            "fields[profiles]": (wrappedValue: fieldsProfiles?.encodeToJSON(), isExplode: false),
-            "fields[bundleIds]": (wrappedValue: fieldsBundleIds?.encodeToJSON(), isExplode: false),
-            "fields[devices]": (wrappedValue: fieldsDevices?.encodeToJSON(), isExplode: false),
-            "fields[certificates]": (wrappedValue: fieldsCertificates?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[certificates]": (wrappedValue: limitCertificates?.encodeToJSON(), isExplode: true),
-            "limit[devices]": (wrappedValue: limitDevices?.encodeToJSON(), isExplode: true),
+            "filter[name]": (wrappedValue: filterName?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[profileType]": (wrappedValue: filterProfileType?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[profileState]": (wrappedValue: filterProfileState?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[id]": (wrappedValue: filterId?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "sort": (wrappedValue: sort?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[profiles]": (wrappedValue: fieldsProfiles?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[bundleIds]": (wrappedValue: fieldsBundleIds?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[devices]": (wrappedValue: fieldsDevices?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[certificates]": (wrappedValue: fieldsCertificates?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[certificates]": (wrappedValue: limitCertificates?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[devices]": (wrappedValue: limitDevices?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -595,9 +615,9 @@ open class ProfilesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<ProfilesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<ProfilesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -606,24 +626,25 @@ open class ProfilesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ProfilesResponse> 
      */
-    open class func profilesGetCollectionWithRequestBuilder(urlString: String) -> RequestBuilder<ProfilesResponse> {
+    open class func profilesGetCollectionWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<ProfilesResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<ProfilesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<ProfilesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsProfiles
      */
-    public enum FieldsProfiles_profilesGetInstance: String, CaseIterable {
+    public enum FieldsProfiles_profilesGetInstance: String, Sendable, CaseIterable {
         case name = "name"
         case platform = "platform"
         case profiletype = "profileType"
@@ -640,7 +661,7 @@ open class ProfilesAPI {
     /**
      * enum for parameter fieldsBundleIds
      */
-    public enum FieldsBundleIds_profilesGetInstance: String, CaseIterable {
+    public enum FieldsBundleIds_profilesGetInstance: String, Sendable, CaseIterable {
         case name = "name"
         case platform = "platform"
         case identifier = "identifier"
@@ -653,7 +674,7 @@ open class ProfilesAPI {
     /**
      * enum for parameter fieldsDevices
      */
-    public enum FieldsDevices_profilesGetInstance: String, CaseIterable {
+    public enum FieldsDevices_profilesGetInstance: String, Sendable, CaseIterable {
         case name = "name"
         case platform = "platform"
         case udid = "udid"
@@ -666,7 +687,7 @@ open class ProfilesAPI {
     /**
      * enum for parameter fieldsCertificates
      */
-    public enum FieldsCertificates_profilesGetInstance: String, CaseIterable {
+    public enum FieldsCertificates_profilesGetInstance: String, Sendable, CaseIterable {
         case name = "name"
         case certificatetype = "certificateType"
         case displayname = "displayName"
@@ -679,7 +700,7 @@ open class ProfilesAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_profilesGetInstance: String, CaseIterable {
+    public enum Include_profilesGetInstance: String, Sendable, CaseIterable {
         case bundleid = "bundleId"
         case devices = "devices"
         case certificates = "certificates"
@@ -695,20 +716,22 @@ open class ProfilesAPI {
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitCertificates: (query) maximum number of related certificates returned (when they are included) (optional)
      - parameter limitDevices: (query) maximum number of related devices returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: ProfileResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func profilesGetInstance(id: String, fieldsProfiles: [FieldsProfiles_profilesGetInstance]? = nil, fieldsBundleIds: [FieldsBundleIds_profilesGetInstance]? = nil, fieldsDevices: [FieldsDevices_profilesGetInstance]? = nil, fieldsCertificates: [FieldsCertificates_profilesGetInstance]? = nil, include: [Include_profilesGetInstance]? = nil, limitCertificates: Int? = nil, limitDevices: Int? = nil) async throws -> ProfileResponse {
-        return try await profilesGetInstanceWithRequestBuilder(id: id, fieldsProfiles: fieldsProfiles, fieldsBundleIds: fieldsBundleIds, fieldsDevices: fieldsDevices, fieldsCertificates: fieldsCertificates, include: include, limitCertificates: limitCertificates, limitDevices: limitDevices).execute().body
+    open class func profilesGetInstance(id: String, fieldsProfiles: [FieldsProfiles_profilesGetInstance]? = nil, fieldsBundleIds: [FieldsBundleIds_profilesGetInstance]? = nil, fieldsDevices: [FieldsDevices_profilesGetInstance]? = nil, fieldsCertificates: [FieldsCertificates_profilesGetInstance]? = nil, include: [Include_profilesGetInstance]? = nil, limitCertificates: Int? = nil, limitDevices: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> ProfileResponse {
+        return try await profilesGetInstanceWithRequestBuilder(id: id, fieldsProfiles: fieldsProfiles, fieldsBundleIds: fieldsBundleIds, fieldsDevices: fieldsDevices, fieldsCertificates: fieldsCertificates, include: include, limitCertificates: limitCertificates, limitDevices: limitDevices, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: ProfileResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func profilesGetInstance(urlString: String) async throws -> ProfileResponse {
-        return try await profilesGetInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func profilesGetInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> ProfileResponse {
+        return try await profilesGetInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -724,25 +747,26 @@ open class ProfilesAPI {
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitCertificates: (query) maximum number of related certificates returned (when they are included) (optional)
      - parameter limitDevices: (query) maximum number of related devices returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ProfileResponse> 
      */
-    open class func profilesGetInstanceWithRequestBuilder(id: String, fieldsProfiles: [FieldsProfiles_profilesGetInstance]? = nil, fieldsBundleIds: [FieldsBundleIds_profilesGetInstance]? = nil, fieldsDevices: [FieldsDevices_profilesGetInstance]? = nil, fieldsCertificates: [FieldsCertificates_profilesGetInstance]? = nil, include: [Include_profilesGetInstance]? = nil, limitCertificates: Int? = nil, limitDevices: Int? = nil) -> RequestBuilder<ProfileResponse> {
+    open class func profilesGetInstanceWithRequestBuilder(id: String, fieldsProfiles: [FieldsProfiles_profilesGetInstance]? = nil, fieldsBundleIds: [FieldsBundleIds_profilesGetInstance]? = nil, fieldsDevices: [FieldsDevices_profilesGetInstance]? = nil, fieldsCertificates: [FieldsCertificates_profilesGetInstance]? = nil, include: [Include_profilesGetInstance]? = nil, limitCertificates: Int? = nil, limitDevices: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<ProfileResponse> {
         var localVariablePath = "/v1/profiles/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[profiles]": (wrappedValue: fieldsProfiles?.encodeToJSON(), isExplode: false),
-            "fields[bundleIds]": (wrappedValue: fieldsBundleIds?.encodeToJSON(), isExplode: false),
-            "fields[devices]": (wrappedValue: fieldsDevices?.encodeToJSON(), isExplode: false),
-            "fields[certificates]": (wrappedValue: fieldsCertificates?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[certificates]": (wrappedValue: limitCertificates?.encodeToJSON(), isExplode: true),
-            "limit[devices]": (wrappedValue: limitDevices?.encodeToJSON(), isExplode: true),
+            "fields[profiles]": (wrappedValue: fieldsProfiles?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[bundleIds]": (wrappedValue: fieldsBundleIds?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[devices]": (wrappedValue: fieldsDevices?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[certificates]": (wrappedValue: fieldsCertificates?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[certificates]": (wrappedValue: limitCertificates?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[devices]": (wrappedValue: limitDevices?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -751,9 +775,9 @@ open class ProfilesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<ProfileResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<ProfileResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -762,17 +786,18 @@ open class ProfilesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ProfileResponse> 
      */
-    open class func profilesGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<ProfileResponse> {
+    open class func profilesGetInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<ProfileResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<ProfileResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<ProfileResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

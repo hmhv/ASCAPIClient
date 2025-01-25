@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public enum AppClipsResponseIncludedInner: Codable, JSONEncodable, Hashable {
+public enum AppClipsResponseIncludedInner: Sendable, Codable, JSONEncodable, Hashable {
     case typeApp(App)
     case typeAppClipDefaultExperience(AppClipDefaultExperience)
 

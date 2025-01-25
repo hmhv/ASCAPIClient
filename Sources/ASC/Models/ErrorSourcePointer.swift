@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct ErrorSourcePointer: Codable, JSONEncodable, Hashable {
+public struct ErrorSourcePointer: Sendable, Codable, JSONEncodable, Hashable {
 
     public var pointer: String
 

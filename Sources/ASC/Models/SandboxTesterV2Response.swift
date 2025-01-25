@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct SandboxTesterV2Response: Codable, JSONEncodable, Hashable {
+public struct SandboxTesterV2Response: Sendable, Codable, JSONEncodable, Hashable {
 
     public var data: SandboxTesterV2
     public var links: DocumentLinks

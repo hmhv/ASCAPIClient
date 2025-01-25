@@ -6,16 +6,13 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class CiBuildRunsAPI {
 
     /**
      * enum for parameter fieldsCiBuildActions
      */
-    public enum FieldsCiBuildActions_ciBuildRunsActionsGetToManyRelated: String, CaseIterable {
+    public enum FieldsCiBuildActions_ciBuildRunsActionsGetToManyRelated: String, Sendable, CaseIterable {
         case name = "name"
         case actiontype = "actionType"
         case starteddate = "startedDate"
@@ -33,7 +30,7 @@ open class CiBuildRunsAPI {
     /**
      * enum for parameter fieldsCiBuildRuns
      */
-    public enum FieldsCiBuildRuns_ciBuildRunsActionsGetToManyRelated: String, CaseIterable {
+    public enum FieldsCiBuildRuns_ciBuildRunsActionsGetToManyRelated: String, Sendable, CaseIterable {
         case number = "number"
         case createddate = "createdDate"
         case starteddate = "startedDate"
@@ -58,7 +55,7 @@ open class CiBuildRunsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_ciBuildRunsActionsGetToManyRelated: String, CaseIterable {
+    public enum Include_ciBuildRunsActionsGetToManyRelated: String, Sendable, CaseIterable {
         case buildrun = "buildRun"
     }
 
@@ -69,20 +66,22 @@ open class CiBuildRunsAPI {
      - parameter fieldsCiBuildRuns: (query) the fields to include for returned resources of type ciBuildRuns (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: CiBuildActionsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciBuildRunsActionsGetToManyRelated(id: String, fieldsCiBuildActions: [FieldsCiBuildActions_ciBuildRunsActionsGetToManyRelated]? = nil, fieldsCiBuildRuns: [FieldsCiBuildRuns_ciBuildRunsActionsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_ciBuildRunsActionsGetToManyRelated]? = nil) async throws -> CiBuildActionsResponse {
-        return try await ciBuildRunsActionsGetToManyRelatedWithRequestBuilder(id: id, fieldsCiBuildActions: fieldsCiBuildActions, fieldsCiBuildRuns: fieldsCiBuildRuns, limit: limit, include: include).execute().body
+    open class func ciBuildRunsActionsGetToManyRelated(id: String, fieldsCiBuildActions: [FieldsCiBuildActions_ciBuildRunsActionsGetToManyRelated]? = nil, fieldsCiBuildRuns: [FieldsCiBuildRuns_ciBuildRunsActionsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_ciBuildRunsActionsGetToManyRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> CiBuildActionsResponse {
+        return try await ciBuildRunsActionsGetToManyRelatedWithRequestBuilder(id: id, fieldsCiBuildActions: fieldsCiBuildActions, fieldsCiBuildRuns: fieldsCiBuildRuns, limit: limit, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: CiBuildActionsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciBuildRunsActionsGetToManyRelated(urlString: String) async throws -> CiBuildActionsResponse {
-        return try await ciBuildRunsActionsGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func ciBuildRunsActionsGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> CiBuildActionsResponse {
+        return try await ciBuildRunsActionsGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -95,22 +94,23 @@ open class CiBuildRunsAPI {
      - parameter fieldsCiBuildRuns: (query) the fields to include for returned resources of type ciBuildRuns (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CiBuildActionsResponse> 
      */
-    open class func ciBuildRunsActionsGetToManyRelatedWithRequestBuilder(id: String, fieldsCiBuildActions: [FieldsCiBuildActions_ciBuildRunsActionsGetToManyRelated]? = nil, fieldsCiBuildRuns: [FieldsCiBuildRuns_ciBuildRunsActionsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_ciBuildRunsActionsGetToManyRelated]? = nil) -> RequestBuilder<CiBuildActionsResponse> {
+    open class func ciBuildRunsActionsGetToManyRelatedWithRequestBuilder(id: String, fieldsCiBuildActions: [FieldsCiBuildActions_ciBuildRunsActionsGetToManyRelated]? = nil, fieldsCiBuildRuns: [FieldsCiBuildRuns_ciBuildRunsActionsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_ciBuildRunsActionsGetToManyRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<CiBuildActionsResponse> {
         var localVariablePath = "/v1/ciBuildRuns/{id}/actions"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[ciBuildActions]": (wrappedValue: fieldsCiBuildActions?.encodeToJSON(), isExplode: false),
-            "fields[ciBuildRuns]": (wrappedValue: fieldsCiBuildRuns?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "fields[ciBuildActions]": (wrappedValue: fieldsCiBuildActions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[ciBuildRuns]": (wrappedValue: fieldsCiBuildRuns?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -119,9 +119,9 @@ open class CiBuildRunsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CiBuildActionsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CiBuildActionsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -130,24 +130,25 @@ open class CiBuildRunsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CiBuildActionsResponse> 
      */
-    open class func ciBuildRunsActionsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<CiBuildActionsResponse> {
+    open class func ciBuildRunsActionsGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<CiBuildActionsResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CiBuildActionsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CiBuildActionsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter filterProcessingState
      */
-    public enum FilterProcessingState_ciBuildRunsBuildsGetToManyRelated: String, CaseIterable {
+    public enum FilterProcessingState_ciBuildRunsBuildsGetToManyRelated: String, Sendable, CaseIterable {
         case processing = "PROCESSING"
         case failed = "FAILED"
         case invalid = "INVALID"
@@ -157,7 +158,7 @@ open class CiBuildRunsAPI {
     /**
      * enum for parameter filterBetaAppReviewSubmissionBetaReviewState
      */
-    public enum FilterBetaAppReviewSubmissionBetaReviewState_ciBuildRunsBuildsGetToManyRelated: String, CaseIterable {
+    public enum FilterBetaAppReviewSubmissionBetaReviewState_ciBuildRunsBuildsGetToManyRelated: String, Sendable, CaseIterable {
         case waitingForReview = "WAITING_FOR_REVIEW"
         case inReview = "IN_REVIEW"
         case rejected = "REJECTED"
@@ -167,7 +168,7 @@ open class CiBuildRunsAPI {
     /**
      * enum for parameter filterPreReleaseVersionPlatform
      */
-    public enum FilterPreReleaseVersionPlatform_ciBuildRunsBuildsGetToManyRelated: String, CaseIterable {
+    public enum FilterPreReleaseVersionPlatform_ciBuildRunsBuildsGetToManyRelated: String, Sendable, CaseIterable {
         case ios = "IOS"
         case macOs = "MAC_OS"
         case tvOs = "TV_OS"
@@ -177,7 +178,7 @@ open class CiBuildRunsAPI {
     /**
      * enum for parameter filterBuildAudienceType
      */
-    public enum FilterBuildAudienceType_ciBuildRunsBuildsGetToManyRelated: String, CaseIterable {
+    public enum FilterBuildAudienceType_ciBuildRunsBuildsGetToManyRelated: String, Sendable, CaseIterable {
         case internalOnly = "INTERNAL_ONLY"
         case appStoreEligible = "APP_STORE_ELIGIBLE"
     }
@@ -185,7 +186,7 @@ open class CiBuildRunsAPI {
     /**
      * enum for parameter sort
      */
-    public enum Sort_ciBuildRunsBuildsGetToManyRelated: String, CaseIterable {
+    public enum Sort_ciBuildRunsBuildsGetToManyRelated: String, Sendable, CaseIterable {
         case version = "version"
         case version2 = "-version"
         case uploadeddate = "uploadedDate"
@@ -197,7 +198,7 @@ open class CiBuildRunsAPI {
     /**
      * enum for parameter fieldsBuilds
      */
-    public enum FieldsBuilds_ciBuildRunsBuildsGetToManyRelated: String, CaseIterable {
+    public enum FieldsBuilds_ciBuildRunsBuildsGetToManyRelated: String, Sendable, CaseIterable {
         case version = "version"
         case uploadeddate = "uploadedDate"
         case expirationdate = "expirationDate"
@@ -227,7 +228,7 @@ open class CiBuildRunsAPI {
     /**
      * enum for parameter fieldsPreReleaseVersions
      */
-    public enum FieldsPreReleaseVersions_ciBuildRunsBuildsGetToManyRelated: String, CaseIterable {
+    public enum FieldsPreReleaseVersions_ciBuildRunsBuildsGetToManyRelated: String, Sendable, CaseIterable {
         case version = "version"
         case platform = "platform"
         case builds = "builds"
@@ -237,7 +238,7 @@ open class CiBuildRunsAPI {
     /**
      * enum for parameter fieldsBetaTesters
      */
-    public enum FieldsBetaTesters_ciBuildRunsBuildsGetToManyRelated: String, CaseIterable {
+    public enum FieldsBetaTesters_ciBuildRunsBuildsGetToManyRelated: String, Sendable, CaseIterable {
         case firstname = "firstName"
         case lastname = "lastName"
         case email = "email"
@@ -251,7 +252,7 @@ open class CiBuildRunsAPI {
     /**
      * enum for parameter fieldsBetaGroups
      */
-    public enum FieldsBetaGroups_ciBuildRunsBuildsGetToManyRelated: String, CaseIterable {
+    public enum FieldsBetaGroups_ciBuildRunsBuildsGetToManyRelated: String, Sendable, CaseIterable {
         case name = "name"
         case createddate = "createdDate"
         case isinternalgroup = "isInternalGroup"
@@ -271,7 +272,7 @@ open class CiBuildRunsAPI {
     /**
      * enum for parameter fieldsBetaBuildLocalizations
      */
-    public enum FieldsBetaBuildLocalizations_ciBuildRunsBuildsGetToManyRelated: String, CaseIterable {
+    public enum FieldsBetaBuildLocalizations_ciBuildRunsBuildsGetToManyRelated: String, Sendable, CaseIterable {
         case whatsnew = "whatsNew"
         case locale = "locale"
         case build = "build"
@@ -280,7 +281,7 @@ open class CiBuildRunsAPI {
     /**
      * enum for parameter fieldsAppEncryptionDeclarations
      */
-    public enum FieldsAppEncryptionDeclarations_ciBuildRunsBuildsGetToManyRelated: String, CaseIterable {
+    public enum FieldsAppEncryptionDeclarations_ciBuildRunsBuildsGetToManyRelated: String, Sendable, CaseIterable {
         case appdescription = "appDescription"
         case createddate = "createdDate"
         case usesencryption = "usesEncryption"
@@ -303,7 +304,7 @@ open class CiBuildRunsAPI {
     /**
      * enum for parameter fieldsBetaAppReviewSubmissions
      */
-    public enum FieldsBetaAppReviewSubmissions_ciBuildRunsBuildsGetToManyRelated: String, CaseIterable {
+    public enum FieldsBetaAppReviewSubmissions_ciBuildRunsBuildsGetToManyRelated: String, Sendable, CaseIterable {
         case betareviewstate = "betaReviewState"
         case submitteddate = "submittedDate"
         case build = "build"
@@ -312,7 +313,7 @@ open class CiBuildRunsAPI {
     /**
      * enum for parameter fieldsApps
      */
-    public enum FieldsApps_ciBuildRunsBuildsGetToManyRelated: String, CaseIterable {
+    public enum FieldsApps_ciBuildRunsBuildsGetToManyRelated: String, Sendable, CaseIterable {
         case name = "name"
         case bundleid = "bundleId"
         case sku = "sku"
@@ -361,7 +362,7 @@ open class CiBuildRunsAPI {
     /**
      * enum for parameter fieldsBuildBetaDetails
      */
-    public enum FieldsBuildBetaDetails_ciBuildRunsBuildsGetToManyRelated: String, CaseIterable {
+    public enum FieldsBuildBetaDetails_ciBuildRunsBuildsGetToManyRelated: String, Sendable, CaseIterable {
         case autonotifyenabled = "autoNotifyEnabled"
         case internalbuildstate = "internalBuildState"
         case externalbuildstate = "externalBuildState"
@@ -371,7 +372,7 @@ open class CiBuildRunsAPI {
     /**
      * enum for parameter fieldsAppStoreVersions
      */
-    public enum FieldsAppStoreVersions_ciBuildRunsBuildsGetToManyRelated: String, CaseIterable {
+    public enum FieldsAppStoreVersions_ciBuildRunsBuildsGetToManyRelated: String, Sendable, CaseIterable {
         case platform = "platform"
         case versionstring = "versionString"
         case appstorestate = "appStoreState"
@@ -401,7 +402,7 @@ open class CiBuildRunsAPI {
     /**
      * enum for parameter fieldsBuildIcons
      */
-    public enum FieldsBuildIcons_ciBuildRunsBuildsGetToManyRelated: String, CaseIterable {
+    public enum FieldsBuildIcons_ciBuildRunsBuildsGetToManyRelated: String, Sendable, CaseIterable {
         case name = "name"
         case iconasset = "iconAsset"
         case icontype = "iconType"
@@ -410,7 +411,7 @@ open class CiBuildRunsAPI {
     /**
      * enum for parameter fieldsBuildBundles
      */
-    public enum FieldsBuildBundles_ciBuildRunsBuildsGetToManyRelated: String, CaseIterable {
+    public enum FieldsBuildBundles_ciBuildRunsBuildsGetToManyRelated: String, Sendable, CaseIterable {
         case bundleid = "bundleId"
         case bundletype = "bundleType"
         case sdkbuild = "sdkBuild"
@@ -437,7 +438,7 @@ open class CiBuildRunsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_ciBuildRunsBuildsGetToManyRelated: String, CaseIterable {
+    public enum Include_ciBuildRunsBuildsGetToManyRelated: String, Sendable, CaseIterable {
         case prereleaseversion = "preReleaseVersion"
         case individualtesters = "individualTesters"
         case betagroups = "betaGroups"
@@ -487,20 +488,22 @@ open class CiBuildRunsAPI {
      - parameter limitBetaBuildLocalizations: (query) maximum number of related betaBuildLocalizations returned (when they are included) (optional)
      - parameter limitIcons: (query) maximum number of related icons returned (when they are included) (optional)
      - parameter limitBuildBundles: (query) maximum number of related buildBundles returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BuildsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciBuildRunsBuildsGetToManyRelated(id: String, filterVersion: [String]? = nil, filterExpired: [String]? = nil, filterProcessingState: [FilterProcessingState_ciBuildRunsBuildsGetToManyRelated]? = nil, filterBetaAppReviewSubmissionBetaReviewState: [FilterBetaAppReviewSubmissionBetaReviewState_ciBuildRunsBuildsGetToManyRelated]? = nil, filterUsesNonExemptEncryption: [String]? = nil, filterPreReleaseVersionVersion: [String]? = nil, filterPreReleaseVersionPlatform: [FilterPreReleaseVersionPlatform_ciBuildRunsBuildsGetToManyRelated]? = nil, filterBuildAudienceType: [FilterBuildAudienceType_ciBuildRunsBuildsGetToManyRelated]? = nil, filterPreReleaseVersion: [String]? = nil, filterApp: [String]? = nil, filterBetaGroups: [String]? = nil, filterAppStoreVersion: [String]? = nil, filterId: [String]? = nil, sort: [Sort_ciBuildRunsBuildsGetToManyRelated]? = nil, fieldsBuilds: [FieldsBuilds_ciBuildRunsBuildsGetToManyRelated]? = nil, fieldsPreReleaseVersions: [FieldsPreReleaseVersions_ciBuildRunsBuildsGetToManyRelated]? = nil, fieldsBetaTesters: [FieldsBetaTesters_ciBuildRunsBuildsGetToManyRelated]? = nil, fieldsBetaGroups: [FieldsBetaGroups_ciBuildRunsBuildsGetToManyRelated]? = nil, fieldsBetaBuildLocalizations: [FieldsBetaBuildLocalizations_ciBuildRunsBuildsGetToManyRelated]? = nil, fieldsAppEncryptionDeclarations: [FieldsAppEncryptionDeclarations_ciBuildRunsBuildsGetToManyRelated]? = nil, fieldsBetaAppReviewSubmissions: [FieldsBetaAppReviewSubmissions_ciBuildRunsBuildsGetToManyRelated]? = nil, fieldsApps: [FieldsApps_ciBuildRunsBuildsGetToManyRelated]? = nil, fieldsBuildBetaDetails: [FieldsBuildBetaDetails_ciBuildRunsBuildsGetToManyRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_ciBuildRunsBuildsGetToManyRelated]? = nil, fieldsBuildIcons: [FieldsBuildIcons_ciBuildRunsBuildsGetToManyRelated]? = nil, fieldsBuildBundles: [FieldsBuildBundles_ciBuildRunsBuildsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_ciBuildRunsBuildsGetToManyRelated]? = nil, limitIndividualTesters: Int? = nil, limitBetaGroups: Int? = nil, limitBetaBuildLocalizations: Int? = nil, limitIcons: Int? = nil, limitBuildBundles: Int? = nil) async throws -> BuildsResponse {
-        return try await ciBuildRunsBuildsGetToManyRelatedWithRequestBuilder(id: id, filterVersion: filterVersion, filterExpired: filterExpired, filterProcessingState: filterProcessingState, filterBetaAppReviewSubmissionBetaReviewState: filterBetaAppReviewSubmissionBetaReviewState, filterUsesNonExemptEncryption: filterUsesNonExemptEncryption, filterPreReleaseVersionVersion: filterPreReleaseVersionVersion, filterPreReleaseVersionPlatform: filterPreReleaseVersionPlatform, filterBuildAudienceType: filterBuildAudienceType, filterPreReleaseVersion: filterPreReleaseVersion, filterApp: filterApp, filterBetaGroups: filterBetaGroups, filterAppStoreVersion: filterAppStoreVersion, filterId: filterId, sort: sort, fieldsBuilds: fieldsBuilds, fieldsPreReleaseVersions: fieldsPreReleaseVersions, fieldsBetaTesters: fieldsBetaTesters, fieldsBetaGroups: fieldsBetaGroups, fieldsBetaBuildLocalizations: fieldsBetaBuildLocalizations, fieldsAppEncryptionDeclarations: fieldsAppEncryptionDeclarations, fieldsBetaAppReviewSubmissions: fieldsBetaAppReviewSubmissions, fieldsApps: fieldsApps, fieldsBuildBetaDetails: fieldsBuildBetaDetails, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsBuildIcons: fieldsBuildIcons, fieldsBuildBundles: fieldsBuildBundles, limit: limit, include: include, limitIndividualTesters: limitIndividualTesters, limitBetaGroups: limitBetaGroups, limitBetaBuildLocalizations: limitBetaBuildLocalizations, limitIcons: limitIcons, limitBuildBundles: limitBuildBundles).execute().body
+    open class func ciBuildRunsBuildsGetToManyRelated(id: String, filterVersion: [String]? = nil, filterExpired: [String]? = nil, filterProcessingState: [FilterProcessingState_ciBuildRunsBuildsGetToManyRelated]? = nil, filterBetaAppReviewSubmissionBetaReviewState: [FilterBetaAppReviewSubmissionBetaReviewState_ciBuildRunsBuildsGetToManyRelated]? = nil, filterUsesNonExemptEncryption: [String]? = nil, filterPreReleaseVersionVersion: [String]? = nil, filterPreReleaseVersionPlatform: [FilterPreReleaseVersionPlatform_ciBuildRunsBuildsGetToManyRelated]? = nil, filterBuildAudienceType: [FilterBuildAudienceType_ciBuildRunsBuildsGetToManyRelated]? = nil, filterPreReleaseVersion: [String]? = nil, filterApp: [String]? = nil, filterBetaGroups: [String]? = nil, filterAppStoreVersion: [String]? = nil, filterId: [String]? = nil, sort: [Sort_ciBuildRunsBuildsGetToManyRelated]? = nil, fieldsBuilds: [FieldsBuilds_ciBuildRunsBuildsGetToManyRelated]? = nil, fieldsPreReleaseVersions: [FieldsPreReleaseVersions_ciBuildRunsBuildsGetToManyRelated]? = nil, fieldsBetaTesters: [FieldsBetaTesters_ciBuildRunsBuildsGetToManyRelated]? = nil, fieldsBetaGroups: [FieldsBetaGroups_ciBuildRunsBuildsGetToManyRelated]? = nil, fieldsBetaBuildLocalizations: [FieldsBetaBuildLocalizations_ciBuildRunsBuildsGetToManyRelated]? = nil, fieldsAppEncryptionDeclarations: [FieldsAppEncryptionDeclarations_ciBuildRunsBuildsGetToManyRelated]? = nil, fieldsBetaAppReviewSubmissions: [FieldsBetaAppReviewSubmissions_ciBuildRunsBuildsGetToManyRelated]? = nil, fieldsApps: [FieldsApps_ciBuildRunsBuildsGetToManyRelated]? = nil, fieldsBuildBetaDetails: [FieldsBuildBetaDetails_ciBuildRunsBuildsGetToManyRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_ciBuildRunsBuildsGetToManyRelated]? = nil, fieldsBuildIcons: [FieldsBuildIcons_ciBuildRunsBuildsGetToManyRelated]? = nil, fieldsBuildBundles: [FieldsBuildBundles_ciBuildRunsBuildsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_ciBuildRunsBuildsGetToManyRelated]? = nil, limitIndividualTesters: Int? = nil, limitBetaGroups: Int? = nil, limitBetaBuildLocalizations: Int? = nil, limitIcons: Int? = nil, limitBuildBundles: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BuildsResponse {
+        return try await ciBuildRunsBuildsGetToManyRelatedWithRequestBuilder(id: id, filterVersion: filterVersion, filterExpired: filterExpired, filterProcessingState: filterProcessingState, filterBetaAppReviewSubmissionBetaReviewState: filterBetaAppReviewSubmissionBetaReviewState, filterUsesNonExemptEncryption: filterUsesNonExemptEncryption, filterPreReleaseVersionVersion: filterPreReleaseVersionVersion, filterPreReleaseVersionPlatform: filterPreReleaseVersionPlatform, filterBuildAudienceType: filterBuildAudienceType, filterPreReleaseVersion: filterPreReleaseVersion, filterApp: filterApp, filterBetaGroups: filterBetaGroups, filterAppStoreVersion: filterAppStoreVersion, filterId: filterId, sort: sort, fieldsBuilds: fieldsBuilds, fieldsPreReleaseVersions: fieldsPreReleaseVersions, fieldsBetaTesters: fieldsBetaTesters, fieldsBetaGroups: fieldsBetaGroups, fieldsBetaBuildLocalizations: fieldsBetaBuildLocalizations, fieldsAppEncryptionDeclarations: fieldsAppEncryptionDeclarations, fieldsBetaAppReviewSubmissions: fieldsBetaAppReviewSubmissions, fieldsApps: fieldsApps, fieldsBuildBetaDetails: fieldsBuildBetaDetails, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsBuildIcons: fieldsBuildIcons, fieldsBuildBundles: fieldsBuildBundles, limit: limit, include: include, limitIndividualTesters: limitIndividualTesters, limitBetaGroups: limitBetaGroups, limitBetaBuildLocalizations: limitBetaBuildLocalizations, limitIcons: limitIcons, limitBuildBundles: limitBuildBundles, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BuildsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciBuildRunsBuildsGetToManyRelated(urlString: String) async throws -> BuildsResponse {
-        return try await ciBuildRunsBuildsGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func ciBuildRunsBuildsGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BuildsResponse {
+        return try await ciBuildRunsBuildsGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -542,51 +545,52 @@ open class CiBuildRunsAPI {
      - parameter limitBetaBuildLocalizations: (query) maximum number of related betaBuildLocalizations returned (when they are included) (optional)
      - parameter limitIcons: (query) maximum number of related icons returned (when they are included) (optional)
      - parameter limitBuildBundles: (query) maximum number of related buildBundles returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BuildsResponse> 
      */
-    open class func ciBuildRunsBuildsGetToManyRelatedWithRequestBuilder(id: String, filterVersion: [String]? = nil, filterExpired: [String]? = nil, filterProcessingState: [FilterProcessingState_ciBuildRunsBuildsGetToManyRelated]? = nil, filterBetaAppReviewSubmissionBetaReviewState: [FilterBetaAppReviewSubmissionBetaReviewState_ciBuildRunsBuildsGetToManyRelated]? = nil, filterUsesNonExemptEncryption: [String]? = nil, filterPreReleaseVersionVersion: [String]? = nil, filterPreReleaseVersionPlatform: [FilterPreReleaseVersionPlatform_ciBuildRunsBuildsGetToManyRelated]? = nil, filterBuildAudienceType: [FilterBuildAudienceType_ciBuildRunsBuildsGetToManyRelated]? = nil, filterPreReleaseVersion: [String]? = nil, filterApp: [String]? = nil, filterBetaGroups: [String]? = nil, filterAppStoreVersion: [String]? = nil, filterId: [String]? = nil, sort: [Sort_ciBuildRunsBuildsGetToManyRelated]? = nil, fieldsBuilds: [FieldsBuilds_ciBuildRunsBuildsGetToManyRelated]? = nil, fieldsPreReleaseVersions: [FieldsPreReleaseVersions_ciBuildRunsBuildsGetToManyRelated]? = nil, fieldsBetaTesters: [FieldsBetaTesters_ciBuildRunsBuildsGetToManyRelated]? = nil, fieldsBetaGroups: [FieldsBetaGroups_ciBuildRunsBuildsGetToManyRelated]? = nil, fieldsBetaBuildLocalizations: [FieldsBetaBuildLocalizations_ciBuildRunsBuildsGetToManyRelated]? = nil, fieldsAppEncryptionDeclarations: [FieldsAppEncryptionDeclarations_ciBuildRunsBuildsGetToManyRelated]? = nil, fieldsBetaAppReviewSubmissions: [FieldsBetaAppReviewSubmissions_ciBuildRunsBuildsGetToManyRelated]? = nil, fieldsApps: [FieldsApps_ciBuildRunsBuildsGetToManyRelated]? = nil, fieldsBuildBetaDetails: [FieldsBuildBetaDetails_ciBuildRunsBuildsGetToManyRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_ciBuildRunsBuildsGetToManyRelated]? = nil, fieldsBuildIcons: [FieldsBuildIcons_ciBuildRunsBuildsGetToManyRelated]? = nil, fieldsBuildBundles: [FieldsBuildBundles_ciBuildRunsBuildsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_ciBuildRunsBuildsGetToManyRelated]? = nil, limitIndividualTesters: Int? = nil, limitBetaGroups: Int? = nil, limitBetaBuildLocalizations: Int? = nil, limitIcons: Int? = nil, limitBuildBundles: Int? = nil) -> RequestBuilder<BuildsResponse> {
+    open class func ciBuildRunsBuildsGetToManyRelatedWithRequestBuilder(id: String, filterVersion: [String]? = nil, filterExpired: [String]? = nil, filterProcessingState: [FilterProcessingState_ciBuildRunsBuildsGetToManyRelated]? = nil, filterBetaAppReviewSubmissionBetaReviewState: [FilterBetaAppReviewSubmissionBetaReviewState_ciBuildRunsBuildsGetToManyRelated]? = nil, filterUsesNonExemptEncryption: [String]? = nil, filterPreReleaseVersionVersion: [String]? = nil, filterPreReleaseVersionPlatform: [FilterPreReleaseVersionPlatform_ciBuildRunsBuildsGetToManyRelated]? = nil, filterBuildAudienceType: [FilterBuildAudienceType_ciBuildRunsBuildsGetToManyRelated]? = nil, filterPreReleaseVersion: [String]? = nil, filterApp: [String]? = nil, filterBetaGroups: [String]? = nil, filterAppStoreVersion: [String]? = nil, filterId: [String]? = nil, sort: [Sort_ciBuildRunsBuildsGetToManyRelated]? = nil, fieldsBuilds: [FieldsBuilds_ciBuildRunsBuildsGetToManyRelated]? = nil, fieldsPreReleaseVersions: [FieldsPreReleaseVersions_ciBuildRunsBuildsGetToManyRelated]? = nil, fieldsBetaTesters: [FieldsBetaTesters_ciBuildRunsBuildsGetToManyRelated]? = nil, fieldsBetaGroups: [FieldsBetaGroups_ciBuildRunsBuildsGetToManyRelated]? = nil, fieldsBetaBuildLocalizations: [FieldsBetaBuildLocalizations_ciBuildRunsBuildsGetToManyRelated]? = nil, fieldsAppEncryptionDeclarations: [FieldsAppEncryptionDeclarations_ciBuildRunsBuildsGetToManyRelated]? = nil, fieldsBetaAppReviewSubmissions: [FieldsBetaAppReviewSubmissions_ciBuildRunsBuildsGetToManyRelated]? = nil, fieldsApps: [FieldsApps_ciBuildRunsBuildsGetToManyRelated]? = nil, fieldsBuildBetaDetails: [FieldsBuildBetaDetails_ciBuildRunsBuildsGetToManyRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_ciBuildRunsBuildsGetToManyRelated]? = nil, fieldsBuildIcons: [FieldsBuildIcons_ciBuildRunsBuildsGetToManyRelated]? = nil, fieldsBuildBundles: [FieldsBuildBundles_ciBuildRunsBuildsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_ciBuildRunsBuildsGetToManyRelated]? = nil, limitIndividualTesters: Int? = nil, limitBetaGroups: Int? = nil, limitBetaBuildLocalizations: Int? = nil, limitIcons: Int? = nil, limitBuildBundles: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BuildsResponse> {
         var localVariablePath = "/v1/ciBuildRuns/{id}/builds"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[version]": (wrappedValue: filterVersion?.encodeToJSON(), isExplode: false),
-            "filter[expired]": (wrappedValue: filterExpired?.encodeToJSON(), isExplode: false),
-            "filter[processingState]": (wrappedValue: filterProcessingState?.encodeToJSON(), isExplode: false),
-            "filter[betaAppReviewSubmission.betaReviewState]": (wrappedValue: filterBetaAppReviewSubmissionBetaReviewState?.encodeToJSON(), isExplode: false),
-            "filter[usesNonExemptEncryption]": (wrappedValue: filterUsesNonExemptEncryption?.encodeToJSON(), isExplode: false),
-            "filter[preReleaseVersion.version]": (wrappedValue: filterPreReleaseVersionVersion?.encodeToJSON(), isExplode: false),
-            "filter[preReleaseVersion.platform]": (wrappedValue: filterPreReleaseVersionPlatform?.encodeToJSON(), isExplode: false),
-            "filter[buildAudienceType]": (wrappedValue: filterBuildAudienceType?.encodeToJSON(), isExplode: false),
-            "filter[preReleaseVersion]": (wrappedValue: filterPreReleaseVersion?.encodeToJSON(), isExplode: false),
-            "filter[app]": (wrappedValue: filterApp?.encodeToJSON(), isExplode: false),
-            "filter[betaGroups]": (wrappedValue: filterBetaGroups?.encodeToJSON(), isExplode: false),
-            "filter[appStoreVersion]": (wrappedValue: filterAppStoreVersion?.encodeToJSON(), isExplode: false),
-            "filter[id]": (wrappedValue: filterId?.encodeToJSON(), isExplode: false),
-            "sort": (wrappedValue: sort?.encodeToJSON(), isExplode: false),
-            "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(), isExplode: false),
-            "fields[preReleaseVersions]": (wrappedValue: fieldsPreReleaseVersions?.encodeToJSON(), isExplode: false),
-            "fields[betaTesters]": (wrappedValue: fieldsBetaTesters?.encodeToJSON(), isExplode: false),
-            "fields[betaGroups]": (wrappedValue: fieldsBetaGroups?.encodeToJSON(), isExplode: false),
-            "fields[betaBuildLocalizations]": (wrappedValue: fieldsBetaBuildLocalizations?.encodeToJSON(), isExplode: false),
-            "fields[appEncryptionDeclarations]": (wrappedValue: fieldsAppEncryptionDeclarations?.encodeToJSON(), isExplode: false),
-            "fields[betaAppReviewSubmissions]": (wrappedValue: fieldsBetaAppReviewSubmissions?.encodeToJSON(), isExplode: false),
-            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
-            "fields[buildBetaDetails]": (wrappedValue: fieldsBuildBetaDetails?.encodeToJSON(), isExplode: false),
-            "fields[appStoreVersions]": (wrappedValue: fieldsAppStoreVersions?.encodeToJSON(), isExplode: false),
-            "fields[buildIcons]": (wrappedValue: fieldsBuildIcons?.encodeToJSON(), isExplode: false),
-            "fields[buildBundles]": (wrappedValue: fieldsBuildBundles?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[individualTesters]": (wrappedValue: limitIndividualTesters?.encodeToJSON(), isExplode: true),
-            "limit[betaGroups]": (wrappedValue: limitBetaGroups?.encodeToJSON(), isExplode: true),
-            "limit[betaBuildLocalizations]": (wrappedValue: limitBetaBuildLocalizations?.encodeToJSON(), isExplode: true),
-            "limit[icons]": (wrappedValue: limitIcons?.encodeToJSON(), isExplode: true),
-            "limit[buildBundles]": (wrappedValue: limitBuildBundles?.encodeToJSON(), isExplode: true),
+            "filter[version]": (wrappedValue: filterVersion?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[expired]": (wrappedValue: filterExpired?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[processingState]": (wrappedValue: filterProcessingState?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[betaAppReviewSubmission.betaReviewState]": (wrappedValue: filterBetaAppReviewSubmissionBetaReviewState?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[usesNonExemptEncryption]": (wrappedValue: filterUsesNonExemptEncryption?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[preReleaseVersion.version]": (wrappedValue: filterPreReleaseVersionVersion?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[preReleaseVersion.platform]": (wrappedValue: filterPreReleaseVersionPlatform?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[buildAudienceType]": (wrappedValue: filterBuildAudienceType?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[preReleaseVersion]": (wrappedValue: filterPreReleaseVersion?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[app]": (wrappedValue: filterApp?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[betaGroups]": (wrappedValue: filterBetaGroups?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[appStoreVersion]": (wrappedValue: filterAppStoreVersion?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[id]": (wrappedValue: filterId?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "sort": (wrappedValue: sort?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[preReleaseVersions]": (wrappedValue: fieldsPreReleaseVersions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[betaTesters]": (wrappedValue: fieldsBetaTesters?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[betaGroups]": (wrappedValue: fieldsBetaGroups?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[betaBuildLocalizations]": (wrappedValue: fieldsBetaBuildLocalizations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appEncryptionDeclarations]": (wrappedValue: fieldsAppEncryptionDeclarations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[betaAppReviewSubmissions]": (wrappedValue: fieldsBetaAppReviewSubmissions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[buildBetaDetails]": (wrappedValue: fieldsBuildBetaDetails?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appStoreVersions]": (wrappedValue: fieldsAppStoreVersions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[buildIcons]": (wrappedValue: fieldsBuildIcons?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[buildBundles]": (wrappedValue: fieldsBuildBundles?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[individualTesters]": (wrappedValue: limitIndividualTesters?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[betaGroups]": (wrappedValue: limitBetaGroups?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[betaBuildLocalizations]": (wrappedValue: limitBetaBuildLocalizations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[icons]": (wrappedValue: limitIcons?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[buildBundles]": (wrappedValue: limitBuildBundles?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -595,9 +599,9 @@ open class CiBuildRunsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BuildsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BuildsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -606,37 +610,40 @@ open class CiBuildRunsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BuildsResponse> 
      */
-    open class func ciBuildRunsBuildsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<BuildsResponse> {
+    open class func ciBuildRunsBuildsGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BuildsResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BuildsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BuildsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter ciBuildRunCreateRequest: (body) CiBuildRun representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: CiBuildRunResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciBuildRunsCreateInstance(ciBuildRunCreateRequest: CiBuildRunCreateRequest) async throws -> CiBuildRunResponse {
-        return try await ciBuildRunsCreateInstanceWithRequestBuilder(ciBuildRunCreateRequest: ciBuildRunCreateRequest).execute().body
+    open class func ciBuildRunsCreateInstance(ciBuildRunCreateRequest: CiBuildRunCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> CiBuildRunResponse {
+        return try await ciBuildRunsCreateInstanceWithRequestBuilder(ciBuildRunCreateRequest: ciBuildRunCreateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: CiBuildRunResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciBuildRunsCreateInstance(urlString: String) async throws -> CiBuildRunResponse {
-        return try await ciBuildRunsCreateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func ciBuildRunsCreateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> CiBuildRunResponse {
+        return try await ciBuildRunsCreateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -645,12 +652,13 @@ open class CiBuildRunsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter ciBuildRunCreateRequest: (body) CiBuildRun representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CiBuildRunResponse> 
      */
-    open class func ciBuildRunsCreateInstanceWithRequestBuilder(ciBuildRunCreateRequest: CiBuildRunCreateRequest) -> RequestBuilder<CiBuildRunResponse> {
+    open class func ciBuildRunsCreateInstanceWithRequestBuilder(ciBuildRunCreateRequest: CiBuildRunCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<CiBuildRunResponse> {
         let localVariablePath = "/v1/ciBuildRuns"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: ciBuildRunCreateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: ciBuildRunCreateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -660,9 +668,9 @@ open class CiBuildRunsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CiBuildRunResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CiBuildRunResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -671,24 +679,25 @@ open class CiBuildRunsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CiBuildRunResponse> 
      */
-    open class func ciBuildRunsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<CiBuildRunResponse> {
+    open class func ciBuildRunsCreateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<CiBuildRunResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CiBuildRunResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CiBuildRunResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsCiBuildRuns
      */
-    public enum FieldsCiBuildRuns_ciBuildRunsGetInstance: String, CaseIterable {
+    public enum FieldsCiBuildRuns_ciBuildRunsGetInstance: String, Sendable, CaseIterable {
         case number = "number"
         case createddate = "createdDate"
         case starteddate = "startedDate"
@@ -713,7 +722,7 @@ open class CiBuildRunsAPI {
     /**
      * enum for parameter fieldsBuilds
      */
-    public enum FieldsBuilds_ciBuildRunsGetInstance: String, CaseIterable {
+    public enum FieldsBuilds_ciBuildRunsGetInstance: String, Sendable, CaseIterable {
         case version = "version"
         case uploadeddate = "uploadedDate"
         case expirationdate = "expirationDate"
@@ -743,7 +752,7 @@ open class CiBuildRunsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_ciBuildRunsGetInstance: String, CaseIterable {
+    public enum Include_ciBuildRunsGetInstance: String, Sendable, CaseIterable {
         case builds = "builds"
         case workflow = "workflow"
         case product = "product"
@@ -759,20 +768,22 @@ open class CiBuildRunsAPI {
      - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitBuilds: (query) maximum number of related builds returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: CiBuildRunResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciBuildRunsGetInstance(id: String, fieldsCiBuildRuns: [FieldsCiBuildRuns_ciBuildRunsGetInstance]? = nil, fieldsBuilds: [FieldsBuilds_ciBuildRunsGetInstance]? = nil, include: [Include_ciBuildRunsGetInstance]? = nil, limitBuilds: Int? = nil) async throws -> CiBuildRunResponse {
-        return try await ciBuildRunsGetInstanceWithRequestBuilder(id: id, fieldsCiBuildRuns: fieldsCiBuildRuns, fieldsBuilds: fieldsBuilds, include: include, limitBuilds: limitBuilds).execute().body
+    open class func ciBuildRunsGetInstance(id: String, fieldsCiBuildRuns: [FieldsCiBuildRuns_ciBuildRunsGetInstance]? = nil, fieldsBuilds: [FieldsBuilds_ciBuildRunsGetInstance]? = nil, include: [Include_ciBuildRunsGetInstance]? = nil, limitBuilds: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> CiBuildRunResponse {
+        return try await ciBuildRunsGetInstanceWithRequestBuilder(id: id, fieldsCiBuildRuns: fieldsCiBuildRuns, fieldsBuilds: fieldsBuilds, include: include, limitBuilds: limitBuilds, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: CiBuildRunResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciBuildRunsGetInstance(urlString: String) async throws -> CiBuildRunResponse {
-        return try await ciBuildRunsGetInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func ciBuildRunsGetInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> CiBuildRunResponse {
+        return try await ciBuildRunsGetInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -785,22 +796,23 @@ open class CiBuildRunsAPI {
      - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitBuilds: (query) maximum number of related builds returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CiBuildRunResponse> 
      */
-    open class func ciBuildRunsGetInstanceWithRequestBuilder(id: String, fieldsCiBuildRuns: [FieldsCiBuildRuns_ciBuildRunsGetInstance]? = nil, fieldsBuilds: [FieldsBuilds_ciBuildRunsGetInstance]? = nil, include: [Include_ciBuildRunsGetInstance]? = nil, limitBuilds: Int? = nil) -> RequestBuilder<CiBuildRunResponse> {
+    open class func ciBuildRunsGetInstanceWithRequestBuilder(id: String, fieldsCiBuildRuns: [FieldsCiBuildRuns_ciBuildRunsGetInstance]? = nil, fieldsBuilds: [FieldsBuilds_ciBuildRunsGetInstance]? = nil, include: [Include_ciBuildRunsGetInstance]? = nil, limitBuilds: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<CiBuildRunResponse> {
         var localVariablePath = "/v1/ciBuildRuns/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[ciBuildRuns]": (wrappedValue: fieldsCiBuildRuns?.encodeToJSON(), isExplode: false),
-            "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[builds]": (wrappedValue: limitBuilds?.encodeToJSON(), isExplode: true),
+            "fields[ciBuildRuns]": (wrappedValue: fieldsCiBuildRuns?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[builds]": (wrappedValue: limitBuilds?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -809,9 +821,9 @@ open class CiBuildRunsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CiBuildRunResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CiBuildRunResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -820,17 +832,18 @@ open class CiBuildRunsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CiBuildRunResponse> 
      */
-    open class func ciBuildRunsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<CiBuildRunResponse> {
+    open class func ciBuildRunsGetInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<CiBuildRunResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CiBuildRunResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CiBuildRunResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

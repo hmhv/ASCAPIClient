@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct MetricsInsightPopulationsInner: Codable, JSONEncodable, Hashable {
+public struct MetricsInsightPopulationsInner: Sendable, Codable, JSONEncodable, Hashable {
 
     public var deltaPercentage: Double?
     public var percentile: String?

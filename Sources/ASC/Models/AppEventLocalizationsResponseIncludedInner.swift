@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public enum AppEventLocalizationsResponseIncludedInner: Codable, JSONEncodable, Hashable {
+public enum AppEventLocalizationsResponseIncludedInner: Sendable, Codable, JSONEncodable, Hashable {
     case typeAppEvent(AppEvent)
     case typeAppEventScreenshot(AppEventScreenshot)
     case typeAppEventVideoClip(AppEventVideoClip)

@@ -6,29 +6,28 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class AlternativeDistributionPackagesAPI {
 
     /**
 
      - parameter alternativeDistributionPackageCreateRequest: (body) AlternativeDistributionPackage representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AlternativeDistributionPackageResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func alternativeDistributionPackagesCreateInstance(alternativeDistributionPackageCreateRequest: AlternativeDistributionPackageCreateRequest) async throws -> AlternativeDistributionPackageResponse {
-        return try await alternativeDistributionPackagesCreateInstanceWithRequestBuilder(alternativeDistributionPackageCreateRequest: alternativeDistributionPackageCreateRequest).execute().body
+    open class func alternativeDistributionPackagesCreateInstance(alternativeDistributionPackageCreateRequest: AlternativeDistributionPackageCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AlternativeDistributionPackageResponse {
+        return try await alternativeDistributionPackagesCreateInstanceWithRequestBuilder(alternativeDistributionPackageCreateRequest: alternativeDistributionPackageCreateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AlternativeDistributionPackageResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func alternativeDistributionPackagesCreateInstance(urlString: String) async throws -> AlternativeDistributionPackageResponse {
-        return try await alternativeDistributionPackagesCreateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func alternativeDistributionPackagesCreateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AlternativeDistributionPackageResponse {
+        return try await alternativeDistributionPackagesCreateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -37,12 +36,13 @@ open class AlternativeDistributionPackagesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter alternativeDistributionPackageCreateRequest: (body) AlternativeDistributionPackage representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AlternativeDistributionPackageResponse> 
      */
-    open class func alternativeDistributionPackagesCreateInstanceWithRequestBuilder(alternativeDistributionPackageCreateRequest: AlternativeDistributionPackageCreateRequest) -> RequestBuilder<AlternativeDistributionPackageResponse> {
+    open class func alternativeDistributionPackagesCreateInstanceWithRequestBuilder(alternativeDistributionPackageCreateRequest: AlternativeDistributionPackageCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AlternativeDistributionPackageResponse> {
         let localVariablePath = "/v1/alternativeDistributionPackages"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: alternativeDistributionPackageCreateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: alternativeDistributionPackageCreateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -52,9 +52,9 @@ open class AlternativeDistributionPackagesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AlternativeDistributionPackageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AlternativeDistributionPackageResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -63,31 +63,32 @@ open class AlternativeDistributionPackagesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AlternativeDistributionPackageResponse> 
      */
-    open class func alternativeDistributionPackagesCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AlternativeDistributionPackageResponse> {
+    open class func alternativeDistributionPackagesCreateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AlternativeDistributionPackageResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AlternativeDistributionPackageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AlternativeDistributionPackageResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsAlternativeDistributionPackages
      */
-    public enum FieldsAlternativeDistributionPackages_alternativeDistributionPackagesGetInstance: String, CaseIterable {
+    public enum FieldsAlternativeDistributionPackages_alternativeDistributionPackagesGetInstance: String, Sendable, CaseIterable {
         case versions = "versions"
     }
 
     /**
      * enum for parameter fieldsAlternativeDistributionPackageVersions
      */
-    public enum FieldsAlternativeDistributionPackageVersions_alternativeDistributionPackagesGetInstance: String, CaseIterable {
+    public enum FieldsAlternativeDistributionPackageVersions_alternativeDistributionPackagesGetInstance: String, Sendable, CaseIterable {
         case url = "url"
         case urlexpirationdate = "urlExpirationDate"
         case version = "version"
@@ -101,7 +102,7 @@ open class AlternativeDistributionPackagesAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_alternativeDistributionPackagesGetInstance: String, CaseIterable {
+    public enum Include_alternativeDistributionPackagesGetInstance: String, Sendable, CaseIterable {
         case versions = "versions"
     }
 
@@ -112,20 +113,22 @@ open class AlternativeDistributionPackagesAPI {
      - parameter fieldsAlternativeDistributionPackageVersions: (query) the fields to include for returned resources of type alternativeDistributionPackageVersions (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitVersions: (query) maximum number of related versions returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AlternativeDistributionPackageResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func alternativeDistributionPackagesGetInstance(id: String, fieldsAlternativeDistributionPackages: [FieldsAlternativeDistributionPackages_alternativeDistributionPackagesGetInstance]? = nil, fieldsAlternativeDistributionPackageVersions: [FieldsAlternativeDistributionPackageVersions_alternativeDistributionPackagesGetInstance]? = nil, include: [Include_alternativeDistributionPackagesGetInstance]? = nil, limitVersions: Int? = nil) async throws -> AlternativeDistributionPackageResponse {
-        return try await alternativeDistributionPackagesGetInstanceWithRequestBuilder(id: id, fieldsAlternativeDistributionPackages: fieldsAlternativeDistributionPackages, fieldsAlternativeDistributionPackageVersions: fieldsAlternativeDistributionPackageVersions, include: include, limitVersions: limitVersions).execute().body
+    open class func alternativeDistributionPackagesGetInstance(id: String, fieldsAlternativeDistributionPackages: [FieldsAlternativeDistributionPackages_alternativeDistributionPackagesGetInstance]? = nil, fieldsAlternativeDistributionPackageVersions: [FieldsAlternativeDistributionPackageVersions_alternativeDistributionPackagesGetInstance]? = nil, include: [Include_alternativeDistributionPackagesGetInstance]? = nil, limitVersions: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AlternativeDistributionPackageResponse {
+        return try await alternativeDistributionPackagesGetInstanceWithRequestBuilder(id: id, fieldsAlternativeDistributionPackages: fieldsAlternativeDistributionPackages, fieldsAlternativeDistributionPackageVersions: fieldsAlternativeDistributionPackageVersions, include: include, limitVersions: limitVersions, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AlternativeDistributionPackageResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func alternativeDistributionPackagesGetInstance(urlString: String) async throws -> AlternativeDistributionPackageResponse {
-        return try await alternativeDistributionPackagesGetInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func alternativeDistributionPackagesGetInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AlternativeDistributionPackageResponse {
+        return try await alternativeDistributionPackagesGetInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -138,22 +141,23 @@ open class AlternativeDistributionPackagesAPI {
      - parameter fieldsAlternativeDistributionPackageVersions: (query) the fields to include for returned resources of type alternativeDistributionPackageVersions (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitVersions: (query) maximum number of related versions returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AlternativeDistributionPackageResponse> 
      */
-    open class func alternativeDistributionPackagesGetInstanceWithRequestBuilder(id: String, fieldsAlternativeDistributionPackages: [FieldsAlternativeDistributionPackages_alternativeDistributionPackagesGetInstance]? = nil, fieldsAlternativeDistributionPackageVersions: [FieldsAlternativeDistributionPackageVersions_alternativeDistributionPackagesGetInstance]? = nil, include: [Include_alternativeDistributionPackagesGetInstance]? = nil, limitVersions: Int? = nil) -> RequestBuilder<AlternativeDistributionPackageResponse> {
+    open class func alternativeDistributionPackagesGetInstanceWithRequestBuilder(id: String, fieldsAlternativeDistributionPackages: [FieldsAlternativeDistributionPackages_alternativeDistributionPackagesGetInstance]? = nil, fieldsAlternativeDistributionPackageVersions: [FieldsAlternativeDistributionPackageVersions_alternativeDistributionPackagesGetInstance]? = nil, include: [Include_alternativeDistributionPackagesGetInstance]? = nil, limitVersions: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AlternativeDistributionPackageResponse> {
         var localVariablePath = "/v1/alternativeDistributionPackages/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[alternativeDistributionPackages]": (wrappedValue: fieldsAlternativeDistributionPackages?.encodeToJSON(), isExplode: false),
-            "fields[alternativeDistributionPackageVersions]": (wrappedValue: fieldsAlternativeDistributionPackageVersions?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[versions]": (wrappedValue: limitVersions?.encodeToJSON(), isExplode: true),
+            "fields[alternativeDistributionPackages]": (wrappedValue: fieldsAlternativeDistributionPackages?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[alternativeDistributionPackageVersions]": (wrappedValue: fieldsAlternativeDistributionPackageVersions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[versions]": (wrappedValue: limitVersions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -162,9 +166,9 @@ open class AlternativeDistributionPackagesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AlternativeDistributionPackageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AlternativeDistributionPackageResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -173,24 +177,25 @@ open class AlternativeDistributionPackagesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AlternativeDistributionPackageResponse> 
      */
-    open class func alternativeDistributionPackagesGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AlternativeDistributionPackageResponse> {
+    open class func alternativeDistributionPackagesGetInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AlternativeDistributionPackageResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AlternativeDistributionPackageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AlternativeDistributionPackageResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter filterState
      */
-    public enum FilterState_alternativeDistributionPackagesVersionsGetToManyRelated: String, CaseIterable {
+    public enum FilterState_alternativeDistributionPackagesVersionsGetToManyRelated: String, Sendable, CaseIterable {
         case completed = "COMPLETED"
         case replaced = "REPLACED"
     }
@@ -198,7 +203,7 @@ open class AlternativeDistributionPackagesAPI {
     /**
      * enum for parameter fieldsAlternativeDistributionPackageVersions
      */
-    public enum FieldsAlternativeDistributionPackageVersions_alternativeDistributionPackagesVersionsGetToManyRelated: String, CaseIterable {
+    public enum FieldsAlternativeDistributionPackageVersions_alternativeDistributionPackagesVersionsGetToManyRelated: String, Sendable, CaseIterable {
         case url = "url"
         case urlexpirationdate = "urlExpirationDate"
         case version = "version"
@@ -212,7 +217,7 @@ open class AlternativeDistributionPackagesAPI {
     /**
      * enum for parameter fieldsAlternativeDistributionPackageVariants
      */
-    public enum FieldsAlternativeDistributionPackageVariants_alternativeDistributionPackagesVersionsGetToManyRelated: String, CaseIterable {
+    public enum FieldsAlternativeDistributionPackageVariants_alternativeDistributionPackagesVersionsGetToManyRelated: String, Sendable, CaseIterable {
         case url = "url"
         case urlexpirationdate = "urlExpirationDate"
         case alternativedistributionkeyblob = "alternativeDistributionKeyBlob"
@@ -222,7 +227,7 @@ open class AlternativeDistributionPackagesAPI {
     /**
      * enum for parameter fieldsAlternativeDistributionPackageDeltas
      */
-    public enum FieldsAlternativeDistributionPackageDeltas_alternativeDistributionPackagesVersionsGetToManyRelated: String, CaseIterable {
+    public enum FieldsAlternativeDistributionPackageDeltas_alternativeDistributionPackagesVersionsGetToManyRelated: String, Sendable, CaseIterable {
         case url = "url"
         case urlexpirationdate = "urlExpirationDate"
         case alternativedistributionkeyblob = "alternativeDistributionKeyBlob"
@@ -232,14 +237,14 @@ open class AlternativeDistributionPackagesAPI {
     /**
      * enum for parameter fieldsAlternativeDistributionPackages
      */
-    public enum FieldsAlternativeDistributionPackages_alternativeDistributionPackagesVersionsGetToManyRelated: String, CaseIterable {
+    public enum FieldsAlternativeDistributionPackages_alternativeDistributionPackagesVersionsGetToManyRelated: String, Sendable, CaseIterable {
         case versions = "versions"
     }
 
     /**
      * enum for parameter include
      */
-    public enum Include_alternativeDistributionPackagesVersionsGetToManyRelated: String, CaseIterable {
+    public enum Include_alternativeDistributionPackagesVersionsGetToManyRelated: String, Sendable, CaseIterable {
         case variants = "variants"
         case deltas = "deltas"
         case alternativedistributionpackage = "alternativeDistributionPackage"
@@ -257,20 +262,22 @@ open class AlternativeDistributionPackagesAPI {
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitVariants: (query) maximum number of related variants returned (when they are included) (optional)
      - parameter limitDeltas: (query) maximum number of related deltas returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AlternativeDistributionPackageVersionsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func alternativeDistributionPackagesVersionsGetToManyRelated(id: String, filterState: [FilterState_alternativeDistributionPackagesVersionsGetToManyRelated]? = nil, fieldsAlternativeDistributionPackageVersions: [FieldsAlternativeDistributionPackageVersions_alternativeDistributionPackagesVersionsGetToManyRelated]? = nil, fieldsAlternativeDistributionPackageVariants: [FieldsAlternativeDistributionPackageVariants_alternativeDistributionPackagesVersionsGetToManyRelated]? = nil, fieldsAlternativeDistributionPackageDeltas: [FieldsAlternativeDistributionPackageDeltas_alternativeDistributionPackagesVersionsGetToManyRelated]? = nil, fieldsAlternativeDistributionPackages: [FieldsAlternativeDistributionPackages_alternativeDistributionPackagesVersionsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_alternativeDistributionPackagesVersionsGetToManyRelated]? = nil, limitVariants: Int? = nil, limitDeltas: Int? = nil) async throws -> AlternativeDistributionPackageVersionsResponse {
-        return try await alternativeDistributionPackagesVersionsGetToManyRelatedWithRequestBuilder(id: id, filterState: filterState, fieldsAlternativeDistributionPackageVersions: fieldsAlternativeDistributionPackageVersions, fieldsAlternativeDistributionPackageVariants: fieldsAlternativeDistributionPackageVariants, fieldsAlternativeDistributionPackageDeltas: fieldsAlternativeDistributionPackageDeltas, fieldsAlternativeDistributionPackages: fieldsAlternativeDistributionPackages, limit: limit, include: include, limitVariants: limitVariants, limitDeltas: limitDeltas).execute().body
+    open class func alternativeDistributionPackagesVersionsGetToManyRelated(id: String, filterState: [FilterState_alternativeDistributionPackagesVersionsGetToManyRelated]? = nil, fieldsAlternativeDistributionPackageVersions: [FieldsAlternativeDistributionPackageVersions_alternativeDistributionPackagesVersionsGetToManyRelated]? = nil, fieldsAlternativeDistributionPackageVariants: [FieldsAlternativeDistributionPackageVariants_alternativeDistributionPackagesVersionsGetToManyRelated]? = nil, fieldsAlternativeDistributionPackageDeltas: [FieldsAlternativeDistributionPackageDeltas_alternativeDistributionPackagesVersionsGetToManyRelated]? = nil, fieldsAlternativeDistributionPackages: [FieldsAlternativeDistributionPackages_alternativeDistributionPackagesVersionsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_alternativeDistributionPackagesVersionsGetToManyRelated]? = nil, limitVariants: Int? = nil, limitDeltas: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AlternativeDistributionPackageVersionsResponse {
+        return try await alternativeDistributionPackagesVersionsGetToManyRelatedWithRequestBuilder(id: id, filterState: filterState, fieldsAlternativeDistributionPackageVersions: fieldsAlternativeDistributionPackageVersions, fieldsAlternativeDistributionPackageVariants: fieldsAlternativeDistributionPackageVariants, fieldsAlternativeDistributionPackageDeltas: fieldsAlternativeDistributionPackageDeltas, fieldsAlternativeDistributionPackages: fieldsAlternativeDistributionPackages, limit: limit, include: include, limitVariants: limitVariants, limitDeltas: limitDeltas, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AlternativeDistributionPackageVersionsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func alternativeDistributionPackagesVersionsGetToManyRelated(urlString: String) async throws -> AlternativeDistributionPackageVersionsResponse {
-        return try await alternativeDistributionPackagesVersionsGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func alternativeDistributionPackagesVersionsGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AlternativeDistributionPackageVersionsResponse {
+        return try await alternativeDistributionPackagesVersionsGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -288,27 +295,28 @@ open class AlternativeDistributionPackagesAPI {
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitVariants: (query) maximum number of related variants returned (when they are included) (optional)
      - parameter limitDeltas: (query) maximum number of related deltas returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AlternativeDistributionPackageVersionsResponse> 
      */
-    open class func alternativeDistributionPackagesVersionsGetToManyRelatedWithRequestBuilder(id: String, filterState: [FilterState_alternativeDistributionPackagesVersionsGetToManyRelated]? = nil, fieldsAlternativeDistributionPackageVersions: [FieldsAlternativeDistributionPackageVersions_alternativeDistributionPackagesVersionsGetToManyRelated]? = nil, fieldsAlternativeDistributionPackageVariants: [FieldsAlternativeDistributionPackageVariants_alternativeDistributionPackagesVersionsGetToManyRelated]? = nil, fieldsAlternativeDistributionPackageDeltas: [FieldsAlternativeDistributionPackageDeltas_alternativeDistributionPackagesVersionsGetToManyRelated]? = nil, fieldsAlternativeDistributionPackages: [FieldsAlternativeDistributionPackages_alternativeDistributionPackagesVersionsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_alternativeDistributionPackagesVersionsGetToManyRelated]? = nil, limitVariants: Int? = nil, limitDeltas: Int? = nil) -> RequestBuilder<AlternativeDistributionPackageVersionsResponse> {
+    open class func alternativeDistributionPackagesVersionsGetToManyRelatedWithRequestBuilder(id: String, filterState: [FilterState_alternativeDistributionPackagesVersionsGetToManyRelated]? = nil, fieldsAlternativeDistributionPackageVersions: [FieldsAlternativeDistributionPackageVersions_alternativeDistributionPackagesVersionsGetToManyRelated]? = nil, fieldsAlternativeDistributionPackageVariants: [FieldsAlternativeDistributionPackageVariants_alternativeDistributionPackagesVersionsGetToManyRelated]? = nil, fieldsAlternativeDistributionPackageDeltas: [FieldsAlternativeDistributionPackageDeltas_alternativeDistributionPackagesVersionsGetToManyRelated]? = nil, fieldsAlternativeDistributionPackages: [FieldsAlternativeDistributionPackages_alternativeDistributionPackagesVersionsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_alternativeDistributionPackagesVersionsGetToManyRelated]? = nil, limitVariants: Int? = nil, limitDeltas: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AlternativeDistributionPackageVersionsResponse> {
         var localVariablePath = "/v1/alternativeDistributionPackages/{id}/versions"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[state]": (wrappedValue: filterState?.encodeToJSON(), isExplode: false),
-            "fields[alternativeDistributionPackageVersions]": (wrappedValue: fieldsAlternativeDistributionPackageVersions?.encodeToJSON(), isExplode: false),
-            "fields[alternativeDistributionPackageVariants]": (wrappedValue: fieldsAlternativeDistributionPackageVariants?.encodeToJSON(), isExplode: false),
-            "fields[alternativeDistributionPackageDeltas]": (wrappedValue: fieldsAlternativeDistributionPackageDeltas?.encodeToJSON(), isExplode: false),
-            "fields[alternativeDistributionPackages]": (wrappedValue: fieldsAlternativeDistributionPackages?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[variants]": (wrappedValue: limitVariants?.encodeToJSON(), isExplode: true),
-            "limit[deltas]": (wrappedValue: limitDeltas?.encodeToJSON(), isExplode: true),
+            "filter[state]": (wrappedValue: filterState?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[alternativeDistributionPackageVersions]": (wrappedValue: fieldsAlternativeDistributionPackageVersions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[alternativeDistributionPackageVariants]": (wrappedValue: fieldsAlternativeDistributionPackageVariants?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[alternativeDistributionPackageDeltas]": (wrappedValue: fieldsAlternativeDistributionPackageDeltas?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[alternativeDistributionPackages]": (wrappedValue: fieldsAlternativeDistributionPackages?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[variants]": (wrappedValue: limitVariants?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[deltas]": (wrappedValue: limitDeltas?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -317,9 +325,9 @@ open class AlternativeDistributionPackagesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AlternativeDistributionPackageVersionsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AlternativeDistributionPackageVersionsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -328,17 +336,18 @@ open class AlternativeDistributionPackagesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AlternativeDistributionPackageVersionsResponse> 
      */
-    open class func alternativeDistributionPackagesVersionsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AlternativeDistributionPackageVersionsResponse> {
+    open class func alternativeDistributionPackagesVersionsGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AlternativeDistributionPackageVersionsResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AlternativeDistributionPackageVersionsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AlternativeDistributionPackageVersionsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

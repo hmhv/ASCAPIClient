@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppAvailabilityV2RelationshipsTerritoryAvailabilities: Codable, JSONEncodable, Hashable {
+public struct AppAvailabilityV2RelationshipsTerritoryAvailabilities: Sendable, Codable, JSONEncodable, Hashable {
 
     public var links: RelationshipLinks?
     public var meta: PagingInformation?

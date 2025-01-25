@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct TerritoriesResponse: Codable, JSONEncodable, Hashable {
+public struct TerritoriesResponse: Sendable, Codable, JSONEncodable, Hashable {
 
     public var data: [Territory]
     public var links: PagedDocumentLinks

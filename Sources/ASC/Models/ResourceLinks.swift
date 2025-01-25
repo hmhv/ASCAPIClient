@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct ResourceLinks: Codable, JSONEncodable, Hashable {
+public struct ResourceLinks: Sendable, Codable, JSONEncodable, Hashable {
 
     public var _self: String?
 

@@ -6,9 +6,6 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class GameCenterEnabledVersionsAPI {
 
@@ -16,22 +13,24 @@ open class GameCenterEnabledVersionsAPI {
 
      - parameter id: (path) the id of the requested resource 
      - parameter gameCenterEnabledVersionCompatibleVersionsLinkagesRequest: (body) List of related linkages 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(*, deprecated, message: "This operation is deprecated.")
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterEnabledVersionsCompatibleVersionsCreateToManyRelationship(id: String, gameCenterEnabledVersionCompatibleVersionsLinkagesRequest: GameCenterEnabledVersionCompatibleVersionsLinkagesRequest) async throws {
-        return try await gameCenterEnabledVersionsCompatibleVersionsCreateToManyRelationshipWithRequestBuilder(id: id, gameCenterEnabledVersionCompatibleVersionsLinkagesRequest: gameCenterEnabledVersionCompatibleVersionsLinkagesRequest).execute().body
+    open class func gameCenterEnabledVersionsCompatibleVersionsCreateToManyRelationship(id: String, gameCenterEnabledVersionCompatibleVersionsLinkagesRequest: GameCenterEnabledVersionCompatibleVersionsLinkagesRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await gameCenterEnabledVersionsCompatibleVersionsCreateToManyRelationshipWithRequestBuilder(id: id, gameCenterEnabledVersionCompatibleVersionsLinkagesRequest: gameCenterEnabledVersionCompatibleVersionsLinkagesRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(*, deprecated, message: "This operation is deprecated.")
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterEnabledVersionsCompatibleVersionsCreateToManyRelationship(urlString: String) async throws {
-        return try await gameCenterEnabledVersionsCompatibleVersionsCreateToManyRelationshipWithRequestBuilder(urlString: urlString).execute().body
+    open class func gameCenterEnabledVersionsCompatibleVersionsCreateToManyRelationship(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await gameCenterEnabledVersionsCompatibleVersionsCreateToManyRelationshipWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -41,16 +40,17 @@ open class GameCenterEnabledVersionsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter gameCenterEnabledVersionCompatibleVersionsLinkagesRequest: (body) List of related linkages 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
     @available(*, deprecated, message: "This operation is deprecated.")
-    open class func gameCenterEnabledVersionsCompatibleVersionsCreateToManyRelationshipWithRequestBuilder(id: String, gameCenterEnabledVersionCompatibleVersionsLinkagesRequest: GameCenterEnabledVersionCompatibleVersionsLinkagesRequest) -> RequestBuilder<Void> {
+    open class func gameCenterEnabledVersionsCompatibleVersionsCreateToManyRelationshipWithRequestBuilder(id: String, gameCenterEnabledVersionCompatibleVersionsLinkagesRequest: GameCenterEnabledVersionCompatibleVersionsLinkagesRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/gameCenterEnabledVersions/{id}/relationships/compatibleVersions"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: gameCenterEnabledVersionCompatibleVersionsLinkagesRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: gameCenterEnabledVersionCompatibleVersionsLinkagesRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -60,9 +60,9 @@ open class GameCenterEnabledVersionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -71,41 +71,44 @@ open class GameCenterEnabledVersionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
     @available(*, deprecated, message: "This operation is deprecated.")
-    open class func gameCenterEnabledVersionsCompatibleVersionsCreateToManyRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func gameCenterEnabledVersionsCompatibleVersionsCreateToManyRelationshipWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter gameCenterEnabledVersionCompatibleVersionsLinkagesRequest: (body) List of related linkages 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(*, deprecated, message: "This operation is deprecated.")
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterEnabledVersionsCompatibleVersionsDeleteToManyRelationship(id: String, gameCenterEnabledVersionCompatibleVersionsLinkagesRequest: GameCenterEnabledVersionCompatibleVersionsLinkagesRequest) async throws {
-        return try await gameCenterEnabledVersionsCompatibleVersionsDeleteToManyRelationshipWithRequestBuilder(id: id, gameCenterEnabledVersionCompatibleVersionsLinkagesRequest: gameCenterEnabledVersionCompatibleVersionsLinkagesRequest).execute().body
+    open class func gameCenterEnabledVersionsCompatibleVersionsDeleteToManyRelationship(id: String, gameCenterEnabledVersionCompatibleVersionsLinkagesRequest: GameCenterEnabledVersionCompatibleVersionsLinkagesRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await gameCenterEnabledVersionsCompatibleVersionsDeleteToManyRelationshipWithRequestBuilder(id: id, gameCenterEnabledVersionCompatibleVersionsLinkagesRequest: gameCenterEnabledVersionCompatibleVersionsLinkagesRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(*, deprecated, message: "This operation is deprecated.")
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterEnabledVersionsCompatibleVersionsDeleteToManyRelationship(urlString: String) async throws {
-        return try await gameCenterEnabledVersionsCompatibleVersionsDeleteToManyRelationshipWithRequestBuilder(urlString: urlString).execute().body
+    open class func gameCenterEnabledVersionsCompatibleVersionsDeleteToManyRelationship(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await gameCenterEnabledVersionsCompatibleVersionsDeleteToManyRelationshipWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -115,16 +118,17 @@ open class GameCenterEnabledVersionsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter gameCenterEnabledVersionCompatibleVersionsLinkagesRequest: (body) List of related linkages 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
     @available(*, deprecated, message: "This operation is deprecated.")
-    open class func gameCenterEnabledVersionsCompatibleVersionsDeleteToManyRelationshipWithRequestBuilder(id: String, gameCenterEnabledVersionCompatibleVersionsLinkagesRequest: GameCenterEnabledVersionCompatibleVersionsLinkagesRequest) -> RequestBuilder<Void> {
+    open class func gameCenterEnabledVersionsCompatibleVersionsDeleteToManyRelationshipWithRequestBuilder(id: String, gameCenterEnabledVersionCompatibleVersionsLinkagesRequest: GameCenterEnabledVersionCompatibleVersionsLinkagesRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/gameCenterEnabledVersions/{id}/relationships/compatibleVersions"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: gameCenterEnabledVersionCompatibleVersionsLinkagesRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: gameCenterEnabledVersionCompatibleVersionsLinkagesRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -134,9 +138,9 @@ open class GameCenterEnabledVersionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -145,25 +149,26 @@ open class GameCenterEnabledVersionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
     @available(*, deprecated, message: "This operation is deprecated.")
-    open class func gameCenterEnabledVersionsCompatibleVersionsDeleteToManyRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func gameCenterEnabledVersionsCompatibleVersionsDeleteToManyRelationshipWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter filterPlatform
      */
-    public enum FilterPlatform_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated: String, CaseIterable {
+    public enum FilterPlatform_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated: String, Sendable, CaseIterable {
         case ios = "IOS"
         case macOs = "MAC_OS"
         case tvOs = "TV_OS"
@@ -173,7 +178,7 @@ open class GameCenterEnabledVersionsAPI {
     /**
      * enum for parameter sort
      */
-    public enum Sort_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated: String, CaseIterable {
+    public enum Sort_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated: String, Sendable, CaseIterable {
         case versionstring = "versionString"
         case versionstring2 = "-versionString"
     }
@@ -181,7 +186,7 @@ open class GameCenterEnabledVersionsAPI {
     /**
      * enum for parameter fieldsGameCenterEnabledVersions
      */
-    public enum FieldsGameCenterEnabledVersions_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated: String, CaseIterable {
+    public enum FieldsGameCenterEnabledVersions_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated: String, Sendable, CaseIterable {
         case platform = "platform"
         case versionstring = "versionString"
         case iconasset = "iconAsset"
@@ -192,7 +197,7 @@ open class GameCenterEnabledVersionsAPI {
     /**
      * enum for parameter fieldsApps
      */
-    public enum FieldsApps_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated: String, CaseIterable {
+    public enum FieldsApps_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated: String, Sendable, CaseIterable {
         case name = "name"
         case bundleid = "bundleId"
         case sku = "sku"
@@ -241,7 +246,7 @@ open class GameCenterEnabledVersionsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated: String, CaseIterable {
+    public enum Include_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated: String, Sendable, CaseIterable {
         case compatibleversions = "compatibleVersions"
         case app = "app"
     }
@@ -259,22 +264,24 @@ open class GameCenterEnabledVersionsAPI {
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitCompatibleVersions: (query) maximum number of related compatibleVersions returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterEnabledVersionsResponse
      */
     @available(*, deprecated, message: "This operation is deprecated.")
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated(id: String, filterPlatform: [FilterPlatform_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated]? = nil, filterVersionString: [String]? = nil, filterApp: [String]? = nil, filterId: [String]? = nil, sort: [Sort_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated]? = nil, fieldsGameCenterEnabledVersions: [FieldsGameCenterEnabledVersions_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated]? = nil, fieldsApps: [FieldsApps_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated]? = nil, limitCompatibleVersions: Int? = nil) async throws -> GameCenterEnabledVersionsResponse {
-        return try await gameCenterEnabledVersionsCompatibleVersionsGetToManyRelatedWithRequestBuilder(id: id, filterPlatform: filterPlatform, filterVersionString: filterVersionString, filterApp: filterApp, filterId: filterId, sort: sort, fieldsGameCenterEnabledVersions: fieldsGameCenterEnabledVersions, fieldsApps: fieldsApps, limit: limit, include: include, limitCompatibleVersions: limitCompatibleVersions).execute().body
+    open class func gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated(id: String, filterPlatform: [FilterPlatform_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated]? = nil, filterVersionString: [String]? = nil, filterApp: [String]? = nil, filterId: [String]? = nil, sort: [Sort_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated]? = nil, fieldsGameCenterEnabledVersions: [FieldsGameCenterEnabledVersions_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated]? = nil, fieldsApps: [FieldsApps_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated]? = nil, limitCompatibleVersions: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterEnabledVersionsResponse {
+        return try await gameCenterEnabledVersionsCompatibleVersionsGetToManyRelatedWithRequestBuilder(id: id, filterPlatform: filterPlatform, filterVersionString: filterVersionString, filterApp: filterApp, filterId: filterId, sort: sort, fieldsGameCenterEnabledVersions: fieldsGameCenterEnabledVersions, fieldsApps: fieldsApps, limit: limit, include: include, limitCompatibleVersions: limitCompatibleVersions, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterEnabledVersionsResponse
      */
     @available(*, deprecated, message: "This operation is deprecated.")
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated(urlString: String) async throws -> GameCenterEnabledVersionsResponse {
-        return try await gameCenterEnabledVersionsCompatibleVersionsGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterEnabledVersionsResponse {
+        return try await gameCenterEnabledVersionsCompatibleVersionsGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -293,29 +300,30 @@ open class GameCenterEnabledVersionsAPI {
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitCompatibleVersions: (query) maximum number of related compatibleVersions returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterEnabledVersionsResponse> 
      */
     @available(*, deprecated, message: "This operation is deprecated.")
-    open class func gameCenterEnabledVersionsCompatibleVersionsGetToManyRelatedWithRequestBuilder(id: String, filterPlatform: [FilterPlatform_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated]? = nil, filterVersionString: [String]? = nil, filterApp: [String]? = nil, filterId: [String]? = nil, sort: [Sort_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated]? = nil, fieldsGameCenterEnabledVersions: [FieldsGameCenterEnabledVersions_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated]? = nil, fieldsApps: [FieldsApps_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated]? = nil, limitCompatibleVersions: Int? = nil) -> RequestBuilder<GameCenterEnabledVersionsResponse> {
+    open class func gameCenterEnabledVersionsCompatibleVersionsGetToManyRelatedWithRequestBuilder(id: String, filterPlatform: [FilterPlatform_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated]? = nil, filterVersionString: [String]? = nil, filterApp: [String]? = nil, filterId: [String]? = nil, sort: [Sort_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated]? = nil, fieldsGameCenterEnabledVersions: [FieldsGameCenterEnabledVersions_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated]? = nil, fieldsApps: [FieldsApps_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_gameCenterEnabledVersionsCompatibleVersionsGetToManyRelated]? = nil, limitCompatibleVersions: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterEnabledVersionsResponse> {
         var localVariablePath = "/v1/gameCenterEnabledVersions/{id}/compatibleVersions"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[platform]": (wrappedValue: filterPlatform?.encodeToJSON(), isExplode: false),
-            "filter[versionString]": (wrappedValue: filterVersionString?.encodeToJSON(), isExplode: false),
-            "filter[app]": (wrappedValue: filterApp?.encodeToJSON(), isExplode: false),
-            "filter[id]": (wrappedValue: filterId?.encodeToJSON(), isExplode: false),
-            "sort": (wrappedValue: sort?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterEnabledVersions]": (wrappedValue: fieldsGameCenterEnabledVersions?.encodeToJSON(), isExplode: false),
-            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[compatibleVersions]": (wrappedValue: limitCompatibleVersions?.encodeToJSON(), isExplode: true),
+            "filter[platform]": (wrappedValue: filterPlatform?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[versionString]": (wrappedValue: filterVersionString?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[app]": (wrappedValue: filterApp?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[id]": (wrappedValue: filterId?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "sort": (wrappedValue: sort?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[gameCenterEnabledVersions]": (wrappedValue: fieldsGameCenterEnabledVersions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[compatibleVersions]": (wrappedValue: limitCompatibleVersions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -324,9 +332,9 @@ open class GameCenterEnabledVersionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterEnabledVersionsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterEnabledVersionsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -335,41 +343,44 @@ open class GameCenterEnabledVersionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterEnabledVersionsResponse> 
      */
     @available(*, deprecated, message: "This operation is deprecated.")
-    open class func gameCenterEnabledVersionsCompatibleVersionsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterEnabledVersionsResponse> {
+    open class func gameCenterEnabledVersionsCompatibleVersionsGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterEnabledVersionsResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterEnabledVersionsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterEnabledVersionsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterEnabledVersionCompatibleVersionsLinkagesResponse
      */
     @available(*, deprecated, message: "This operation is deprecated.")
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterEnabledVersionsCompatibleVersionsGetToManyRelationship(id: String, limit: Int? = nil) async throws -> GameCenterEnabledVersionCompatibleVersionsLinkagesResponse {
-        return try await gameCenterEnabledVersionsCompatibleVersionsGetToManyRelationshipWithRequestBuilder(id: id, limit: limit).execute().body
+    open class func gameCenterEnabledVersionsCompatibleVersionsGetToManyRelationship(id: String, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterEnabledVersionCompatibleVersionsLinkagesResponse {
+        return try await gameCenterEnabledVersionsCompatibleVersionsGetToManyRelationshipWithRequestBuilder(id: id, limit: limit, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterEnabledVersionCompatibleVersionsLinkagesResponse
      */
     @available(*, deprecated, message: "This operation is deprecated.")
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterEnabledVersionsCompatibleVersionsGetToManyRelationship(urlString: String) async throws -> GameCenterEnabledVersionCompatibleVersionsLinkagesResponse {
-        return try await gameCenterEnabledVersionsCompatibleVersionsGetToManyRelationshipWithRequestBuilder(urlString: urlString).execute().body
+    open class func gameCenterEnabledVersionsCompatibleVersionsGetToManyRelationship(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterEnabledVersionCompatibleVersionsLinkagesResponse {
+        return try await gameCenterEnabledVersionsCompatibleVersionsGetToManyRelationshipWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -379,20 +390,21 @@ open class GameCenterEnabledVersionsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterEnabledVersionCompatibleVersionsLinkagesResponse> 
      */
     @available(*, deprecated, message: "This operation is deprecated.")
-    open class func gameCenterEnabledVersionsCompatibleVersionsGetToManyRelationshipWithRequestBuilder(id: String, limit: Int? = nil) -> RequestBuilder<GameCenterEnabledVersionCompatibleVersionsLinkagesResponse> {
+    open class func gameCenterEnabledVersionsCompatibleVersionsGetToManyRelationshipWithRequestBuilder(id: String, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterEnabledVersionCompatibleVersionsLinkagesResponse> {
         var localVariablePath = "/v1/gameCenterEnabledVersions/{id}/relationships/compatibleVersions"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -401,9 +413,9 @@ open class GameCenterEnabledVersionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterEnabledVersionCompatibleVersionsLinkagesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterEnabledVersionCompatibleVersionsLinkagesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -412,41 +424,44 @@ open class GameCenterEnabledVersionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterEnabledVersionCompatibleVersionsLinkagesResponse> 
      */
     @available(*, deprecated, message: "This operation is deprecated.")
-    open class func gameCenterEnabledVersionsCompatibleVersionsGetToManyRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterEnabledVersionCompatibleVersionsLinkagesResponse> {
+    open class func gameCenterEnabledVersionsCompatibleVersionsGetToManyRelationshipWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterEnabledVersionCompatibleVersionsLinkagesResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterEnabledVersionCompatibleVersionsLinkagesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterEnabledVersionCompatibleVersionsLinkagesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter gameCenterEnabledVersionCompatibleVersionsLinkagesRequest: (body) List of related linkages 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(*, deprecated, message: "This operation is deprecated.")
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterEnabledVersionsCompatibleVersionsReplaceToManyRelationship(id: String, gameCenterEnabledVersionCompatibleVersionsLinkagesRequest: GameCenterEnabledVersionCompatibleVersionsLinkagesRequest) async throws {
-        return try await gameCenterEnabledVersionsCompatibleVersionsReplaceToManyRelationshipWithRequestBuilder(id: id, gameCenterEnabledVersionCompatibleVersionsLinkagesRequest: gameCenterEnabledVersionCompatibleVersionsLinkagesRequest).execute().body
+    open class func gameCenterEnabledVersionsCompatibleVersionsReplaceToManyRelationship(id: String, gameCenterEnabledVersionCompatibleVersionsLinkagesRequest: GameCenterEnabledVersionCompatibleVersionsLinkagesRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await gameCenterEnabledVersionsCompatibleVersionsReplaceToManyRelationshipWithRequestBuilder(id: id, gameCenterEnabledVersionCompatibleVersionsLinkagesRequest: gameCenterEnabledVersionCompatibleVersionsLinkagesRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(*, deprecated, message: "This operation is deprecated.")
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterEnabledVersionsCompatibleVersionsReplaceToManyRelationship(urlString: String) async throws {
-        return try await gameCenterEnabledVersionsCompatibleVersionsReplaceToManyRelationshipWithRequestBuilder(urlString: urlString).execute().body
+    open class func gameCenterEnabledVersionsCompatibleVersionsReplaceToManyRelationship(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await gameCenterEnabledVersionsCompatibleVersionsReplaceToManyRelationshipWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -456,16 +471,17 @@ open class GameCenterEnabledVersionsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter gameCenterEnabledVersionCompatibleVersionsLinkagesRequest: (body) List of related linkages 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
     @available(*, deprecated, message: "This operation is deprecated.")
-    open class func gameCenterEnabledVersionsCompatibleVersionsReplaceToManyRelationshipWithRequestBuilder(id: String, gameCenterEnabledVersionCompatibleVersionsLinkagesRequest: GameCenterEnabledVersionCompatibleVersionsLinkagesRequest) -> RequestBuilder<Void> {
+    open class func gameCenterEnabledVersionsCompatibleVersionsReplaceToManyRelationshipWithRequestBuilder(id: String, gameCenterEnabledVersionCompatibleVersionsLinkagesRequest: GameCenterEnabledVersionCompatibleVersionsLinkagesRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/gameCenterEnabledVersions/{id}/relationships/compatibleVersions"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: gameCenterEnabledVersionCompatibleVersionsLinkagesRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: gameCenterEnabledVersionCompatibleVersionsLinkagesRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -475,9 +491,9 @@ open class GameCenterEnabledVersionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -486,18 +502,19 @@ open class GameCenterEnabledVersionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
     @available(*, deprecated, message: "This operation is deprecated.")
-    open class func gameCenterEnabledVersionsCompatibleVersionsReplaceToManyRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func gameCenterEnabledVersionsCompatibleVersionsReplaceToManyRelationshipWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

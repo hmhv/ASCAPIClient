@@ -6,16 +6,13 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class CiMacOsVersionsAPI {
 
     /**
      * enum for parameter fieldsCiMacOsVersions
      */
-    public enum FieldsCiMacOsVersions_ciMacOsVersionsGetCollection: String, CaseIterable {
+    public enum FieldsCiMacOsVersions_ciMacOsVersionsGetCollection: String, Sendable, CaseIterable {
         case version = "version"
         case name = "name"
         case xcodeversions = "xcodeVersions"
@@ -24,7 +21,7 @@ open class CiMacOsVersionsAPI {
     /**
      * enum for parameter fieldsCiXcodeVersions
      */
-    public enum FieldsCiXcodeVersions_ciMacOsVersionsGetCollection: String, CaseIterable {
+    public enum FieldsCiXcodeVersions_ciMacOsVersionsGetCollection: String, Sendable, CaseIterable {
         case version = "version"
         case name = "name"
         case testdestinations = "testDestinations"
@@ -34,7 +31,7 @@ open class CiMacOsVersionsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_ciMacOsVersionsGetCollection: String, CaseIterable {
+    public enum Include_ciMacOsVersionsGetCollection: String, Sendable, CaseIterable {
         case xcodeversions = "xcodeVersions"
     }
 
@@ -45,20 +42,22 @@ open class CiMacOsVersionsAPI {
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitXcodeVersions: (query) maximum number of related xcodeVersions returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: CiMacOsVersionsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciMacOsVersionsGetCollection(fieldsCiMacOsVersions: [FieldsCiMacOsVersions_ciMacOsVersionsGetCollection]? = nil, fieldsCiXcodeVersions: [FieldsCiXcodeVersions_ciMacOsVersionsGetCollection]? = nil, limit: Int? = nil, include: [Include_ciMacOsVersionsGetCollection]? = nil, limitXcodeVersions: Int? = nil) async throws -> CiMacOsVersionsResponse {
-        return try await ciMacOsVersionsGetCollectionWithRequestBuilder(fieldsCiMacOsVersions: fieldsCiMacOsVersions, fieldsCiXcodeVersions: fieldsCiXcodeVersions, limit: limit, include: include, limitXcodeVersions: limitXcodeVersions).execute().body
+    open class func ciMacOsVersionsGetCollection(fieldsCiMacOsVersions: [FieldsCiMacOsVersions_ciMacOsVersionsGetCollection]? = nil, fieldsCiXcodeVersions: [FieldsCiXcodeVersions_ciMacOsVersionsGetCollection]? = nil, limit: Int? = nil, include: [Include_ciMacOsVersionsGetCollection]? = nil, limitXcodeVersions: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> CiMacOsVersionsResponse {
+        return try await ciMacOsVersionsGetCollectionWithRequestBuilder(fieldsCiMacOsVersions: fieldsCiMacOsVersions, fieldsCiXcodeVersions: fieldsCiXcodeVersions, limit: limit, include: include, limitXcodeVersions: limitXcodeVersions, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: CiMacOsVersionsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciMacOsVersionsGetCollection(urlString: String) async throws -> CiMacOsVersionsResponse {
-        return try await ciMacOsVersionsGetCollectionWithRequestBuilder(urlString: urlString).execute().body
+    open class func ciMacOsVersionsGetCollection(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> CiMacOsVersionsResponse {
+        return try await ciMacOsVersionsGetCollectionWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -71,20 +70,21 @@ open class CiMacOsVersionsAPI {
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitXcodeVersions: (query) maximum number of related xcodeVersions returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CiMacOsVersionsResponse> 
      */
-    open class func ciMacOsVersionsGetCollectionWithRequestBuilder(fieldsCiMacOsVersions: [FieldsCiMacOsVersions_ciMacOsVersionsGetCollection]? = nil, fieldsCiXcodeVersions: [FieldsCiXcodeVersions_ciMacOsVersionsGetCollection]? = nil, limit: Int? = nil, include: [Include_ciMacOsVersionsGetCollection]? = nil, limitXcodeVersions: Int? = nil) -> RequestBuilder<CiMacOsVersionsResponse> {
+    open class func ciMacOsVersionsGetCollectionWithRequestBuilder(fieldsCiMacOsVersions: [FieldsCiMacOsVersions_ciMacOsVersionsGetCollection]? = nil, fieldsCiXcodeVersions: [FieldsCiXcodeVersions_ciMacOsVersionsGetCollection]? = nil, limit: Int? = nil, include: [Include_ciMacOsVersionsGetCollection]? = nil, limitXcodeVersions: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<CiMacOsVersionsResponse> {
         let localVariablePath = "/v1/ciMacOsVersions"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[ciMacOsVersions]": (wrappedValue: fieldsCiMacOsVersions?.encodeToJSON(), isExplode: false),
-            "fields[ciXcodeVersions]": (wrappedValue: fieldsCiXcodeVersions?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[xcodeVersions]": (wrappedValue: limitXcodeVersions?.encodeToJSON(), isExplode: true),
+            "fields[ciMacOsVersions]": (wrappedValue: fieldsCiMacOsVersions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[ciXcodeVersions]": (wrappedValue: fieldsCiXcodeVersions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[xcodeVersions]": (wrappedValue: limitXcodeVersions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -93,9 +93,9 @@ open class CiMacOsVersionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CiMacOsVersionsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CiMacOsVersionsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -104,24 +104,25 @@ open class CiMacOsVersionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CiMacOsVersionsResponse> 
      */
-    open class func ciMacOsVersionsGetCollectionWithRequestBuilder(urlString: String) -> RequestBuilder<CiMacOsVersionsResponse> {
+    open class func ciMacOsVersionsGetCollectionWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<CiMacOsVersionsResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CiMacOsVersionsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CiMacOsVersionsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsCiMacOsVersions
      */
-    public enum FieldsCiMacOsVersions_ciMacOsVersionsGetInstance: String, CaseIterable {
+    public enum FieldsCiMacOsVersions_ciMacOsVersionsGetInstance: String, Sendable, CaseIterable {
         case version = "version"
         case name = "name"
         case xcodeversions = "xcodeVersions"
@@ -130,7 +131,7 @@ open class CiMacOsVersionsAPI {
     /**
      * enum for parameter fieldsCiXcodeVersions
      */
-    public enum FieldsCiXcodeVersions_ciMacOsVersionsGetInstance: String, CaseIterable {
+    public enum FieldsCiXcodeVersions_ciMacOsVersionsGetInstance: String, Sendable, CaseIterable {
         case version = "version"
         case name = "name"
         case testdestinations = "testDestinations"
@@ -140,7 +141,7 @@ open class CiMacOsVersionsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_ciMacOsVersionsGetInstance: String, CaseIterable {
+    public enum Include_ciMacOsVersionsGetInstance: String, Sendable, CaseIterable {
         case xcodeversions = "xcodeVersions"
     }
 
@@ -151,20 +152,22 @@ open class CiMacOsVersionsAPI {
      - parameter fieldsCiXcodeVersions: (query) the fields to include for returned resources of type ciXcodeVersions (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitXcodeVersions: (query) maximum number of related xcodeVersions returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: CiMacOsVersionResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciMacOsVersionsGetInstance(id: String, fieldsCiMacOsVersions: [FieldsCiMacOsVersions_ciMacOsVersionsGetInstance]? = nil, fieldsCiXcodeVersions: [FieldsCiXcodeVersions_ciMacOsVersionsGetInstance]? = nil, include: [Include_ciMacOsVersionsGetInstance]? = nil, limitXcodeVersions: Int? = nil) async throws -> CiMacOsVersionResponse {
-        return try await ciMacOsVersionsGetInstanceWithRequestBuilder(id: id, fieldsCiMacOsVersions: fieldsCiMacOsVersions, fieldsCiXcodeVersions: fieldsCiXcodeVersions, include: include, limitXcodeVersions: limitXcodeVersions).execute().body
+    open class func ciMacOsVersionsGetInstance(id: String, fieldsCiMacOsVersions: [FieldsCiMacOsVersions_ciMacOsVersionsGetInstance]? = nil, fieldsCiXcodeVersions: [FieldsCiXcodeVersions_ciMacOsVersionsGetInstance]? = nil, include: [Include_ciMacOsVersionsGetInstance]? = nil, limitXcodeVersions: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> CiMacOsVersionResponse {
+        return try await ciMacOsVersionsGetInstanceWithRequestBuilder(id: id, fieldsCiMacOsVersions: fieldsCiMacOsVersions, fieldsCiXcodeVersions: fieldsCiXcodeVersions, include: include, limitXcodeVersions: limitXcodeVersions, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: CiMacOsVersionResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciMacOsVersionsGetInstance(urlString: String) async throws -> CiMacOsVersionResponse {
-        return try await ciMacOsVersionsGetInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func ciMacOsVersionsGetInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> CiMacOsVersionResponse {
+        return try await ciMacOsVersionsGetInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -177,22 +180,23 @@ open class CiMacOsVersionsAPI {
      - parameter fieldsCiXcodeVersions: (query) the fields to include for returned resources of type ciXcodeVersions (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitXcodeVersions: (query) maximum number of related xcodeVersions returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CiMacOsVersionResponse> 
      */
-    open class func ciMacOsVersionsGetInstanceWithRequestBuilder(id: String, fieldsCiMacOsVersions: [FieldsCiMacOsVersions_ciMacOsVersionsGetInstance]? = nil, fieldsCiXcodeVersions: [FieldsCiXcodeVersions_ciMacOsVersionsGetInstance]? = nil, include: [Include_ciMacOsVersionsGetInstance]? = nil, limitXcodeVersions: Int? = nil) -> RequestBuilder<CiMacOsVersionResponse> {
+    open class func ciMacOsVersionsGetInstanceWithRequestBuilder(id: String, fieldsCiMacOsVersions: [FieldsCiMacOsVersions_ciMacOsVersionsGetInstance]? = nil, fieldsCiXcodeVersions: [FieldsCiXcodeVersions_ciMacOsVersionsGetInstance]? = nil, include: [Include_ciMacOsVersionsGetInstance]? = nil, limitXcodeVersions: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<CiMacOsVersionResponse> {
         var localVariablePath = "/v1/ciMacOsVersions/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[ciMacOsVersions]": (wrappedValue: fieldsCiMacOsVersions?.encodeToJSON(), isExplode: false),
-            "fields[ciXcodeVersions]": (wrappedValue: fieldsCiXcodeVersions?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[xcodeVersions]": (wrappedValue: limitXcodeVersions?.encodeToJSON(), isExplode: true),
+            "fields[ciMacOsVersions]": (wrappedValue: fieldsCiMacOsVersions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[ciXcodeVersions]": (wrappedValue: fieldsCiXcodeVersions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[xcodeVersions]": (wrappedValue: limitXcodeVersions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -201,9 +205,9 @@ open class CiMacOsVersionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CiMacOsVersionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CiMacOsVersionResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -212,24 +216,25 @@ open class CiMacOsVersionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CiMacOsVersionResponse> 
      */
-    open class func ciMacOsVersionsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<CiMacOsVersionResponse> {
+    open class func ciMacOsVersionsGetInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<CiMacOsVersionResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CiMacOsVersionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CiMacOsVersionResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsCiXcodeVersions
      */
-    public enum FieldsCiXcodeVersions_ciMacOsVersionsXcodeVersionsGetToManyRelated: String, CaseIterable {
+    public enum FieldsCiXcodeVersions_ciMacOsVersionsXcodeVersionsGetToManyRelated: String, Sendable, CaseIterable {
         case version = "version"
         case name = "name"
         case testdestinations = "testDestinations"
@@ -239,7 +244,7 @@ open class CiMacOsVersionsAPI {
     /**
      * enum for parameter fieldsCiMacOsVersions
      */
-    public enum FieldsCiMacOsVersions_ciMacOsVersionsXcodeVersionsGetToManyRelated: String, CaseIterable {
+    public enum FieldsCiMacOsVersions_ciMacOsVersionsXcodeVersionsGetToManyRelated: String, Sendable, CaseIterable {
         case version = "version"
         case name = "name"
         case xcodeversions = "xcodeVersions"
@@ -248,7 +253,7 @@ open class CiMacOsVersionsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_ciMacOsVersionsXcodeVersionsGetToManyRelated: String, CaseIterable {
+    public enum Include_ciMacOsVersionsXcodeVersionsGetToManyRelated: String, Sendable, CaseIterable {
         case macosversions = "macOsVersions"
     }
 
@@ -260,20 +265,22 @@ open class CiMacOsVersionsAPI {
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitMacOsVersions: (query) maximum number of related macOsVersions returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: CiXcodeVersionsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciMacOsVersionsXcodeVersionsGetToManyRelated(id: String, fieldsCiXcodeVersions: [FieldsCiXcodeVersions_ciMacOsVersionsXcodeVersionsGetToManyRelated]? = nil, fieldsCiMacOsVersions: [FieldsCiMacOsVersions_ciMacOsVersionsXcodeVersionsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_ciMacOsVersionsXcodeVersionsGetToManyRelated]? = nil, limitMacOsVersions: Int? = nil) async throws -> CiXcodeVersionsResponse {
-        return try await ciMacOsVersionsXcodeVersionsGetToManyRelatedWithRequestBuilder(id: id, fieldsCiXcodeVersions: fieldsCiXcodeVersions, fieldsCiMacOsVersions: fieldsCiMacOsVersions, limit: limit, include: include, limitMacOsVersions: limitMacOsVersions).execute().body
+    open class func ciMacOsVersionsXcodeVersionsGetToManyRelated(id: String, fieldsCiXcodeVersions: [FieldsCiXcodeVersions_ciMacOsVersionsXcodeVersionsGetToManyRelated]? = nil, fieldsCiMacOsVersions: [FieldsCiMacOsVersions_ciMacOsVersionsXcodeVersionsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_ciMacOsVersionsXcodeVersionsGetToManyRelated]? = nil, limitMacOsVersions: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> CiXcodeVersionsResponse {
+        return try await ciMacOsVersionsXcodeVersionsGetToManyRelatedWithRequestBuilder(id: id, fieldsCiXcodeVersions: fieldsCiXcodeVersions, fieldsCiMacOsVersions: fieldsCiMacOsVersions, limit: limit, include: include, limitMacOsVersions: limitMacOsVersions, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: CiXcodeVersionsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciMacOsVersionsXcodeVersionsGetToManyRelated(urlString: String) async throws -> CiXcodeVersionsResponse {
-        return try await ciMacOsVersionsXcodeVersionsGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func ciMacOsVersionsXcodeVersionsGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> CiXcodeVersionsResponse {
+        return try await ciMacOsVersionsXcodeVersionsGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -287,23 +294,24 @@ open class CiMacOsVersionsAPI {
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitMacOsVersions: (query) maximum number of related macOsVersions returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CiXcodeVersionsResponse> 
      */
-    open class func ciMacOsVersionsXcodeVersionsGetToManyRelatedWithRequestBuilder(id: String, fieldsCiXcodeVersions: [FieldsCiXcodeVersions_ciMacOsVersionsXcodeVersionsGetToManyRelated]? = nil, fieldsCiMacOsVersions: [FieldsCiMacOsVersions_ciMacOsVersionsXcodeVersionsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_ciMacOsVersionsXcodeVersionsGetToManyRelated]? = nil, limitMacOsVersions: Int? = nil) -> RequestBuilder<CiXcodeVersionsResponse> {
+    open class func ciMacOsVersionsXcodeVersionsGetToManyRelatedWithRequestBuilder(id: String, fieldsCiXcodeVersions: [FieldsCiXcodeVersions_ciMacOsVersionsXcodeVersionsGetToManyRelated]? = nil, fieldsCiMacOsVersions: [FieldsCiMacOsVersions_ciMacOsVersionsXcodeVersionsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_ciMacOsVersionsXcodeVersionsGetToManyRelated]? = nil, limitMacOsVersions: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<CiXcodeVersionsResponse> {
         var localVariablePath = "/v1/ciMacOsVersions/{id}/xcodeVersions"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[ciXcodeVersions]": (wrappedValue: fieldsCiXcodeVersions?.encodeToJSON(), isExplode: false),
-            "fields[ciMacOsVersions]": (wrappedValue: fieldsCiMacOsVersions?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[macOsVersions]": (wrappedValue: limitMacOsVersions?.encodeToJSON(), isExplode: true),
+            "fields[ciXcodeVersions]": (wrappedValue: fieldsCiXcodeVersions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[ciMacOsVersions]": (wrappedValue: fieldsCiMacOsVersions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[macOsVersions]": (wrappedValue: limitMacOsVersions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -312,9 +320,9 @@ open class CiMacOsVersionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CiXcodeVersionsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CiXcodeVersionsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -323,17 +331,18 @@ open class CiMacOsVersionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CiXcodeVersionsResponse> 
      */
-    open class func ciMacOsVersionsXcodeVersionsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<CiXcodeVersionsResponse> {
+    open class func ciMacOsVersionsXcodeVersionsGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<CiXcodeVersionsResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CiXcodeVersionsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CiXcodeVersionsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

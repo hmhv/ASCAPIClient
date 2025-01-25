@@ -6,13 +6,10 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppEventAttributes: Codable, JSONEncodable, Hashable {
+public struct AppEventAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum Badge: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum Badge: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case liveEvent = "LIVE_EVENT"
         case premiere = "PREMIERE"
         case challenge = "CHALLENGE"
@@ -22,7 +19,7 @@ public struct AppEventAttributes: Codable, JSONEncodable, Hashable {
         case specialEvent = "SPECIAL_EVENT"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
-    public enum EventState: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum EventState: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case draft = "DRAFT"
         case readyForReview = "READY_FOR_REVIEW"
         case waitingForReview = "WAITING_FOR_REVIEW"
@@ -35,12 +32,12 @@ public struct AppEventAttributes: Codable, JSONEncodable, Hashable {
         case archived = "ARCHIVED"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
-    public enum Priority: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum Priority: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case high = "HIGH"
         case normal = "NORMAL"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
-    public enum Purpose: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum Purpose: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case appropriateForAllUsers = "APPROPRIATE_FOR_ALL_USERS"
         case attractNewUsers = "ATTRACT_NEW_USERS"
         case keepActiveUsersInformed = "KEEP_ACTIVE_USERS_INFORMED"

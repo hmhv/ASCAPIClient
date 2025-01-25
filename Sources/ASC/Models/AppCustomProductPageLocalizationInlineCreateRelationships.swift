@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppCustomProductPageLocalizationInlineCreateRelationships: Codable, JSONEncodable, Hashable {
+public struct AppCustomProductPageLocalizationInlineCreateRelationships: Sendable, Codable, JSONEncodable, Hashable {
 
     public var appCustomProductPageVersion: AppCustomProductPageLocalizationRelationshipsAppCustomProductPageVersion?
 

@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct CiXcodeVersionAttributesTestDestinationsInner: Codable, JSONEncodable, Hashable {
+public struct CiXcodeVersionAttributesTestDestinationsInner: Sendable, Codable, JSONEncodable, Hashable {
 
     public var deviceTypeName: String?
     public var deviceTypeIdentifier: String?

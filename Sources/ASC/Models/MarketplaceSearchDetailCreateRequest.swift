@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct MarketplaceSearchDetailCreateRequest: Codable, JSONEncodable, Hashable {
+public struct MarketplaceSearchDetailCreateRequest: Sendable, Codable, JSONEncodable, Hashable {
 
     public var data: MarketplaceSearchDetailCreateRequestData
 

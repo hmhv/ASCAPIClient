@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct TerritoryAvailabilityUpdateRequestDataAttributes: Codable, JSONEncodable, Hashable {
+public struct TerritoryAvailabilityUpdateRequestDataAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
     public var available: Bool?
     public var releaseDate: Date?

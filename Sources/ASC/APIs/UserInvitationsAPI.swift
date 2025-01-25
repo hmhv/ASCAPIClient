@@ -6,29 +6,28 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class UserInvitationsAPI {
 
     /**
 
      - parameter userInvitationCreateRequest: (body) UserInvitation representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: UserInvitationResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func userInvitationsCreateInstance(userInvitationCreateRequest: UserInvitationCreateRequest) async throws -> UserInvitationResponse {
-        return try await userInvitationsCreateInstanceWithRequestBuilder(userInvitationCreateRequest: userInvitationCreateRequest).execute().body
+    open class func userInvitationsCreateInstance(userInvitationCreateRequest: UserInvitationCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> UserInvitationResponse {
+        return try await userInvitationsCreateInstanceWithRequestBuilder(userInvitationCreateRequest: userInvitationCreateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: UserInvitationResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func userInvitationsCreateInstance(urlString: String) async throws -> UserInvitationResponse {
-        return try await userInvitationsCreateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func userInvitationsCreateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> UserInvitationResponse {
+        return try await userInvitationsCreateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -37,12 +36,13 @@ open class UserInvitationsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter userInvitationCreateRequest: (body) UserInvitation representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<UserInvitationResponse> 
      */
-    open class func userInvitationsCreateInstanceWithRequestBuilder(userInvitationCreateRequest: UserInvitationCreateRequest) -> RequestBuilder<UserInvitationResponse> {
+    open class func userInvitationsCreateInstanceWithRequestBuilder(userInvitationCreateRequest: UserInvitationCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<UserInvitationResponse> {
         let localVariablePath = "/v1/userInvitations"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: userInvitationCreateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: userInvitationCreateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -52,9 +52,9 @@ open class UserInvitationsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<UserInvitationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<UserInvitationResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -63,37 +63,40 @@ open class UserInvitationsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<UserInvitationResponse> 
      */
-    open class func userInvitationsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<UserInvitationResponse> {
+    open class func userInvitationsCreateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<UserInvitationResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<UserInvitationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<UserInvitationResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func userInvitationsDeleteInstance(id: String) async throws {
-        return try await userInvitationsDeleteInstanceWithRequestBuilder(id: id).execute().body
+    open class func userInvitationsDeleteInstance(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await userInvitationsDeleteInstanceWithRequestBuilder(id: id, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func userInvitationsDeleteInstance(urlString: String) async throws {
-        return try await userInvitationsDeleteInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func userInvitationsDeleteInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await userInvitationsDeleteInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -102,14 +105,15 @@ open class UserInvitationsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func userInvitationsDeleteInstanceWithRequestBuilder(id: String) -> RequestBuilder<Void> {
+    open class func userInvitationsDeleteInstanceWithRequestBuilder(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/userInvitations/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -120,9 +124,9 @@ open class UserInvitationsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -131,24 +135,25 @@ open class UserInvitationsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func userInvitationsDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func userInvitationsDeleteInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter filterRoles
      */
-    public enum FilterRoles_userInvitationsGetCollection: String, CaseIterable {
+    public enum FilterRoles_userInvitationsGetCollection: String, Sendable, CaseIterable {
         case admin = "ADMIN"
         case finance = "FINANCE"
         case accountHolder = "ACCOUNT_HOLDER"
@@ -167,7 +172,7 @@ open class UserInvitationsAPI {
     /**
      * enum for parameter sort
      */
-    public enum Sort_userInvitationsGetCollection: String, CaseIterable {
+    public enum Sort_userInvitationsGetCollection: String, Sendable, CaseIterable {
         case email = "email"
         case email2 = "-email"
         case lastname = "lastName"
@@ -177,7 +182,7 @@ open class UserInvitationsAPI {
     /**
      * enum for parameter fieldsUserInvitations
      */
-    public enum FieldsUserInvitations_userInvitationsGetCollection: String, CaseIterable {
+    public enum FieldsUserInvitations_userInvitationsGetCollection: String, Sendable, CaseIterable {
         case email = "email"
         case firstname = "firstName"
         case lastname = "lastName"
@@ -191,7 +196,7 @@ open class UserInvitationsAPI {
     /**
      * enum for parameter fieldsApps
      */
-    public enum FieldsApps_userInvitationsGetCollection: String, CaseIterable {
+    public enum FieldsApps_userInvitationsGetCollection: String, Sendable, CaseIterable {
         case name = "name"
         case bundleid = "bundleId"
         case sku = "sku"
@@ -240,7 +245,7 @@ open class UserInvitationsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_userInvitationsGetCollection: String, CaseIterable {
+    public enum Include_userInvitationsGetCollection: String, Sendable, CaseIterable {
         case visibleapps = "visibleApps"
     }
 
@@ -255,20 +260,22 @@ open class UserInvitationsAPI {
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitVisibleApps: (query) maximum number of related visibleApps returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: UserInvitationsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func userInvitationsGetCollection(filterEmail: [String]? = nil, filterRoles: [FilterRoles_userInvitationsGetCollection]? = nil, filterVisibleApps: [String]? = nil, sort: [Sort_userInvitationsGetCollection]? = nil, fieldsUserInvitations: [FieldsUserInvitations_userInvitationsGetCollection]? = nil, fieldsApps: [FieldsApps_userInvitationsGetCollection]? = nil, limit: Int? = nil, include: [Include_userInvitationsGetCollection]? = nil, limitVisibleApps: Int? = nil) async throws -> UserInvitationsResponse {
-        return try await userInvitationsGetCollectionWithRequestBuilder(filterEmail: filterEmail, filterRoles: filterRoles, filterVisibleApps: filterVisibleApps, sort: sort, fieldsUserInvitations: fieldsUserInvitations, fieldsApps: fieldsApps, limit: limit, include: include, limitVisibleApps: limitVisibleApps).execute().body
+    open class func userInvitationsGetCollection(filterEmail: [String]? = nil, filterRoles: [FilterRoles_userInvitationsGetCollection]? = nil, filterVisibleApps: [String]? = nil, sort: [Sort_userInvitationsGetCollection]? = nil, fieldsUserInvitations: [FieldsUserInvitations_userInvitationsGetCollection]? = nil, fieldsApps: [FieldsApps_userInvitationsGetCollection]? = nil, limit: Int? = nil, include: [Include_userInvitationsGetCollection]? = nil, limitVisibleApps: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> UserInvitationsResponse {
+        return try await userInvitationsGetCollectionWithRequestBuilder(filterEmail: filterEmail, filterRoles: filterRoles, filterVisibleApps: filterVisibleApps, sort: sort, fieldsUserInvitations: fieldsUserInvitations, fieldsApps: fieldsApps, limit: limit, include: include, limitVisibleApps: limitVisibleApps, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: UserInvitationsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func userInvitationsGetCollection(urlString: String) async throws -> UserInvitationsResponse {
-        return try await userInvitationsGetCollectionWithRequestBuilder(urlString: urlString).execute().body
+    open class func userInvitationsGetCollection(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> UserInvitationsResponse {
+        return try await userInvitationsGetCollectionWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -285,24 +292,25 @@ open class UserInvitationsAPI {
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitVisibleApps: (query) maximum number of related visibleApps returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<UserInvitationsResponse> 
      */
-    open class func userInvitationsGetCollectionWithRequestBuilder(filterEmail: [String]? = nil, filterRoles: [FilterRoles_userInvitationsGetCollection]? = nil, filterVisibleApps: [String]? = nil, sort: [Sort_userInvitationsGetCollection]? = nil, fieldsUserInvitations: [FieldsUserInvitations_userInvitationsGetCollection]? = nil, fieldsApps: [FieldsApps_userInvitationsGetCollection]? = nil, limit: Int? = nil, include: [Include_userInvitationsGetCollection]? = nil, limitVisibleApps: Int? = nil) -> RequestBuilder<UserInvitationsResponse> {
+    open class func userInvitationsGetCollectionWithRequestBuilder(filterEmail: [String]? = nil, filterRoles: [FilterRoles_userInvitationsGetCollection]? = nil, filterVisibleApps: [String]? = nil, sort: [Sort_userInvitationsGetCollection]? = nil, fieldsUserInvitations: [FieldsUserInvitations_userInvitationsGetCollection]? = nil, fieldsApps: [FieldsApps_userInvitationsGetCollection]? = nil, limit: Int? = nil, include: [Include_userInvitationsGetCollection]? = nil, limitVisibleApps: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<UserInvitationsResponse> {
         let localVariablePath = "/v1/userInvitations"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[email]": (wrappedValue: filterEmail?.encodeToJSON(), isExplode: false),
-            "filter[roles]": (wrappedValue: filterRoles?.encodeToJSON(), isExplode: false),
-            "filter[visibleApps]": (wrappedValue: filterVisibleApps?.encodeToJSON(), isExplode: false),
-            "sort": (wrappedValue: sort?.encodeToJSON(), isExplode: false),
-            "fields[userInvitations]": (wrappedValue: fieldsUserInvitations?.encodeToJSON(), isExplode: false),
-            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[visibleApps]": (wrappedValue: limitVisibleApps?.encodeToJSON(), isExplode: true),
+            "filter[email]": (wrappedValue: filterEmail?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[roles]": (wrappedValue: filterRoles?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[visibleApps]": (wrappedValue: filterVisibleApps?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "sort": (wrappedValue: sort?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[userInvitations]": (wrappedValue: fieldsUserInvitations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[visibleApps]": (wrappedValue: limitVisibleApps?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -311,9 +319,9 @@ open class UserInvitationsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<UserInvitationsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<UserInvitationsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -322,24 +330,25 @@ open class UserInvitationsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<UserInvitationsResponse> 
      */
-    open class func userInvitationsGetCollectionWithRequestBuilder(urlString: String) -> RequestBuilder<UserInvitationsResponse> {
+    open class func userInvitationsGetCollectionWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<UserInvitationsResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<UserInvitationsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<UserInvitationsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsUserInvitations
      */
-    public enum FieldsUserInvitations_userInvitationsGetInstance: String, CaseIterable {
+    public enum FieldsUserInvitations_userInvitationsGetInstance: String, Sendable, CaseIterable {
         case email = "email"
         case firstname = "firstName"
         case lastname = "lastName"
@@ -353,7 +362,7 @@ open class UserInvitationsAPI {
     /**
      * enum for parameter fieldsApps
      */
-    public enum FieldsApps_userInvitationsGetInstance: String, CaseIterable {
+    public enum FieldsApps_userInvitationsGetInstance: String, Sendable, CaseIterable {
         case name = "name"
         case bundleid = "bundleId"
         case sku = "sku"
@@ -402,7 +411,7 @@ open class UserInvitationsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_userInvitationsGetInstance: String, CaseIterable {
+    public enum Include_userInvitationsGetInstance: String, Sendable, CaseIterable {
         case visibleapps = "visibleApps"
     }
 
@@ -413,20 +422,22 @@ open class UserInvitationsAPI {
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitVisibleApps: (query) maximum number of related visibleApps returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: UserInvitationResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func userInvitationsGetInstance(id: String, fieldsUserInvitations: [FieldsUserInvitations_userInvitationsGetInstance]? = nil, fieldsApps: [FieldsApps_userInvitationsGetInstance]? = nil, include: [Include_userInvitationsGetInstance]? = nil, limitVisibleApps: Int? = nil) async throws -> UserInvitationResponse {
-        return try await userInvitationsGetInstanceWithRequestBuilder(id: id, fieldsUserInvitations: fieldsUserInvitations, fieldsApps: fieldsApps, include: include, limitVisibleApps: limitVisibleApps).execute().body
+    open class func userInvitationsGetInstance(id: String, fieldsUserInvitations: [FieldsUserInvitations_userInvitationsGetInstance]? = nil, fieldsApps: [FieldsApps_userInvitationsGetInstance]? = nil, include: [Include_userInvitationsGetInstance]? = nil, limitVisibleApps: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> UserInvitationResponse {
+        return try await userInvitationsGetInstanceWithRequestBuilder(id: id, fieldsUserInvitations: fieldsUserInvitations, fieldsApps: fieldsApps, include: include, limitVisibleApps: limitVisibleApps, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: UserInvitationResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func userInvitationsGetInstance(urlString: String) async throws -> UserInvitationResponse {
-        return try await userInvitationsGetInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func userInvitationsGetInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> UserInvitationResponse {
+        return try await userInvitationsGetInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -439,22 +450,23 @@ open class UserInvitationsAPI {
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitVisibleApps: (query) maximum number of related visibleApps returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<UserInvitationResponse> 
      */
-    open class func userInvitationsGetInstanceWithRequestBuilder(id: String, fieldsUserInvitations: [FieldsUserInvitations_userInvitationsGetInstance]? = nil, fieldsApps: [FieldsApps_userInvitationsGetInstance]? = nil, include: [Include_userInvitationsGetInstance]? = nil, limitVisibleApps: Int? = nil) -> RequestBuilder<UserInvitationResponse> {
+    open class func userInvitationsGetInstanceWithRequestBuilder(id: String, fieldsUserInvitations: [FieldsUserInvitations_userInvitationsGetInstance]? = nil, fieldsApps: [FieldsApps_userInvitationsGetInstance]? = nil, include: [Include_userInvitationsGetInstance]? = nil, limitVisibleApps: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<UserInvitationResponse> {
         var localVariablePath = "/v1/userInvitations/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[userInvitations]": (wrappedValue: fieldsUserInvitations?.encodeToJSON(), isExplode: false),
-            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[visibleApps]": (wrappedValue: limitVisibleApps?.encodeToJSON(), isExplode: true),
+            "fields[userInvitations]": (wrappedValue: fieldsUserInvitations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[visibleApps]": (wrappedValue: limitVisibleApps?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -463,9 +475,9 @@ open class UserInvitationsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<UserInvitationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<UserInvitationResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -474,24 +486,25 @@ open class UserInvitationsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<UserInvitationResponse> 
      */
-    open class func userInvitationsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<UserInvitationResponse> {
+    open class func userInvitationsGetInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<UserInvitationResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<UserInvitationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<UserInvitationResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsApps
      */
-    public enum FieldsApps_userInvitationsVisibleAppsGetToManyRelated: String, CaseIterable {
+    public enum FieldsApps_userInvitationsVisibleAppsGetToManyRelated: String, Sendable, CaseIterable {
         case name = "name"
         case bundleid = "bundleId"
         case sku = "sku"
@@ -542,20 +555,22 @@ open class UserInvitationsAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppsWithoutIncludesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func userInvitationsVisibleAppsGetToManyRelated(id: String, fieldsApps: [FieldsApps_userInvitationsVisibleAppsGetToManyRelated]? = nil, limit: Int? = nil) async throws -> AppsWithoutIncludesResponse {
-        return try await userInvitationsVisibleAppsGetToManyRelatedWithRequestBuilder(id: id, fieldsApps: fieldsApps, limit: limit).execute().body
+    open class func userInvitationsVisibleAppsGetToManyRelated(id: String, fieldsApps: [FieldsApps_userInvitationsVisibleAppsGetToManyRelated]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppsWithoutIncludesResponse {
+        return try await userInvitationsVisibleAppsGetToManyRelatedWithRequestBuilder(id: id, fieldsApps: fieldsApps, limit: limit, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppsWithoutIncludesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func userInvitationsVisibleAppsGetToManyRelated(urlString: String) async throws -> AppsWithoutIncludesResponse {
-        return try await userInvitationsVisibleAppsGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func userInvitationsVisibleAppsGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppsWithoutIncludesResponse {
+        return try await userInvitationsVisibleAppsGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -566,20 +581,21 @@ open class UserInvitationsAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppsWithoutIncludesResponse> 
      */
-    open class func userInvitationsVisibleAppsGetToManyRelatedWithRequestBuilder(id: String, fieldsApps: [FieldsApps_userInvitationsVisibleAppsGetToManyRelated]? = nil, limit: Int? = nil) -> RequestBuilder<AppsWithoutIncludesResponse> {
+    open class func userInvitationsVisibleAppsGetToManyRelatedWithRequestBuilder(id: String, fieldsApps: [FieldsApps_userInvitationsVisibleAppsGetToManyRelated]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppsWithoutIncludesResponse> {
         var localVariablePath = "/v1/userInvitations/{id}/visibleApps"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -588,9 +604,9 @@ open class UserInvitationsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppsWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppsWithoutIncludesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -599,17 +615,18 @@ open class UserInvitationsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppsWithoutIncludesResponse> 
      */
-    open class func userInvitationsVisibleAppsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppsWithoutIncludesResponse> {
+    open class func userInvitationsVisibleAppsGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppsWithoutIncludesResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppsWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppsWithoutIncludesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

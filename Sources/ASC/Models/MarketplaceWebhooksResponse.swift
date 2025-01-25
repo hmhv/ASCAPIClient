@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct MarketplaceWebhooksResponse: Codable, JSONEncodable, Hashable {
+public struct MarketplaceWebhooksResponse: Sendable, Codable, JSONEncodable, Hashable {
 
     public var data: [MarketplaceWebhook]
     public var links: PagedDocumentLinks

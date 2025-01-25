@@ -6,12 +6,9 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 @available(*, deprecated, message: "This schema is deprecated.")
-public struct GameCenterLeaderboardSetRelationshipsGroupLeaderboardSet: Codable, JSONEncodable, Hashable {
+public struct GameCenterLeaderboardSetRelationshipsGroupLeaderboardSet: Sendable, Codable, JSONEncodable, Hashable {
 
     public var links: RelationshipLinks?
     public var data: GameCenterDetailRelationshipsGameCenterLeaderboardSetsDataInner?

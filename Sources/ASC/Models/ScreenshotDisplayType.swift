@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public enum ScreenshotDisplayType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+public enum ScreenshotDisplayType: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
     case appIphone67 = "APP_IPHONE_67"
     case appIphone61 = "APP_IPHONE_61"
     case appIphone65 = "APP_IPHONE_65"

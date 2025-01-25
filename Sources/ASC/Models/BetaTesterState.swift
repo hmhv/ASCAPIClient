@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public enum BetaTesterState: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+public enum BetaTesterState: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
     case notInvited = "NOT_INVITED"
     case invited = "INVITED"
     case accepted = "ACCEPTED"

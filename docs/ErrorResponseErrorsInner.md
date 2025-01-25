@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **detail** | **String** |  | 
 **source** | [**ErrorResponseErrorsInnerSource**](ErrorResponseErrorsInnerSource.md) |  | [optional] 
 **links** | [**ErrorLinks**](ErrorLinks.md) |  | [optional] 
-**meta** | **[String: AnyCodable]** |  | [optional] 
+**meta** | **[String: JSONValue]** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

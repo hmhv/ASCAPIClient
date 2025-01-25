@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppEventRelationships: Codable, JSONEncodable, Hashable {
+public struct AppEventRelationships: Sendable, Codable, JSONEncodable, Hashable {
 
     public var localizations: AppEventRelationshipsLocalizations?
 

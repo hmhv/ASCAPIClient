@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppCategoryRelationships: Codable, JSONEncodable, Hashable {
+public struct AppCategoryRelationships: Sendable, Codable, JSONEncodable, Hashable {
 
     public var subcategories: AppCategoryRelationshipsSubcategories?
     public var parent: AppCategoryRelationshipsParent?

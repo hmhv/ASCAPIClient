@@ -6,29 +6,28 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class AppInfoLocalizationsAPI {
 
     /**
 
      - parameter appInfoLocalizationCreateRequest: (body) AppInfoLocalization representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppInfoLocalizationResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appInfoLocalizationsCreateInstance(appInfoLocalizationCreateRequest: AppInfoLocalizationCreateRequest) async throws -> AppInfoLocalizationResponse {
-        return try await appInfoLocalizationsCreateInstanceWithRequestBuilder(appInfoLocalizationCreateRequest: appInfoLocalizationCreateRequest).execute().body
+    open class func appInfoLocalizationsCreateInstance(appInfoLocalizationCreateRequest: AppInfoLocalizationCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppInfoLocalizationResponse {
+        return try await appInfoLocalizationsCreateInstanceWithRequestBuilder(appInfoLocalizationCreateRequest: appInfoLocalizationCreateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppInfoLocalizationResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appInfoLocalizationsCreateInstance(urlString: String) async throws -> AppInfoLocalizationResponse {
-        return try await appInfoLocalizationsCreateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func appInfoLocalizationsCreateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppInfoLocalizationResponse {
+        return try await appInfoLocalizationsCreateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -37,12 +36,13 @@ open class AppInfoLocalizationsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter appInfoLocalizationCreateRequest: (body) AppInfoLocalization representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppInfoLocalizationResponse> 
      */
-    open class func appInfoLocalizationsCreateInstanceWithRequestBuilder(appInfoLocalizationCreateRequest: AppInfoLocalizationCreateRequest) -> RequestBuilder<AppInfoLocalizationResponse> {
+    open class func appInfoLocalizationsCreateInstanceWithRequestBuilder(appInfoLocalizationCreateRequest: AppInfoLocalizationCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppInfoLocalizationResponse> {
         let localVariablePath = "/v1/appInfoLocalizations"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: appInfoLocalizationCreateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: appInfoLocalizationCreateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -52,9 +52,9 @@ open class AppInfoLocalizationsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppInfoLocalizationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppInfoLocalizationResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -63,37 +63,40 @@ open class AppInfoLocalizationsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppInfoLocalizationResponse> 
      */
-    open class func appInfoLocalizationsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppInfoLocalizationResponse> {
+    open class func appInfoLocalizationsCreateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppInfoLocalizationResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppInfoLocalizationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppInfoLocalizationResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appInfoLocalizationsDeleteInstance(id: String) async throws {
-        return try await appInfoLocalizationsDeleteInstanceWithRequestBuilder(id: id).execute().body
+    open class func appInfoLocalizationsDeleteInstance(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await appInfoLocalizationsDeleteInstanceWithRequestBuilder(id: id, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appInfoLocalizationsDeleteInstance(urlString: String) async throws {
-        return try await appInfoLocalizationsDeleteInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func appInfoLocalizationsDeleteInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await appInfoLocalizationsDeleteInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -102,14 +105,15 @@ open class AppInfoLocalizationsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func appInfoLocalizationsDeleteInstanceWithRequestBuilder(id: String) -> RequestBuilder<Void> {
+    open class func appInfoLocalizationsDeleteInstanceWithRequestBuilder(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/appInfoLocalizations/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -120,9 +124,9 @@ open class AppInfoLocalizationsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -131,24 +135,25 @@ open class AppInfoLocalizationsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func appInfoLocalizationsDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func appInfoLocalizationsDeleteInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsAppInfoLocalizations
      */
-    public enum FieldsAppInfoLocalizations_appInfoLocalizationsGetInstance: String, CaseIterable {
+    public enum FieldsAppInfoLocalizations_appInfoLocalizationsGetInstance: String, Sendable, CaseIterable {
         case locale = "locale"
         case name = "name"
         case subtitle = "subtitle"
@@ -161,7 +166,7 @@ open class AppInfoLocalizationsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_appInfoLocalizationsGetInstance: String, CaseIterable {
+    public enum Include_appInfoLocalizationsGetInstance: String, Sendable, CaseIterable {
         case appinfo = "appInfo"
     }
 
@@ -170,20 +175,22 @@ open class AppInfoLocalizationsAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAppInfoLocalizations: (query) the fields to include for returned resources of type appInfoLocalizations (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppInfoLocalizationResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appInfoLocalizationsGetInstance(id: String, fieldsAppInfoLocalizations: [FieldsAppInfoLocalizations_appInfoLocalizationsGetInstance]? = nil, include: [Include_appInfoLocalizationsGetInstance]? = nil) async throws -> AppInfoLocalizationResponse {
-        return try await appInfoLocalizationsGetInstanceWithRequestBuilder(id: id, fieldsAppInfoLocalizations: fieldsAppInfoLocalizations, include: include).execute().body
+    open class func appInfoLocalizationsGetInstance(id: String, fieldsAppInfoLocalizations: [FieldsAppInfoLocalizations_appInfoLocalizationsGetInstance]? = nil, include: [Include_appInfoLocalizationsGetInstance]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppInfoLocalizationResponse {
+        return try await appInfoLocalizationsGetInstanceWithRequestBuilder(id: id, fieldsAppInfoLocalizations: fieldsAppInfoLocalizations, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppInfoLocalizationResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appInfoLocalizationsGetInstance(urlString: String) async throws -> AppInfoLocalizationResponse {
-        return try await appInfoLocalizationsGetInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func appInfoLocalizationsGetInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppInfoLocalizationResponse {
+        return try await appInfoLocalizationsGetInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -194,20 +201,21 @@ open class AppInfoLocalizationsAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAppInfoLocalizations: (query) the fields to include for returned resources of type appInfoLocalizations (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppInfoLocalizationResponse> 
      */
-    open class func appInfoLocalizationsGetInstanceWithRequestBuilder(id: String, fieldsAppInfoLocalizations: [FieldsAppInfoLocalizations_appInfoLocalizationsGetInstance]? = nil, include: [Include_appInfoLocalizationsGetInstance]? = nil) -> RequestBuilder<AppInfoLocalizationResponse> {
+    open class func appInfoLocalizationsGetInstanceWithRequestBuilder(id: String, fieldsAppInfoLocalizations: [FieldsAppInfoLocalizations_appInfoLocalizationsGetInstance]? = nil, include: [Include_appInfoLocalizationsGetInstance]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppInfoLocalizationResponse> {
         var localVariablePath = "/v1/appInfoLocalizations/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[appInfoLocalizations]": (wrappedValue: fieldsAppInfoLocalizations?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "fields[appInfoLocalizations]": (wrappedValue: fieldsAppInfoLocalizations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -216,9 +224,9 @@ open class AppInfoLocalizationsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppInfoLocalizationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppInfoLocalizationResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -227,38 +235,41 @@ open class AppInfoLocalizationsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppInfoLocalizationResponse> 
      */
-    open class func appInfoLocalizationsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppInfoLocalizationResponse> {
+    open class func appInfoLocalizationsGetInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppInfoLocalizationResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppInfoLocalizationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppInfoLocalizationResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter appInfoLocalizationUpdateRequest: (body) AppInfoLocalization representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppInfoLocalizationResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appInfoLocalizationsUpdateInstance(id: String, appInfoLocalizationUpdateRequest: AppInfoLocalizationUpdateRequest) async throws -> AppInfoLocalizationResponse {
-        return try await appInfoLocalizationsUpdateInstanceWithRequestBuilder(id: id, appInfoLocalizationUpdateRequest: appInfoLocalizationUpdateRequest).execute().body
+    open class func appInfoLocalizationsUpdateInstance(id: String, appInfoLocalizationUpdateRequest: AppInfoLocalizationUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppInfoLocalizationResponse {
+        return try await appInfoLocalizationsUpdateInstanceWithRequestBuilder(id: id, appInfoLocalizationUpdateRequest: appInfoLocalizationUpdateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppInfoLocalizationResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appInfoLocalizationsUpdateInstance(urlString: String) async throws -> AppInfoLocalizationResponse {
-        return try await appInfoLocalizationsUpdateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func appInfoLocalizationsUpdateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppInfoLocalizationResponse {
+        return try await appInfoLocalizationsUpdateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -268,15 +279,16 @@ open class AppInfoLocalizationsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter appInfoLocalizationUpdateRequest: (body) AppInfoLocalization representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppInfoLocalizationResponse> 
      */
-    open class func appInfoLocalizationsUpdateInstanceWithRequestBuilder(id: String, appInfoLocalizationUpdateRequest: AppInfoLocalizationUpdateRequest) -> RequestBuilder<AppInfoLocalizationResponse> {
+    open class func appInfoLocalizationsUpdateInstanceWithRequestBuilder(id: String, appInfoLocalizationUpdateRequest: AppInfoLocalizationUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppInfoLocalizationResponse> {
         var localVariablePath = "/v1/appInfoLocalizations/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: appInfoLocalizationUpdateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: appInfoLocalizationUpdateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -286,9 +298,9 @@ open class AppInfoLocalizationsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppInfoLocalizationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppInfoLocalizationResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -297,17 +309,18 @@ open class AppInfoLocalizationsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppInfoLocalizationResponse> 
      */
-    open class func appInfoLocalizationsUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppInfoLocalizationResponse> {
+    open class func appInfoLocalizationsUpdateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppInfoLocalizationResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppInfoLocalizationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppInfoLocalizationResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppScreenshotSetAppScreenshotsLinkagesResponse: Codable, JSONEncodable, Hashable {
+public struct AppScreenshotSetAppScreenshotsLinkagesResponse: Sendable, Codable, JSONEncodable, Hashable {
 
     public var data: [AppScreenshotSetRelationshipsAppScreenshotsDataInner]
     public var links: PagedDocumentLinks

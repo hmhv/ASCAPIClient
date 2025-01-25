@@ -6,29 +6,28 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class AppEncryptionDeclarationDocumentsAPI {
 
     /**
 
      - parameter appEncryptionDeclarationDocumentCreateRequest: (body) AppEncryptionDeclarationDocument representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppEncryptionDeclarationDocumentResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appEncryptionDeclarationDocumentsCreateInstance(appEncryptionDeclarationDocumentCreateRequest: AppEncryptionDeclarationDocumentCreateRequest) async throws -> AppEncryptionDeclarationDocumentResponse {
-        return try await appEncryptionDeclarationDocumentsCreateInstanceWithRequestBuilder(appEncryptionDeclarationDocumentCreateRequest: appEncryptionDeclarationDocumentCreateRequest).execute().body
+    open class func appEncryptionDeclarationDocumentsCreateInstance(appEncryptionDeclarationDocumentCreateRequest: AppEncryptionDeclarationDocumentCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppEncryptionDeclarationDocumentResponse {
+        return try await appEncryptionDeclarationDocumentsCreateInstanceWithRequestBuilder(appEncryptionDeclarationDocumentCreateRequest: appEncryptionDeclarationDocumentCreateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppEncryptionDeclarationDocumentResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appEncryptionDeclarationDocumentsCreateInstance(urlString: String) async throws -> AppEncryptionDeclarationDocumentResponse {
-        return try await appEncryptionDeclarationDocumentsCreateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func appEncryptionDeclarationDocumentsCreateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppEncryptionDeclarationDocumentResponse {
+        return try await appEncryptionDeclarationDocumentsCreateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -37,12 +36,13 @@ open class AppEncryptionDeclarationDocumentsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter appEncryptionDeclarationDocumentCreateRequest: (body) AppEncryptionDeclarationDocument representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppEncryptionDeclarationDocumentResponse> 
      */
-    open class func appEncryptionDeclarationDocumentsCreateInstanceWithRequestBuilder(appEncryptionDeclarationDocumentCreateRequest: AppEncryptionDeclarationDocumentCreateRequest) -> RequestBuilder<AppEncryptionDeclarationDocumentResponse> {
+    open class func appEncryptionDeclarationDocumentsCreateInstanceWithRequestBuilder(appEncryptionDeclarationDocumentCreateRequest: AppEncryptionDeclarationDocumentCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppEncryptionDeclarationDocumentResponse> {
         let localVariablePath = "/v1/appEncryptionDeclarationDocuments"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: appEncryptionDeclarationDocumentCreateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: appEncryptionDeclarationDocumentCreateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -52,9 +52,9 @@ open class AppEncryptionDeclarationDocumentsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppEncryptionDeclarationDocumentResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppEncryptionDeclarationDocumentResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -63,24 +63,25 @@ open class AppEncryptionDeclarationDocumentsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppEncryptionDeclarationDocumentResponse> 
      */
-    open class func appEncryptionDeclarationDocumentsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppEncryptionDeclarationDocumentResponse> {
+    open class func appEncryptionDeclarationDocumentsCreateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppEncryptionDeclarationDocumentResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppEncryptionDeclarationDocumentResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppEncryptionDeclarationDocumentResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsAppEncryptionDeclarationDocuments
      */
-    public enum FieldsAppEncryptionDeclarationDocuments_appEncryptionDeclarationDocumentsGetInstance: String, CaseIterable {
+    public enum FieldsAppEncryptionDeclarationDocuments_appEncryptionDeclarationDocumentsGetInstance: String, Sendable, CaseIterable {
         case filesize = "fileSize"
         case filename = "fileName"
         case assettoken = "assetToken"
@@ -94,20 +95,22 @@ open class AppEncryptionDeclarationDocumentsAPI {
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAppEncryptionDeclarationDocuments: (query) the fields to include for returned resources of type appEncryptionDeclarationDocuments (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppEncryptionDeclarationDocumentResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appEncryptionDeclarationDocumentsGetInstance(id: String, fieldsAppEncryptionDeclarationDocuments: [FieldsAppEncryptionDeclarationDocuments_appEncryptionDeclarationDocumentsGetInstance]? = nil) async throws -> AppEncryptionDeclarationDocumentResponse {
-        return try await appEncryptionDeclarationDocumentsGetInstanceWithRequestBuilder(id: id, fieldsAppEncryptionDeclarationDocuments: fieldsAppEncryptionDeclarationDocuments).execute().body
+    open class func appEncryptionDeclarationDocumentsGetInstance(id: String, fieldsAppEncryptionDeclarationDocuments: [FieldsAppEncryptionDeclarationDocuments_appEncryptionDeclarationDocumentsGetInstance]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppEncryptionDeclarationDocumentResponse {
+        return try await appEncryptionDeclarationDocumentsGetInstanceWithRequestBuilder(id: id, fieldsAppEncryptionDeclarationDocuments: fieldsAppEncryptionDeclarationDocuments, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppEncryptionDeclarationDocumentResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appEncryptionDeclarationDocumentsGetInstance(urlString: String) async throws -> AppEncryptionDeclarationDocumentResponse {
-        return try await appEncryptionDeclarationDocumentsGetInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func appEncryptionDeclarationDocumentsGetInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppEncryptionDeclarationDocumentResponse {
+        return try await appEncryptionDeclarationDocumentsGetInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -117,19 +120,20 @@ open class AppEncryptionDeclarationDocumentsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAppEncryptionDeclarationDocuments: (query) the fields to include for returned resources of type appEncryptionDeclarationDocuments (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppEncryptionDeclarationDocumentResponse> 
      */
-    open class func appEncryptionDeclarationDocumentsGetInstanceWithRequestBuilder(id: String, fieldsAppEncryptionDeclarationDocuments: [FieldsAppEncryptionDeclarationDocuments_appEncryptionDeclarationDocumentsGetInstance]? = nil) -> RequestBuilder<AppEncryptionDeclarationDocumentResponse> {
+    open class func appEncryptionDeclarationDocumentsGetInstanceWithRequestBuilder(id: String, fieldsAppEncryptionDeclarationDocuments: [FieldsAppEncryptionDeclarationDocuments_appEncryptionDeclarationDocumentsGetInstance]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppEncryptionDeclarationDocumentResponse> {
         var localVariablePath = "/v1/appEncryptionDeclarationDocuments/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[appEncryptionDeclarationDocuments]": (wrappedValue: fieldsAppEncryptionDeclarationDocuments?.encodeToJSON(), isExplode: false),
+            "fields[appEncryptionDeclarationDocuments]": (wrappedValue: fieldsAppEncryptionDeclarationDocuments?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -138,9 +142,9 @@ open class AppEncryptionDeclarationDocumentsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppEncryptionDeclarationDocumentResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppEncryptionDeclarationDocumentResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -149,38 +153,41 @@ open class AppEncryptionDeclarationDocumentsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppEncryptionDeclarationDocumentResponse> 
      */
-    open class func appEncryptionDeclarationDocumentsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppEncryptionDeclarationDocumentResponse> {
+    open class func appEncryptionDeclarationDocumentsGetInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppEncryptionDeclarationDocumentResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppEncryptionDeclarationDocumentResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppEncryptionDeclarationDocumentResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter appEncryptionDeclarationDocumentUpdateRequest: (body) AppEncryptionDeclarationDocument representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppEncryptionDeclarationDocumentResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appEncryptionDeclarationDocumentsUpdateInstance(id: String, appEncryptionDeclarationDocumentUpdateRequest: AppEncryptionDeclarationDocumentUpdateRequest) async throws -> AppEncryptionDeclarationDocumentResponse {
-        return try await appEncryptionDeclarationDocumentsUpdateInstanceWithRequestBuilder(id: id, appEncryptionDeclarationDocumentUpdateRequest: appEncryptionDeclarationDocumentUpdateRequest).execute().body
+    open class func appEncryptionDeclarationDocumentsUpdateInstance(id: String, appEncryptionDeclarationDocumentUpdateRequest: AppEncryptionDeclarationDocumentUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppEncryptionDeclarationDocumentResponse {
+        return try await appEncryptionDeclarationDocumentsUpdateInstanceWithRequestBuilder(id: id, appEncryptionDeclarationDocumentUpdateRequest: appEncryptionDeclarationDocumentUpdateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppEncryptionDeclarationDocumentResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appEncryptionDeclarationDocumentsUpdateInstance(urlString: String) async throws -> AppEncryptionDeclarationDocumentResponse {
-        return try await appEncryptionDeclarationDocumentsUpdateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func appEncryptionDeclarationDocumentsUpdateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppEncryptionDeclarationDocumentResponse {
+        return try await appEncryptionDeclarationDocumentsUpdateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -190,15 +197,16 @@ open class AppEncryptionDeclarationDocumentsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter appEncryptionDeclarationDocumentUpdateRequest: (body) AppEncryptionDeclarationDocument representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppEncryptionDeclarationDocumentResponse> 
      */
-    open class func appEncryptionDeclarationDocumentsUpdateInstanceWithRequestBuilder(id: String, appEncryptionDeclarationDocumentUpdateRequest: AppEncryptionDeclarationDocumentUpdateRequest) -> RequestBuilder<AppEncryptionDeclarationDocumentResponse> {
+    open class func appEncryptionDeclarationDocumentsUpdateInstanceWithRequestBuilder(id: String, appEncryptionDeclarationDocumentUpdateRequest: AppEncryptionDeclarationDocumentUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppEncryptionDeclarationDocumentResponse> {
         var localVariablePath = "/v1/appEncryptionDeclarationDocuments/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: appEncryptionDeclarationDocumentUpdateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: appEncryptionDeclarationDocumentUpdateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -208,9 +216,9 @@ open class AppEncryptionDeclarationDocumentsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppEncryptionDeclarationDocumentResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppEncryptionDeclarationDocumentResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -219,17 +227,18 @@ open class AppEncryptionDeclarationDocumentsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppEncryptionDeclarationDocumentResponse> 
      */
-    open class func appEncryptionDeclarationDocumentsUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppEncryptionDeclarationDocumentResponse> {
+    open class func appEncryptionDeclarationDocumentsUpdateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppEncryptionDeclarationDocumentResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppEncryptionDeclarationDocumentResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppEncryptionDeclarationDocumentResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

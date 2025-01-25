@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppStoreVersionExperimentV2RelationshipsAppStoreVersionExperimentTreatments: Codable, JSONEncodable, Hashable {
+public struct AppStoreVersionExperimentV2RelationshipsAppStoreVersionExperimentTreatments: Sendable, Codable, JSONEncodable, Hashable {
 
     public var links: RelationshipLinks?
     public var meta: PagingInformation?

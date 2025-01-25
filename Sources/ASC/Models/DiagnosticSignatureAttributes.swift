@@ -6,13 +6,10 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct DiagnosticSignatureAttributes: Codable, JSONEncodable, Hashable {
+public struct DiagnosticSignatureAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum DiagnosticType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum DiagnosticType: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case diskWrites = "DISK_WRITES"
         case hangs = "HANGS"
         case launches = "LAUNCHES"

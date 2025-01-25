@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct DiagnosticInsightReferenceVersionsInner: Codable, JSONEncodable, Hashable {
+public struct DiagnosticInsightReferenceVersionsInner: Sendable, Codable, JSONEncodable, Hashable {
 
     public var version: String?
     public var value: Double?

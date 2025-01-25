@@ -6,13 +6,10 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct BetaAppClipInvocationLocalizationInlineCreateRelationshipsBetaAppClipInvocationData: Codable, JSONEncodable, Hashable {
+public struct BetaAppClipInvocationLocalizationInlineCreateRelationshipsBetaAppClipInvocationData: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum ModelType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum ModelType: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case betaappclipinvocations = "betaAppClipInvocations"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }

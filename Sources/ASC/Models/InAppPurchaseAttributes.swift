@@ -6,13 +6,10 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct InAppPurchaseAttributes: Codable, JSONEncodable, Hashable {
+public struct InAppPurchaseAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum InAppPurchaseType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum InAppPurchaseType: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case automaticallyRenewableSubscription = "AUTOMATICALLY_RENEWABLE_SUBSCRIPTION"
         case nonConsumable = "NON_CONSUMABLE"
         case consumable = "CONSUMABLE"
@@ -20,7 +17,7 @@ public struct InAppPurchaseAttributes: Codable, JSONEncodable, Hashable {
         case freeSubscription = "FREE_SUBSCRIPTION"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
-    public enum State: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum State: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case created = "CREATED"
         case developerSignedOff = "DEVELOPER_SIGNED_OFF"
         case developerActionNeeded = "DEVELOPER_ACTION_NEEDED"

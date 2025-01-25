@@ -6,14 +6,11 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 @available(*, deprecated, message: "This schema is deprecated.")
-public struct PromotedPurchaseImage: Codable, JSONEncodable, Hashable {
+public struct PromotedPurchaseImage: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum ModelType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum ModelType: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case promotedpurchaseimages = "promotedPurchaseImages"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }

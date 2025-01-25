@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct MarketplaceWebhookUpdateRequestDataAttributes: Codable, JSONEncodable, Hashable {
+public struct MarketplaceWebhookUpdateRequestDataAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
     public var endpointUrl: String?
     public var secret: String?

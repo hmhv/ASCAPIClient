@@ -6,16 +6,13 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class InAppPurchaseAvailabilitiesAPI {
 
     /**
      * enum for parameter fieldsTerritories
      */
-    public enum FieldsTerritories_inAppPurchaseAvailabilitiesAvailableTerritoriesGetToManyRelated: String, CaseIterable {
+    public enum FieldsTerritories_inAppPurchaseAvailabilitiesAvailableTerritoriesGetToManyRelated: String, Sendable, CaseIterable {
         case currency = "currency"
     }
 
@@ -24,20 +21,22 @@ open class InAppPurchaseAvailabilitiesAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: TerritoriesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchaseAvailabilitiesAvailableTerritoriesGetToManyRelated(id: String, fieldsTerritories: [FieldsTerritories_inAppPurchaseAvailabilitiesAvailableTerritoriesGetToManyRelated]? = nil, limit: Int? = nil) async throws -> TerritoriesResponse {
-        return try await inAppPurchaseAvailabilitiesAvailableTerritoriesGetToManyRelatedWithRequestBuilder(id: id, fieldsTerritories: fieldsTerritories, limit: limit).execute().body
+    open class func inAppPurchaseAvailabilitiesAvailableTerritoriesGetToManyRelated(id: String, fieldsTerritories: [FieldsTerritories_inAppPurchaseAvailabilitiesAvailableTerritoriesGetToManyRelated]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> TerritoriesResponse {
+        return try await inAppPurchaseAvailabilitiesAvailableTerritoriesGetToManyRelatedWithRequestBuilder(id: id, fieldsTerritories: fieldsTerritories, limit: limit, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: TerritoriesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchaseAvailabilitiesAvailableTerritoriesGetToManyRelated(urlString: String) async throws -> TerritoriesResponse {
-        return try await inAppPurchaseAvailabilitiesAvailableTerritoriesGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func inAppPurchaseAvailabilitiesAvailableTerritoriesGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> TerritoriesResponse {
+        return try await inAppPurchaseAvailabilitiesAvailableTerritoriesGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -48,20 +47,21 @@ open class InAppPurchaseAvailabilitiesAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<TerritoriesResponse> 
      */
-    open class func inAppPurchaseAvailabilitiesAvailableTerritoriesGetToManyRelatedWithRequestBuilder(id: String, fieldsTerritories: [FieldsTerritories_inAppPurchaseAvailabilitiesAvailableTerritoriesGetToManyRelated]? = nil, limit: Int? = nil) -> RequestBuilder<TerritoriesResponse> {
+    open class func inAppPurchaseAvailabilitiesAvailableTerritoriesGetToManyRelatedWithRequestBuilder(id: String, fieldsTerritories: [FieldsTerritories_inAppPurchaseAvailabilitiesAvailableTerritoriesGetToManyRelated]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<TerritoriesResponse> {
         var localVariablePath = "/v1/inAppPurchaseAvailabilities/{id}/availableTerritories"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -70,9 +70,9 @@ open class InAppPurchaseAvailabilitiesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<TerritoriesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<TerritoriesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -81,37 +81,40 @@ open class InAppPurchaseAvailabilitiesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<TerritoriesResponse> 
      */
-    open class func inAppPurchaseAvailabilitiesAvailableTerritoriesGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<TerritoriesResponse> {
+    open class func inAppPurchaseAvailabilitiesAvailableTerritoriesGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<TerritoriesResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<TerritoriesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<TerritoriesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter inAppPurchaseAvailabilityCreateRequest: (body) InAppPurchaseAvailability representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: InAppPurchaseAvailabilityResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchaseAvailabilitiesCreateInstance(inAppPurchaseAvailabilityCreateRequest: InAppPurchaseAvailabilityCreateRequest) async throws -> InAppPurchaseAvailabilityResponse {
-        return try await inAppPurchaseAvailabilitiesCreateInstanceWithRequestBuilder(inAppPurchaseAvailabilityCreateRequest: inAppPurchaseAvailabilityCreateRequest).execute().body
+    open class func inAppPurchaseAvailabilitiesCreateInstance(inAppPurchaseAvailabilityCreateRequest: InAppPurchaseAvailabilityCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> InAppPurchaseAvailabilityResponse {
+        return try await inAppPurchaseAvailabilitiesCreateInstanceWithRequestBuilder(inAppPurchaseAvailabilityCreateRequest: inAppPurchaseAvailabilityCreateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: InAppPurchaseAvailabilityResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchaseAvailabilitiesCreateInstance(urlString: String) async throws -> InAppPurchaseAvailabilityResponse {
-        return try await inAppPurchaseAvailabilitiesCreateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func inAppPurchaseAvailabilitiesCreateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> InAppPurchaseAvailabilityResponse {
+        return try await inAppPurchaseAvailabilitiesCreateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -120,12 +123,13 @@ open class InAppPurchaseAvailabilitiesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter inAppPurchaseAvailabilityCreateRequest: (body) InAppPurchaseAvailability representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<InAppPurchaseAvailabilityResponse> 
      */
-    open class func inAppPurchaseAvailabilitiesCreateInstanceWithRequestBuilder(inAppPurchaseAvailabilityCreateRequest: InAppPurchaseAvailabilityCreateRequest) -> RequestBuilder<InAppPurchaseAvailabilityResponse> {
+    open class func inAppPurchaseAvailabilitiesCreateInstanceWithRequestBuilder(inAppPurchaseAvailabilityCreateRequest: InAppPurchaseAvailabilityCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<InAppPurchaseAvailabilityResponse> {
         let localVariablePath = "/v1/inAppPurchaseAvailabilities"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: inAppPurchaseAvailabilityCreateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: inAppPurchaseAvailabilityCreateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -135,9 +139,9 @@ open class InAppPurchaseAvailabilitiesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseAvailabilityResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseAvailabilityResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -146,24 +150,25 @@ open class InAppPurchaseAvailabilitiesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<InAppPurchaseAvailabilityResponse> 
      */
-    open class func inAppPurchaseAvailabilitiesCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<InAppPurchaseAvailabilityResponse> {
+    open class func inAppPurchaseAvailabilitiesCreateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<InAppPurchaseAvailabilityResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseAvailabilityResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseAvailabilityResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsInAppPurchaseAvailabilities
      */
-    public enum FieldsInAppPurchaseAvailabilities_inAppPurchaseAvailabilitiesGetInstance: String, CaseIterable {
+    public enum FieldsInAppPurchaseAvailabilities_inAppPurchaseAvailabilitiesGetInstance: String, Sendable, CaseIterable {
         case availableinnewterritories = "availableInNewTerritories"
         case availableterritories = "availableTerritories"
     }
@@ -171,14 +176,14 @@ open class InAppPurchaseAvailabilitiesAPI {
     /**
      * enum for parameter fieldsTerritories
      */
-    public enum FieldsTerritories_inAppPurchaseAvailabilitiesGetInstance: String, CaseIterable {
+    public enum FieldsTerritories_inAppPurchaseAvailabilitiesGetInstance: String, Sendable, CaseIterable {
         case currency = "currency"
     }
 
     /**
      * enum for parameter include
      */
-    public enum Include_inAppPurchaseAvailabilitiesGetInstance: String, CaseIterable {
+    public enum Include_inAppPurchaseAvailabilitiesGetInstance: String, Sendable, CaseIterable {
         case availableterritories = "availableTerritories"
     }
 
@@ -189,20 +194,22 @@ open class InAppPurchaseAvailabilitiesAPI {
      - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAvailableTerritories: (query) maximum number of related availableTerritories returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: InAppPurchaseAvailabilityResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchaseAvailabilitiesGetInstance(id: String, fieldsInAppPurchaseAvailabilities: [FieldsInAppPurchaseAvailabilities_inAppPurchaseAvailabilitiesGetInstance]? = nil, fieldsTerritories: [FieldsTerritories_inAppPurchaseAvailabilitiesGetInstance]? = nil, include: [Include_inAppPurchaseAvailabilitiesGetInstance]? = nil, limitAvailableTerritories: Int? = nil) async throws -> InAppPurchaseAvailabilityResponse {
-        return try await inAppPurchaseAvailabilitiesGetInstanceWithRequestBuilder(id: id, fieldsInAppPurchaseAvailabilities: fieldsInAppPurchaseAvailabilities, fieldsTerritories: fieldsTerritories, include: include, limitAvailableTerritories: limitAvailableTerritories).execute().body
+    open class func inAppPurchaseAvailabilitiesGetInstance(id: String, fieldsInAppPurchaseAvailabilities: [FieldsInAppPurchaseAvailabilities_inAppPurchaseAvailabilitiesGetInstance]? = nil, fieldsTerritories: [FieldsTerritories_inAppPurchaseAvailabilitiesGetInstance]? = nil, include: [Include_inAppPurchaseAvailabilitiesGetInstance]? = nil, limitAvailableTerritories: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> InAppPurchaseAvailabilityResponse {
+        return try await inAppPurchaseAvailabilitiesGetInstanceWithRequestBuilder(id: id, fieldsInAppPurchaseAvailabilities: fieldsInAppPurchaseAvailabilities, fieldsTerritories: fieldsTerritories, include: include, limitAvailableTerritories: limitAvailableTerritories, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: InAppPurchaseAvailabilityResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchaseAvailabilitiesGetInstance(urlString: String) async throws -> InAppPurchaseAvailabilityResponse {
-        return try await inAppPurchaseAvailabilitiesGetInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func inAppPurchaseAvailabilitiesGetInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> InAppPurchaseAvailabilityResponse {
+        return try await inAppPurchaseAvailabilitiesGetInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -215,22 +222,23 @@ open class InAppPurchaseAvailabilitiesAPI {
      - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAvailableTerritories: (query) maximum number of related availableTerritories returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<InAppPurchaseAvailabilityResponse> 
      */
-    open class func inAppPurchaseAvailabilitiesGetInstanceWithRequestBuilder(id: String, fieldsInAppPurchaseAvailabilities: [FieldsInAppPurchaseAvailabilities_inAppPurchaseAvailabilitiesGetInstance]? = nil, fieldsTerritories: [FieldsTerritories_inAppPurchaseAvailabilitiesGetInstance]? = nil, include: [Include_inAppPurchaseAvailabilitiesGetInstance]? = nil, limitAvailableTerritories: Int? = nil) -> RequestBuilder<InAppPurchaseAvailabilityResponse> {
+    open class func inAppPurchaseAvailabilitiesGetInstanceWithRequestBuilder(id: String, fieldsInAppPurchaseAvailabilities: [FieldsInAppPurchaseAvailabilities_inAppPurchaseAvailabilitiesGetInstance]? = nil, fieldsTerritories: [FieldsTerritories_inAppPurchaseAvailabilitiesGetInstance]? = nil, include: [Include_inAppPurchaseAvailabilitiesGetInstance]? = nil, limitAvailableTerritories: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<InAppPurchaseAvailabilityResponse> {
         var localVariablePath = "/v1/inAppPurchaseAvailabilities/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[inAppPurchaseAvailabilities]": (wrappedValue: fieldsInAppPurchaseAvailabilities?.encodeToJSON(), isExplode: false),
-            "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[availableTerritories]": (wrappedValue: limitAvailableTerritories?.encodeToJSON(), isExplode: true),
+            "fields[inAppPurchaseAvailabilities]": (wrappedValue: fieldsInAppPurchaseAvailabilities?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[availableTerritories]": (wrappedValue: limitAvailableTerritories?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -239,9 +247,9 @@ open class InAppPurchaseAvailabilitiesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseAvailabilityResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseAvailabilityResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -250,17 +258,18 @@ open class InAppPurchaseAvailabilitiesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<InAppPurchaseAvailabilityResponse> 
      */
-    open class func inAppPurchaseAvailabilitiesGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<InAppPurchaseAvailabilityResponse> {
+    open class func inAppPurchaseAvailabilitiesGetInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<InAppPurchaseAvailabilityResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseAvailabilityResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseAvailabilityResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

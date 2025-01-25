@@ -6,13 +6,10 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct SubscriptionGroupLocalizationAttributes: Codable, JSONEncodable, Hashable {
+public struct SubscriptionGroupLocalizationAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum State: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum State: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case prepareForSubmission = "PREPARE_FOR_SUBMISSION"
         case waitingForReview = "WAITING_FOR_REVIEW"
         case approved = "APPROVED"

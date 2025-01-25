@@ -6,12 +6,9 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 @available(*, deprecated, message: "This schema is deprecated.")
-public struct GameCenterEnabledVersionCompatibleVersionsLinkagesResponse: Codable, JSONEncodable, Hashable {
+public struct GameCenterEnabledVersionCompatibleVersionsLinkagesResponse: Sendable, Codable, JSONEncodable, Hashable {
 
     public var data: [AppRelationshipsGameCenterEnabledVersionsDataInner]
     public var links: PagedDocumentLinks

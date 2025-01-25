@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct ScmRepositoryRelationshipsScmProvider: Codable, JSONEncodable, Hashable {
+public struct ScmRepositoryRelationshipsScmProvider: Sendable, Codable, JSONEncodable, Hashable {
 
     public var data: ScmRepositoryRelationshipsScmProviderData?
 

@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public enum InAppPurchasesV2ResponseIncludedInner: Codable, JSONEncodable, Hashable {
+public enum InAppPurchasesV2ResponseIncludedInner: Sendable, Codable, JSONEncodable, Hashable {
     case typeInAppPurchaseAppStoreReviewScreenshot(InAppPurchaseAppStoreReviewScreenshot)
     case typeInAppPurchaseAvailability(InAppPurchaseAvailability)
     case typeInAppPurchaseContent(InAppPurchaseContent)

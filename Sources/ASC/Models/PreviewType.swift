@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public enum PreviewType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+public enum PreviewType: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
     case iphone67 = "IPHONE_67"
     case iphone61 = "IPHONE_61"
     case iphone65 = "IPHONE_65"

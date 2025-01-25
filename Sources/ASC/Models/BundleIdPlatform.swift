@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public enum BundleIdPlatform: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+public enum BundleIdPlatform: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
     case ios = "IOS"
     case macOs = "MAC_OS"
     case universal = "UNIVERSAL"

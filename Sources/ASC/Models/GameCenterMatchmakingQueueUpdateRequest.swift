@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct GameCenterMatchmakingQueueUpdateRequest: Codable, JSONEncodable, Hashable {
+public struct GameCenterMatchmakingQueueUpdateRequest: Sendable, Codable, JSONEncodable, Hashable {
 
     public var data: GameCenterMatchmakingQueueUpdateRequestData
 

@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct BetaAppClipInvocationLocalizationInlineCreateRelationshipsBetaAppClipInvocation: Codable, JSONEncodable, Hashable {
+public struct BetaAppClipInvocationLocalizationInlineCreateRelationshipsBetaAppClipInvocation: Sendable, Codable, JSONEncodable, Hashable {
 
     public var data: BetaAppClipInvocationLocalizationInlineCreateRelationshipsBetaAppClipInvocationData?
 

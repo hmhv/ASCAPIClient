@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppEventAttributesTerritorySchedulesInner: Codable, JSONEncodable, Hashable {
+public struct AppEventAttributesTerritorySchedulesInner: Sendable, Codable, JSONEncodable, Hashable {
 
     public var territories: [String]?
     public var publishStart: Date?

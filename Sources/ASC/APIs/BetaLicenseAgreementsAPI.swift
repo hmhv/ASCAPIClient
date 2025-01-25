@@ -6,16 +6,13 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class BetaLicenseAgreementsAPI {
 
     /**
      * enum for parameter fieldsApps
      */
-    public enum FieldsApps_betaLicenseAgreementsAppGetToOneRelated: String, CaseIterable {
+    public enum FieldsApps_betaLicenseAgreementsAppGetToOneRelated: String, Sendable, CaseIterable {
         case name = "name"
         case bundleid = "bundleId"
         case sku = "sku"
@@ -65,20 +62,22 @@ open class BetaLicenseAgreementsAPI {
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppWithoutIncludesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaLicenseAgreementsAppGetToOneRelated(id: String, fieldsApps: [FieldsApps_betaLicenseAgreementsAppGetToOneRelated]? = nil) async throws -> AppWithoutIncludesResponse {
-        return try await betaLicenseAgreementsAppGetToOneRelatedWithRequestBuilder(id: id, fieldsApps: fieldsApps).execute().body
+    open class func betaLicenseAgreementsAppGetToOneRelated(id: String, fieldsApps: [FieldsApps_betaLicenseAgreementsAppGetToOneRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppWithoutIncludesResponse {
+        return try await betaLicenseAgreementsAppGetToOneRelatedWithRequestBuilder(id: id, fieldsApps: fieldsApps, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppWithoutIncludesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaLicenseAgreementsAppGetToOneRelated(urlString: String) async throws -> AppWithoutIncludesResponse {
-        return try await betaLicenseAgreementsAppGetToOneRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func betaLicenseAgreementsAppGetToOneRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppWithoutIncludesResponse {
+        return try await betaLicenseAgreementsAppGetToOneRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -88,19 +87,20 @@ open class BetaLicenseAgreementsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppWithoutIncludesResponse> 
      */
-    open class func betaLicenseAgreementsAppGetToOneRelatedWithRequestBuilder(id: String, fieldsApps: [FieldsApps_betaLicenseAgreementsAppGetToOneRelated]? = nil) -> RequestBuilder<AppWithoutIncludesResponse> {
+    open class func betaLicenseAgreementsAppGetToOneRelatedWithRequestBuilder(id: String, fieldsApps: [FieldsApps_betaLicenseAgreementsAppGetToOneRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppWithoutIncludesResponse> {
         var localVariablePath = "/v1/betaLicenseAgreements/{id}/app"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
+            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -109,9 +109,9 @@ open class BetaLicenseAgreementsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppWithoutIncludesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -120,24 +120,25 @@ open class BetaLicenseAgreementsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppWithoutIncludesResponse> 
      */
-    open class func betaLicenseAgreementsAppGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppWithoutIncludesResponse> {
+    open class func betaLicenseAgreementsAppGetToOneRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppWithoutIncludesResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppWithoutIncludesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsBetaLicenseAgreements
      */
-    public enum FieldsBetaLicenseAgreements_betaLicenseAgreementsGetCollection: String, CaseIterable {
+    public enum FieldsBetaLicenseAgreements_betaLicenseAgreementsGetCollection: String, Sendable, CaseIterable {
         case agreementtext = "agreementText"
         case app = "app"
     }
@@ -145,7 +146,7 @@ open class BetaLicenseAgreementsAPI {
     /**
      * enum for parameter fieldsApps
      */
-    public enum FieldsApps_betaLicenseAgreementsGetCollection: String, CaseIterable {
+    public enum FieldsApps_betaLicenseAgreementsGetCollection: String, Sendable, CaseIterable {
         case name = "name"
         case bundleid = "bundleId"
         case sku = "sku"
@@ -194,7 +195,7 @@ open class BetaLicenseAgreementsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_betaLicenseAgreementsGetCollection: String, CaseIterable {
+    public enum Include_betaLicenseAgreementsGetCollection: String, Sendable, CaseIterable {
         case app = "app"
     }
 
@@ -205,20 +206,22 @@ open class BetaLicenseAgreementsAPI {
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BetaLicenseAgreementsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaLicenseAgreementsGetCollection(filterApp: [String]? = nil, fieldsBetaLicenseAgreements: [FieldsBetaLicenseAgreements_betaLicenseAgreementsGetCollection]? = nil, fieldsApps: [FieldsApps_betaLicenseAgreementsGetCollection]? = nil, limit: Int? = nil, include: [Include_betaLicenseAgreementsGetCollection]? = nil) async throws -> BetaLicenseAgreementsResponse {
-        return try await betaLicenseAgreementsGetCollectionWithRequestBuilder(filterApp: filterApp, fieldsBetaLicenseAgreements: fieldsBetaLicenseAgreements, fieldsApps: fieldsApps, limit: limit, include: include).execute().body
+    open class func betaLicenseAgreementsGetCollection(filterApp: [String]? = nil, fieldsBetaLicenseAgreements: [FieldsBetaLicenseAgreements_betaLicenseAgreementsGetCollection]? = nil, fieldsApps: [FieldsApps_betaLicenseAgreementsGetCollection]? = nil, limit: Int? = nil, include: [Include_betaLicenseAgreementsGetCollection]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BetaLicenseAgreementsResponse {
+        return try await betaLicenseAgreementsGetCollectionWithRequestBuilder(filterApp: filterApp, fieldsBetaLicenseAgreements: fieldsBetaLicenseAgreements, fieldsApps: fieldsApps, limit: limit, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BetaLicenseAgreementsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaLicenseAgreementsGetCollection(urlString: String) async throws -> BetaLicenseAgreementsResponse {
-        return try await betaLicenseAgreementsGetCollectionWithRequestBuilder(urlString: urlString).execute().body
+    open class func betaLicenseAgreementsGetCollection(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BetaLicenseAgreementsResponse {
+        return try await betaLicenseAgreementsGetCollectionWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -231,20 +234,21 @@ open class BetaLicenseAgreementsAPI {
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BetaLicenseAgreementsResponse> 
      */
-    open class func betaLicenseAgreementsGetCollectionWithRequestBuilder(filterApp: [String]? = nil, fieldsBetaLicenseAgreements: [FieldsBetaLicenseAgreements_betaLicenseAgreementsGetCollection]? = nil, fieldsApps: [FieldsApps_betaLicenseAgreementsGetCollection]? = nil, limit: Int? = nil, include: [Include_betaLicenseAgreementsGetCollection]? = nil) -> RequestBuilder<BetaLicenseAgreementsResponse> {
+    open class func betaLicenseAgreementsGetCollectionWithRequestBuilder(filterApp: [String]? = nil, fieldsBetaLicenseAgreements: [FieldsBetaLicenseAgreements_betaLicenseAgreementsGetCollection]? = nil, fieldsApps: [FieldsApps_betaLicenseAgreementsGetCollection]? = nil, limit: Int? = nil, include: [Include_betaLicenseAgreementsGetCollection]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BetaLicenseAgreementsResponse> {
         let localVariablePath = "/v1/betaLicenseAgreements"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[app]": (wrappedValue: filterApp?.encodeToJSON(), isExplode: false),
-            "fields[betaLicenseAgreements]": (wrappedValue: fieldsBetaLicenseAgreements?.encodeToJSON(), isExplode: false),
-            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "filter[app]": (wrappedValue: filterApp?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[betaLicenseAgreements]": (wrappedValue: fieldsBetaLicenseAgreements?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -253,9 +257,9 @@ open class BetaLicenseAgreementsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BetaLicenseAgreementsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BetaLicenseAgreementsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -264,24 +268,25 @@ open class BetaLicenseAgreementsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BetaLicenseAgreementsResponse> 
      */
-    open class func betaLicenseAgreementsGetCollectionWithRequestBuilder(urlString: String) -> RequestBuilder<BetaLicenseAgreementsResponse> {
+    open class func betaLicenseAgreementsGetCollectionWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BetaLicenseAgreementsResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BetaLicenseAgreementsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BetaLicenseAgreementsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsBetaLicenseAgreements
      */
-    public enum FieldsBetaLicenseAgreements_betaLicenseAgreementsGetInstance: String, CaseIterable {
+    public enum FieldsBetaLicenseAgreements_betaLicenseAgreementsGetInstance: String, Sendable, CaseIterable {
         case agreementtext = "agreementText"
         case app = "app"
     }
@@ -289,7 +294,7 @@ open class BetaLicenseAgreementsAPI {
     /**
      * enum for parameter fieldsApps
      */
-    public enum FieldsApps_betaLicenseAgreementsGetInstance: String, CaseIterable {
+    public enum FieldsApps_betaLicenseAgreementsGetInstance: String, Sendable, CaseIterable {
         case name = "name"
         case bundleid = "bundleId"
         case sku = "sku"
@@ -338,7 +343,7 @@ open class BetaLicenseAgreementsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_betaLicenseAgreementsGetInstance: String, CaseIterable {
+    public enum Include_betaLicenseAgreementsGetInstance: String, Sendable, CaseIterable {
         case app = "app"
     }
 
@@ -348,20 +353,22 @@ open class BetaLicenseAgreementsAPI {
      - parameter fieldsBetaLicenseAgreements: (query) the fields to include for returned resources of type betaLicenseAgreements (optional)
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BetaLicenseAgreementResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaLicenseAgreementsGetInstance(id: String, fieldsBetaLicenseAgreements: [FieldsBetaLicenseAgreements_betaLicenseAgreementsGetInstance]? = nil, fieldsApps: [FieldsApps_betaLicenseAgreementsGetInstance]? = nil, include: [Include_betaLicenseAgreementsGetInstance]? = nil) async throws -> BetaLicenseAgreementResponse {
-        return try await betaLicenseAgreementsGetInstanceWithRequestBuilder(id: id, fieldsBetaLicenseAgreements: fieldsBetaLicenseAgreements, fieldsApps: fieldsApps, include: include).execute().body
+    open class func betaLicenseAgreementsGetInstance(id: String, fieldsBetaLicenseAgreements: [FieldsBetaLicenseAgreements_betaLicenseAgreementsGetInstance]? = nil, fieldsApps: [FieldsApps_betaLicenseAgreementsGetInstance]? = nil, include: [Include_betaLicenseAgreementsGetInstance]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BetaLicenseAgreementResponse {
+        return try await betaLicenseAgreementsGetInstanceWithRequestBuilder(id: id, fieldsBetaLicenseAgreements: fieldsBetaLicenseAgreements, fieldsApps: fieldsApps, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BetaLicenseAgreementResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaLicenseAgreementsGetInstance(urlString: String) async throws -> BetaLicenseAgreementResponse {
-        return try await betaLicenseAgreementsGetInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func betaLicenseAgreementsGetInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BetaLicenseAgreementResponse {
+        return try await betaLicenseAgreementsGetInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -373,21 +380,22 @@ open class BetaLicenseAgreementsAPI {
      - parameter fieldsBetaLicenseAgreements: (query) the fields to include for returned resources of type betaLicenseAgreements (optional)
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BetaLicenseAgreementResponse> 
      */
-    open class func betaLicenseAgreementsGetInstanceWithRequestBuilder(id: String, fieldsBetaLicenseAgreements: [FieldsBetaLicenseAgreements_betaLicenseAgreementsGetInstance]? = nil, fieldsApps: [FieldsApps_betaLicenseAgreementsGetInstance]? = nil, include: [Include_betaLicenseAgreementsGetInstance]? = nil) -> RequestBuilder<BetaLicenseAgreementResponse> {
+    open class func betaLicenseAgreementsGetInstanceWithRequestBuilder(id: String, fieldsBetaLicenseAgreements: [FieldsBetaLicenseAgreements_betaLicenseAgreementsGetInstance]? = nil, fieldsApps: [FieldsApps_betaLicenseAgreementsGetInstance]? = nil, include: [Include_betaLicenseAgreementsGetInstance]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BetaLicenseAgreementResponse> {
         var localVariablePath = "/v1/betaLicenseAgreements/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[betaLicenseAgreements]": (wrappedValue: fieldsBetaLicenseAgreements?.encodeToJSON(), isExplode: false),
-            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "fields[betaLicenseAgreements]": (wrappedValue: fieldsBetaLicenseAgreements?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -396,9 +404,9 @@ open class BetaLicenseAgreementsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BetaLicenseAgreementResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BetaLicenseAgreementResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -407,38 +415,41 @@ open class BetaLicenseAgreementsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BetaLicenseAgreementResponse> 
      */
-    open class func betaLicenseAgreementsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<BetaLicenseAgreementResponse> {
+    open class func betaLicenseAgreementsGetInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BetaLicenseAgreementResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BetaLicenseAgreementResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BetaLicenseAgreementResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter betaLicenseAgreementUpdateRequest: (body) BetaLicenseAgreement representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BetaLicenseAgreementResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaLicenseAgreementsUpdateInstance(id: String, betaLicenseAgreementUpdateRequest: BetaLicenseAgreementUpdateRequest) async throws -> BetaLicenseAgreementResponse {
-        return try await betaLicenseAgreementsUpdateInstanceWithRequestBuilder(id: id, betaLicenseAgreementUpdateRequest: betaLicenseAgreementUpdateRequest).execute().body
+    open class func betaLicenseAgreementsUpdateInstance(id: String, betaLicenseAgreementUpdateRequest: BetaLicenseAgreementUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BetaLicenseAgreementResponse {
+        return try await betaLicenseAgreementsUpdateInstanceWithRequestBuilder(id: id, betaLicenseAgreementUpdateRequest: betaLicenseAgreementUpdateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BetaLicenseAgreementResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaLicenseAgreementsUpdateInstance(urlString: String) async throws -> BetaLicenseAgreementResponse {
-        return try await betaLicenseAgreementsUpdateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func betaLicenseAgreementsUpdateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BetaLicenseAgreementResponse {
+        return try await betaLicenseAgreementsUpdateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -448,15 +459,16 @@ open class BetaLicenseAgreementsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter betaLicenseAgreementUpdateRequest: (body) BetaLicenseAgreement representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BetaLicenseAgreementResponse> 
      */
-    open class func betaLicenseAgreementsUpdateInstanceWithRequestBuilder(id: String, betaLicenseAgreementUpdateRequest: BetaLicenseAgreementUpdateRequest) -> RequestBuilder<BetaLicenseAgreementResponse> {
+    open class func betaLicenseAgreementsUpdateInstanceWithRequestBuilder(id: String, betaLicenseAgreementUpdateRequest: BetaLicenseAgreementUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BetaLicenseAgreementResponse> {
         var localVariablePath = "/v1/betaLicenseAgreements/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: betaLicenseAgreementUpdateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: betaLicenseAgreementUpdateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -466,9 +478,9 @@ open class BetaLicenseAgreementsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BetaLicenseAgreementResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BetaLicenseAgreementResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -477,17 +489,18 @@ open class BetaLicenseAgreementsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BetaLicenseAgreementResponse> 
      */
-    open class func betaLicenseAgreementsUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<BetaLicenseAgreementResponse> {
+    open class func betaLicenseAgreementsUpdateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BetaLicenseAgreementResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BetaLicenseAgreementResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BetaLicenseAgreementResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

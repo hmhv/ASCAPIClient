@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct IntegerRange: Codable, JSONEncodable, Hashable {
+public struct IntegerRange: Sendable, Codable, JSONEncodable, Hashable {
 
     public var minimum: Int?
     public var maximum: Int?

@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public enum MetricCategory: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+public enum MetricCategory: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
     case hang = "HANG"
     case launch = "LAUNCH"
     case memory = "MEMORY"

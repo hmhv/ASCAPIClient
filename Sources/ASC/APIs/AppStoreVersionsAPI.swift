@@ -6,16 +6,13 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class AppStoreVersionsAPI {
 
     /**
      * enum for parameter fieldsAgeRatingDeclarations
      */
-    public enum FieldsAgeRatingDeclarations_appStoreVersionsAgeRatingDeclarationGetToOneRelated: String, CaseIterable {
+    public enum FieldsAgeRatingDeclarations_appStoreVersionsAgeRatingDeclarationGetToOneRelated: String, Sendable, CaseIterable {
         case alcoholtobaccoordruguseorreferences = "alcoholTobaccoOrDrugUseOrReferences"
         case contests = "contests"
         case gamblingandcontests = "gamblingAndContests"
@@ -42,22 +39,24 @@ open class AppStoreVersionsAPI {
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAgeRatingDeclarations: (query) the fields to include for returned resources of type ageRatingDeclarations (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AgeRatingDeclarationWithoutIncludesResponse
      */
     @available(*, deprecated, message: "This operation is deprecated.")
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionsAgeRatingDeclarationGetToOneRelated(id: String, fieldsAgeRatingDeclarations: [FieldsAgeRatingDeclarations_appStoreVersionsAgeRatingDeclarationGetToOneRelated]? = nil) async throws -> AgeRatingDeclarationWithoutIncludesResponse {
-        return try await appStoreVersionsAgeRatingDeclarationGetToOneRelatedWithRequestBuilder(id: id, fieldsAgeRatingDeclarations: fieldsAgeRatingDeclarations).execute().body
+    open class func appStoreVersionsAgeRatingDeclarationGetToOneRelated(id: String, fieldsAgeRatingDeclarations: [FieldsAgeRatingDeclarations_appStoreVersionsAgeRatingDeclarationGetToOneRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AgeRatingDeclarationWithoutIncludesResponse {
+        return try await appStoreVersionsAgeRatingDeclarationGetToOneRelatedWithRequestBuilder(id: id, fieldsAgeRatingDeclarations: fieldsAgeRatingDeclarations, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AgeRatingDeclarationWithoutIncludesResponse
      */
     @available(*, deprecated, message: "This operation is deprecated.")
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionsAgeRatingDeclarationGetToOneRelated(urlString: String) async throws -> AgeRatingDeclarationWithoutIncludesResponse {
-        return try await appStoreVersionsAgeRatingDeclarationGetToOneRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func appStoreVersionsAgeRatingDeclarationGetToOneRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AgeRatingDeclarationWithoutIncludesResponse {
+        return try await appStoreVersionsAgeRatingDeclarationGetToOneRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -67,20 +66,21 @@ open class AppStoreVersionsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAgeRatingDeclarations: (query) the fields to include for returned resources of type ageRatingDeclarations (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AgeRatingDeclarationWithoutIncludesResponse> 
      */
     @available(*, deprecated, message: "This operation is deprecated.")
-    open class func appStoreVersionsAgeRatingDeclarationGetToOneRelatedWithRequestBuilder(id: String, fieldsAgeRatingDeclarations: [FieldsAgeRatingDeclarations_appStoreVersionsAgeRatingDeclarationGetToOneRelated]? = nil) -> RequestBuilder<AgeRatingDeclarationWithoutIncludesResponse> {
+    open class func appStoreVersionsAgeRatingDeclarationGetToOneRelatedWithRequestBuilder(id: String, fieldsAgeRatingDeclarations: [FieldsAgeRatingDeclarations_appStoreVersionsAgeRatingDeclarationGetToOneRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AgeRatingDeclarationWithoutIncludesResponse> {
         var localVariablePath = "/v1/appStoreVersions/{id}/ageRatingDeclaration"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[ageRatingDeclarations]": (wrappedValue: fieldsAgeRatingDeclarations?.encodeToJSON(), isExplode: false),
+            "fields[ageRatingDeclarations]": (wrappedValue: fieldsAgeRatingDeclarations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -89,9 +89,9 @@ open class AppStoreVersionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AgeRatingDeclarationWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AgeRatingDeclarationWithoutIncludesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -100,32 +100,33 @@ open class AppStoreVersionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AgeRatingDeclarationWithoutIncludesResponse> 
      */
     @available(*, deprecated, message: "This operation is deprecated.")
-    open class func appStoreVersionsAgeRatingDeclarationGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AgeRatingDeclarationWithoutIncludesResponse> {
+    open class func appStoreVersionsAgeRatingDeclarationGetToOneRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AgeRatingDeclarationWithoutIncludesResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AgeRatingDeclarationWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AgeRatingDeclarationWithoutIncludesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsAlternativeDistributionPackages
      */
-    public enum FieldsAlternativeDistributionPackages_appStoreVersionsAlternativeDistributionPackageGetToOneRelated: String, CaseIterable {
+    public enum FieldsAlternativeDistributionPackages_appStoreVersionsAlternativeDistributionPackageGetToOneRelated: String, Sendable, CaseIterable {
         case versions = "versions"
     }
 
     /**
      * enum for parameter fieldsAlternativeDistributionPackageVersions
      */
-    public enum FieldsAlternativeDistributionPackageVersions_appStoreVersionsAlternativeDistributionPackageGetToOneRelated: String, CaseIterable {
+    public enum FieldsAlternativeDistributionPackageVersions_appStoreVersionsAlternativeDistributionPackageGetToOneRelated: String, Sendable, CaseIterable {
         case url = "url"
         case urlexpirationdate = "urlExpirationDate"
         case version = "version"
@@ -139,7 +140,7 @@ open class AppStoreVersionsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_appStoreVersionsAlternativeDistributionPackageGetToOneRelated: String, CaseIterable {
+    public enum Include_appStoreVersionsAlternativeDistributionPackageGetToOneRelated: String, Sendable, CaseIterable {
         case versions = "versions"
     }
 
@@ -150,20 +151,22 @@ open class AppStoreVersionsAPI {
      - parameter fieldsAlternativeDistributionPackageVersions: (query) the fields to include for returned resources of type alternativeDistributionPackageVersions (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitVersions: (query) maximum number of related versions returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AlternativeDistributionPackageResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionsAlternativeDistributionPackageGetToOneRelated(id: String, fieldsAlternativeDistributionPackages: [FieldsAlternativeDistributionPackages_appStoreVersionsAlternativeDistributionPackageGetToOneRelated]? = nil, fieldsAlternativeDistributionPackageVersions: [FieldsAlternativeDistributionPackageVersions_appStoreVersionsAlternativeDistributionPackageGetToOneRelated]? = nil, include: [Include_appStoreVersionsAlternativeDistributionPackageGetToOneRelated]? = nil, limitVersions: Int? = nil) async throws -> AlternativeDistributionPackageResponse {
-        return try await appStoreVersionsAlternativeDistributionPackageGetToOneRelatedWithRequestBuilder(id: id, fieldsAlternativeDistributionPackages: fieldsAlternativeDistributionPackages, fieldsAlternativeDistributionPackageVersions: fieldsAlternativeDistributionPackageVersions, include: include, limitVersions: limitVersions).execute().body
+    open class func appStoreVersionsAlternativeDistributionPackageGetToOneRelated(id: String, fieldsAlternativeDistributionPackages: [FieldsAlternativeDistributionPackages_appStoreVersionsAlternativeDistributionPackageGetToOneRelated]? = nil, fieldsAlternativeDistributionPackageVersions: [FieldsAlternativeDistributionPackageVersions_appStoreVersionsAlternativeDistributionPackageGetToOneRelated]? = nil, include: [Include_appStoreVersionsAlternativeDistributionPackageGetToOneRelated]? = nil, limitVersions: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AlternativeDistributionPackageResponse {
+        return try await appStoreVersionsAlternativeDistributionPackageGetToOneRelatedWithRequestBuilder(id: id, fieldsAlternativeDistributionPackages: fieldsAlternativeDistributionPackages, fieldsAlternativeDistributionPackageVersions: fieldsAlternativeDistributionPackageVersions, include: include, limitVersions: limitVersions, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AlternativeDistributionPackageResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionsAlternativeDistributionPackageGetToOneRelated(urlString: String) async throws -> AlternativeDistributionPackageResponse {
-        return try await appStoreVersionsAlternativeDistributionPackageGetToOneRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func appStoreVersionsAlternativeDistributionPackageGetToOneRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AlternativeDistributionPackageResponse {
+        return try await appStoreVersionsAlternativeDistributionPackageGetToOneRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -176,22 +179,23 @@ open class AppStoreVersionsAPI {
      - parameter fieldsAlternativeDistributionPackageVersions: (query) the fields to include for returned resources of type alternativeDistributionPackageVersions (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitVersions: (query) maximum number of related versions returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AlternativeDistributionPackageResponse> 
      */
-    open class func appStoreVersionsAlternativeDistributionPackageGetToOneRelatedWithRequestBuilder(id: String, fieldsAlternativeDistributionPackages: [FieldsAlternativeDistributionPackages_appStoreVersionsAlternativeDistributionPackageGetToOneRelated]? = nil, fieldsAlternativeDistributionPackageVersions: [FieldsAlternativeDistributionPackageVersions_appStoreVersionsAlternativeDistributionPackageGetToOneRelated]? = nil, include: [Include_appStoreVersionsAlternativeDistributionPackageGetToOneRelated]? = nil, limitVersions: Int? = nil) -> RequestBuilder<AlternativeDistributionPackageResponse> {
+    open class func appStoreVersionsAlternativeDistributionPackageGetToOneRelatedWithRequestBuilder(id: String, fieldsAlternativeDistributionPackages: [FieldsAlternativeDistributionPackages_appStoreVersionsAlternativeDistributionPackageGetToOneRelated]? = nil, fieldsAlternativeDistributionPackageVersions: [FieldsAlternativeDistributionPackageVersions_appStoreVersionsAlternativeDistributionPackageGetToOneRelated]? = nil, include: [Include_appStoreVersionsAlternativeDistributionPackageGetToOneRelated]? = nil, limitVersions: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AlternativeDistributionPackageResponse> {
         var localVariablePath = "/v1/appStoreVersions/{id}/alternativeDistributionPackage"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[alternativeDistributionPackages]": (wrappedValue: fieldsAlternativeDistributionPackages?.encodeToJSON(), isExplode: false),
-            "fields[alternativeDistributionPackageVersions]": (wrappedValue: fieldsAlternativeDistributionPackageVersions?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[versions]": (wrappedValue: limitVersions?.encodeToJSON(), isExplode: true),
+            "fields[alternativeDistributionPackages]": (wrappedValue: fieldsAlternativeDistributionPackages?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[alternativeDistributionPackageVersions]": (wrappedValue: fieldsAlternativeDistributionPackageVersions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[versions]": (wrappedValue: limitVersions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -200,9 +204,9 @@ open class AppStoreVersionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AlternativeDistributionPackageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AlternativeDistributionPackageResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -211,24 +215,25 @@ open class AppStoreVersionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AlternativeDistributionPackageResponse> 
      */
-    open class func appStoreVersionsAlternativeDistributionPackageGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AlternativeDistributionPackageResponse> {
+    open class func appStoreVersionsAlternativeDistributionPackageGetToOneRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AlternativeDistributionPackageResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AlternativeDistributionPackageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AlternativeDistributionPackageResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsAppClipDefaultExperiences
      */
-    public enum FieldsAppClipDefaultExperiences_appStoreVersionsAppClipDefaultExperienceGetToOneRelated: String, CaseIterable {
+    public enum FieldsAppClipDefaultExperiences_appStoreVersionsAppClipDefaultExperienceGetToOneRelated: String, Sendable, CaseIterable {
         case action = "action"
         case appclip = "appClip"
         case releasewithappstoreversion = "releaseWithAppStoreVersion"
@@ -239,7 +244,7 @@ open class AppStoreVersionsAPI {
     /**
      * enum for parameter fieldsAppClips
      */
-    public enum FieldsAppClips_appStoreVersionsAppClipDefaultExperienceGetToOneRelated: String, CaseIterable {
+    public enum FieldsAppClips_appStoreVersionsAppClipDefaultExperienceGetToOneRelated: String, Sendable, CaseIterable {
         case bundleid = "bundleId"
         case app = "app"
         case appclipdefaultexperiences = "appClipDefaultExperiences"
@@ -249,7 +254,7 @@ open class AppStoreVersionsAPI {
     /**
      * enum for parameter fieldsAppStoreVersions
      */
-    public enum FieldsAppStoreVersions_appStoreVersionsAppClipDefaultExperienceGetToOneRelated: String, CaseIterable {
+    public enum FieldsAppStoreVersions_appStoreVersionsAppClipDefaultExperienceGetToOneRelated: String, Sendable, CaseIterable {
         case platform = "platform"
         case versionstring = "versionString"
         case appstorestate = "appStoreState"
@@ -279,7 +284,7 @@ open class AppStoreVersionsAPI {
     /**
      * enum for parameter fieldsAppClipDefaultExperienceLocalizations
      */
-    public enum FieldsAppClipDefaultExperienceLocalizations_appStoreVersionsAppClipDefaultExperienceGetToOneRelated: String, CaseIterable {
+    public enum FieldsAppClipDefaultExperienceLocalizations_appStoreVersionsAppClipDefaultExperienceGetToOneRelated: String, Sendable, CaseIterable {
         case locale = "locale"
         case subtitle = "subtitle"
         case appclipdefaultexperience = "appClipDefaultExperience"
@@ -289,7 +294,7 @@ open class AppStoreVersionsAPI {
     /**
      * enum for parameter fieldsAppClipAppStoreReviewDetails
      */
-    public enum FieldsAppClipAppStoreReviewDetails_appStoreVersionsAppClipDefaultExperienceGetToOneRelated: String, CaseIterable {
+    public enum FieldsAppClipAppStoreReviewDetails_appStoreVersionsAppClipDefaultExperienceGetToOneRelated: String, Sendable, CaseIterable {
         case invocationurls = "invocationUrls"
         case appclipdefaultexperience = "appClipDefaultExperience"
     }
@@ -297,7 +302,7 @@ open class AppStoreVersionsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_appStoreVersionsAppClipDefaultExperienceGetToOneRelated: String, CaseIterable {
+    public enum Include_appStoreVersionsAppClipDefaultExperienceGetToOneRelated: String, Sendable, CaseIterable {
         case appclip = "appClip"
         case releasewithappstoreversion = "releaseWithAppStoreVersion"
         case appclipdefaultexperiencelocalizations = "appClipDefaultExperienceLocalizations"
@@ -314,20 +319,22 @@ open class AppStoreVersionsAPI {
      - parameter fieldsAppClipAppStoreReviewDetails: (query) the fields to include for returned resources of type appClipAppStoreReviewDetails (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAppClipDefaultExperienceLocalizations: (query) maximum number of related appClipDefaultExperienceLocalizations returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppClipDefaultExperienceResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionsAppClipDefaultExperienceGetToOneRelated(id: String, fieldsAppClipDefaultExperiences: [FieldsAppClipDefaultExperiences_appStoreVersionsAppClipDefaultExperienceGetToOneRelated]? = nil, fieldsAppClips: [FieldsAppClips_appStoreVersionsAppClipDefaultExperienceGetToOneRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_appStoreVersionsAppClipDefaultExperienceGetToOneRelated]? = nil, fieldsAppClipDefaultExperienceLocalizations: [FieldsAppClipDefaultExperienceLocalizations_appStoreVersionsAppClipDefaultExperienceGetToOneRelated]? = nil, fieldsAppClipAppStoreReviewDetails: [FieldsAppClipAppStoreReviewDetails_appStoreVersionsAppClipDefaultExperienceGetToOneRelated]? = nil, include: [Include_appStoreVersionsAppClipDefaultExperienceGetToOneRelated]? = nil, limitAppClipDefaultExperienceLocalizations: Int? = nil) async throws -> AppClipDefaultExperienceResponse {
-        return try await appStoreVersionsAppClipDefaultExperienceGetToOneRelatedWithRequestBuilder(id: id, fieldsAppClipDefaultExperiences: fieldsAppClipDefaultExperiences, fieldsAppClips: fieldsAppClips, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsAppClipDefaultExperienceLocalizations: fieldsAppClipDefaultExperienceLocalizations, fieldsAppClipAppStoreReviewDetails: fieldsAppClipAppStoreReviewDetails, include: include, limitAppClipDefaultExperienceLocalizations: limitAppClipDefaultExperienceLocalizations).execute().body
+    open class func appStoreVersionsAppClipDefaultExperienceGetToOneRelated(id: String, fieldsAppClipDefaultExperiences: [FieldsAppClipDefaultExperiences_appStoreVersionsAppClipDefaultExperienceGetToOneRelated]? = nil, fieldsAppClips: [FieldsAppClips_appStoreVersionsAppClipDefaultExperienceGetToOneRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_appStoreVersionsAppClipDefaultExperienceGetToOneRelated]? = nil, fieldsAppClipDefaultExperienceLocalizations: [FieldsAppClipDefaultExperienceLocalizations_appStoreVersionsAppClipDefaultExperienceGetToOneRelated]? = nil, fieldsAppClipAppStoreReviewDetails: [FieldsAppClipAppStoreReviewDetails_appStoreVersionsAppClipDefaultExperienceGetToOneRelated]? = nil, include: [Include_appStoreVersionsAppClipDefaultExperienceGetToOneRelated]? = nil, limitAppClipDefaultExperienceLocalizations: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppClipDefaultExperienceResponse {
+        return try await appStoreVersionsAppClipDefaultExperienceGetToOneRelatedWithRequestBuilder(id: id, fieldsAppClipDefaultExperiences: fieldsAppClipDefaultExperiences, fieldsAppClips: fieldsAppClips, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsAppClipDefaultExperienceLocalizations: fieldsAppClipDefaultExperienceLocalizations, fieldsAppClipAppStoreReviewDetails: fieldsAppClipAppStoreReviewDetails, include: include, limitAppClipDefaultExperienceLocalizations: limitAppClipDefaultExperienceLocalizations, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppClipDefaultExperienceResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionsAppClipDefaultExperienceGetToOneRelated(urlString: String) async throws -> AppClipDefaultExperienceResponse {
-        return try await appStoreVersionsAppClipDefaultExperienceGetToOneRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func appStoreVersionsAppClipDefaultExperienceGetToOneRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppClipDefaultExperienceResponse {
+        return try await appStoreVersionsAppClipDefaultExperienceGetToOneRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -343,25 +350,26 @@ open class AppStoreVersionsAPI {
      - parameter fieldsAppClipAppStoreReviewDetails: (query) the fields to include for returned resources of type appClipAppStoreReviewDetails (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAppClipDefaultExperienceLocalizations: (query) maximum number of related appClipDefaultExperienceLocalizations returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppClipDefaultExperienceResponse> 
      */
-    open class func appStoreVersionsAppClipDefaultExperienceGetToOneRelatedWithRequestBuilder(id: String, fieldsAppClipDefaultExperiences: [FieldsAppClipDefaultExperiences_appStoreVersionsAppClipDefaultExperienceGetToOneRelated]? = nil, fieldsAppClips: [FieldsAppClips_appStoreVersionsAppClipDefaultExperienceGetToOneRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_appStoreVersionsAppClipDefaultExperienceGetToOneRelated]? = nil, fieldsAppClipDefaultExperienceLocalizations: [FieldsAppClipDefaultExperienceLocalizations_appStoreVersionsAppClipDefaultExperienceGetToOneRelated]? = nil, fieldsAppClipAppStoreReviewDetails: [FieldsAppClipAppStoreReviewDetails_appStoreVersionsAppClipDefaultExperienceGetToOneRelated]? = nil, include: [Include_appStoreVersionsAppClipDefaultExperienceGetToOneRelated]? = nil, limitAppClipDefaultExperienceLocalizations: Int? = nil) -> RequestBuilder<AppClipDefaultExperienceResponse> {
+    open class func appStoreVersionsAppClipDefaultExperienceGetToOneRelatedWithRequestBuilder(id: String, fieldsAppClipDefaultExperiences: [FieldsAppClipDefaultExperiences_appStoreVersionsAppClipDefaultExperienceGetToOneRelated]? = nil, fieldsAppClips: [FieldsAppClips_appStoreVersionsAppClipDefaultExperienceGetToOneRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_appStoreVersionsAppClipDefaultExperienceGetToOneRelated]? = nil, fieldsAppClipDefaultExperienceLocalizations: [FieldsAppClipDefaultExperienceLocalizations_appStoreVersionsAppClipDefaultExperienceGetToOneRelated]? = nil, fieldsAppClipAppStoreReviewDetails: [FieldsAppClipAppStoreReviewDetails_appStoreVersionsAppClipDefaultExperienceGetToOneRelated]? = nil, include: [Include_appStoreVersionsAppClipDefaultExperienceGetToOneRelated]? = nil, limitAppClipDefaultExperienceLocalizations: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppClipDefaultExperienceResponse> {
         var localVariablePath = "/v1/appStoreVersions/{id}/appClipDefaultExperience"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[appClipDefaultExperiences]": (wrappedValue: fieldsAppClipDefaultExperiences?.encodeToJSON(), isExplode: false),
-            "fields[appClips]": (wrappedValue: fieldsAppClips?.encodeToJSON(), isExplode: false),
-            "fields[appStoreVersions]": (wrappedValue: fieldsAppStoreVersions?.encodeToJSON(), isExplode: false),
-            "fields[appClipDefaultExperienceLocalizations]": (wrappedValue: fieldsAppClipDefaultExperienceLocalizations?.encodeToJSON(), isExplode: false),
-            "fields[appClipAppStoreReviewDetails]": (wrappedValue: fieldsAppClipAppStoreReviewDetails?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[appClipDefaultExperienceLocalizations]": (wrappedValue: limitAppClipDefaultExperienceLocalizations?.encodeToJSON(), isExplode: true),
+            "fields[appClipDefaultExperiences]": (wrappedValue: fieldsAppClipDefaultExperiences?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appClips]": (wrappedValue: fieldsAppClips?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appStoreVersions]": (wrappedValue: fieldsAppStoreVersions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appClipDefaultExperienceLocalizations]": (wrappedValue: fieldsAppClipDefaultExperienceLocalizations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appClipAppStoreReviewDetails]": (wrappedValue: fieldsAppClipAppStoreReviewDetails?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[appClipDefaultExperienceLocalizations]": (wrappedValue: limitAppClipDefaultExperienceLocalizations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -370,9 +378,9 @@ open class AppStoreVersionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppClipDefaultExperienceResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppClipDefaultExperienceResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -381,37 +389,40 @@ open class AppStoreVersionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppClipDefaultExperienceResponse> 
      */
-    open class func appStoreVersionsAppClipDefaultExperienceGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppClipDefaultExperienceResponse> {
+    open class func appStoreVersionsAppClipDefaultExperienceGetToOneRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppClipDefaultExperienceResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppClipDefaultExperienceResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppClipDefaultExperienceResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppStoreVersionAppClipDefaultExperienceLinkageResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionsAppClipDefaultExperienceGetToOneRelationship(id: String) async throws -> AppStoreVersionAppClipDefaultExperienceLinkageResponse {
-        return try await appStoreVersionsAppClipDefaultExperienceGetToOneRelationshipWithRequestBuilder(id: id).execute().body
+    open class func appStoreVersionsAppClipDefaultExperienceGetToOneRelationship(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppStoreVersionAppClipDefaultExperienceLinkageResponse {
+        return try await appStoreVersionsAppClipDefaultExperienceGetToOneRelationshipWithRequestBuilder(id: id, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppStoreVersionAppClipDefaultExperienceLinkageResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionsAppClipDefaultExperienceGetToOneRelationship(urlString: String) async throws -> AppStoreVersionAppClipDefaultExperienceLinkageResponse {
-        return try await appStoreVersionsAppClipDefaultExperienceGetToOneRelationshipWithRequestBuilder(urlString: urlString).execute().body
+    open class func appStoreVersionsAppClipDefaultExperienceGetToOneRelationship(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppStoreVersionAppClipDefaultExperienceLinkageResponse {
+        return try await appStoreVersionsAppClipDefaultExperienceGetToOneRelationshipWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -420,14 +431,15 @@ open class AppStoreVersionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppStoreVersionAppClipDefaultExperienceLinkageResponse> 
      */
-    open class func appStoreVersionsAppClipDefaultExperienceGetToOneRelationshipWithRequestBuilder(id: String) -> RequestBuilder<AppStoreVersionAppClipDefaultExperienceLinkageResponse> {
+    open class func appStoreVersionsAppClipDefaultExperienceGetToOneRelationshipWithRequestBuilder(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppStoreVersionAppClipDefaultExperienceLinkageResponse> {
         var localVariablePath = "/v1/appStoreVersions/{id}/relationships/appClipDefaultExperience"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -438,9 +450,9 @@ open class AppStoreVersionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionAppClipDefaultExperienceLinkageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionAppClipDefaultExperienceLinkageResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -449,38 +461,41 @@ open class AppStoreVersionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppStoreVersionAppClipDefaultExperienceLinkageResponse> 
      */
-    open class func appStoreVersionsAppClipDefaultExperienceGetToOneRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<AppStoreVersionAppClipDefaultExperienceLinkageResponse> {
+    open class func appStoreVersionsAppClipDefaultExperienceGetToOneRelationshipWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppStoreVersionAppClipDefaultExperienceLinkageResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionAppClipDefaultExperienceLinkageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionAppClipDefaultExperienceLinkageResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter appStoreVersionAppClipDefaultExperienceLinkageRequest: (body) Related linkage 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionsAppClipDefaultExperienceUpdateToOneRelationship(id: String, appStoreVersionAppClipDefaultExperienceLinkageRequest: AppStoreVersionAppClipDefaultExperienceLinkageRequest) async throws {
-        return try await appStoreVersionsAppClipDefaultExperienceUpdateToOneRelationshipWithRequestBuilder(id: id, appStoreVersionAppClipDefaultExperienceLinkageRequest: appStoreVersionAppClipDefaultExperienceLinkageRequest).execute().body
+    open class func appStoreVersionsAppClipDefaultExperienceUpdateToOneRelationship(id: String, appStoreVersionAppClipDefaultExperienceLinkageRequest: AppStoreVersionAppClipDefaultExperienceLinkageRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await appStoreVersionsAppClipDefaultExperienceUpdateToOneRelationshipWithRequestBuilder(id: id, appStoreVersionAppClipDefaultExperienceLinkageRequest: appStoreVersionAppClipDefaultExperienceLinkageRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionsAppClipDefaultExperienceUpdateToOneRelationship(urlString: String) async throws {
-        return try await appStoreVersionsAppClipDefaultExperienceUpdateToOneRelationshipWithRequestBuilder(urlString: urlString).execute().body
+    open class func appStoreVersionsAppClipDefaultExperienceUpdateToOneRelationship(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await appStoreVersionsAppClipDefaultExperienceUpdateToOneRelationshipWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -490,15 +505,16 @@ open class AppStoreVersionsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter appStoreVersionAppClipDefaultExperienceLinkageRequest: (body) Related linkage 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func appStoreVersionsAppClipDefaultExperienceUpdateToOneRelationshipWithRequestBuilder(id: String, appStoreVersionAppClipDefaultExperienceLinkageRequest: AppStoreVersionAppClipDefaultExperienceLinkageRequest) -> RequestBuilder<Void> {
+    open class func appStoreVersionsAppClipDefaultExperienceUpdateToOneRelationshipWithRequestBuilder(id: String, appStoreVersionAppClipDefaultExperienceLinkageRequest: AppStoreVersionAppClipDefaultExperienceLinkageRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/appStoreVersions/{id}/relationships/appClipDefaultExperience"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: appStoreVersionAppClipDefaultExperienceLinkageRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: appStoreVersionAppClipDefaultExperienceLinkageRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -508,9 +524,9 @@ open class AppStoreVersionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -519,24 +535,25 @@ open class AppStoreVersionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func appStoreVersionsAppClipDefaultExperienceUpdateToOneRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func appStoreVersionsAppClipDefaultExperienceUpdateToOneRelationshipWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsAppStoreReviewDetails
      */
-    public enum FieldsAppStoreReviewDetails_appStoreVersionsAppStoreReviewDetailGetToOneRelated: String, CaseIterable {
+    public enum FieldsAppStoreReviewDetails_appStoreVersionsAppStoreReviewDetailGetToOneRelated: String, Sendable, CaseIterable {
         case contactfirstname = "contactFirstName"
         case contactlastname = "contactLastName"
         case contactphone = "contactPhone"
@@ -552,7 +569,7 @@ open class AppStoreVersionsAPI {
     /**
      * enum for parameter fieldsAppStoreVersions
      */
-    public enum FieldsAppStoreVersions_appStoreVersionsAppStoreReviewDetailGetToOneRelated: String, CaseIterable {
+    public enum FieldsAppStoreVersions_appStoreVersionsAppStoreReviewDetailGetToOneRelated: String, Sendable, CaseIterable {
         case platform = "platform"
         case versionstring = "versionString"
         case appstorestate = "appStoreState"
@@ -582,7 +599,7 @@ open class AppStoreVersionsAPI {
     /**
      * enum for parameter fieldsAppStoreReviewAttachments
      */
-    public enum FieldsAppStoreReviewAttachments_appStoreVersionsAppStoreReviewDetailGetToOneRelated: String, CaseIterable {
+    public enum FieldsAppStoreReviewAttachments_appStoreVersionsAppStoreReviewDetailGetToOneRelated: String, Sendable, CaseIterable {
         case filesize = "fileSize"
         case filename = "fileName"
         case sourcefilechecksum = "sourceFileChecksum"
@@ -594,7 +611,7 @@ open class AppStoreVersionsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_appStoreVersionsAppStoreReviewDetailGetToOneRelated: String, CaseIterable {
+    public enum Include_appStoreVersionsAppStoreReviewDetailGetToOneRelated: String, Sendable, CaseIterable {
         case appstoreversion = "appStoreVersion"
         case appstorereviewattachments = "appStoreReviewAttachments"
     }
@@ -607,20 +624,22 @@ open class AppStoreVersionsAPI {
      - parameter fieldsAppStoreReviewAttachments: (query) the fields to include for returned resources of type appStoreReviewAttachments (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAppStoreReviewAttachments: (query) maximum number of related appStoreReviewAttachments returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppStoreReviewDetailResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionsAppStoreReviewDetailGetToOneRelated(id: String, fieldsAppStoreReviewDetails: [FieldsAppStoreReviewDetails_appStoreVersionsAppStoreReviewDetailGetToOneRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_appStoreVersionsAppStoreReviewDetailGetToOneRelated]? = nil, fieldsAppStoreReviewAttachments: [FieldsAppStoreReviewAttachments_appStoreVersionsAppStoreReviewDetailGetToOneRelated]? = nil, include: [Include_appStoreVersionsAppStoreReviewDetailGetToOneRelated]? = nil, limitAppStoreReviewAttachments: Int? = nil) async throws -> AppStoreReviewDetailResponse {
-        return try await appStoreVersionsAppStoreReviewDetailGetToOneRelatedWithRequestBuilder(id: id, fieldsAppStoreReviewDetails: fieldsAppStoreReviewDetails, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsAppStoreReviewAttachments: fieldsAppStoreReviewAttachments, include: include, limitAppStoreReviewAttachments: limitAppStoreReviewAttachments).execute().body
+    open class func appStoreVersionsAppStoreReviewDetailGetToOneRelated(id: String, fieldsAppStoreReviewDetails: [FieldsAppStoreReviewDetails_appStoreVersionsAppStoreReviewDetailGetToOneRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_appStoreVersionsAppStoreReviewDetailGetToOneRelated]? = nil, fieldsAppStoreReviewAttachments: [FieldsAppStoreReviewAttachments_appStoreVersionsAppStoreReviewDetailGetToOneRelated]? = nil, include: [Include_appStoreVersionsAppStoreReviewDetailGetToOneRelated]? = nil, limitAppStoreReviewAttachments: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppStoreReviewDetailResponse {
+        return try await appStoreVersionsAppStoreReviewDetailGetToOneRelatedWithRequestBuilder(id: id, fieldsAppStoreReviewDetails: fieldsAppStoreReviewDetails, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsAppStoreReviewAttachments: fieldsAppStoreReviewAttachments, include: include, limitAppStoreReviewAttachments: limitAppStoreReviewAttachments, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppStoreReviewDetailResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionsAppStoreReviewDetailGetToOneRelated(urlString: String) async throws -> AppStoreReviewDetailResponse {
-        return try await appStoreVersionsAppStoreReviewDetailGetToOneRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func appStoreVersionsAppStoreReviewDetailGetToOneRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppStoreReviewDetailResponse {
+        return try await appStoreVersionsAppStoreReviewDetailGetToOneRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -634,23 +653,24 @@ open class AppStoreVersionsAPI {
      - parameter fieldsAppStoreReviewAttachments: (query) the fields to include for returned resources of type appStoreReviewAttachments (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAppStoreReviewAttachments: (query) maximum number of related appStoreReviewAttachments returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppStoreReviewDetailResponse> 
      */
-    open class func appStoreVersionsAppStoreReviewDetailGetToOneRelatedWithRequestBuilder(id: String, fieldsAppStoreReviewDetails: [FieldsAppStoreReviewDetails_appStoreVersionsAppStoreReviewDetailGetToOneRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_appStoreVersionsAppStoreReviewDetailGetToOneRelated]? = nil, fieldsAppStoreReviewAttachments: [FieldsAppStoreReviewAttachments_appStoreVersionsAppStoreReviewDetailGetToOneRelated]? = nil, include: [Include_appStoreVersionsAppStoreReviewDetailGetToOneRelated]? = nil, limitAppStoreReviewAttachments: Int? = nil) -> RequestBuilder<AppStoreReviewDetailResponse> {
+    open class func appStoreVersionsAppStoreReviewDetailGetToOneRelatedWithRequestBuilder(id: String, fieldsAppStoreReviewDetails: [FieldsAppStoreReviewDetails_appStoreVersionsAppStoreReviewDetailGetToOneRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_appStoreVersionsAppStoreReviewDetailGetToOneRelated]? = nil, fieldsAppStoreReviewAttachments: [FieldsAppStoreReviewAttachments_appStoreVersionsAppStoreReviewDetailGetToOneRelated]? = nil, include: [Include_appStoreVersionsAppStoreReviewDetailGetToOneRelated]? = nil, limitAppStoreReviewAttachments: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppStoreReviewDetailResponse> {
         var localVariablePath = "/v1/appStoreVersions/{id}/appStoreReviewDetail"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[appStoreReviewDetails]": (wrappedValue: fieldsAppStoreReviewDetails?.encodeToJSON(), isExplode: false),
-            "fields[appStoreVersions]": (wrappedValue: fieldsAppStoreVersions?.encodeToJSON(), isExplode: false),
-            "fields[appStoreReviewAttachments]": (wrappedValue: fieldsAppStoreReviewAttachments?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[appStoreReviewAttachments]": (wrappedValue: limitAppStoreReviewAttachments?.encodeToJSON(), isExplode: true),
+            "fields[appStoreReviewDetails]": (wrappedValue: fieldsAppStoreReviewDetails?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appStoreVersions]": (wrappedValue: fieldsAppStoreVersions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appStoreReviewAttachments]": (wrappedValue: fieldsAppStoreReviewAttachments?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[appStoreReviewAttachments]": (wrappedValue: limitAppStoreReviewAttachments?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -659,9 +679,9 @@ open class AppStoreVersionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppStoreReviewDetailResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppStoreReviewDetailResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -670,24 +690,25 @@ open class AppStoreVersionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppStoreReviewDetailResponse> 
      */
-    open class func appStoreVersionsAppStoreReviewDetailGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppStoreReviewDetailResponse> {
+    open class func appStoreVersionsAppStoreReviewDetailGetToOneRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppStoreReviewDetailResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppStoreReviewDetailResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppStoreReviewDetailResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter filterState
      */
-    public enum FilterState_appStoreVersionsAppStoreVersionExperimentsGetToManyRelated: String, CaseIterable {
+    public enum FilterState_appStoreVersionsAppStoreVersionExperimentsGetToManyRelated: String, Sendable, CaseIterable {
         case prepareForSubmission = "PREPARE_FOR_SUBMISSION"
         case readyForReview = "READY_FOR_REVIEW"
         case waitingForReview = "WAITING_FOR_REVIEW"
@@ -702,7 +723,7 @@ open class AppStoreVersionsAPI {
     /**
      * enum for parameter fieldsAppStoreVersionExperiments
      */
-    public enum FieldsAppStoreVersionExperiments_appStoreVersionsAppStoreVersionExperimentsGetToManyRelated: String, CaseIterable {
+    public enum FieldsAppStoreVersionExperiments_appStoreVersionsAppStoreVersionExperimentsGetToManyRelated: String, Sendable, CaseIterable {
         case name = "name"
         case trafficproportion = "trafficProportion"
         case state = "state"
@@ -716,7 +737,7 @@ open class AppStoreVersionsAPI {
     /**
      * enum for parameter fieldsAppStoreVersions
      */
-    public enum FieldsAppStoreVersions_appStoreVersionsAppStoreVersionExperimentsGetToManyRelated: String, CaseIterable {
+    public enum FieldsAppStoreVersions_appStoreVersionsAppStoreVersionExperimentsGetToManyRelated: String, Sendable, CaseIterable {
         case platform = "platform"
         case versionstring = "versionString"
         case appstorestate = "appStoreState"
@@ -746,7 +767,7 @@ open class AppStoreVersionsAPI {
     /**
      * enum for parameter fieldsAppStoreVersionExperimentTreatments
      */
-    public enum FieldsAppStoreVersionExperimentTreatments_appStoreVersionsAppStoreVersionExperimentsGetToManyRelated: String, CaseIterable {
+    public enum FieldsAppStoreVersionExperimentTreatments_appStoreVersionsAppStoreVersionExperimentsGetToManyRelated: String, Sendable, CaseIterable {
         case name = "name"
         case appicon = "appIcon"
         case appiconname = "appIconName"
@@ -759,7 +780,7 @@ open class AppStoreVersionsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_appStoreVersionsAppStoreVersionExperimentsGetToManyRelated: String, CaseIterable {
+    public enum Include_appStoreVersionsAppStoreVersionExperimentsGetToManyRelated: String, Sendable, CaseIterable {
         case appstoreversion = "appStoreVersion"
         case appstoreversionexperimenttreatments = "appStoreVersionExperimentTreatments"
     }
@@ -774,22 +795,24 @@ open class AppStoreVersionsAPI {
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAppStoreVersionExperimentTreatments: (query) maximum number of related appStoreVersionExperimentTreatments returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppStoreVersionExperimentsResponse
      */
     @available(*, deprecated, message: "This operation is deprecated.")
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionsAppStoreVersionExperimentsGetToManyRelated(id: String, filterState: [FilterState_appStoreVersionsAppStoreVersionExperimentsGetToManyRelated]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_appStoreVersionsAppStoreVersionExperimentsGetToManyRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_appStoreVersionsAppStoreVersionExperimentsGetToManyRelated]? = nil, fieldsAppStoreVersionExperimentTreatments: [FieldsAppStoreVersionExperimentTreatments_appStoreVersionsAppStoreVersionExperimentsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appStoreVersionsAppStoreVersionExperimentsGetToManyRelated]? = nil, limitAppStoreVersionExperimentTreatments: Int? = nil) async throws -> AppStoreVersionExperimentsResponse {
-        return try await appStoreVersionsAppStoreVersionExperimentsGetToManyRelatedWithRequestBuilder(id: id, filterState: filterState, fieldsAppStoreVersionExperiments: fieldsAppStoreVersionExperiments, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsAppStoreVersionExperimentTreatments: fieldsAppStoreVersionExperimentTreatments, limit: limit, include: include, limitAppStoreVersionExperimentTreatments: limitAppStoreVersionExperimentTreatments).execute().body
+    open class func appStoreVersionsAppStoreVersionExperimentsGetToManyRelated(id: String, filterState: [FilterState_appStoreVersionsAppStoreVersionExperimentsGetToManyRelated]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_appStoreVersionsAppStoreVersionExperimentsGetToManyRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_appStoreVersionsAppStoreVersionExperimentsGetToManyRelated]? = nil, fieldsAppStoreVersionExperimentTreatments: [FieldsAppStoreVersionExperimentTreatments_appStoreVersionsAppStoreVersionExperimentsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appStoreVersionsAppStoreVersionExperimentsGetToManyRelated]? = nil, limitAppStoreVersionExperimentTreatments: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppStoreVersionExperimentsResponse {
+        return try await appStoreVersionsAppStoreVersionExperimentsGetToManyRelatedWithRequestBuilder(id: id, filterState: filterState, fieldsAppStoreVersionExperiments: fieldsAppStoreVersionExperiments, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsAppStoreVersionExperimentTreatments: fieldsAppStoreVersionExperimentTreatments, limit: limit, include: include, limitAppStoreVersionExperimentTreatments: limitAppStoreVersionExperimentTreatments, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppStoreVersionExperimentsResponse
      */
     @available(*, deprecated, message: "This operation is deprecated.")
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionsAppStoreVersionExperimentsGetToManyRelated(urlString: String) async throws -> AppStoreVersionExperimentsResponse {
-        return try await appStoreVersionsAppStoreVersionExperimentsGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func appStoreVersionsAppStoreVersionExperimentsGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppStoreVersionExperimentsResponse {
+        return try await appStoreVersionsAppStoreVersionExperimentsGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -805,26 +828,27 @@ open class AppStoreVersionsAPI {
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAppStoreVersionExperimentTreatments: (query) maximum number of related appStoreVersionExperimentTreatments returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppStoreVersionExperimentsResponse> 
      */
     @available(*, deprecated, message: "This operation is deprecated.")
-    open class func appStoreVersionsAppStoreVersionExperimentsGetToManyRelatedWithRequestBuilder(id: String, filterState: [FilterState_appStoreVersionsAppStoreVersionExperimentsGetToManyRelated]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_appStoreVersionsAppStoreVersionExperimentsGetToManyRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_appStoreVersionsAppStoreVersionExperimentsGetToManyRelated]? = nil, fieldsAppStoreVersionExperimentTreatments: [FieldsAppStoreVersionExperimentTreatments_appStoreVersionsAppStoreVersionExperimentsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appStoreVersionsAppStoreVersionExperimentsGetToManyRelated]? = nil, limitAppStoreVersionExperimentTreatments: Int? = nil) -> RequestBuilder<AppStoreVersionExperimentsResponse> {
+    open class func appStoreVersionsAppStoreVersionExperimentsGetToManyRelatedWithRequestBuilder(id: String, filterState: [FilterState_appStoreVersionsAppStoreVersionExperimentsGetToManyRelated]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_appStoreVersionsAppStoreVersionExperimentsGetToManyRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_appStoreVersionsAppStoreVersionExperimentsGetToManyRelated]? = nil, fieldsAppStoreVersionExperimentTreatments: [FieldsAppStoreVersionExperimentTreatments_appStoreVersionsAppStoreVersionExperimentsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appStoreVersionsAppStoreVersionExperimentsGetToManyRelated]? = nil, limitAppStoreVersionExperimentTreatments: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppStoreVersionExperimentsResponse> {
         var localVariablePath = "/v1/appStoreVersions/{id}/appStoreVersionExperiments"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[state]": (wrappedValue: filterState?.encodeToJSON(), isExplode: false),
-            "fields[appStoreVersionExperiments]": (wrappedValue: fieldsAppStoreVersionExperiments?.encodeToJSON(), isExplode: false),
-            "fields[appStoreVersions]": (wrappedValue: fieldsAppStoreVersions?.encodeToJSON(), isExplode: false),
-            "fields[appStoreVersionExperimentTreatments]": (wrappedValue: fieldsAppStoreVersionExperimentTreatments?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[appStoreVersionExperimentTreatments]": (wrappedValue: limitAppStoreVersionExperimentTreatments?.encodeToJSON(), isExplode: true),
+            "filter[state]": (wrappedValue: filterState?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appStoreVersionExperiments]": (wrappedValue: fieldsAppStoreVersionExperiments?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appStoreVersions]": (wrappedValue: fieldsAppStoreVersions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appStoreVersionExperimentTreatments]": (wrappedValue: fieldsAppStoreVersionExperimentTreatments?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[appStoreVersionExperimentTreatments]": (wrappedValue: limitAppStoreVersionExperimentTreatments?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -833,9 +857,9 @@ open class AppStoreVersionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionExperimentsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionExperimentsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -844,25 +868,26 @@ open class AppStoreVersionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppStoreVersionExperimentsResponse> 
      */
     @available(*, deprecated, message: "This operation is deprecated.")
-    open class func appStoreVersionsAppStoreVersionExperimentsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppStoreVersionExperimentsResponse> {
+    open class func appStoreVersionsAppStoreVersionExperimentsGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppStoreVersionExperimentsResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionExperimentsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionExperimentsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter filterState
      */
-    public enum FilterState_appStoreVersionsAppStoreVersionExperimentsV2GetToManyRelated: String, CaseIterable {
+    public enum FilterState_appStoreVersionsAppStoreVersionExperimentsV2GetToManyRelated: String, Sendable, CaseIterable {
         case prepareForSubmission = "PREPARE_FOR_SUBMISSION"
         case readyForReview = "READY_FOR_REVIEW"
         case waitingForReview = "WAITING_FOR_REVIEW"
@@ -877,7 +902,7 @@ open class AppStoreVersionsAPI {
     /**
      * enum for parameter fieldsAppStoreVersionExperiments
      */
-    public enum FieldsAppStoreVersionExperiments_appStoreVersionsAppStoreVersionExperimentsV2GetToManyRelated: String, CaseIterable {
+    public enum FieldsAppStoreVersionExperiments_appStoreVersionsAppStoreVersionExperimentsV2GetToManyRelated: String, Sendable, CaseIterable {
         case name = "name"
         case platform = "platform"
         case trafficproportion = "trafficProportion"
@@ -894,7 +919,7 @@ open class AppStoreVersionsAPI {
     /**
      * enum for parameter fieldsApps
      */
-    public enum FieldsApps_appStoreVersionsAppStoreVersionExperimentsV2GetToManyRelated: String, CaseIterable {
+    public enum FieldsApps_appStoreVersionsAppStoreVersionExperimentsV2GetToManyRelated: String, Sendable, CaseIterable {
         case name = "name"
         case bundleid = "bundleId"
         case sku = "sku"
@@ -943,7 +968,7 @@ open class AppStoreVersionsAPI {
     /**
      * enum for parameter fieldsAppStoreVersions
      */
-    public enum FieldsAppStoreVersions_appStoreVersionsAppStoreVersionExperimentsV2GetToManyRelated: String, CaseIterable {
+    public enum FieldsAppStoreVersions_appStoreVersionsAppStoreVersionExperimentsV2GetToManyRelated: String, Sendable, CaseIterable {
         case platform = "platform"
         case versionstring = "versionString"
         case appstorestate = "appStoreState"
@@ -973,7 +998,7 @@ open class AppStoreVersionsAPI {
     /**
      * enum for parameter fieldsAppStoreVersionExperimentTreatments
      */
-    public enum FieldsAppStoreVersionExperimentTreatments_appStoreVersionsAppStoreVersionExperimentsV2GetToManyRelated: String, CaseIterable {
+    public enum FieldsAppStoreVersionExperimentTreatments_appStoreVersionsAppStoreVersionExperimentsV2GetToManyRelated: String, Sendable, CaseIterable {
         case name = "name"
         case appicon = "appIcon"
         case appiconname = "appIconName"
@@ -986,7 +1011,7 @@ open class AppStoreVersionsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_appStoreVersionsAppStoreVersionExperimentsV2GetToManyRelated: String, CaseIterable {
+    public enum Include_appStoreVersionsAppStoreVersionExperimentsV2GetToManyRelated: String, Sendable, CaseIterable {
         case app = "app"
         case latestcontrolversion = "latestControlVersion"
         case controlversions = "controlVersions"
@@ -1005,20 +1030,22 @@ open class AppStoreVersionsAPI {
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitControlVersions: (query) maximum number of related controlVersions returned (when they are included) (optional)
      - parameter limitAppStoreVersionExperimentTreatments: (query) maximum number of related appStoreVersionExperimentTreatments returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppStoreVersionExperimentsV2Response
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionsAppStoreVersionExperimentsV2GetToManyRelated(id: String, filterState: [FilterState_appStoreVersionsAppStoreVersionExperimentsV2GetToManyRelated]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_appStoreVersionsAppStoreVersionExperimentsV2GetToManyRelated]? = nil, fieldsApps: [FieldsApps_appStoreVersionsAppStoreVersionExperimentsV2GetToManyRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_appStoreVersionsAppStoreVersionExperimentsV2GetToManyRelated]? = nil, fieldsAppStoreVersionExperimentTreatments: [FieldsAppStoreVersionExperimentTreatments_appStoreVersionsAppStoreVersionExperimentsV2GetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appStoreVersionsAppStoreVersionExperimentsV2GetToManyRelated]? = nil, limitControlVersions: Int? = nil, limitAppStoreVersionExperimentTreatments: Int? = nil) async throws -> AppStoreVersionExperimentsV2Response {
-        return try await appStoreVersionsAppStoreVersionExperimentsV2GetToManyRelatedWithRequestBuilder(id: id, filterState: filterState, fieldsAppStoreVersionExperiments: fieldsAppStoreVersionExperiments, fieldsApps: fieldsApps, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsAppStoreVersionExperimentTreatments: fieldsAppStoreVersionExperimentTreatments, limit: limit, include: include, limitControlVersions: limitControlVersions, limitAppStoreVersionExperimentTreatments: limitAppStoreVersionExperimentTreatments).execute().body
+    open class func appStoreVersionsAppStoreVersionExperimentsV2GetToManyRelated(id: String, filterState: [FilterState_appStoreVersionsAppStoreVersionExperimentsV2GetToManyRelated]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_appStoreVersionsAppStoreVersionExperimentsV2GetToManyRelated]? = nil, fieldsApps: [FieldsApps_appStoreVersionsAppStoreVersionExperimentsV2GetToManyRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_appStoreVersionsAppStoreVersionExperimentsV2GetToManyRelated]? = nil, fieldsAppStoreVersionExperimentTreatments: [FieldsAppStoreVersionExperimentTreatments_appStoreVersionsAppStoreVersionExperimentsV2GetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appStoreVersionsAppStoreVersionExperimentsV2GetToManyRelated]? = nil, limitControlVersions: Int? = nil, limitAppStoreVersionExperimentTreatments: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppStoreVersionExperimentsV2Response {
+        return try await appStoreVersionsAppStoreVersionExperimentsV2GetToManyRelatedWithRequestBuilder(id: id, filterState: filterState, fieldsAppStoreVersionExperiments: fieldsAppStoreVersionExperiments, fieldsApps: fieldsApps, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsAppStoreVersionExperimentTreatments: fieldsAppStoreVersionExperimentTreatments, limit: limit, include: include, limitControlVersions: limitControlVersions, limitAppStoreVersionExperimentTreatments: limitAppStoreVersionExperimentTreatments, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppStoreVersionExperimentsV2Response
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionsAppStoreVersionExperimentsV2GetToManyRelated(urlString: String) async throws -> AppStoreVersionExperimentsV2Response {
-        return try await appStoreVersionsAppStoreVersionExperimentsV2GetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func appStoreVersionsAppStoreVersionExperimentsV2GetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppStoreVersionExperimentsV2Response {
+        return try await appStoreVersionsAppStoreVersionExperimentsV2GetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1036,27 +1063,28 @@ open class AppStoreVersionsAPI {
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitControlVersions: (query) maximum number of related controlVersions returned (when they are included) (optional)
      - parameter limitAppStoreVersionExperimentTreatments: (query) maximum number of related appStoreVersionExperimentTreatments returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppStoreVersionExperimentsV2Response> 
      */
-    open class func appStoreVersionsAppStoreVersionExperimentsV2GetToManyRelatedWithRequestBuilder(id: String, filterState: [FilterState_appStoreVersionsAppStoreVersionExperimentsV2GetToManyRelated]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_appStoreVersionsAppStoreVersionExperimentsV2GetToManyRelated]? = nil, fieldsApps: [FieldsApps_appStoreVersionsAppStoreVersionExperimentsV2GetToManyRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_appStoreVersionsAppStoreVersionExperimentsV2GetToManyRelated]? = nil, fieldsAppStoreVersionExperimentTreatments: [FieldsAppStoreVersionExperimentTreatments_appStoreVersionsAppStoreVersionExperimentsV2GetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appStoreVersionsAppStoreVersionExperimentsV2GetToManyRelated]? = nil, limitControlVersions: Int? = nil, limitAppStoreVersionExperimentTreatments: Int? = nil) -> RequestBuilder<AppStoreVersionExperimentsV2Response> {
+    open class func appStoreVersionsAppStoreVersionExperimentsV2GetToManyRelatedWithRequestBuilder(id: String, filterState: [FilterState_appStoreVersionsAppStoreVersionExperimentsV2GetToManyRelated]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_appStoreVersionsAppStoreVersionExperimentsV2GetToManyRelated]? = nil, fieldsApps: [FieldsApps_appStoreVersionsAppStoreVersionExperimentsV2GetToManyRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_appStoreVersionsAppStoreVersionExperimentsV2GetToManyRelated]? = nil, fieldsAppStoreVersionExperimentTreatments: [FieldsAppStoreVersionExperimentTreatments_appStoreVersionsAppStoreVersionExperimentsV2GetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appStoreVersionsAppStoreVersionExperimentsV2GetToManyRelated]? = nil, limitControlVersions: Int? = nil, limitAppStoreVersionExperimentTreatments: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppStoreVersionExperimentsV2Response> {
         var localVariablePath = "/v1/appStoreVersions/{id}/appStoreVersionExperimentsV2"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[state]": (wrappedValue: filterState?.encodeToJSON(), isExplode: false),
-            "fields[appStoreVersionExperiments]": (wrappedValue: fieldsAppStoreVersionExperiments?.encodeToJSON(), isExplode: false),
-            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
-            "fields[appStoreVersions]": (wrappedValue: fieldsAppStoreVersions?.encodeToJSON(), isExplode: false),
-            "fields[appStoreVersionExperimentTreatments]": (wrappedValue: fieldsAppStoreVersionExperimentTreatments?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[controlVersions]": (wrappedValue: limitControlVersions?.encodeToJSON(), isExplode: true),
-            "limit[appStoreVersionExperimentTreatments]": (wrappedValue: limitAppStoreVersionExperimentTreatments?.encodeToJSON(), isExplode: true),
+            "filter[state]": (wrappedValue: filterState?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appStoreVersionExperiments]": (wrappedValue: fieldsAppStoreVersionExperiments?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appStoreVersions]": (wrappedValue: fieldsAppStoreVersions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appStoreVersionExperimentTreatments]": (wrappedValue: fieldsAppStoreVersionExperimentTreatments?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[controlVersions]": (wrappedValue: limitControlVersions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[appStoreVersionExperimentTreatments]": (wrappedValue: limitAppStoreVersionExperimentTreatments?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -1065,9 +1093,9 @@ open class AppStoreVersionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionExperimentsV2Response>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionExperimentsV2Response>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -1076,24 +1104,25 @@ open class AppStoreVersionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppStoreVersionExperimentsV2Response> 
      */
-    open class func appStoreVersionsAppStoreVersionExperimentsV2GetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppStoreVersionExperimentsV2Response> {
+    open class func appStoreVersionsAppStoreVersionExperimentsV2GetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppStoreVersionExperimentsV2Response> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionExperimentsV2Response>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionExperimentsV2Response>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsAppStoreVersionLocalizations
      */
-    public enum FieldsAppStoreVersionLocalizations_appStoreVersionsAppStoreVersionLocalizationsGetToManyRelated: String, CaseIterable {
+    public enum FieldsAppStoreVersionLocalizations_appStoreVersionsAppStoreVersionLocalizationsGetToManyRelated: String, Sendable, CaseIterable {
         case description = "description"
         case locale = "locale"
         case keywords = "keywords"
@@ -1109,7 +1138,7 @@ open class AppStoreVersionsAPI {
     /**
      * enum for parameter fieldsAppStoreVersions
      */
-    public enum FieldsAppStoreVersions_appStoreVersionsAppStoreVersionLocalizationsGetToManyRelated: String, CaseIterable {
+    public enum FieldsAppStoreVersions_appStoreVersionsAppStoreVersionLocalizationsGetToManyRelated: String, Sendable, CaseIterable {
         case platform = "platform"
         case versionstring = "versionString"
         case appstorestate = "appStoreState"
@@ -1139,7 +1168,7 @@ open class AppStoreVersionsAPI {
     /**
      * enum for parameter fieldsAppScreenshotSets
      */
-    public enum FieldsAppScreenshotSets_appStoreVersionsAppStoreVersionLocalizationsGetToManyRelated: String, CaseIterable {
+    public enum FieldsAppScreenshotSets_appStoreVersionsAppStoreVersionLocalizationsGetToManyRelated: String, Sendable, CaseIterable {
         case screenshotdisplaytype = "screenshotDisplayType"
         case appstoreversionlocalization = "appStoreVersionLocalization"
         case appcustomproductpagelocalization = "appCustomProductPageLocalization"
@@ -1150,7 +1179,7 @@ open class AppStoreVersionsAPI {
     /**
      * enum for parameter fieldsAppPreviewSets
      */
-    public enum FieldsAppPreviewSets_appStoreVersionsAppStoreVersionLocalizationsGetToManyRelated: String, CaseIterable {
+    public enum FieldsAppPreviewSets_appStoreVersionsAppStoreVersionLocalizationsGetToManyRelated: String, Sendable, CaseIterable {
         case previewtype = "previewType"
         case appstoreversionlocalization = "appStoreVersionLocalization"
         case appcustomproductpagelocalization = "appCustomProductPageLocalization"
@@ -1161,7 +1190,7 @@ open class AppStoreVersionsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_appStoreVersionsAppStoreVersionLocalizationsGetToManyRelated: String, CaseIterable {
+    public enum Include_appStoreVersionsAppStoreVersionLocalizationsGetToManyRelated: String, Sendable, CaseIterable {
         case appstoreversion = "appStoreVersion"
         case appscreenshotsets = "appScreenshotSets"
         case apppreviewsets = "appPreviewSets"
@@ -1179,20 +1208,22 @@ open class AppStoreVersionsAPI {
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAppScreenshotSets: (query) maximum number of related appScreenshotSets returned (when they are included) (optional)
      - parameter limitAppPreviewSets: (query) maximum number of related appPreviewSets returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppStoreVersionLocalizationsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionsAppStoreVersionLocalizationsGetToManyRelated(id: String, filterLocale: [String]? = nil, fieldsAppStoreVersionLocalizations: [FieldsAppStoreVersionLocalizations_appStoreVersionsAppStoreVersionLocalizationsGetToManyRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_appStoreVersionsAppStoreVersionLocalizationsGetToManyRelated]? = nil, fieldsAppScreenshotSets: [FieldsAppScreenshotSets_appStoreVersionsAppStoreVersionLocalizationsGetToManyRelated]? = nil, fieldsAppPreviewSets: [FieldsAppPreviewSets_appStoreVersionsAppStoreVersionLocalizationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appStoreVersionsAppStoreVersionLocalizationsGetToManyRelated]? = nil, limitAppScreenshotSets: Int? = nil, limitAppPreviewSets: Int? = nil) async throws -> AppStoreVersionLocalizationsResponse {
-        return try await appStoreVersionsAppStoreVersionLocalizationsGetToManyRelatedWithRequestBuilder(id: id, filterLocale: filterLocale, fieldsAppStoreVersionLocalizations: fieldsAppStoreVersionLocalizations, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsAppScreenshotSets: fieldsAppScreenshotSets, fieldsAppPreviewSets: fieldsAppPreviewSets, limit: limit, include: include, limitAppScreenshotSets: limitAppScreenshotSets, limitAppPreviewSets: limitAppPreviewSets).execute().body
+    open class func appStoreVersionsAppStoreVersionLocalizationsGetToManyRelated(id: String, filterLocale: [String]? = nil, fieldsAppStoreVersionLocalizations: [FieldsAppStoreVersionLocalizations_appStoreVersionsAppStoreVersionLocalizationsGetToManyRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_appStoreVersionsAppStoreVersionLocalizationsGetToManyRelated]? = nil, fieldsAppScreenshotSets: [FieldsAppScreenshotSets_appStoreVersionsAppStoreVersionLocalizationsGetToManyRelated]? = nil, fieldsAppPreviewSets: [FieldsAppPreviewSets_appStoreVersionsAppStoreVersionLocalizationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appStoreVersionsAppStoreVersionLocalizationsGetToManyRelated]? = nil, limitAppScreenshotSets: Int? = nil, limitAppPreviewSets: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppStoreVersionLocalizationsResponse {
+        return try await appStoreVersionsAppStoreVersionLocalizationsGetToManyRelatedWithRequestBuilder(id: id, filterLocale: filterLocale, fieldsAppStoreVersionLocalizations: fieldsAppStoreVersionLocalizations, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsAppScreenshotSets: fieldsAppScreenshotSets, fieldsAppPreviewSets: fieldsAppPreviewSets, limit: limit, include: include, limitAppScreenshotSets: limitAppScreenshotSets, limitAppPreviewSets: limitAppPreviewSets, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppStoreVersionLocalizationsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionsAppStoreVersionLocalizationsGetToManyRelated(urlString: String) async throws -> AppStoreVersionLocalizationsResponse {
-        return try await appStoreVersionsAppStoreVersionLocalizationsGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func appStoreVersionsAppStoreVersionLocalizationsGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppStoreVersionLocalizationsResponse {
+        return try await appStoreVersionsAppStoreVersionLocalizationsGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1210,27 +1241,28 @@ open class AppStoreVersionsAPI {
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAppScreenshotSets: (query) maximum number of related appScreenshotSets returned (when they are included) (optional)
      - parameter limitAppPreviewSets: (query) maximum number of related appPreviewSets returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppStoreVersionLocalizationsResponse> 
      */
-    open class func appStoreVersionsAppStoreVersionLocalizationsGetToManyRelatedWithRequestBuilder(id: String, filterLocale: [String]? = nil, fieldsAppStoreVersionLocalizations: [FieldsAppStoreVersionLocalizations_appStoreVersionsAppStoreVersionLocalizationsGetToManyRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_appStoreVersionsAppStoreVersionLocalizationsGetToManyRelated]? = nil, fieldsAppScreenshotSets: [FieldsAppScreenshotSets_appStoreVersionsAppStoreVersionLocalizationsGetToManyRelated]? = nil, fieldsAppPreviewSets: [FieldsAppPreviewSets_appStoreVersionsAppStoreVersionLocalizationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appStoreVersionsAppStoreVersionLocalizationsGetToManyRelated]? = nil, limitAppScreenshotSets: Int? = nil, limitAppPreviewSets: Int? = nil) -> RequestBuilder<AppStoreVersionLocalizationsResponse> {
+    open class func appStoreVersionsAppStoreVersionLocalizationsGetToManyRelatedWithRequestBuilder(id: String, filterLocale: [String]? = nil, fieldsAppStoreVersionLocalizations: [FieldsAppStoreVersionLocalizations_appStoreVersionsAppStoreVersionLocalizationsGetToManyRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_appStoreVersionsAppStoreVersionLocalizationsGetToManyRelated]? = nil, fieldsAppScreenshotSets: [FieldsAppScreenshotSets_appStoreVersionsAppStoreVersionLocalizationsGetToManyRelated]? = nil, fieldsAppPreviewSets: [FieldsAppPreviewSets_appStoreVersionsAppStoreVersionLocalizationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appStoreVersionsAppStoreVersionLocalizationsGetToManyRelated]? = nil, limitAppScreenshotSets: Int? = nil, limitAppPreviewSets: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppStoreVersionLocalizationsResponse> {
         var localVariablePath = "/v1/appStoreVersions/{id}/appStoreVersionLocalizations"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[locale]": (wrappedValue: filterLocale?.encodeToJSON(), isExplode: false),
-            "fields[appStoreVersionLocalizations]": (wrappedValue: fieldsAppStoreVersionLocalizations?.encodeToJSON(), isExplode: false),
-            "fields[appStoreVersions]": (wrappedValue: fieldsAppStoreVersions?.encodeToJSON(), isExplode: false),
-            "fields[appScreenshotSets]": (wrappedValue: fieldsAppScreenshotSets?.encodeToJSON(), isExplode: false),
-            "fields[appPreviewSets]": (wrappedValue: fieldsAppPreviewSets?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[appScreenshotSets]": (wrappedValue: limitAppScreenshotSets?.encodeToJSON(), isExplode: true),
-            "limit[appPreviewSets]": (wrappedValue: limitAppPreviewSets?.encodeToJSON(), isExplode: true),
+            "filter[locale]": (wrappedValue: filterLocale?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appStoreVersionLocalizations]": (wrappedValue: fieldsAppStoreVersionLocalizations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appStoreVersions]": (wrappedValue: fieldsAppStoreVersions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appScreenshotSets]": (wrappedValue: fieldsAppScreenshotSets?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appPreviewSets]": (wrappedValue: fieldsAppPreviewSets?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[appScreenshotSets]": (wrappedValue: limitAppScreenshotSets?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[appPreviewSets]": (wrappedValue: limitAppPreviewSets?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -1239,9 +1271,9 @@ open class AppStoreVersionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionLocalizationsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionLocalizationsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -1250,24 +1282,25 @@ open class AppStoreVersionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppStoreVersionLocalizationsResponse> 
      */
-    open class func appStoreVersionsAppStoreVersionLocalizationsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppStoreVersionLocalizationsResponse> {
+    open class func appStoreVersionsAppStoreVersionLocalizationsGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppStoreVersionLocalizationsResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionLocalizationsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionLocalizationsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsAppStoreVersionPhasedReleases
      */
-    public enum FieldsAppStoreVersionPhasedReleases_appStoreVersionsAppStoreVersionPhasedReleaseGetToOneRelated: String, CaseIterable {
+    public enum FieldsAppStoreVersionPhasedReleases_appStoreVersionsAppStoreVersionPhasedReleaseGetToOneRelated: String, Sendable, CaseIterable {
         case phasedreleasestate = "phasedReleaseState"
         case startdate = "startDate"
         case totalpauseduration = "totalPauseDuration"
@@ -1278,20 +1311,22 @@ open class AppStoreVersionsAPI {
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAppStoreVersionPhasedReleases: (query) the fields to include for returned resources of type appStoreVersionPhasedReleases (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppStoreVersionPhasedReleaseWithoutIncludesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionsAppStoreVersionPhasedReleaseGetToOneRelated(id: String, fieldsAppStoreVersionPhasedReleases: [FieldsAppStoreVersionPhasedReleases_appStoreVersionsAppStoreVersionPhasedReleaseGetToOneRelated]? = nil) async throws -> AppStoreVersionPhasedReleaseWithoutIncludesResponse {
-        return try await appStoreVersionsAppStoreVersionPhasedReleaseGetToOneRelatedWithRequestBuilder(id: id, fieldsAppStoreVersionPhasedReleases: fieldsAppStoreVersionPhasedReleases).execute().body
+    open class func appStoreVersionsAppStoreVersionPhasedReleaseGetToOneRelated(id: String, fieldsAppStoreVersionPhasedReleases: [FieldsAppStoreVersionPhasedReleases_appStoreVersionsAppStoreVersionPhasedReleaseGetToOneRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppStoreVersionPhasedReleaseWithoutIncludesResponse {
+        return try await appStoreVersionsAppStoreVersionPhasedReleaseGetToOneRelatedWithRequestBuilder(id: id, fieldsAppStoreVersionPhasedReleases: fieldsAppStoreVersionPhasedReleases, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppStoreVersionPhasedReleaseWithoutIncludesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionsAppStoreVersionPhasedReleaseGetToOneRelated(urlString: String) async throws -> AppStoreVersionPhasedReleaseWithoutIncludesResponse {
-        return try await appStoreVersionsAppStoreVersionPhasedReleaseGetToOneRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func appStoreVersionsAppStoreVersionPhasedReleaseGetToOneRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppStoreVersionPhasedReleaseWithoutIncludesResponse {
+        return try await appStoreVersionsAppStoreVersionPhasedReleaseGetToOneRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1301,19 +1336,20 @@ open class AppStoreVersionsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAppStoreVersionPhasedReleases: (query) the fields to include for returned resources of type appStoreVersionPhasedReleases (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppStoreVersionPhasedReleaseWithoutIncludesResponse> 
      */
-    open class func appStoreVersionsAppStoreVersionPhasedReleaseGetToOneRelatedWithRequestBuilder(id: String, fieldsAppStoreVersionPhasedReleases: [FieldsAppStoreVersionPhasedReleases_appStoreVersionsAppStoreVersionPhasedReleaseGetToOneRelated]? = nil) -> RequestBuilder<AppStoreVersionPhasedReleaseWithoutIncludesResponse> {
+    open class func appStoreVersionsAppStoreVersionPhasedReleaseGetToOneRelatedWithRequestBuilder(id: String, fieldsAppStoreVersionPhasedReleases: [FieldsAppStoreVersionPhasedReleases_appStoreVersionsAppStoreVersionPhasedReleaseGetToOneRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppStoreVersionPhasedReleaseWithoutIncludesResponse> {
         var localVariablePath = "/v1/appStoreVersions/{id}/appStoreVersionPhasedRelease"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[appStoreVersionPhasedReleases]": (wrappedValue: fieldsAppStoreVersionPhasedReleases?.encodeToJSON(), isExplode: false),
+            "fields[appStoreVersionPhasedReleases]": (wrappedValue: fieldsAppStoreVersionPhasedReleases?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -1322,9 +1358,9 @@ open class AppStoreVersionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionPhasedReleaseWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionPhasedReleaseWithoutIncludesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -1333,31 +1369,32 @@ open class AppStoreVersionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppStoreVersionPhasedReleaseWithoutIncludesResponse> 
      */
-    open class func appStoreVersionsAppStoreVersionPhasedReleaseGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppStoreVersionPhasedReleaseWithoutIncludesResponse> {
+    open class func appStoreVersionsAppStoreVersionPhasedReleaseGetToOneRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppStoreVersionPhasedReleaseWithoutIncludesResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionPhasedReleaseWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionPhasedReleaseWithoutIncludesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsAppStoreVersionSubmissions
      */
-    public enum FieldsAppStoreVersionSubmissions_appStoreVersionsAppStoreVersionSubmissionGetToOneRelated: String, CaseIterable {
+    public enum FieldsAppStoreVersionSubmissions_appStoreVersionsAppStoreVersionSubmissionGetToOneRelated: String, Sendable, CaseIterable {
         case appstoreversion = "appStoreVersion"
     }
 
     /**
      * enum for parameter fieldsAppStoreVersions
      */
-    public enum FieldsAppStoreVersions_appStoreVersionsAppStoreVersionSubmissionGetToOneRelated: String, CaseIterable {
+    public enum FieldsAppStoreVersions_appStoreVersionsAppStoreVersionSubmissionGetToOneRelated: String, Sendable, CaseIterable {
         case platform = "platform"
         case versionstring = "versionString"
         case appstorestate = "appStoreState"
@@ -1387,7 +1424,7 @@ open class AppStoreVersionsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_appStoreVersionsAppStoreVersionSubmissionGetToOneRelated: String, CaseIterable {
+    public enum Include_appStoreVersionsAppStoreVersionSubmissionGetToOneRelated: String, Sendable, CaseIterable {
         case appstoreversion = "appStoreVersion"
     }
 
@@ -1397,22 +1434,24 @@ open class AppStoreVersionsAPI {
      - parameter fieldsAppStoreVersionSubmissions: (query) the fields to include for returned resources of type appStoreVersionSubmissions (optional)
      - parameter fieldsAppStoreVersions: (query) the fields to include for returned resources of type appStoreVersions (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppStoreVersionSubmissionResponse
      */
     @available(*, deprecated, message: "This operation is deprecated.")
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionsAppStoreVersionSubmissionGetToOneRelated(id: String, fieldsAppStoreVersionSubmissions: [FieldsAppStoreVersionSubmissions_appStoreVersionsAppStoreVersionSubmissionGetToOneRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_appStoreVersionsAppStoreVersionSubmissionGetToOneRelated]? = nil, include: [Include_appStoreVersionsAppStoreVersionSubmissionGetToOneRelated]? = nil) async throws -> AppStoreVersionSubmissionResponse {
-        return try await appStoreVersionsAppStoreVersionSubmissionGetToOneRelatedWithRequestBuilder(id: id, fieldsAppStoreVersionSubmissions: fieldsAppStoreVersionSubmissions, fieldsAppStoreVersions: fieldsAppStoreVersions, include: include).execute().body
+    open class func appStoreVersionsAppStoreVersionSubmissionGetToOneRelated(id: String, fieldsAppStoreVersionSubmissions: [FieldsAppStoreVersionSubmissions_appStoreVersionsAppStoreVersionSubmissionGetToOneRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_appStoreVersionsAppStoreVersionSubmissionGetToOneRelated]? = nil, include: [Include_appStoreVersionsAppStoreVersionSubmissionGetToOneRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppStoreVersionSubmissionResponse {
+        return try await appStoreVersionsAppStoreVersionSubmissionGetToOneRelatedWithRequestBuilder(id: id, fieldsAppStoreVersionSubmissions: fieldsAppStoreVersionSubmissions, fieldsAppStoreVersions: fieldsAppStoreVersions, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppStoreVersionSubmissionResponse
      */
     @available(*, deprecated, message: "This operation is deprecated.")
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionsAppStoreVersionSubmissionGetToOneRelated(urlString: String) async throws -> AppStoreVersionSubmissionResponse {
-        return try await appStoreVersionsAppStoreVersionSubmissionGetToOneRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func appStoreVersionsAppStoreVersionSubmissionGetToOneRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppStoreVersionSubmissionResponse {
+        return try await appStoreVersionsAppStoreVersionSubmissionGetToOneRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1424,22 +1463,23 @@ open class AppStoreVersionsAPI {
      - parameter fieldsAppStoreVersionSubmissions: (query) the fields to include for returned resources of type appStoreVersionSubmissions (optional)
      - parameter fieldsAppStoreVersions: (query) the fields to include for returned resources of type appStoreVersions (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppStoreVersionSubmissionResponse> 
      */
     @available(*, deprecated, message: "This operation is deprecated.")
-    open class func appStoreVersionsAppStoreVersionSubmissionGetToOneRelatedWithRequestBuilder(id: String, fieldsAppStoreVersionSubmissions: [FieldsAppStoreVersionSubmissions_appStoreVersionsAppStoreVersionSubmissionGetToOneRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_appStoreVersionsAppStoreVersionSubmissionGetToOneRelated]? = nil, include: [Include_appStoreVersionsAppStoreVersionSubmissionGetToOneRelated]? = nil) -> RequestBuilder<AppStoreVersionSubmissionResponse> {
+    open class func appStoreVersionsAppStoreVersionSubmissionGetToOneRelatedWithRequestBuilder(id: String, fieldsAppStoreVersionSubmissions: [FieldsAppStoreVersionSubmissions_appStoreVersionsAppStoreVersionSubmissionGetToOneRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_appStoreVersionsAppStoreVersionSubmissionGetToOneRelated]? = nil, include: [Include_appStoreVersionsAppStoreVersionSubmissionGetToOneRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppStoreVersionSubmissionResponse> {
         var localVariablePath = "/v1/appStoreVersions/{id}/appStoreVersionSubmission"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[appStoreVersionSubmissions]": (wrappedValue: fieldsAppStoreVersionSubmissions?.encodeToJSON(), isExplode: false),
-            "fields[appStoreVersions]": (wrappedValue: fieldsAppStoreVersions?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "fields[appStoreVersionSubmissions]": (wrappedValue: fieldsAppStoreVersionSubmissions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appStoreVersions]": (wrappedValue: fieldsAppStoreVersions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -1448,9 +1488,9 @@ open class AppStoreVersionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionSubmissionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionSubmissionResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -1459,25 +1499,26 @@ open class AppStoreVersionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppStoreVersionSubmissionResponse> 
      */
     @available(*, deprecated, message: "This operation is deprecated.")
-    open class func appStoreVersionsAppStoreVersionSubmissionGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppStoreVersionSubmissionResponse> {
+    open class func appStoreVersionsAppStoreVersionSubmissionGetToOneRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppStoreVersionSubmissionResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionSubmissionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionSubmissionResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsBuilds
      */
-    public enum FieldsBuilds_appStoreVersionsBuildGetToOneRelated: String, CaseIterable {
+    public enum FieldsBuilds_appStoreVersionsBuildGetToOneRelated: String, Sendable, CaseIterable {
         case version = "version"
         case uploadeddate = "uploadedDate"
         case expirationdate = "expirationDate"
@@ -1508,20 +1549,22 @@ open class AppStoreVersionsAPI {
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BuildWithoutIncludesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionsBuildGetToOneRelated(id: String, fieldsBuilds: [FieldsBuilds_appStoreVersionsBuildGetToOneRelated]? = nil) async throws -> BuildWithoutIncludesResponse {
-        return try await appStoreVersionsBuildGetToOneRelatedWithRequestBuilder(id: id, fieldsBuilds: fieldsBuilds).execute().body
+    open class func appStoreVersionsBuildGetToOneRelated(id: String, fieldsBuilds: [FieldsBuilds_appStoreVersionsBuildGetToOneRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BuildWithoutIncludesResponse {
+        return try await appStoreVersionsBuildGetToOneRelatedWithRequestBuilder(id: id, fieldsBuilds: fieldsBuilds, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BuildWithoutIncludesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionsBuildGetToOneRelated(urlString: String) async throws -> BuildWithoutIncludesResponse {
-        return try await appStoreVersionsBuildGetToOneRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func appStoreVersionsBuildGetToOneRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BuildWithoutIncludesResponse {
+        return try await appStoreVersionsBuildGetToOneRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1531,19 +1574,20 @@ open class AppStoreVersionsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BuildWithoutIncludesResponse> 
      */
-    open class func appStoreVersionsBuildGetToOneRelatedWithRequestBuilder(id: String, fieldsBuilds: [FieldsBuilds_appStoreVersionsBuildGetToOneRelated]? = nil) -> RequestBuilder<BuildWithoutIncludesResponse> {
+    open class func appStoreVersionsBuildGetToOneRelatedWithRequestBuilder(id: String, fieldsBuilds: [FieldsBuilds_appStoreVersionsBuildGetToOneRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BuildWithoutIncludesResponse> {
         var localVariablePath = "/v1/appStoreVersions/{id}/build"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(), isExplode: false),
+            "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -1552,9 +1596,9 @@ open class AppStoreVersionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BuildWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BuildWithoutIncludesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -1563,37 +1607,40 @@ open class AppStoreVersionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BuildWithoutIncludesResponse> 
      */
-    open class func appStoreVersionsBuildGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<BuildWithoutIncludesResponse> {
+    open class func appStoreVersionsBuildGetToOneRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BuildWithoutIncludesResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BuildWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BuildWithoutIncludesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppStoreVersionBuildLinkageResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionsBuildGetToOneRelationship(id: String) async throws -> AppStoreVersionBuildLinkageResponse {
-        return try await appStoreVersionsBuildGetToOneRelationshipWithRequestBuilder(id: id).execute().body
+    open class func appStoreVersionsBuildGetToOneRelationship(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppStoreVersionBuildLinkageResponse {
+        return try await appStoreVersionsBuildGetToOneRelationshipWithRequestBuilder(id: id, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppStoreVersionBuildLinkageResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionsBuildGetToOneRelationship(urlString: String) async throws -> AppStoreVersionBuildLinkageResponse {
-        return try await appStoreVersionsBuildGetToOneRelationshipWithRequestBuilder(urlString: urlString).execute().body
+    open class func appStoreVersionsBuildGetToOneRelationship(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppStoreVersionBuildLinkageResponse {
+        return try await appStoreVersionsBuildGetToOneRelationshipWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1602,14 +1649,15 @@ open class AppStoreVersionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppStoreVersionBuildLinkageResponse> 
      */
-    open class func appStoreVersionsBuildGetToOneRelationshipWithRequestBuilder(id: String) -> RequestBuilder<AppStoreVersionBuildLinkageResponse> {
+    open class func appStoreVersionsBuildGetToOneRelationshipWithRequestBuilder(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppStoreVersionBuildLinkageResponse> {
         var localVariablePath = "/v1/appStoreVersions/{id}/relationships/build"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -1620,9 +1668,9 @@ open class AppStoreVersionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionBuildLinkageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionBuildLinkageResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -1631,38 +1679,41 @@ open class AppStoreVersionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppStoreVersionBuildLinkageResponse> 
      */
-    open class func appStoreVersionsBuildGetToOneRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<AppStoreVersionBuildLinkageResponse> {
+    open class func appStoreVersionsBuildGetToOneRelationshipWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppStoreVersionBuildLinkageResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionBuildLinkageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionBuildLinkageResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter appStoreVersionBuildLinkageRequest: (body) Related linkage 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionsBuildUpdateToOneRelationship(id: String, appStoreVersionBuildLinkageRequest: AppStoreVersionBuildLinkageRequest) async throws {
-        return try await appStoreVersionsBuildUpdateToOneRelationshipWithRequestBuilder(id: id, appStoreVersionBuildLinkageRequest: appStoreVersionBuildLinkageRequest).execute().body
+    open class func appStoreVersionsBuildUpdateToOneRelationship(id: String, appStoreVersionBuildLinkageRequest: AppStoreVersionBuildLinkageRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await appStoreVersionsBuildUpdateToOneRelationshipWithRequestBuilder(id: id, appStoreVersionBuildLinkageRequest: appStoreVersionBuildLinkageRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionsBuildUpdateToOneRelationship(urlString: String) async throws {
-        return try await appStoreVersionsBuildUpdateToOneRelationshipWithRequestBuilder(urlString: urlString).execute().body
+    open class func appStoreVersionsBuildUpdateToOneRelationship(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await appStoreVersionsBuildUpdateToOneRelationshipWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1672,15 +1723,16 @@ open class AppStoreVersionsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter appStoreVersionBuildLinkageRequest: (body) Related linkage 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func appStoreVersionsBuildUpdateToOneRelationshipWithRequestBuilder(id: String, appStoreVersionBuildLinkageRequest: AppStoreVersionBuildLinkageRequest) -> RequestBuilder<Void> {
+    open class func appStoreVersionsBuildUpdateToOneRelationshipWithRequestBuilder(id: String, appStoreVersionBuildLinkageRequest: AppStoreVersionBuildLinkageRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/appStoreVersions/{id}/relationships/build"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: appStoreVersionBuildLinkageRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: appStoreVersionBuildLinkageRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -1690,9 +1742,9 @@ open class AppStoreVersionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -1701,37 +1753,40 @@ open class AppStoreVersionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func appStoreVersionsBuildUpdateToOneRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func appStoreVersionsBuildUpdateToOneRelationshipWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter appStoreVersionCreateRequest: (body) AppStoreVersion representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppStoreVersionResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionsCreateInstance(appStoreVersionCreateRequest: AppStoreVersionCreateRequest) async throws -> AppStoreVersionResponse {
-        return try await appStoreVersionsCreateInstanceWithRequestBuilder(appStoreVersionCreateRequest: appStoreVersionCreateRequest).execute().body
+    open class func appStoreVersionsCreateInstance(appStoreVersionCreateRequest: AppStoreVersionCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppStoreVersionResponse {
+        return try await appStoreVersionsCreateInstanceWithRequestBuilder(appStoreVersionCreateRequest: appStoreVersionCreateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppStoreVersionResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionsCreateInstance(urlString: String) async throws -> AppStoreVersionResponse {
-        return try await appStoreVersionsCreateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func appStoreVersionsCreateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppStoreVersionResponse {
+        return try await appStoreVersionsCreateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1740,12 +1795,13 @@ open class AppStoreVersionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter appStoreVersionCreateRequest: (body) AppStoreVersion representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppStoreVersionResponse> 
      */
-    open class func appStoreVersionsCreateInstanceWithRequestBuilder(appStoreVersionCreateRequest: AppStoreVersionCreateRequest) -> RequestBuilder<AppStoreVersionResponse> {
+    open class func appStoreVersionsCreateInstanceWithRequestBuilder(appStoreVersionCreateRequest: AppStoreVersionCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppStoreVersionResponse> {
         let localVariablePath = "/v1/appStoreVersions"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: appStoreVersionCreateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: appStoreVersionCreateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -1755,9 +1811,9 @@ open class AppStoreVersionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -1766,24 +1822,25 @@ open class AppStoreVersionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppStoreVersionResponse> 
      */
-    open class func appStoreVersionsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppStoreVersionResponse> {
+    open class func appStoreVersionsCreateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppStoreVersionResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter filterTerritory
      */
-    public enum FilterTerritory_appStoreVersionsCustomerReviewsGetToManyRelated: String, CaseIterable {
+    public enum FilterTerritory_appStoreVersionsCustomerReviewsGetToManyRelated: String, Sendable, CaseIterable {
         case abw = "ABW"
         case afg = "AFG"
         case ago = "AGO"
@@ -2021,7 +2078,7 @@ open class AppStoreVersionsAPI {
     /**
      * enum for parameter sort
      */
-    public enum Sort_appStoreVersionsCustomerReviewsGetToManyRelated: String, CaseIterable {
+    public enum Sort_appStoreVersionsCustomerReviewsGetToManyRelated: String, Sendable, CaseIterable {
         case rating = "rating"
         case rating2 = "-rating"
         case createddate = "createdDate"
@@ -2031,7 +2088,7 @@ open class AppStoreVersionsAPI {
     /**
      * enum for parameter fieldsCustomerReviews
      */
-    public enum FieldsCustomerReviews_appStoreVersionsCustomerReviewsGetToManyRelated: String, CaseIterable {
+    public enum FieldsCustomerReviews_appStoreVersionsCustomerReviewsGetToManyRelated: String, Sendable, CaseIterable {
         case rating = "rating"
         case title = "title"
         case body = "body"
@@ -2044,7 +2101,7 @@ open class AppStoreVersionsAPI {
     /**
      * enum for parameter fieldsCustomerReviewResponses
      */
-    public enum FieldsCustomerReviewResponses_appStoreVersionsCustomerReviewsGetToManyRelated: String, CaseIterable {
+    public enum FieldsCustomerReviewResponses_appStoreVersionsCustomerReviewsGetToManyRelated: String, Sendable, CaseIterable {
         case responsebody = "responseBody"
         case lastmodifieddate = "lastModifiedDate"
         case state = "state"
@@ -2054,7 +2111,7 @@ open class AppStoreVersionsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_appStoreVersionsCustomerReviewsGetToManyRelated: String, CaseIterable {
+    public enum Include_appStoreVersionsCustomerReviewsGetToManyRelated: String, Sendable, CaseIterable {
         case response = "response"
     }
 
@@ -2069,20 +2126,22 @@ open class AppStoreVersionsAPI {
      - parameter fieldsCustomerReviewResponses: (query) the fields to include for returned resources of type customerReviewResponses (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: CustomerReviewsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionsCustomerReviewsGetToManyRelated(id: String, filterTerritory: [FilterTerritory_appStoreVersionsCustomerReviewsGetToManyRelated]? = nil, filterRating: [String]? = nil, existsPublishedResponse: Bool? = nil, sort: [Sort_appStoreVersionsCustomerReviewsGetToManyRelated]? = nil, fieldsCustomerReviews: [FieldsCustomerReviews_appStoreVersionsCustomerReviewsGetToManyRelated]? = nil, fieldsCustomerReviewResponses: [FieldsCustomerReviewResponses_appStoreVersionsCustomerReviewsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appStoreVersionsCustomerReviewsGetToManyRelated]? = nil) async throws -> CustomerReviewsResponse {
-        return try await appStoreVersionsCustomerReviewsGetToManyRelatedWithRequestBuilder(id: id, filterTerritory: filterTerritory, filterRating: filterRating, existsPublishedResponse: existsPublishedResponse, sort: sort, fieldsCustomerReviews: fieldsCustomerReviews, fieldsCustomerReviewResponses: fieldsCustomerReviewResponses, limit: limit, include: include).execute().body
+    open class func appStoreVersionsCustomerReviewsGetToManyRelated(id: String, filterTerritory: [FilterTerritory_appStoreVersionsCustomerReviewsGetToManyRelated]? = nil, filterRating: [String]? = nil, existsPublishedResponse: Bool? = nil, sort: [Sort_appStoreVersionsCustomerReviewsGetToManyRelated]? = nil, fieldsCustomerReviews: [FieldsCustomerReviews_appStoreVersionsCustomerReviewsGetToManyRelated]? = nil, fieldsCustomerReviewResponses: [FieldsCustomerReviewResponses_appStoreVersionsCustomerReviewsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appStoreVersionsCustomerReviewsGetToManyRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> CustomerReviewsResponse {
+        return try await appStoreVersionsCustomerReviewsGetToManyRelatedWithRequestBuilder(id: id, filterTerritory: filterTerritory, filterRating: filterRating, existsPublishedResponse: existsPublishedResponse, sort: sort, fieldsCustomerReviews: fieldsCustomerReviews, fieldsCustomerReviewResponses: fieldsCustomerReviewResponses, limit: limit, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: CustomerReviewsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionsCustomerReviewsGetToManyRelated(urlString: String) async throws -> CustomerReviewsResponse {
-        return try await appStoreVersionsCustomerReviewsGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func appStoreVersionsCustomerReviewsGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> CustomerReviewsResponse {
+        return try await appStoreVersionsCustomerReviewsGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -2099,26 +2158,27 @@ open class AppStoreVersionsAPI {
      - parameter fieldsCustomerReviewResponses: (query) the fields to include for returned resources of type customerReviewResponses (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CustomerReviewsResponse> 
      */
-    open class func appStoreVersionsCustomerReviewsGetToManyRelatedWithRequestBuilder(id: String, filterTerritory: [FilterTerritory_appStoreVersionsCustomerReviewsGetToManyRelated]? = nil, filterRating: [String]? = nil, existsPublishedResponse: Bool? = nil, sort: [Sort_appStoreVersionsCustomerReviewsGetToManyRelated]? = nil, fieldsCustomerReviews: [FieldsCustomerReviews_appStoreVersionsCustomerReviewsGetToManyRelated]? = nil, fieldsCustomerReviewResponses: [FieldsCustomerReviewResponses_appStoreVersionsCustomerReviewsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appStoreVersionsCustomerReviewsGetToManyRelated]? = nil) -> RequestBuilder<CustomerReviewsResponse> {
+    open class func appStoreVersionsCustomerReviewsGetToManyRelatedWithRequestBuilder(id: String, filterTerritory: [FilterTerritory_appStoreVersionsCustomerReviewsGetToManyRelated]? = nil, filterRating: [String]? = nil, existsPublishedResponse: Bool? = nil, sort: [Sort_appStoreVersionsCustomerReviewsGetToManyRelated]? = nil, fieldsCustomerReviews: [FieldsCustomerReviews_appStoreVersionsCustomerReviewsGetToManyRelated]? = nil, fieldsCustomerReviewResponses: [FieldsCustomerReviewResponses_appStoreVersionsCustomerReviewsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appStoreVersionsCustomerReviewsGetToManyRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<CustomerReviewsResponse> {
         var localVariablePath = "/v1/appStoreVersions/{id}/customerReviews"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[territory]": (wrappedValue: filterTerritory?.encodeToJSON(), isExplode: false),
-            "filter[rating]": (wrappedValue: filterRating?.encodeToJSON(), isExplode: false),
-            "exists[publishedResponse]": (wrappedValue: existsPublishedResponse?.encodeToJSON(), isExplode: false),
-            "sort": (wrappedValue: sort?.encodeToJSON(), isExplode: false),
-            "fields[customerReviews]": (wrappedValue: fieldsCustomerReviews?.encodeToJSON(), isExplode: false),
-            "fields[customerReviewResponses]": (wrappedValue: fieldsCustomerReviewResponses?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "filter[territory]": (wrappedValue: filterTerritory?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[rating]": (wrappedValue: filterRating?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "exists[publishedResponse]": (wrappedValue: existsPublishedResponse?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "sort": (wrappedValue: sort?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[customerReviews]": (wrappedValue: fieldsCustomerReviews?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[customerReviewResponses]": (wrappedValue: fieldsCustomerReviewResponses?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -2127,9 +2187,9 @@ open class AppStoreVersionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CustomerReviewsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CustomerReviewsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -2138,37 +2198,40 @@ open class AppStoreVersionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CustomerReviewsResponse> 
      */
-    open class func appStoreVersionsCustomerReviewsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<CustomerReviewsResponse> {
+    open class func appStoreVersionsCustomerReviewsGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<CustomerReviewsResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CustomerReviewsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CustomerReviewsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionsDeleteInstance(id: String) async throws {
-        return try await appStoreVersionsDeleteInstanceWithRequestBuilder(id: id).execute().body
+    open class func appStoreVersionsDeleteInstance(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await appStoreVersionsDeleteInstanceWithRequestBuilder(id: id, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionsDeleteInstance(urlString: String) async throws {
-        return try await appStoreVersionsDeleteInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func appStoreVersionsDeleteInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await appStoreVersionsDeleteInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -2177,14 +2240,15 @@ open class AppStoreVersionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func appStoreVersionsDeleteInstanceWithRequestBuilder(id: String) -> RequestBuilder<Void> {
+    open class func appStoreVersionsDeleteInstanceWithRequestBuilder(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/appStoreVersions/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -2195,9 +2259,9 @@ open class AppStoreVersionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -2206,24 +2270,25 @@ open class AppStoreVersionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func appStoreVersionsDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func appStoreVersionsDeleteInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsGameCenterAppVersions
      */
-    public enum FieldsGameCenterAppVersions_appStoreVersionsGameCenterAppVersionGetToOneRelated: String, CaseIterable {
+    public enum FieldsGameCenterAppVersions_appStoreVersionsGameCenterAppVersionGetToOneRelated: String, Sendable, CaseIterable {
         case enabled = "enabled"
         case compatibilityversions = "compatibilityVersions"
         case appstoreversion = "appStoreVersion"
@@ -2232,7 +2297,7 @@ open class AppStoreVersionsAPI {
     /**
      * enum for parameter fieldsAppStoreVersions
      */
-    public enum FieldsAppStoreVersions_appStoreVersionsGameCenterAppVersionGetToOneRelated: String, CaseIterable {
+    public enum FieldsAppStoreVersions_appStoreVersionsGameCenterAppVersionGetToOneRelated: String, Sendable, CaseIterable {
         case platform = "platform"
         case versionstring = "versionString"
         case appstorestate = "appStoreState"
@@ -2262,7 +2327,7 @@ open class AppStoreVersionsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_appStoreVersionsGameCenterAppVersionGetToOneRelated: String, CaseIterable {
+    public enum Include_appStoreVersionsGameCenterAppVersionGetToOneRelated: String, Sendable, CaseIterable {
         case compatibilityversions = "compatibilityVersions"
         case appstoreversion = "appStoreVersion"
     }
@@ -2274,20 +2339,22 @@ open class AppStoreVersionsAPI {
      - parameter fieldsAppStoreVersions: (query) the fields to include for returned resources of type appStoreVersions (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitCompatibilityVersions: (query) maximum number of related compatibilityVersions returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterAppVersionResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionsGameCenterAppVersionGetToOneRelated(id: String, fieldsGameCenterAppVersions: [FieldsGameCenterAppVersions_appStoreVersionsGameCenterAppVersionGetToOneRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_appStoreVersionsGameCenterAppVersionGetToOneRelated]? = nil, include: [Include_appStoreVersionsGameCenterAppVersionGetToOneRelated]? = nil, limitCompatibilityVersions: Int? = nil) async throws -> GameCenterAppVersionResponse {
-        return try await appStoreVersionsGameCenterAppVersionGetToOneRelatedWithRequestBuilder(id: id, fieldsGameCenterAppVersions: fieldsGameCenterAppVersions, fieldsAppStoreVersions: fieldsAppStoreVersions, include: include, limitCompatibilityVersions: limitCompatibilityVersions).execute().body
+    open class func appStoreVersionsGameCenterAppVersionGetToOneRelated(id: String, fieldsGameCenterAppVersions: [FieldsGameCenterAppVersions_appStoreVersionsGameCenterAppVersionGetToOneRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_appStoreVersionsGameCenterAppVersionGetToOneRelated]? = nil, include: [Include_appStoreVersionsGameCenterAppVersionGetToOneRelated]? = nil, limitCompatibilityVersions: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterAppVersionResponse {
+        return try await appStoreVersionsGameCenterAppVersionGetToOneRelatedWithRequestBuilder(id: id, fieldsGameCenterAppVersions: fieldsGameCenterAppVersions, fieldsAppStoreVersions: fieldsAppStoreVersions, include: include, limitCompatibilityVersions: limitCompatibilityVersions, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterAppVersionResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionsGameCenterAppVersionGetToOneRelated(urlString: String) async throws -> GameCenterAppVersionResponse {
-        return try await appStoreVersionsGameCenterAppVersionGetToOneRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func appStoreVersionsGameCenterAppVersionGetToOneRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterAppVersionResponse {
+        return try await appStoreVersionsGameCenterAppVersionGetToOneRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -2300,22 +2367,23 @@ open class AppStoreVersionsAPI {
      - parameter fieldsAppStoreVersions: (query) the fields to include for returned resources of type appStoreVersions (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitCompatibilityVersions: (query) maximum number of related compatibilityVersions returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterAppVersionResponse> 
      */
-    open class func appStoreVersionsGameCenterAppVersionGetToOneRelatedWithRequestBuilder(id: String, fieldsGameCenterAppVersions: [FieldsGameCenterAppVersions_appStoreVersionsGameCenterAppVersionGetToOneRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_appStoreVersionsGameCenterAppVersionGetToOneRelated]? = nil, include: [Include_appStoreVersionsGameCenterAppVersionGetToOneRelated]? = nil, limitCompatibilityVersions: Int? = nil) -> RequestBuilder<GameCenterAppVersionResponse> {
+    open class func appStoreVersionsGameCenterAppVersionGetToOneRelatedWithRequestBuilder(id: String, fieldsGameCenterAppVersions: [FieldsGameCenterAppVersions_appStoreVersionsGameCenterAppVersionGetToOneRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_appStoreVersionsGameCenterAppVersionGetToOneRelated]? = nil, include: [Include_appStoreVersionsGameCenterAppVersionGetToOneRelated]? = nil, limitCompatibilityVersions: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterAppVersionResponse> {
         var localVariablePath = "/v1/appStoreVersions/{id}/gameCenterAppVersion"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[gameCenterAppVersions]": (wrappedValue: fieldsGameCenterAppVersions?.encodeToJSON(), isExplode: false),
-            "fields[appStoreVersions]": (wrappedValue: fieldsAppStoreVersions?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[compatibilityVersions]": (wrappedValue: limitCompatibilityVersions?.encodeToJSON(), isExplode: true),
+            "fields[gameCenterAppVersions]": (wrappedValue: fieldsGameCenterAppVersions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appStoreVersions]": (wrappedValue: fieldsAppStoreVersions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[compatibilityVersions]": (wrappedValue: limitCompatibilityVersions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -2324,9 +2392,9 @@ open class AppStoreVersionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterAppVersionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterAppVersionResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -2335,24 +2403,25 @@ open class AppStoreVersionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterAppVersionResponse> 
      */
-    open class func appStoreVersionsGameCenterAppVersionGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterAppVersionResponse> {
+    open class func appStoreVersionsGameCenterAppVersionGetToOneRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterAppVersionResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterAppVersionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterAppVersionResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsAppStoreVersions
      */
-    public enum FieldsAppStoreVersions_appStoreVersionsGetInstance: String, CaseIterable {
+    public enum FieldsAppStoreVersions_appStoreVersionsGetInstance: String, Sendable, CaseIterable {
         case platform = "platform"
         case versionstring = "versionString"
         case appstorestate = "appStoreState"
@@ -2382,7 +2451,7 @@ open class AppStoreVersionsAPI {
     /**
      * enum for parameter fieldsAgeRatingDeclarations
      */
-    public enum FieldsAgeRatingDeclarations_appStoreVersionsGetInstance: String, CaseIterable {
+    public enum FieldsAgeRatingDeclarations_appStoreVersionsGetInstance: String, Sendable, CaseIterable {
         case alcoholtobaccoordruguseorreferences = "alcoholTobaccoOrDrugUseOrReferences"
         case contests = "contests"
         case gamblingandcontests = "gamblingAndContests"
@@ -2408,7 +2477,7 @@ open class AppStoreVersionsAPI {
     /**
      * enum for parameter fieldsAppStoreVersionLocalizations
      */
-    public enum FieldsAppStoreVersionLocalizations_appStoreVersionsGetInstance: String, CaseIterable {
+    public enum FieldsAppStoreVersionLocalizations_appStoreVersionsGetInstance: String, Sendable, CaseIterable {
         case description = "description"
         case locale = "locale"
         case keywords = "keywords"
@@ -2424,7 +2493,7 @@ open class AppStoreVersionsAPI {
     /**
      * enum for parameter fieldsBuilds
      */
-    public enum FieldsBuilds_appStoreVersionsGetInstance: String, CaseIterable {
+    public enum FieldsBuilds_appStoreVersionsGetInstance: String, Sendable, CaseIterable {
         case version = "version"
         case uploadeddate = "uploadedDate"
         case expirationdate = "expirationDate"
@@ -2454,7 +2523,7 @@ open class AppStoreVersionsAPI {
     /**
      * enum for parameter fieldsAppStoreVersionPhasedReleases
      */
-    public enum FieldsAppStoreVersionPhasedReleases_appStoreVersionsGetInstance: String, CaseIterable {
+    public enum FieldsAppStoreVersionPhasedReleases_appStoreVersionsGetInstance: String, Sendable, CaseIterable {
         case phasedreleasestate = "phasedReleaseState"
         case startdate = "startDate"
         case totalpauseduration = "totalPauseDuration"
@@ -2464,7 +2533,7 @@ open class AppStoreVersionsAPI {
     /**
      * enum for parameter fieldsGameCenterAppVersions
      */
-    public enum FieldsGameCenterAppVersions_appStoreVersionsGetInstance: String, CaseIterable {
+    public enum FieldsGameCenterAppVersions_appStoreVersionsGetInstance: String, Sendable, CaseIterable {
         case enabled = "enabled"
         case compatibilityversions = "compatibilityVersions"
         case appstoreversion = "appStoreVersion"
@@ -2473,7 +2542,7 @@ open class AppStoreVersionsAPI {
     /**
      * enum for parameter fieldsRoutingAppCoverages
      */
-    public enum FieldsRoutingAppCoverages_appStoreVersionsGetInstance: String, CaseIterable {
+    public enum FieldsRoutingAppCoverages_appStoreVersionsGetInstance: String, Sendable, CaseIterable {
         case filesize = "fileSize"
         case filename = "fileName"
         case sourcefilechecksum = "sourceFileChecksum"
@@ -2485,7 +2554,7 @@ open class AppStoreVersionsAPI {
     /**
      * enum for parameter fieldsAppStoreReviewDetails
      */
-    public enum FieldsAppStoreReviewDetails_appStoreVersionsGetInstance: String, CaseIterable {
+    public enum FieldsAppStoreReviewDetails_appStoreVersionsGetInstance: String, Sendable, CaseIterable {
         case contactfirstname = "contactFirstName"
         case contactlastname = "contactLastName"
         case contactphone = "contactPhone"
@@ -2501,14 +2570,14 @@ open class AppStoreVersionsAPI {
     /**
      * enum for parameter fieldsAppStoreVersionSubmissions
      */
-    public enum FieldsAppStoreVersionSubmissions_appStoreVersionsGetInstance: String, CaseIterable {
+    public enum FieldsAppStoreVersionSubmissions_appStoreVersionsGetInstance: String, Sendable, CaseIterable {
         case appstoreversion = "appStoreVersion"
     }
 
     /**
      * enum for parameter fieldsAppClipDefaultExperiences
      */
-    public enum FieldsAppClipDefaultExperiences_appStoreVersionsGetInstance: String, CaseIterable {
+    public enum FieldsAppClipDefaultExperiences_appStoreVersionsGetInstance: String, Sendable, CaseIterable {
         case action = "action"
         case appclip = "appClip"
         case releasewithappstoreversion = "releaseWithAppStoreVersion"
@@ -2519,7 +2588,7 @@ open class AppStoreVersionsAPI {
     /**
      * enum for parameter fieldsAppStoreVersionExperiments
      */
-    public enum FieldsAppStoreVersionExperiments_appStoreVersionsGetInstance: String, CaseIterable {
+    public enum FieldsAppStoreVersionExperiments_appStoreVersionsGetInstance: String, Sendable, CaseIterable {
         case name = "name"
         case trafficproportion = "trafficProportion"
         case state = "state"
@@ -2537,14 +2606,14 @@ open class AppStoreVersionsAPI {
     /**
      * enum for parameter fieldsAlternativeDistributionPackages
      */
-    public enum FieldsAlternativeDistributionPackages_appStoreVersionsGetInstance: String, CaseIterable {
+    public enum FieldsAlternativeDistributionPackages_appStoreVersionsGetInstance: String, Sendable, CaseIterable {
         case versions = "versions"
     }
 
     /**
      * enum for parameter include
      */
-    public enum Include_appStoreVersionsGetInstance: String, CaseIterable {
+    public enum Include_appStoreVersionsGetInstance: String, Sendable, CaseIterable {
         case app = "app"
         case ageratingdeclaration = "ageRatingDeclaration"
         case appstoreversionlocalizations = "appStoreVersionLocalizations"
@@ -2579,20 +2648,22 @@ open class AppStoreVersionsAPI {
      - parameter limitAppStoreVersionExperiments: (query) maximum number of related appStoreVersionExperiments returned (when they are included) (optional)
      - parameter limitAppStoreVersionExperimentsV2: (query) maximum number of related appStoreVersionExperimentsV2 returned (when they are included) (optional)
      - parameter limitAppStoreVersionLocalizations: (query) maximum number of related appStoreVersionLocalizations returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppStoreVersionResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionsGetInstance(id: String, fieldsAppStoreVersions: [FieldsAppStoreVersions_appStoreVersionsGetInstance]? = nil, fieldsAgeRatingDeclarations: [FieldsAgeRatingDeclarations_appStoreVersionsGetInstance]? = nil, fieldsAppStoreVersionLocalizations: [FieldsAppStoreVersionLocalizations_appStoreVersionsGetInstance]? = nil, fieldsBuilds: [FieldsBuilds_appStoreVersionsGetInstance]? = nil, fieldsAppStoreVersionPhasedReleases: [FieldsAppStoreVersionPhasedReleases_appStoreVersionsGetInstance]? = nil, fieldsGameCenterAppVersions: [FieldsGameCenterAppVersions_appStoreVersionsGetInstance]? = nil, fieldsRoutingAppCoverages: [FieldsRoutingAppCoverages_appStoreVersionsGetInstance]? = nil, fieldsAppStoreReviewDetails: [FieldsAppStoreReviewDetails_appStoreVersionsGetInstance]? = nil, fieldsAppStoreVersionSubmissions: [FieldsAppStoreVersionSubmissions_appStoreVersionsGetInstance]? = nil, fieldsAppClipDefaultExperiences: [FieldsAppClipDefaultExperiences_appStoreVersionsGetInstance]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_appStoreVersionsGetInstance]? = nil, fieldsAlternativeDistributionPackages: [FieldsAlternativeDistributionPackages_appStoreVersionsGetInstance]? = nil, include: [Include_appStoreVersionsGetInstance]? = nil, limitAppStoreVersionExperiments: Int? = nil, limitAppStoreVersionExperimentsV2: Int? = nil, limitAppStoreVersionLocalizations: Int? = nil) async throws -> AppStoreVersionResponse {
-        return try await appStoreVersionsGetInstanceWithRequestBuilder(id: id, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsAgeRatingDeclarations: fieldsAgeRatingDeclarations, fieldsAppStoreVersionLocalizations: fieldsAppStoreVersionLocalizations, fieldsBuilds: fieldsBuilds, fieldsAppStoreVersionPhasedReleases: fieldsAppStoreVersionPhasedReleases, fieldsGameCenterAppVersions: fieldsGameCenterAppVersions, fieldsRoutingAppCoverages: fieldsRoutingAppCoverages, fieldsAppStoreReviewDetails: fieldsAppStoreReviewDetails, fieldsAppStoreVersionSubmissions: fieldsAppStoreVersionSubmissions, fieldsAppClipDefaultExperiences: fieldsAppClipDefaultExperiences, fieldsAppStoreVersionExperiments: fieldsAppStoreVersionExperiments, fieldsAlternativeDistributionPackages: fieldsAlternativeDistributionPackages, include: include, limitAppStoreVersionExperiments: limitAppStoreVersionExperiments, limitAppStoreVersionExperimentsV2: limitAppStoreVersionExperimentsV2, limitAppStoreVersionLocalizations: limitAppStoreVersionLocalizations).execute().body
+    open class func appStoreVersionsGetInstance(id: String, fieldsAppStoreVersions: [FieldsAppStoreVersions_appStoreVersionsGetInstance]? = nil, fieldsAgeRatingDeclarations: [FieldsAgeRatingDeclarations_appStoreVersionsGetInstance]? = nil, fieldsAppStoreVersionLocalizations: [FieldsAppStoreVersionLocalizations_appStoreVersionsGetInstance]? = nil, fieldsBuilds: [FieldsBuilds_appStoreVersionsGetInstance]? = nil, fieldsAppStoreVersionPhasedReleases: [FieldsAppStoreVersionPhasedReleases_appStoreVersionsGetInstance]? = nil, fieldsGameCenterAppVersions: [FieldsGameCenterAppVersions_appStoreVersionsGetInstance]? = nil, fieldsRoutingAppCoverages: [FieldsRoutingAppCoverages_appStoreVersionsGetInstance]? = nil, fieldsAppStoreReviewDetails: [FieldsAppStoreReviewDetails_appStoreVersionsGetInstance]? = nil, fieldsAppStoreVersionSubmissions: [FieldsAppStoreVersionSubmissions_appStoreVersionsGetInstance]? = nil, fieldsAppClipDefaultExperiences: [FieldsAppClipDefaultExperiences_appStoreVersionsGetInstance]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_appStoreVersionsGetInstance]? = nil, fieldsAlternativeDistributionPackages: [FieldsAlternativeDistributionPackages_appStoreVersionsGetInstance]? = nil, include: [Include_appStoreVersionsGetInstance]? = nil, limitAppStoreVersionExperiments: Int? = nil, limitAppStoreVersionExperimentsV2: Int? = nil, limitAppStoreVersionLocalizations: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppStoreVersionResponse {
+        return try await appStoreVersionsGetInstanceWithRequestBuilder(id: id, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsAgeRatingDeclarations: fieldsAgeRatingDeclarations, fieldsAppStoreVersionLocalizations: fieldsAppStoreVersionLocalizations, fieldsBuilds: fieldsBuilds, fieldsAppStoreVersionPhasedReleases: fieldsAppStoreVersionPhasedReleases, fieldsGameCenterAppVersions: fieldsGameCenterAppVersions, fieldsRoutingAppCoverages: fieldsRoutingAppCoverages, fieldsAppStoreReviewDetails: fieldsAppStoreReviewDetails, fieldsAppStoreVersionSubmissions: fieldsAppStoreVersionSubmissions, fieldsAppClipDefaultExperiences: fieldsAppClipDefaultExperiences, fieldsAppStoreVersionExperiments: fieldsAppStoreVersionExperiments, fieldsAlternativeDistributionPackages: fieldsAlternativeDistributionPackages, include: include, limitAppStoreVersionExperiments: limitAppStoreVersionExperiments, limitAppStoreVersionExperimentsV2: limitAppStoreVersionExperimentsV2, limitAppStoreVersionLocalizations: limitAppStoreVersionLocalizations, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppStoreVersionResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionsGetInstance(urlString: String) async throws -> AppStoreVersionResponse {
-        return try await appStoreVersionsGetInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func appStoreVersionsGetInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppStoreVersionResponse {
+        return try await appStoreVersionsGetInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -2617,34 +2688,35 @@ open class AppStoreVersionsAPI {
      - parameter limitAppStoreVersionExperiments: (query) maximum number of related appStoreVersionExperiments returned (when they are included) (optional)
      - parameter limitAppStoreVersionExperimentsV2: (query) maximum number of related appStoreVersionExperimentsV2 returned (when they are included) (optional)
      - parameter limitAppStoreVersionLocalizations: (query) maximum number of related appStoreVersionLocalizations returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppStoreVersionResponse> 
      */
-    open class func appStoreVersionsGetInstanceWithRequestBuilder(id: String, fieldsAppStoreVersions: [FieldsAppStoreVersions_appStoreVersionsGetInstance]? = nil, fieldsAgeRatingDeclarations: [FieldsAgeRatingDeclarations_appStoreVersionsGetInstance]? = nil, fieldsAppStoreVersionLocalizations: [FieldsAppStoreVersionLocalizations_appStoreVersionsGetInstance]? = nil, fieldsBuilds: [FieldsBuilds_appStoreVersionsGetInstance]? = nil, fieldsAppStoreVersionPhasedReleases: [FieldsAppStoreVersionPhasedReleases_appStoreVersionsGetInstance]? = nil, fieldsGameCenterAppVersions: [FieldsGameCenterAppVersions_appStoreVersionsGetInstance]? = nil, fieldsRoutingAppCoverages: [FieldsRoutingAppCoverages_appStoreVersionsGetInstance]? = nil, fieldsAppStoreReviewDetails: [FieldsAppStoreReviewDetails_appStoreVersionsGetInstance]? = nil, fieldsAppStoreVersionSubmissions: [FieldsAppStoreVersionSubmissions_appStoreVersionsGetInstance]? = nil, fieldsAppClipDefaultExperiences: [FieldsAppClipDefaultExperiences_appStoreVersionsGetInstance]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_appStoreVersionsGetInstance]? = nil, fieldsAlternativeDistributionPackages: [FieldsAlternativeDistributionPackages_appStoreVersionsGetInstance]? = nil, include: [Include_appStoreVersionsGetInstance]? = nil, limitAppStoreVersionExperiments: Int? = nil, limitAppStoreVersionExperimentsV2: Int? = nil, limitAppStoreVersionLocalizations: Int? = nil) -> RequestBuilder<AppStoreVersionResponse> {
+    open class func appStoreVersionsGetInstanceWithRequestBuilder(id: String, fieldsAppStoreVersions: [FieldsAppStoreVersions_appStoreVersionsGetInstance]? = nil, fieldsAgeRatingDeclarations: [FieldsAgeRatingDeclarations_appStoreVersionsGetInstance]? = nil, fieldsAppStoreVersionLocalizations: [FieldsAppStoreVersionLocalizations_appStoreVersionsGetInstance]? = nil, fieldsBuilds: [FieldsBuilds_appStoreVersionsGetInstance]? = nil, fieldsAppStoreVersionPhasedReleases: [FieldsAppStoreVersionPhasedReleases_appStoreVersionsGetInstance]? = nil, fieldsGameCenterAppVersions: [FieldsGameCenterAppVersions_appStoreVersionsGetInstance]? = nil, fieldsRoutingAppCoverages: [FieldsRoutingAppCoverages_appStoreVersionsGetInstance]? = nil, fieldsAppStoreReviewDetails: [FieldsAppStoreReviewDetails_appStoreVersionsGetInstance]? = nil, fieldsAppStoreVersionSubmissions: [FieldsAppStoreVersionSubmissions_appStoreVersionsGetInstance]? = nil, fieldsAppClipDefaultExperiences: [FieldsAppClipDefaultExperiences_appStoreVersionsGetInstance]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_appStoreVersionsGetInstance]? = nil, fieldsAlternativeDistributionPackages: [FieldsAlternativeDistributionPackages_appStoreVersionsGetInstance]? = nil, include: [Include_appStoreVersionsGetInstance]? = nil, limitAppStoreVersionExperiments: Int? = nil, limitAppStoreVersionExperimentsV2: Int? = nil, limitAppStoreVersionLocalizations: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppStoreVersionResponse> {
         var localVariablePath = "/v1/appStoreVersions/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[appStoreVersions]": (wrappedValue: fieldsAppStoreVersions?.encodeToJSON(), isExplode: false),
-            "fields[ageRatingDeclarations]": (wrappedValue: fieldsAgeRatingDeclarations?.encodeToJSON(), isExplode: false),
-            "fields[appStoreVersionLocalizations]": (wrappedValue: fieldsAppStoreVersionLocalizations?.encodeToJSON(), isExplode: false),
-            "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(), isExplode: false),
-            "fields[appStoreVersionPhasedReleases]": (wrappedValue: fieldsAppStoreVersionPhasedReleases?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterAppVersions]": (wrappedValue: fieldsGameCenterAppVersions?.encodeToJSON(), isExplode: false),
-            "fields[routingAppCoverages]": (wrappedValue: fieldsRoutingAppCoverages?.encodeToJSON(), isExplode: false),
-            "fields[appStoreReviewDetails]": (wrappedValue: fieldsAppStoreReviewDetails?.encodeToJSON(), isExplode: false),
-            "fields[appStoreVersionSubmissions]": (wrappedValue: fieldsAppStoreVersionSubmissions?.encodeToJSON(), isExplode: false),
-            "fields[appClipDefaultExperiences]": (wrappedValue: fieldsAppClipDefaultExperiences?.encodeToJSON(), isExplode: false),
-            "fields[appStoreVersionExperiments]": (wrappedValue: fieldsAppStoreVersionExperiments?.encodeToJSON(), isExplode: false),
-            "fields[alternativeDistributionPackages]": (wrappedValue: fieldsAlternativeDistributionPackages?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[appStoreVersionExperiments]": (wrappedValue: limitAppStoreVersionExperiments?.encodeToJSON(), isExplode: true),
-            "limit[appStoreVersionExperimentsV2]": (wrappedValue: limitAppStoreVersionExperimentsV2?.encodeToJSON(), isExplode: true),
-            "limit[appStoreVersionLocalizations]": (wrappedValue: limitAppStoreVersionLocalizations?.encodeToJSON(), isExplode: true),
+            "fields[appStoreVersions]": (wrappedValue: fieldsAppStoreVersions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[ageRatingDeclarations]": (wrappedValue: fieldsAgeRatingDeclarations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appStoreVersionLocalizations]": (wrappedValue: fieldsAppStoreVersionLocalizations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appStoreVersionPhasedReleases]": (wrappedValue: fieldsAppStoreVersionPhasedReleases?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[gameCenterAppVersions]": (wrappedValue: fieldsGameCenterAppVersions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[routingAppCoverages]": (wrappedValue: fieldsRoutingAppCoverages?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appStoreReviewDetails]": (wrappedValue: fieldsAppStoreReviewDetails?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appStoreVersionSubmissions]": (wrappedValue: fieldsAppStoreVersionSubmissions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appClipDefaultExperiences]": (wrappedValue: fieldsAppClipDefaultExperiences?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appStoreVersionExperiments]": (wrappedValue: fieldsAppStoreVersionExperiments?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[alternativeDistributionPackages]": (wrappedValue: fieldsAlternativeDistributionPackages?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[appStoreVersionExperiments]": (wrappedValue: limitAppStoreVersionExperiments?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[appStoreVersionExperimentsV2]": (wrappedValue: limitAppStoreVersionExperimentsV2?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[appStoreVersionLocalizations]": (wrappedValue: limitAppStoreVersionLocalizations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -2653,9 +2725,9 @@ open class AppStoreVersionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -2664,24 +2736,25 @@ open class AppStoreVersionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppStoreVersionResponse> 
      */
-    open class func appStoreVersionsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppStoreVersionResponse> {
+    open class func appStoreVersionsGetInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppStoreVersionResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsRoutingAppCoverages
      */
-    public enum FieldsRoutingAppCoverages_appStoreVersionsRoutingAppCoverageGetToOneRelated: String, CaseIterable {
+    public enum FieldsRoutingAppCoverages_appStoreVersionsRoutingAppCoverageGetToOneRelated: String, Sendable, CaseIterable {
         case filesize = "fileSize"
         case filename = "fileName"
         case sourcefilechecksum = "sourceFileChecksum"
@@ -2694,20 +2767,22 @@ open class AppStoreVersionsAPI {
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsRoutingAppCoverages: (query) the fields to include for returned resources of type routingAppCoverages (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RoutingAppCoverageWithoutIncludesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionsRoutingAppCoverageGetToOneRelated(id: String, fieldsRoutingAppCoverages: [FieldsRoutingAppCoverages_appStoreVersionsRoutingAppCoverageGetToOneRelated]? = nil) async throws -> RoutingAppCoverageWithoutIncludesResponse {
-        return try await appStoreVersionsRoutingAppCoverageGetToOneRelatedWithRequestBuilder(id: id, fieldsRoutingAppCoverages: fieldsRoutingAppCoverages).execute().body
+    open class func appStoreVersionsRoutingAppCoverageGetToOneRelated(id: String, fieldsRoutingAppCoverages: [FieldsRoutingAppCoverages_appStoreVersionsRoutingAppCoverageGetToOneRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> RoutingAppCoverageWithoutIncludesResponse {
+        return try await appStoreVersionsRoutingAppCoverageGetToOneRelatedWithRequestBuilder(id: id, fieldsRoutingAppCoverages: fieldsRoutingAppCoverages, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RoutingAppCoverageWithoutIncludesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionsRoutingAppCoverageGetToOneRelated(urlString: String) async throws -> RoutingAppCoverageWithoutIncludesResponse {
-        return try await appStoreVersionsRoutingAppCoverageGetToOneRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func appStoreVersionsRoutingAppCoverageGetToOneRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> RoutingAppCoverageWithoutIncludesResponse {
+        return try await appStoreVersionsRoutingAppCoverageGetToOneRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -2717,19 +2792,20 @@ open class AppStoreVersionsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsRoutingAppCoverages: (query) the fields to include for returned resources of type routingAppCoverages (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<RoutingAppCoverageWithoutIncludesResponse> 
      */
-    open class func appStoreVersionsRoutingAppCoverageGetToOneRelatedWithRequestBuilder(id: String, fieldsRoutingAppCoverages: [FieldsRoutingAppCoverages_appStoreVersionsRoutingAppCoverageGetToOneRelated]? = nil) -> RequestBuilder<RoutingAppCoverageWithoutIncludesResponse> {
+    open class func appStoreVersionsRoutingAppCoverageGetToOneRelatedWithRequestBuilder(id: String, fieldsRoutingAppCoverages: [FieldsRoutingAppCoverages_appStoreVersionsRoutingAppCoverageGetToOneRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<RoutingAppCoverageWithoutIncludesResponse> {
         var localVariablePath = "/v1/appStoreVersions/{id}/routingAppCoverage"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[routingAppCoverages]": (wrappedValue: fieldsRoutingAppCoverages?.encodeToJSON(), isExplode: false),
+            "fields[routingAppCoverages]": (wrappedValue: fieldsRoutingAppCoverages?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -2738,9 +2814,9 @@ open class AppStoreVersionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<RoutingAppCoverageWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<RoutingAppCoverageWithoutIncludesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -2749,38 +2825,41 @@ open class AppStoreVersionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<RoutingAppCoverageWithoutIncludesResponse> 
      */
-    open class func appStoreVersionsRoutingAppCoverageGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<RoutingAppCoverageWithoutIncludesResponse> {
+    open class func appStoreVersionsRoutingAppCoverageGetToOneRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<RoutingAppCoverageWithoutIncludesResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<RoutingAppCoverageWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<RoutingAppCoverageWithoutIncludesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter appStoreVersionUpdateRequest: (body) AppStoreVersion representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppStoreVersionResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionsUpdateInstance(id: String, appStoreVersionUpdateRequest: AppStoreVersionUpdateRequest) async throws -> AppStoreVersionResponse {
-        return try await appStoreVersionsUpdateInstanceWithRequestBuilder(id: id, appStoreVersionUpdateRequest: appStoreVersionUpdateRequest).execute().body
+    open class func appStoreVersionsUpdateInstance(id: String, appStoreVersionUpdateRequest: AppStoreVersionUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppStoreVersionResponse {
+        return try await appStoreVersionsUpdateInstanceWithRequestBuilder(id: id, appStoreVersionUpdateRequest: appStoreVersionUpdateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppStoreVersionResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionsUpdateInstance(urlString: String) async throws -> AppStoreVersionResponse {
-        return try await appStoreVersionsUpdateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func appStoreVersionsUpdateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppStoreVersionResponse {
+        return try await appStoreVersionsUpdateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -2790,15 +2869,16 @@ open class AppStoreVersionsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter appStoreVersionUpdateRequest: (body) AppStoreVersion representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppStoreVersionResponse> 
      */
-    open class func appStoreVersionsUpdateInstanceWithRequestBuilder(id: String, appStoreVersionUpdateRequest: AppStoreVersionUpdateRequest) -> RequestBuilder<AppStoreVersionResponse> {
+    open class func appStoreVersionsUpdateInstanceWithRequestBuilder(id: String, appStoreVersionUpdateRequest: AppStoreVersionUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppStoreVersionResponse> {
         var localVariablePath = "/v1/appStoreVersions/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: appStoreVersionUpdateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: appStoreVersionUpdateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -2808,9 +2888,9 @@ open class AppStoreVersionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -2819,17 +2899,18 @@ open class AppStoreVersionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppStoreVersionResponse> 
      */
-    open class func appStoreVersionsUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppStoreVersionResponse> {
+    open class func appStoreVersionsUpdateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppStoreVersionResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

@@ -6,16 +6,13 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class ActorsAPI {
 
     /**
      * enum for parameter fieldsActors
      */
-    public enum FieldsActors_actorsGetCollection: String, CaseIterable {
+    public enum FieldsActors_actorsGetCollection: String, Sendable, CaseIterable {
         case actortype = "actorType"
         case userfirstname = "userFirstName"
         case userlastname = "userLastName"
@@ -28,20 +25,22 @@ open class ActorsAPI {
      - parameter filterId: (query) filter by id(s) 
      - parameter fieldsActors: (query) the fields to include for returned resources of type actors (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: ActorsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func actorsGetCollection(filterId: [String], fieldsActors: [FieldsActors_actorsGetCollection]? = nil, limit: Int? = nil) async throws -> ActorsResponse {
-        return try await actorsGetCollectionWithRequestBuilder(filterId: filterId, fieldsActors: fieldsActors, limit: limit).execute().body
+    open class func actorsGetCollection(filterId: [String], fieldsActors: [FieldsActors_actorsGetCollection]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> ActorsResponse {
+        return try await actorsGetCollectionWithRequestBuilder(filterId: filterId, fieldsActors: fieldsActors, limit: limit, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: ActorsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func actorsGetCollection(urlString: String) async throws -> ActorsResponse {
-        return try await actorsGetCollectionWithRequestBuilder(urlString: urlString).execute().body
+    open class func actorsGetCollection(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> ActorsResponse {
+        return try await actorsGetCollectionWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -52,18 +51,19 @@ open class ActorsAPI {
      - parameter filterId: (query) filter by id(s) 
      - parameter fieldsActors: (query) the fields to include for returned resources of type actors (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ActorsResponse> 
      */
-    open class func actorsGetCollectionWithRequestBuilder(filterId: [String], fieldsActors: [FieldsActors_actorsGetCollection]? = nil, limit: Int? = nil) -> RequestBuilder<ActorsResponse> {
+    open class func actorsGetCollectionWithRequestBuilder(filterId: [String], fieldsActors: [FieldsActors_actorsGetCollection]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<ActorsResponse> {
         let localVariablePath = "/v1/actors"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[id]": (wrappedValue: filterId.encodeToJSON(), isExplode: false),
-            "fields[actors]": (wrappedValue: fieldsActors?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "filter[id]": (wrappedValue: filterId.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[actors]": (wrappedValue: fieldsActors?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -72,9 +72,9 @@ open class ActorsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<ActorsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<ActorsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -83,24 +83,25 @@ open class ActorsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ActorsResponse> 
      */
-    open class func actorsGetCollectionWithRequestBuilder(urlString: String) -> RequestBuilder<ActorsResponse> {
+    open class func actorsGetCollectionWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<ActorsResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<ActorsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<ActorsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsActors
      */
-    public enum FieldsActors_actorsGetInstance: String, CaseIterable {
+    public enum FieldsActors_actorsGetInstance: String, Sendable, CaseIterable {
         case actortype = "actorType"
         case userfirstname = "userFirstName"
         case userlastname = "userLastName"
@@ -112,20 +113,22 @@ open class ActorsAPI {
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsActors: (query) the fields to include for returned resources of type actors (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: ActorResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func actorsGetInstance(id: String, fieldsActors: [FieldsActors_actorsGetInstance]? = nil) async throws -> ActorResponse {
-        return try await actorsGetInstanceWithRequestBuilder(id: id, fieldsActors: fieldsActors).execute().body
+    open class func actorsGetInstance(id: String, fieldsActors: [FieldsActors_actorsGetInstance]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> ActorResponse {
+        return try await actorsGetInstanceWithRequestBuilder(id: id, fieldsActors: fieldsActors, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: ActorResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func actorsGetInstance(urlString: String) async throws -> ActorResponse {
-        return try await actorsGetInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func actorsGetInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> ActorResponse {
+        return try await actorsGetInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -135,19 +138,20 @@ open class ActorsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsActors: (query) the fields to include for returned resources of type actors (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ActorResponse> 
      */
-    open class func actorsGetInstanceWithRequestBuilder(id: String, fieldsActors: [FieldsActors_actorsGetInstance]? = nil) -> RequestBuilder<ActorResponse> {
+    open class func actorsGetInstanceWithRequestBuilder(id: String, fieldsActors: [FieldsActors_actorsGetInstance]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<ActorResponse> {
         var localVariablePath = "/v1/actors/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[actors]": (wrappedValue: fieldsActors?.encodeToJSON(), isExplode: false),
+            "fields[actors]": (wrappedValue: fieldsActors?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -156,9 +160,9 @@ open class ActorsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<ActorResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<ActorResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -167,17 +171,18 @@ open class ActorsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ActorResponse> 
      */
-    open class func actorsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<ActorResponse> {
+    open class func actorsGetInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<ActorResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<ActorResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<ActorResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct BuildBetaDetailAttributes: Codable, JSONEncodable, Hashable {
+public struct BuildBetaDetailAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
     public var autoNotifyEnabled: Bool?
     public var internalBuildState: InternalBetaState?

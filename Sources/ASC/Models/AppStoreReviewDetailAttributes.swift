@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppStoreReviewDetailAttributes: Codable, JSONEncodable, Hashable {
+public struct AppStoreReviewDetailAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
     public var contactFirstName: String?
     public var contactLastName: String?

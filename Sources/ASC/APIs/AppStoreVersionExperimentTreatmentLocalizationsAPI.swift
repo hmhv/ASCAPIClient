@@ -6,16 +6,13 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class AppStoreVersionExperimentTreatmentLocalizationsAPI {
 
     /**
      * enum for parameter filterPreviewType
      */
-    public enum FilterPreviewType_appStoreVersionExperimentTreatmentLocalizationsAppPreviewSetsGetToManyRelated: String, CaseIterable {
+    public enum FilterPreviewType_appStoreVersionExperimentTreatmentLocalizationsAppPreviewSetsGetToManyRelated: String, Sendable, CaseIterable {
         case iphone67 = "IPHONE_67"
         case iphone61 = "IPHONE_61"
         case iphone65 = "IPHONE_65"
@@ -37,7 +34,7 @@ open class AppStoreVersionExperimentTreatmentLocalizationsAPI {
     /**
      * enum for parameter fieldsAppPreviewSets
      */
-    public enum FieldsAppPreviewSets_appStoreVersionExperimentTreatmentLocalizationsAppPreviewSetsGetToManyRelated: String, CaseIterable {
+    public enum FieldsAppPreviewSets_appStoreVersionExperimentTreatmentLocalizationsAppPreviewSetsGetToManyRelated: String, Sendable, CaseIterable {
         case previewtype = "previewType"
         case appstoreversionlocalization = "appStoreVersionLocalization"
         case appcustomproductpagelocalization = "appCustomProductPageLocalization"
@@ -48,7 +45,7 @@ open class AppStoreVersionExperimentTreatmentLocalizationsAPI {
     /**
      * enum for parameter fieldsAppStoreVersionLocalizations
      */
-    public enum FieldsAppStoreVersionLocalizations_appStoreVersionExperimentTreatmentLocalizationsAppPreviewSetsGetToManyRelated: String, CaseIterable {
+    public enum FieldsAppStoreVersionLocalizations_appStoreVersionExperimentTreatmentLocalizationsAppPreviewSetsGetToManyRelated: String, Sendable, CaseIterable {
         case description = "description"
         case locale = "locale"
         case keywords = "keywords"
@@ -64,7 +61,7 @@ open class AppStoreVersionExperimentTreatmentLocalizationsAPI {
     /**
      * enum for parameter fieldsAppCustomProductPageLocalizations
      */
-    public enum FieldsAppCustomProductPageLocalizations_appStoreVersionExperimentTreatmentLocalizationsAppPreviewSetsGetToManyRelated: String, CaseIterable {
+    public enum FieldsAppCustomProductPageLocalizations_appStoreVersionExperimentTreatmentLocalizationsAppPreviewSetsGetToManyRelated: String, Sendable, CaseIterable {
         case locale = "locale"
         case promotionaltext = "promotionalText"
         case appcustomproductpageversion = "appCustomProductPageVersion"
@@ -75,7 +72,7 @@ open class AppStoreVersionExperimentTreatmentLocalizationsAPI {
     /**
      * enum for parameter fieldsAppStoreVersionExperimentTreatmentLocalizations
      */
-    public enum FieldsAppStoreVersionExperimentTreatmentLocalizations_appStoreVersionExperimentTreatmentLocalizationsAppPreviewSetsGetToManyRelated: String, CaseIterable {
+    public enum FieldsAppStoreVersionExperimentTreatmentLocalizations_appStoreVersionExperimentTreatmentLocalizationsAppPreviewSetsGetToManyRelated: String, Sendable, CaseIterable {
         case locale = "locale"
         case appstoreversionexperimenttreatment = "appStoreVersionExperimentTreatment"
         case appscreenshotsets = "appScreenshotSets"
@@ -85,7 +82,7 @@ open class AppStoreVersionExperimentTreatmentLocalizationsAPI {
     /**
      * enum for parameter fieldsAppPreviews
      */
-    public enum FieldsAppPreviews_appStoreVersionExperimentTreatmentLocalizationsAppPreviewSetsGetToManyRelated: String, CaseIterable {
+    public enum FieldsAppPreviews_appStoreVersionExperimentTreatmentLocalizationsAppPreviewSetsGetToManyRelated: String, Sendable, CaseIterable {
         case filesize = "fileSize"
         case filename = "fileName"
         case sourcefilechecksum = "sourceFileChecksum"
@@ -103,7 +100,7 @@ open class AppStoreVersionExperimentTreatmentLocalizationsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_appStoreVersionExperimentTreatmentLocalizationsAppPreviewSetsGetToManyRelated: String, CaseIterable {
+    public enum Include_appStoreVersionExperimentTreatmentLocalizationsAppPreviewSetsGetToManyRelated: String, Sendable, CaseIterable {
         case appstoreversionlocalization = "appStoreVersionLocalization"
         case appcustomproductpagelocalization = "appCustomProductPageLocalization"
         case appstoreversionexperimenttreatmentlocalization = "appStoreVersionExperimentTreatmentLocalization"
@@ -124,20 +121,22 @@ open class AppStoreVersionExperimentTreatmentLocalizationsAPI {
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAppPreviews: (query) maximum number of related appPreviews returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppPreviewSetsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionExperimentTreatmentLocalizationsAppPreviewSetsGetToManyRelated(id: String, filterPreviewType: [FilterPreviewType_appStoreVersionExperimentTreatmentLocalizationsAppPreviewSetsGetToManyRelated]? = nil, filterAppStoreVersionLocalization: [String]? = nil, filterAppCustomProductPageLocalization: [String]? = nil, fieldsAppPreviewSets: [FieldsAppPreviewSets_appStoreVersionExperimentTreatmentLocalizationsAppPreviewSetsGetToManyRelated]? = nil, fieldsAppStoreVersionLocalizations: [FieldsAppStoreVersionLocalizations_appStoreVersionExperimentTreatmentLocalizationsAppPreviewSetsGetToManyRelated]? = nil, fieldsAppCustomProductPageLocalizations: [FieldsAppCustomProductPageLocalizations_appStoreVersionExperimentTreatmentLocalizationsAppPreviewSetsGetToManyRelated]? = nil, fieldsAppStoreVersionExperimentTreatmentLocalizations: [FieldsAppStoreVersionExperimentTreatmentLocalizations_appStoreVersionExperimentTreatmentLocalizationsAppPreviewSetsGetToManyRelated]? = nil, fieldsAppPreviews: [FieldsAppPreviews_appStoreVersionExperimentTreatmentLocalizationsAppPreviewSetsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appStoreVersionExperimentTreatmentLocalizationsAppPreviewSetsGetToManyRelated]? = nil, limitAppPreviews: Int? = nil) async throws -> AppPreviewSetsResponse {
-        return try await appStoreVersionExperimentTreatmentLocalizationsAppPreviewSetsGetToManyRelatedWithRequestBuilder(id: id, filterPreviewType: filterPreviewType, filterAppStoreVersionLocalization: filterAppStoreVersionLocalization, filterAppCustomProductPageLocalization: filterAppCustomProductPageLocalization, fieldsAppPreviewSets: fieldsAppPreviewSets, fieldsAppStoreVersionLocalizations: fieldsAppStoreVersionLocalizations, fieldsAppCustomProductPageLocalizations: fieldsAppCustomProductPageLocalizations, fieldsAppStoreVersionExperimentTreatmentLocalizations: fieldsAppStoreVersionExperimentTreatmentLocalizations, fieldsAppPreviews: fieldsAppPreviews, limit: limit, include: include, limitAppPreviews: limitAppPreviews).execute().body
+    open class func appStoreVersionExperimentTreatmentLocalizationsAppPreviewSetsGetToManyRelated(id: String, filterPreviewType: [FilterPreviewType_appStoreVersionExperimentTreatmentLocalizationsAppPreviewSetsGetToManyRelated]? = nil, filterAppStoreVersionLocalization: [String]? = nil, filterAppCustomProductPageLocalization: [String]? = nil, fieldsAppPreviewSets: [FieldsAppPreviewSets_appStoreVersionExperimentTreatmentLocalizationsAppPreviewSetsGetToManyRelated]? = nil, fieldsAppStoreVersionLocalizations: [FieldsAppStoreVersionLocalizations_appStoreVersionExperimentTreatmentLocalizationsAppPreviewSetsGetToManyRelated]? = nil, fieldsAppCustomProductPageLocalizations: [FieldsAppCustomProductPageLocalizations_appStoreVersionExperimentTreatmentLocalizationsAppPreviewSetsGetToManyRelated]? = nil, fieldsAppStoreVersionExperimentTreatmentLocalizations: [FieldsAppStoreVersionExperimentTreatmentLocalizations_appStoreVersionExperimentTreatmentLocalizationsAppPreviewSetsGetToManyRelated]? = nil, fieldsAppPreviews: [FieldsAppPreviews_appStoreVersionExperimentTreatmentLocalizationsAppPreviewSetsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appStoreVersionExperimentTreatmentLocalizationsAppPreviewSetsGetToManyRelated]? = nil, limitAppPreviews: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppPreviewSetsResponse {
+        return try await appStoreVersionExperimentTreatmentLocalizationsAppPreviewSetsGetToManyRelatedWithRequestBuilder(id: id, filterPreviewType: filterPreviewType, filterAppStoreVersionLocalization: filterAppStoreVersionLocalization, filterAppCustomProductPageLocalization: filterAppCustomProductPageLocalization, fieldsAppPreviewSets: fieldsAppPreviewSets, fieldsAppStoreVersionLocalizations: fieldsAppStoreVersionLocalizations, fieldsAppCustomProductPageLocalizations: fieldsAppCustomProductPageLocalizations, fieldsAppStoreVersionExperimentTreatmentLocalizations: fieldsAppStoreVersionExperimentTreatmentLocalizations, fieldsAppPreviews: fieldsAppPreviews, limit: limit, include: include, limitAppPreviews: limitAppPreviews, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppPreviewSetsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionExperimentTreatmentLocalizationsAppPreviewSetsGetToManyRelated(urlString: String) async throws -> AppPreviewSetsResponse {
-        return try await appStoreVersionExperimentTreatmentLocalizationsAppPreviewSetsGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func appStoreVersionExperimentTreatmentLocalizationsAppPreviewSetsGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppPreviewSetsResponse {
+        return try await appStoreVersionExperimentTreatmentLocalizationsAppPreviewSetsGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -157,29 +156,30 @@ open class AppStoreVersionExperimentTreatmentLocalizationsAPI {
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAppPreviews: (query) maximum number of related appPreviews returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppPreviewSetsResponse> 
      */
-    open class func appStoreVersionExperimentTreatmentLocalizationsAppPreviewSetsGetToManyRelatedWithRequestBuilder(id: String, filterPreviewType: [FilterPreviewType_appStoreVersionExperimentTreatmentLocalizationsAppPreviewSetsGetToManyRelated]? = nil, filterAppStoreVersionLocalization: [String]? = nil, filterAppCustomProductPageLocalization: [String]? = nil, fieldsAppPreviewSets: [FieldsAppPreviewSets_appStoreVersionExperimentTreatmentLocalizationsAppPreviewSetsGetToManyRelated]? = nil, fieldsAppStoreVersionLocalizations: [FieldsAppStoreVersionLocalizations_appStoreVersionExperimentTreatmentLocalizationsAppPreviewSetsGetToManyRelated]? = nil, fieldsAppCustomProductPageLocalizations: [FieldsAppCustomProductPageLocalizations_appStoreVersionExperimentTreatmentLocalizationsAppPreviewSetsGetToManyRelated]? = nil, fieldsAppStoreVersionExperimentTreatmentLocalizations: [FieldsAppStoreVersionExperimentTreatmentLocalizations_appStoreVersionExperimentTreatmentLocalizationsAppPreviewSetsGetToManyRelated]? = nil, fieldsAppPreviews: [FieldsAppPreviews_appStoreVersionExperimentTreatmentLocalizationsAppPreviewSetsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appStoreVersionExperimentTreatmentLocalizationsAppPreviewSetsGetToManyRelated]? = nil, limitAppPreviews: Int? = nil) -> RequestBuilder<AppPreviewSetsResponse> {
+    open class func appStoreVersionExperimentTreatmentLocalizationsAppPreviewSetsGetToManyRelatedWithRequestBuilder(id: String, filterPreviewType: [FilterPreviewType_appStoreVersionExperimentTreatmentLocalizationsAppPreviewSetsGetToManyRelated]? = nil, filterAppStoreVersionLocalization: [String]? = nil, filterAppCustomProductPageLocalization: [String]? = nil, fieldsAppPreviewSets: [FieldsAppPreviewSets_appStoreVersionExperimentTreatmentLocalizationsAppPreviewSetsGetToManyRelated]? = nil, fieldsAppStoreVersionLocalizations: [FieldsAppStoreVersionLocalizations_appStoreVersionExperimentTreatmentLocalizationsAppPreviewSetsGetToManyRelated]? = nil, fieldsAppCustomProductPageLocalizations: [FieldsAppCustomProductPageLocalizations_appStoreVersionExperimentTreatmentLocalizationsAppPreviewSetsGetToManyRelated]? = nil, fieldsAppStoreVersionExperimentTreatmentLocalizations: [FieldsAppStoreVersionExperimentTreatmentLocalizations_appStoreVersionExperimentTreatmentLocalizationsAppPreviewSetsGetToManyRelated]? = nil, fieldsAppPreviews: [FieldsAppPreviews_appStoreVersionExperimentTreatmentLocalizationsAppPreviewSetsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appStoreVersionExperimentTreatmentLocalizationsAppPreviewSetsGetToManyRelated]? = nil, limitAppPreviews: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppPreviewSetsResponse> {
         var localVariablePath = "/v1/appStoreVersionExperimentTreatmentLocalizations/{id}/appPreviewSets"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[previewType]": (wrappedValue: filterPreviewType?.encodeToJSON(), isExplode: false),
-            "filter[appStoreVersionLocalization]": (wrappedValue: filterAppStoreVersionLocalization?.encodeToJSON(), isExplode: false),
-            "filter[appCustomProductPageLocalization]": (wrappedValue: filterAppCustomProductPageLocalization?.encodeToJSON(), isExplode: false),
-            "fields[appPreviewSets]": (wrappedValue: fieldsAppPreviewSets?.encodeToJSON(), isExplode: false),
-            "fields[appStoreVersionLocalizations]": (wrappedValue: fieldsAppStoreVersionLocalizations?.encodeToJSON(), isExplode: false),
-            "fields[appCustomProductPageLocalizations]": (wrappedValue: fieldsAppCustomProductPageLocalizations?.encodeToJSON(), isExplode: false),
-            "fields[appStoreVersionExperimentTreatmentLocalizations]": (wrappedValue: fieldsAppStoreVersionExperimentTreatmentLocalizations?.encodeToJSON(), isExplode: false),
-            "fields[appPreviews]": (wrappedValue: fieldsAppPreviews?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[appPreviews]": (wrappedValue: limitAppPreviews?.encodeToJSON(), isExplode: true),
+            "filter[previewType]": (wrappedValue: filterPreviewType?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[appStoreVersionLocalization]": (wrappedValue: filterAppStoreVersionLocalization?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[appCustomProductPageLocalization]": (wrappedValue: filterAppCustomProductPageLocalization?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appPreviewSets]": (wrappedValue: fieldsAppPreviewSets?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appStoreVersionLocalizations]": (wrappedValue: fieldsAppStoreVersionLocalizations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appCustomProductPageLocalizations]": (wrappedValue: fieldsAppCustomProductPageLocalizations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appStoreVersionExperimentTreatmentLocalizations]": (wrappedValue: fieldsAppStoreVersionExperimentTreatmentLocalizations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appPreviews]": (wrappedValue: fieldsAppPreviews?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[appPreviews]": (wrappedValue: limitAppPreviews?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -188,9 +188,9 @@ open class AppStoreVersionExperimentTreatmentLocalizationsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppPreviewSetsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppPreviewSetsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -199,24 +199,25 @@ open class AppStoreVersionExperimentTreatmentLocalizationsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppPreviewSetsResponse> 
      */
-    open class func appStoreVersionExperimentTreatmentLocalizationsAppPreviewSetsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppPreviewSetsResponse> {
+    open class func appStoreVersionExperimentTreatmentLocalizationsAppPreviewSetsGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppPreviewSetsResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppPreviewSetsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppPreviewSetsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter filterScreenshotDisplayType
      */
-    public enum FilterScreenshotDisplayType_appStoreVersionExperimentTreatmentLocalizationsAppScreenshotSetsGetToManyRelated: String, CaseIterable {
+    public enum FilterScreenshotDisplayType_appStoreVersionExperimentTreatmentLocalizationsAppScreenshotSetsGetToManyRelated: String, Sendable, CaseIterable {
         case appIphone67 = "APP_IPHONE_67"
         case appIphone61 = "APP_IPHONE_61"
         case appIphone65 = "APP_IPHONE_65"
@@ -255,7 +256,7 @@ open class AppStoreVersionExperimentTreatmentLocalizationsAPI {
     /**
      * enum for parameter fieldsAppScreenshotSets
      */
-    public enum FieldsAppScreenshotSets_appStoreVersionExperimentTreatmentLocalizationsAppScreenshotSetsGetToManyRelated: String, CaseIterable {
+    public enum FieldsAppScreenshotSets_appStoreVersionExperimentTreatmentLocalizationsAppScreenshotSetsGetToManyRelated: String, Sendable, CaseIterable {
         case screenshotdisplaytype = "screenshotDisplayType"
         case appstoreversionlocalization = "appStoreVersionLocalization"
         case appcustomproductpagelocalization = "appCustomProductPageLocalization"
@@ -266,7 +267,7 @@ open class AppStoreVersionExperimentTreatmentLocalizationsAPI {
     /**
      * enum for parameter fieldsAppStoreVersionLocalizations
      */
-    public enum FieldsAppStoreVersionLocalizations_appStoreVersionExperimentTreatmentLocalizationsAppScreenshotSetsGetToManyRelated: String, CaseIterable {
+    public enum FieldsAppStoreVersionLocalizations_appStoreVersionExperimentTreatmentLocalizationsAppScreenshotSetsGetToManyRelated: String, Sendable, CaseIterable {
         case description = "description"
         case locale = "locale"
         case keywords = "keywords"
@@ -282,7 +283,7 @@ open class AppStoreVersionExperimentTreatmentLocalizationsAPI {
     /**
      * enum for parameter fieldsAppCustomProductPageLocalizations
      */
-    public enum FieldsAppCustomProductPageLocalizations_appStoreVersionExperimentTreatmentLocalizationsAppScreenshotSetsGetToManyRelated: String, CaseIterable {
+    public enum FieldsAppCustomProductPageLocalizations_appStoreVersionExperimentTreatmentLocalizationsAppScreenshotSetsGetToManyRelated: String, Sendable, CaseIterable {
         case locale = "locale"
         case promotionaltext = "promotionalText"
         case appcustomproductpageversion = "appCustomProductPageVersion"
@@ -293,7 +294,7 @@ open class AppStoreVersionExperimentTreatmentLocalizationsAPI {
     /**
      * enum for parameter fieldsAppStoreVersionExperimentTreatmentLocalizations
      */
-    public enum FieldsAppStoreVersionExperimentTreatmentLocalizations_appStoreVersionExperimentTreatmentLocalizationsAppScreenshotSetsGetToManyRelated: String, CaseIterable {
+    public enum FieldsAppStoreVersionExperimentTreatmentLocalizations_appStoreVersionExperimentTreatmentLocalizationsAppScreenshotSetsGetToManyRelated: String, Sendable, CaseIterable {
         case locale = "locale"
         case appstoreversionexperimenttreatment = "appStoreVersionExperimentTreatment"
         case appscreenshotsets = "appScreenshotSets"
@@ -303,7 +304,7 @@ open class AppStoreVersionExperimentTreatmentLocalizationsAPI {
     /**
      * enum for parameter fieldsAppScreenshots
      */
-    public enum FieldsAppScreenshots_appStoreVersionExperimentTreatmentLocalizationsAppScreenshotSetsGetToManyRelated: String, CaseIterable {
+    public enum FieldsAppScreenshots_appStoreVersionExperimentTreatmentLocalizationsAppScreenshotSetsGetToManyRelated: String, Sendable, CaseIterable {
         case filesize = "fileSize"
         case filename = "fileName"
         case sourcefilechecksum = "sourceFileChecksum"
@@ -318,7 +319,7 @@ open class AppStoreVersionExperimentTreatmentLocalizationsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_appStoreVersionExperimentTreatmentLocalizationsAppScreenshotSetsGetToManyRelated: String, CaseIterable {
+    public enum Include_appStoreVersionExperimentTreatmentLocalizationsAppScreenshotSetsGetToManyRelated: String, Sendable, CaseIterable {
         case appstoreversionlocalization = "appStoreVersionLocalization"
         case appcustomproductpagelocalization = "appCustomProductPageLocalization"
         case appstoreversionexperimenttreatmentlocalization = "appStoreVersionExperimentTreatmentLocalization"
@@ -339,20 +340,22 @@ open class AppStoreVersionExperimentTreatmentLocalizationsAPI {
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAppScreenshots: (query) maximum number of related appScreenshots returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppScreenshotSetsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionExperimentTreatmentLocalizationsAppScreenshotSetsGetToManyRelated(id: String, filterScreenshotDisplayType: [FilterScreenshotDisplayType_appStoreVersionExperimentTreatmentLocalizationsAppScreenshotSetsGetToManyRelated]? = nil, filterAppStoreVersionLocalization: [String]? = nil, filterAppCustomProductPageLocalization: [String]? = nil, fieldsAppScreenshotSets: [FieldsAppScreenshotSets_appStoreVersionExperimentTreatmentLocalizationsAppScreenshotSetsGetToManyRelated]? = nil, fieldsAppStoreVersionLocalizations: [FieldsAppStoreVersionLocalizations_appStoreVersionExperimentTreatmentLocalizationsAppScreenshotSetsGetToManyRelated]? = nil, fieldsAppCustomProductPageLocalizations: [FieldsAppCustomProductPageLocalizations_appStoreVersionExperimentTreatmentLocalizationsAppScreenshotSetsGetToManyRelated]? = nil, fieldsAppStoreVersionExperimentTreatmentLocalizations: [FieldsAppStoreVersionExperimentTreatmentLocalizations_appStoreVersionExperimentTreatmentLocalizationsAppScreenshotSetsGetToManyRelated]? = nil, fieldsAppScreenshots: [FieldsAppScreenshots_appStoreVersionExperimentTreatmentLocalizationsAppScreenshotSetsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appStoreVersionExperimentTreatmentLocalizationsAppScreenshotSetsGetToManyRelated]? = nil, limitAppScreenshots: Int? = nil) async throws -> AppScreenshotSetsResponse {
-        return try await appStoreVersionExperimentTreatmentLocalizationsAppScreenshotSetsGetToManyRelatedWithRequestBuilder(id: id, filterScreenshotDisplayType: filterScreenshotDisplayType, filterAppStoreVersionLocalization: filterAppStoreVersionLocalization, filterAppCustomProductPageLocalization: filterAppCustomProductPageLocalization, fieldsAppScreenshotSets: fieldsAppScreenshotSets, fieldsAppStoreVersionLocalizations: fieldsAppStoreVersionLocalizations, fieldsAppCustomProductPageLocalizations: fieldsAppCustomProductPageLocalizations, fieldsAppStoreVersionExperimentTreatmentLocalizations: fieldsAppStoreVersionExperimentTreatmentLocalizations, fieldsAppScreenshots: fieldsAppScreenshots, limit: limit, include: include, limitAppScreenshots: limitAppScreenshots).execute().body
+    open class func appStoreVersionExperimentTreatmentLocalizationsAppScreenshotSetsGetToManyRelated(id: String, filterScreenshotDisplayType: [FilterScreenshotDisplayType_appStoreVersionExperimentTreatmentLocalizationsAppScreenshotSetsGetToManyRelated]? = nil, filterAppStoreVersionLocalization: [String]? = nil, filterAppCustomProductPageLocalization: [String]? = nil, fieldsAppScreenshotSets: [FieldsAppScreenshotSets_appStoreVersionExperimentTreatmentLocalizationsAppScreenshotSetsGetToManyRelated]? = nil, fieldsAppStoreVersionLocalizations: [FieldsAppStoreVersionLocalizations_appStoreVersionExperimentTreatmentLocalizationsAppScreenshotSetsGetToManyRelated]? = nil, fieldsAppCustomProductPageLocalizations: [FieldsAppCustomProductPageLocalizations_appStoreVersionExperimentTreatmentLocalizationsAppScreenshotSetsGetToManyRelated]? = nil, fieldsAppStoreVersionExperimentTreatmentLocalizations: [FieldsAppStoreVersionExperimentTreatmentLocalizations_appStoreVersionExperimentTreatmentLocalizationsAppScreenshotSetsGetToManyRelated]? = nil, fieldsAppScreenshots: [FieldsAppScreenshots_appStoreVersionExperimentTreatmentLocalizationsAppScreenshotSetsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appStoreVersionExperimentTreatmentLocalizationsAppScreenshotSetsGetToManyRelated]? = nil, limitAppScreenshots: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppScreenshotSetsResponse {
+        return try await appStoreVersionExperimentTreatmentLocalizationsAppScreenshotSetsGetToManyRelatedWithRequestBuilder(id: id, filterScreenshotDisplayType: filterScreenshotDisplayType, filterAppStoreVersionLocalization: filterAppStoreVersionLocalization, filterAppCustomProductPageLocalization: filterAppCustomProductPageLocalization, fieldsAppScreenshotSets: fieldsAppScreenshotSets, fieldsAppStoreVersionLocalizations: fieldsAppStoreVersionLocalizations, fieldsAppCustomProductPageLocalizations: fieldsAppCustomProductPageLocalizations, fieldsAppStoreVersionExperimentTreatmentLocalizations: fieldsAppStoreVersionExperimentTreatmentLocalizations, fieldsAppScreenshots: fieldsAppScreenshots, limit: limit, include: include, limitAppScreenshots: limitAppScreenshots, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppScreenshotSetsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionExperimentTreatmentLocalizationsAppScreenshotSetsGetToManyRelated(urlString: String) async throws -> AppScreenshotSetsResponse {
-        return try await appStoreVersionExperimentTreatmentLocalizationsAppScreenshotSetsGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func appStoreVersionExperimentTreatmentLocalizationsAppScreenshotSetsGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppScreenshotSetsResponse {
+        return try await appStoreVersionExperimentTreatmentLocalizationsAppScreenshotSetsGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -372,29 +375,30 @@ open class AppStoreVersionExperimentTreatmentLocalizationsAPI {
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAppScreenshots: (query) maximum number of related appScreenshots returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppScreenshotSetsResponse> 
      */
-    open class func appStoreVersionExperimentTreatmentLocalizationsAppScreenshotSetsGetToManyRelatedWithRequestBuilder(id: String, filterScreenshotDisplayType: [FilterScreenshotDisplayType_appStoreVersionExperimentTreatmentLocalizationsAppScreenshotSetsGetToManyRelated]? = nil, filterAppStoreVersionLocalization: [String]? = nil, filterAppCustomProductPageLocalization: [String]? = nil, fieldsAppScreenshotSets: [FieldsAppScreenshotSets_appStoreVersionExperimentTreatmentLocalizationsAppScreenshotSetsGetToManyRelated]? = nil, fieldsAppStoreVersionLocalizations: [FieldsAppStoreVersionLocalizations_appStoreVersionExperimentTreatmentLocalizationsAppScreenshotSetsGetToManyRelated]? = nil, fieldsAppCustomProductPageLocalizations: [FieldsAppCustomProductPageLocalizations_appStoreVersionExperimentTreatmentLocalizationsAppScreenshotSetsGetToManyRelated]? = nil, fieldsAppStoreVersionExperimentTreatmentLocalizations: [FieldsAppStoreVersionExperimentTreatmentLocalizations_appStoreVersionExperimentTreatmentLocalizationsAppScreenshotSetsGetToManyRelated]? = nil, fieldsAppScreenshots: [FieldsAppScreenshots_appStoreVersionExperimentTreatmentLocalizationsAppScreenshotSetsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appStoreVersionExperimentTreatmentLocalizationsAppScreenshotSetsGetToManyRelated]? = nil, limitAppScreenshots: Int? = nil) -> RequestBuilder<AppScreenshotSetsResponse> {
+    open class func appStoreVersionExperimentTreatmentLocalizationsAppScreenshotSetsGetToManyRelatedWithRequestBuilder(id: String, filterScreenshotDisplayType: [FilterScreenshotDisplayType_appStoreVersionExperimentTreatmentLocalizationsAppScreenshotSetsGetToManyRelated]? = nil, filterAppStoreVersionLocalization: [String]? = nil, filterAppCustomProductPageLocalization: [String]? = nil, fieldsAppScreenshotSets: [FieldsAppScreenshotSets_appStoreVersionExperimentTreatmentLocalizationsAppScreenshotSetsGetToManyRelated]? = nil, fieldsAppStoreVersionLocalizations: [FieldsAppStoreVersionLocalizations_appStoreVersionExperimentTreatmentLocalizationsAppScreenshotSetsGetToManyRelated]? = nil, fieldsAppCustomProductPageLocalizations: [FieldsAppCustomProductPageLocalizations_appStoreVersionExperimentTreatmentLocalizationsAppScreenshotSetsGetToManyRelated]? = nil, fieldsAppStoreVersionExperimentTreatmentLocalizations: [FieldsAppStoreVersionExperimentTreatmentLocalizations_appStoreVersionExperimentTreatmentLocalizationsAppScreenshotSetsGetToManyRelated]? = nil, fieldsAppScreenshots: [FieldsAppScreenshots_appStoreVersionExperimentTreatmentLocalizationsAppScreenshotSetsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_appStoreVersionExperimentTreatmentLocalizationsAppScreenshotSetsGetToManyRelated]? = nil, limitAppScreenshots: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppScreenshotSetsResponse> {
         var localVariablePath = "/v1/appStoreVersionExperimentTreatmentLocalizations/{id}/appScreenshotSets"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[screenshotDisplayType]": (wrappedValue: filterScreenshotDisplayType?.encodeToJSON(), isExplode: false),
-            "filter[appStoreVersionLocalization]": (wrappedValue: filterAppStoreVersionLocalization?.encodeToJSON(), isExplode: false),
-            "filter[appCustomProductPageLocalization]": (wrappedValue: filterAppCustomProductPageLocalization?.encodeToJSON(), isExplode: false),
-            "fields[appScreenshotSets]": (wrappedValue: fieldsAppScreenshotSets?.encodeToJSON(), isExplode: false),
-            "fields[appStoreVersionLocalizations]": (wrappedValue: fieldsAppStoreVersionLocalizations?.encodeToJSON(), isExplode: false),
-            "fields[appCustomProductPageLocalizations]": (wrappedValue: fieldsAppCustomProductPageLocalizations?.encodeToJSON(), isExplode: false),
-            "fields[appStoreVersionExperimentTreatmentLocalizations]": (wrappedValue: fieldsAppStoreVersionExperimentTreatmentLocalizations?.encodeToJSON(), isExplode: false),
-            "fields[appScreenshots]": (wrappedValue: fieldsAppScreenshots?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[appScreenshots]": (wrappedValue: limitAppScreenshots?.encodeToJSON(), isExplode: true),
+            "filter[screenshotDisplayType]": (wrappedValue: filterScreenshotDisplayType?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[appStoreVersionLocalization]": (wrappedValue: filterAppStoreVersionLocalization?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[appCustomProductPageLocalization]": (wrappedValue: filterAppCustomProductPageLocalization?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appScreenshotSets]": (wrappedValue: fieldsAppScreenshotSets?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appStoreVersionLocalizations]": (wrappedValue: fieldsAppStoreVersionLocalizations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appCustomProductPageLocalizations]": (wrappedValue: fieldsAppCustomProductPageLocalizations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appStoreVersionExperimentTreatmentLocalizations]": (wrappedValue: fieldsAppStoreVersionExperimentTreatmentLocalizations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appScreenshots]": (wrappedValue: fieldsAppScreenshots?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[appScreenshots]": (wrappedValue: limitAppScreenshots?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -403,9 +407,9 @@ open class AppStoreVersionExperimentTreatmentLocalizationsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppScreenshotSetsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppScreenshotSetsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -414,37 +418,40 @@ open class AppStoreVersionExperimentTreatmentLocalizationsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppScreenshotSetsResponse> 
      */
-    open class func appStoreVersionExperimentTreatmentLocalizationsAppScreenshotSetsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppScreenshotSetsResponse> {
+    open class func appStoreVersionExperimentTreatmentLocalizationsAppScreenshotSetsGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppScreenshotSetsResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppScreenshotSetsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppScreenshotSetsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter appStoreVersionExperimentTreatmentLocalizationCreateRequest: (body) AppStoreVersionExperimentTreatmentLocalization representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppStoreVersionExperimentTreatmentLocalizationResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionExperimentTreatmentLocalizationsCreateInstance(appStoreVersionExperimentTreatmentLocalizationCreateRequest: AppStoreVersionExperimentTreatmentLocalizationCreateRequest) async throws -> AppStoreVersionExperimentTreatmentLocalizationResponse {
-        return try await appStoreVersionExperimentTreatmentLocalizationsCreateInstanceWithRequestBuilder(appStoreVersionExperimentTreatmentLocalizationCreateRequest: appStoreVersionExperimentTreatmentLocalizationCreateRequest).execute().body
+    open class func appStoreVersionExperimentTreatmentLocalizationsCreateInstance(appStoreVersionExperimentTreatmentLocalizationCreateRequest: AppStoreVersionExperimentTreatmentLocalizationCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppStoreVersionExperimentTreatmentLocalizationResponse {
+        return try await appStoreVersionExperimentTreatmentLocalizationsCreateInstanceWithRequestBuilder(appStoreVersionExperimentTreatmentLocalizationCreateRequest: appStoreVersionExperimentTreatmentLocalizationCreateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppStoreVersionExperimentTreatmentLocalizationResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionExperimentTreatmentLocalizationsCreateInstance(urlString: String) async throws -> AppStoreVersionExperimentTreatmentLocalizationResponse {
-        return try await appStoreVersionExperimentTreatmentLocalizationsCreateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func appStoreVersionExperimentTreatmentLocalizationsCreateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppStoreVersionExperimentTreatmentLocalizationResponse {
+        return try await appStoreVersionExperimentTreatmentLocalizationsCreateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -453,12 +460,13 @@ open class AppStoreVersionExperimentTreatmentLocalizationsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter appStoreVersionExperimentTreatmentLocalizationCreateRequest: (body) AppStoreVersionExperimentTreatmentLocalization representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppStoreVersionExperimentTreatmentLocalizationResponse> 
      */
-    open class func appStoreVersionExperimentTreatmentLocalizationsCreateInstanceWithRequestBuilder(appStoreVersionExperimentTreatmentLocalizationCreateRequest: AppStoreVersionExperimentTreatmentLocalizationCreateRequest) -> RequestBuilder<AppStoreVersionExperimentTreatmentLocalizationResponse> {
+    open class func appStoreVersionExperimentTreatmentLocalizationsCreateInstanceWithRequestBuilder(appStoreVersionExperimentTreatmentLocalizationCreateRequest: AppStoreVersionExperimentTreatmentLocalizationCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppStoreVersionExperimentTreatmentLocalizationResponse> {
         let localVariablePath = "/v1/appStoreVersionExperimentTreatmentLocalizations"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: appStoreVersionExperimentTreatmentLocalizationCreateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: appStoreVersionExperimentTreatmentLocalizationCreateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -468,9 +476,9 @@ open class AppStoreVersionExperimentTreatmentLocalizationsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionExperimentTreatmentLocalizationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionExperimentTreatmentLocalizationResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -479,37 +487,40 @@ open class AppStoreVersionExperimentTreatmentLocalizationsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppStoreVersionExperimentTreatmentLocalizationResponse> 
      */
-    open class func appStoreVersionExperimentTreatmentLocalizationsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppStoreVersionExperimentTreatmentLocalizationResponse> {
+    open class func appStoreVersionExperimentTreatmentLocalizationsCreateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppStoreVersionExperimentTreatmentLocalizationResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionExperimentTreatmentLocalizationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionExperimentTreatmentLocalizationResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionExperimentTreatmentLocalizationsDeleteInstance(id: String) async throws {
-        return try await appStoreVersionExperimentTreatmentLocalizationsDeleteInstanceWithRequestBuilder(id: id).execute().body
+    open class func appStoreVersionExperimentTreatmentLocalizationsDeleteInstance(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await appStoreVersionExperimentTreatmentLocalizationsDeleteInstanceWithRequestBuilder(id: id, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionExperimentTreatmentLocalizationsDeleteInstance(urlString: String) async throws {
-        return try await appStoreVersionExperimentTreatmentLocalizationsDeleteInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func appStoreVersionExperimentTreatmentLocalizationsDeleteInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await appStoreVersionExperimentTreatmentLocalizationsDeleteInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -518,14 +529,15 @@ open class AppStoreVersionExperimentTreatmentLocalizationsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func appStoreVersionExperimentTreatmentLocalizationsDeleteInstanceWithRequestBuilder(id: String) -> RequestBuilder<Void> {
+    open class func appStoreVersionExperimentTreatmentLocalizationsDeleteInstanceWithRequestBuilder(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/appStoreVersionExperimentTreatmentLocalizations/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -536,9 +548,9 @@ open class AppStoreVersionExperimentTreatmentLocalizationsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -547,24 +559,25 @@ open class AppStoreVersionExperimentTreatmentLocalizationsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func appStoreVersionExperimentTreatmentLocalizationsDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func appStoreVersionExperimentTreatmentLocalizationsDeleteInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsAppStoreVersionExperimentTreatmentLocalizations
      */
-    public enum FieldsAppStoreVersionExperimentTreatmentLocalizations_appStoreVersionExperimentTreatmentLocalizationsGetInstance: String, CaseIterable {
+    public enum FieldsAppStoreVersionExperimentTreatmentLocalizations_appStoreVersionExperimentTreatmentLocalizationsGetInstance: String, Sendable, CaseIterable {
         case locale = "locale"
         case appstoreversionexperimenttreatment = "appStoreVersionExperimentTreatment"
         case appscreenshotsets = "appScreenshotSets"
@@ -574,7 +587,7 @@ open class AppStoreVersionExperimentTreatmentLocalizationsAPI {
     /**
      * enum for parameter fieldsAppScreenshotSets
      */
-    public enum FieldsAppScreenshotSets_appStoreVersionExperimentTreatmentLocalizationsGetInstance: String, CaseIterable {
+    public enum FieldsAppScreenshotSets_appStoreVersionExperimentTreatmentLocalizationsGetInstance: String, Sendable, CaseIterable {
         case screenshotdisplaytype = "screenshotDisplayType"
         case appstoreversionlocalization = "appStoreVersionLocalization"
         case appcustomproductpagelocalization = "appCustomProductPageLocalization"
@@ -585,7 +598,7 @@ open class AppStoreVersionExperimentTreatmentLocalizationsAPI {
     /**
      * enum for parameter fieldsAppPreviewSets
      */
-    public enum FieldsAppPreviewSets_appStoreVersionExperimentTreatmentLocalizationsGetInstance: String, CaseIterable {
+    public enum FieldsAppPreviewSets_appStoreVersionExperimentTreatmentLocalizationsGetInstance: String, Sendable, CaseIterable {
         case previewtype = "previewType"
         case appstoreversionlocalization = "appStoreVersionLocalization"
         case appcustomproductpagelocalization = "appCustomProductPageLocalization"
@@ -596,7 +609,7 @@ open class AppStoreVersionExperimentTreatmentLocalizationsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_appStoreVersionExperimentTreatmentLocalizationsGetInstance: String, CaseIterable {
+    public enum Include_appStoreVersionExperimentTreatmentLocalizationsGetInstance: String, Sendable, CaseIterable {
         case appstoreversionexperimenttreatment = "appStoreVersionExperimentTreatment"
         case appscreenshotsets = "appScreenshotSets"
         case apppreviewsets = "appPreviewSets"
@@ -611,20 +624,22 @@ open class AppStoreVersionExperimentTreatmentLocalizationsAPI {
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAppPreviewSets: (query) maximum number of related appPreviewSets returned (when they are included) (optional)
      - parameter limitAppScreenshotSets: (query) maximum number of related appScreenshotSets returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppStoreVersionExperimentTreatmentLocalizationResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionExperimentTreatmentLocalizationsGetInstance(id: String, fieldsAppStoreVersionExperimentTreatmentLocalizations: [FieldsAppStoreVersionExperimentTreatmentLocalizations_appStoreVersionExperimentTreatmentLocalizationsGetInstance]? = nil, fieldsAppScreenshotSets: [FieldsAppScreenshotSets_appStoreVersionExperimentTreatmentLocalizationsGetInstance]? = nil, fieldsAppPreviewSets: [FieldsAppPreviewSets_appStoreVersionExperimentTreatmentLocalizationsGetInstance]? = nil, include: [Include_appStoreVersionExperimentTreatmentLocalizationsGetInstance]? = nil, limitAppPreviewSets: Int? = nil, limitAppScreenshotSets: Int? = nil) async throws -> AppStoreVersionExperimentTreatmentLocalizationResponse {
-        return try await appStoreVersionExperimentTreatmentLocalizationsGetInstanceWithRequestBuilder(id: id, fieldsAppStoreVersionExperimentTreatmentLocalizations: fieldsAppStoreVersionExperimentTreatmentLocalizations, fieldsAppScreenshotSets: fieldsAppScreenshotSets, fieldsAppPreviewSets: fieldsAppPreviewSets, include: include, limitAppPreviewSets: limitAppPreviewSets, limitAppScreenshotSets: limitAppScreenshotSets).execute().body
+    open class func appStoreVersionExperimentTreatmentLocalizationsGetInstance(id: String, fieldsAppStoreVersionExperimentTreatmentLocalizations: [FieldsAppStoreVersionExperimentTreatmentLocalizations_appStoreVersionExperimentTreatmentLocalizationsGetInstance]? = nil, fieldsAppScreenshotSets: [FieldsAppScreenshotSets_appStoreVersionExperimentTreatmentLocalizationsGetInstance]? = nil, fieldsAppPreviewSets: [FieldsAppPreviewSets_appStoreVersionExperimentTreatmentLocalizationsGetInstance]? = nil, include: [Include_appStoreVersionExperimentTreatmentLocalizationsGetInstance]? = nil, limitAppPreviewSets: Int? = nil, limitAppScreenshotSets: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppStoreVersionExperimentTreatmentLocalizationResponse {
+        return try await appStoreVersionExperimentTreatmentLocalizationsGetInstanceWithRequestBuilder(id: id, fieldsAppStoreVersionExperimentTreatmentLocalizations: fieldsAppStoreVersionExperimentTreatmentLocalizations, fieldsAppScreenshotSets: fieldsAppScreenshotSets, fieldsAppPreviewSets: fieldsAppPreviewSets, include: include, limitAppPreviewSets: limitAppPreviewSets, limitAppScreenshotSets: limitAppScreenshotSets, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppStoreVersionExperimentTreatmentLocalizationResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appStoreVersionExperimentTreatmentLocalizationsGetInstance(urlString: String) async throws -> AppStoreVersionExperimentTreatmentLocalizationResponse {
-        return try await appStoreVersionExperimentTreatmentLocalizationsGetInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func appStoreVersionExperimentTreatmentLocalizationsGetInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppStoreVersionExperimentTreatmentLocalizationResponse {
+        return try await appStoreVersionExperimentTreatmentLocalizationsGetInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -639,24 +654,25 @@ open class AppStoreVersionExperimentTreatmentLocalizationsAPI {
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitAppPreviewSets: (query) maximum number of related appPreviewSets returned (when they are included) (optional)
      - parameter limitAppScreenshotSets: (query) maximum number of related appScreenshotSets returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppStoreVersionExperimentTreatmentLocalizationResponse> 
      */
-    open class func appStoreVersionExperimentTreatmentLocalizationsGetInstanceWithRequestBuilder(id: String, fieldsAppStoreVersionExperimentTreatmentLocalizations: [FieldsAppStoreVersionExperimentTreatmentLocalizations_appStoreVersionExperimentTreatmentLocalizationsGetInstance]? = nil, fieldsAppScreenshotSets: [FieldsAppScreenshotSets_appStoreVersionExperimentTreatmentLocalizationsGetInstance]? = nil, fieldsAppPreviewSets: [FieldsAppPreviewSets_appStoreVersionExperimentTreatmentLocalizationsGetInstance]? = nil, include: [Include_appStoreVersionExperimentTreatmentLocalizationsGetInstance]? = nil, limitAppPreviewSets: Int? = nil, limitAppScreenshotSets: Int? = nil) -> RequestBuilder<AppStoreVersionExperimentTreatmentLocalizationResponse> {
+    open class func appStoreVersionExperimentTreatmentLocalizationsGetInstanceWithRequestBuilder(id: String, fieldsAppStoreVersionExperimentTreatmentLocalizations: [FieldsAppStoreVersionExperimentTreatmentLocalizations_appStoreVersionExperimentTreatmentLocalizationsGetInstance]? = nil, fieldsAppScreenshotSets: [FieldsAppScreenshotSets_appStoreVersionExperimentTreatmentLocalizationsGetInstance]? = nil, fieldsAppPreviewSets: [FieldsAppPreviewSets_appStoreVersionExperimentTreatmentLocalizationsGetInstance]? = nil, include: [Include_appStoreVersionExperimentTreatmentLocalizationsGetInstance]? = nil, limitAppPreviewSets: Int? = nil, limitAppScreenshotSets: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppStoreVersionExperimentTreatmentLocalizationResponse> {
         var localVariablePath = "/v1/appStoreVersionExperimentTreatmentLocalizations/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[appStoreVersionExperimentTreatmentLocalizations]": (wrappedValue: fieldsAppStoreVersionExperimentTreatmentLocalizations?.encodeToJSON(), isExplode: false),
-            "fields[appScreenshotSets]": (wrappedValue: fieldsAppScreenshotSets?.encodeToJSON(), isExplode: false),
-            "fields[appPreviewSets]": (wrappedValue: fieldsAppPreviewSets?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[appPreviewSets]": (wrappedValue: limitAppPreviewSets?.encodeToJSON(), isExplode: true),
-            "limit[appScreenshotSets]": (wrappedValue: limitAppScreenshotSets?.encodeToJSON(), isExplode: true),
+            "fields[appStoreVersionExperimentTreatmentLocalizations]": (wrappedValue: fieldsAppStoreVersionExperimentTreatmentLocalizations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appScreenshotSets]": (wrappedValue: fieldsAppScreenshotSets?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appPreviewSets]": (wrappedValue: fieldsAppPreviewSets?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[appPreviewSets]": (wrappedValue: limitAppPreviewSets?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[appScreenshotSets]": (wrappedValue: limitAppScreenshotSets?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -665,9 +681,9 @@ open class AppStoreVersionExperimentTreatmentLocalizationsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionExperimentTreatmentLocalizationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionExperimentTreatmentLocalizationResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -676,17 +692,18 @@ open class AppStoreVersionExperimentTreatmentLocalizationsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppStoreVersionExperimentTreatmentLocalizationResponse> 
      */
-    open class func appStoreVersionExperimentTreatmentLocalizationsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppStoreVersionExperimentTreatmentLocalizationResponse> {
+    open class func appStoreVersionExperimentTreatmentLocalizationsGetInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppStoreVersionExperimentTreatmentLocalizationResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionExperimentTreatmentLocalizationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppStoreVersionExperimentTreatmentLocalizationResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

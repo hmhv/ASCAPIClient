@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public enum BetaGroupsResponseIncludedInner: Codable, JSONEncodable, Hashable {
+public enum BetaGroupsResponseIncludedInner: Sendable, Codable, JSONEncodable, Hashable {
     case typeApp(App)
     case typeBetaTester(BetaTester)
     case typeBuild(Build)

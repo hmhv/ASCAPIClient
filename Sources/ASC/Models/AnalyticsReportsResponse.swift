@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AnalyticsReportsResponse: Codable, JSONEncodable, Hashable {
+public struct AnalyticsReportsResponse: Sendable, Codable, JSONEncodable, Hashable {
 
     public var data: [AnalyticsReport]
     public var links: PagedDocumentLinks

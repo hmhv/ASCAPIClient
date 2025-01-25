@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct CiMacOsVersionRelationships: Codable, JSONEncodable, Hashable {
+public struct CiMacOsVersionRelationships: Sendable, Codable, JSONEncodable, Hashable {
 
     public var xcodeVersions: CiMacOsVersionRelationshipsXcodeVersions?
 

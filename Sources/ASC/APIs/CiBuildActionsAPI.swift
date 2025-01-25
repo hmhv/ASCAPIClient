@@ -6,16 +6,13 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class CiBuildActionsAPI {
 
     /**
      * enum for parameter fieldsCiArtifacts
      */
-    public enum FieldsCiArtifacts_ciBuildActionsArtifactsGetToManyRelated: String, CaseIterable {
+    public enum FieldsCiArtifacts_ciBuildActionsArtifactsGetToManyRelated: String, Sendable, CaseIterable {
         case filetype = "fileType"
         case filename = "fileName"
         case filesize = "fileSize"
@@ -27,20 +24,22 @@ open class CiBuildActionsAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsCiArtifacts: (query) the fields to include for returned resources of type ciArtifacts (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: CiArtifactsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciBuildActionsArtifactsGetToManyRelated(id: String, fieldsCiArtifacts: [FieldsCiArtifacts_ciBuildActionsArtifactsGetToManyRelated]? = nil, limit: Int? = nil) async throws -> CiArtifactsResponse {
-        return try await ciBuildActionsArtifactsGetToManyRelatedWithRequestBuilder(id: id, fieldsCiArtifacts: fieldsCiArtifacts, limit: limit).execute().body
+    open class func ciBuildActionsArtifactsGetToManyRelated(id: String, fieldsCiArtifacts: [FieldsCiArtifacts_ciBuildActionsArtifactsGetToManyRelated]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> CiArtifactsResponse {
+        return try await ciBuildActionsArtifactsGetToManyRelatedWithRequestBuilder(id: id, fieldsCiArtifacts: fieldsCiArtifacts, limit: limit, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: CiArtifactsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciBuildActionsArtifactsGetToManyRelated(urlString: String) async throws -> CiArtifactsResponse {
-        return try await ciBuildActionsArtifactsGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func ciBuildActionsArtifactsGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> CiArtifactsResponse {
+        return try await ciBuildActionsArtifactsGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -51,20 +50,21 @@ open class CiBuildActionsAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsCiArtifacts: (query) the fields to include for returned resources of type ciArtifacts (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CiArtifactsResponse> 
      */
-    open class func ciBuildActionsArtifactsGetToManyRelatedWithRequestBuilder(id: String, fieldsCiArtifacts: [FieldsCiArtifacts_ciBuildActionsArtifactsGetToManyRelated]? = nil, limit: Int? = nil) -> RequestBuilder<CiArtifactsResponse> {
+    open class func ciBuildActionsArtifactsGetToManyRelatedWithRequestBuilder(id: String, fieldsCiArtifacts: [FieldsCiArtifacts_ciBuildActionsArtifactsGetToManyRelated]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<CiArtifactsResponse> {
         var localVariablePath = "/v1/ciBuildActions/{id}/artifacts"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[ciArtifacts]": (wrappedValue: fieldsCiArtifacts?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "fields[ciArtifacts]": (wrappedValue: fieldsCiArtifacts?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -73,9 +73,9 @@ open class CiBuildActionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CiArtifactsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CiArtifactsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -84,24 +84,25 @@ open class CiBuildActionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CiArtifactsResponse> 
      */
-    open class func ciBuildActionsArtifactsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<CiArtifactsResponse> {
+    open class func ciBuildActionsArtifactsGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<CiArtifactsResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CiArtifactsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CiArtifactsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsCiBuildRuns
      */
-    public enum FieldsCiBuildRuns_ciBuildActionsBuildRunGetToOneRelated: String, CaseIterable {
+    public enum FieldsCiBuildRuns_ciBuildActionsBuildRunGetToOneRelated: String, Sendable, CaseIterable {
         case number = "number"
         case createddate = "createdDate"
         case starteddate = "startedDate"
@@ -126,7 +127,7 @@ open class CiBuildActionsAPI {
     /**
      * enum for parameter fieldsBuilds
      */
-    public enum FieldsBuilds_ciBuildActionsBuildRunGetToOneRelated: String, CaseIterable {
+    public enum FieldsBuilds_ciBuildActionsBuildRunGetToOneRelated: String, Sendable, CaseIterable {
         case version = "version"
         case uploadeddate = "uploadedDate"
         case expirationdate = "expirationDate"
@@ -156,7 +157,7 @@ open class CiBuildActionsAPI {
     /**
      * enum for parameter fieldsCiWorkflows
      */
-    public enum FieldsCiWorkflows_ciBuildActionsBuildRunGetToOneRelated: String, CaseIterable {
+    public enum FieldsCiWorkflows_ciBuildActionsBuildRunGetToOneRelated: String, Sendable, CaseIterable {
         case name = "name"
         case description = "description"
         case branchstartcondition = "branchStartCondition"
@@ -182,7 +183,7 @@ open class CiBuildActionsAPI {
     /**
      * enum for parameter fieldsCiProducts
      */
-    public enum FieldsCiProducts_ciBuildActionsBuildRunGetToOneRelated: String, CaseIterable {
+    public enum FieldsCiProducts_ciBuildActionsBuildRunGetToOneRelated: String, Sendable, CaseIterable {
         case name = "name"
         case createddate = "createdDate"
         case producttype = "productType"
@@ -197,7 +198,7 @@ open class CiBuildActionsAPI {
     /**
      * enum for parameter fieldsScmGitReferences
      */
-    public enum FieldsScmGitReferences_ciBuildActionsBuildRunGetToOneRelated: String, CaseIterable {
+    public enum FieldsScmGitReferences_ciBuildActionsBuildRunGetToOneRelated: String, Sendable, CaseIterable {
         case name = "name"
         case canonicalname = "canonicalName"
         case isdeleted = "isDeleted"
@@ -208,7 +209,7 @@ open class CiBuildActionsAPI {
     /**
      * enum for parameter fieldsScmPullRequests
      */
-    public enum FieldsScmPullRequests_ciBuildActionsBuildRunGetToOneRelated: String, CaseIterable {
+    public enum FieldsScmPullRequests_ciBuildActionsBuildRunGetToOneRelated: String, Sendable, CaseIterable {
         case title = "title"
         case number = "number"
         case weburl = "webUrl"
@@ -226,7 +227,7 @@ open class CiBuildActionsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_ciBuildActionsBuildRunGetToOneRelated: String, CaseIterable {
+    public enum Include_ciBuildActionsBuildRunGetToOneRelated: String, Sendable, CaseIterable {
         case builds = "builds"
         case workflow = "workflow"
         case product = "product"
@@ -246,20 +247,22 @@ open class CiBuildActionsAPI {
      - parameter fieldsScmPullRequests: (query) the fields to include for returned resources of type scmPullRequests (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitBuilds: (query) maximum number of related builds returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: CiBuildRunResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciBuildActionsBuildRunGetToOneRelated(id: String, fieldsCiBuildRuns: [FieldsCiBuildRuns_ciBuildActionsBuildRunGetToOneRelated]? = nil, fieldsBuilds: [FieldsBuilds_ciBuildActionsBuildRunGetToOneRelated]? = nil, fieldsCiWorkflows: [FieldsCiWorkflows_ciBuildActionsBuildRunGetToOneRelated]? = nil, fieldsCiProducts: [FieldsCiProducts_ciBuildActionsBuildRunGetToOneRelated]? = nil, fieldsScmGitReferences: [FieldsScmGitReferences_ciBuildActionsBuildRunGetToOneRelated]? = nil, fieldsScmPullRequests: [FieldsScmPullRequests_ciBuildActionsBuildRunGetToOneRelated]? = nil, include: [Include_ciBuildActionsBuildRunGetToOneRelated]? = nil, limitBuilds: Int? = nil) async throws -> CiBuildRunResponse {
-        return try await ciBuildActionsBuildRunGetToOneRelatedWithRequestBuilder(id: id, fieldsCiBuildRuns: fieldsCiBuildRuns, fieldsBuilds: fieldsBuilds, fieldsCiWorkflows: fieldsCiWorkflows, fieldsCiProducts: fieldsCiProducts, fieldsScmGitReferences: fieldsScmGitReferences, fieldsScmPullRequests: fieldsScmPullRequests, include: include, limitBuilds: limitBuilds).execute().body
+    open class func ciBuildActionsBuildRunGetToOneRelated(id: String, fieldsCiBuildRuns: [FieldsCiBuildRuns_ciBuildActionsBuildRunGetToOneRelated]? = nil, fieldsBuilds: [FieldsBuilds_ciBuildActionsBuildRunGetToOneRelated]? = nil, fieldsCiWorkflows: [FieldsCiWorkflows_ciBuildActionsBuildRunGetToOneRelated]? = nil, fieldsCiProducts: [FieldsCiProducts_ciBuildActionsBuildRunGetToOneRelated]? = nil, fieldsScmGitReferences: [FieldsScmGitReferences_ciBuildActionsBuildRunGetToOneRelated]? = nil, fieldsScmPullRequests: [FieldsScmPullRequests_ciBuildActionsBuildRunGetToOneRelated]? = nil, include: [Include_ciBuildActionsBuildRunGetToOneRelated]? = nil, limitBuilds: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> CiBuildRunResponse {
+        return try await ciBuildActionsBuildRunGetToOneRelatedWithRequestBuilder(id: id, fieldsCiBuildRuns: fieldsCiBuildRuns, fieldsBuilds: fieldsBuilds, fieldsCiWorkflows: fieldsCiWorkflows, fieldsCiProducts: fieldsCiProducts, fieldsScmGitReferences: fieldsScmGitReferences, fieldsScmPullRequests: fieldsScmPullRequests, include: include, limitBuilds: limitBuilds, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: CiBuildRunResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciBuildActionsBuildRunGetToOneRelated(urlString: String) async throws -> CiBuildRunResponse {
-        return try await ciBuildActionsBuildRunGetToOneRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func ciBuildActionsBuildRunGetToOneRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> CiBuildRunResponse {
+        return try await ciBuildActionsBuildRunGetToOneRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -276,26 +279,27 @@ open class CiBuildActionsAPI {
      - parameter fieldsScmPullRequests: (query) the fields to include for returned resources of type scmPullRequests (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitBuilds: (query) maximum number of related builds returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CiBuildRunResponse> 
      */
-    open class func ciBuildActionsBuildRunGetToOneRelatedWithRequestBuilder(id: String, fieldsCiBuildRuns: [FieldsCiBuildRuns_ciBuildActionsBuildRunGetToOneRelated]? = nil, fieldsBuilds: [FieldsBuilds_ciBuildActionsBuildRunGetToOneRelated]? = nil, fieldsCiWorkflows: [FieldsCiWorkflows_ciBuildActionsBuildRunGetToOneRelated]? = nil, fieldsCiProducts: [FieldsCiProducts_ciBuildActionsBuildRunGetToOneRelated]? = nil, fieldsScmGitReferences: [FieldsScmGitReferences_ciBuildActionsBuildRunGetToOneRelated]? = nil, fieldsScmPullRequests: [FieldsScmPullRequests_ciBuildActionsBuildRunGetToOneRelated]? = nil, include: [Include_ciBuildActionsBuildRunGetToOneRelated]? = nil, limitBuilds: Int? = nil) -> RequestBuilder<CiBuildRunResponse> {
+    open class func ciBuildActionsBuildRunGetToOneRelatedWithRequestBuilder(id: String, fieldsCiBuildRuns: [FieldsCiBuildRuns_ciBuildActionsBuildRunGetToOneRelated]? = nil, fieldsBuilds: [FieldsBuilds_ciBuildActionsBuildRunGetToOneRelated]? = nil, fieldsCiWorkflows: [FieldsCiWorkflows_ciBuildActionsBuildRunGetToOneRelated]? = nil, fieldsCiProducts: [FieldsCiProducts_ciBuildActionsBuildRunGetToOneRelated]? = nil, fieldsScmGitReferences: [FieldsScmGitReferences_ciBuildActionsBuildRunGetToOneRelated]? = nil, fieldsScmPullRequests: [FieldsScmPullRequests_ciBuildActionsBuildRunGetToOneRelated]? = nil, include: [Include_ciBuildActionsBuildRunGetToOneRelated]? = nil, limitBuilds: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<CiBuildRunResponse> {
         var localVariablePath = "/v1/ciBuildActions/{id}/buildRun"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[ciBuildRuns]": (wrappedValue: fieldsCiBuildRuns?.encodeToJSON(), isExplode: false),
-            "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(), isExplode: false),
-            "fields[ciWorkflows]": (wrappedValue: fieldsCiWorkflows?.encodeToJSON(), isExplode: false),
-            "fields[ciProducts]": (wrappedValue: fieldsCiProducts?.encodeToJSON(), isExplode: false),
-            "fields[scmGitReferences]": (wrappedValue: fieldsScmGitReferences?.encodeToJSON(), isExplode: false),
-            "fields[scmPullRequests]": (wrappedValue: fieldsScmPullRequests?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[builds]": (wrappedValue: limitBuilds?.encodeToJSON(), isExplode: true),
+            "fields[ciBuildRuns]": (wrappedValue: fieldsCiBuildRuns?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[ciWorkflows]": (wrappedValue: fieldsCiWorkflows?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[ciProducts]": (wrappedValue: fieldsCiProducts?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[scmGitReferences]": (wrappedValue: fieldsScmGitReferences?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[scmPullRequests]": (wrappedValue: fieldsScmPullRequests?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[builds]": (wrappedValue: limitBuilds?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -304,9 +308,9 @@ open class CiBuildActionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CiBuildRunResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CiBuildRunResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -315,24 +319,25 @@ open class CiBuildActionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CiBuildRunResponse> 
      */
-    open class func ciBuildActionsBuildRunGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<CiBuildRunResponse> {
+    open class func ciBuildActionsBuildRunGetToOneRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<CiBuildRunResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CiBuildRunResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CiBuildRunResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsCiBuildActions
      */
-    public enum FieldsCiBuildActions_ciBuildActionsGetInstance: String, CaseIterable {
+    public enum FieldsCiBuildActions_ciBuildActionsGetInstance: String, Sendable, CaseIterable {
         case name = "name"
         case actiontype = "actionType"
         case starteddate = "startedDate"
@@ -350,7 +355,7 @@ open class CiBuildActionsAPI {
     /**
      * enum for parameter fieldsCiBuildRuns
      */
-    public enum FieldsCiBuildRuns_ciBuildActionsGetInstance: String, CaseIterable {
+    public enum FieldsCiBuildRuns_ciBuildActionsGetInstance: String, Sendable, CaseIterable {
         case number = "number"
         case createddate = "createdDate"
         case starteddate = "startedDate"
@@ -375,7 +380,7 @@ open class CiBuildActionsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_ciBuildActionsGetInstance: String, CaseIterable {
+    public enum Include_ciBuildActionsGetInstance: String, Sendable, CaseIterable {
         case buildrun = "buildRun"
     }
 
@@ -385,20 +390,22 @@ open class CiBuildActionsAPI {
      - parameter fieldsCiBuildActions: (query) the fields to include for returned resources of type ciBuildActions (optional)
      - parameter fieldsCiBuildRuns: (query) the fields to include for returned resources of type ciBuildRuns (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: CiBuildActionResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciBuildActionsGetInstance(id: String, fieldsCiBuildActions: [FieldsCiBuildActions_ciBuildActionsGetInstance]? = nil, fieldsCiBuildRuns: [FieldsCiBuildRuns_ciBuildActionsGetInstance]? = nil, include: [Include_ciBuildActionsGetInstance]? = nil) async throws -> CiBuildActionResponse {
-        return try await ciBuildActionsGetInstanceWithRequestBuilder(id: id, fieldsCiBuildActions: fieldsCiBuildActions, fieldsCiBuildRuns: fieldsCiBuildRuns, include: include).execute().body
+    open class func ciBuildActionsGetInstance(id: String, fieldsCiBuildActions: [FieldsCiBuildActions_ciBuildActionsGetInstance]? = nil, fieldsCiBuildRuns: [FieldsCiBuildRuns_ciBuildActionsGetInstance]? = nil, include: [Include_ciBuildActionsGetInstance]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> CiBuildActionResponse {
+        return try await ciBuildActionsGetInstanceWithRequestBuilder(id: id, fieldsCiBuildActions: fieldsCiBuildActions, fieldsCiBuildRuns: fieldsCiBuildRuns, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: CiBuildActionResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciBuildActionsGetInstance(urlString: String) async throws -> CiBuildActionResponse {
-        return try await ciBuildActionsGetInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func ciBuildActionsGetInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> CiBuildActionResponse {
+        return try await ciBuildActionsGetInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -410,21 +417,22 @@ open class CiBuildActionsAPI {
      - parameter fieldsCiBuildActions: (query) the fields to include for returned resources of type ciBuildActions (optional)
      - parameter fieldsCiBuildRuns: (query) the fields to include for returned resources of type ciBuildRuns (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CiBuildActionResponse> 
      */
-    open class func ciBuildActionsGetInstanceWithRequestBuilder(id: String, fieldsCiBuildActions: [FieldsCiBuildActions_ciBuildActionsGetInstance]? = nil, fieldsCiBuildRuns: [FieldsCiBuildRuns_ciBuildActionsGetInstance]? = nil, include: [Include_ciBuildActionsGetInstance]? = nil) -> RequestBuilder<CiBuildActionResponse> {
+    open class func ciBuildActionsGetInstanceWithRequestBuilder(id: String, fieldsCiBuildActions: [FieldsCiBuildActions_ciBuildActionsGetInstance]? = nil, fieldsCiBuildRuns: [FieldsCiBuildRuns_ciBuildActionsGetInstance]? = nil, include: [Include_ciBuildActionsGetInstance]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<CiBuildActionResponse> {
         var localVariablePath = "/v1/ciBuildActions/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[ciBuildActions]": (wrappedValue: fieldsCiBuildActions?.encodeToJSON(), isExplode: false),
-            "fields[ciBuildRuns]": (wrappedValue: fieldsCiBuildRuns?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "fields[ciBuildActions]": (wrappedValue: fieldsCiBuildActions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[ciBuildRuns]": (wrappedValue: fieldsCiBuildRuns?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -433,9 +441,9 @@ open class CiBuildActionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CiBuildActionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CiBuildActionResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -444,24 +452,25 @@ open class CiBuildActionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CiBuildActionResponse> 
      */
-    open class func ciBuildActionsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<CiBuildActionResponse> {
+    open class func ciBuildActionsGetInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<CiBuildActionResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CiBuildActionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CiBuildActionResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsCiIssues
      */
-    public enum FieldsCiIssues_ciBuildActionsIssuesGetToManyRelated: String, CaseIterable {
+    public enum FieldsCiIssues_ciBuildActionsIssuesGetToManyRelated: String, Sendable, CaseIterable {
         case issuetype = "issueType"
         case message = "message"
         case filesource = "fileSource"
@@ -473,20 +482,22 @@ open class CiBuildActionsAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsCiIssues: (query) the fields to include for returned resources of type ciIssues (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: CiIssuesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciBuildActionsIssuesGetToManyRelated(id: String, fieldsCiIssues: [FieldsCiIssues_ciBuildActionsIssuesGetToManyRelated]? = nil, limit: Int? = nil) async throws -> CiIssuesResponse {
-        return try await ciBuildActionsIssuesGetToManyRelatedWithRequestBuilder(id: id, fieldsCiIssues: fieldsCiIssues, limit: limit).execute().body
+    open class func ciBuildActionsIssuesGetToManyRelated(id: String, fieldsCiIssues: [FieldsCiIssues_ciBuildActionsIssuesGetToManyRelated]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> CiIssuesResponse {
+        return try await ciBuildActionsIssuesGetToManyRelatedWithRequestBuilder(id: id, fieldsCiIssues: fieldsCiIssues, limit: limit, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: CiIssuesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciBuildActionsIssuesGetToManyRelated(urlString: String) async throws -> CiIssuesResponse {
-        return try await ciBuildActionsIssuesGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func ciBuildActionsIssuesGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> CiIssuesResponse {
+        return try await ciBuildActionsIssuesGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -497,20 +508,21 @@ open class CiBuildActionsAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsCiIssues: (query) the fields to include for returned resources of type ciIssues (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CiIssuesResponse> 
      */
-    open class func ciBuildActionsIssuesGetToManyRelatedWithRequestBuilder(id: String, fieldsCiIssues: [FieldsCiIssues_ciBuildActionsIssuesGetToManyRelated]? = nil, limit: Int? = nil) -> RequestBuilder<CiIssuesResponse> {
+    open class func ciBuildActionsIssuesGetToManyRelatedWithRequestBuilder(id: String, fieldsCiIssues: [FieldsCiIssues_ciBuildActionsIssuesGetToManyRelated]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<CiIssuesResponse> {
         var localVariablePath = "/v1/ciBuildActions/{id}/issues"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[ciIssues]": (wrappedValue: fieldsCiIssues?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "fields[ciIssues]": (wrappedValue: fieldsCiIssues?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -519,9 +531,9 @@ open class CiBuildActionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CiIssuesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CiIssuesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -530,24 +542,25 @@ open class CiBuildActionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CiIssuesResponse> 
      */
-    open class func ciBuildActionsIssuesGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<CiIssuesResponse> {
+    open class func ciBuildActionsIssuesGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<CiIssuesResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CiIssuesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CiIssuesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsCiTestResults
      */
-    public enum FieldsCiTestResults_ciBuildActionsTestResultsGetToManyRelated: String, CaseIterable {
+    public enum FieldsCiTestResults_ciBuildActionsTestResultsGetToManyRelated: String, Sendable, CaseIterable {
         case classname = "className"
         case name = "name"
         case status = "status"
@@ -561,20 +574,22 @@ open class CiBuildActionsAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsCiTestResults: (query) the fields to include for returned resources of type ciTestResults (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: CiTestResultsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciBuildActionsTestResultsGetToManyRelated(id: String, fieldsCiTestResults: [FieldsCiTestResults_ciBuildActionsTestResultsGetToManyRelated]? = nil, limit: Int? = nil) async throws -> CiTestResultsResponse {
-        return try await ciBuildActionsTestResultsGetToManyRelatedWithRequestBuilder(id: id, fieldsCiTestResults: fieldsCiTestResults, limit: limit).execute().body
+    open class func ciBuildActionsTestResultsGetToManyRelated(id: String, fieldsCiTestResults: [FieldsCiTestResults_ciBuildActionsTestResultsGetToManyRelated]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> CiTestResultsResponse {
+        return try await ciBuildActionsTestResultsGetToManyRelatedWithRequestBuilder(id: id, fieldsCiTestResults: fieldsCiTestResults, limit: limit, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: CiTestResultsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciBuildActionsTestResultsGetToManyRelated(urlString: String) async throws -> CiTestResultsResponse {
-        return try await ciBuildActionsTestResultsGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func ciBuildActionsTestResultsGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> CiTestResultsResponse {
+        return try await ciBuildActionsTestResultsGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -585,20 +600,21 @@ open class CiBuildActionsAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsCiTestResults: (query) the fields to include for returned resources of type ciTestResults (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CiTestResultsResponse> 
      */
-    open class func ciBuildActionsTestResultsGetToManyRelatedWithRequestBuilder(id: String, fieldsCiTestResults: [FieldsCiTestResults_ciBuildActionsTestResultsGetToManyRelated]? = nil, limit: Int? = nil) -> RequestBuilder<CiTestResultsResponse> {
+    open class func ciBuildActionsTestResultsGetToManyRelatedWithRequestBuilder(id: String, fieldsCiTestResults: [FieldsCiTestResults_ciBuildActionsTestResultsGetToManyRelated]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<CiTestResultsResponse> {
         var localVariablePath = "/v1/ciBuildActions/{id}/testResults"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[ciTestResults]": (wrappedValue: fieldsCiTestResults?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "fields[ciTestResults]": (wrappedValue: fieldsCiTestResults?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -607,9 +623,9 @@ open class CiBuildActionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CiTestResultsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CiTestResultsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -618,17 +634,18 @@ open class CiBuildActionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CiTestResultsResponse> 
      */
-    open class func ciBuildActionsTestResultsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<CiTestResultsResponse> {
+    open class func ciBuildActionsTestResultsGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<CiTestResultsResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CiTestResultsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CiTestResultsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

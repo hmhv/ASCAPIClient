@@ -6,13 +6,10 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct SubscriptionGracePeriodAttributes: Codable, JSONEncodable, Hashable {
+public struct SubscriptionGracePeriodAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum RenewalType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum RenewalType: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case allRenewals = "ALL_RENEWALS"
         case paidToPaidOnly = "PAID_TO_PAID_ONLY"
         case unknownDefaultOpenApi = "unknown_default_open_api"

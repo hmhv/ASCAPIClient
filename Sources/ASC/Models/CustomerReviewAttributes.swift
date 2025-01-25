@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct CustomerReviewAttributes: Codable, JSONEncodable, Hashable {
+public struct CustomerReviewAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
     public static let ratingRule = NumericRule<Int>(minimum: 1, exclusiveMinimum: false, maximum: 5, exclusiveMaximum: false, multipleOf: nil)
     public var rating: Int?

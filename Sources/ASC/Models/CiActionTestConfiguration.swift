@@ -6,13 +6,10 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct CiActionTestConfiguration: Codable, JSONEncodable, Hashable {
+public struct CiActionTestConfiguration: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum Kind: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum Kind: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case useSchemeSettings = "USE_SCHEME_SETTINGS"
         case specificTestPlans = "SPECIFIC_TEST_PLANS"
         case unknownDefaultOpenApi = "unknown_default_open_api"

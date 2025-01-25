@@ -6,13 +6,10 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct GameCenterPlayerAchievementSubmission: Codable, JSONEncodable, Hashable {
+public struct GameCenterPlayerAchievementSubmission: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum ModelType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum ModelType: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case gamecenterplayerachievementsubmissions = "gameCenterPlayerAchievementSubmissions"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }

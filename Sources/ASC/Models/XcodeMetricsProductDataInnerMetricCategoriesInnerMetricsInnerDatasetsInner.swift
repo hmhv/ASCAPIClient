@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct XcodeMetricsProductDataInnerMetricCategoriesInnerMetricsInnerDatasetsInner: Codable, JSONEncodable, Hashable {
+public struct XcodeMetricsProductDataInnerMetricCategoriesInnerMetricsInnerDatasetsInner: Sendable, Codable, JSONEncodable, Hashable {
 
     public var filterCriteria: XcodeMetricsProductDataInnerMetricCategoriesInnerMetricsInnerDatasetsInnerFilterCriteria?
     public var points: [XcodeMetricsProductDataInnerMetricCategoriesInnerMetricsInnerDatasetsInnerPointsInner]?

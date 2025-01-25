@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public enum AppEncryptionDeclarationState: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+public enum AppEncryptionDeclarationState: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
     case created = "CREATED"
     case inReview = "IN_REVIEW"
     case approved = "APPROVED"

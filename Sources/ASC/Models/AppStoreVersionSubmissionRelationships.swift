@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppStoreVersionSubmissionRelationships: Codable, JSONEncodable, Hashable {
+public struct AppStoreVersionSubmissionRelationships: Sendable, Codable, JSONEncodable, Hashable {
 
     public var appStoreVersion: AppClipDefaultExperienceCreateRequestDataRelationshipsReleaseWithAppStoreVersion?
 

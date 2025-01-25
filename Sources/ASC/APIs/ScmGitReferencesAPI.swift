@@ -6,16 +6,13 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class ScmGitReferencesAPI {
 
     /**
      * enum for parameter fieldsScmGitReferences
      */
-    public enum FieldsScmGitReferences_scmGitReferencesGetInstance: String, CaseIterable {
+    public enum FieldsScmGitReferences_scmGitReferencesGetInstance: String, Sendable, CaseIterable {
         case name = "name"
         case canonicalname = "canonicalName"
         case isdeleted = "isDeleted"
@@ -26,7 +23,7 @@ open class ScmGitReferencesAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_scmGitReferencesGetInstance: String, CaseIterable {
+    public enum Include_scmGitReferencesGetInstance: String, Sendable, CaseIterable {
         case repository = "repository"
     }
 
@@ -35,20 +32,22 @@ open class ScmGitReferencesAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsScmGitReferences: (query) the fields to include for returned resources of type scmGitReferences (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: ScmGitReferenceResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func scmGitReferencesGetInstance(id: String, fieldsScmGitReferences: [FieldsScmGitReferences_scmGitReferencesGetInstance]? = nil, include: [Include_scmGitReferencesGetInstance]? = nil) async throws -> ScmGitReferenceResponse {
-        return try await scmGitReferencesGetInstanceWithRequestBuilder(id: id, fieldsScmGitReferences: fieldsScmGitReferences, include: include).execute().body
+    open class func scmGitReferencesGetInstance(id: String, fieldsScmGitReferences: [FieldsScmGitReferences_scmGitReferencesGetInstance]? = nil, include: [Include_scmGitReferencesGetInstance]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> ScmGitReferenceResponse {
+        return try await scmGitReferencesGetInstanceWithRequestBuilder(id: id, fieldsScmGitReferences: fieldsScmGitReferences, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: ScmGitReferenceResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func scmGitReferencesGetInstance(urlString: String) async throws -> ScmGitReferenceResponse {
-        return try await scmGitReferencesGetInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func scmGitReferencesGetInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> ScmGitReferenceResponse {
+        return try await scmGitReferencesGetInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -59,20 +58,21 @@ open class ScmGitReferencesAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsScmGitReferences: (query) the fields to include for returned resources of type scmGitReferences (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ScmGitReferenceResponse> 
      */
-    open class func scmGitReferencesGetInstanceWithRequestBuilder(id: String, fieldsScmGitReferences: [FieldsScmGitReferences_scmGitReferencesGetInstance]? = nil, include: [Include_scmGitReferencesGetInstance]? = nil) -> RequestBuilder<ScmGitReferenceResponse> {
+    open class func scmGitReferencesGetInstanceWithRequestBuilder(id: String, fieldsScmGitReferences: [FieldsScmGitReferences_scmGitReferencesGetInstance]? = nil, include: [Include_scmGitReferencesGetInstance]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<ScmGitReferenceResponse> {
         var localVariablePath = "/v1/scmGitReferences/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[scmGitReferences]": (wrappedValue: fieldsScmGitReferences?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "fields[scmGitReferences]": (wrappedValue: fieldsScmGitReferences?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -81,9 +81,9 @@ open class ScmGitReferencesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<ScmGitReferenceResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<ScmGitReferenceResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -92,17 +92,18 @@ open class ScmGitReferencesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ScmGitReferenceResponse> 
      */
-    open class func scmGitReferencesGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<ScmGitReferenceResponse> {
+    open class func scmGitReferencesGetInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<ScmGitReferenceResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<ScmGitReferenceResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<ScmGitReferenceResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

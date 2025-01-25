@@ -6,29 +6,28 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class BetaTesterInvitationsAPI {
 
     /**
 
      - parameter betaTesterInvitationCreateRequest: (body) BetaTesterInvitation representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BetaTesterInvitationResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaTesterInvitationsCreateInstance(betaTesterInvitationCreateRequest: BetaTesterInvitationCreateRequest) async throws -> BetaTesterInvitationResponse {
-        return try await betaTesterInvitationsCreateInstanceWithRequestBuilder(betaTesterInvitationCreateRequest: betaTesterInvitationCreateRequest).execute().body
+    open class func betaTesterInvitationsCreateInstance(betaTesterInvitationCreateRequest: BetaTesterInvitationCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BetaTesterInvitationResponse {
+        return try await betaTesterInvitationsCreateInstanceWithRequestBuilder(betaTesterInvitationCreateRequest: betaTesterInvitationCreateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BetaTesterInvitationResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaTesterInvitationsCreateInstance(urlString: String) async throws -> BetaTesterInvitationResponse {
-        return try await betaTesterInvitationsCreateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func betaTesterInvitationsCreateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BetaTesterInvitationResponse {
+        return try await betaTesterInvitationsCreateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -37,12 +36,13 @@ open class BetaTesterInvitationsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter betaTesterInvitationCreateRequest: (body) BetaTesterInvitation representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BetaTesterInvitationResponse> 
      */
-    open class func betaTesterInvitationsCreateInstanceWithRequestBuilder(betaTesterInvitationCreateRequest: BetaTesterInvitationCreateRequest) -> RequestBuilder<BetaTesterInvitationResponse> {
+    open class func betaTesterInvitationsCreateInstanceWithRequestBuilder(betaTesterInvitationCreateRequest: BetaTesterInvitationCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BetaTesterInvitationResponse> {
         let localVariablePath = "/v1/betaTesterInvitations"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: betaTesterInvitationCreateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: betaTesterInvitationCreateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -52,9 +52,9 @@ open class BetaTesterInvitationsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BetaTesterInvitationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BetaTesterInvitationResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -63,17 +63,18 @@ open class BetaTesterInvitationsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BetaTesterInvitationResponse> 
      */
-    open class func betaTesterInvitationsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<BetaTesterInvitationResponse> {
+    open class func betaTesterInvitationsCreateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BetaTesterInvitationResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BetaTesterInvitationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BetaTesterInvitationResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

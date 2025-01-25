@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AlternativeDistributionKeyCreateRequestDataAttributes: Codable, JSONEncodable, Hashable {
+public struct AlternativeDistributionKeyCreateRequestDataAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
     public var publicKey: String
 

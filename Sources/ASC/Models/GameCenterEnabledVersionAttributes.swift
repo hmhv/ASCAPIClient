@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct GameCenterEnabledVersionAttributes: Codable, JSONEncodable, Hashable {
+public struct GameCenterEnabledVersionAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
     public var platform: Platform?
     public var versionString: String?

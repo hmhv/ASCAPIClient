@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct CustomerReviewResponseV1CreateRequestDataAttributes: Codable, JSONEncodable, Hashable {
+public struct CustomerReviewResponseV1CreateRequestDataAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
     public var responseBody: String
 

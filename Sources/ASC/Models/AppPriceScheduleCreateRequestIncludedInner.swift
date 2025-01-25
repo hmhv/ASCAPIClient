@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public enum AppPriceScheduleCreateRequestIncludedInner: Codable, JSONEncodable, Hashable {
+public enum AppPriceScheduleCreateRequestIncludedInner: Sendable, Codable, JSONEncodable, Hashable {
     case typeAppPriceV2InlineCreate(AppPriceV2InlineCreate)
     case typeTerritoryInlineCreate(TerritoryInlineCreate)
 

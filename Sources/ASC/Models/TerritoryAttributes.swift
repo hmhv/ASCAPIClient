@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct TerritoryAttributes: Codable, JSONEncodable, Hashable {
+public struct TerritoryAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
     public var currency: String?
 

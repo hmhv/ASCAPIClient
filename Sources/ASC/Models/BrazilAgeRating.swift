@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public enum BrazilAgeRating: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+public enum BrazilAgeRating: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
     case l = "L"
     case ten = "TEN"
     case twelve = "TWELVE"

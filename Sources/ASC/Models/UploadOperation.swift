@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct UploadOperation: Codable, JSONEncodable, Hashable {
+public struct UploadOperation: Sendable, Codable, JSONEncodable, Hashable {
 
     public var method: String?
     public var url: String?

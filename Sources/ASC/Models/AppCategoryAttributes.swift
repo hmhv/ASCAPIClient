@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppCategoryAttributes: Codable, JSONEncodable, Hashable {
+public struct AppCategoryAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
     public var platforms: [Platform]?
 

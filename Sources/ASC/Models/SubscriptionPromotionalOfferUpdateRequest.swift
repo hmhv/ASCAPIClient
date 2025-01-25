@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct SubscriptionPromotionalOfferUpdateRequest: Codable, JSONEncodable, Hashable {
+public struct SubscriptionPromotionalOfferUpdateRequest: Sendable, Codable, JSONEncodable, Hashable {
 
     public var data: SubscriptionPromotionalOfferUpdateRequestData
     public var included: [SubscriptionPromotionalOfferPriceInlineCreate]?

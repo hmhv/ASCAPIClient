@@ -6,13 +6,10 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppPreviewSetCreateRequestData: Codable, JSONEncodable, Hashable {
+public struct AppPreviewSetCreateRequestData: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum ModelType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum ModelType: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case apppreviewsets = "appPreviewSets"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }

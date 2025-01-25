@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct CiIssueCounts: Codable, JSONEncodable, Hashable {
+public struct CiIssueCounts: Sendable, Codable, JSONEncodable, Hashable {
 
     public var analyzerWarnings: Int?
     public var errors: Int?

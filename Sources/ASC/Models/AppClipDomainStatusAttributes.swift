@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppClipDomainStatusAttributes: Codable, JSONEncodable, Hashable {
+public struct AppClipDomainStatusAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
     public var domains: [AppClipDomainStatusAttributesDomainsInner]?
     public var lastUpdatedDate: Date?

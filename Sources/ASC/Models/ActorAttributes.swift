@@ -6,13 +6,10 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct ActorAttributes: Codable, JSONEncodable, Hashable {
+public struct ActorAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum ActorType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum ActorType: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case user = "USER"
         case apiKey = "API_KEY"
         case xcodeCloud = "XCODE_CLOUD"

@@ -6,29 +6,28 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class GameCenterAchievementLocalizationsAPI {
 
     /**
 
      - parameter gameCenterAchievementLocalizationCreateRequest: (body) GameCenterAchievementLocalization representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterAchievementLocalizationResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterAchievementLocalizationsCreateInstance(gameCenterAchievementLocalizationCreateRequest: GameCenterAchievementLocalizationCreateRequest) async throws -> GameCenterAchievementLocalizationResponse {
-        return try await gameCenterAchievementLocalizationsCreateInstanceWithRequestBuilder(gameCenterAchievementLocalizationCreateRequest: gameCenterAchievementLocalizationCreateRequest).execute().body
+    open class func gameCenterAchievementLocalizationsCreateInstance(gameCenterAchievementLocalizationCreateRequest: GameCenterAchievementLocalizationCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterAchievementLocalizationResponse {
+        return try await gameCenterAchievementLocalizationsCreateInstanceWithRequestBuilder(gameCenterAchievementLocalizationCreateRequest: gameCenterAchievementLocalizationCreateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterAchievementLocalizationResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterAchievementLocalizationsCreateInstance(urlString: String) async throws -> GameCenterAchievementLocalizationResponse {
-        return try await gameCenterAchievementLocalizationsCreateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func gameCenterAchievementLocalizationsCreateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterAchievementLocalizationResponse {
+        return try await gameCenterAchievementLocalizationsCreateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -37,12 +36,13 @@ open class GameCenterAchievementLocalizationsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter gameCenterAchievementLocalizationCreateRequest: (body) GameCenterAchievementLocalization representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterAchievementLocalizationResponse> 
      */
-    open class func gameCenterAchievementLocalizationsCreateInstanceWithRequestBuilder(gameCenterAchievementLocalizationCreateRequest: GameCenterAchievementLocalizationCreateRequest) -> RequestBuilder<GameCenterAchievementLocalizationResponse> {
+    open class func gameCenterAchievementLocalizationsCreateInstanceWithRequestBuilder(gameCenterAchievementLocalizationCreateRequest: GameCenterAchievementLocalizationCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterAchievementLocalizationResponse> {
         let localVariablePath = "/v1/gameCenterAchievementLocalizations"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: gameCenterAchievementLocalizationCreateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: gameCenterAchievementLocalizationCreateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -52,9 +52,9 @@ open class GameCenterAchievementLocalizationsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterAchievementLocalizationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterAchievementLocalizationResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -63,37 +63,40 @@ open class GameCenterAchievementLocalizationsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterAchievementLocalizationResponse> 
      */
-    open class func gameCenterAchievementLocalizationsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterAchievementLocalizationResponse> {
+    open class func gameCenterAchievementLocalizationsCreateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterAchievementLocalizationResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterAchievementLocalizationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterAchievementLocalizationResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterAchievementLocalizationsDeleteInstance(id: String) async throws {
-        return try await gameCenterAchievementLocalizationsDeleteInstanceWithRequestBuilder(id: id).execute().body
+    open class func gameCenterAchievementLocalizationsDeleteInstance(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await gameCenterAchievementLocalizationsDeleteInstanceWithRequestBuilder(id: id, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterAchievementLocalizationsDeleteInstance(urlString: String) async throws {
-        return try await gameCenterAchievementLocalizationsDeleteInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func gameCenterAchievementLocalizationsDeleteInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await gameCenterAchievementLocalizationsDeleteInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -102,14 +105,15 @@ open class GameCenterAchievementLocalizationsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func gameCenterAchievementLocalizationsDeleteInstanceWithRequestBuilder(id: String) -> RequestBuilder<Void> {
+    open class func gameCenterAchievementLocalizationsDeleteInstanceWithRequestBuilder(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/gameCenterAchievementLocalizations/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -120,9 +124,9 @@ open class GameCenterAchievementLocalizationsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -131,24 +135,25 @@ open class GameCenterAchievementLocalizationsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func gameCenterAchievementLocalizationsDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func gameCenterAchievementLocalizationsDeleteInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsGameCenterAchievements
      */
-    public enum FieldsGameCenterAchievements_gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelated: String, CaseIterable {
+    public enum FieldsGameCenterAchievements_gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelated: String, Sendable, CaseIterable {
         case referencename = "referenceName"
         case vendoridentifier = "vendorIdentifier"
         case points = "points"
@@ -165,7 +170,7 @@ open class GameCenterAchievementLocalizationsAPI {
     /**
      * enum for parameter fieldsGameCenterDetails
      */
-    public enum FieldsGameCenterDetails_gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelated: String, CaseIterable {
+    public enum FieldsGameCenterDetails_gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelated: String, Sendable, CaseIterable {
         case arcadeenabled = "arcadeEnabled"
         case challengeenabled = "challengeEnabled"
         case app = "app"
@@ -184,7 +189,7 @@ open class GameCenterAchievementLocalizationsAPI {
     /**
      * enum for parameter fieldsGameCenterGroups
      */
-    public enum FieldsGameCenterGroups_gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelated: String, CaseIterable {
+    public enum FieldsGameCenterGroups_gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelated: String, Sendable, CaseIterable {
         case referencename = "referenceName"
         case gamecenterdetails = "gameCenterDetails"
         case gamecenterleaderboards = "gameCenterLeaderboards"
@@ -195,7 +200,7 @@ open class GameCenterAchievementLocalizationsAPI {
     /**
      * enum for parameter fieldsGameCenterAchievementLocalizations
      */
-    public enum FieldsGameCenterAchievementLocalizations_gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelated: String, CaseIterable {
+    public enum FieldsGameCenterAchievementLocalizations_gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelated: String, Sendable, CaseIterable {
         case locale = "locale"
         case name = "name"
         case beforeearneddescription = "beforeEarnedDescription"
@@ -207,7 +212,7 @@ open class GameCenterAchievementLocalizationsAPI {
     /**
      * enum for parameter fieldsGameCenterAchievementReleases
      */
-    public enum FieldsGameCenterAchievementReleases_gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelated: String, CaseIterable {
+    public enum FieldsGameCenterAchievementReleases_gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelated: String, Sendable, CaseIterable {
         case live = "live"
         case gamecenterdetail = "gameCenterDetail"
         case gamecenterachievement = "gameCenterAchievement"
@@ -216,7 +221,7 @@ open class GameCenterAchievementLocalizationsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelated: String, CaseIterable {
+    public enum Include_gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelated: String, Sendable, CaseIterable {
         case gamecenterdetail = "gameCenterDetail"
         case gamecentergroup = "gameCenterGroup"
         case groupachievement = "groupAchievement"
@@ -235,20 +240,22 @@ open class GameCenterAchievementLocalizationsAPI {
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitLocalizations: (query) maximum number of related localizations returned (when they are included) (optional)
      - parameter limitReleases: (query) maximum number of related releases returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterAchievementResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelated(id: String, fieldsGameCenterAchievements: [FieldsGameCenterAchievements_gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelated]? = nil, fieldsGameCenterGroups: [FieldsGameCenterGroups_gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelated]? = nil, fieldsGameCenterAchievementLocalizations: [FieldsGameCenterAchievementLocalizations_gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelated]? = nil, fieldsGameCenterAchievementReleases: [FieldsGameCenterAchievementReleases_gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelated]? = nil, include: [Include_gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelated]? = nil, limitLocalizations: Int? = nil, limitReleases: Int? = nil) async throws -> GameCenterAchievementResponse {
-        return try await gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelatedWithRequestBuilder(id: id, fieldsGameCenterAchievements: fieldsGameCenterAchievements, fieldsGameCenterDetails: fieldsGameCenterDetails, fieldsGameCenterGroups: fieldsGameCenterGroups, fieldsGameCenterAchievementLocalizations: fieldsGameCenterAchievementLocalizations, fieldsGameCenterAchievementReleases: fieldsGameCenterAchievementReleases, include: include, limitLocalizations: limitLocalizations, limitReleases: limitReleases).execute().body
+    open class func gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelated(id: String, fieldsGameCenterAchievements: [FieldsGameCenterAchievements_gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelated]? = nil, fieldsGameCenterGroups: [FieldsGameCenterGroups_gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelated]? = nil, fieldsGameCenterAchievementLocalizations: [FieldsGameCenterAchievementLocalizations_gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelated]? = nil, fieldsGameCenterAchievementReleases: [FieldsGameCenterAchievementReleases_gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelated]? = nil, include: [Include_gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelated]? = nil, limitLocalizations: Int? = nil, limitReleases: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterAchievementResponse {
+        return try await gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelatedWithRequestBuilder(id: id, fieldsGameCenterAchievements: fieldsGameCenterAchievements, fieldsGameCenterDetails: fieldsGameCenterDetails, fieldsGameCenterGroups: fieldsGameCenterGroups, fieldsGameCenterAchievementLocalizations: fieldsGameCenterAchievementLocalizations, fieldsGameCenterAchievementReleases: fieldsGameCenterAchievementReleases, include: include, limitLocalizations: limitLocalizations, limitReleases: limitReleases, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterAchievementResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelated(urlString: String) async throws -> GameCenterAchievementResponse {
-        return try await gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterAchievementResponse {
+        return try await gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -265,26 +272,27 @@ open class GameCenterAchievementLocalizationsAPI {
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitLocalizations: (query) maximum number of related localizations returned (when they are included) (optional)
      - parameter limitReleases: (query) maximum number of related releases returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterAchievementResponse> 
      */
-    open class func gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelatedWithRequestBuilder(id: String, fieldsGameCenterAchievements: [FieldsGameCenterAchievements_gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelated]? = nil, fieldsGameCenterGroups: [FieldsGameCenterGroups_gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelated]? = nil, fieldsGameCenterAchievementLocalizations: [FieldsGameCenterAchievementLocalizations_gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelated]? = nil, fieldsGameCenterAchievementReleases: [FieldsGameCenterAchievementReleases_gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelated]? = nil, include: [Include_gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelated]? = nil, limitLocalizations: Int? = nil, limitReleases: Int? = nil) -> RequestBuilder<GameCenterAchievementResponse> {
+    open class func gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelatedWithRequestBuilder(id: String, fieldsGameCenterAchievements: [FieldsGameCenterAchievements_gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelated]? = nil, fieldsGameCenterGroups: [FieldsGameCenterGroups_gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelated]? = nil, fieldsGameCenterAchievementLocalizations: [FieldsGameCenterAchievementLocalizations_gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelated]? = nil, fieldsGameCenterAchievementReleases: [FieldsGameCenterAchievementReleases_gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelated]? = nil, include: [Include_gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelated]? = nil, limitLocalizations: Int? = nil, limitReleases: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterAchievementResponse> {
         var localVariablePath = "/v1/gameCenterAchievementLocalizations/{id}/gameCenterAchievement"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[gameCenterAchievements]": (wrappedValue: fieldsGameCenterAchievements?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterDetails]": (wrappedValue: fieldsGameCenterDetails?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterGroups]": (wrappedValue: fieldsGameCenterGroups?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterAchievementLocalizations]": (wrappedValue: fieldsGameCenterAchievementLocalizations?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterAchievementReleases]": (wrappedValue: fieldsGameCenterAchievementReleases?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[localizations]": (wrappedValue: limitLocalizations?.encodeToJSON(), isExplode: true),
-            "limit[releases]": (wrappedValue: limitReleases?.encodeToJSON(), isExplode: true),
+            "fields[gameCenterAchievements]": (wrappedValue: fieldsGameCenterAchievements?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[gameCenterDetails]": (wrappedValue: fieldsGameCenterDetails?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[gameCenterGroups]": (wrappedValue: fieldsGameCenterGroups?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[gameCenterAchievementLocalizations]": (wrappedValue: fieldsGameCenterAchievementLocalizations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[gameCenterAchievementReleases]": (wrappedValue: fieldsGameCenterAchievementReleases?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[localizations]": (wrappedValue: limitLocalizations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[releases]": (wrappedValue: limitReleases?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -293,9 +301,9 @@ open class GameCenterAchievementLocalizationsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterAchievementResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterAchievementResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -304,24 +312,25 @@ open class GameCenterAchievementLocalizationsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterAchievementResponse> 
      */
-    open class func gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterAchievementResponse> {
+    open class func gameCenterAchievementLocalizationsGameCenterAchievementGetToOneRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterAchievementResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterAchievementResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterAchievementResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsGameCenterAchievementImages
      */
-    public enum FieldsGameCenterAchievementImages_gameCenterAchievementLocalizationsGameCenterAchievementImageGetToOneRelated: String, CaseIterable {
+    public enum FieldsGameCenterAchievementImages_gameCenterAchievementLocalizationsGameCenterAchievementImageGetToOneRelated: String, Sendable, CaseIterable {
         case filesize = "fileSize"
         case filename = "fileName"
         case imageasset = "imageAsset"
@@ -333,7 +342,7 @@ open class GameCenterAchievementLocalizationsAPI {
     /**
      * enum for parameter fieldsGameCenterAchievementLocalizations
      */
-    public enum FieldsGameCenterAchievementLocalizations_gameCenterAchievementLocalizationsGameCenterAchievementImageGetToOneRelated: String, CaseIterable {
+    public enum FieldsGameCenterAchievementLocalizations_gameCenterAchievementLocalizationsGameCenterAchievementImageGetToOneRelated: String, Sendable, CaseIterable {
         case locale = "locale"
         case name = "name"
         case beforeearneddescription = "beforeEarnedDescription"
@@ -345,7 +354,7 @@ open class GameCenterAchievementLocalizationsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_gameCenterAchievementLocalizationsGameCenterAchievementImageGetToOneRelated: String, CaseIterable {
+    public enum Include_gameCenterAchievementLocalizationsGameCenterAchievementImageGetToOneRelated: String, Sendable, CaseIterable {
         case gamecenterachievementlocalization = "gameCenterAchievementLocalization"
     }
 
@@ -355,20 +364,22 @@ open class GameCenterAchievementLocalizationsAPI {
      - parameter fieldsGameCenterAchievementImages: (query) the fields to include for returned resources of type gameCenterAchievementImages (optional)
      - parameter fieldsGameCenterAchievementLocalizations: (query) the fields to include for returned resources of type gameCenterAchievementLocalizations (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterAchievementImageResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterAchievementLocalizationsGameCenterAchievementImageGetToOneRelated(id: String, fieldsGameCenterAchievementImages: [FieldsGameCenterAchievementImages_gameCenterAchievementLocalizationsGameCenterAchievementImageGetToOneRelated]? = nil, fieldsGameCenterAchievementLocalizations: [FieldsGameCenterAchievementLocalizations_gameCenterAchievementLocalizationsGameCenterAchievementImageGetToOneRelated]? = nil, include: [Include_gameCenterAchievementLocalizationsGameCenterAchievementImageGetToOneRelated]? = nil) async throws -> GameCenterAchievementImageResponse {
-        return try await gameCenterAchievementLocalizationsGameCenterAchievementImageGetToOneRelatedWithRequestBuilder(id: id, fieldsGameCenterAchievementImages: fieldsGameCenterAchievementImages, fieldsGameCenterAchievementLocalizations: fieldsGameCenterAchievementLocalizations, include: include).execute().body
+    open class func gameCenterAchievementLocalizationsGameCenterAchievementImageGetToOneRelated(id: String, fieldsGameCenterAchievementImages: [FieldsGameCenterAchievementImages_gameCenterAchievementLocalizationsGameCenterAchievementImageGetToOneRelated]? = nil, fieldsGameCenterAchievementLocalizations: [FieldsGameCenterAchievementLocalizations_gameCenterAchievementLocalizationsGameCenterAchievementImageGetToOneRelated]? = nil, include: [Include_gameCenterAchievementLocalizationsGameCenterAchievementImageGetToOneRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterAchievementImageResponse {
+        return try await gameCenterAchievementLocalizationsGameCenterAchievementImageGetToOneRelatedWithRequestBuilder(id: id, fieldsGameCenterAchievementImages: fieldsGameCenterAchievementImages, fieldsGameCenterAchievementLocalizations: fieldsGameCenterAchievementLocalizations, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterAchievementImageResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterAchievementLocalizationsGameCenterAchievementImageGetToOneRelated(urlString: String) async throws -> GameCenterAchievementImageResponse {
-        return try await gameCenterAchievementLocalizationsGameCenterAchievementImageGetToOneRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func gameCenterAchievementLocalizationsGameCenterAchievementImageGetToOneRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterAchievementImageResponse {
+        return try await gameCenterAchievementLocalizationsGameCenterAchievementImageGetToOneRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -380,21 +391,22 @@ open class GameCenterAchievementLocalizationsAPI {
      - parameter fieldsGameCenterAchievementImages: (query) the fields to include for returned resources of type gameCenterAchievementImages (optional)
      - parameter fieldsGameCenterAchievementLocalizations: (query) the fields to include for returned resources of type gameCenterAchievementLocalizations (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterAchievementImageResponse> 
      */
-    open class func gameCenterAchievementLocalizationsGameCenterAchievementImageGetToOneRelatedWithRequestBuilder(id: String, fieldsGameCenterAchievementImages: [FieldsGameCenterAchievementImages_gameCenterAchievementLocalizationsGameCenterAchievementImageGetToOneRelated]? = nil, fieldsGameCenterAchievementLocalizations: [FieldsGameCenterAchievementLocalizations_gameCenterAchievementLocalizationsGameCenterAchievementImageGetToOneRelated]? = nil, include: [Include_gameCenterAchievementLocalizationsGameCenterAchievementImageGetToOneRelated]? = nil) -> RequestBuilder<GameCenterAchievementImageResponse> {
+    open class func gameCenterAchievementLocalizationsGameCenterAchievementImageGetToOneRelatedWithRequestBuilder(id: String, fieldsGameCenterAchievementImages: [FieldsGameCenterAchievementImages_gameCenterAchievementLocalizationsGameCenterAchievementImageGetToOneRelated]? = nil, fieldsGameCenterAchievementLocalizations: [FieldsGameCenterAchievementLocalizations_gameCenterAchievementLocalizationsGameCenterAchievementImageGetToOneRelated]? = nil, include: [Include_gameCenterAchievementLocalizationsGameCenterAchievementImageGetToOneRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterAchievementImageResponse> {
         var localVariablePath = "/v1/gameCenterAchievementLocalizations/{id}/gameCenterAchievementImage"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[gameCenterAchievementImages]": (wrappedValue: fieldsGameCenterAchievementImages?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterAchievementLocalizations]": (wrappedValue: fieldsGameCenterAchievementLocalizations?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "fields[gameCenterAchievementImages]": (wrappedValue: fieldsGameCenterAchievementImages?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[gameCenterAchievementLocalizations]": (wrappedValue: fieldsGameCenterAchievementLocalizations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -403,9 +415,9 @@ open class GameCenterAchievementLocalizationsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterAchievementImageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterAchievementImageResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -414,24 +426,25 @@ open class GameCenterAchievementLocalizationsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterAchievementImageResponse> 
      */
-    open class func gameCenterAchievementLocalizationsGameCenterAchievementImageGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterAchievementImageResponse> {
+    open class func gameCenterAchievementLocalizationsGameCenterAchievementImageGetToOneRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterAchievementImageResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterAchievementImageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterAchievementImageResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsGameCenterAchievementLocalizations
      */
-    public enum FieldsGameCenterAchievementLocalizations_gameCenterAchievementLocalizationsGetInstance: String, CaseIterable {
+    public enum FieldsGameCenterAchievementLocalizations_gameCenterAchievementLocalizationsGetInstance: String, Sendable, CaseIterable {
         case locale = "locale"
         case name = "name"
         case beforeearneddescription = "beforeEarnedDescription"
@@ -443,7 +456,7 @@ open class GameCenterAchievementLocalizationsAPI {
     /**
      * enum for parameter fieldsGameCenterAchievements
      */
-    public enum FieldsGameCenterAchievements_gameCenterAchievementLocalizationsGetInstance: String, CaseIterable {
+    public enum FieldsGameCenterAchievements_gameCenterAchievementLocalizationsGetInstance: String, Sendable, CaseIterable {
         case referencename = "referenceName"
         case vendoridentifier = "vendorIdentifier"
         case points = "points"
@@ -460,7 +473,7 @@ open class GameCenterAchievementLocalizationsAPI {
     /**
      * enum for parameter fieldsGameCenterAchievementImages
      */
-    public enum FieldsGameCenterAchievementImages_gameCenterAchievementLocalizationsGetInstance: String, CaseIterable {
+    public enum FieldsGameCenterAchievementImages_gameCenterAchievementLocalizationsGetInstance: String, Sendable, CaseIterable {
         case filesize = "fileSize"
         case filename = "fileName"
         case imageasset = "imageAsset"
@@ -472,7 +485,7 @@ open class GameCenterAchievementLocalizationsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_gameCenterAchievementLocalizationsGetInstance: String, CaseIterable {
+    public enum Include_gameCenterAchievementLocalizationsGetInstance: String, Sendable, CaseIterable {
         case gamecenterachievement = "gameCenterAchievement"
         case gamecenterachievementimage = "gameCenterAchievementImage"
     }
@@ -484,20 +497,22 @@ open class GameCenterAchievementLocalizationsAPI {
      - parameter fieldsGameCenterAchievements: (query) the fields to include for returned resources of type gameCenterAchievements (optional)
      - parameter fieldsGameCenterAchievementImages: (query) the fields to include for returned resources of type gameCenterAchievementImages (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterAchievementLocalizationResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterAchievementLocalizationsGetInstance(id: String, fieldsGameCenterAchievementLocalizations: [FieldsGameCenterAchievementLocalizations_gameCenterAchievementLocalizationsGetInstance]? = nil, fieldsGameCenterAchievements: [FieldsGameCenterAchievements_gameCenterAchievementLocalizationsGetInstance]? = nil, fieldsGameCenterAchievementImages: [FieldsGameCenterAchievementImages_gameCenterAchievementLocalizationsGetInstance]? = nil, include: [Include_gameCenterAchievementLocalizationsGetInstance]? = nil) async throws -> GameCenterAchievementLocalizationResponse {
-        return try await gameCenterAchievementLocalizationsGetInstanceWithRequestBuilder(id: id, fieldsGameCenterAchievementLocalizations: fieldsGameCenterAchievementLocalizations, fieldsGameCenterAchievements: fieldsGameCenterAchievements, fieldsGameCenterAchievementImages: fieldsGameCenterAchievementImages, include: include).execute().body
+    open class func gameCenterAchievementLocalizationsGetInstance(id: String, fieldsGameCenterAchievementLocalizations: [FieldsGameCenterAchievementLocalizations_gameCenterAchievementLocalizationsGetInstance]? = nil, fieldsGameCenterAchievements: [FieldsGameCenterAchievements_gameCenterAchievementLocalizationsGetInstance]? = nil, fieldsGameCenterAchievementImages: [FieldsGameCenterAchievementImages_gameCenterAchievementLocalizationsGetInstance]? = nil, include: [Include_gameCenterAchievementLocalizationsGetInstance]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterAchievementLocalizationResponse {
+        return try await gameCenterAchievementLocalizationsGetInstanceWithRequestBuilder(id: id, fieldsGameCenterAchievementLocalizations: fieldsGameCenterAchievementLocalizations, fieldsGameCenterAchievements: fieldsGameCenterAchievements, fieldsGameCenterAchievementImages: fieldsGameCenterAchievementImages, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterAchievementLocalizationResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterAchievementLocalizationsGetInstance(urlString: String) async throws -> GameCenterAchievementLocalizationResponse {
-        return try await gameCenterAchievementLocalizationsGetInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func gameCenterAchievementLocalizationsGetInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterAchievementLocalizationResponse {
+        return try await gameCenterAchievementLocalizationsGetInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -510,22 +525,23 @@ open class GameCenterAchievementLocalizationsAPI {
      - parameter fieldsGameCenterAchievements: (query) the fields to include for returned resources of type gameCenterAchievements (optional)
      - parameter fieldsGameCenterAchievementImages: (query) the fields to include for returned resources of type gameCenterAchievementImages (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterAchievementLocalizationResponse> 
      */
-    open class func gameCenterAchievementLocalizationsGetInstanceWithRequestBuilder(id: String, fieldsGameCenterAchievementLocalizations: [FieldsGameCenterAchievementLocalizations_gameCenterAchievementLocalizationsGetInstance]? = nil, fieldsGameCenterAchievements: [FieldsGameCenterAchievements_gameCenterAchievementLocalizationsGetInstance]? = nil, fieldsGameCenterAchievementImages: [FieldsGameCenterAchievementImages_gameCenterAchievementLocalizationsGetInstance]? = nil, include: [Include_gameCenterAchievementLocalizationsGetInstance]? = nil) -> RequestBuilder<GameCenterAchievementLocalizationResponse> {
+    open class func gameCenterAchievementLocalizationsGetInstanceWithRequestBuilder(id: String, fieldsGameCenterAchievementLocalizations: [FieldsGameCenterAchievementLocalizations_gameCenterAchievementLocalizationsGetInstance]? = nil, fieldsGameCenterAchievements: [FieldsGameCenterAchievements_gameCenterAchievementLocalizationsGetInstance]? = nil, fieldsGameCenterAchievementImages: [FieldsGameCenterAchievementImages_gameCenterAchievementLocalizationsGetInstance]? = nil, include: [Include_gameCenterAchievementLocalizationsGetInstance]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterAchievementLocalizationResponse> {
         var localVariablePath = "/v1/gameCenterAchievementLocalizations/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[gameCenterAchievementLocalizations]": (wrappedValue: fieldsGameCenterAchievementLocalizations?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterAchievements]": (wrappedValue: fieldsGameCenterAchievements?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterAchievementImages]": (wrappedValue: fieldsGameCenterAchievementImages?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "fields[gameCenterAchievementLocalizations]": (wrappedValue: fieldsGameCenterAchievementLocalizations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[gameCenterAchievements]": (wrappedValue: fieldsGameCenterAchievements?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[gameCenterAchievementImages]": (wrappedValue: fieldsGameCenterAchievementImages?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -534,9 +550,9 @@ open class GameCenterAchievementLocalizationsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterAchievementLocalizationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterAchievementLocalizationResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -545,38 +561,41 @@ open class GameCenterAchievementLocalizationsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterAchievementLocalizationResponse> 
      */
-    open class func gameCenterAchievementLocalizationsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterAchievementLocalizationResponse> {
+    open class func gameCenterAchievementLocalizationsGetInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterAchievementLocalizationResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterAchievementLocalizationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterAchievementLocalizationResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter gameCenterAchievementLocalizationUpdateRequest: (body) GameCenterAchievementLocalization representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterAchievementLocalizationResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterAchievementLocalizationsUpdateInstance(id: String, gameCenterAchievementLocalizationUpdateRequest: GameCenterAchievementLocalizationUpdateRequest) async throws -> GameCenterAchievementLocalizationResponse {
-        return try await gameCenterAchievementLocalizationsUpdateInstanceWithRequestBuilder(id: id, gameCenterAchievementLocalizationUpdateRequest: gameCenterAchievementLocalizationUpdateRequest).execute().body
+    open class func gameCenterAchievementLocalizationsUpdateInstance(id: String, gameCenterAchievementLocalizationUpdateRequest: GameCenterAchievementLocalizationUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterAchievementLocalizationResponse {
+        return try await gameCenterAchievementLocalizationsUpdateInstanceWithRequestBuilder(id: id, gameCenterAchievementLocalizationUpdateRequest: gameCenterAchievementLocalizationUpdateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterAchievementLocalizationResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterAchievementLocalizationsUpdateInstance(urlString: String) async throws -> GameCenterAchievementLocalizationResponse {
-        return try await gameCenterAchievementLocalizationsUpdateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func gameCenterAchievementLocalizationsUpdateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterAchievementLocalizationResponse {
+        return try await gameCenterAchievementLocalizationsUpdateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -586,15 +605,16 @@ open class GameCenterAchievementLocalizationsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter gameCenterAchievementLocalizationUpdateRequest: (body) GameCenterAchievementLocalization representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterAchievementLocalizationResponse> 
      */
-    open class func gameCenterAchievementLocalizationsUpdateInstanceWithRequestBuilder(id: String, gameCenterAchievementLocalizationUpdateRequest: GameCenterAchievementLocalizationUpdateRequest) -> RequestBuilder<GameCenterAchievementLocalizationResponse> {
+    open class func gameCenterAchievementLocalizationsUpdateInstanceWithRequestBuilder(id: String, gameCenterAchievementLocalizationUpdateRequest: GameCenterAchievementLocalizationUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterAchievementLocalizationResponse> {
         var localVariablePath = "/v1/gameCenterAchievementLocalizations/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: gameCenterAchievementLocalizationUpdateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: gameCenterAchievementLocalizationUpdateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -604,9 +624,9 @@ open class GameCenterAchievementLocalizationsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterAchievementLocalizationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterAchievementLocalizationResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -615,17 +635,18 @@ open class GameCenterAchievementLocalizationsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterAchievementLocalizationResponse> 
      */
-    open class func gameCenterAchievementLocalizationsUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterAchievementLocalizationResponse> {
+    open class func gameCenterAchievementLocalizationsUpdateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterAchievementLocalizationResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterAchievementLocalizationResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterAchievementLocalizationResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

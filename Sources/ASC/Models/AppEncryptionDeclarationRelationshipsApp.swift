@@ -6,12 +6,9 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 @available(*, deprecated, message: "This schema is deprecated.")
-public struct AppEncryptionDeclarationRelationshipsApp: Codable, JSONEncodable, Hashable {
+public struct AppEncryptionDeclarationRelationshipsApp: Sendable, Codable, JSONEncodable, Hashable {
 
     public var links: RelationshipLinks?
     public var data: AlternativeDistributionKeyCreateRequestDataRelationshipsAppData?

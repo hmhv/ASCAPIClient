@@ -6,13 +6,10 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct CiProductAttributes: Codable, JSONEncodable, Hashable {
+public struct CiProductAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum ProductType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum ProductType: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case app = "APP"
         case framework = "FRAMEWORK"
         case unknownDefaultOpenApi = "unknown_default_open_api"

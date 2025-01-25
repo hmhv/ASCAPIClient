@@ -6,16 +6,13 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class SalesReportsAPI {
 
     /**
      * enum for parameter filterReportType
      */
-    public enum FilterReportType_salesReportsGetCollection: String, CaseIterable {
+    public enum FilterReportType_salesReportsGetCollection: String, Sendable, CaseIterable {
         case sales = "SALES"
         case preOrder = "PRE_ORDER"
         case newsstand = "NEWSSTAND"
@@ -31,7 +28,7 @@ open class SalesReportsAPI {
     /**
      * enum for parameter filterReportSubType
      */
-    public enum FilterReportSubType_salesReportsGetCollection: String, CaseIterable {
+    public enum FilterReportSubType_salesReportsGetCollection: String, Sendable, CaseIterable {
         case summary = "SUMMARY"
         case detailed = "DETAILED"
         case summaryInstallType = "SUMMARY_INSTALL_TYPE"
@@ -42,7 +39,7 @@ open class SalesReportsAPI {
     /**
      * enum for parameter filterFrequency
      */
-    public enum FilterFrequency_salesReportsGetCollection: String, CaseIterable {
+    public enum FilterFrequency_salesReportsGetCollection: String, Sendable, CaseIterable {
         case daily = "DAILY"
         case weekly = "WEEKLY"
         case monthly = "MONTHLY"
@@ -57,20 +54,22 @@ open class SalesReportsAPI {
      - parameter filterFrequency: (query) filter by attribute &#39;frequency&#39; 
      - parameter filterReportDate: (query) filter by attribute &#39;reportDate&#39; (optional)
      - parameter filterVersion: (query) filter by attribute &#39;version&#39; (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: URL
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func salesReportsGetCollection(filterVendorNumber: [String], filterReportType: [FilterReportType_salesReportsGetCollection], filterReportSubType: [FilterReportSubType_salesReportsGetCollection], filterFrequency: [FilterFrequency_salesReportsGetCollection], filterReportDate: [String]? = nil, filterVersion: [String]? = nil) async throws -> URL {
-        return try await salesReportsGetCollectionWithRequestBuilder(filterVendorNumber: filterVendorNumber, filterReportType: filterReportType, filterReportSubType: filterReportSubType, filterFrequency: filterFrequency, filterReportDate: filterReportDate, filterVersion: filterVersion).execute().body
+    open class func salesReportsGetCollection(filterVendorNumber: [String], filterReportType: [FilterReportType_salesReportsGetCollection], filterReportSubType: [FilterReportSubType_salesReportsGetCollection], filterFrequency: [FilterFrequency_salesReportsGetCollection], filterReportDate: [String]? = nil, filterVersion: [String]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> URL {
+        return try await salesReportsGetCollectionWithRequestBuilder(filterVendorNumber: filterVendorNumber, filterReportType: filterReportType, filterReportSubType: filterReportSubType, filterFrequency: filterFrequency, filterReportDate: filterReportDate, filterVersion: filterVersion, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: URL
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func salesReportsGetCollection(urlString: String) async throws -> URL {
-        return try await salesReportsGetCollectionWithRequestBuilder(urlString: urlString).execute().body
+    open class func salesReportsGetCollection(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> URL {
+        return try await salesReportsGetCollectionWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -84,21 +83,22 @@ open class SalesReportsAPI {
      - parameter filterFrequency: (query) filter by attribute &#39;frequency&#39; 
      - parameter filterReportDate: (query) filter by attribute &#39;reportDate&#39; (optional)
      - parameter filterVersion: (query) filter by attribute &#39;version&#39; (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<URL> 
      */
-    open class func salesReportsGetCollectionWithRequestBuilder(filterVendorNumber: [String], filterReportType: [FilterReportType_salesReportsGetCollection], filterReportSubType: [FilterReportSubType_salesReportsGetCollection], filterFrequency: [FilterFrequency_salesReportsGetCollection], filterReportDate: [String]? = nil, filterVersion: [String]? = nil) -> RequestBuilder<URL> {
+    open class func salesReportsGetCollectionWithRequestBuilder(filterVendorNumber: [String], filterReportType: [FilterReportType_salesReportsGetCollection], filterReportSubType: [FilterReportSubType_salesReportsGetCollection], filterFrequency: [FilterFrequency_salesReportsGetCollection], filterReportDate: [String]? = nil, filterVersion: [String]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<URL> {
         let localVariablePath = "/v1/salesReports"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[vendorNumber]": (wrappedValue: filterVendorNumber.encodeToJSON(), isExplode: false),
-            "filter[reportType]": (wrappedValue: filterReportType.encodeToJSON(), isExplode: false),
-            "filter[reportSubType]": (wrappedValue: filterReportSubType.encodeToJSON(), isExplode: false),
-            "filter[frequency]": (wrappedValue: filterFrequency.encodeToJSON(), isExplode: false),
-            "filter[reportDate]": (wrappedValue: filterReportDate?.encodeToJSON(), isExplode: false),
-            "filter[version]": (wrappedValue: filterVersion?.encodeToJSON(), isExplode: false),
+            "filter[vendorNumber]": (wrappedValue: filterVendorNumber.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[reportType]": (wrappedValue: filterReportType.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[reportSubType]": (wrappedValue: filterReportSubType.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[frequency]": (wrappedValue: filterFrequency.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[reportDate]": (wrappedValue: filterReportDate?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[version]": (wrappedValue: filterVersion?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -107,9 +107,9 @@ open class SalesReportsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<URL>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<URL>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -118,17 +118,18 @@ open class SalesReportsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<URL> 
      */
-    open class func salesReportsGetCollectionWithRequestBuilder(urlString: String) -> RequestBuilder<URL> {
+    open class func salesReportsGetCollectionWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<URL> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<URL>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<URL>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

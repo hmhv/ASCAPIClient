@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct BuildIconsWithoutIncludesResponse: Codable, JSONEncodable, Hashable {
+public struct BuildIconsWithoutIncludesResponse: Sendable, Codable, JSONEncodable, Hashable {
 
     public var data: [BuildIcon]
     public var links: PagedDocumentLinks

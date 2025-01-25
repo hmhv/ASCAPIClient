@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public enum SubscriptionOfferEligibility: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+public enum SubscriptionOfferEligibility: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
     case stackWithIntroOffers = "STACK_WITH_INTRO_OFFERS"
     case replaceIntroOffers = "REPLACE_INTRO_OFFERS"
     case unknownDefaultOpenApi = "unknown_default_open_api"

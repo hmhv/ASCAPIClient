@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public enum AlternativeDistributionPackageVersionsResponseIncludedInner: Codable, JSONEncodable, Hashable {
+public enum AlternativeDistributionPackageVersionsResponseIncludedInner: Sendable, Codable, JSONEncodable, Hashable {
     case typeAlternativeDistributionPackage(AlternativeDistributionPackage)
     case typeAlternativeDistributionPackageDelta(AlternativeDistributionPackageDelta)
     case typeAlternativeDistributionPackageVariant(AlternativeDistributionPackageVariant)

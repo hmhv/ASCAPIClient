@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct DiagnosticLogsProductDataInnerDiagnosticLogsInnerDiagnosticMetaData: Codable, JSONEncodable, Hashable {
+public struct DiagnosticLogsProductDataInnerDiagnosticLogsInnerDiagnosticMetaData: Sendable, Codable, JSONEncodable, Hashable {
 
     public var bundleId: String?
     public var event: String?

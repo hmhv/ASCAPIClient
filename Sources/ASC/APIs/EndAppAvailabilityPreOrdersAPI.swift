@@ -6,29 +6,28 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class EndAppAvailabilityPreOrdersAPI {
 
     /**
 
      - parameter endAppAvailabilityPreOrderCreateRequest: (body) EndAppAvailabilityPreOrder representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: EndAppAvailabilityPreOrderResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func endAppAvailabilityPreOrdersCreateInstance(endAppAvailabilityPreOrderCreateRequest: EndAppAvailabilityPreOrderCreateRequest) async throws -> EndAppAvailabilityPreOrderResponse {
-        return try await endAppAvailabilityPreOrdersCreateInstanceWithRequestBuilder(endAppAvailabilityPreOrderCreateRequest: endAppAvailabilityPreOrderCreateRequest).execute().body
+    open class func endAppAvailabilityPreOrdersCreateInstance(endAppAvailabilityPreOrderCreateRequest: EndAppAvailabilityPreOrderCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> EndAppAvailabilityPreOrderResponse {
+        return try await endAppAvailabilityPreOrdersCreateInstanceWithRequestBuilder(endAppAvailabilityPreOrderCreateRequest: endAppAvailabilityPreOrderCreateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: EndAppAvailabilityPreOrderResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func endAppAvailabilityPreOrdersCreateInstance(urlString: String) async throws -> EndAppAvailabilityPreOrderResponse {
-        return try await endAppAvailabilityPreOrdersCreateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func endAppAvailabilityPreOrdersCreateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> EndAppAvailabilityPreOrderResponse {
+        return try await endAppAvailabilityPreOrdersCreateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -37,12 +36,13 @@ open class EndAppAvailabilityPreOrdersAPI {
        - type: http
        - name: itc-bearer-token
      - parameter endAppAvailabilityPreOrderCreateRequest: (body) EndAppAvailabilityPreOrder representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<EndAppAvailabilityPreOrderResponse> 
      */
-    open class func endAppAvailabilityPreOrdersCreateInstanceWithRequestBuilder(endAppAvailabilityPreOrderCreateRequest: EndAppAvailabilityPreOrderCreateRequest) -> RequestBuilder<EndAppAvailabilityPreOrderResponse> {
+    open class func endAppAvailabilityPreOrdersCreateInstanceWithRequestBuilder(endAppAvailabilityPreOrderCreateRequest: EndAppAvailabilityPreOrderCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<EndAppAvailabilityPreOrderResponse> {
         let localVariablePath = "/v1/endAppAvailabilityPreOrders"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: endAppAvailabilityPreOrderCreateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: endAppAvailabilityPreOrderCreateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -52,9 +52,9 @@ open class EndAppAvailabilityPreOrdersAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<EndAppAvailabilityPreOrderResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<EndAppAvailabilityPreOrderResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -63,17 +63,18 @@ open class EndAppAvailabilityPreOrdersAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<EndAppAvailabilityPreOrderResponse> 
      */
-    open class func endAppAvailabilityPreOrdersCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<EndAppAvailabilityPreOrderResponse> {
+    open class func endAppAvailabilityPreOrdersCreateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<EndAppAvailabilityPreOrderResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<EndAppAvailabilityPreOrderResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<EndAppAvailabilityPreOrderResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

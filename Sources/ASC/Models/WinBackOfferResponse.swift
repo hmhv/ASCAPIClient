@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct WinBackOfferResponse: Codable, JSONEncodable, Hashable {
+public struct WinBackOfferResponse: Sendable, Codable, JSONEncodable, Hashable {
 
     public var data: WinBackOffer
     public var included: [WinBackOfferPrice]?

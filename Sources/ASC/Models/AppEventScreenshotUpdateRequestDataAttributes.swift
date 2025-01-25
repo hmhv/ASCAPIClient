@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppEventScreenshotUpdateRequestDataAttributes: Codable, JSONEncodable, Hashable {
+public struct AppEventScreenshotUpdateRequestDataAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
     public var uploaded: Bool?
 

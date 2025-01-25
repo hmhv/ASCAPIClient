@@ -6,29 +6,28 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class RoutingAppCoveragesAPI {
 
     /**
 
      - parameter routingAppCoverageCreateRequest: (body) RoutingAppCoverage representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RoutingAppCoverageResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func routingAppCoveragesCreateInstance(routingAppCoverageCreateRequest: RoutingAppCoverageCreateRequest) async throws -> RoutingAppCoverageResponse {
-        return try await routingAppCoveragesCreateInstanceWithRequestBuilder(routingAppCoverageCreateRequest: routingAppCoverageCreateRequest).execute().body
+    open class func routingAppCoveragesCreateInstance(routingAppCoverageCreateRequest: RoutingAppCoverageCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> RoutingAppCoverageResponse {
+        return try await routingAppCoveragesCreateInstanceWithRequestBuilder(routingAppCoverageCreateRequest: routingAppCoverageCreateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RoutingAppCoverageResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func routingAppCoveragesCreateInstance(urlString: String) async throws -> RoutingAppCoverageResponse {
-        return try await routingAppCoveragesCreateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func routingAppCoveragesCreateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> RoutingAppCoverageResponse {
+        return try await routingAppCoveragesCreateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -37,12 +36,13 @@ open class RoutingAppCoveragesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter routingAppCoverageCreateRequest: (body) RoutingAppCoverage representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<RoutingAppCoverageResponse> 
      */
-    open class func routingAppCoveragesCreateInstanceWithRequestBuilder(routingAppCoverageCreateRequest: RoutingAppCoverageCreateRequest) -> RequestBuilder<RoutingAppCoverageResponse> {
+    open class func routingAppCoveragesCreateInstanceWithRequestBuilder(routingAppCoverageCreateRequest: RoutingAppCoverageCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<RoutingAppCoverageResponse> {
         let localVariablePath = "/v1/routingAppCoverages"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: routingAppCoverageCreateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: routingAppCoverageCreateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -52,9 +52,9 @@ open class RoutingAppCoveragesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<RoutingAppCoverageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<RoutingAppCoverageResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -63,37 +63,40 @@ open class RoutingAppCoveragesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<RoutingAppCoverageResponse> 
      */
-    open class func routingAppCoveragesCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<RoutingAppCoverageResponse> {
+    open class func routingAppCoveragesCreateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<RoutingAppCoverageResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<RoutingAppCoverageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<RoutingAppCoverageResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func routingAppCoveragesDeleteInstance(id: String) async throws {
-        return try await routingAppCoveragesDeleteInstanceWithRequestBuilder(id: id).execute().body
+    open class func routingAppCoveragesDeleteInstance(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await routingAppCoveragesDeleteInstanceWithRequestBuilder(id: id, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func routingAppCoveragesDeleteInstance(urlString: String) async throws {
-        return try await routingAppCoveragesDeleteInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func routingAppCoveragesDeleteInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await routingAppCoveragesDeleteInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -102,14 +105,15 @@ open class RoutingAppCoveragesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func routingAppCoveragesDeleteInstanceWithRequestBuilder(id: String) -> RequestBuilder<Void> {
+    open class func routingAppCoveragesDeleteInstanceWithRequestBuilder(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/routingAppCoverages/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -120,9 +124,9 @@ open class RoutingAppCoveragesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -131,24 +135,25 @@ open class RoutingAppCoveragesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func routingAppCoveragesDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func routingAppCoveragesDeleteInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsRoutingAppCoverages
      */
-    public enum FieldsRoutingAppCoverages_routingAppCoveragesGetInstance: String, CaseIterable {
+    public enum FieldsRoutingAppCoverages_routingAppCoveragesGetInstance: String, Sendable, CaseIterable {
         case filesize = "fileSize"
         case filename = "fileName"
         case sourcefilechecksum = "sourceFileChecksum"
@@ -160,7 +165,7 @@ open class RoutingAppCoveragesAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_routingAppCoveragesGetInstance: String, CaseIterable {
+    public enum Include_routingAppCoveragesGetInstance: String, Sendable, CaseIterable {
         case appstoreversion = "appStoreVersion"
     }
 
@@ -169,20 +174,22 @@ open class RoutingAppCoveragesAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsRoutingAppCoverages: (query) the fields to include for returned resources of type routingAppCoverages (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RoutingAppCoverageResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func routingAppCoveragesGetInstance(id: String, fieldsRoutingAppCoverages: [FieldsRoutingAppCoverages_routingAppCoveragesGetInstance]? = nil, include: [Include_routingAppCoveragesGetInstance]? = nil) async throws -> RoutingAppCoverageResponse {
-        return try await routingAppCoveragesGetInstanceWithRequestBuilder(id: id, fieldsRoutingAppCoverages: fieldsRoutingAppCoverages, include: include).execute().body
+    open class func routingAppCoveragesGetInstance(id: String, fieldsRoutingAppCoverages: [FieldsRoutingAppCoverages_routingAppCoveragesGetInstance]? = nil, include: [Include_routingAppCoveragesGetInstance]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> RoutingAppCoverageResponse {
+        return try await routingAppCoveragesGetInstanceWithRequestBuilder(id: id, fieldsRoutingAppCoverages: fieldsRoutingAppCoverages, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RoutingAppCoverageResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func routingAppCoveragesGetInstance(urlString: String) async throws -> RoutingAppCoverageResponse {
-        return try await routingAppCoveragesGetInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func routingAppCoveragesGetInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> RoutingAppCoverageResponse {
+        return try await routingAppCoveragesGetInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -193,20 +200,21 @@ open class RoutingAppCoveragesAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsRoutingAppCoverages: (query) the fields to include for returned resources of type routingAppCoverages (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<RoutingAppCoverageResponse> 
      */
-    open class func routingAppCoveragesGetInstanceWithRequestBuilder(id: String, fieldsRoutingAppCoverages: [FieldsRoutingAppCoverages_routingAppCoveragesGetInstance]? = nil, include: [Include_routingAppCoveragesGetInstance]? = nil) -> RequestBuilder<RoutingAppCoverageResponse> {
+    open class func routingAppCoveragesGetInstanceWithRequestBuilder(id: String, fieldsRoutingAppCoverages: [FieldsRoutingAppCoverages_routingAppCoveragesGetInstance]? = nil, include: [Include_routingAppCoveragesGetInstance]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<RoutingAppCoverageResponse> {
         var localVariablePath = "/v1/routingAppCoverages/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[routingAppCoverages]": (wrappedValue: fieldsRoutingAppCoverages?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "fields[routingAppCoverages]": (wrappedValue: fieldsRoutingAppCoverages?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -215,9 +223,9 @@ open class RoutingAppCoveragesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<RoutingAppCoverageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<RoutingAppCoverageResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -226,38 +234,41 @@ open class RoutingAppCoveragesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<RoutingAppCoverageResponse> 
      */
-    open class func routingAppCoveragesGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<RoutingAppCoverageResponse> {
+    open class func routingAppCoveragesGetInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<RoutingAppCoverageResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<RoutingAppCoverageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<RoutingAppCoverageResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter routingAppCoverageUpdateRequest: (body) RoutingAppCoverage representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RoutingAppCoverageResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func routingAppCoveragesUpdateInstance(id: String, routingAppCoverageUpdateRequest: RoutingAppCoverageUpdateRequest) async throws -> RoutingAppCoverageResponse {
-        return try await routingAppCoveragesUpdateInstanceWithRequestBuilder(id: id, routingAppCoverageUpdateRequest: routingAppCoverageUpdateRequest).execute().body
+    open class func routingAppCoveragesUpdateInstance(id: String, routingAppCoverageUpdateRequest: RoutingAppCoverageUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> RoutingAppCoverageResponse {
+        return try await routingAppCoveragesUpdateInstanceWithRequestBuilder(id: id, routingAppCoverageUpdateRequest: routingAppCoverageUpdateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RoutingAppCoverageResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func routingAppCoveragesUpdateInstance(urlString: String) async throws -> RoutingAppCoverageResponse {
-        return try await routingAppCoveragesUpdateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func routingAppCoveragesUpdateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> RoutingAppCoverageResponse {
+        return try await routingAppCoveragesUpdateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -267,15 +278,16 @@ open class RoutingAppCoveragesAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter routingAppCoverageUpdateRequest: (body) RoutingAppCoverage representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<RoutingAppCoverageResponse> 
      */
-    open class func routingAppCoveragesUpdateInstanceWithRequestBuilder(id: String, routingAppCoverageUpdateRequest: RoutingAppCoverageUpdateRequest) -> RequestBuilder<RoutingAppCoverageResponse> {
+    open class func routingAppCoveragesUpdateInstanceWithRequestBuilder(id: String, routingAppCoverageUpdateRequest: RoutingAppCoverageUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<RoutingAppCoverageResponse> {
         var localVariablePath = "/v1/routingAppCoverages/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: routingAppCoverageUpdateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: routingAppCoverageUpdateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -285,9 +297,9 @@ open class RoutingAppCoveragesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<RoutingAppCoverageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<RoutingAppCoverageResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -296,17 +308,18 @@ open class RoutingAppCoveragesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<RoutingAppCoverageResponse> 
      */
-    open class func routingAppCoveragesUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<RoutingAppCoverageResponse> {
+    open class func routingAppCoveragesUpdateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<RoutingAppCoverageResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<RoutingAppCoverageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<RoutingAppCoverageResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

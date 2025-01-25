@@ -6,29 +6,28 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class AnalyticsReportRequestsAPI {
 
     /**
 
      - parameter analyticsReportRequestCreateRequest: (body) AnalyticsReportRequest representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AnalyticsReportRequestResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func analyticsReportRequestsCreateInstance(analyticsReportRequestCreateRequest: AnalyticsReportRequestCreateRequest) async throws -> AnalyticsReportRequestResponse {
-        return try await analyticsReportRequestsCreateInstanceWithRequestBuilder(analyticsReportRequestCreateRequest: analyticsReportRequestCreateRequest).execute().body
+    open class func analyticsReportRequestsCreateInstance(analyticsReportRequestCreateRequest: AnalyticsReportRequestCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AnalyticsReportRequestResponse {
+        return try await analyticsReportRequestsCreateInstanceWithRequestBuilder(analyticsReportRequestCreateRequest: analyticsReportRequestCreateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AnalyticsReportRequestResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func analyticsReportRequestsCreateInstance(urlString: String) async throws -> AnalyticsReportRequestResponse {
-        return try await analyticsReportRequestsCreateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func analyticsReportRequestsCreateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AnalyticsReportRequestResponse {
+        return try await analyticsReportRequestsCreateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -37,12 +36,13 @@ open class AnalyticsReportRequestsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter analyticsReportRequestCreateRequest: (body) AnalyticsReportRequest representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AnalyticsReportRequestResponse> 
      */
-    open class func analyticsReportRequestsCreateInstanceWithRequestBuilder(analyticsReportRequestCreateRequest: AnalyticsReportRequestCreateRequest) -> RequestBuilder<AnalyticsReportRequestResponse> {
+    open class func analyticsReportRequestsCreateInstanceWithRequestBuilder(analyticsReportRequestCreateRequest: AnalyticsReportRequestCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AnalyticsReportRequestResponse> {
         let localVariablePath = "/v1/analyticsReportRequests"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: analyticsReportRequestCreateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: analyticsReportRequestCreateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -52,9 +52,9 @@ open class AnalyticsReportRequestsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AnalyticsReportRequestResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AnalyticsReportRequestResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -63,37 +63,40 @@ open class AnalyticsReportRequestsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AnalyticsReportRequestResponse> 
      */
-    open class func analyticsReportRequestsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AnalyticsReportRequestResponse> {
+    open class func analyticsReportRequestsCreateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AnalyticsReportRequestResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AnalyticsReportRequestResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AnalyticsReportRequestResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func analyticsReportRequestsDeleteInstance(id: String) async throws {
-        return try await analyticsReportRequestsDeleteInstanceWithRequestBuilder(id: id).execute().body
+    open class func analyticsReportRequestsDeleteInstance(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await analyticsReportRequestsDeleteInstanceWithRequestBuilder(id: id, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func analyticsReportRequestsDeleteInstance(urlString: String) async throws {
-        return try await analyticsReportRequestsDeleteInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func analyticsReportRequestsDeleteInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await analyticsReportRequestsDeleteInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -102,14 +105,15 @@ open class AnalyticsReportRequestsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func analyticsReportRequestsDeleteInstanceWithRequestBuilder(id: String) -> RequestBuilder<Void> {
+    open class func analyticsReportRequestsDeleteInstanceWithRequestBuilder(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/analyticsReportRequests/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -120,9 +124,9 @@ open class AnalyticsReportRequestsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -131,24 +135,25 @@ open class AnalyticsReportRequestsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func analyticsReportRequestsDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func analyticsReportRequestsDeleteInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsAnalyticsReportRequests
      */
-    public enum FieldsAnalyticsReportRequests_analyticsReportRequestsGetInstance: String, CaseIterable {
+    public enum FieldsAnalyticsReportRequests_analyticsReportRequestsGetInstance: String, Sendable, CaseIterable {
         case accesstype = "accessType"
         case stoppedduetoinactivity = "stoppedDueToInactivity"
         case reports = "reports"
@@ -157,7 +162,7 @@ open class AnalyticsReportRequestsAPI {
     /**
      * enum for parameter fieldsAnalyticsReports
      */
-    public enum FieldsAnalyticsReports_analyticsReportRequestsGetInstance: String, CaseIterable {
+    public enum FieldsAnalyticsReports_analyticsReportRequestsGetInstance: String, Sendable, CaseIterable {
         case name = "name"
         case category = "category"
         case instances = "instances"
@@ -166,7 +171,7 @@ open class AnalyticsReportRequestsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_analyticsReportRequestsGetInstance: String, CaseIterable {
+    public enum Include_analyticsReportRequestsGetInstance: String, Sendable, CaseIterable {
         case reports = "reports"
     }
 
@@ -177,20 +182,22 @@ open class AnalyticsReportRequestsAPI {
      - parameter fieldsAnalyticsReports: (query) the fields to include for returned resources of type analyticsReports (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitReports: (query) maximum number of related reports returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AnalyticsReportRequestResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func analyticsReportRequestsGetInstance(id: String, fieldsAnalyticsReportRequests: [FieldsAnalyticsReportRequests_analyticsReportRequestsGetInstance]? = nil, fieldsAnalyticsReports: [FieldsAnalyticsReports_analyticsReportRequestsGetInstance]? = nil, include: [Include_analyticsReportRequestsGetInstance]? = nil, limitReports: Int? = nil) async throws -> AnalyticsReportRequestResponse {
-        return try await analyticsReportRequestsGetInstanceWithRequestBuilder(id: id, fieldsAnalyticsReportRequests: fieldsAnalyticsReportRequests, fieldsAnalyticsReports: fieldsAnalyticsReports, include: include, limitReports: limitReports).execute().body
+    open class func analyticsReportRequestsGetInstance(id: String, fieldsAnalyticsReportRequests: [FieldsAnalyticsReportRequests_analyticsReportRequestsGetInstance]? = nil, fieldsAnalyticsReports: [FieldsAnalyticsReports_analyticsReportRequestsGetInstance]? = nil, include: [Include_analyticsReportRequestsGetInstance]? = nil, limitReports: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AnalyticsReportRequestResponse {
+        return try await analyticsReportRequestsGetInstanceWithRequestBuilder(id: id, fieldsAnalyticsReportRequests: fieldsAnalyticsReportRequests, fieldsAnalyticsReports: fieldsAnalyticsReports, include: include, limitReports: limitReports, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AnalyticsReportRequestResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func analyticsReportRequestsGetInstance(urlString: String) async throws -> AnalyticsReportRequestResponse {
-        return try await analyticsReportRequestsGetInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func analyticsReportRequestsGetInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AnalyticsReportRequestResponse {
+        return try await analyticsReportRequestsGetInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -203,22 +210,23 @@ open class AnalyticsReportRequestsAPI {
      - parameter fieldsAnalyticsReports: (query) the fields to include for returned resources of type analyticsReports (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitReports: (query) maximum number of related reports returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AnalyticsReportRequestResponse> 
      */
-    open class func analyticsReportRequestsGetInstanceWithRequestBuilder(id: String, fieldsAnalyticsReportRequests: [FieldsAnalyticsReportRequests_analyticsReportRequestsGetInstance]? = nil, fieldsAnalyticsReports: [FieldsAnalyticsReports_analyticsReportRequestsGetInstance]? = nil, include: [Include_analyticsReportRequestsGetInstance]? = nil, limitReports: Int? = nil) -> RequestBuilder<AnalyticsReportRequestResponse> {
+    open class func analyticsReportRequestsGetInstanceWithRequestBuilder(id: String, fieldsAnalyticsReportRequests: [FieldsAnalyticsReportRequests_analyticsReportRequestsGetInstance]? = nil, fieldsAnalyticsReports: [FieldsAnalyticsReports_analyticsReportRequestsGetInstance]? = nil, include: [Include_analyticsReportRequestsGetInstance]? = nil, limitReports: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AnalyticsReportRequestResponse> {
         var localVariablePath = "/v1/analyticsReportRequests/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[analyticsReportRequests]": (wrappedValue: fieldsAnalyticsReportRequests?.encodeToJSON(), isExplode: false),
-            "fields[analyticsReports]": (wrappedValue: fieldsAnalyticsReports?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[reports]": (wrappedValue: limitReports?.encodeToJSON(), isExplode: true),
+            "fields[analyticsReportRequests]": (wrappedValue: fieldsAnalyticsReportRequests?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[analyticsReports]": (wrappedValue: fieldsAnalyticsReports?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[reports]": (wrappedValue: limitReports?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -227,9 +235,9 @@ open class AnalyticsReportRequestsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AnalyticsReportRequestResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AnalyticsReportRequestResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -238,24 +246,25 @@ open class AnalyticsReportRequestsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AnalyticsReportRequestResponse> 
      */
-    open class func analyticsReportRequestsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AnalyticsReportRequestResponse> {
+    open class func analyticsReportRequestsGetInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AnalyticsReportRequestResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AnalyticsReportRequestResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AnalyticsReportRequestResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter filterCategory
      */
-    public enum FilterCategory_analyticsReportRequestsReportsGetToManyRelated: String, CaseIterable {
+    public enum FilterCategory_analyticsReportRequestsReportsGetToManyRelated: String, Sendable, CaseIterable {
         case appUsage = "APP_USAGE"
         case appStoreEngagement = "APP_STORE_ENGAGEMENT"
         case commerce = "COMMERCE"
@@ -266,7 +275,7 @@ open class AnalyticsReportRequestsAPI {
     /**
      * enum for parameter fieldsAnalyticsReports
      */
-    public enum FieldsAnalyticsReports_analyticsReportRequestsReportsGetToManyRelated: String, CaseIterable {
+    public enum FieldsAnalyticsReports_analyticsReportRequestsReportsGetToManyRelated: String, Sendable, CaseIterable {
         case name = "name"
         case category = "category"
         case instances = "instances"
@@ -279,20 +288,22 @@ open class AnalyticsReportRequestsAPI {
      - parameter filterCategory: (query) filter by attribute &#39;category&#39; (optional)
      - parameter fieldsAnalyticsReports: (query) the fields to include for returned resources of type analyticsReports (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AnalyticsReportsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func analyticsReportRequestsReportsGetToManyRelated(id: String, filterName: [String]? = nil, filterCategory: [FilterCategory_analyticsReportRequestsReportsGetToManyRelated]? = nil, fieldsAnalyticsReports: [FieldsAnalyticsReports_analyticsReportRequestsReportsGetToManyRelated]? = nil, limit: Int? = nil) async throws -> AnalyticsReportsResponse {
-        return try await analyticsReportRequestsReportsGetToManyRelatedWithRequestBuilder(id: id, filterName: filterName, filterCategory: filterCategory, fieldsAnalyticsReports: fieldsAnalyticsReports, limit: limit).execute().body
+    open class func analyticsReportRequestsReportsGetToManyRelated(id: String, filterName: [String]? = nil, filterCategory: [FilterCategory_analyticsReportRequestsReportsGetToManyRelated]? = nil, fieldsAnalyticsReports: [FieldsAnalyticsReports_analyticsReportRequestsReportsGetToManyRelated]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AnalyticsReportsResponse {
+        return try await analyticsReportRequestsReportsGetToManyRelatedWithRequestBuilder(id: id, filterName: filterName, filterCategory: filterCategory, fieldsAnalyticsReports: fieldsAnalyticsReports, limit: limit, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AnalyticsReportsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func analyticsReportRequestsReportsGetToManyRelated(urlString: String) async throws -> AnalyticsReportsResponse {
-        return try await analyticsReportRequestsReportsGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func analyticsReportRequestsReportsGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AnalyticsReportsResponse {
+        return try await analyticsReportRequestsReportsGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -305,22 +316,23 @@ open class AnalyticsReportRequestsAPI {
      - parameter filterCategory: (query) filter by attribute &#39;category&#39; (optional)
      - parameter fieldsAnalyticsReports: (query) the fields to include for returned resources of type analyticsReports (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AnalyticsReportsResponse> 
      */
-    open class func analyticsReportRequestsReportsGetToManyRelatedWithRequestBuilder(id: String, filterName: [String]? = nil, filterCategory: [FilterCategory_analyticsReportRequestsReportsGetToManyRelated]? = nil, fieldsAnalyticsReports: [FieldsAnalyticsReports_analyticsReportRequestsReportsGetToManyRelated]? = nil, limit: Int? = nil) -> RequestBuilder<AnalyticsReportsResponse> {
+    open class func analyticsReportRequestsReportsGetToManyRelatedWithRequestBuilder(id: String, filterName: [String]? = nil, filterCategory: [FilterCategory_analyticsReportRequestsReportsGetToManyRelated]? = nil, fieldsAnalyticsReports: [FieldsAnalyticsReports_analyticsReportRequestsReportsGetToManyRelated]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AnalyticsReportsResponse> {
         var localVariablePath = "/v1/analyticsReportRequests/{id}/reports"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[name]": (wrappedValue: filterName?.encodeToJSON(), isExplode: false),
-            "filter[category]": (wrappedValue: filterCategory?.encodeToJSON(), isExplode: false),
-            "fields[analyticsReports]": (wrappedValue: fieldsAnalyticsReports?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "filter[name]": (wrappedValue: filterName?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[category]": (wrappedValue: filterCategory?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[analyticsReports]": (wrappedValue: fieldsAnalyticsReports?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -329,9 +341,9 @@ open class AnalyticsReportRequestsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AnalyticsReportsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AnalyticsReportsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -340,17 +352,18 @@ open class AnalyticsReportRequestsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AnalyticsReportsResponse> 
      */
-    open class func analyticsReportRequestsReportsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AnalyticsReportsResponse> {
+    open class func analyticsReportRequestsReportsGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AnalyticsReportsResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AnalyticsReportsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AnalyticsReportsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

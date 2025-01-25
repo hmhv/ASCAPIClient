@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct CiBuildRunResponse: Codable, JSONEncodable, Hashable {
+public struct CiBuildRunResponse: Sendable, Codable, JSONEncodable, Hashable {
 
     public var data: CiBuildRun
     public var included: [CiBuildRunsResponseIncludedInner]?

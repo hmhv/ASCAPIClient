@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct GameCenterMatchmakingAppRequestsV1MetricResponseDataInnerDataPointsValues: Codable, JSONEncodable, Hashable {
+public struct GameCenterMatchmakingAppRequestsV1MetricResponseDataInnerDataPointsValues: Sendable, Codable, JSONEncodable, Hashable {
 
     public var count: Int?
     public var averageSecondsInQueue: Double?

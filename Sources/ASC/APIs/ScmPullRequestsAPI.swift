@@ -6,16 +6,13 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class ScmPullRequestsAPI {
 
     /**
      * enum for parameter fieldsScmPullRequests
      */
-    public enum FieldsScmPullRequests_scmPullRequestsGetInstance: String, CaseIterable {
+    public enum FieldsScmPullRequests_scmPullRequestsGetInstance: String, Sendable, CaseIterable {
         case title = "title"
         case number = "number"
         case weburl = "webUrl"
@@ -33,7 +30,7 @@ open class ScmPullRequestsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_scmPullRequestsGetInstance: String, CaseIterable {
+    public enum Include_scmPullRequestsGetInstance: String, Sendable, CaseIterable {
         case repository = "repository"
     }
 
@@ -42,20 +39,22 @@ open class ScmPullRequestsAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsScmPullRequests: (query) the fields to include for returned resources of type scmPullRequests (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: ScmPullRequestResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func scmPullRequestsGetInstance(id: String, fieldsScmPullRequests: [FieldsScmPullRequests_scmPullRequestsGetInstance]? = nil, include: [Include_scmPullRequestsGetInstance]? = nil) async throws -> ScmPullRequestResponse {
-        return try await scmPullRequestsGetInstanceWithRequestBuilder(id: id, fieldsScmPullRequests: fieldsScmPullRequests, include: include).execute().body
+    open class func scmPullRequestsGetInstance(id: String, fieldsScmPullRequests: [FieldsScmPullRequests_scmPullRequestsGetInstance]? = nil, include: [Include_scmPullRequestsGetInstance]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> ScmPullRequestResponse {
+        return try await scmPullRequestsGetInstanceWithRequestBuilder(id: id, fieldsScmPullRequests: fieldsScmPullRequests, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: ScmPullRequestResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func scmPullRequestsGetInstance(urlString: String) async throws -> ScmPullRequestResponse {
-        return try await scmPullRequestsGetInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func scmPullRequestsGetInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> ScmPullRequestResponse {
+        return try await scmPullRequestsGetInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -66,20 +65,21 @@ open class ScmPullRequestsAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsScmPullRequests: (query) the fields to include for returned resources of type scmPullRequests (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ScmPullRequestResponse> 
      */
-    open class func scmPullRequestsGetInstanceWithRequestBuilder(id: String, fieldsScmPullRequests: [FieldsScmPullRequests_scmPullRequestsGetInstance]? = nil, include: [Include_scmPullRequestsGetInstance]? = nil) -> RequestBuilder<ScmPullRequestResponse> {
+    open class func scmPullRequestsGetInstanceWithRequestBuilder(id: String, fieldsScmPullRequests: [FieldsScmPullRequests_scmPullRequestsGetInstance]? = nil, include: [Include_scmPullRequestsGetInstance]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<ScmPullRequestResponse> {
         var localVariablePath = "/v1/scmPullRequests/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[scmPullRequests]": (wrappedValue: fieldsScmPullRequests?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "fields[scmPullRequests]": (wrappedValue: fieldsScmPullRequests?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -88,9 +88,9 @@ open class ScmPullRequestsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<ScmPullRequestResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<ScmPullRequestResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -99,17 +99,18 @@ open class ScmPullRequestsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ScmPullRequestResponse> 
      */
-    open class func scmPullRequestsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<ScmPullRequestResponse> {
+    open class func scmPullRequestsGetInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<ScmPullRequestResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<ScmPullRequestResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<ScmPullRequestResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

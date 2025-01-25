@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct BuildUpdateRequestDataAttributes: Codable, JSONEncodable, Hashable {
+public struct BuildUpdateRequestDataAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
     public var expired: Bool?
     public var usesNonExemptEncryption: Bool?

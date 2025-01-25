@@ -6,13 +6,10 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct ProfileAttributes: Codable, JSONEncodable, Hashable {
+public struct ProfileAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum ProfileType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum ProfileType: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case iosAppDevelopment = "IOS_APP_DEVELOPMENT"
         case iosAppStore = "IOS_APP_STORE"
         case iosAppAdhoc = "IOS_APP_ADHOC"
@@ -29,7 +26,7 @@ public struct ProfileAttributes: Codable, JSONEncodable, Hashable {
         case macCatalystAppDirect = "MAC_CATALYST_APP_DIRECT"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
-    public enum ProfileState: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum ProfileState: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case active = "ACTIVE"
         case invalid = "INVALID"
         case unknownDefaultOpenApi = "unknown_default_open_api"

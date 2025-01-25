@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct RoutingAppCoverageResponse: Codable, JSONEncodable, Hashable {
+public struct RoutingAppCoverageResponse: Sendable, Codable, JSONEncodable, Hashable {
 
     public var data: RoutingAppCoverage
     public var included: [AppStoreVersion]?

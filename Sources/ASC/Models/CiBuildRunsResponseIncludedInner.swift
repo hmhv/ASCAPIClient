@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public enum CiBuildRunsResponseIncludedInner: Codable, JSONEncodable, Hashable {
+public enum CiBuildRunsResponseIncludedInner: Sendable, Codable, JSONEncodable, Hashable {
     case typeBuild(Build)
     case typeCiProduct(CiProduct)
     case typeCiWorkflow(CiWorkflow)

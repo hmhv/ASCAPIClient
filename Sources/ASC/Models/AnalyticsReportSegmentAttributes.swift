@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AnalyticsReportSegmentAttributes: Codable, JSONEncodable, Hashable {
+public struct AnalyticsReportSegmentAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
     public var checksum: String?
     public var sizeInBytes: Int?

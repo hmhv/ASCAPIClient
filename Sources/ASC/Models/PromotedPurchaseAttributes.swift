@@ -6,13 +6,10 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct PromotedPurchaseAttributes: Codable, JSONEncodable, Hashable {
+public struct PromotedPurchaseAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum State: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum State: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case approved = "APPROVED"
         case inReview = "IN_REVIEW"
         case prepareForSubmission = "PREPARE_FOR_SUBMISSION"

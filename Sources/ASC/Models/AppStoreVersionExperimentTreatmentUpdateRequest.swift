@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppStoreVersionExperimentTreatmentUpdateRequest: Codable, JSONEncodable, Hashable {
+public struct AppStoreVersionExperimentTreatmentUpdateRequest: Sendable, Codable, JSONEncodable, Hashable {
 
     public var data: AppStoreVersionExperimentTreatmentUpdateRequestData
 

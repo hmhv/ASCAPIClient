@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct BundleIdWithoutIncludesResponse: Codable, JSONEncodable, Hashable {
+public struct BundleIdWithoutIncludesResponse: Sendable, Codable, JSONEncodable, Hashable {
 
     public var data: BundleId
     public var links: DocumentLinks

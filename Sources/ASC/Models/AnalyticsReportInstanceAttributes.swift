@@ -6,13 +6,10 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AnalyticsReportInstanceAttributes: Codable, JSONEncodable, Hashable {
+public struct AnalyticsReportInstanceAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum Granularity: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum Granularity: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case daily = "DAILY"
         case weekly = "WEEKLY"
         case monthly = "MONTHLY"

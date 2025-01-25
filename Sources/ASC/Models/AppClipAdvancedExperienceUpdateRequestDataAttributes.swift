@@ -6,13 +6,10 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppClipAdvancedExperienceUpdateRequestDataAttributes: Codable, JSONEncodable, Hashable {
+public struct AppClipAdvancedExperienceUpdateRequestDataAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum BusinessCategory: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum BusinessCategory: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case automotive = "AUTOMOTIVE"
         case beauty = "BEAUTY"
         case bikes = "BIKES"

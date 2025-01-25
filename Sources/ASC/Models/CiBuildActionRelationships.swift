@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct CiBuildActionRelationships: Codable, JSONEncodable, Hashable {
+public struct CiBuildActionRelationships: Sendable, Codable, JSONEncodable, Hashable {
 
     public var buildRun: CiBuildActionRelationshipsBuildRun?
     public var artifacts: AnalyticsReportInstanceRelationshipsSegments?

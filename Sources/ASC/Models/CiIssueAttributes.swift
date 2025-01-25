@@ -6,13 +6,10 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct CiIssueAttributes: Codable, JSONEncodable, Hashable {
+public struct CiIssueAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum IssueType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum IssueType: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case analyzerWarning = "ANALYZER_WARNING"
         case error = "ERROR"
         case testFailure = "TEST_FAILURE"

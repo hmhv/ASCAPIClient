@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct BuildBundleFileSizeAttributes: Codable, JSONEncodable, Hashable {
+public struct BuildBundleFileSizeAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
     public var deviceModel: String?
     public var osVersion: String?

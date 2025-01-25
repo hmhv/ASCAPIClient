@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct CiTagPatterns: Codable, JSONEncodable, Hashable {
+public struct CiTagPatterns: Sendable, Codable, JSONEncodable, Hashable {
 
     public var isAllMatch: Bool?
     public var patterns: [CiBranchPatternsPatternsInner]?

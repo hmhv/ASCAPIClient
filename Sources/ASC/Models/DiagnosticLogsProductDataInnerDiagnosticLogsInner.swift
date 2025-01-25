@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct DiagnosticLogsProductDataInnerDiagnosticLogsInner: Codable, JSONEncodable, Hashable {
+public struct DiagnosticLogsProductDataInnerDiagnosticLogsInner: Sendable, Codable, JSONEncodable, Hashable {
 
     public var callStackTree: [DiagnosticLogsProductDataInnerDiagnosticLogsInnerCallStackTreeInner]?
     public var diagnosticMetaData: DiagnosticLogsProductDataInnerDiagnosticLogsInnerDiagnosticMetaData?

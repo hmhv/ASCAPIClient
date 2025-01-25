@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public enum GameCenterLeaderboardLocalizationsResponseIncludedInner: Codable, JSONEncodable, Hashable {
+public enum GameCenterLeaderboardLocalizationsResponseIncludedInner: Sendable, Codable, JSONEncodable, Hashable {
     case typeGameCenterLeaderboard(GameCenterLeaderboard)
     case typeGameCenterLeaderboardImage(GameCenterLeaderboardImage)
 

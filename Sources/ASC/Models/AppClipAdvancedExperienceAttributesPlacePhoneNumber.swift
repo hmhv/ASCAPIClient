@@ -6,13 +6,10 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppClipAdvancedExperienceAttributesPlacePhoneNumber: Codable, JSONEncodable, Hashable {
+public struct AppClipAdvancedExperienceAttributesPlacePhoneNumber: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum ModelType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum ModelType: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case fax = "FAX"
         case landline = "LANDLINE"
         case mobile = "MOBILE"

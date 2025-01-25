@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct CiBuildRunCreateRequest: Codable, JSONEncodable, Hashable {
+public struct CiBuildRunCreateRequest: Sendable, Codable, JSONEncodable, Hashable {
 
     public var data: CiBuildRunCreateRequestData
 

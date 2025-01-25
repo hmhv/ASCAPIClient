@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppInfoUpdateRequestDataRelationships: Codable, JSONEncodable, Hashable {
+public struct AppInfoUpdateRequestDataRelationships: Sendable, Codable, JSONEncodable, Hashable {
 
     public var primaryCategory: AppInfoUpdateRequestDataRelationshipsPrimaryCategory?
     public var primarySubcategoryOne: AppInfoUpdateRequestDataRelationshipsPrimaryCategory?

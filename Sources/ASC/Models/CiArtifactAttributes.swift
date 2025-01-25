@@ -6,13 +6,10 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct CiArtifactAttributes: Codable, JSONEncodable, Hashable {
+public struct CiArtifactAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum FileType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum FileType: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case archive = "ARCHIVE"
         case archiveExport = "ARCHIVE_EXPORT"
         case logBundle = "LOG_BUNDLE"

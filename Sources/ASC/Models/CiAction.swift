@@ -6,13 +6,10 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct CiAction: Codable, JSONEncodable, Hashable {
+public struct CiAction: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum Destination: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum Destination: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case anyIosDevice = "ANY_IOS_DEVICE"
         case anyIosSimulator = "ANY_IOS_SIMULATOR"
         case anyTvosDevice = "ANY_TVOS_DEVICE"
@@ -25,7 +22,7 @@ public struct CiAction: Codable, JSONEncodable, Hashable {
         case anyVisionosSimulator = "ANY_VISIONOS_SIMULATOR"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
-    public enum Platform: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum Platform: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case macos = "MACOS"
         case ios = "IOS"
         case tvos = "TVOS"

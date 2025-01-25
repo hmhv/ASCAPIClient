@@ -6,16 +6,13 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class ScmProvidersAPI {
 
     /**
      * enum for parameter fieldsScmProviders
      */
-    public enum FieldsScmProviders_scmProvidersGetCollection: String, CaseIterable {
+    public enum FieldsScmProviders_scmProvidersGetCollection: String, Sendable, CaseIterable {
         case scmprovidertype = "scmProviderType"
         case url = "url"
         case repositories = "repositories"
@@ -25,20 +22,22 @@ open class ScmProvidersAPI {
 
      - parameter fieldsScmProviders: (query) the fields to include for returned resources of type scmProviders (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: ScmProvidersResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func scmProvidersGetCollection(fieldsScmProviders: [FieldsScmProviders_scmProvidersGetCollection]? = nil, limit: Int? = nil) async throws -> ScmProvidersResponse {
-        return try await scmProvidersGetCollectionWithRequestBuilder(fieldsScmProviders: fieldsScmProviders, limit: limit).execute().body
+    open class func scmProvidersGetCollection(fieldsScmProviders: [FieldsScmProviders_scmProvidersGetCollection]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> ScmProvidersResponse {
+        return try await scmProvidersGetCollectionWithRequestBuilder(fieldsScmProviders: fieldsScmProviders, limit: limit, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: ScmProvidersResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func scmProvidersGetCollection(urlString: String) async throws -> ScmProvidersResponse {
-        return try await scmProvidersGetCollectionWithRequestBuilder(urlString: urlString).execute().body
+    open class func scmProvidersGetCollection(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> ScmProvidersResponse {
+        return try await scmProvidersGetCollectionWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -48,17 +47,18 @@ open class ScmProvidersAPI {
        - name: itc-bearer-token
      - parameter fieldsScmProviders: (query) the fields to include for returned resources of type scmProviders (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ScmProvidersResponse> 
      */
-    open class func scmProvidersGetCollectionWithRequestBuilder(fieldsScmProviders: [FieldsScmProviders_scmProvidersGetCollection]? = nil, limit: Int? = nil) -> RequestBuilder<ScmProvidersResponse> {
+    open class func scmProvidersGetCollectionWithRequestBuilder(fieldsScmProviders: [FieldsScmProviders_scmProvidersGetCollection]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<ScmProvidersResponse> {
         let localVariablePath = "/v1/scmProviders"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[scmProviders]": (wrappedValue: fieldsScmProviders?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "fields[scmProviders]": (wrappedValue: fieldsScmProviders?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -67,9 +67,9 @@ open class ScmProvidersAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<ScmProvidersResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<ScmProvidersResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -78,24 +78,25 @@ open class ScmProvidersAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ScmProvidersResponse> 
      */
-    open class func scmProvidersGetCollectionWithRequestBuilder(urlString: String) -> RequestBuilder<ScmProvidersResponse> {
+    open class func scmProvidersGetCollectionWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<ScmProvidersResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<ScmProvidersResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<ScmProvidersResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsScmProviders
      */
-    public enum FieldsScmProviders_scmProvidersGetInstance: String, CaseIterable {
+    public enum FieldsScmProviders_scmProvidersGetInstance: String, Sendable, CaseIterable {
         case scmprovidertype = "scmProviderType"
         case url = "url"
         case repositories = "repositories"
@@ -105,20 +106,22 @@ open class ScmProvidersAPI {
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsScmProviders: (query) the fields to include for returned resources of type scmProviders (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: ScmProviderResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func scmProvidersGetInstance(id: String, fieldsScmProviders: [FieldsScmProviders_scmProvidersGetInstance]? = nil) async throws -> ScmProviderResponse {
-        return try await scmProvidersGetInstanceWithRequestBuilder(id: id, fieldsScmProviders: fieldsScmProviders).execute().body
+    open class func scmProvidersGetInstance(id: String, fieldsScmProviders: [FieldsScmProviders_scmProvidersGetInstance]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> ScmProviderResponse {
+        return try await scmProvidersGetInstanceWithRequestBuilder(id: id, fieldsScmProviders: fieldsScmProviders, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: ScmProviderResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func scmProvidersGetInstance(urlString: String) async throws -> ScmProviderResponse {
-        return try await scmProvidersGetInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func scmProvidersGetInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> ScmProviderResponse {
+        return try await scmProvidersGetInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -128,19 +131,20 @@ open class ScmProvidersAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsScmProviders: (query) the fields to include for returned resources of type scmProviders (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ScmProviderResponse> 
      */
-    open class func scmProvidersGetInstanceWithRequestBuilder(id: String, fieldsScmProviders: [FieldsScmProviders_scmProvidersGetInstance]? = nil) -> RequestBuilder<ScmProviderResponse> {
+    open class func scmProvidersGetInstanceWithRequestBuilder(id: String, fieldsScmProviders: [FieldsScmProviders_scmProvidersGetInstance]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<ScmProviderResponse> {
         var localVariablePath = "/v1/scmProviders/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[scmProviders]": (wrappedValue: fieldsScmProviders?.encodeToJSON(), isExplode: false),
+            "fields[scmProviders]": (wrappedValue: fieldsScmProviders?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -149,9 +153,9 @@ open class ScmProvidersAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<ScmProviderResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<ScmProviderResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -160,24 +164,25 @@ open class ScmProvidersAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ScmProviderResponse> 
      */
-    open class func scmProvidersGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<ScmProviderResponse> {
+    open class func scmProvidersGetInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<ScmProviderResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<ScmProviderResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<ScmProviderResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsScmRepositories
      */
-    public enum FieldsScmRepositories_scmProvidersRepositoriesGetToManyRelated: String, CaseIterable {
+    public enum FieldsScmRepositories_scmProvidersRepositoriesGetToManyRelated: String, Sendable, CaseIterable {
         case lastaccesseddate = "lastAccessedDate"
         case httpcloneurl = "httpCloneUrl"
         case sshcloneurl = "sshCloneUrl"
@@ -192,7 +197,7 @@ open class ScmProvidersAPI {
     /**
      * enum for parameter fieldsScmProviders
      */
-    public enum FieldsScmProviders_scmProvidersRepositoriesGetToManyRelated: String, CaseIterable {
+    public enum FieldsScmProviders_scmProvidersRepositoriesGetToManyRelated: String, Sendable, CaseIterable {
         case scmprovidertype = "scmProviderType"
         case url = "url"
         case repositories = "repositories"
@@ -201,7 +206,7 @@ open class ScmProvidersAPI {
     /**
      * enum for parameter fieldsScmGitReferences
      */
-    public enum FieldsScmGitReferences_scmProvidersRepositoriesGetToManyRelated: String, CaseIterable {
+    public enum FieldsScmGitReferences_scmProvidersRepositoriesGetToManyRelated: String, Sendable, CaseIterable {
         case name = "name"
         case canonicalname = "canonicalName"
         case isdeleted = "isDeleted"
@@ -212,7 +217,7 @@ open class ScmProvidersAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_scmProvidersRepositoriesGetToManyRelated: String, CaseIterable {
+    public enum Include_scmProvidersRepositoriesGetToManyRelated: String, Sendable, CaseIterable {
         case scmprovider = "scmProvider"
         case defaultbranch = "defaultBranch"
     }
@@ -226,20 +231,22 @@ open class ScmProvidersAPI {
      - parameter fieldsScmGitReferences: (query) the fields to include for returned resources of type scmGitReferences (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: ScmRepositoriesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func scmProvidersRepositoriesGetToManyRelated(id: String, filterId: [String]? = nil, fieldsScmRepositories: [FieldsScmRepositories_scmProvidersRepositoriesGetToManyRelated]? = nil, fieldsScmProviders: [FieldsScmProviders_scmProvidersRepositoriesGetToManyRelated]? = nil, fieldsScmGitReferences: [FieldsScmGitReferences_scmProvidersRepositoriesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_scmProvidersRepositoriesGetToManyRelated]? = nil) async throws -> ScmRepositoriesResponse {
-        return try await scmProvidersRepositoriesGetToManyRelatedWithRequestBuilder(id: id, filterId: filterId, fieldsScmRepositories: fieldsScmRepositories, fieldsScmProviders: fieldsScmProviders, fieldsScmGitReferences: fieldsScmGitReferences, limit: limit, include: include).execute().body
+    open class func scmProvidersRepositoriesGetToManyRelated(id: String, filterId: [String]? = nil, fieldsScmRepositories: [FieldsScmRepositories_scmProvidersRepositoriesGetToManyRelated]? = nil, fieldsScmProviders: [FieldsScmProviders_scmProvidersRepositoriesGetToManyRelated]? = nil, fieldsScmGitReferences: [FieldsScmGitReferences_scmProvidersRepositoriesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_scmProvidersRepositoriesGetToManyRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> ScmRepositoriesResponse {
+        return try await scmProvidersRepositoriesGetToManyRelatedWithRequestBuilder(id: id, filterId: filterId, fieldsScmRepositories: fieldsScmRepositories, fieldsScmProviders: fieldsScmProviders, fieldsScmGitReferences: fieldsScmGitReferences, limit: limit, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: ScmRepositoriesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func scmProvidersRepositoriesGetToManyRelated(urlString: String) async throws -> ScmRepositoriesResponse {
-        return try await scmProvidersRepositoriesGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func scmProvidersRepositoriesGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> ScmRepositoriesResponse {
+        return try await scmProvidersRepositoriesGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -254,24 +261,25 @@ open class ScmProvidersAPI {
      - parameter fieldsScmGitReferences: (query) the fields to include for returned resources of type scmGitReferences (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ScmRepositoriesResponse> 
      */
-    open class func scmProvidersRepositoriesGetToManyRelatedWithRequestBuilder(id: String, filterId: [String]? = nil, fieldsScmRepositories: [FieldsScmRepositories_scmProvidersRepositoriesGetToManyRelated]? = nil, fieldsScmProviders: [FieldsScmProviders_scmProvidersRepositoriesGetToManyRelated]? = nil, fieldsScmGitReferences: [FieldsScmGitReferences_scmProvidersRepositoriesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_scmProvidersRepositoriesGetToManyRelated]? = nil) -> RequestBuilder<ScmRepositoriesResponse> {
+    open class func scmProvidersRepositoriesGetToManyRelatedWithRequestBuilder(id: String, filterId: [String]? = nil, fieldsScmRepositories: [FieldsScmRepositories_scmProvidersRepositoriesGetToManyRelated]? = nil, fieldsScmProviders: [FieldsScmProviders_scmProvidersRepositoriesGetToManyRelated]? = nil, fieldsScmGitReferences: [FieldsScmGitReferences_scmProvidersRepositoriesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_scmProvidersRepositoriesGetToManyRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<ScmRepositoriesResponse> {
         var localVariablePath = "/v1/scmProviders/{id}/repositories"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[id]": (wrappedValue: filterId?.encodeToJSON(), isExplode: false),
-            "fields[scmRepositories]": (wrappedValue: fieldsScmRepositories?.encodeToJSON(), isExplode: false),
-            "fields[scmProviders]": (wrappedValue: fieldsScmProviders?.encodeToJSON(), isExplode: false),
-            "fields[scmGitReferences]": (wrappedValue: fieldsScmGitReferences?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "filter[id]": (wrappedValue: filterId?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[scmRepositories]": (wrappedValue: fieldsScmRepositories?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[scmProviders]": (wrappedValue: fieldsScmProviders?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[scmGitReferences]": (wrappedValue: fieldsScmGitReferences?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -280,9 +288,9 @@ open class ScmProvidersAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<ScmRepositoriesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<ScmRepositoriesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -291,17 +299,18 @@ open class ScmProvidersAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ScmRepositoriesResponse> 
      */
-    open class func scmProvidersRepositoriesGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<ScmRepositoriesResponse> {
+    open class func scmProvidersRepositoriesGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<ScmRepositoriesResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<ScmRepositoriesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<ScmRepositoriesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

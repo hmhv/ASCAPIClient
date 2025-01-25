@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppEncryptionDeclarationRelationships: Codable, JSONEncodable, Hashable {
+public struct AppEncryptionDeclarationRelationships: Sendable, Codable, JSONEncodable, Hashable {
 
     @available(*, deprecated, message: "This property is deprecated.")
     public var app: AppEncryptionDeclarationRelationshipsApp?

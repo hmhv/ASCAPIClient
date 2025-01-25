@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct ModelErrorResponse: Codable, JSONEncodable, Hashable {
+public struct ModelErrorResponse: Sendable, Codable, JSONEncodable, Hashable {
 
     public var errors: [ErrorResponseErrorsInner]?
 

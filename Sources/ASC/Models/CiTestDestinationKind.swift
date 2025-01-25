@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public enum CiTestDestinationKind: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+public enum CiTestDestinationKind: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
     case simulator = "SIMULATOR"
     case mac = "MAC"
     case unknownDefaultOpenApi = "unknown_default_open_api"

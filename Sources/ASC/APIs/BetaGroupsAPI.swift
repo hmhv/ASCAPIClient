@@ -6,16 +6,13 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class BetaGroupsAPI {
 
     /**
      * enum for parameter fieldsApps
      */
-    public enum FieldsApps_betaGroupsAppGetToOneRelated: String, CaseIterable {
+    public enum FieldsApps_betaGroupsAppGetToOneRelated: String, Sendable, CaseIterable {
         case name = "name"
         case bundleid = "bundleId"
         case sku = "sku"
@@ -65,20 +62,22 @@ open class BetaGroupsAPI {
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppWithoutIncludesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaGroupsAppGetToOneRelated(id: String, fieldsApps: [FieldsApps_betaGroupsAppGetToOneRelated]? = nil) async throws -> AppWithoutIncludesResponse {
-        return try await betaGroupsAppGetToOneRelatedWithRequestBuilder(id: id, fieldsApps: fieldsApps).execute().body
+    open class func betaGroupsAppGetToOneRelated(id: String, fieldsApps: [FieldsApps_betaGroupsAppGetToOneRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppWithoutIncludesResponse {
+        return try await betaGroupsAppGetToOneRelatedWithRequestBuilder(id: id, fieldsApps: fieldsApps, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppWithoutIncludesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaGroupsAppGetToOneRelated(urlString: String) async throws -> AppWithoutIncludesResponse {
-        return try await betaGroupsAppGetToOneRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func betaGroupsAppGetToOneRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppWithoutIncludesResponse {
+        return try await betaGroupsAppGetToOneRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -88,19 +87,20 @@ open class BetaGroupsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsApps: (query) the fields to include for returned resources of type apps (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppWithoutIncludesResponse> 
      */
-    open class func betaGroupsAppGetToOneRelatedWithRequestBuilder(id: String, fieldsApps: [FieldsApps_betaGroupsAppGetToOneRelated]? = nil) -> RequestBuilder<AppWithoutIncludesResponse> {
+    open class func betaGroupsAppGetToOneRelatedWithRequestBuilder(id: String, fieldsApps: [FieldsApps_betaGroupsAppGetToOneRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppWithoutIncludesResponse> {
         var localVariablePath = "/v1/betaGroups/{id}/app"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
+            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -109,9 +109,9 @@ open class BetaGroupsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppWithoutIncludesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -120,24 +120,25 @@ open class BetaGroupsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppWithoutIncludesResponse> 
      */
-    open class func betaGroupsAppGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppWithoutIncludesResponse> {
+    open class func betaGroupsAppGetToOneRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppWithoutIncludesResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppWithoutIncludesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter period
      */
-    public enum Period_betaGroupsBetaTesterUsagesGetMetrics: String, CaseIterable {
+    public enum Period_betaGroupsBetaTesterUsagesGetMetrics: String, Sendable, CaseIterable {
         case p7D = "P7D"
         case p30D = "P30D"
         case p90D = "P90D"
@@ -147,7 +148,7 @@ open class BetaGroupsAPI {
     /**
      * enum for parameter groupBy
      */
-    public enum GroupBy_betaGroupsBetaTesterUsagesGetMetrics: String, CaseIterable {
+    public enum GroupBy_betaGroupsBetaTesterUsagesGetMetrics: String, Sendable, CaseIterable {
         case betatesters = "betaTesters"
     }
 
@@ -158,20 +159,22 @@ open class BetaGroupsAPI {
      - parameter groupBy: (query) the dimension by which to group the results (optional)
      - parameter filterBetaTesters: (query) filter by &#39;betaTesters&#39; relationship dimension (optional)
      - parameter limit: (query) maximum number of groups to return per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppsBetaTesterUsagesV1MetricResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaGroupsBetaTesterUsagesGetMetrics(id: String, period: Period_betaGroupsBetaTesterUsagesGetMetrics? = nil, groupBy: [GroupBy_betaGroupsBetaTesterUsagesGetMetrics]? = nil, filterBetaTesters: String? = nil, limit: Int? = nil) async throws -> AppsBetaTesterUsagesV1MetricResponse {
-        return try await betaGroupsBetaTesterUsagesGetMetricsWithRequestBuilder(id: id, period: period, groupBy: groupBy, filterBetaTesters: filterBetaTesters, limit: limit).execute().body
+    open class func betaGroupsBetaTesterUsagesGetMetrics(id: String, period: Period_betaGroupsBetaTesterUsagesGetMetrics? = nil, groupBy: [GroupBy_betaGroupsBetaTesterUsagesGetMetrics]? = nil, filterBetaTesters: String? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppsBetaTesterUsagesV1MetricResponse {
+        return try await betaGroupsBetaTesterUsagesGetMetricsWithRequestBuilder(id: id, period: period, groupBy: groupBy, filterBetaTesters: filterBetaTesters, limit: limit, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppsBetaTesterUsagesV1MetricResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaGroupsBetaTesterUsagesGetMetrics(urlString: String) async throws -> AppsBetaTesterUsagesV1MetricResponse {
-        return try await betaGroupsBetaTesterUsagesGetMetricsWithRequestBuilder(urlString: urlString).execute().body
+    open class func betaGroupsBetaTesterUsagesGetMetrics(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppsBetaTesterUsagesV1MetricResponse {
+        return try await betaGroupsBetaTesterUsagesGetMetricsWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -184,22 +187,23 @@ open class BetaGroupsAPI {
      - parameter groupBy: (query) the dimension by which to group the results (optional)
      - parameter filterBetaTesters: (query) filter by &#39;betaTesters&#39; relationship dimension (optional)
      - parameter limit: (query) maximum number of groups to return per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppsBetaTesterUsagesV1MetricResponse> 
      */
-    open class func betaGroupsBetaTesterUsagesGetMetricsWithRequestBuilder(id: String, period: Period_betaGroupsBetaTesterUsagesGetMetrics? = nil, groupBy: [GroupBy_betaGroupsBetaTesterUsagesGetMetrics]? = nil, filterBetaTesters: String? = nil, limit: Int? = nil) -> RequestBuilder<AppsBetaTesterUsagesV1MetricResponse> {
+    open class func betaGroupsBetaTesterUsagesGetMetricsWithRequestBuilder(id: String, period: Period_betaGroupsBetaTesterUsagesGetMetrics? = nil, groupBy: [GroupBy_betaGroupsBetaTesterUsagesGetMetrics]? = nil, filterBetaTesters: String? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppsBetaTesterUsagesV1MetricResponse> {
         var localVariablePath = "/v1/betaGroups/{id}/metrics/betaTesterUsages"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "period": (wrappedValue: period?.encodeToJSON(), isExplode: false),
-            "groupBy": (wrappedValue: groupBy?.encodeToJSON(), isExplode: false),
-            "filter[betaTesters]": (wrappedValue: filterBetaTesters?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "period": (wrappedValue: period?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "groupBy": (wrappedValue: groupBy?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[betaTesters]": (wrappedValue: filterBetaTesters?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -208,9 +212,9 @@ open class BetaGroupsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppsBetaTesterUsagesV1MetricResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppsBetaTesterUsagesV1MetricResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -219,38 +223,41 @@ open class BetaGroupsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppsBetaTesterUsagesV1MetricResponse> 
      */
-    open class func betaGroupsBetaTesterUsagesGetMetricsWithRequestBuilder(urlString: String) -> RequestBuilder<AppsBetaTesterUsagesV1MetricResponse> {
+    open class func betaGroupsBetaTesterUsagesGetMetricsWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppsBetaTesterUsagesV1MetricResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppsBetaTesterUsagesV1MetricResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppsBetaTesterUsagesV1MetricResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter betaGroupBetaTestersLinkagesRequest: (body) List of related linkages 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaGroupsBetaTestersCreateToManyRelationship(id: String, betaGroupBetaTestersLinkagesRequest: BetaGroupBetaTestersLinkagesRequest) async throws {
-        return try await betaGroupsBetaTestersCreateToManyRelationshipWithRequestBuilder(id: id, betaGroupBetaTestersLinkagesRequest: betaGroupBetaTestersLinkagesRequest).execute().body
+    open class func betaGroupsBetaTestersCreateToManyRelationship(id: String, betaGroupBetaTestersLinkagesRequest: BetaGroupBetaTestersLinkagesRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await betaGroupsBetaTestersCreateToManyRelationshipWithRequestBuilder(id: id, betaGroupBetaTestersLinkagesRequest: betaGroupBetaTestersLinkagesRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaGroupsBetaTestersCreateToManyRelationship(urlString: String) async throws {
-        return try await betaGroupsBetaTestersCreateToManyRelationshipWithRequestBuilder(urlString: urlString).execute().body
+    open class func betaGroupsBetaTestersCreateToManyRelationship(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await betaGroupsBetaTestersCreateToManyRelationshipWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -260,15 +267,16 @@ open class BetaGroupsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter betaGroupBetaTestersLinkagesRequest: (body) List of related linkages 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func betaGroupsBetaTestersCreateToManyRelationshipWithRequestBuilder(id: String, betaGroupBetaTestersLinkagesRequest: BetaGroupBetaTestersLinkagesRequest) -> RequestBuilder<Void> {
+    open class func betaGroupsBetaTestersCreateToManyRelationshipWithRequestBuilder(id: String, betaGroupBetaTestersLinkagesRequest: BetaGroupBetaTestersLinkagesRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/betaGroups/{id}/relationships/betaTesters"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: betaGroupBetaTestersLinkagesRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: betaGroupBetaTestersLinkagesRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -278,9 +286,9 @@ open class BetaGroupsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -289,38 +297,41 @@ open class BetaGroupsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func betaGroupsBetaTestersCreateToManyRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func betaGroupsBetaTestersCreateToManyRelationshipWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter betaGroupBetaTestersLinkagesRequest: (body) List of related linkages 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaGroupsBetaTestersDeleteToManyRelationship(id: String, betaGroupBetaTestersLinkagesRequest: BetaGroupBetaTestersLinkagesRequest) async throws {
-        return try await betaGroupsBetaTestersDeleteToManyRelationshipWithRequestBuilder(id: id, betaGroupBetaTestersLinkagesRequest: betaGroupBetaTestersLinkagesRequest).execute().body
+    open class func betaGroupsBetaTestersDeleteToManyRelationship(id: String, betaGroupBetaTestersLinkagesRequest: BetaGroupBetaTestersLinkagesRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await betaGroupsBetaTestersDeleteToManyRelationshipWithRequestBuilder(id: id, betaGroupBetaTestersLinkagesRequest: betaGroupBetaTestersLinkagesRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaGroupsBetaTestersDeleteToManyRelationship(urlString: String) async throws {
-        return try await betaGroupsBetaTestersDeleteToManyRelationshipWithRequestBuilder(urlString: urlString).execute().body
+    open class func betaGroupsBetaTestersDeleteToManyRelationship(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await betaGroupsBetaTestersDeleteToManyRelationshipWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -330,15 +341,16 @@ open class BetaGroupsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter betaGroupBetaTestersLinkagesRequest: (body) List of related linkages 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func betaGroupsBetaTestersDeleteToManyRelationshipWithRequestBuilder(id: String, betaGroupBetaTestersLinkagesRequest: BetaGroupBetaTestersLinkagesRequest) -> RequestBuilder<Void> {
+    open class func betaGroupsBetaTestersDeleteToManyRelationshipWithRequestBuilder(id: String, betaGroupBetaTestersLinkagesRequest: BetaGroupBetaTestersLinkagesRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/betaGroups/{id}/relationships/betaTesters"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: betaGroupBetaTestersLinkagesRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: betaGroupBetaTestersLinkagesRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -348,9 +360,9 @@ open class BetaGroupsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -359,24 +371,25 @@ open class BetaGroupsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func betaGroupsBetaTestersDeleteToManyRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func betaGroupsBetaTestersDeleteToManyRelationshipWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsBetaTesters
      */
-    public enum FieldsBetaTesters_betaGroupsBetaTestersGetToManyRelated: String, CaseIterable {
+    public enum FieldsBetaTesters_betaGroupsBetaTestersGetToManyRelated: String, Sendable, CaseIterable {
         case firstname = "firstName"
         case lastname = "lastName"
         case email = "email"
@@ -392,20 +405,22 @@ open class BetaGroupsAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsBetaTesters: (query) the fields to include for returned resources of type betaTesters (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BetaTestersWithoutIncludesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaGroupsBetaTestersGetToManyRelated(id: String, fieldsBetaTesters: [FieldsBetaTesters_betaGroupsBetaTestersGetToManyRelated]? = nil, limit: Int? = nil) async throws -> BetaTestersWithoutIncludesResponse {
-        return try await betaGroupsBetaTestersGetToManyRelatedWithRequestBuilder(id: id, fieldsBetaTesters: fieldsBetaTesters, limit: limit).execute().body
+    open class func betaGroupsBetaTestersGetToManyRelated(id: String, fieldsBetaTesters: [FieldsBetaTesters_betaGroupsBetaTestersGetToManyRelated]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BetaTestersWithoutIncludesResponse {
+        return try await betaGroupsBetaTestersGetToManyRelatedWithRequestBuilder(id: id, fieldsBetaTesters: fieldsBetaTesters, limit: limit, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BetaTestersWithoutIncludesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaGroupsBetaTestersGetToManyRelated(urlString: String) async throws -> BetaTestersWithoutIncludesResponse {
-        return try await betaGroupsBetaTestersGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func betaGroupsBetaTestersGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BetaTestersWithoutIncludesResponse {
+        return try await betaGroupsBetaTestersGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -416,20 +431,21 @@ open class BetaGroupsAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsBetaTesters: (query) the fields to include for returned resources of type betaTesters (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BetaTestersWithoutIncludesResponse> 
      */
-    open class func betaGroupsBetaTestersGetToManyRelatedWithRequestBuilder(id: String, fieldsBetaTesters: [FieldsBetaTesters_betaGroupsBetaTestersGetToManyRelated]? = nil, limit: Int? = nil) -> RequestBuilder<BetaTestersWithoutIncludesResponse> {
+    open class func betaGroupsBetaTestersGetToManyRelatedWithRequestBuilder(id: String, fieldsBetaTesters: [FieldsBetaTesters_betaGroupsBetaTestersGetToManyRelated]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BetaTestersWithoutIncludesResponse> {
         var localVariablePath = "/v1/betaGroups/{id}/betaTesters"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[betaTesters]": (wrappedValue: fieldsBetaTesters?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "fields[betaTesters]": (wrappedValue: fieldsBetaTesters?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -438,9 +454,9 @@ open class BetaGroupsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BetaTestersWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BetaTestersWithoutIncludesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -449,38 +465,41 @@ open class BetaGroupsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BetaTestersWithoutIncludesResponse> 
      */
-    open class func betaGroupsBetaTestersGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<BetaTestersWithoutIncludesResponse> {
+    open class func betaGroupsBetaTestersGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BetaTestersWithoutIncludesResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BetaTestersWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BetaTestersWithoutIncludesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BetaGroupBetaTestersLinkagesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaGroupsBetaTestersGetToManyRelationship(id: String, limit: Int? = nil) async throws -> BetaGroupBetaTestersLinkagesResponse {
-        return try await betaGroupsBetaTestersGetToManyRelationshipWithRequestBuilder(id: id, limit: limit).execute().body
+    open class func betaGroupsBetaTestersGetToManyRelationship(id: String, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BetaGroupBetaTestersLinkagesResponse {
+        return try await betaGroupsBetaTestersGetToManyRelationshipWithRequestBuilder(id: id, limit: limit, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BetaGroupBetaTestersLinkagesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaGroupsBetaTestersGetToManyRelationship(urlString: String) async throws -> BetaGroupBetaTestersLinkagesResponse {
-        return try await betaGroupsBetaTestersGetToManyRelationshipWithRequestBuilder(urlString: urlString).execute().body
+    open class func betaGroupsBetaTestersGetToManyRelationship(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BetaGroupBetaTestersLinkagesResponse {
+        return try await betaGroupsBetaTestersGetToManyRelationshipWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -490,19 +509,20 @@ open class BetaGroupsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BetaGroupBetaTestersLinkagesResponse> 
      */
-    open class func betaGroupsBetaTestersGetToManyRelationshipWithRequestBuilder(id: String, limit: Int? = nil) -> RequestBuilder<BetaGroupBetaTestersLinkagesResponse> {
+    open class func betaGroupsBetaTestersGetToManyRelationshipWithRequestBuilder(id: String, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BetaGroupBetaTestersLinkagesResponse> {
         var localVariablePath = "/v1/betaGroups/{id}/relationships/betaTesters"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -511,9 +531,9 @@ open class BetaGroupsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BetaGroupBetaTestersLinkagesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BetaGroupBetaTestersLinkagesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -522,38 +542,41 @@ open class BetaGroupsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BetaGroupBetaTestersLinkagesResponse> 
      */
-    open class func betaGroupsBetaTestersGetToManyRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<BetaGroupBetaTestersLinkagesResponse> {
+    open class func betaGroupsBetaTestersGetToManyRelationshipWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BetaGroupBetaTestersLinkagesResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BetaGroupBetaTestersLinkagesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BetaGroupBetaTestersLinkagesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter betaGroupBuildsLinkagesRequest: (body) List of related linkages 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaGroupsBuildsCreateToManyRelationship(id: String, betaGroupBuildsLinkagesRequest: BetaGroupBuildsLinkagesRequest) async throws {
-        return try await betaGroupsBuildsCreateToManyRelationshipWithRequestBuilder(id: id, betaGroupBuildsLinkagesRequest: betaGroupBuildsLinkagesRequest).execute().body
+    open class func betaGroupsBuildsCreateToManyRelationship(id: String, betaGroupBuildsLinkagesRequest: BetaGroupBuildsLinkagesRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await betaGroupsBuildsCreateToManyRelationshipWithRequestBuilder(id: id, betaGroupBuildsLinkagesRequest: betaGroupBuildsLinkagesRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaGroupsBuildsCreateToManyRelationship(urlString: String) async throws {
-        return try await betaGroupsBuildsCreateToManyRelationshipWithRequestBuilder(urlString: urlString).execute().body
+    open class func betaGroupsBuildsCreateToManyRelationship(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await betaGroupsBuildsCreateToManyRelationshipWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -563,15 +586,16 @@ open class BetaGroupsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter betaGroupBuildsLinkagesRequest: (body) List of related linkages 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func betaGroupsBuildsCreateToManyRelationshipWithRequestBuilder(id: String, betaGroupBuildsLinkagesRequest: BetaGroupBuildsLinkagesRequest) -> RequestBuilder<Void> {
+    open class func betaGroupsBuildsCreateToManyRelationshipWithRequestBuilder(id: String, betaGroupBuildsLinkagesRequest: BetaGroupBuildsLinkagesRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/betaGroups/{id}/relationships/builds"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: betaGroupBuildsLinkagesRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: betaGroupBuildsLinkagesRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -581,9 +605,9 @@ open class BetaGroupsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -592,38 +616,41 @@ open class BetaGroupsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func betaGroupsBuildsCreateToManyRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func betaGroupsBuildsCreateToManyRelationshipWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter betaGroupBuildsLinkagesRequest: (body) List of related linkages 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaGroupsBuildsDeleteToManyRelationship(id: String, betaGroupBuildsLinkagesRequest: BetaGroupBuildsLinkagesRequest) async throws {
-        return try await betaGroupsBuildsDeleteToManyRelationshipWithRequestBuilder(id: id, betaGroupBuildsLinkagesRequest: betaGroupBuildsLinkagesRequest).execute().body
+    open class func betaGroupsBuildsDeleteToManyRelationship(id: String, betaGroupBuildsLinkagesRequest: BetaGroupBuildsLinkagesRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await betaGroupsBuildsDeleteToManyRelationshipWithRequestBuilder(id: id, betaGroupBuildsLinkagesRequest: betaGroupBuildsLinkagesRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaGroupsBuildsDeleteToManyRelationship(urlString: String) async throws {
-        return try await betaGroupsBuildsDeleteToManyRelationshipWithRequestBuilder(urlString: urlString).execute().body
+    open class func betaGroupsBuildsDeleteToManyRelationship(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await betaGroupsBuildsDeleteToManyRelationshipWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -633,15 +660,16 @@ open class BetaGroupsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter betaGroupBuildsLinkagesRequest: (body) List of related linkages 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func betaGroupsBuildsDeleteToManyRelationshipWithRequestBuilder(id: String, betaGroupBuildsLinkagesRequest: BetaGroupBuildsLinkagesRequest) -> RequestBuilder<Void> {
+    open class func betaGroupsBuildsDeleteToManyRelationshipWithRequestBuilder(id: String, betaGroupBuildsLinkagesRequest: BetaGroupBuildsLinkagesRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/betaGroups/{id}/relationships/builds"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: betaGroupBuildsLinkagesRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: betaGroupBuildsLinkagesRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -651,9 +679,9 @@ open class BetaGroupsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -662,24 +690,25 @@ open class BetaGroupsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func betaGroupsBuildsDeleteToManyRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func betaGroupsBuildsDeleteToManyRelationshipWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsBuilds
      */
-    public enum FieldsBuilds_betaGroupsBuildsGetToManyRelated: String, CaseIterable {
+    public enum FieldsBuilds_betaGroupsBuildsGetToManyRelated: String, Sendable, CaseIterable {
         case version = "version"
         case uploadeddate = "uploadedDate"
         case expirationdate = "expirationDate"
@@ -711,20 +740,22 @@ open class BetaGroupsAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BuildsWithoutIncludesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaGroupsBuildsGetToManyRelated(id: String, fieldsBuilds: [FieldsBuilds_betaGroupsBuildsGetToManyRelated]? = nil, limit: Int? = nil) async throws -> BuildsWithoutIncludesResponse {
-        return try await betaGroupsBuildsGetToManyRelatedWithRequestBuilder(id: id, fieldsBuilds: fieldsBuilds, limit: limit).execute().body
+    open class func betaGroupsBuildsGetToManyRelated(id: String, fieldsBuilds: [FieldsBuilds_betaGroupsBuildsGetToManyRelated]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BuildsWithoutIncludesResponse {
+        return try await betaGroupsBuildsGetToManyRelatedWithRequestBuilder(id: id, fieldsBuilds: fieldsBuilds, limit: limit, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BuildsWithoutIncludesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaGroupsBuildsGetToManyRelated(urlString: String) async throws -> BuildsWithoutIncludesResponse {
-        return try await betaGroupsBuildsGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func betaGroupsBuildsGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BuildsWithoutIncludesResponse {
+        return try await betaGroupsBuildsGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -735,20 +766,21 @@ open class BetaGroupsAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsBuilds: (query) the fields to include for returned resources of type builds (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BuildsWithoutIncludesResponse> 
      */
-    open class func betaGroupsBuildsGetToManyRelatedWithRequestBuilder(id: String, fieldsBuilds: [FieldsBuilds_betaGroupsBuildsGetToManyRelated]? = nil, limit: Int? = nil) -> RequestBuilder<BuildsWithoutIncludesResponse> {
+    open class func betaGroupsBuildsGetToManyRelatedWithRequestBuilder(id: String, fieldsBuilds: [FieldsBuilds_betaGroupsBuildsGetToManyRelated]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BuildsWithoutIncludesResponse> {
         var localVariablePath = "/v1/betaGroups/{id}/builds"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -757,9 +789,9 @@ open class BetaGroupsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BuildsWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BuildsWithoutIncludesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -768,38 +800,41 @@ open class BetaGroupsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BuildsWithoutIncludesResponse> 
      */
-    open class func betaGroupsBuildsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<BuildsWithoutIncludesResponse> {
+    open class func betaGroupsBuildsGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BuildsWithoutIncludesResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BuildsWithoutIncludesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BuildsWithoutIncludesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BetaGroupBuildsLinkagesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaGroupsBuildsGetToManyRelationship(id: String, limit: Int? = nil) async throws -> BetaGroupBuildsLinkagesResponse {
-        return try await betaGroupsBuildsGetToManyRelationshipWithRequestBuilder(id: id, limit: limit).execute().body
+    open class func betaGroupsBuildsGetToManyRelationship(id: String, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BetaGroupBuildsLinkagesResponse {
+        return try await betaGroupsBuildsGetToManyRelationshipWithRequestBuilder(id: id, limit: limit, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BetaGroupBuildsLinkagesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaGroupsBuildsGetToManyRelationship(urlString: String) async throws -> BetaGroupBuildsLinkagesResponse {
-        return try await betaGroupsBuildsGetToManyRelationshipWithRequestBuilder(urlString: urlString).execute().body
+    open class func betaGroupsBuildsGetToManyRelationship(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BetaGroupBuildsLinkagesResponse {
+        return try await betaGroupsBuildsGetToManyRelationshipWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -809,19 +844,20 @@ open class BetaGroupsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BetaGroupBuildsLinkagesResponse> 
      */
-    open class func betaGroupsBuildsGetToManyRelationshipWithRequestBuilder(id: String, limit: Int? = nil) -> RequestBuilder<BetaGroupBuildsLinkagesResponse> {
+    open class func betaGroupsBuildsGetToManyRelationshipWithRequestBuilder(id: String, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BetaGroupBuildsLinkagesResponse> {
         var localVariablePath = "/v1/betaGroups/{id}/relationships/builds"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -830,9 +866,9 @@ open class BetaGroupsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BetaGroupBuildsLinkagesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BetaGroupBuildsLinkagesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -841,37 +877,40 @@ open class BetaGroupsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BetaGroupBuildsLinkagesResponse> 
      */
-    open class func betaGroupsBuildsGetToManyRelationshipWithRequestBuilder(urlString: String) -> RequestBuilder<BetaGroupBuildsLinkagesResponse> {
+    open class func betaGroupsBuildsGetToManyRelationshipWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BetaGroupBuildsLinkagesResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BetaGroupBuildsLinkagesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BetaGroupBuildsLinkagesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter betaGroupCreateRequest: (body) BetaGroup representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BetaGroupResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaGroupsCreateInstance(betaGroupCreateRequest: BetaGroupCreateRequest) async throws -> BetaGroupResponse {
-        return try await betaGroupsCreateInstanceWithRequestBuilder(betaGroupCreateRequest: betaGroupCreateRequest).execute().body
+    open class func betaGroupsCreateInstance(betaGroupCreateRequest: BetaGroupCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BetaGroupResponse {
+        return try await betaGroupsCreateInstanceWithRequestBuilder(betaGroupCreateRequest: betaGroupCreateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BetaGroupResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaGroupsCreateInstance(urlString: String) async throws -> BetaGroupResponse {
-        return try await betaGroupsCreateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func betaGroupsCreateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BetaGroupResponse {
+        return try await betaGroupsCreateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -880,12 +919,13 @@ open class BetaGroupsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter betaGroupCreateRequest: (body) BetaGroup representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BetaGroupResponse> 
      */
-    open class func betaGroupsCreateInstanceWithRequestBuilder(betaGroupCreateRequest: BetaGroupCreateRequest) -> RequestBuilder<BetaGroupResponse> {
+    open class func betaGroupsCreateInstanceWithRequestBuilder(betaGroupCreateRequest: BetaGroupCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BetaGroupResponse> {
         let localVariablePath = "/v1/betaGroups"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: betaGroupCreateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: betaGroupCreateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -895,9 +935,9 @@ open class BetaGroupsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BetaGroupResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BetaGroupResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -906,37 +946,40 @@ open class BetaGroupsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BetaGroupResponse> 
      */
-    open class func betaGroupsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<BetaGroupResponse> {
+    open class func betaGroupsCreateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BetaGroupResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BetaGroupResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BetaGroupResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaGroupsDeleteInstance(id: String) async throws {
-        return try await betaGroupsDeleteInstanceWithRequestBuilder(id: id).execute().body
+    open class func betaGroupsDeleteInstance(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await betaGroupsDeleteInstanceWithRequestBuilder(id: id, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaGroupsDeleteInstance(urlString: String) async throws {
-        return try await betaGroupsDeleteInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func betaGroupsDeleteInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await betaGroupsDeleteInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -945,14 +988,15 @@ open class BetaGroupsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func betaGroupsDeleteInstanceWithRequestBuilder(id: String) -> RequestBuilder<Void> {
+    open class func betaGroupsDeleteInstanceWithRequestBuilder(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/betaGroups/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -963,9 +1007,9 @@ open class BetaGroupsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -974,24 +1018,25 @@ open class BetaGroupsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func betaGroupsDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func betaGroupsDeleteInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter sort
      */
-    public enum Sort_betaGroupsGetCollection: String, CaseIterable {
+    public enum Sort_betaGroupsGetCollection: String, Sendable, CaseIterable {
         case name = "name"
         case name2 = "-name"
         case createddate = "createdDate"
@@ -1005,7 +1050,7 @@ open class BetaGroupsAPI {
     /**
      * enum for parameter fieldsBetaGroups
      */
-    public enum FieldsBetaGroups_betaGroupsGetCollection: String, CaseIterable {
+    public enum FieldsBetaGroups_betaGroupsGetCollection: String, Sendable, CaseIterable {
         case name = "name"
         case createddate = "createdDate"
         case isinternalgroup = "isInternalGroup"
@@ -1025,7 +1070,7 @@ open class BetaGroupsAPI {
     /**
      * enum for parameter fieldsApps
      */
-    public enum FieldsApps_betaGroupsGetCollection: String, CaseIterable {
+    public enum FieldsApps_betaGroupsGetCollection: String, Sendable, CaseIterable {
         case name = "name"
         case bundleid = "bundleId"
         case sku = "sku"
@@ -1074,7 +1119,7 @@ open class BetaGroupsAPI {
     /**
      * enum for parameter fieldsBuilds
      */
-    public enum FieldsBuilds_betaGroupsGetCollection: String, CaseIterable {
+    public enum FieldsBuilds_betaGroupsGetCollection: String, Sendable, CaseIterable {
         case version = "version"
         case uploadeddate = "uploadedDate"
         case expirationdate = "expirationDate"
@@ -1104,7 +1149,7 @@ open class BetaGroupsAPI {
     /**
      * enum for parameter fieldsBetaTesters
      */
-    public enum FieldsBetaTesters_betaGroupsGetCollection: String, CaseIterable {
+    public enum FieldsBetaTesters_betaGroupsGetCollection: String, Sendable, CaseIterable {
         case firstname = "firstName"
         case lastname = "lastName"
         case email = "email"
@@ -1118,7 +1163,7 @@ open class BetaGroupsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_betaGroupsGetCollection: String, CaseIterable {
+    public enum Include_betaGroupsGetCollection: String, Sendable, CaseIterable {
         case app = "app"
         case builds = "builds"
         case betatesters = "betaTesters"
@@ -1143,20 +1188,22 @@ open class BetaGroupsAPI {
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitBetaTesters: (query) maximum number of related betaTesters returned (when they are included) (optional)
      - parameter limitBuilds: (query) maximum number of related builds returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BetaGroupsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaGroupsGetCollection(filterName: [String]? = nil, filterIsInternalGroup: [String]? = nil, filterPublicLinkEnabled: [String]? = nil, filterPublicLinkLimitEnabled: [String]? = nil, filterPublicLink: [String]? = nil, filterApp: [String]? = nil, filterBuilds: [String]? = nil, filterId: [String]? = nil, sort: [Sort_betaGroupsGetCollection]? = nil, fieldsBetaGroups: [FieldsBetaGroups_betaGroupsGetCollection]? = nil, fieldsApps: [FieldsApps_betaGroupsGetCollection]? = nil, fieldsBuilds: [FieldsBuilds_betaGroupsGetCollection]? = nil, fieldsBetaTesters: [FieldsBetaTesters_betaGroupsGetCollection]? = nil, limit: Int? = nil, include: [Include_betaGroupsGetCollection]? = nil, limitBetaTesters: Int? = nil, limitBuilds: Int? = nil) async throws -> BetaGroupsResponse {
-        return try await betaGroupsGetCollectionWithRequestBuilder(filterName: filterName, filterIsInternalGroup: filterIsInternalGroup, filterPublicLinkEnabled: filterPublicLinkEnabled, filterPublicLinkLimitEnabled: filterPublicLinkLimitEnabled, filterPublicLink: filterPublicLink, filterApp: filterApp, filterBuilds: filterBuilds, filterId: filterId, sort: sort, fieldsBetaGroups: fieldsBetaGroups, fieldsApps: fieldsApps, fieldsBuilds: fieldsBuilds, fieldsBetaTesters: fieldsBetaTesters, limit: limit, include: include, limitBetaTesters: limitBetaTesters, limitBuilds: limitBuilds).execute().body
+    open class func betaGroupsGetCollection(filterName: [String]? = nil, filterIsInternalGroup: [String]? = nil, filterPublicLinkEnabled: [String]? = nil, filterPublicLinkLimitEnabled: [String]? = nil, filterPublicLink: [String]? = nil, filterApp: [String]? = nil, filterBuilds: [String]? = nil, filterId: [String]? = nil, sort: [Sort_betaGroupsGetCollection]? = nil, fieldsBetaGroups: [FieldsBetaGroups_betaGroupsGetCollection]? = nil, fieldsApps: [FieldsApps_betaGroupsGetCollection]? = nil, fieldsBuilds: [FieldsBuilds_betaGroupsGetCollection]? = nil, fieldsBetaTesters: [FieldsBetaTesters_betaGroupsGetCollection]? = nil, limit: Int? = nil, include: [Include_betaGroupsGetCollection]? = nil, limitBetaTesters: Int? = nil, limitBuilds: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BetaGroupsResponse {
+        return try await betaGroupsGetCollectionWithRequestBuilder(filterName: filterName, filterIsInternalGroup: filterIsInternalGroup, filterPublicLinkEnabled: filterPublicLinkEnabled, filterPublicLinkLimitEnabled: filterPublicLinkLimitEnabled, filterPublicLink: filterPublicLink, filterApp: filterApp, filterBuilds: filterBuilds, filterId: filterId, sort: sort, fieldsBetaGroups: fieldsBetaGroups, fieldsApps: fieldsApps, fieldsBuilds: fieldsBuilds, fieldsBetaTesters: fieldsBetaTesters, limit: limit, include: include, limitBetaTesters: limitBetaTesters, limitBuilds: limitBuilds, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BetaGroupsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaGroupsGetCollection(urlString: String) async throws -> BetaGroupsResponse {
-        return try await betaGroupsGetCollectionWithRequestBuilder(urlString: urlString).execute().body
+    open class func betaGroupsGetCollection(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BetaGroupsResponse {
+        return try await betaGroupsGetCollectionWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1181,32 +1228,33 @@ open class BetaGroupsAPI {
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitBetaTesters: (query) maximum number of related betaTesters returned (when they are included) (optional)
      - parameter limitBuilds: (query) maximum number of related builds returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BetaGroupsResponse> 
      */
-    open class func betaGroupsGetCollectionWithRequestBuilder(filterName: [String]? = nil, filterIsInternalGroup: [String]? = nil, filterPublicLinkEnabled: [String]? = nil, filterPublicLinkLimitEnabled: [String]? = nil, filterPublicLink: [String]? = nil, filterApp: [String]? = nil, filterBuilds: [String]? = nil, filterId: [String]? = nil, sort: [Sort_betaGroupsGetCollection]? = nil, fieldsBetaGroups: [FieldsBetaGroups_betaGroupsGetCollection]? = nil, fieldsApps: [FieldsApps_betaGroupsGetCollection]? = nil, fieldsBuilds: [FieldsBuilds_betaGroupsGetCollection]? = nil, fieldsBetaTesters: [FieldsBetaTesters_betaGroupsGetCollection]? = nil, limit: Int? = nil, include: [Include_betaGroupsGetCollection]? = nil, limitBetaTesters: Int? = nil, limitBuilds: Int? = nil) -> RequestBuilder<BetaGroupsResponse> {
+    open class func betaGroupsGetCollectionWithRequestBuilder(filterName: [String]? = nil, filterIsInternalGroup: [String]? = nil, filterPublicLinkEnabled: [String]? = nil, filterPublicLinkLimitEnabled: [String]? = nil, filterPublicLink: [String]? = nil, filterApp: [String]? = nil, filterBuilds: [String]? = nil, filterId: [String]? = nil, sort: [Sort_betaGroupsGetCollection]? = nil, fieldsBetaGroups: [FieldsBetaGroups_betaGroupsGetCollection]? = nil, fieldsApps: [FieldsApps_betaGroupsGetCollection]? = nil, fieldsBuilds: [FieldsBuilds_betaGroupsGetCollection]? = nil, fieldsBetaTesters: [FieldsBetaTesters_betaGroupsGetCollection]? = nil, limit: Int? = nil, include: [Include_betaGroupsGetCollection]? = nil, limitBetaTesters: Int? = nil, limitBuilds: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BetaGroupsResponse> {
         let localVariablePath = "/v1/betaGroups"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[name]": (wrappedValue: filterName?.encodeToJSON(), isExplode: false),
-            "filter[isInternalGroup]": (wrappedValue: filterIsInternalGroup?.encodeToJSON(), isExplode: false),
-            "filter[publicLinkEnabled]": (wrappedValue: filterPublicLinkEnabled?.encodeToJSON(), isExplode: false),
-            "filter[publicLinkLimitEnabled]": (wrappedValue: filterPublicLinkLimitEnabled?.encodeToJSON(), isExplode: false),
-            "filter[publicLink]": (wrappedValue: filterPublicLink?.encodeToJSON(), isExplode: false),
-            "filter[app]": (wrappedValue: filterApp?.encodeToJSON(), isExplode: false),
-            "filter[builds]": (wrappedValue: filterBuilds?.encodeToJSON(), isExplode: false),
-            "filter[id]": (wrappedValue: filterId?.encodeToJSON(), isExplode: false),
-            "sort": (wrappedValue: sort?.encodeToJSON(), isExplode: false),
-            "fields[betaGroups]": (wrappedValue: fieldsBetaGroups?.encodeToJSON(), isExplode: false),
-            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
-            "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(), isExplode: false),
-            "fields[betaTesters]": (wrappedValue: fieldsBetaTesters?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[betaTesters]": (wrappedValue: limitBetaTesters?.encodeToJSON(), isExplode: true),
-            "limit[builds]": (wrappedValue: limitBuilds?.encodeToJSON(), isExplode: true),
+            "filter[name]": (wrappedValue: filterName?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[isInternalGroup]": (wrappedValue: filterIsInternalGroup?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[publicLinkEnabled]": (wrappedValue: filterPublicLinkEnabled?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[publicLinkLimitEnabled]": (wrappedValue: filterPublicLinkLimitEnabled?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[publicLink]": (wrappedValue: filterPublicLink?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[app]": (wrappedValue: filterApp?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[builds]": (wrappedValue: filterBuilds?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[id]": (wrappedValue: filterId?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "sort": (wrappedValue: sort?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[betaGroups]": (wrappedValue: fieldsBetaGroups?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[betaTesters]": (wrappedValue: fieldsBetaTesters?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[betaTesters]": (wrappedValue: limitBetaTesters?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[builds]": (wrappedValue: limitBuilds?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -1215,9 +1263,9 @@ open class BetaGroupsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BetaGroupsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BetaGroupsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -1226,24 +1274,25 @@ open class BetaGroupsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BetaGroupsResponse> 
      */
-    open class func betaGroupsGetCollectionWithRequestBuilder(urlString: String) -> RequestBuilder<BetaGroupsResponse> {
+    open class func betaGroupsGetCollectionWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BetaGroupsResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BetaGroupsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BetaGroupsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsBetaGroups
      */
-    public enum FieldsBetaGroups_betaGroupsGetInstance: String, CaseIterable {
+    public enum FieldsBetaGroups_betaGroupsGetInstance: String, Sendable, CaseIterable {
         case name = "name"
         case createddate = "createdDate"
         case isinternalgroup = "isInternalGroup"
@@ -1263,7 +1312,7 @@ open class BetaGroupsAPI {
     /**
      * enum for parameter fieldsApps
      */
-    public enum FieldsApps_betaGroupsGetInstance: String, CaseIterable {
+    public enum FieldsApps_betaGroupsGetInstance: String, Sendable, CaseIterable {
         case name = "name"
         case bundleid = "bundleId"
         case sku = "sku"
@@ -1312,7 +1361,7 @@ open class BetaGroupsAPI {
     /**
      * enum for parameter fieldsBuilds
      */
-    public enum FieldsBuilds_betaGroupsGetInstance: String, CaseIterable {
+    public enum FieldsBuilds_betaGroupsGetInstance: String, Sendable, CaseIterable {
         case version = "version"
         case uploadeddate = "uploadedDate"
         case expirationdate = "expirationDate"
@@ -1342,7 +1391,7 @@ open class BetaGroupsAPI {
     /**
      * enum for parameter fieldsBetaTesters
      */
-    public enum FieldsBetaTesters_betaGroupsGetInstance: String, CaseIterable {
+    public enum FieldsBetaTesters_betaGroupsGetInstance: String, Sendable, CaseIterable {
         case firstname = "firstName"
         case lastname = "lastName"
         case email = "email"
@@ -1356,7 +1405,7 @@ open class BetaGroupsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_betaGroupsGetInstance: String, CaseIterable {
+    public enum Include_betaGroupsGetInstance: String, Sendable, CaseIterable {
         case app = "app"
         case builds = "builds"
         case betatesters = "betaTesters"
@@ -1372,20 +1421,22 @@ open class BetaGroupsAPI {
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitBetaTesters: (query) maximum number of related betaTesters returned (when they are included) (optional)
      - parameter limitBuilds: (query) maximum number of related builds returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BetaGroupResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaGroupsGetInstance(id: String, fieldsBetaGroups: [FieldsBetaGroups_betaGroupsGetInstance]? = nil, fieldsApps: [FieldsApps_betaGroupsGetInstance]? = nil, fieldsBuilds: [FieldsBuilds_betaGroupsGetInstance]? = nil, fieldsBetaTesters: [FieldsBetaTesters_betaGroupsGetInstance]? = nil, include: [Include_betaGroupsGetInstance]? = nil, limitBetaTesters: Int? = nil, limitBuilds: Int? = nil) async throws -> BetaGroupResponse {
-        return try await betaGroupsGetInstanceWithRequestBuilder(id: id, fieldsBetaGroups: fieldsBetaGroups, fieldsApps: fieldsApps, fieldsBuilds: fieldsBuilds, fieldsBetaTesters: fieldsBetaTesters, include: include, limitBetaTesters: limitBetaTesters, limitBuilds: limitBuilds).execute().body
+    open class func betaGroupsGetInstance(id: String, fieldsBetaGroups: [FieldsBetaGroups_betaGroupsGetInstance]? = nil, fieldsApps: [FieldsApps_betaGroupsGetInstance]? = nil, fieldsBuilds: [FieldsBuilds_betaGroupsGetInstance]? = nil, fieldsBetaTesters: [FieldsBetaTesters_betaGroupsGetInstance]? = nil, include: [Include_betaGroupsGetInstance]? = nil, limitBetaTesters: Int? = nil, limitBuilds: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BetaGroupResponse {
+        return try await betaGroupsGetInstanceWithRequestBuilder(id: id, fieldsBetaGroups: fieldsBetaGroups, fieldsApps: fieldsApps, fieldsBuilds: fieldsBuilds, fieldsBetaTesters: fieldsBetaTesters, include: include, limitBetaTesters: limitBetaTesters, limitBuilds: limitBuilds, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BetaGroupResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaGroupsGetInstance(urlString: String) async throws -> BetaGroupResponse {
-        return try await betaGroupsGetInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func betaGroupsGetInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BetaGroupResponse {
+        return try await betaGroupsGetInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1401,25 +1452,26 @@ open class BetaGroupsAPI {
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitBetaTesters: (query) maximum number of related betaTesters returned (when they are included) (optional)
      - parameter limitBuilds: (query) maximum number of related builds returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BetaGroupResponse> 
      */
-    open class func betaGroupsGetInstanceWithRequestBuilder(id: String, fieldsBetaGroups: [FieldsBetaGroups_betaGroupsGetInstance]? = nil, fieldsApps: [FieldsApps_betaGroupsGetInstance]? = nil, fieldsBuilds: [FieldsBuilds_betaGroupsGetInstance]? = nil, fieldsBetaTesters: [FieldsBetaTesters_betaGroupsGetInstance]? = nil, include: [Include_betaGroupsGetInstance]? = nil, limitBetaTesters: Int? = nil, limitBuilds: Int? = nil) -> RequestBuilder<BetaGroupResponse> {
+    open class func betaGroupsGetInstanceWithRequestBuilder(id: String, fieldsBetaGroups: [FieldsBetaGroups_betaGroupsGetInstance]? = nil, fieldsApps: [FieldsApps_betaGroupsGetInstance]? = nil, fieldsBuilds: [FieldsBuilds_betaGroupsGetInstance]? = nil, fieldsBetaTesters: [FieldsBetaTesters_betaGroupsGetInstance]? = nil, include: [Include_betaGroupsGetInstance]? = nil, limitBetaTesters: Int? = nil, limitBuilds: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BetaGroupResponse> {
         var localVariablePath = "/v1/betaGroups/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[betaGroups]": (wrappedValue: fieldsBetaGroups?.encodeToJSON(), isExplode: false),
-            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
-            "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(), isExplode: false),
-            "fields[betaTesters]": (wrappedValue: fieldsBetaTesters?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[betaTesters]": (wrappedValue: limitBetaTesters?.encodeToJSON(), isExplode: true),
-            "limit[builds]": (wrappedValue: limitBuilds?.encodeToJSON(), isExplode: true),
+            "fields[betaGroups]": (wrappedValue: fieldsBetaGroups?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[betaTesters]": (wrappedValue: fieldsBetaTesters?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[betaTesters]": (wrappedValue: limitBetaTesters?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[builds]": (wrappedValue: limitBuilds?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -1428,9 +1480,9 @@ open class BetaGroupsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BetaGroupResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BetaGroupResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -1439,38 +1491,41 @@ open class BetaGroupsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BetaGroupResponse> 
      */
-    open class func betaGroupsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<BetaGroupResponse> {
+    open class func betaGroupsGetInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BetaGroupResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BetaGroupResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BetaGroupResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter betaGroupUpdateRequest: (body) BetaGroup representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BetaGroupResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaGroupsUpdateInstance(id: String, betaGroupUpdateRequest: BetaGroupUpdateRequest) async throws -> BetaGroupResponse {
-        return try await betaGroupsUpdateInstanceWithRequestBuilder(id: id, betaGroupUpdateRequest: betaGroupUpdateRequest).execute().body
+    open class func betaGroupsUpdateInstance(id: String, betaGroupUpdateRequest: BetaGroupUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BetaGroupResponse {
+        return try await betaGroupsUpdateInstanceWithRequestBuilder(id: id, betaGroupUpdateRequest: betaGroupUpdateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: BetaGroupResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func betaGroupsUpdateInstance(urlString: String) async throws -> BetaGroupResponse {
-        return try await betaGroupsUpdateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func betaGroupsUpdateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> BetaGroupResponse {
+        return try await betaGroupsUpdateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1480,15 +1535,16 @@ open class BetaGroupsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter betaGroupUpdateRequest: (body) BetaGroup representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BetaGroupResponse> 
      */
-    open class func betaGroupsUpdateInstanceWithRequestBuilder(id: String, betaGroupUpdateRequest: BetaGroupUpdateRequest) -> RequestBuilder<BetaGroupResponse> {
+    open class func betaGroupsUpdateInstanceWithRequestBuilder(id: String, betaGroupUpdateRequest: BetaGroupUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BetaGroupResponse> {
         var localVariablePath = "/v1/betaGroups/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: betaGroupUpdateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: betaGroupUpdateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -1498,9 +1554,9 @@ open class BetaGroupsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BetaGroupResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BetaGroupResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -1509,17 +1565,18 @@ open class BetaGroupsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BetaGroupResponse> 
      */
-    open class func betaGroupsUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<BetaGroupResponse> {
+    open class func betaGroupsUpdateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<BetaGroupResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<BetaGroupResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BetaGroupResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

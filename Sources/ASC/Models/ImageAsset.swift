@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct ImageAsset: Codable, JSONEncodable, Hashable {
+public struct ImageAsset: Sendable, Codable, JSONEncodable, Hashable {
 
     public var templateUrl: String?
     public var width: Int?

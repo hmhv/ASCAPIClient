@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public enum InAppPurchaseType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+public enum InAppPurchaseType: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
     case consumable = "CONSUMABLE"
     case nonConsumable = "NON_CONSUMABLE"
     case nonRenewingSubscription = "NON_RENEWING_SUBSCRIPTION"

@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct ScmRepositoryAttributes: Codable, JSONEncodable, Hashable {
+public struct ScmRepositoryAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
     public var lastAccessedDate: Date?
     public var httpCloneUrl: String?

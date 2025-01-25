@@ -6,29 +6,28 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class GameCenterMatchmakingRuleSetsAPI {
 
     /**
 
      - parameter gameCenterMatchmakingRuleSetCreateRequest: (body) GameCenterMatchmakingRuleSet representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterMatchmakingRuleSetResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterMatchmakingRuleSetsCreateInstance(gameCenterMatchmakingRuleSetCreateRequest: GameCenterMatchmakingRuleSetCreateRequest) async throws -> GameCenterMatchmakingRuleSetResponse {
-        return try await gameCenterMatchmakingRuleSetsCreateInstanceWithRequestBuilder(gameCenterMatchmakingRuleSetCreateRequest: gameCenterMatchmakingRuleSetCreateRequest).execute().body
+    open class func gameCenterMatchmakingRuleSetsCreateInstance(gameCenterMatchmakingRuleSetCreateRequest: GameCenterMatchmakingRuleSetCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterMatchmakingRuleSetResponse {
+        return try await gameCenterMatchmakingRuleSetsCreateInstanceWithRequestBuilder(gameCenterMatchmakingRuleSetCreateRequest: gameCenterMatchmakingRuleSetCreateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterMatchmakingRuleSetResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterMatchmakingRuleSetsCreateInstance(urlString: String) async throws -> GameCenterMatchmakingRuleSetResponse {
-        return try await gameCenterMatchmakingRuleSetsCreateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func gameCenterMatchmakingRuleSetsCreateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterMatchmakingRuleSetResponse {
+        return try await gameCenterMatchmakingRuleSetsCreateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -37,12 +36,13 @@ open class GameCenterMatchmakingRuleSetsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter gameCenterMatchmakingRuleSetCreateRequest: (body) GameCenterMatchmakingRuleSet representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterMatchmakingRuleSetResponse> 
      */
-    open class func gameCenterMatchmakingRuleSetsCreateInstanceWithRequestBuilder(gameCenterMatchmakingRuleSetCreateRequest: GameCenterMatchmakingRuleSetCreateRequest) -> RequestBuilder<GameCenterMatchmakingRuleSetResponse> {
+    open class func gameCenterMatchmakingRuleSetsCreateInstanceWithRequestBuilder(gameCenterMatchmakingRuleSetCreateRequest: GameCenterMatchmakingRuleSetCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterMatchmakingRuleSetResponse> {
         let localVariablePath = "/v1/gameCenterMatchmakingRuleSets"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: gameCenterMatchmakingRuleSetCreateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: gameCenterMatchmakingRuleSetCreateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -52,9 +52,9 @@ open class GameCenterMatchmakingRuleSetsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingRuleSetResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingRuleSetResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -63,37 +63,40 @@ open class GameCenterMatchmakingRuleSetsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterMatchmakingRuleSetResponse> 
      */
-    open class func gameCenterMatchmakingRuleSetsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterMatchmakingRuleSetResponse> {
+    open class func gameCenterMatchmakingRuleSetsCreateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterMatchmakingRuleSetResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingRuleSetResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingRuleSetResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterMatchmakingRuleSetsDeleteInstance(id: String) async throws {
-        return try await gameCenterMatchmakingRuleSetsDeleteInstanceWithRequestBuilder(id: id).execute().body
+    open class func gameCenterMatchmakingRuleSetsDeleteInstance(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await gameCenterMatchmakingRuleSetsDeleteInstanceWithRequestBuilder(id: id, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterMatchmakingRuleSetsDeleteInstance(urlString: String) async throws {
-        return try await gameCenterMatchmakingRuleSetsDeleteInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func gameCenterMatchmakingRuleSetsDeleteInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await gameCenterMatchmakingRuleSetsDeleteInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -102,14 +105,15 @@ open class GameCenterMatchmakingRuleSetsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func gameCenterMatchmakingRuleSetsDeleteInstanceWithRequestBuilder(id: String) -> RequestBuilder<Void> {
+    open class func gameCenterMatchmakingRuleSetsDeleteInstanceWithRequestBuilder(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/gameCenterMatchmakingRuleSets/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -120,9 +124,9 @@ open class GameCenterMatchmakingRuleSetsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -131,24 +135,25 @@ open class GameCenterMatchmakingRuleSetsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func gameCenterMatchmakingRuleSetsDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func gameCenterMatchmakingRuleSetsDeleteInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsGameCenterMatchmakingRuleSets
      */
-    public enum FieldsGameCenterMatchmakingRuleSets_gameCenterMatchmakingRuleSetsGetCollection: String, CaseIterable {
+    public enum FieldsGameCenterMatchmakingRuleSets_gameCenterMatchmakingRuleSetsGetCollection: String, Sendable, CaseIterable {
         case referencename = "referenceName"
         case rulelanguageversion = "ruleLanguageVersion"
         case minplayers = "minPlayers"
@@ -161,7 +166,7 @@ open class GameCenterMatchmakingRuleSetsAPI {
     /**
      * enum for parameter fieldsGameCenterMatchmakingTeams
      */
-    public enum FieldsGameCenterMatchmakingTeams_gameCenterMatchmakingRuleSetsGetCollection: String, CaseIterable {
+    public enum FieldsGameCenterMatchmakingTeams_gameCenterMatchmakingRuleSetsGetCollection: String, Sendable, CaseIterable {
         case referencename = "referenceName"
         case minplayers = "minPlayers"
         case maxplayers = "maxPlayers"
@@ -170,7 +175,7 @@ open class GameCenterMatchmakingRuleSetsAPI {
     /**
      * enum for parameter fieldsGameCenterMatchmakingRules
      */
-    public enum FieldsGameCenterMatchmakingRules_gameCenterMatchmakingRuleSetsGetCollection: String, CaseIterable {
+    public enum FieldsGameCenterMatchmakingRules_gameCenterMatchmakingRuleSetsGetCollection: String, Sendable, CaseIterable {
         case referencename = "referenceName"
         case description = "description"
         case type = "type"
@@ -181,7 +186,7 @@ open class GameCenterMatchmakingRuleSetsAPI {
     /**
      * enum for parameter fieldsGameCenterMatchmakingQueues
      */
-    public enum FieldsGameCenterMatchmakingQueues_gameCenterMatchmakingRuleSetsGetCollection: String, CaseIterable {
+    public enum FieldsGameCenterMatchmakingQueues_gameCenterMatchmakingRuleSetsGetCollection: String, Sendable, CaseIterable {
         case referencename = "referenceName"
         case classicmatchmakingbundleids = "classicMatchmakingBundleIds"
         case ruleset = "ruleSet"
@@ -191,7 +196,7 @@ open class GameCenterMatchmakingRuleSetsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_gameCenterMatchmakingRuleSetsGetCollection: String, CaseIterable {
+    public enum Include_gameCenterMatchmakingRuleSetsGetCollection: String, Sendable, CaseIterable {
         case teams = "teams"
         case rules = "rules"
         case matchmakingqueues = "matchmakingQueues"
@@ -208,20 +213,22 @@ open class GameCenterMatchmakingRuleSetsAPI {
      - parameter limitMatchmakingQueues: (query) maximum number of related matchmakingQueues returned (when they are included) (optional)
      - parameter limitRules: (query) maximum number of related rules returned (when they are included) (optional)
      - parameter limitTeams: (query) maximum number of related teams returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterMatchmakingRuleSetsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterMatchmakingRuleSetsGetCollection(fieldsGameCenterMatchmakingRuleSets: [FieldsGameCenterMatchmakingRuleSets_gameCenterMatchmakingRuleSetsGetCollection]? = nil, fieldsGameCenterMatchmakingTeams: [FieldsGameCenterMatchmakingTeams_gameCenterMatchmakingRuleSetsGetCollection]? = nil, fieldsGameCenterMatchmakingRules: [FieldsGameCenterMatchmakingRules_gameCenterMatchmakingRuleSetsGetCollection]? = nil, fieldsGameCenterMatchmakingQueues: [FieldsGameCenterMatchmakingQueues_gameCenterMatchmakingRuleSetsGetCollection]? = nil, limit: Int? = nil, include: [Include_gameCenterMatchmakingRuleSetsGetCollection]? = nil, limitMatchmakingQueues: Int? = nil, limitRules: Int? = nil, limitTeams: Int? = nil) async throws -> GameCenterMatchmakingRuleSetsResponse {
-        return try await gameCenterMatchmakingRuleSetsGetCollectionWithRequestBuilder(fieldsGameCenterMatchmakingRuleSets: fieldsGameCenterMatchmakingRuleSets, fieldsGameCenterMatchmakingTeams: fieldsGameCenterMatchmakingTeams, fieldsGameCenterMatchmakingRules: fieldsGameCenterMatchmakingRules, fieldsGameCenterMatchmakingQueues: fieldsGameCenterMatchmakingQueues, limit: limit, include: include, limitMatchmakingQueues: limitMatchmakingQueues, limitRules: limitRules, limitTeams: limitTeams).execute().body
+    open class func gameCenterMatchmakingRuleSetsGetCollection(fieldsGameCenterMatchmakingRuleSets: [FieldsGameCenterMatchmakingRuleSets_gameCenterMatchmakingRuleSetsGetCollection]? = nil, fieldsGameCenterMatchmakingTeams: [FieldsGameCenterMatchmakingTeams_gameCenterMatchmakingRuleSetsGetCollection]? = nil, fieldsGameCenterMatchmakingRules: [FieldsGameCenterMatchmakingRules_gameCenterMatchmakingRuleSetsGetCollection]? = nil, fieldsGameCenterMatchmakingQueues: [FieldsGameCenterMatchmakingQueues_gameCenterMatchmakingRuleSetsGetCollection]? = nil, limit: Int? = nil, include: [Include_gameCenterMatchmakingRuleSetsGetCollection]? = nil, limitMatchmakingQueues: Int? = nil, limitRules: Int? = nil, limitTeams: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterMatchmakingRuleSetsResponse {
+        return try await gameCenterMatchmakingRuleSetsGetCollectionWithRequestBuilder(fieldsGameCenterMatchmakingRuleSets: fieldsGameCenterMatchmakingRuleSets, fieldsGameCenterMatchmakingTeams: fieldsGameCenterMatchmakingTeams, fieldsGameCenterMatchmakingRules: fieldsGameCenterMatchmakingRules, fieldsGameCenterMatchmakingQueues: fieldsGameCenterMatchmakingQueues, limit: limit, include: include, limitMatchmakingQueues: limitMatchmakingQueues, limitRules: limitRules, limitTeams: limitTeams, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterMatchmakingRuleSetsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterMatchmakingRuleSetsGetCollection(urlString: String) async throws -> GameCenterMatchmakingRuleSetsResponse {
-        return try await gameCenterMatchmakingRuleSetsGetCollectionWithRequestBuilder(urlString: urlString).execute().body
+    open class func gameCenterMatchmakingRuleSetsGetCollection(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterMatchmakingRuleSetsResponse {
+        return try await gameCenterMatchmakingRuleSetsGetCollectionWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -238,24 +245,25 @@ open class GameCenterMatchmakingRuleSetsAPI {
      - parameter limitMatchmakingQueues: (query) maximum number of related matchmakingQueues returned (when they are included) (optional)
      - parameter limitRules: (query) maximum number of related rules returned (when they are included) (optional)
      - parameter limitTeams: (query) maximum number of related teams returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterMatchmakingRuleSetsResponse> 
      */
-    open class func gameCenterMatchmakingRuleSetsGetCollectionWithRequestBuilder(fieldsGameCenterMatchmakingRuleSets: [FieldsGameCenterMatchmakingRuleSets_gameCenterMatchmakingRuleSetsGetCollection]? = nil, fieldsGameCenterMatchmakingTeams: [FieldsGameCenterMatchmakingTeams_gameCenterMatchmakingRuleSetsGetCollection]? = nil, fieldsGameCenterMatchmakingRules: [FieldsGameCenterMatchmakingRules_gameCenterMatchmakingRuleSetsGetCollection]? = nil, fieldsGameCenterMatchmakingQueues: [FieldsGameCenterMatchmakingQueues_gameCenterMatchmakingRuleSetsGetCollection]? = nil, limit: Int? = nil, include: [Include_gameCenterMatchmakingRuleSetsGetCollection]? = nil, limitMatchmakingQueues: Int? = nil, limitRules: Int? = nil, limitTeams: Int? = nil) -> RequestBuilder<GameCenterMatchmakingRuleSetsResponse> {
+    open class func gameCenterMatchmakingRuleSetsGetCollectionWithRequestBuilder(fieldsGameCenterMatchmakingRuleSets: [FieldsGameCenterMatchmakingRuleSets_gameCenterMatchmakingRuleSetsGetCollection]? = nil, fieldsGameCenterMatchmakingTeams: [FieldsGameCenterMatchmakingTeams_gameCenterMatchmakingRuleSetsGetCollection]? = nil, fieldsGameCenterMatchmakingRules: [FieldsGameCenterMatchmakingRules_gameCenterMatchmakingRuleSetsGetCollection]? = nil, fieldsGameCenterMatchmakingQueues: [FieldsGameCenterMatchmakingQueues_gameCenterMatchmakingRuleSetsGetCollection]? = nil, limit: Int? = nil, include: [Include_gameCenterMatchmakingRuleSetsGetCollection]? = nil, limitMatchmakingQueues: Int? = nil, limitRules: Int? = nil, limitTeams: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterMatchmakingRuleSetsResponse> {
         let localVariablePath = "/v1/gameCenterMatchmakingRuleSets"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[gameCenterMatchmakingRuleSets]": (wrappedValue: fieldsGameCenterMatchmakingRuleSets?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterMatchmakingTeams]": (wrappedValue: fieldsGameCenterMatchmakingTeams?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterMatchmakingRules]": (wrappedValue: fieldsGameCenterMatchmakingRules?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterMatchmakingQueues]": (wrappedValue: fieldsGameCenterMatchmakingQueues?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[matchmakingQueues]": (wrappedValue: limitMatchmakingQueues?.encodeToJSON(), isExplode: true),
-            "limit[rules]": (wrappedValue: limitRules?.encodeToJSON(), isExplode: true),
-            "limit[teams]": (wrappedValue: limitTeams?.encodeToJSON(), isExplode: true),
+            "fields[gameCenterMatchmakingRuleSets]": (wrappedValue: fieldsGameCenterMatchmakingRuleSets?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[gameCenterMatchmakingTeams]": (wrappedValue: fieldsGameCenterMatchmakingTeams?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[gameCenterMatchmakingRules]": (wrappedValue: fieldsGameCenterMatchmakingRules?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[gameCenterMatchmakingQueues]": (wrappedValue: fieldsGameCenterMatchmakingQueues?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[matchmakingQueues]": (wrappedValue: limitMatchmakingQueues?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[rules]": (wrappedValue: limitRules?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[teams]": (wrappedValue: limitTeams?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -264,9 +272,9 @@ open class GameCenterMatchmakingRuleSetsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingRuleSetsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingRuleSetsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -275,24 +283,25 @@ open class GameCenterMatchmakingRuleSetsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterMatchmakingRuleSetsResponse> 
      */
-    open class func gameCenterMatchmakingRuleSetsGetCollectionWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterMatchmakingRuleSetsResponse> {
+    open class func gameCenterMatchmakingRuleSetsGetCollectionWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterMatchmakingRuleSetsResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingRuleSetsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingRuleSetsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsGameCenterMatchmakingRuleSets
      */
-    public enum FieldsGameCenterMatchmakingRuleSets_gameCenterMatchmakingRuleSetsGetInstance: String, CaseIterable {
+    public enum FieldsGameCenterMatchmakingRuleSets_gameCenterMatchmakingRuleSetsGetInstance: String, Sendable, CaseIterable {
         case referencename = "referenceName"
         case rulelanguageversion = "ruleLanguageVersion"
         case minplayers = "minPlayers"
@@ -305,7 +314,7 @@ open class GameCenterMatchmakingRuleSetsAPI {
     /**
      * enum for parameter fieldsGameCenterMatchmakingTeams
      */
-    public enum FieldsGameCenterMatchmakingTeams_gameCenterMatchmakingRuleSetsGetInstance: String, CaseIterable {
+    public enum FieldsGameCenterMatchmakingTeams_gameCenterMatchmakingRuleSetsGetInstance: String, Sendable, CaseIterable {
         case referencename = "referenceName"
         case minplayers = "minPlayers"
         case maxplayers = "maxPlayers"
@@ -314,7 +323,7 @@ open class GameCenterMatchmakingRuleSetsAPI {
     /**
      * enum for parameter fieldsGameCenterMatchmakingRules
      */
-    public enum FieldsGameCenterMatchmakingRules_gameCenterMatchmakingRuleSetsGetInstance: String, CaseIterable {
+    public enum FieldsGameCenterMatchmakingRules_gameCenterMatchmakingRuleSetsGetInstance: String, Sendable, CaseIterable {
         case referencename = "referenceName"
         case description = "description"
         case type = "type"
@@ -325,7 +334,7 @@ open class GameCenterMatchmakingRuleSetsAPI {
     /**
      * enum for parameter fieldsGameCenterMatchmakingQueues
      */
-    public enum FieldsGameCenterMatchmakingQueues_gameCenterMatchmakingRuleSetsGetInstance: String, CaseIterable {
+    public enum FieldsGameCenterMatchmakingQueues_gameCenterMatchmakingRuleSetsGetInstance: String, Sendable, CaseIterable {
         case referencename = "referenceName"
         case classicmatchmakingbundleids = "classicMatchmakingBundleIds"
         case ruleset = "ruleSet"
@@ -335,7 +344,7 @@ open class GameCenterMatchmakingRuleSetsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_gameCenterMatchmakingRuleSetsGetInstance: String, CaseIterable {
+    public enum Include_gameCenterMatchmakingRuleSetsGetInstance: String, Sendable, CaseIterable {
         case teams = "teams"
         case rules = "rules"
         case matchmakingqueues = "matchmakingQueues"
@@ -352,20 +361,22 @@ open class GameCenterMatchmakingRuleSetsAPI {
      - parameter limitMatchmakingQueues: (query) maximum number of related matchmakingQueues returned (when they are included) (optional)
      - parameter limitRules: (query) maximum number of related rules returned (when they are included) (optional)
      - parameter limitTeams: (query) maximum number of related teams returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterMatchmakingRuleSetResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterMatchmakingRuleSetsGetInstance(id: String, fieldsGameCenterMatchmakingRuleSets: [FieldsGameCenterMatchmakingRuleSets_gameCenterMatchmakingRuleSetsGetInstance]? = nil, fieldsGameCenterMatchmakingTeams: [FieldsGameCenterMatchmakingTeams_gameCenterMatchmakingRuleSetsGetInstance]? = nil, fieldsGameCenterMatchmakingRules: [FieldsGameCenterMatchmakingRules_gameCenterMatchmakingRuleSetsGetInstance]? = nil, fieldsGameCenterMatchmakingQueues: [FieldsGameCenterMatchmakingQueues_gameCenterMatchmakingRuleSetsGetInstance]? = nil, include: [Include_gameCenterMatchmakingRuleSetsGetInstance]? = nil, limitMatchmakingQueues: Int? = nil, limitRules: Int? = nil, limitTeams: Int? = nil) async throws -> GameCenterMatchmakingRuleSetResponse {
-        return try await gameCenterMatchmakingRuleSetsGetInstanceWithRequestBuilder(id: id, fieldsGameCenterMatchmakingRuleSets: fieldsGameCenterMatchmakingRuleSets, fieldsGameCenterMatchmakingTeams: fieldsGameCenterMatchmakingTeams, fieldsGameCenterMatchmakingRules: fieldsGameCenterMatchmakingRules, fieldsGameCenterMatchmakingQueues: fieldsGameCenterMatchmakingQueues, include: include, limitMatchmakingQueues: limitMatchmakingQueues, limitRules: limitRules, limitTeams: limitTeams).execute().body
+    open class func gameCenterMatchmakingRuleSetsGetInstance(id: String, fieldsGameCenterMatchmakingRuleSets: [FieldsGameCenterMatchmakingRuleSets_gameCenterMatchmakingRuleSetsGetInstance]? = nil, fieldsGameCenterMatchmakingTeams: [FieldsGameCenterMatchmakingTeams_gameCenterMatchmakingRuleSetsGetInstance]? = nil, fieldsGameCenterMatchmakingRules: [FieldsGameCenterMatchmakingRules_gameCenterMatchmakingRuleSetsGetInstance]? = nil, fieldsGameCenterMatchmakingQueues: [FieldsGameCenterMatchmakingQueues_gameCenterMatchmakingRuleSetsGetInstance]? = nil, include: [Include_gameCenterMatchmakingRuleSetsGetInstance]? = nil, limitMatchmakingQueues: Int? = nil, limitRules: Int? = nil, limitTeams: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterMatchmakingRuleSetResponse {
+        return try await gameCenterMatchmakingRuleSetsGetInstanceWithRequestBuilder(id: id, fieldsGameCenterMatchmakingRuleSets: fieldsGameCenterMatchmakingRuleSets, fieldsGameCenterMatchmakingTeams: fieldsGameCenterMatchmakingTeams, fieldsGameCenterMatchmakingRules: fieldsGameCenterMatchmakingRules, fieldsGameCenterMatchmakingQueues: fieldsGameCenterMatchmakingQueues, include: include, limitMatchmakingQueues: limitMatchmakingQueues, limitRules: limitRules, limitTeams: limitTeams, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterMatchmakingRuleSetResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterMatchmakingRuleSetsGetInstance(urlString: String) async throws -> GameCenterMatchmakingRuleSetResponse {
-        return try await gameCenterMatchmakingRuleSetsGetInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func gameCenterMatchmakingRuleSetsGetInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterMatchmakingRuleSetResponse {
+        return try await gameCenterMatchmakingRuleSetsGetInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -382,26 +393,27 @@ open class GameCenterMatchmakingRuleSetsAPI {
      - parameter limitMatchmakingQueues: (query) maximum number of related matchmakingQueues returned (when they are included) (optional)
      - parameter limitRules: (query) maximum number of related rules returned (when they are included) (optional)
      - parameter limitTeams: (query) maximum number of related teams returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterMatchmakingRuleSetResponse> 
      */
-    open class func gameCenterMatchmakingRuleSetsGetInstanceWithRequestBuilder(id: String, fieldsGameCenterMatchmakingRuleSets: [FieldsGameCenterMatchmakingRuleSets_gameCenterMatchmakingRuleSetsGetInstance]? = nil, fieldsGameCenterMatchmakingTeams: [FieldsGameCenterMatchmakingTeams_gameCenterMatchmakingRuleSetsGetInstance]? = nil, fieldsGameCenterMatchmakingRules: [FieldsGameCenterMatchmakingRules_gameCenterMatchmakingRuleSetsGetInstance]? = nil, fieldsGameCenterMatchmakingQueues: [FieldsGameCenterMatchmakingQueues_gameCenterMatchmakingRuleSetsGetInstance]? = nil, include: [Include_gameCenterMatchmakingRuleSetsGetInstance]? = nil, limitMatchmakingQueues: Int? = nil, limitRules: Int? = nil, limitTeams: Int? = nil) -> RequestBuilder<GameCenterMatchmakingRuleSetResponse> {
+    open class func gameCenterMatchmakingRuleSetsGetInstanceWithRequestBuilder(id: String, fieldsGameCenterMatchmakingRuleSets: [FieldsGameCenterMatchmakingRuleSets_gameCenterMatchmakingRuleSetsGetInstance]? = nil, fieldsGameCenterMatchmakingTeams: [FieldsGameCenterMatchmakingTeams_gameCenterMatchmakingRuleSetsGetInstance]? = nil, fieldsGameCenterMatchmakingRules: [FieldsGameCenterMatchmakingRules_gameCenterMatchmakingRuleSetsGetInstance]? = nil, fieldsGameCenterMatchmakingQueues: [FieldsGameCenterMatchmakingQueues_gameCenterMatchmakingRuleSetsGetInstance]? = nil, include: [Include_gameCenterMatchmakingRuleSetsGetInstance]? = nil, limitMatchmakingQueues: Int? = nil, limitRules: Int? = nil, limitTeams: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterMatchmakingRuleSetResponse> {
         var localVariablePath = "/v1/gameCenterMatchmakingRuleSets/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[gameCenterMatchmakingRuleSets]": (wrappedValue: fieldsGameCenterMatchmakingRuleSets?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterMatchmakingTeams]": (wrappedValue: fieldsGameCenterMatchmakingTeams?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterMatchmakingRules]": (wrappedValue: fieldsGameCenterMatchmakingRules?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterMatchmakingQueues]": (wrappedValue: fieldsGameCenterMatchmakingQueues?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[matchmakingQueues]": (wrappedValue: limitMatchmakingQueues?.encodeToJSON(), isExplode: true),
-            "limit[rules]": (wrappedValue: limitRules?.encodeToJSON(), isExplode: true),
-            "limit[teams]": (wrappedValue: limitTeams?.encodeToJSON(), isExplode: true),
+            "fields[gameCenterMatchmakingRuleSets]": (wrappedValue: fieldsGameCenterMatchmakingRuleSets?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[gameCenterMatchmakingTeams]": (wrappedValue: fieldsGameCenterMatchmakingTeams?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[gameCenterMatchmakingRules]": (wrappedValue: fieldsGameCenterMatchmakingRules?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[gameCenterMatchmakingQueues]": (wrappedValue: fieldsGameCenterMatchmakingQueues?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[matchmakingQueues]": (wrappedValue: limitMatchmakingQueues?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[rules]": (wrappedValue: limitRules?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[teams]": (wrappedValue: limitTeams?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -410,9 +422,9 @@ open class GameCenterMatchmakingRuleSetsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingRuleSetResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingRuleSetResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -421,24 +433,25 @@ open class GameCenterMatchmakingRuleSetsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterMatchmakingRuleSetResponse> 
      */
-    open class func gameCenterMatchmakingRuleSetsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterMatchmakingRuleSetResponse> {
+    open class func gameCenterMatchmakingRuleSetsGetInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterMatchmakingRuleSetResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingRuleSetResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingRuleSetResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsGameCenterMatchmakingQueues
      */
-    public enum FieldsGameCenterMatchmakingQueues_gameCenterMatchmakingRuleSetsMatchmakingQueuesGetToManyRelated: String, CaseIterable {
+    public enum FieldsGameCenterMatchmakingQueues_gameCenterMatchmakingRuleSetsMatchmakingQueuesGetToManyRelated: String, Sendable, CaseIterable {
         case referencename = "referenceName"
         case classicmatchmakingbundleids = "classicMatchmakingBundleIds"
         case ruleset = "ruleSet"
@@ -448,7 +461,7 @@ open class GameCenterMatchmakingRuleSetsAPI {
     /**
      * enum for parameter fieldsGameCenterMatchmakingRuleSets
      */
-    public enum FieldsGameCenterMatchmakingRuleSets_gameCenterMatchmakingRuleSetsMatchmakingQueuesGetToManyRelated: String, CaseIterable {
+    public enum FieldsGameCenterMatchmakingRuleSets_gameCenterMatchmakingRuleSetsMatchmakingQueuesGetToManyRelated: String, Sendable, CaseIterable {
         case referencename = "referenceName"
         case rulelanguageversion = "ruleLanguageVersion"
         case minplayers = "minPlayers"
@@ -461,7 +474,7 @@ open class GameCenterMatchmakingRuleSetsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_gameCenterMatchmakingRuleSetsMatchmakingQueuesGetToManyRelated: String, CaseIterable {
+    public enum Include_gameCenterMatchmakingRuleSetsMatchmakingQueuesGetToManyRelated: String, Sendable, CaseIterable {
         case ruleset = "ruleSet"
         case experimentruleset = "experimentRuleSet"
     }
@@ -473,20 +486,22 @@ open class GameCenterMatchmakingRuleSetsAPI {
      - parameter fieldsGameCenterMatchmakingRuleSets: (query) the fields to include for returned resources of type gameCenterMatchmakingRuleSets (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterMatchmakingQueuesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterMatchmakingRuleSetsMatchmakingQueuesGetToManyRelated(id: String, fieldsGameCenterMatchmakingQueues: [FieldsGameCenterMatchmakingQueues_gameCenterMatchmakingRuleSetsMatchmakingQueuesGetToManyRelated]? = nil, fieldsGameCenterMatchmakingRuleSets: [FieldsGameCenterMatchmakingRuleSets_gameCenterMatchmakingRuleSetsMatchmakingQueuesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_gameCenterMatchmakingRuleSetsMatchmakingQueuesGetToManyRelated]? = nil) async throws -> GameCenterMatchmakingQueuesResponse {
-        return try await gameCenterMatchmakingRuleSetsMatchmakingQueuesGetToManyRelatedWithRequestBuilder(id: id, fieldsGameCenterMatchmakingQueues: fieldsGameCenterMatchmakingQueues, fieldsGameCenterMatchmakingRuleSets: fieldsGameCenterMatchmakingRuleSets, limit: limit, include: include).execute().body
+    open class func gameCenterMatchmakingRuleSetsMatchmakingQueuesGetToManyRelated(id: String, fieldsGameCenterMatchmakingQueues: [FieldsGameCenterMatchmakingQueues_gameCenterMatchmakingRuleSetsMatchmakingQueuesGetToManyRelated]? = nil, fieldsGameCenterMatchmakingRuleSets: [FieldsGameCenterMatchmakingRuleSets_gameCenterMatchmakingRuleSetsMatchmakingQueuesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_gameCenterMatchmakingRuleSetsMatchmakingQueuesGetToManyRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterMatchmakingQueuesResponse {
+        return try await gameCenterMatchmakingRuleSetsMatchmakingQueuesGetToManyRelatedWithRequestBuilder(id: id, fieldsGameCenterMatchmakingQueues: fieldsGameCenterMatchmakingQueues, fieldsGameCenterMatchmakingRuleSets: fieldsGameCenterMatchmakingRuleSets, limit: limit, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterMatchmakingQueuesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterMatchmakingRuleSetsMatchmakingQueuesGetToManyRelated(urlString: String) async throws -> GameCenterMatchmakingQueuesResponse {
-        return try await gameCenterMatchmakingRuleSetsMatchmakingQueuesGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func gameCenterMatchmakingRuleSetsMatchmakingQueuesGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterMatchmakingQueuesResponse {
+        return try await gameCenterMatchmakingRuleSetsMatchmakingQueuesGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -499,22 +514,23 @@ open class GameCenterMatchmakingRuleSetsAPI {
      - parameter fieldsGameCenterMatchmakingRuleSets: (query) the fields to include for returned resources of type gameCenterMatchmakingRuleSets (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterMatchmakingQueuesResponse> 
      */
-    open class func gameCenterMatchmakingRuleSetsMatchmakingQueuesGetToManyRelatedWithRequestBuilder(id: String, fieldsGameCenterMatchmakingQueues: [FieldsGameCenterMatchmakingQueues_gameCenterMatchmakingRuleSetsMatchmakingQueuesGetToManyRelated]? = nil, fieldsGameCenterMatchmakingRuleSets: [FieldsGameCenterMatchmakingRuleSets_gameCenterMatchmakingRuleSetsMatchmakingQueuesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_gameCenterMatchmakingRuleSetsMatchmakingQueuesGetToManyRelated]? = nil) -> RequestBuilder<GameCenterMatchmakingQueuesResponse> {
+    open class func gameCenterMatchmakingRuleSetsMatchmakingQueuesGetToManyRelatedWithRequestBuilder(id: String, fieldsGameCenterMatchmakingQueues: [FieldsGameCenterMatchmakingQueues_gameCenterMatchmakingRuleSetsMatchmakingQueuesGetToManyRelated]? = nil, fieldsGameCenterMatchmakingRuleSets: [FieldsGameCenterMatchmakingRuleSets_gameCenterMatchmakingRuleSetsMatchmakingQueuesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_gameCenterMatchmakingRuleSetsMatchmakingQueuesGetToManyRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterMatchmakingQueuesResponse> {
         var localVariablePath = "/v1/gameCenterMatchmakingRuleSets/{id}/matchmakingQueues"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[gameCenterMatchmakingQueues]": (wrappedValue: fieldsGameCenterMatchmakingQueues?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterMatchmakingRuleSets]": (wrappedValue: fieldsGameCenterMatchmakingRuleSets?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "fields[gameCenterMatchmakingQueues]": (wrappedValue: fieldsGameCenterMatchmakingQueues?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[gameCenterMatchmakingRuleSets]": (wrappedValue: fieldsGameCenterMatchmakingRuleSets?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -523,9 +539,9 @@ open class GameCenterMatchmakingRuleSetsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingQueuesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingQueuesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -534,24 +550,25 @@ open class GameCenterMatchmakingRuleSetsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterMatchmakingQueuesResponse> 
      */
-    open class func gameCenterMatchmakingRuleSetsMatchmakingQueuesGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterMatchmakingQueuesResponse> {
+    open class func gameCenterMatchmakingRuleSetsMatchmakingQueuesGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterMatchmakingQueuesResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingQueuesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingQueuesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsGameCenterMatchmakingRules
      */
-    public enum FieldsGameCenterMatchmakingRules_gameCenterMatchmakingRuleSetsRulesGetToManyRelated: String, CaseIterable {
+    public enum FieldsGameCenterMatchmakingRules_gameCenterMatchmakingRuleSetsRulesGetToManyRelated: String, Sendable, CaseIterable {
         case referencename = "referenceName"
         case description = "description"
         case type = "type"
@@ -564,20 +581,22 @@ open class GameCenterMatchmakingRuleSetsAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsGameCenterMatchmakingRules: (query) the fields to include for returned resources of type gameCenterMatchmakingRules (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterMatchmakingRulesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterMatchmakingRuleSetsRulesGetToManyRelated(id: String, fieldsGameCenterMatchmakingRules: [FieldsGameCenterMatchmakingRules_gameCenterMatchmakingRuleSetsRulesGetToManyRelated]? = nil, limit: Int? = nil) async throws -> GameCenterMatchmakingRulesResponse {
-        return try await gameCenterMatchmakingRuleSetsRulesGetToManyRelatedWithRequestBuilder(id: id, fieldsGameCenterMatchmakingRules: fieldsGameCenterMatchmakingRules, limit: limit).execute().body
+    open class func gameCenterMatchmakingRuleSetsRulesGetToManyRelated(id: String, fieldsGameCenterMatchmakingRules: [FieldsGameCenterMatchmakingRules_gameCenterMatchmakingRuleSetsRulesGetToManyRelated]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterMatchmakingRulesResponse {
+        return try await gameCenterMatchmakingRuleSetsRulesGetToManyRelatedWithRequestBuilder(id: id, fieldsGameCenterMatchmakingRules: fieldsGameCenterMatchmakingRules, limit: limit, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterMatchmakingRulesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterMatchmakingRuleSetsRulesGetToManyRelated(urlString: String) async throws -> GameCenterMatchmakingRulesResponse {
-        return try await gameCenterMatchmakingRuleSetsRulesGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func gameCenterMatchmakingRuleSetsRulesGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterMatchmakingRulesResponse {
+        return try await gameCenterMatchmakingRuleSetsRulesGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -588,20 +607,21 @@ open class GameCenterMatchmakingRuleSetsAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsGameCenterMatchmakingRules: (query) the fields to include for returned resources of type gameCenterMatchmakingRules (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterMatchmakingRulesResponse> 
      */
-    open class func gameCenterMatchmakingRuleSetsRulesGetToManyRelatedWithRequestBuilder(id: String, fieldsGameCenterMatchmakingRules: [FieldsGameCenterMatchmakingRules_gameCenterMatchmakingRuleSetsRulesGetToManyRelated]? = nil, limit: Int? = nil) -> RequestBuilder<GameCenterMatchmakingRulesResponse> {
+    open class func gameCenterMatchmakingRuleSetsRulesGetToManyRelatedWithRequestBuilder(id: String, fieldsGameCenterMatchmakingRules: [FieldsGameCenterMatchmakingRules_gameCenterMatchmakingRuleSetsRulesGetToManyRelated]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterMatchmakingRulesResponse> {
         var localVariablePath = "/v1/gameCenterMatchmakingRuleSets/{id}/rules"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[gameCenterMatchmakingRules]": (wrappedValue: fieldsGameCenterMatchmakingRules?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "fields[gameCenterMatchmakingRules]": (wrappedValue: fieldsGameCenterMatchmakingRules?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -610,9 +630,9 @@ open class GameCenterMatchmakingRuleSetsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingRulesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingRulesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -621,24 +641,25 @@ open class GameCenterMatchmakingRuleSetsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterMatchmakingRulesResponse> 
      */
-    open class func gameCenterMatchmakingRuleSetsRulesGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterMatchmakingRulesResponse> {
+    open class func gameCenterMatchmakingRuleSetsRulesGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterMatchmakingRulesResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingRulesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingRulesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsGameCenterMatchmakingTeams
      */
-    public enum FieldsGameCenterMatchmakingTeams_gameCenterMatchmakingRuleSetsTeamsGetToManyRelated: String, CaseIterable {
+    public enum FieldsGameCenterMatchmakingTeams_gameCenterMatchmakingRuleSetsTeamsGetToManyRelated: String, Sendable, CaseIterable {
         case referencename = "referenceName"
         case minplayers = "minPlayers"
         case maxplayers = "maxPlayers"
@@ -649,20 +670,22 @@ open class GameCenterMatchmakingRuleSetsAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsGameCenterMatchmakingTeams: (query) the fields to include for returned resources of type gameCenterMatchmakingTeams (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterMatchmakingTeamsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterMatchmakingRuleSetsTeamsGetToManyRelated(id: String, fieldsGameCenterMatchmakingTeams: [FieldsGameCenterMatchmakingTeams_gameCenterMatchmakingRuleSetsTeamsGetToManyRelated]? = nil, limit: Int? = nil) async throws -> GameCenterMatchmakingTeamsResponse {
-        return try await gameCenterMatchmakingRuleSetsTeamsGetToManyRelatedWithRequestBuilder(id: id, fieldsGameCenterMatchmakingTeams: fieldsGameCenterMatchmakingTeams, limit: limit).execute().body
+    open class func gameCenterMatchmakingRuleSetsTeamsGetToManyRelated(id: String, fieldsGameCenterMatchmakingTeams: [FieldsGameCenterMatchmakingTeams_gameCenterMatchmakingRuleSetsTeamsGetToManyRelated]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterMatchmakingTeamsResponse {
+        return try await gameCenterMatchmakingRuleSetsTeamsGetToManyRelatedWithRequestBuilder(id: id, fieldsGameCenterMatchmakingTeams: fieldsGameCenterMatchmakingTeams, limit: limit, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterMatchmakingTeamsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterMatchmakingRuleSetsTeamsGetToManyRelated(urlString: String) async throws -> GameCenterMatchmakingTeamsResponse {
-        return try await gameCenterMatchmakingRuleSetsTeamsGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func gameCenterMatchmakingRuleSetsTeamsGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterMatchmakingTeamsResponse {
+        return try await gameCenterMatchmakingRuleSetsTeamsGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -673,20 +696,21 @@ open class GameCenterMatchmakingRuleSetsAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsGameCenterMatchmakingTeams: (query) the fields to include for returned resources of type gameCenterMatchmakingTeams (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterMatchmakingTeamsResponse> 
      */
-    open class func gameCenterMatchmakingRuleSetsTeamsGetToManyRelatedWithRequestBuilder(id: String, fieldsGameCenterMatchmakingTeams: [FieldsGameCenterMatchmakingTeams_gameCenterMatchmakingRuleSetsTeamsGetToManyRelated]? = nil, limit: Int? = nil) -> RequestBuilder<GameCenterMatchmakingTeamsResponse> {
+    open class func gameCenterMatchmakingRuleSetsTeamsGetToManyRelatedWithRequestBuilder(id: String, fieldsGameCenterMatchmakingTeams: [FieldsGameCenterMatchmakingTeams_gameCenterMatchmakingRuleSetsTeamsGetToManyRelated]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterMatchmakingTeamsResponse> {
         var localVariablePath = "/v1/gameCenterMatchmakingRuleSets/{id}/teams"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[gameCenterMatchmakingTeams]": (wrappedValue: fieldsGameCenterMatchmakingTeams?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "fields[gameCenterMatchmakingTeams]": (wrappedValue: fieldsGameCenterMatchmakingTeams?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -695,9 +719,9 @@ open class GameCenterMatchmakingRuleSetsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingTeamsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingTeamsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -706,38 +730,41 @@ open class GameCenterMatchmakingRuleSetsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterMatchmakingTeamsResponse> 
      */
-    open class func gameCenterMatchmakingRuleSetsTeamsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterMatchmakingTeamsResponse> {
+    open class func gameCenterMatchmakingRuleSetsTeamsGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterMatchmakingTeamsResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingTeamsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingTeamsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter gameCenterMatchmakingRuleSetUpdateRequest: (body) GameCenterMatchmakingRuleSet representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterMatchmakingRuleSetResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterMatchmakingRuleSetsUpdateInstance(id: String, gameCenterMatchmakingRuleSetUpdateRequest: GameCenterMatchmakingRuleSetUpdateRequest) async throws -> GameCenterMatchmakingRuleSetResponse {
-        return try await gameCenterMatchmakingRuleSetsUpdateInstanceWithRequestBuilder(id: id, gameCenterMatchmakingRuleSetUpdateRequest: gameCenterMatchmakingRuleSetUpdateRequest).execute().body
+    open class func gameCenterMatchmakingRuleSetsUpdateInstance(id: String, gameCenterMatchmakingRuleSetUpdateRequest: GameCenterMatchmakingRuleSetUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterMatchmakingRuleSetResponse {
+        return try await gameCenterMatchmakingRuleSetsUpdateInstanceWithRequestBuilder(id: id, gameCenterMatchmakingRuleSetUpdateRequest: gameCenterMatchmakingRuleSetUpdateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterMatchmakingRuleSetResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterMatchmakingRuleSetsUpdateInstance(urlString: String) async throws -> GameCenterMatchmakingRuleSetResponse {
-        return try await gameCenterMatchmakingRuleSetsUpdateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func gameCenterMatchmakingRuleSetsUpdateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterMatchmakingRuleSetResponse {
+        return try await gameCenterMatchmakingRuleSetsUpdateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -747,15 +774,16 @@ open class GameCenterMatchmakingRuleSetsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter gameCenterMatchmakingRuleSetUpdateRequest: (body) GameCenterMatchmakingRuleSet representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterMatchmakingRuleSetResponse> 
      */
-    open class func gameCenterMatchmakingRuleSetsUpdateInstanceWithRequestBuilder(id: String, gameCenterMatchmakingRuleSetUpdateRequest: GameCenterMatchmakingRuleSetUpdateRequest) -> RequestBuilder<GameCenterMatchmakingRuleSetResponse> {
+    open class func gameCenterMatchmakingRuleSetsUpdateInstanceWithRequestBuilder(id: String, gameCenterMatchmakingRuleSetUpdateRequest: GameCenterMatchmakingRuleSetUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterMatchmakingRuleSetResponse> {
         var localVariablePath = "/v1/gameCenterMatchmakingRuleSets/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: gameCenterMatchmakingRuleSetUpdateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: gameCenterMatchmakingRuleSetUpdateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -765,9 +793,9 @@ open class GameCenterMatchmakingRuleSetsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingRuleSetResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingRuleSetResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -776,17 +804,18 @@ open class GameCenterMatchmakingRuleSetsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterMatchmakingRuleSetResponse> 
      */
-    open class func gameCenterMatchmakingRuleSetsUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterMatchmakingRuleSetResponse> {
+    open class func gameCenterMatchmakingRuleSetsUpdateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterMatchmakingRuleSetResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingRuleSetResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingRuleSetResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

@@ -6,29 +6,28 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class ReviewSubmissionsAPI {
 
     /**
 
      - parameter reviewSubmissionCreateRequest: (body) ReviewSubmission representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: ReviewSubmissionResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func reviewSubmissionsCreateInstance(reviewSubmissionCreateRequest: ReviewSubmissionCreateRequest) async throws -> ReviewSubmissionResponse {
-        return try await reviewSubmissionsCreateInstanceWithRequestBuilder(reviewSubmissionCreateRequest: reviewSubmissionCreateRequest).execute().body
+    open class func reviewSubmissionsCreateInstance(reviewSubmissionCreateRequest: ReviewSubmissionCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> ReviewSubmissionResponse {
+        return try await reviewSubmissionsCreateInstanceWithRequestBuilder(reviewSubmissionCreateRequest: reviewSubmissionCreateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: ReviewSubmissionResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func reviewSubmissionsCreateInstance(urlString: String) async throws -> ReviewSubmissionResponse {
-        return try await reviewSubmissionsCreateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func reviewSubmissionsCreateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> ReviewSubmissionResponse {
+        return try await reviewSubmissionsCreateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -37,12 +36,13 @@ open class ReviewSubmissionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter reviewSubmissionCreateRequest: (body) ReviewSubmission representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ReviewSubmissionResponse> 
      */
-    open class func reviewSubmissionsCreateInstanceWithRequestBuilder(reviewSubmissionCreateRequest: ReviewSubmissionCreateRequest) -> RequestBuilder<ReviewSubmissionResponse> {
+    open class func reviewSubmissionsCreateInstanceWithRequestBuilder(reviewSubmissionCreateRequest: ReviewSubmissionCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<ReviewSubmissionResponse> {
         let localVariablePath = "/v1/reviewSubmissions"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: reviewSubmissionCreateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: reviewSubmissionCreateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -52,9 +52,9 @@ open class ReviewSubmissionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<ReviewSubmissionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<ReviewSubmissionResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -63,24 +63,25 @@ open class ReviewSubmissionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ReviewSubmissionResponse> 
      */
-    open class func reviewSubmissionsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<ReviewSubmissionResponse> {
+    open class func reviewSubmissionsCreateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<ReviewSubmissionResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<ReviewSubmissionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<ReviewSubmissionResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter filterPlatform
      */
-    public enum FilterPlatform_reviewSubmissionsGetCollection: String, CaseIterable {
+    public enum FilterPlatform_reviewSubmissionsGetCollection: String, Sendable, CaseIterable {
         case ios = "IOS"
         case macOs = "MAC_OS"
         case tvOs = "TV_OS"
@@ -90,7 +91,7 @@ open class ReviewSubmissionsAPI {
     /**
      * enum for parameter filterState
      */
-    public enum FilterState_reviewSubmissionsGetCollection: String, CaseIterable {
+    public enum FilterState_reviewSubmissionsGetCollection: String, Sendable, CaseIterable {
         case readyForReview = "READY_FOR_REVIEW"
         case waitingForReview = "WAITING_FOR_REVIEW"
         case inReview = "IN_REVIEW"
@@ -103,7 +104,7 @@ open class ReviewSubmissionsAPI {
     /**
      * enum for parameter fieldsReviewSubmissions
      */
-    public enum FieldsReviewSubmissions_reviewSubmissionsGetCollection: String, CaseIterable {
+    public enum FieldsReviewSubmissions_reviewSubmissionsGetCollection: String, Sendable, CaseIterable {
         case platform = "platform"
         case submitteddate = "submittedDate"
         case state = "state"
@@ -117,7 +118,7 @@ open class ReviewSubmissionsAPI {
     /**
      * enum for parameter fieldsReviewSubmissionItems
      */
-    public enum FieldsReviewSubmissionItems_reviewSubmissionsGetCollection: String, CaseIterable {
+    public enum FieldsReviewSubmissionItems_reviewSubmissionsGetCollection: String, Sendable, CaseIterable {
         case state = "state"
         case appstoreversion = "appStoreVersion"
         case appcustomproductpageversion = "appCustomProductPageVersion"
@@ -129,7 +130,7 @@ open class ReviewSubmissionsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_reviewSubmissionsGetCollection: String, CaseIterable {
+    public enum Include_reviewSubmissionsGetCollection: String, Sendable, CaseIterable {
         case app = "app"
         case items = "items"
         case appstoreversionforreview = "appStoreVersionForReview"
@@ -147,20 +148,22 @@ open class ReviewSubmissionsAPI {
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitItems: (query) maximum number of related items returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: ReviewSubmissionsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func reviewSubmissionsGetCollection(filterApp: [String], filterPlatform: [FilterPlatform_reviewSubmissionsGetCollection]? = nil, filterState: [FilterState_reviewSubmissionsGetCollection]? = nil, fieldsReviewSubmissions: [FieldsReviewSubmissions_reviewSubmissionsGetCollection]? = nil, fieldsReviewSubmissionItems: [FieldsReviewSubmissionItems_reviewSubmissionsGetCollection]? = nil, limit: Int? = nil, include: [Include_reviewSubmissionsGetCollection]? = nil, limitItems: Int? = nil) async throws -> ReviewSubmissionsResponse {
-        return try await reviewSubmissionsGetCollectionWithRequestBuilder(filterApp: filterApp, filterPlatform: filterPlatform, filterState: filterState, fieldsReviewSubmissions: fieldsReviewSubmissions, fieldsReviewSubmissionItems: fieldsReviewSubmissionItems, limit: limit, include: include, limitItems: limitItems).execute().body
+    open class func reviewSubmissionsGetCollection(filterApp: [String], filterPlatform: [FilterPlatform_reviewSubmissionsGetCollection]? = nil, filterState: [FilterState_reviewSubmissionsGetCollection]? = nil, fieldsReviewSubmissions: [FieldsReviewSubmissions_reviewSubmissionsGetCollection]? = nil, fieldsReviewSubmissionItems: [FieldsReviewSubmissionItems_reviewSubmissionsGetCollection]? = nil, limit: Int? = nil, include: [Include_reviewSubmissionsGetCollection]? = nil, limitItems: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> ReviewSubmissionsResponse {
+        return try await reviewSubmissionsGetCollectionWithRequestBuilder(filterApp: filterApp, filterPlatform: filterPlatform, filterState: filterState, fieldsReviewSubmissions: fieldsReviewSubmissions, fieldsReviewSubmissionItems: fieldsReviewSubmissionItems, limit: limit, include: include, limitItems: limitItems, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: ReviewSubmissionsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func reviewSubmissionsGetCollection(urlString: String) async throws -> ReviewSubmissionsResponse {
-        return try await reviewSubmissionsGetCollectionWithRequestBuilder(urlString: urlString).execute().body
+    open class func reviewSubmissionsGetCollection(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> ReviewSubmissionsResponse {
+        return try await reviewSubmissionsGetCollectionWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -176,23 +179,24 @@ open class ReviewSubmissionsAPI {
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitItems: (query) maximum number of related items returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ReviewSubmissionsResponse> 
      */
-    open class func reviewSubmissionsGetCollectionWithRequestBuilder(filterApp: [String], filterPlatform: [FilterPlatform_reviewSubmissionsGetCollection]? = nil, filterState: [FilterState_reviewSubmissionsGetCollection]? = nil, fieldsReviewSubmissions: [FieldsReviewSubmissions_reviewSubmissionsGetCollection]? = nil, fieldsReviewSubmissionItems: [FieldsReviewSubmissionItems_reviewSubmissionsGetCollection]? = nil, limit: Int? = nil, include: [Include_reviewSubmissionsGetCollection]? = nil, limitItems: Int? = nil) -> RequestBuilder<ReviewSubmissionsResponse> {
+    open class func reviewSubmissionsGetCollectionWithRequestBuilder(filterApp: [String], filterPlatform: [FilterPlatform_reviewSubmissionsGetCollection]? = nil, filterState: [FilterState_reviewSubmissionsGetCollection]? = nil, fieldsReviewSubmissions: [FieldsReviewSubmissions_reviewSubmissionsGetCollection]? = nil, fieldsReviewSubmissionItems: [FieldsReviewSubmissionItems_reviewSubmissionsGetCollection]? = nil, limit: Int? = nil, include: [Include_reviewSubmissionsGetCollection]? = nil, limitItems: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<ReviewSubmissionsResponse> {
         let localVariablePath = "/v1/reviewSubmissions"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[platform]": (wrappedValue: filterPlatform?.encodeToJSON(), isExplode: false),
-            "filter[state]": (wrappedValue: filterState?.encodeToJSON(), isExplode: false),
-            "filter[app]": (wrappedValue: filterApp.encodeToJSON(), isExplode: false),
-            "fields[reviewSubmissions]": (wrappedValue: fieldsReviewSubmissions?.encodeToJSON(), isExplode: false),
-            "fields[reviewSubmissionItems]": (wrappedValue: fieldsReviewSubmissionItems?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[items]": (wrappedValue: limitItems?.encodeToJSON(), isExplode: true),
+            "filter[platform]": (wrappedValue: filterPlatform?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[state]": (wrappedValue: filterState?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[app]": (wrappedValue: filterApp.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[reviewSubmissions]": (wrappedValue: fieldsReviewSubmissions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[reviewSubmissionItems]": (wrappedValue: fieldsReviewSubmissionItems?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[items]": (wrappedValue: limitItems?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -201,9 +205,9 @@ open class ReviewSubmissionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<ReviewSubmissionsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<ReviewSubmissionsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -212,24 +216,25 @@ open class ReviewSubmissionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ReviewSubmissionsResponse> 
      */
-    open class func reviewSubmissionsGetCollectionWithRequestBuilder(urlString: String) -> RequestBuilder<ReviewSubmissionsResponse> {
+    open class func reviewSubmissionsGetCollectionWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<ReviewSubmissionsResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<ReviewSubmissionsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<ReviewSubmissionsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsReviewSubmissions
      */
-    public enum FieldsReviewSubmissions_reviewSubmissionsGetInstance: String, CaseIterable {
+    public enum FieldsReviewSubmissions_reviewSubmissionsGetInstance: String, Sendable, CaseIterable {
         case platform = "platform"
         case submitteddate = "submittedDate"
         case state = "state"
@@ -243,7 +248,7 @@ open class ReviewSubmissionsAPI {
     /**
      * enum for parameter fieldsReviewSubmissionItems
      */
-    public enum FieldsReviewSubmissionItems_reviewSubmissionsGetInstance: String, CaseIterable {
+    public enum FieldsReviewSubmissionItems_reviewSubmissionsGetInstance: String, Sendable, CaseIterable {
         case state = "state"
         case appstoreversion = "appStoreVersion"
         case appcustomproductpageversion = "appCustomProductPageVersion"
@@ -255,7 +260,7 @@ open class ReviewSubmissionsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_reviewSubmissionsGetInstance: String, CaseIterable {
+    public enum Include_reviewSubmissionsGetInstance: String, Sendable, CaseIterable {
         case app = "app"
         case items = "items"
         case appstoreversionforreview = "appStoreVersionForReview"
@@ -270,20 +275,22 @@ open class ReviewSubmissionsAPI {
      - parameter fieldsReviewSubmissionItems: (query) the fields to include for returned resources of type reviewSubmissionItems (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitItems: (query) maximum number of related items returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: ReviewSubmissionResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func reviewSubmissionsGetInstance(id: String, fieldsReviewSubmissions: [FieldsReviewSubmissions_reviewSubmissionsGetInstance]? = nil, fieldsReviewSubmissionItems: [FieldsReviewSubmissionItems_reviewSubmissionsGetInstance]? = nil, include: [Include_reviewSubmissionsGetInstance]? = nil, limitItems: Int? = nil) async throws -> ReviewSubmissionResponse {
-        return try await reviewSubmissionsGetInstanceWithRequestBuilder(id: id, fieldsReviewSubmissions: fieldsReviewSubmissions, fieldsReviewSubmissionItems: fieldsReviewSubmissionItems, include: include, limitItems: limitItems).execute().body
+    open class func reviewSubmissionsGetInstance(id: String, fieldsReviewSubmissions: [FieldsReviewSubmissions_reviewSubmissionsGetInstance]? = nil, fieldsReviewSubmissionItems: [FieldsReviewSubmissionItems_reviewSubmissionsGetInstance]? = nil, include: [Include_reviewSubmissionsGetInstance]? = nil, limitItems: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> ReviewSubmissionResponse {
+        return try await reviewSubmissionsGetInstanceWithRequestBuilder(id: id, fieldsReviewSubmissions: fieldsReviewSubmissions, fieldsReviewSubmissionItems: fieldsReviewSubmissionItems, include: include, limitItems: limitItems, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: ReviewSubmissionResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func reviewSubmissionsGetInstance(urlString: String) async throws -> ReviewSubmissionResponse {
-        return try await reviewSubmissionsGetInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func reviewSubmissionsGetInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> ReviewSubmissionResponse {
+        return try await reviewSubmissionsGetInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -296,22 +303,23 @@ open class ReviewSubmissionsAPI {
      - parameter fieldsReviewSubmissionItems: (query) the fields to include for returned resources of type reviewSubmissionItems (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitItems: (query) maximum number of related items returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ReviewSubmissionResponse> 
      */
-    open class func reviewSubmissionsGetInstanceWithRequestBuilder(id: String, fieldsReviewSubmissions: [FieldsReviewSubmissions_reviewSubmissionsGetInstance]? = nil, fieldsReviewSubmissionItems: [FieldsReviewSubmissionItems_reviewSubmissionsGetInstance]? = nil, include: [Include_reviewSubmissionsGetInstance]? = nil, limitItems: Int? = nil) -> RequestBuilder<ReviewSubmissionResponse> {
+    open class func reviewSubmissionsGetInstanceWithRequestBuilder(id: String, fieldsReviewSubmissions: [FieldsReviewSubmissions_reviewSubmissionsGetInstance]? = nil, fieldsReviewSubmissionItems: [FieldsReviewSubmissionItems_reviewSubmissionsGetInstance]? = nil, include: [Include_reviewSubmissionsGetInstance]? = nil, limitItems: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<ReviewSubmissionResponse> {
         var localVariablePath = "/v1/reviewSubmissions/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[reviewSubmissions]": (wrappedValue: fieldsReviewSubmissions?.encodeToJSON(), isExplode: false),
-            "fields[reviewSubmissionItems]": (wrappedValue: fieldsReviewSubmissionItems?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[items]": (wrappedValue: limitItems?.encodeToJSON(), isExplode: true),
+            "fields[reviewSubmissions]": (wrappedValue: fieldsReviewSubmissions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[reviewSubmissionItems]": (wrappedValue: fieldsReviewSubmissionItems?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[items]": (wrappedValue: limitItems?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -320,9 +328,9 @@ open class ReviewSubmissionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<ReviewSubmissionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<ReviewSubmissionResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -331,24 +339,25 @@ open class ReviewSubmissionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ReviewSubmissionResponse> 
      */
-    open class func reviewSubmissionsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<ReviewSubmissionResponse> {
+    open class func reviewSubmissionsGetInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<ReviewSubmissionResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<ReviewSubmissionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<ReviewSubmissionResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsReviewSubmissionItems
      */
-    public enum FieldsReviewSubmissionItems_reviewSubmissionsItemsGetToManyRelated: String, CaseIterable {
+    public enum FieldsReviewSubmissionItems_reviewSubmissionsItemsGetToManyRelated: String, Sendable, CaseIterable {
         case state = "state"
         case appstoreversion = "appStoreVersion"
         case appcustomproductpageversion = "appCustomProductPageVersion"
@@ -360,7 +369,7 @@ open class ReviewSubmissionsAPI {
     /**
      * enum for parameter fieldsAppStoreVersions
      */
-    public enum FieldsAppStoreVersions_reviewSubmissionsItemsGetToManyRelated: String, CaseIterable {
+    public enum FieldsAppStoreVersions_reviewSubmissionsItemsGetToManyRelated: String, Sendable, CaseIterable {
         case platform = "platform"
         case versionstring = "versionString"
         case appstorestate = "appStoreState"
@@ -390,7 +399,7 @@ open class ReviewSubmissionsAPI {
     /**
      * enum for parameter fieldsAppCustomProductPageVersions
      */
-    public enum FieldsAppCustomProductPageVersions_reviewSubmissionsItemsGetToManyRelated: String, CaseIterable {
+    public enum FieldsAppCustomProductPageVersions_reviewSubmissionsItemsGetToManyRelated: String, Sendable, CaseIterable {
         case version = "version"
         case state = "state"
         case deeplink = "deepLink"
@@ -401,7 +410,7 @@ open class ReviewSubmissionsAPI {
     /**
      * enum for parameter fieldsAppStoreVersionExperiments
      */
-    public enum FieldsAppStoreVersionExperiments_reviewSubmissionsItemsGetToManyRelated: String, CaseIterable {
+    public enum FieldsAppStoreVersionExperiments_reviewSubmissionsItemsGetToManyRelated: String, Sendable, CaseIterable {
         case name = "name"
         case trafficproportion = "trafficProportion"
         case state = "state"
@@ -419,7 +428,7 @@ open class ReviewSubmissionsAPI {
     /**
      * enum for parameter fieldsAppEvents
      */
-    public enum FieldsAppEvents_reviewSubmissionsItemsGetToManyRelated: String, CaseIterable {
+    public enum FieldsAppEvents_reviewSubmissionsItemsGetToManyRelated: String, Sendable, CaseIterable {
         case referencename = "referenceName"
         case badge = "badge"
         case eventstate = "eventState"
@@ -436,7 +445,7 @@ open class ReviewSubmissionsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_reviewSubmissionsItemsGetToManyRelated: String, CaseIterable {
+    public enum Include_reviewSubmissionsItemsGetToManyRelated: String, Sendable, CaseIterable {
         case appstoreversion = "appStoreVersion"
         case appcustomproductpageversion = "appCustomProductPageVersion"
         case appstoreversionexperiment = "appStoreVersionExperiment"
@@ -454,20 +463,22 @@ open class ReviewSubmissionsAPI {
      - parameter fieldsAppEvents: (query) the fields to include for returned resources of type appEvents (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: ReviewSubmissionItemsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func reviewSubmissionsItemsGetToManyRelated(id: String, fieldsReviewSubmissionItems: [FieldsReviewSubmissionItems_reviewSubmissionsItemsGetToManyRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_reviewSubmissionsItemsGetToManyRelated]? = nil, fieldsAppCustomProductPageVersions: [FieldsAppCustomProductPageVersions_reviewSubmissionsItemsGetToManyRelated]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_reviewSubmissionsItemsGetToManyRelated]? = nil, fieldsAppEvents: [FieldsAppEvents_reviewSubmissionsItemsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_reviewSubmissionsItemsGetToManyRelated]? = nil) async throws -> ReviewSubmissionItemsResponse {
-        return try await reviewSubmissionsItemsGetToManyRelatedWithRequestBuilder(id: id, fieldsReviewSubmissionItems: fieldsReviewSubmissionItems, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsAppCustomProductPageVersions: fieldsAppCustomProductPageVersions, fieldsAppStoreVersionExperiments: fieldsAppStoreVersionExperiments, fieldsAppEvents: fieldsAppEvents, limit: limit, include: include).execute().body
+    open class func reviewSubmissionsItemsGetToManyRelated(id: String, fieldsReviewSubmissionItems: [FieldsReviewSubmissionItems_reviewSubmissionsItemsGetToManyRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_reviewSubmissionsItemsGetToManyRelated]? = nil, fieldsAppCustomProductPageVersions: [FieldsAppCustomProductPageVersions_reviewSubmissionsItemsGetToManyRelated]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_reviewSubmissionsItemsGetToManyRelated]? = nil, fieldsAppEvents: [FieldsAppEvents_reviewSubmissionsItemsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_reviewSubmissionsItemsGetToManyRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> ReviewSubmissionItemsResponse {
+        return try await reviewSubmissionsItemsGetToManyRelatedWithRequestBuilder(id: id, fieldsReviewSubmissionItems: fieldsReviewSubmissionItems, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsAppCustomProductPageVersions: fieldsAppCustomProductPageVersions, fieldsAppStoreVersionExperiments: fieldsAppStoreVersionExperiments, fieldsAppEvents: fieldsAppEvents, limit: limit, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: ReviewSubmissionItemsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func reviewSubmissionsItemsGetToManyRelated(urlString: String) async throws -> ReviewSubmissionItemsResponse {
-        return try await reviewSubmissionsItemsGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func reviewSubmissionsItemsGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> ReviewSubmissionItemsResponse {
+        return try await reviewSubmissionsItemsGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -483,25 +494,26 @@ open class ReviewSubmissionsAPI {
      - parameter fieldsAppEvents: (query) the fields to include for returned resources of type appEvents (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ReviewSubmissionItemsResponse> 
      */
-    open class func reviewSubmissionsItemsGetToManyRelatedWithRequestBuilder(id: String, fieldsReviewSubmissionItems: [FieldsReviewSubmissionItems_reviewSubmissionsItemsGetToManyRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_reviewSubmissionsItemsGetToManyRelated]? = nil, fieldsAppCustomProductPageVersions: [FieldsAppCustomProductPageVersions_reviewSubmissionsItemsGetToManyRelated]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_reviewSubmissionsItemsGetToManyRelated]? = nil, fieldsAppEvents: [FieldsAppEvents_reviewSubmissionsItemsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_reviewSubmissionsItemsGetToManyRelated]? = nil) -> RequestBuilder<ReviewSubmissionItemsResponse> {
+    open class func reviewSubmissionsItemsGetToManyRelatedWithRequestBuilder(id: String, fieldsReviewSubmissionItems: [FieldsReviewSubmissionItems_reviewSubmissionsItemsGetToManyRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_reviewSubmissionsItemsGetToManyRelated]? = nil, fieldsAppCustomProductPageVersions: [FieldsAppCustomProductPageVersions_reviewSubmissionsItemsGetToManyRelated]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_reviewSubmissionsItemsGetToManyRelated]? = nil, fieldsAppEvents: [FieldsAppEvents_reviewSubmissionsItemsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_reviewSubmissionsItemsGetToManyRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<ReviewSubmissionItemsResponse> {
         var localVariablePath = "/v1/reviewSubmissions/{id}/items"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[reviewSubmissionItems]": (wrappedValue: fieldsReviewSubmissionItems?.encodeToJSON(), isExplode: false),
-            "fields[appStoreVersions]": (wrappedValue: fieldsAppStoreVersions?.encodeToJSON(), isExplode: false),
-            "fields[appCustomProductPageVersions]": (wrappedValue: fieldsAppCustomProductPageVersions?.encodeToJSON(), isExplode: false),
-            "fields[appStoreVersionExperiments]": (wrappedValue: fieldsAppStoreVersionExperiments?.encodeToJSON(), isExplode: false),
-            "fields[appEvents]": (wrappedValue: fieldsAppEvents?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "fields[reviewSubmissionItems]": (wrappedValue: fieldsReviewSubmissionItems?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appStoreVersions]": (wrappedValue: fieldsAppStoreVersions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appCustomProductPageVersions]": (wrappedValue: fieldsAppCustomProductPageVersions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appStoreVersionExperiments]": (wrappedValue: fieldsAppStoreVersionExperiments?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appEvents]": (wrappedValue: fieldsAppEvents?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -510,9 +522,9 @@ open class ReviewSubmissionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<ReviewSubmissionItemsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<ReviewSubmissionItemsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -521,38 +533,41 @@ open class ReviewSubmissionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ReviewSubmissionItemsResponse> 
      */
-    open class func reviewSubmissionsItemsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<ReviewSubmissionItemsResponse> {
+    open class func reviewSubmissionsItemsGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<ReviewSubmissionItemsResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<ReviewSubmissionItemsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<ReviewSubmissionItemsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter reviewSubmissionUpdateRequest: (body) ReviewSubmission representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: ReviewSubmissionResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func reviewSubmissionsUpdateInstance(id: String, reviewSubmissionUpdateRequest: ReviewSubmissionUpdateRequest) async throws -> ReviewSubmissionResponse {
-        return try await reviewSubmissionsUpdateInstanceWithRequestBuilder(id: id, reviewSubmissionUpdateRequest: reviewSubmissionUpdateRequest).execute().body
+    open class func reviewSubmissionsUpdateInstance(id: String, reviewSubmissionUpdateRequest: ReviewSubmissionUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> ReviewSubmissionResponse {
+        return try await reviewSubmissionsUpdateInstanceWithRequestBuilder(id: id, reviewSubmissionUpdateRequest: reviewSubmissionUpdateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: ReviewSubmissionResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func reviewSubmissionsUpdateInstance(urlString: String) async throws -> ReviewSubmissionResponse {
-        return try await reviewSubmissionsUpdateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func reviewSubmissionsUpdateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> ReviewSubmissionResponse {
+        return try await reviewSubmissionsUpdateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -562,15 +577,16 @@ open class ReviewSubmissionsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter reviewSubmissionUpdateRequest: (body) ReviewSubmission representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ReviewSubmissionResponse> 
      */
-    open class func reviewSubmissionsUpdateInstanceWithRequestBuilder(id: String, reviewSubmissionUpdateRequest: ReviewSubmissionUpdateRequest) -> RequestBuilder<ReviewSubmissionResponse> {
+    open class func reviewSubmissionsUpdateInstanceWithRequestBuilder(id: String, reviewSubmissionUpdateRequest: ReviewSubmissionUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<ReviewSubmissionResponse> {
         var localVariablePath = "/v1/reviewSubmissions/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: reviewSubmissionUpdateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: reviewSubmissionUpdateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -580,9 +596,9 @@ open class ReviewSubmissionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<ReviewSubmissionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<ReviewSubmissionResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -591,17 +607,18 @@ open class ReviewSubmissionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ReviewSubmissionResponse> 
      */
-    open class func reviewSubmissionsUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<ReviewSubmissionResponse> {
+    open class func reviewSubmissionsUpdateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<ReviewSubmissionResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<ReviewSubmissionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<ReviewSubmissionResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

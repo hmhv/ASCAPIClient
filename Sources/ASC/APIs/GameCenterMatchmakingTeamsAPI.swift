@@ -6,29 +6,28 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class GameCenterMatchmakingTeamsAPI {
 
     /**
 
      - parameter gameCenterMatchmakingTeamCreateRequest: (body) GameCenterMatchmakingTeam representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterMatchmakingTeamResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterMatchmakingTeamsCreateInstance(gameCenterMatchmakingTeamCreateRequest: GameCenterMatchmakingTeamCreateRequest) async throws -> GameCenterMatchmakingTeamResponse {
-        return try await gameCenterMatchmakingTeamsCreateInstanceWithRequestBuilder(gameCenterMatchmakingTeamCreateRequest: gameCenterMatchmakingTeamCreateRequest).execute().body
+    open class func gameCenterMatchmakingTeamsCreateInstance(gameCenterMatchmakingTeamCreateRequest: GameCenterMatchmakingTeamCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterMatchmakingTeamResponse {
+        return try await gameCenterMatchmakingTeamsCreateInstanceWithRequestBuilder(gameCenterMatchmakingTeamCreateRequest: gameCenterMatchmakingTeamCreateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterMatchmakingTeamResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterMatchmakingTeamsCreateInstance(urlString: String) async throws -> GameCenterMatchmakingTeamResponse {
-        return try await gameCenterMatchmakingTeamsCreateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func gameCenterMatchmakingTeamsCreateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterMatchmakingTeamResponse {
+        return try await gameCenterMatchmakingTeamsCreateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -37,12 +36,13 @@ open class GameCenterMatchmakingTeamsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter gameCenterMatchmakingTeamCreateRequest: (body) GameCenterMatchmakingTeam representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterMatchmakingTeamResponse> 
      */
-    open class func gameCenterMatchmakingTeamsCreateInstanceWithRequestBuilder(gameCenterMatchmakingTeamCreateRequest: GameCenterMatchmakingTeamCreateRequest) -> RequestBuilder<GameCenterMatchmakingTeamResponse> {
+    open class func gameCenterMatchmakingTeamsCreateInstanceWithRequestBuilder(gameCenterMatchmakingTeamCreateRequest: GameCenterMatchmakingTeamCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterMatchmakingTeamResponse> {
         let localVariablePath = "/v1/gameCenterMatchmakingTeams"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: gameCenterMatchmakingTeamCreateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: gameCenterMatchmakingTeamCreateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -52,9 +52,9 @@ open class GameCenterMatchmakingTeamsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingTeamResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingTeamResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -63,37 +63,40 @@ open class GameCenterMatchmakingTeamsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterMatchmakingTeamResponse> 
      */
-    open class func gameCenterMatchmakingTeamsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterMatchmakingTeamResponse> {
+    open class func gameCenterMatchmakingTeamsCreateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterMatchmakingTeamResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingTeamResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingTeamResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterMatchmakingTeamsDeleteInstance(id: String) async throws {
-        return try await gameCenterMatchmakingTeamsDeleteInstanceWithRequestBuilder(id: id).execute().body
+    open class func gameCenterMatchmakingTeamsDeleteInstance(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await gameCenterMatchmakingTeamsDeleteInstanceWithRequestBuilder(id: id, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterMatchmakingTeamsDeleteInstance(urlString: String) async throws {
-        return try await gameCenterMatchmakingTeamsDeleteInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func gameCenterMatchmakingTeamsDeleteInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await gameCenterMatchmakingTeamsDeleteInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -102,14 +105,15 @@ open class GameCenterMatchmakingTeamsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func gameCenterMatchmakingTeamsDeleteInstanceWithRequestBuilder(id: String) -> RequestBuilder<Void> {
+    open class func gameCenterMatchmakingTeamsDeleteInstanceWithRequestBuilder(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/gameCenterMatchmakingTeams/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -120,9 +124,9 @@ open class GameCenterMatchmakingTeamsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -131,38 +135,41 @@ open class GameCenterMatchmakingTeamsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func gameCenterMatchmakingTeamsDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func gameCenterMatchmakingTeamsDeleteInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter gameCenterMatchmakingTeamUpdateRequest: (body) GameCenterMatchmakingTeam representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterMatchmakingTeamResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterMatchmakingTeamsUpdateInstance(id: String, gameCenterMatchmakingTeamUpdateRequest: GameCenterMatchmakingTeamUpdateRequest) async throws -> GameCenterMatchmakingTeamResponse {
-        return try await gameCenterMatchmakingTeamsUpdateInstanceWithRequestBuilder(id: id, gameCenterMatchmakingTeamUpdateRequest: gameCenterMatchmakingTeamUpdateRequest).execute().body
+    open class func gameCenterMatchmakingTeamsUpdateInstance(id: String, gameCenterMatchmakingTeamUpdateRequest: GameCenterMatchmakingTeamUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterMatchmakingTeamResponse {
+        return try await gameCenterMatchmakingTeamsUpdateInstanceWithRequestBuilder(id: id, gameCenterMatchmakingTeamUpdateRequest: gameCenterMatchmakingTeamUpdateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterMatchmakingTeamResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterMatchmakingTeamsUpdateInstance(urlString: String) async throws -> GameCenterMatchmakingTeamResponse {
-        return try await gameCenterMatchmakingTeamsUpdateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func gameCenterMatchmakingTeamsUpdateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterMatchmakingTeamResponse {
+        return try await gameCenterMatchmakingTeamsUpdateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -172,15 +179,16 @@ open class GameCenterMatchmakingTeamsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter gameCenterMatchmakingTeamUpdateRequest: (body) GameCenterMatchmakingTeam representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterMatchmakingTeamResponse> 
      */
-    open class func gameCenterMatchmakingTeamsUpdateInstanceWithRequestBuilder(id: String, gameCenterMatchmakingTeamUpdateRequest: GameCenterMatchmakingTeamUpdateRequest) -> RequestBuilder<GameCenterMatchmakingTeamResponse> {
+    open class func gameCenterMatchmakingTeamsUpdateInstanceWithRequestBuilder(id: String, gameCenterMatchmakingTeamUpdateRequest: GameCenterMatchmakingTeamUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterMatchmakingTeamResponse> {
         var localVariablePath = "/v1/gameCenterMatchmakingTeams/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: gameCenterMatchmakingTeamUpdateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: gameCenterMatchmakingTeamUpdateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -190,9 +198,9 @@ open class GameCenterMatchmakingTeamsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingTeamResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingTeamResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -201,17 +209,18 @@ open class GameCenterMatchmakingTeamsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterMatchmakingTeamResponse> 
      */
-    open class func gameCenterMatchmakingTeamsUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterMatchmakingTeamResponse> {
+    open class func gameCenterMatchmakingTeamsUpdateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterMatchmakingTeamResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingTeamResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingTeamResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

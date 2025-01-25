@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct BetaTesterCreateRequestDataAttributes: Codable, JSONEncodable, Hashable {
+public struct BetaTesterCreateRequestDataAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
     public var firstName: String?
     public var lastName: String?

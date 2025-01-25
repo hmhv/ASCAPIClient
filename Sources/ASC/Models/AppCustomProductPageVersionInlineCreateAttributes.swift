@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppCustomProductPageVersionInlineCreateAttributes: Codable, JSONEncodable, Hashable {
+public struct AppCustomProductPageVersionInlineCreateAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
     public var deepLink: String?
 

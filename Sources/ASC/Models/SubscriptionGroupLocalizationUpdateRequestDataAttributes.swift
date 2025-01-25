@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct SubscriptionGroupLocalizationUpdateRequestDataAttributes: Codable, JSONEncodable, Hashable {
+public struct SubscriptionGroupLocalizationUpdateRequestDataAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
     public var name: String?
     public var customAppName: String?

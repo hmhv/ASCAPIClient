@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct ScmProviderAttributes: Codable, JSONEncodable, Hashable {
+public struct ScmProviderAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
     public var scmProviderType: ScmProviderType?
     public var url: String?

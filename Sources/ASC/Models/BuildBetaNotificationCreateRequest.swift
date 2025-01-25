@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct BuildBetaNotificationCreateRequest: Codable, JSONEncodable, Hashable {
+public struct BuildBetaNotificationCreateRequest: Sendable, Codable, JSONEncodable, Hashable {
 
     public var data: BuildBetaNotificationCreateRequestData
 

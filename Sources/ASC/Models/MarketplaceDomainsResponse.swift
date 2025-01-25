@@ -6,12 +6,9 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 @available(*, deprecated, message: "This schema is deprecated.")
-public struct MarketplaceDomainsResponse: Codable, JSONEncodable, Hashable {
+public struct MarketplaceDomainsResponse: Sendable, Codable, JSONEncodable, Hashable {
 
     public var data: [MarketplaceDomain]
     public var links: PagedDocumentLinks

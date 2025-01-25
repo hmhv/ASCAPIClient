@@ -6,13 +6,10 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct GameCenterMatchmakingNumberRuleResultsV1MetricResponseDataInner: Codable, JSONEncodable, Hashable {
+public struct GameCenterMatchmakingNumberRuleResultsV1MetricResponseDataInner: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum Granularity: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum Granularity: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case p1D = "P1D"
         case pt1h = "PT1H"
         case pt15m = "PT15M"

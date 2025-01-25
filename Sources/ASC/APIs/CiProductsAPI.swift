@@ -6,16 +6,13 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class CiProductsAPI {
 
     /**
      * enum for parameter fieldsScmRepositories
      */
-    public enum FieldsScmRepositories_ciProductsAdditionalRepositoriesGetToManyRelated: String, CaseIterable {
+    public enum FieldsScmRepositories_ciProductsAdditionalRepositoriesGetToManyRelated: String, Sendable, CaseIterable {
         case lastaccesseddate = "lastAccessedDate"
         case httpcloneurl = "httpCloneUrl"
         case sshcloneurl = "sshCloneUrl"
@@ -30,7 +27,7 @@ open class CiProductsAPI {
     /**
      * enum for parameter fieldsScmProviders
      */
-    public enum FieldsScmProviders_ciProductsAdditionalRepositoriesGetToManyRelated: String, CaseIterable {
+    public enum FieldsScmProviders_ciProductsAdditionalRepositoriesGetToManyRelated: String, Sendable, CaseIterable {
         case scmprovidertype = "scmProviderType"
         case url = "url"
         case repositories = "repositories"
@@ -39,7 +36,7 @@ open class CiProductsAPI {
     /**
      * enum for parameter fieldsScmGitReferences
      */
-    public enum FieldsScmGitReferences_ciProductsAdditionalRepositoriesGetToManyRelated: String, CaseIterable {
+    public enum FieldsScmGitReferences_ciProductsAdditionalRepositoriesGetToManyRelated: String, Sendable, CaseIterable {
         case name = "name"
         case canonicalname = "canonicalName"
         case isdeleted = "isDeleted"
@@ -50,7 +47,7 @@ open class CiProductsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_ciProductsAdditionalRepositoriesGetToManyRelated: String, CaseIterable {
+    public enum Include_ciProductsAdditionalRepositoriesGetToManyRelated: String, Sendable, CaseIterable {
         case scmprovider = "scmProvider"
         case defaultbranch = "defaultBranch"
     }
@@ -64,20 +61,22 @@ open class CiProductsAPI {
      - parameter fieldsScmGitReferences: (query) the fields to include for returned resources of type scmGitReferences (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: ScmRepositoriesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciProductsAdditionalRepositoriesGetToManyRelated(id: String, filterId: [String]? = nil, fieldsScmRepositories: [FieldsScmRepositories_ciProductsAdditionalRepositoriesGetToManyRelated]? = nil, fieldsScmProviders: [FieldsScmProviders_ciProductsAdditionalRepositoriesGetToManyRelated]? = nil, fieldsScmGitReferences: [FieldsScmGitReferences_ciProductsAdditionalRepositoriesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_ciProductsAdditionalRepositoriesGetToManyRelated]? = nil) async throws -> ScmRepositoriesResponse {
-        return try await ciProductsAdditionalRepositoriesGetToManyRelatedWithRequestBuilder(id: id, filterId: filterId, fieldsScmRepositories: fieldsScmRepositories, fieldsScmProviders: fieldsScmProviders, fieldsScmGitReferences: fieldsScmGitReferences, limit: limit, include: include).execute().body
+    open class func ciProductsAdditionalRepositoriesGetToManyRelated(id: String, filterId: [String]? = nil, fieldsScmRepositories: [FieldsScmRepositories_ciProductsAdditionalRepositoriesGetToManyRelated]? = nil, fieldsScmProviders: [FieldsScmProviders_ciProductsAdditionalRepositoriesGetToManyRelated]? = nil, fieldsScmGitReferences: [FieldsScmGitReferences_ciProductsAdditionalRepositoriesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_ciProductsAdditionalRepositoriesGetToManyRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> ScmRepositoriesResponse {
+        return try await ciProductsAdditionalRepositoriesGetToManyRelatedWithRequestBuilder(id: id, filterId: filterId, fieldsScmRepositories: fieldsScmRepositories, fieldsScmProviders: fieldsScmProviders, fieldsScmGitReferences: fieldsScmGitReferences, limit: limit, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: ScmRepositoriesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciProductsAdditionalRepositoriesGetToManyRelated(urlString: String) async throws -> ScmRepositoriesResponse {
-        return try await ciProductsAdditionalRepositoriesGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func ciProductsAdditionalRepositoriesGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> ScmRepositoriesResponse {
+        return try await ciProductsAdditionalRepositoriesGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -92,24 +91,25 @@ open class CiProductsAPI {
      - parameter fieldsScmGitReferences: (query) the fields to include for returned resources of type scmGitReferences (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ScmRepositoriesResponse> 
      */
-    open class func ciProductsAdditionalRepositoriesGetToManyRelatedWithRequestBuilder(id: String, filterId: [String]? = nil, fieldsScmRepositories: [FieldsScmRepositories_ciProductsAdditionalRepositoriesGetToManyRelated]? = nil, fieldsScmProviders: [FieldsScmProviders_ciProductsAdditionalRepositoriesGetToManyRelated]? = nil, fieldsScmGitReferences: [FieldsScmGitReferences_ciProductsAdditionalRepositoriesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_ciProductsAdditionalRepositoriesGetToManyRelated]? = nil) -> RequestBuilder<ScmRepositoriesResponse> {
+    open class func ciProductsAdditionalRepositoriesGetToManyRelatedWithRequestBuilder(id: String, filterId: [String]? = nil, fieldsScmRepositories: [FieldsScmRepositories_ciProductsAdditionalRepositoriesGetToManyRelated]? = nil, fieldsScmProviders: [FieldsScmProviders_ciProductsAdditionalRepositoriesGetToManyRelated]? = nil, fieldsScmGitReferences: [FieldsScmGitReferences_ciProductsAdditionalRepositoriesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_ciProductsAdditionalRepositoriesGetToManyRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<ScmRepositoriesResponse> {
         var localVariablePath = "/v1/ciProducts/{id}/additionalRepositories"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[id]": (wrappedValue: filterId?.encodeToJSON(), isExplode: false),
-            "fields[scmRepositories]": (wrappedValue: fieldsScmRepositories?.encodeToJSON(), isExplode: false),
-            "fields[scmProviders]": (wrappedValue: fieldsScmProviders?.encodeToJSON(), isExplode: false),
-            "fields[scmGitReferences]": (wrappedValue: fieldsScmGitReferences?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "filter[id]": (wrappedValue: filterId?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[scmRepositories]": (wrappedValue: fieldsScmRepositories?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[scmProviders]": (wrappedValue: fieldsScmProviders?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[scmGitReferences]": (wrappedValue: fieldsScmGitReferences?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -118,9 +118,9 @@ open class CiProductsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<ScmRepositoriesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<ScmRepositoriesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -129,24 +129,25 @@ open class CiProductsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ScmRepositoriesResponse> 
      */
-    open class func ciProductsAdditionalRepositoriesGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<ScmRepositoriesResponse> {
+    open class func ciProductsAdditionalRepositoriesGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<ScmRepositoriesResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<ScmRepositoriesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<ScmRepositoriesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsApps
      */
-    public enum FieldsApps_ciProductsAppGetToOneRelated: String, CaseIterable {
+    public enum FieldsApps_ciProductsAppGetToOneRelated: String, Sendable, CaseIterable {
         case name = "name"
         case bundleid = "bundleId"
         case sku = "sku"
@@ -195,7 +196,7 @@ open class CiProductsAPI {
     /**
      * enum for parameter fieldsAppEncryptionDeclarations
      */
-    public enum FieldsAppEncryptionDeclarations_ciProductsAppGetToOneRelated: String, CaseIterable {
+    public enum FieldsAppEncryptionDeclarations_ciProductsAppGetToOneRelated: String, Sendable, CaseIterable {
         case appdescription = "appDescription"
         case createddate = "createdDate"
         case usesencryption = "usesEncryption"
@@ -218,7 +219,7 @@ open class CiProductsAPI {
     /**
      * enum for parameter fieldsCiProducts
      */
-    public enum FieldsCiProducts_ciProductsAppGetToOneRelated: String, CaseIterable {
+    public enum FieldsCiProducts_ciProductsAppGetToOneRelated: String, Sendable, CaseIterable {
         case name = "name"
         case createddate = "createdDate"
         case producttype = "productType"
@@ -233,7 +234,7 @@ open class CiProductsAPI {
     /**
      * enum for parameter fieldsBetaGroups
      */
-    public enum FieldsBetaGroups_ciProductsAppGetToOneRelated: String, CaseIterable {
+    public enum FieldsBetaGroups_ciProductsAppGetToOneRelated: String, Sendable, CaseIterable {
         case name = "name"
         case createddate = "createdDate"
         case isinternalgroup = "isInternalGroup"
@@ -253,7 +254,7 @@ open class CiProductsAPI {
     /**
      * enum for parameter fieldsAppStoreVersions
      */
-    public enum FieldsAppStoreVersions_ciProductsAppGetToOneRelated: String, CaseIterable {
+    public enum FieldsAppStoreVersions_ciProductsAppGetToOneRelated: String, Sendable, CaseIterable {
         case platform = "platform"
         case versionstring = "versionString"
         case appstorestate = "appStoreState"
@@ -283,7 +284,7 @@ open class CiProductsAPI {
     /**
      * enum for parameter fieldsPreReleaseVersions
      */
-    public enum FieldsPreReleaseVersions_ciProductsAppGetToOneRelated: String, CaseIterable {
+    public enum FieldsPreReleaseVersions_ciProductsAppGetToOneRelated: String, Sendable, CaseIterable {
         case version = "version"
         case platform = "platform"
         case builds = "builds"
@@ -293,7 +294,7 @@ open class CiProductsAPI {
     /**
      * enum for parameter fieldsBetaAppLocalizations
      */
-    public enum FieldsBetaAppLocalizations_ciProductsAppGetToOneRelated: String, CaseIterable {
+    public enum FieldsBetaAppLocalizations_ciProductsAppGetToOneRelated: String, Sendable, CaseIterable {
         case feedbackemail = "feedbackEmail"
         case marketingurl = "marketingUrl"
         case privacypolicyurl = "privacyPolicyUrl"
@@ -306,7 +307,7 @@ open class CiProductsAPI {
     /**
      * enum for parameter fieldsBuilds
      */
-    public enum FieldsBuilds_ciProductsAppGetToOneRelated: String, CaseIterable {
+    public enum FieldsBuilds_ciProductsAppGetToOneRelated: String, Sendable, CaseIterable {
         case version = "version"
         case uploadeddate = "uploadedDate"
         case expirationdate = "expirationDate"
@@ -336,7 +337,7 @@ open class CiProductsAPI {
     /**
      * enum for parameter fieldsBetaLicenseAgreements
      */
-    public enum FieldsBetaLicenseAgreements_ciProductsAppGetToOneRelated: String, CaseIterable {
+    public enum FieldsBetaLicenseAgreements_ciProductsAppGetToOneRelated: String, Sendable, CaseIterable {
         case agreementtext = "agreementText"
         case app = "app"
     }
@@ -344,7 +345,7 @@ open class CiProductsAPI {
     /**
      * enum for parameter fieldsBetaAppReviewDetails
      */
-    public enum FieldsBetaAppReviewDetails_ciProductsAppGetToOneRelated: String, CaseIterable {
+    public enum FieldsBetaAppReviewDetails_ciProductsAppGetToOneRelated: String, Sendable, CaseIterable {
         case contactfirstname = "contactFirstName"
         case contactlastname = "contactLastName"
         case contactphone = "contactPhone"
@@ -359,7 +360,7 @@ open class CiProductsAPI {
     /**
      * enum for parameter fieldsAppInfos
      */
-    public enum FieldsAppInfos_ciProductsAppGetToOneRelated: String, CaseIterable {
+    public enum FieldsAppInfos_ciProductsAppGetToOneRelated: String, Sendable, CaseIterable {
         case appstorestate = "appStoreState"
         case state = "state"
         case appstoreagerating = "appStoreAgeRating"
@@ -383,7 +384,7 @@ open class CiProductsAPI {
     /**
      * enum for parameter fieldsAppClips
      */
-    public enum FieldsAppClips_ciProductsAppGetToOneRelated: String, CaseIterable {
+    public enum FieldsAppClips_ciProductsAppGetToOneRelated: String, Sendable, CaseIterable {
         case bundleid = "bundleId"
         case app = "app"
         case appclipdefaultexperiences = "appClipDefaultExperiences"
@@ -393,7 +394,7 @@ open class CiProductsAPI {
     /**
      * enum for parameter fieldsEndUserLicenseAgreements
      */
-    public enum FieldsEndUserLicenseAgreements_ciProductsAppGetToOneRelated: String, CaseIterable {
+    public enum FieldsEndUserLicenseAgreements_ciProductsAppGetToOneRelated: String, Sendable, CaseIterable {
         case agreementtext = "agreementText"
         case app = "app"
         case territories = "territories"
@@ -402,7 +403,7 @@ open class CiProductsAPI {
     /**
      * enum for parameter fieldsInAppPurchases
      */
-    public enum FieldsInAppPurchases_ciProductsAppGetToOneRelated: String, CaseIterable {
+    public enum FieldsInAppPurchases_ciProductsAppGetToOneRelated: String, Sendable, CaseIterable {
         case referencename = "referenceName"
         case productid = "productId"
         case inapppurchasetype = "inAppPurchaseType"
@@ -425,7 +426,7 @@ open class CiProductsAPI {
     /**
      * enum for parameter fieldsSubscriptionGroups
      */
-    public enum FieldsSubscriptionGroups_ciProductsAppGetToOneRelated: String, CaseIterable {
+    public enum FieldsSubscriptionGroups_ciProductsAppGetToOneRelated: String, Sendable, CaseIterable {
         case referencename = "referenceName"
         case subscriptions = "subscriptions"
         case subscriptiongrouplocalizations = "subscriptionGroupLocalizations"
@@ -434,7 +435,7 @@ open class CiProductsAPI {
     /**
      * enum for parameter fieldsGameCenterEnabledVersions
      */
-    public enum FieldsGameCenterEnabledVersions_ciProductsAppGetToOneRelated: String, CaseIterable {
+    public enum FieldsGameCenterEnabledVersions_ciProductsAppGetToOneRelated: String, Sendable, CaseIterable {
         case platform = "platform"
         case versionstring = "versionString"
         case iconasset = "iconAsset"
@@ -445,7 +446,7 @@ open class CiProductsAPI {
     /**
      * enum for parameter fieldsAppCustomProductPages
      */
-    public enum FieldsAppCustomProductPages_ciProductsAppGetToOneRelated: String, CaseIterable {
+    public enum FieldsAppCustomProductPages_ciProductsAppGetToOneRelated: String, Sendable, CaseIterable {
         case name = "name"
         case url = "url"
         case visible = "visible"
@@ -456,7 +457,7 @@ open class CiProductsAPI {
     /**
      * enum for parameter fieldsPromotedPurchases
      */
-    public enum FieldsPromotedPurchases_ciProductsAppGetToOneRelated: String, CaseIterable {
+    public enum FieldsPromotedPurchases_ciProductsAppGetToOneRelated: String, Sendable, CaseIterable {
         case visibleforallusers = "visibleForAllUsers"
         case enabled = "enabled"
         case state = "state"
@@ -468,7 +469,7 @@ open class CiProductsAPI {
     /**
      * enum for parameter fieldsAppEvents
      */
-    public enum FieldsAppEvents_ciProductsAppGetToOneRelated: String, CaseIterable {
+    public enum FieldsAppEvents_ciProductsAppGetToOneRelated: String, Sendable, CaseIterable {
         case referencename = "referenceName"
         case badge = "badge"
         case eventstate = "eventState"
@@ -485,7 +486,7 @@ open class CiProductsAPI {
     /**
      * enum for parameter fieldsReviewSubmissions
      */
-    public enum FieldsReviewSubmissions_ciProductsAppGetToOneRelated: String, CaseIterable {
+    public enum FieldsReviewSubmissions_ciProductsAppGetToOneRelated: String, Sendable, CaseIterable {
         case platform = "platform"
         case submitteddate = "submittedDate"
         case state = "state"
@@ -499,7 +500,7 @@ open class CiProductsAPI {
     /**
      * enum for parameter fieldsSubscriptionGracePeriods
      */
-    public enum FieldsSubscriptionGracePeriods_ciProductsAppGetToOneRelated: String, CaseIterable {
+    public enum FieldsSubscriptionGracePeriods_ciProductsAppGetToOneRelated: String, Sendable, CaseIterable {
         case optin = "optIn"
         case sandboxoptin = "sandboxOptIn"
         case duration = "duration"
@@ -509,7 +510,7 @@ open class CiProductsAPI {
     /**
      * enum for parameter fieldsGameCenterDetails
      */
-    public enum FieldsGameCenterDetails_ciProductsAppGetToOneRelated: String, CaseIterable {
+    public enum FieldsGameCenterDetails_ciProductsAppGetToOneRelated: String, Sendable, CaseIterable {
         case arcadeenabled = "arcadeEnabled"
         case challengeenabled = "challengeEnabled"
         case app = "app"
@@ -528,7 +529,7 @@ open class CiProductsAPI {
     /**
      * enum for parameter fieldsAppStoreVersionExperiments
      */
-    public enum FieldsAppStoreVersionExperiments_ciProductsAppGetToOneRelated: String, CaseIterable {
+    public enum FieldsAppStoreVersionExperiments_ciProductsAppGetToOneRelated: String, Sendable, CaseIterable {
         case name = "name"
         case platform = "platform"
         case trafficproportion = "trafficProportion"
@@ -545,7 +546,7 @@ open class CiProductsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_ciProductsAppGetToOneRelated: String, CaseIterable {
+    public enum Include_ciProductsAppGetToOneRelated: String, Sendable, CaseIterable {
         case appencryptiondeclarations = "appEncryptionDeclarations"
         case ciproduct = "ciProduct"
         case betagroups = "betaGroups"
@@ -615,20 +616,22 @@ open class CiProductsAPI {
      - parameter limitAppEvents: (query) maximum number of related appEvents returned (when they are included) (optional)
      - parameter limitReviewSubmissions: (query) maximum number of related reviewSubmissions returned (when they are included) (optional)
      - parameter limitAppStoreVersionExperimentsV2: (query) maximum number of related appStoreVersionExperimentsV2 returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciProductsAppGetToOneRelated(id: String, fieldsApps: [FieldsApps_ciProductsAppGetToOneRelated]? = nil, fieldsAppEncryptionDeclarations: [FieldsAppEncryptionDeclarations_ciProductsAppGetToOneRelated]? = nil, fieldsCiProducts: [FieldsCiProducts_ciProductsAppGetToOneRelated]? = nil, fieldsBetaGroups: [FieldsBetaGroups_ciProductsAppGetToOneRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_ciProductsAppGetToOneRelated]? = nil, fieldsPreReleaseVersions: [FieldsPreReleaseVersions_ciProductsAppGetToOneRelated]? = nil, fieldsBetaAppLocalizations: [FieldsBetaAppLocalizations_ciProductsAppGetToOneRelated]? = nil, fieldsBuilds: [FieldsBuilds_ciProductsAppGetToOneRelated]? = nil, fieldsBetaLicenseAgreements: [FieldsBetaLicenseAgreements_ciProductsAppGetToOneRelated]? = nil, fieldsBetaAppReviewDetails: [FieldsBetaAppReviewDetails_ciProductsAppGetToOneRelated]? = nil, fieldsAppInfos: [FieldsAppInfos_ciProductsAppGetToOneRelated]? = nil, fieldsAppClips: [FieldsAppClips_ciProductsAppGetToOneRelated]? = nil, fieldsEndUserLicenseAgreements: [FieldsEndUserLicenseAgreements_ciProductsAppGetToOneRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_ciProductsAppGetToOneRelated]? = nil, fieldsSubscriptionGroups: [FieldsSubscriptionGroups_ciProductsAppGetToOneRelated]? = nil, fieldsGameCenterEnabledVersions: [FieldsGameCenterEnabledVersions_ciProductsAppGetToOneRelated]? = nil, fieldsAppCustomProductPages: [FieldsAppCustomProductPages_ciProductsAppGetToOneRelated]? = nil, fieldsPromotedPurchases: [FieldsPromotedPurchases_ciProductsAppGetToOneRelated]? = nil, fieldsAppEvents: [FieldsAppEvents_ciProductsAppGetToOneRelated]? = nil, fieldsReviewSubmissions: [FieldsReviewSubmissions_ciProductsAppGetToOneRelated]? = nil, fieldsSubscriptionGracePeriods: [FieldsSubscriptionGracePeriods_ciProductsAppGetToOneRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_ciProductsAppGetToOneRelated]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_ciProductsAppGetToOneRelated]? = nil, include: [Include_ciProductsAppGetToOneRelated]? = nil, limitAppEncryptionDeclarations: Int? = nil, limitBetaGroups: Int? = nil, limitAppStoreVersions: Int? = nil, limitPreReleaseVersions: Int? = nil, limitBetaAppLocalizations: Int? = nil, limitBuilds: Int? = nil, limitAppInfos: Int? = nil, limitAppClips: Int? = nil, limitInAppPurchases: Int? = nil, limitSubscriptionGroups: Int? = nil, limitGameCenterEnabledVersions: Int? = nil, limitAppCustomProductPages: Int? = nil, limitInAppPurchasesV2: Int? = nil, limitPromotedPurchases: Int? = nil, limitAppEvents: Int? = nil, limitReviewSubmissions: Int? = nil, limitAppStoreVersionExperimentsV2: Int? = nil) async throws -> AppResponse {
-        return try await ciProductsAppGetToOneRelatedWithRequestBuilder(id: id, fieldsApps: fieldsApps, fieldsAppEncryptionDeclarations: fieldsAppEncryptionDeclarations, fieldsCiProducts: fieldsCiProducts, fieldsBetaGroups: fieldsBetaGroups, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsPreReleaseVersions: fieldsPreReleaseVersions, fieldsBetaAppLocalizations: fieldsBetaAppLocalizations, fieldsBuilds: fieldsBuilds, fieldsBetaLicenseAgreements: fieldsBetaLicenseAgreements, fieldsBetaAppReviewDetails: fieldsBetaAppReviewDetails, fieldsAppInfos: fieldsAppInfos, fieldsAppClips: fieldsAppClips, fieldsEndUserLicenseAgreements: fieldsEndUserLicenseAgreements, fieldsInAppPurchases: fieldsInAppPurchases, fieldsSubscriptionGroups: fieldsSubscriptionGroups, fieldsGameCenterEnabledVersions: fieldsGameCenterEnabledVersions, fieldsAppCustomProductPages: fieldsAppCustomProductPages, fieldsPromotedPurchases: fieldsPromotedPurchases, fieldsAppEvents: fieldsAppEvents, fieldsReviewSubmissions: fieldsReviewSubmissions, fieldsSubscriptionGracePeriods: fieldsSubscriptionGracePeriods, fieldsGameCenterDetails: fieldsGameCenterDetails, fieldsAppStoreVersionExperiments: fieldsAppStoreVersionExperiments, include: include, limitAppEncryptionDeclarations: limitAppEncryptionDeclarations, limitBetaGroups: limitBetaGroups, limitAppStoreVersions: limitAppStoreVersions, limitPreReleaseVersions: limitPreReleaseVersions, limitBetaAppLocalizations: limitBetaAppLocalizations, limitBuilds: limitBuilds, limitAppInfos: limitAppInfos, limitAppClips: limitAppClips, limitInAppPurchases: limitInAppPurchases, limitSubscriptionGroups: limitSubscriptionGroups, limitGameCenterEnabledVersions: limitGameCenterEnabledVersions, limitAppCustomProductPages: limitAppCustomProductPages, limitInAppPurchasesV2: limitInAppPurchasesV2, limitPromotedPurchases: limitPromotedPurchases, limitAppEvents: limitAppEvents, limitReviewSubmissions: limitReviewSubmissions, limitAppStoreVersionExperimentsV2: limitAppStoreVersionExperimentsV2).execute().body
+    open class func ciProductsAppGetToOneRelated(id: String, fieldsApps: [FieldsApps_ciProductsAppGetToOneRelated]? = nil, fieldsAppEncryptionDeclarations: [FieldsAppEncryptionDeclarations_ciProductsAppGetToOneRelated]? = nil, fieldsCiProducts: [FieldsCiProducts_ciProductsAppGetToOneRelated]? = nil, fieldsBetaGroups: [FieldsBetaGroups_ciProductsAppGetToOneRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_ciProductsAppGetToOneRelated]? = nil, fieldsPreReleaseVersions: [FieldsPreReleaseVersions_ciProductsAppGetToOneRelated]? = nil, fieldsBetaAppLocalizations: [FieldsBetaAppLocalizations_ciProductsAppGetToOneRelated]? = nil, fieldsBuilds: [FieldsBuilds_ciProductsAppGetToOneRelated]? = nil, fieldsBetaLicenseAgreements: [FieldsBetaLicenseAgreements_ciProductsAppGetToOneRelated]? = nil, fieldsBetaAppReviewDetails: [FieldsBetaAppReviewDetails_ciProductsAppGetToOneRelated]? = nil, fieldsAppInfos: [FieldsAppInfos_ciProductsAppGetToOneRelated]? = nil, fieldsAppClips: [FieldsAppClips_ciProductsAppGetToOneRelated]? = nil, fieldsEndUserLicenseAgreements: [FieldsEndUserLicenseAgreements_ciProductsAppGetToOneRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_ciProductsAppGetToOneRelated]? = nil, fieldsSubscriptionGroups: [FieldsSubscriptionGroups_ciProductsAppGetToOneRelated]? = nil, fieldsGameCenterEnabledVersions: [FieldsGameCenterEnabledVersions_ciProductsAppGetToOneRelated]? = nil, fieldsAppCustomProductPages: [FieldsAppCustomProductPages_ciProductsAppGetToOneRelated]? = nil, fieldsPromotedPurchases: [FieldsPromotedPurchases_ciProductsAppGetToOneRelated]? = nil, fieldsAppEvents: [FieldsAppEvents_ciProductsAppGetToOneRelated]? = nil, fieldsReviewSubmissions: [FieldsReviewSubmissions_ciProductsAppGetToOneRelated]? = nil, fieldsSubscriptionGracePeriods: [FieldsSubscriptionGracePeriods_ciProductsAppGetToOneRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_ciProductsAppGetToOneRelated]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_ciProductsAppGetToOneRelated]? = nil, include: [Include_ciProductsAppGetToOneRelated]? = nil, limitAppEncryptionDeclarations: Int? = nil, limitBetaGroups: Int? = nil, limitAppStoreVersions: Int? = nil, limitPreReleaseVersions: Int? = nil, limitBetaAppLocalizations: Int? = nil, limitBuilds: Int? = nil, limitAppInfos: Int? = nil, limitAppClips: Int? = nil, limitInAppPurchases: Int? = nil, limitSubscriptionGroups: Int? = nil, limitGameCenterEnabledVersions: Int? = nil, limitAppCustomProductPages: Int? = nil, limitInAppPurchasesV2: Int? = nil, limitPromotedPurchases: Int? = nil, limitAppEvents: Int? = nil, limitReviewSubmissions: Int? = nil, limitAppStoreVersionExperimentsV2: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppResponse {
+        return try await ciProductsAppGetToOneRelatedWithRequestBuilder(id: id, fieldsApps: fieldsApps, fieldsAppEncryptionDeclarations: fieldsAppEncryptionDeclarations, fieldsCiProducts: fieldsCiProducts, fieldsBetaGroups: fieldsBetaGroups, fieldsAppStoreVersions: fieldsAppStoreVersions, fieldsPreReleaseVersions: fieldsPreReleaseVersions, fieldsBetaAppLocalizations: fieldsBetaAppLocalizations, fieldsBuilds: fieldsBuilds, fieldsBetaLicenseAgreements: fieldsBetaLicenseAgreements, fieldsBetaAppReviewDetails: fieldsBetaAppReviewDetails, fieldsAppInfos: fieldsAppInfos, fieldsAppClips: fieldsAppClips, fieldsEndUserLicenseAgreements: fieldsEndUserLicenseAgreements, fieldsInAppPurchases: fieldsInAppPurchases, fieldsSubscriptionGroups: fieldsSubscriptionGroups, fieldsGameCenterEnabledVersions: fieldsGameCenterEnabledVersions, fieldsAppCustomProductPages: fieldsAppCustomProductPages, fieldsPromotedPurchases: fieldsPromotedPurchases, fieldsAppEvents: fieldsAppEvents, fieldsReviewSubmissions: fieldsReviewSubmissions, fieldsSubscriptionGracePeriods: fieldsSubscriptionGracePeriods, fieldsGameCenterDetails: fieldsGameCenterDetails, fieldsAppStoreVersionExperiments: fieldsAppStoreVersionExperiments, include: include, limitAppEncryptionDeclarations: limitAppEncryptionDeclarations, limitBetaGroups: limitBetaGroups, limitAppStoreVersions: limitAppStoreVersions, limitPreReleaseVersions: limitPreReleaseVersions, limitBetaAppLocalizations: limitBetaAppLocalizations, limitBuilds: limitBuilds, limitAppInfos: limitAppInfos, limitAppClips: limitAppClips, limitInAppPurchases: limitInAppPurchases, limitSubscriptionGroups: limitSubscriptionGroups, limitGameCenterEnabledVersions: limitGameCenterEnabledVersions, limitAppCustomProductPages: limitAppCustomProductPages, limitInAppPurchasesV2: limitInAppPurchasesV2, limitPromotedPurchases: limitPromotedPurchases, limitAppEvents: limitAppEvents, limitReviewSubmissions: limitReviewSubmissions, limitAppStoreVersionExperimentsV2: limitAppStoreVersionExperimentsV2, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciProductsAppGetToOneRelated(urlString: String) async throws -> AppResponse {
-        return try await ciProductsAppGetToOneRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func ciProductsAppGetToOneRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppResponse {
+        return try await ciProductsAppGetToOneRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -678,59 +681,60 @@ open class CiProductsAPI {
      - parameter limitAppEvents: (query) maximum number of related appEvents returned (when they are included) (optional)
      - parameter limitReviewSubmissions: (query) maximum number of related reviewSubmissions returned (when they are included) (optional)
      - parameter limitAppStoreVersionExperimentsV2: (query) maximum number of related appStoreVersionExperimentsV2 returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppResponse> 
      */
-    open class func ciProductsAppGetToOneRelatedWithRequestBuilder(id: String, fieldsApps: [FieldsApps_ciProductsAppGetToOneRelated]? = nil, fieldsAppEncryptionDeclarations: [FieldsAppEncryptionDeclarations_ciProductsAppGetToOneRelated]? = nil, fieldsCiProducts: [FieldsCiProducts_ciProductsAppGetToOneRelated]? = nil, fieldsBetaGroups: [FieldsBetaGroups_ciProductsAppGetToOneRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_ciProductsAppGetToOneRelated]? = nil, fieldsPreReleaseVersions: [FieldsPreReleaseVersions_ciProductsAppGetToOneRelated]? = nil, fieldsBetaAppLocalizations: [FieldsBetaAppLocalizations_ciProductsAppGetToOneRelated]? = nil, fieldsBuilds: [FieldsBuilds_ciProductsAppGetToOneRelated]? = nil, fieldsBetaLicenseAgreements: [FieldsBetaLicenseAgreements_ciProductsAppGetToOneRelated]? = nil, fieldsBetaAppReviewDetails: [FieldsBetaAppReviewDetails_ciProductsAppGetToOneRelated]? = nil, fieldsAppInfos: [FieldsAppInfos_ciProductsAppGetToOneRelated]? = nil, fieldsAppClips: [FieldsAppClips_ciProductsAppGetToOneRelated]? = nil, fieldsEndUserLicenseAgreements: [FieldsEndUserLicenseAgreements_ciProductsAppGetToOneRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_ciProductsAppGetToOneRelated]? = nil, fieldsSubscriptionGroups: [FieldsSubscriptionGroups_ciProductsAppGetToOneRelated]? = nil, fieldsGameCenterEnabledVersions: [FieldsGameCenterEnabledVersions_ciProductsAppGetToOneRelated]? = nil, fieldsAppCustomProductPages: [FieldsAppCustomProductPages_ciProductsAppGetToOneRelated]? = nil, fieldsPromotedPurchases: [FieldsPromotedPurchases_ciProductsAppGetToOneRelated]? = nil, fieldsAppEvents: [FieldsAppEvents_ciProductsAppGetToOneRelated]? = nil, fieldsReviewSubmissions: [FieldsReviewSubmissions_ciProductsAppGetToOneRelated]? = nil, fieldsSubscriptionGracePeriods: [FieldsSubscriptionGracePeriods_ciProductsAppGetToOneRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_ciProductsAppGetToOneRelated]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_ciProductsAppGetToOneRelated]? = nil, include: [Include_ciProductsAppGetToOneRelated]? = nil, limitAppEncryptionDeclarations: Int? = nil, limitBetaGroups: Int? = nil, limitAppStoreVersions: Int? = nil, limitPreReleaseVersions: Int? = nil, limitBetaAppLocalizations: Int? = nil, limitBuilds: Int? = nil, limitAppInfos: Int? = nil, limitAppClips: Int? = nil, limitInAppPurchases: Int? = nil, limitSubscriptionGroups: Int? = nil, limitGameCenterEnabledVersions: Int? = nil, limitAppCustomProductPages: Int? = nil, limitInAppPurchasesV2: Int? = nil, limitPromotedPurchases: Int? = nil, limitAppEvents: Int? = nil, limitReviewSubmissions: Int? = nil, limitAppStoreVersionExperimentsV2: Int? = nil) -> RequestBuilder<AppResponse> {
+    open class func ciProductsAppGetToOneRelatedWithRequestBuilder(id: String, fieldsApps: [FieldsApps_ciProductsAppGetToOneRelated]? = nil, fieldsAppEncryptionDeclarations: [FieldsAppEncryptionDeclarations_ciProductsAppGetToOneRelated]? = nil, fieldsCiProducts: [FieldsCiProducts_ciProductsAppGetToOneRelated]? = nil, fieldsBetaGroups: [FieldsBetaGroups_ciProductsAppGetToOneRelated]? = nil, fieldsAppStoreVersions: [FieldsAppStoreVersions_ciProductsAppGetToOneRelated]? = nil, fieldsPreReleaseVersions: [FieldsPreReleaseVersions_ciProductsAppGetToOneRelated]? = nil, fieldsBetaAppLocalizations: [FieldsBetaAppLocalizations_ciProductsAppGetToOneRelated]? = nil, fieldsBuilds: [FieldsBuilds_ciProductsAppGetToOneRelated]? = nil, fieldsBetaLicenseAgreements: [FieldsBetaLicenseAgreements_ciProductsAppGetToOneRelated]? = nil, fieldsBetaAppReviewDetails: [FieldsBetaAppReviewDetails_ciProductsAppGetToOneRelated]? = nil, fieldsAppInfos: [FieldsAppInfos_ciProductsAppGetToOneRelated]? = nil, fieldsAppClips: [FieldsAppClips_ciProductsAppGetToOneRelated]? = nil, fieldsEndUserLicenseAgreements: [FieldsEndUserLicenseAgreements_ciProductsAppGetToOneRelated]? = nil, fieldsInAppPurchases: [FieldsInAppPurchases_ciProductsAppGetToOneRelated]? = nil, fieldsSubscriptionGroups: [FieldsSubscriptionGroups_ciProductsAppGetToOneRelated]? = nil, fieldsGameCenterEnabledVersions: [FieldsGameCenterEnabledVersions_ciProductsAppGetToOneRelated]? = nil, fieldsAppCustomProductPages: [FieldsAppCustomProductPages_ciProductsAppGetToOneRelated]? = nil, fieldsPromotedPurchases: [FieldsPromotedPurchases_ciProductsAppGetToOneRelated]? = nil, fieldsAppEvents: [FieldsAppEvents_ciProductsAppGetToOneRelated]? = nil, fieldsReviewSubmissions: [FieldsReviewSubmissions_ciProductsAppGetToOneRelated]? = nil, fieldsSubscriptionGracePeriods: [FieldsSubscriptionGracePeriods_ciProductsAppGetToOneRelated]? = nil, fieldsGameCenterDetails: [FieldsGameCenterDetails_ciProductsAppGetToOneRelated]? = nil, fieldsAppStoreVersionExperiments: [FieldsAppStoreVersionExperiments_ciProductsAppGetToOneRelated]? = nil, include: [Include_ciProductsAppGetToOneRelated]? = nil, limitAppEncryptionDeclarations: Int? = nil, limitBetaGroups: Int? = nil, limitAppStoreVersions: Int? = nil, limitPreReleaseVersions: Int? = nil, limitBetaAppLocalizations: Int? = nil, limitBuilds: Int? = nil, limitAppInfos: Int? = nil, limitAppClips: Int? = nil, limitInAppPurchases: Int? = nil, limitSubscriptionGroups: Int? = nil, limitGameCenterEnabledVersions: Int? = nil, limitAppCustomProductPages: Int? = nil, limitInAppPurchasesV2: Int? = nil, limitPromotedPurchases: Int? = nil, limitAppEvents: Int? = nil, limitReviewSubmissions: Int? = nil, limitAppStoreVersionExperimentsV2: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppResponse> {
         var localVariablePath = "/v1/ciProducts/{id}/app"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
-            "fields[appEncryptionDeclarations]": (wrappedValue: fieldsAppEncryptionDeclarations?.encodeToJSON(), isExplode: false),
-            "fields[ciProducts]": (wrappedValue: fieldsCiProducts?.encodeToJSON(), isExplode: false),
-            "fields[betaGroups]": (wrappedValue: fieldsBetaGroups?.encodeToJSON(), isExplode: false),
-            "fields[appStoreVersions]": (wrappedValue: fieldsAppStoreVersions?.encodeToJSON(), isExplode: false),
-            "fields[preReleaseVersions]": (wrappedValue: fieldsPreReleaseVersions?.encodeToJSON(), isExplode: false),
-            "fields[betaAppLocalizations]": (wrappedValue: fieldsBetaAppLocalizations?.encodeToJSON(), isExplode: false),
-            "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(), isExplode: false),
-            "fields[betaLicenseAgreements]": (wrappedValue: fieldsBetaLicenseAgreements?.encodeToJSON(), isExplode: false),
-            "fields[betaAppReviewDetails]": (wrappedValue: fieldsBetaAppReviewDetails?.encodeToJSON(), isExplode: false),
-            "fields[appInfos]": (wrappedValue: fieldsAppInfos?.encodeToJSON(), isExplode: false),
-            "fields[appClips]": (wrappedValue: fieldsAppClips?.encodeToJSON(), isExplode: false),
-            "fields[endUserLicenseAgreements]": (wrappedValue: fieldsEndUserLicenseAgreements?.encodeToJSON(), isExplode: false),
-            "fields[inAppPurchases]": (wrappedValue: fieldsInAppPurchases?.encodeToJSON(), isExplode: false),
-            "fields[subscriptionGroups]": (wrappedValue: fieldsSubscriptionGroups?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterEnabledVersions]": (wrappedValue: fieldsGameCenterEnabledVersions?.encodeToJSON(), isExplode: false),
-            "fields[appCustomProductPages]": (wrappedValue: fieldsAppCustomProductPages?.encodeToJSON(), isExplode: false),
-            "fields[promotedPurchases]": (wrappedValue: fieldsPromotedPurchases?.encodeToJSON(), isExplode: false),
-            "fields[appEvents]": (wrappedValue: fieldsAppEvents?.encodeToJSON(), isExplode: false),
-            "fields[reviewSubmissions]": (wrappedValue: fieldsReviewSubmissions?.encodeToJSON(), isExplode: false),
-            "fields[subscriptionGracePeriods]": (wrappedValue: fieldsSubscriptionGracePeriods?.encodeToJSON(), isExplode: false),
-            "fields[gameCenterDetails]": (wrappedValue: fieldsGameCenterDetails?.encodeToJSON(), isExplode: false),
-            "fields[appStoreVersionExperiments]": (wrappedValue: fieldsAppStoreVersionExperiments?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[appEncryptionDeclarations]": (wrappedValue: limitAppEncryptionDeclarations?.encodeToJSON(), isExplode: true),
-            "limit[betaGroups]": (wrappedValue: limitBetaGroups?.encodeToJSON(), isExplode: true),
-            "limit[appStoreVersions]": (wrappedValue: limitAppStoreVersions?.encodeToJSON(), isExplode: true),
-            "limit[preReleaseVersions]": (wrappedValue: limitPreReleaseVersions?.encodeToJSON(), isExplode: true),
-            "limit[betaAppLocalizations]": (wrappedValue: limitBetaAppLocalizations?.encodeToJSON(), isExplode: true),
-            "limit[builds]": (wrappedValue: limitBuilds?.encodeToJSON(), isExplode: true),
-            "limit[appInfos]": (wrappedValue: limitAppInfos?.encodeToJSON(), isExplode: true),
-            "limit[appClips]": (wrappedValue: limitAppClips?.encodeToJSON(), isExplode: true),
-            "limit[inAppPurchases]": (wrappedValue: limitInAppPurchases?.encodeToJSON(), isExplode: true),
-            "limit[subscriptionGroups]": (wrappedValue: limitSubscriptionGroups?.encodeToJSON(), isExplode: true),
-            "limit[gameCenterEnabledVersions]": (wrappedValue: limitGameCenterEnabledVersions?.encodeToJSON(), isExplode: true),
-            "limit[appCustomProductPages]": (wrappedValue: limitAppCustomProductPages?.encodeToJSON(), isExplode: true),
-            "limit[inAppPurchasesV2]": (wrappedValue: limitInAppPurchasesV2?.encodeToJSON(), isExplode: true),
-            "limit[promotedPurchases]": (wrappedValue: limitPromotedPurchases?.encodeToJSON(), isExplode: true),
-            "limit[appEvents]": (wrappedValue: limitAppEvents?.encodeToJSON(), isExplode: true),
-            "limit[reviewSubmissions]": (wrappedValue: limitReviewSubmissions?.encodeToJSON(), isExplode: true),
-            "limit[appStoreVersionExperimentsV2]": (wrappedValue: limitAppStoreVersionExperimentsV2?.encodeToJSON(), isExplode: true),
+            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appEncryptionDeclarations]": (wrappedValue: fieldsAppEncryptionDeclarations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[ciProducts]": (wrappedValue: fieldsCiProducts?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[betaGroups]": (wrappedValue: fieldsBetaGroups?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appStoreVersions]": (wrappedValue: fieldsAppStoreVersions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[preReleaseVersions]": (wrappedValue: fieldsPreReleaseVersions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[betaAppLocalizations]": (wrappedValue: fieldsBetaAppLocalizations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[betaLicenseAgreements]": (wrappedValue: fieldsBetaLicenseAgreements?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[betaAppReviewDetails]": (wrappedValue: fieldsBetaAppReviewDetails?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appInfos]": (wrappedValue: fieldsAppInfos?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appClips]": (wrappedValue: fieldsAppClips?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[endUserLicenseAgreements]": (wrappedValue: fieldsEndUserLicenseAgreements?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[inAppPurchases]": (wrappedValue: fieldsInAppPurchases?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[subscriptionGroups]": (wrappedValue: fieldsSubscriptionGroups?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[gameCenterEnabledVersions]": (wrappedValue: fieldsGameCenterEnabledVersions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appCustomProductPages]": (wrappedValue: fieldsAppCustomProductPages?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[promotedPurchases]": (wrappedValue: fieldsPromotedPurchases?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appEvents]": (wrappedValue: fieldsAppEvents?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[reviewSubmissions]": (wrappedValue: fieldsReviewSubmissions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[subscriptionGracePeriods]": (wrappedValue: fieldsSubscriptionGracePeriods?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[gameCenterDetails]": (wrappedValue: fieldsGameCenterDetails?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[appStoreVersionExperiments]": (wrappedValue: fieldsAppStoreVersionExperiments?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[appEncryptionDeclarations]": (wrappedValue: limitAppEncryptionDeclarations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[betaGroups]": (wrappedValue: limitBetaGroups?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[appStoreVersions]": (wrappedValue: limitAppStoreVersions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[preReleaseVersions]": (wrappedValue: limitPreReleaseVersions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[betaAppLocalizations]": (wrappedValue: limitBetaAppLocalizations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[builds]": (wrappedValue: limitBuilds?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[appInfos]": (wrappedValue: limitAppInfos?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[appClips]": (wrappedValue: limitAppClips?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[inAppPurchases]": (wrappedValue: limitInAppPurchases?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[subscriptionGroups]": (wrappedValue: limitSubscriptionGroups?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[gameCenterEnabledVersions]": (wrappedValue: limitGameCenterEnabledVersions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[appCustomProductPages]": (wrappedValue: limitAppCustomProductPages?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[inAppPurchasesV2]": (wrappedValue: limitInAppPurchasesV2?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[promotedPurchases]": (wrappedValue: limitPromotedPurchases?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[appEvents]": (wrappedValue: limitAppEvents?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[reviewSubmissions]": (wrappedValue: limitReviewSubmissions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit[appStoreVersionExperimentsV2]": (wrappedValue: limitAppStoreVersionExperimentsV2?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -739,9 +743,9 @@ open class CiProductsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -750,24 +754,25 @@ open class CiProductsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppResponse> 
      */
-    open class func ciProductsAppGetToOneRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<AppResponse> {
+    open class func ciProductsAppGetToOneRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter sort
      */
-    public enum Sort_ciProductsBuildRunsGetToManyRelated: String, CaseIterable {
+    public enum Sort_ciProductsBuildRunsGetToManyRelated: String, Sendable, CaseIterable {
         case number = "number"
         case number2 = "-number"
     }
@@ -775,7 +780,7 @@ open class CiProductsAPI {
     /**
      * enum for parameter fieldsCiBuildRuns
      */
-    public enum FieldsCiBuildRuns_ciProductsBuildRunsGetToManyRelated: String, CaseIterable {
+    public enum FieldsCiBuildRuns_ciProductsBuildRunsGetToManyRelated: String, Sendable, CaseIterable {
         case number = "number"
         case createddate = "createdDate"
         case starteddate = "startedDate"
@@ -800,7 +805,7 @@ open class CiProductsAPI {
     /**
      * enum for parameter fieldsBuilds
      */
-    public enum FieldsBuilds_ciProductsBuildRunsGetToManyRelated: String, CaseIterable {
+    public enum FieldsBuilds_ciProductsBuildRunsGetToManyRelated: String, Sendable, CaseIterable {
         case version = "version"
         case uploadeddate = "uploadedDate"
         case expirationdate = "expirationDate"
@@ -830,7 +835,7 @@ open class CiProductsAPI {
     /**
      * enum for parameter fieldsCiWorkflows
      */
-    public enum FieldsCiWorkflows_ciProductsBuildRunsGetToManyRelated: String, CaseIterable {
+    public enum FieldsCiWorkflows_ciProductsBuildRunsGetToManyRelated: String, Sendable, CaseIterable {
         case name = "name"
         case description = "description"
         case branchstartcondition = "branchStartCondition"
@@ -856,7 +861,7 @@ open class CiProductsAPI {
     /**
      * enum for parameter fieldsCiProducts
      */
-    public enum FieldsCiProducts_ciProductsBuildRunsGetToManyRelated: String, CaseIterable {
+    public enum FieldsCiProducts_ciProductsBuildRunsGetToManyRelated: String, Sendable, CaseIterable {
         case name = "name"
         case createddate = "createdDate"
         case producttype = "productType"
@@ -871,7 +876,7 @@ open class CiProductsAPI {
     /**
      * enum for parameter fieldsScmGitReferences
      */
-    public enum FieldsScmGitReferences_ciProductsBuildRunsGetToManyRelated: String, CaseIterable {
+    public enum FieldsScmGitReferences_ciProductsBuildRunsGetToManyRelated: String, Sendable, CaseIterable {
         case name = "name"
         case canonicalname = "canonicalName"
         case isdeleted = "isDeleted"
@@ -882,7 +887,7 @@ open class CiProductsAPI {
     /**
      * enum for parameter fieldsScmPullRequests
      */
-    public enum FieldsScmPullRequests_ciProductsBuildRunsGetToManyRelated: String, CaseIterable {
+    public enum FieldsScmPullRequests_ciProductsBuildRunsGetToManyRelated: String, Sendable, CaseIterable {
         case title = "title"
         case number = "number"
         case weburl = "webUrl"
@@ -900,7 +905,7 @@ open class CiProductsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_ciProductsBuildRunsGetToManyRelated: String, CaseIterable {
+    public enum Include_ciProductsBuildRunsGetToManyRelated: String, Sendable, CaseIterable {
         case builds = "builds"
         case workflow = "workflow"
         case product = "product"
@@ -923,20 +928,22 @@ open class CiProductsAPI {
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitBuilds: (query) maximum number of related builds returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: CiBuildRunsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciProductsBuildRunsGetToManyRelated(id: String, filterBuilds: [String]? = nil, sort: [Sort_ciProductsBuildRunsGetToManyRelated]? = nil, fieldsCiBuildRuns: [FieldsCiBuildRuns_ciProductsBuildRunsGetToManyRelated]? = nil, fieldsBuilds: [FieldsBuilds_ciProductsBuildRunsGetToManyRelated]? = nil, fieldsCiWorkflows: [FieldsCiWorkflows_ciProductsBuildRunsGetToManyRelated]? = nil, fieldsCiProducts: [FieldsCiProducts_ciProductsBuildRunsGetToManyRelated]? = nil, fieldsScmGitReferences: [FieldsScmGitReferences_ciProductsBuildRunsGetToManyRelated]? = nil, fieldsScmPullRequests: [FieldsScmPullRequests_ciProductsBuildRunsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_ciProductsBuildRunsGetToManyRelated]? = nil, limitBuilds: Int? = nil) async throws -> CiBuildRunsResponse {
-        return try await ciProductsBuildRunsGetToManyRelatedWithRequestBuilder(id: id, filterBuilds: filterBuilds, sort: sort, fieldsCiBuildRuns: fieldsCiBuildRuns, fieldsBuilds: fieldsBuilds, fieldsCiWorkflows: fieldsCiWorkflows, fieldsCiProducts: fieldsCiProducts, fieldsScmGitReferences: fieldsScmGitReferences, fieldsScmPullRequests: fieldsScmPullRequests, limit: limit, include: include, limitBuilds: limitBuilds).execute().body
+    open class func ciProductsBuildRunsGetToManyRelated(id: String, filterBuilds: [String]? = nil, sort: [Sort_ciProductsBuildRunsGetToManyRelated]? = nil, fieldsCiBuildRuns: [FieldsCiBuildRuns_ciProductsBuildRunsGetToManyRelated]? = nil, fieldsBuilds: [FieldsBuilds_ciProductsBuildRunsGetToManyRelated]? = nil, fieldsCiWorkflows: [FieldsCiWorkflows_ciProductsBuildRunsGetToManyRelated]? = nil, fieldsCiProducts: [FieldsCiProducts_ciProductsBuildRunsGetToManyRelated]? = nil, fieldsScmGitReferences: [FieldsScmGitReferences_ciProductsBuildRunsGetToManyRelated]? = nil, fieldsScmPullRequests: [FieldsScmPullRequests_ciProductsBuildRunsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_ciProductsBuildRunsGetToManyRelated]? = nil, limitBuilds: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> CiBuildRunsResponse {
+        return try await ciProductsBuildRunsGetToManyRelatedWithRequestBuilder(id: id, filterBuilds: filterBuilds, sort: sort, fieldsCiBuildRuns: fieldsCiBuildRuns, fieldsBuilds: fieldsBuilds, fieldsCiWorkflows: fieldsCiWorkflows, fieldsCiProducts: fieldsCiProducts, fieldsScmGitReferences: fieldsScmGitReferences, fieldsScmPullRequests: fieldsScmPullRequests, limit: limit, include: include, limitBuilds: limitBuilds, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: CiBuildRunsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciProductsBuildRunsGetToManyRelated(urlString: String) async throws -> CiBuildRunsResponse {
-        return try await ciProductsBuildRunsGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func ciProductsBuildRunsGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> CiBuildRunsResponse {
+        return try await ciProductsBuildRunsGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -956,29 +963,30 @@ open class CiProductsAPI {
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitBuilds: (query) maximum number of related builds returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CiBuildRunsResponse> 
      */
-    open class func ciProductsBuildRunsGetToManyRelatedWithRequestBuilder(id: String, filterBuilds: [String]? = nil, sort: [Sort_ciProductsBuildRunsGetToManyRelated]? = nil, fieldsCiBuildRuns: [FieldsCiBuildRuns_ciProductsBuildRunsGetToManyRelated]? = nil, fieldsBuilds: [FieldsBuilds_ciProductsBuildRunsGetToManyRelated]? = nil, fieldsCiWorkflows: [FieldsCiWorkflows_ciProductsBuildRunsGetToManyRelated]? = nil, fieldsCiProducts: [FieldsCiProducts_ciProductsBuildRunsGetToManyRelated]? = nil, fieldsScmGitReferences: [FieldsScmGitReferences_ciProductsBuildRunsGetToManyRelated]? = nil, fieldsScmPullRequests: [FieldsScmPullRequests_ciProductsBuildRunsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_ciProductsBuildRunsGetToManyRelated]? = nil, limitBuilds: Int? = nil) -> RequestBuilder<CiBuildRunsResponse> {
+    open class func ciProductsBuildRunsGetToManyRelatedWithRequestBuilder(id: String, filterBuilds: [String]? = nil, sort: [Sort_ciProductsBuildRunsGetToManyRelated]? = nil, fieldsCiBuildRuns: [FieldsCiBuildRuns_ciProductsBuildRunsGetToManyRelated]? = nil, fieldsBuilds: [FieldsBuilds_ciProductsBuildRunsGetToManyRelated]? = nil, fieldsCiWorkflows: [FieldsCiWorkflows_ciProductsBuildRunsGetToManyRelated]? = nil, fieldsCiProducts: [FieldsCiProducts_ciProductsBuildRunsGetToManyRelated]? = nil, fieldsScmGitReferences: [FieldsScmGitReferences_ciProductsBuildRunsGetToManyRelated]? = nil, fieldsScmPullRequests: [FieldsScmPullRequests_ciProductsBuildRunsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_ciProductsBuildRunsGetToManyRelated]? = nil, limitBuilds: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<CiBuildRunsResponse> {
         var localVariablePath = "/v1/ciProducts/{id}/buildRuns"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[builds]": (wrappedValue: filterBuilds?.encodeToJSON(), isExplode: false),
-            "sort": (wrappedValue: sort?.encodeToJSON(), isExplode: false),
-            "fields[ciBuildRuns]": (wrappedValue: fieldsCiBuildRuns?.encodeToJSON(), isExplode: false),
-            "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(), isExplode: false),
-            "fields[ciWorkflows]": (wrappedValue: fieldsCiWorkflows?.encodeToJSON(), isExplode: false),
-            "fields[ciProducts]": (wrappedValue: fieldsCiProducts?.encodeToJSON(), isExplode: false),
-            "fields[scmGitReferences]": (wrappedValue: fieldsScmGitReferences?.encodeToJSON(), isExplode: false),
-            "fields[scmPullRequests]": (wrappedValue: fieldsScmPullRequests?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[builds]": (wrappedValue: limitBuilds?.encodeToJSON(), isExplode: true),
+            "filter[builds]": (wrappedValue: filterBuilds?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "sort": (wrappedValue: sort?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[ciBuildRuns]": (wrappedValue: fieldsCiBuildRuns?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[builds]": (wrappedValue: fieldsBuilds?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[ciWorkflows]": (wrappedValue: fieldsCiWorkflows?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[ciProducts]": (wrappedValue: fieldsCiProducts?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[scmGitReferences]": (wrappedValue: fieldsScmGitReferences?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[scmPullRequests]": (wrappedValue: fieldsScmPullRequests?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[builds]": (wrappedValue: limitBuilds?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -987,9 +995,9 @@ open class CiProductsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CiBuildRunsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CiBuildRunsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -998,37 +1006,40 @@ open class CiProductsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CiBuildRunsResponse> 
      */
-    open class func ciProductsBuildRunsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<CiBuildRunsResponse> {
+    open class func ciProductsBuildRunsGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<CiBuildRunsResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CiBuildRunsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CiBuildRunsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciProductsDeleteInstance(id: String) async throws {
-        return try await ciProductsDeleteInstanceWithRequestBuilder(id: id).execute().body
+    open class func ciProductsDeleteInstance(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await ciProductsDeleteInstanceWithRequestBuilder(id: id, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciProductsDeleteInstance(urlString: String) async throws {
-        return try await ciProductsDeleteInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func ciProductsDeleteInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await ciProductsDeleteInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1037,14 +1048,15 @@ open class CiProductsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func ciProductsDeleteInstanceWithRequestBuilder(id: String) -> RequestBuilder<Void> {
+    open class func ciProductsDeleteInstanceWithRequestBuilder(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/ciProducts/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -1055,9 +1067,9 @@ open class CiProductsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -1066,24 +1078,25 @@ open class CiProductsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func ciProductsDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func ciProductsDeleteInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter filterProductType
      */
-    public enum FilterProductType_ciProductsGetCollection: String, CaseIterable {
+    public enum FilterProductType_ciProductsGetCollection: String, Sendable, CaseIterable {
         case app = "APP"
         case framework = "FRAMEWORK"
     }
@@ -1091,7 +1104,7 @@ open class CiProductsAPI {
     /**
      * enum for parameter fieldsCiProducts
      */
-    public enum FieldsCiProducts_ciProductsGetCollection: String, CaseIterable {
+    public enum FieldsCiProducts_ciProductsGetCollection: String, Sendable, CaseIterable {
         case name = "name"
         case createddate = "createdDate"
         case producttype = "productType"
@@ -1106,7 +1119,7 @@ open class CiProductsAPI {
     /**
      * enum for parameter fieldsApps
      */
-    public enum FieldsApps_ciProductsGetCollection: String, CaseIterable {
+    public enum FieldsApps_ciProductsGetCollection: String, Sendable, CaseIterable {
         case name = "name"
         case bundleid = "bundleId"
         case sku = "sku"
@@ -1155,7 +1168,7 @@ open class CiProductsAPI {
     /**
      * enum for parameter fieldsScmRepositories
      */
-    public enum FieldsScmRepositories_ciProductsGetCollection: String, CaseIterable {
+    public enum FieldsScmRepositories_ciProductsGetCollection: String, Sendable, CaseIterable {
         case lastaccesseddate = "lastAccessedDate"
         case httpcloneurl = "httpCloneUrl"
         case sshcloneurl = "sshCloneUrl"
@@ -1170,7 +1183,7 @@ open class CiProductsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_ciProductsGetCollection: String, CaseIterable {
+    public enum Include_ciProductsGetCollection: String, Sendable, CaseIterable {
         case app = "app"
         case bundleid = "bundleId"
         case primaryrepositories = "primaryRepositories"
@@ -1186,20 +1199,22 @@ open class CiProductsAPI {
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitPrimaryRepositories: (query) maximum number of related primaryRepositories returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: CiProductsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciProductsGetCollection(filterProductType: [FilterProductType_ciProductsGetCollection]? = nil, filterApp: [String]? = nil, fieldsCiProducts: [FieldsCiProducts_ciProductsGetCollection]? = nil, fieldsApps: [FieldsApps_ciProductsGetCollection]? = nil, fieldsScmRepositories: [FieldsScmRepositories_ciProductsGetCollection]? = nil, limit: Int? = nil, include: [Include_ciProductsGetCollection]? = nil, limitPrimaryRepositories: Int? = nil) async throws -> CiProductsResponse {
-        return try await ciProductsGetCollectionWithRequestBuilder(filterProductType: filterProductType, filterApp: filterApp, fieldsCiProducts: fieldsCiProducts, fieldsApps: fieldsApps, fieldsScmRepositories: fieldsScmRepositories, limit: limit, include: include, limitPrimaryRepositories: limitPrimaryRepositories).execute().body
+    open class func ciProductsGetCollection(filterProductType: [FilterProductType_ciProductsGetCollection]? = nil, filterApp: [String]? = nil, fieldsCiProducts: [FieldsCiProducts_ciProductsGetCollection]? = nil, fieldsApps: [FieldsApps_ciProductsGetCollection]? = nil, fieldsScmRepositories: [FieldsScmRepositories_ciProductsGetCollection]? = nil, limit: Int? = nil, include: [Include_ciProductsGetCollection]? = nil, limitPrimaryRepositories: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> CiProductsResponse {
+        return try await ciProductsGetCollectionWithRequestBuilder(filterProductType: filterProductType, filterApp: filterApp, fieldsCiProducts: fieldsCiProducts, fieldsApps: fieldsApps, fieldsScmRepositories: fieldsScmRepositories, limit: limit, include: include, limitPrimaryRepositories: limitPrimaryRepositories, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: CiProductsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciProductsGetCollection(urlString: String) async throws -> CiProductsResponse {
-        return try await ciProductsGetCollectionWithRequestBuilder(urlString: urlString).execute().body
+    open class func ciProductsGetCollection(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> CiProductsResponse {
+        return try await ciProductsGetCollectionWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1215,23 +1230,24 @@ open class CiProductsAPI {
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitPrimaryRepositories: (query) maximum number of related primaryRepositories returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CiProductsResponse> 
      */
-    open class func ciProductsGetCollectionWithRequestBuilder(filterProductType: [FilterProductType_ciProductsGetCollection]? = nil, filterApp: [String]? = nil, fieldsCiProducts: [FieldsCiProducts_ciProductsGetCollection]? = nil, fieldsApps: [FieldsApps_ciProductsGetCollection]? = nil, fieldsScmRepositories: [FieldsScmRepositories_ciProductsGetCollection]? = nil, limit: Int? = nil, include: [Include_ciProductsGetCollection]? = nil, limitPrimaryRepositories: Int? = nil) -> RequestBuilder<CiProductsResponse> {
+    open class func ciProductsGetCollectionWithRequestBuilder(filterProductType: [FilterProductType_ciProductsGetCollection]? = nil, filterApp: [String]? = nil, fieldsCiProducts: [FieldsCiProducts_ciProductsGetCollection]? = nil, fieldsApps: [FieldsApps_ciProductsGetCollection]? = nil, fieldsScmRepositories: [FieldsScmRepositories_ciProductsGetCollection]? = nil, limit: Int? = nil, include: [Include_ciProductsGetCollection]? = nil, limitPrimaryRepositories: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<CiProductsResponse> {
         let localVariablePath = "/v1/ciProducts"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[productType]": (wrappedValue: filterProductType?.encodeToJSON(), isExplode: false),
-            "filter[app]": (wrappedValue: filterApp?.encodeToJSON(), isExplode: false),
-            "fields[ciProducts]": (wrappedValue: fieldsCiProducts?.encodeToJSON(), isExplode: false),
-            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
-            "fields[scmRepositories]": (wrappedValue: fieldsScmRepositories?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[primaryRepositories]": (wrappedValue: limitPrimaryRepositories?.encodeToJSON(), isExplode: true),
+            "filter[productType]": (wrappedValue: filterProductType?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[app]": (wrappedValue: filterApp?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[ciProducts]": (wrappedValue: fieldsCiProducts?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[scmRepositories]": (wrappedValue: fieldsScmRepositories?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[primaryRepositories]": (wrappedValue: limitPrimaryRepositories?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -1240,9 +1256,9 @@ open class CiProductsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CiProductsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CiProductsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -1251,24 +1267,25 @@ open class CiProductsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CiProductsResponse> 
      */
-    open class func ciProductsGetCollectionWithRequestBuilder(urlString: String) -> RequestBuilder<CiProductsResponse> {
+    open class func ciProductsGetCollectionWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<CiProductsResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CiProductsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CiProductsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsCiProducts
      */
-    public enum FieldsCiProducts_ciProductsGetInstance: String, CaseIterable {
+    public enum FieldsCiProducts_ciProductsGetInstance: String, Sendable, CaseIterable {
         case name = "name"
         case createddate = "createdDate"
         case producttype = "productType"
@@ -1283,7 +1300,7 @@ open class CiProductsAPI {
     /**
      * enum for parameter fieldsApps
      */
-    public enum FieldsApps_ciProductsGetInstance: String, CaseIterable {
+    public enum FieldsApps_ciProductsGetInstance: String, Sendable, CaseIterable {
         case name = "name"
         case bundleid = "bundleId"
         case sku = "sku"
@@ -1332,7 +1349,7 @@ open class CiProductsAPI {
     /**
      * enum for parameter fieldsScmRepositories
      */
-    public enum FieldsScmRepositories_ciProductsGetInstance: String, CaseIterable {
+    public enum FieldsScmRepositories_ciProductsGetInstance: String, Sendable, CaseIterable {
         case lastaccesseddate = "lastAccessedDate"
         case httpcloneurl = "httpCloneUrl"
         case sshcloneurl = "sshCloneUrl"
@@ -1347,7 +1364,7 @@ open class CiProductsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_ciProductsGetInstance: String, CaseIterable {
+    public enum Include_ciProductsGetInstance: String, Sendable, CaseIterable {
         case app = "app"
         case bundleid = "bundleId"
         case primaryrepositories = "primaryRepositories"
@@ -1361,20 +1378,22 @@ open class CiProductsAPI {
      - parameter fieldsScmRepositories: (query) the fields to include for returned resources of type scmRepositories (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitPrimaryRepositories: (query) maximum number of related primaryRepositories returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: CiProductResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciProductsGetInstance(id: String, fieldsCiProducts: [FieldsCiProducts_ciProductsGetInstance]? = nil, fieldsApps: [FieldsApps_ciProductsGetInstance]? = nil, fieldsScmRepositories: [FieldsScmRepositories_ciProductsGetInstance]? = nil, include: [Include_ciProductsGetInstance]? = nil, limitPrimaryRepositories: Int? = nil) async throws -> CiProductResponse {
-        return try await ciProductsGetInstanceWithRequestBuilder(id: id, fieldsCiProducts: fieldsCiProducts, fieldsApps: fieldsApps, fieldsScmRepositories: fieldsScmRepositories, include: include, limitPrimaryRepositories: limitPrimaryRepositories).execute().body
+    open class func ciProductsGetInstance(id: String, fieldsCiProducts: [FieldsCiProducts_ciProductsGetInstance]? = nil, fieldsApps: [FieldsApps_ciProductsGetInstance]? = nil, fieldsScmRepositories: [FieldsScmRepositories_ciProductsGetInstance]? = nil, include: [Include_ciProductsGetInstance]? = nil, limitPrimaryRepositories: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> CiProductResponse {
+        return try await ciProductsGetInstanceWithRequestBuilder(id: id, fieldsCiProducts: fieldsCiProducts, fieldsApps: fieldsApps, fieldsScmRepositories: fieldsScmRepositories, include: include, limitPrimaryRepositories: limitPrimaryRepositories, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: CiProductResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciProductsGetInstance(urlString: String) async throws -> CiProductResponse {
-        return try await ciProductsGetInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func ciProductsGetInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> CiProductResponse {
+        return try await ciProductsGetInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1388,23 +1407,24 @@ open class CiProductsAPI {
      - parameter fieldsScmRepositories: (query) the fields to include for returned resources of type scmRepositories (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitPrimaryRepositories: (query) maximum number of related primaryRepositories returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CiProductResponse> 
      */
-    open class func ciProductsGetInstanceWithRequestBuilder(id: String, fieldsCiProducts: [FieldsCiProducts_ciProductsGetInstance]? = nil, fieldsApps: [FieldsApps_ciProductsGetInstance]? = nil, fieldsScmRepositories: [FieldsScmRepositories_ciProductsGetInstance]? = nil, include: [Include_ciProductsGetInstance]? = nil, limitPrimaryRepositories: Int? = nil) -> RequestBuilder<CiProductResponse> {
+    open class func ciProductsGetInstanceWithRequestBuilder(id: String, fieldsCiProducts: [FieldsCiProducts_ciProductsGetInstance]? = nil, fieldsApps: [FieldsApps_ciProductsGetInstance]? = nil, fieldsScmRepositories: [FieldsScmRepositories_ciProductsGetInstance]? = nil, include: [Include_ciProductsGetInstance]? = nil, limitPrimaryRepositories: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<CiProductResponse> {
         var localVariablePath = "/v1/ciProducts/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[ciProducts]": (wrappedValue: fieldsCiProducts?.encodeToJSON(), isExplode: false),
-            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(), isExplode: false),
-            "fields[scmRepositories]": (wrappedValue: fieldsScmRepositories?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[primaryRepositories]": (wrappedValue: limitPrimaryRepositories?.encodeToJSON(), isExplode: true),
+            "fields[ciProducts]": (wrappedValue: fieldsCiProducts?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[apps]": (wrappedValue: fieldsApps?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[scmRepositories]": (wrappedValue: fieldsScmRepositories?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[primaryRepositories]": (wrappedValue: limitPrimaryRepositories?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -1413,9 +1433,9 @@ open class CiProductsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CiProductResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CiProductResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -1424,24 +1444,25 @@ open class CiProductsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CiProductResponse> 
      */
-    open class func ciProductsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<CiProductResponse> {
+    open class func ciProductsGetInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<CiProductResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CiProductResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CiProductResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsScmRepositories
      */
-    public enum FieldsScmRepositories_ciProductsPrimaryRepositoriesGetToManyRelated: String, CaseIterable {
+    public enum FieldsScmRepositories_ciProductsPrimaryRepositoriesGetToManyRelated: String, Sendable, CaseIterable {
         case lastaccesseddate = "lastAccessedDate"
         case httpcloneurl = "httpCloneUrl"
         case sshcloneurl = "sshCloneUrl"
@@ -1456,7 +1477,7 @@ open class CiProductsAPI {
     /**
      * enum for parameter fieldsScmProviders
      */
-    public enum FieldsScmProviders_ciProductsPrimaryRepositoriesGetToManyRelated: String, CaseIterable {
+    public enum FieldsScmProviders_ciProductsPrimaryRepositoriesGetToManyRelated: String, Sendable, CaseIterable {
         case scmprovidertype = "scmProviderType"
         case url = "url"
         case repositories = "repositories"
@@ -1465,7 +1486,7 @@ open class CiProductsAPI {
     /**
      * enum for parameter fieldsScmGitReferences
      */
-    public enum FieldsScmGitReferences_ciProductsPrimaryRepositoriesGetToManyRelated: String, CaseIterable {
+    public enum FieldsScmGitReferences_ciProductsPrimaryRepositoriesGetToManyRelated: String, Sendable, CaseIterable {
         case name = "name"
         case canonicalname = "canonicalName"
         case isdeleted = "isDeleted"
@@ -1476,7 +1497,7 @@ open class CiProductsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_ciProductsPrimaryRepositoriesGetToManyRelated: String, CaseIterable {
+    public enum Include_ciProductsPrimaryRepositoriesGetToManyRelated: String, Sendable, CaseIterable {
         case scmprovider = "scmProvider"
         case defaultbranch = "defaultBranch"
     }
@@ -1490,20 +1511,22 @@ open class CiProductsAPI {
      - parameter fieldsScmGitReferences: (query) the fields to include for returned resources of type scmGitReferences (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: ScmRepositoriesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciProductsPrimaryRepositoriesGetToManyRelated(id: String, filterId: [String]? = nil, fieldsScmRepositories: [FieldsScmRepositories_ciProductsPrimaryRepositoriesGetToManyRelated]? = nil, fieldsScmProviders: [FieldsScmProviders_ciProductsPrimaryRepositoriesGetToManyRelated]? = nil, fieldsScmGitReferences: [FieldsScmGitReferences_ciProductsPrimaryRepositoriesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_ciProductsPrimaryRepositoriesGetToManyRelated]? = nil) async throws -> ScmRepositoriesResponse {
-        return try await ciProductsPrimaryRepositoriesGetToManyRelatedWithRequestBuilder(id: id, filterId: filterId, fieldsScmRepositories: fieldsScmRepositories, fieldsScmProviders: fieldsScmProviders, fieldsScmGitReferences: fieldsScmGitReferences, limit: limit, include: include).execute().body
+    open class func ciProductsPrimaryRepositoriesGetToManyRelated(id: String, filterId: [String]? = nil, fieldsScmRepositories: [FieldsScmRepositories_ciProductsPrimaryRepositoriesGetToManyRelated]? = nil, fieldsScmProviders: [FieldsScmProviders_ciProductsPrimaryRepositoriesGetToManyRelated]? = nil, fieldsScmGitReferences: [FieldsScmGitReferences_ciProductsPrimaryRepositoriesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_ciProductsPrimaryRepositoriesGetToManyRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> ScmRepositoriesResponse {
+        return try await ciProductsPrimaryRepositoriesGetToManyRelatedWithRequestBuilder(id: id, filterId: filterId, fieldsScmRepositories: fieldsScmRepositories, fieldsScmProviders: fieldsScmProviders, fieldsScmGitReferences: fieldsScmGitReferences, limit: limit, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: ScmRepositoriesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciProductsPrimaryRepositoriesGetToManyRelated(urlString: String) async throws -> ScmRepositoriesResponse {
-        return try await ciProductsPrimaryRepositoriesGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func ciProductsPrimaryRepositoriesGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> ScmRepositoriesResponse {
+        return try await ciProductsPrimaryRepositoriesGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1518,24 +1541,25 @@ open class CiProductsAPI {
      - parameter fieldsScmGitReferences: (query) the fields to include for returned resources of type scmGitReferences (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ScmRepositoriesResponse> 
      */
-    open class func ciProductsPrimaryRepositoriesGetToManyRelatedWithRequestBuilder(id: String, filterId: [String]? = nil, fieldsScmRepositories: [FieldsScmRepositories_ciProductsPrimaryRepositoriesGetToManyRelated]? = nil, fieldsScmProviders: [FieldsScmProviders_ciProductsPrimaryRepositoriesGetToManyRelated]? = nil, fieldsScmGitReferences: [FieldsScmGitReferences_ciProductsPrimaryRepositoriesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_ciProductsPrimaryRepositoriesGetToManyRelated]? = nil) -> RequestBuilder<ScmRepositoriesResponse> {
+    open class func ciProductsPrimaryRepositoriesGetToManyRelatedWithRequestBuilder(id: String, filterId: [String]? = nil, fieldsScmRepositories: [FieldsScmRepositories_ciProductsPrimaryRepositoriesGetToManyRelated]? = nil, fieldsScmProviders: [FieldsScmProviders_ciProductsPrimaryRepositoriesGetToManyRelated]? = nil, fieldsScmGitReferences: [FieldsScmGitReferences_ciProductsPrimaryRepositoriesGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_ciProductsPrimaryRepositoriesGetToManyRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<ScmRepositoriesResponse> {
         var localVariablePath = "/v1/ciProducts/{id}/primaryRepositories"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[id]": (wrappedValue: filterId?.encodeToJSON(), isExplode: false),
-            "fields[scmRepositories]": (wrappedValue: fieldsScmRepositories?.encodeToJSON(), isExplode: false),
-            "fields[scmProviders]": (wrappedValue: fieldsScmProviders?.encodeToJSON(), isExplode: false),
-            "fields[scmGitReferences]": (wrappedValue: fieldsScmGitReferences?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "filter[id]": (wrappedValue: filterId?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[scmRepositories]": (wrappedValue: fieldsScmRepositories?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[scmProviders]": (wrappedValue: fieldsScmProviders?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[scmGitReferences]": (wrappedValue: fieldsScmGitReferences?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -1544,9 +1568,9 @@ open class CiProductsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<ScmRepositoriesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<ScmRepositoriesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -1555,24 +1579,25 @@ open class CiProductsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ScmRepositoriesResponse> 
      */
-    open class func ciProductsPrimaryRepositoriesGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<ScmRepositoriesResponse> {
+    open class func ciProductsPrimaryRepositoriesGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<ScmRepositoriesResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<ScmRepositoriesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<ScmRepositoriesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsCiWorkflows
      */
-    public enum FieldsCiWorkflows_ciProductsWorkflowsGetToManyRelated: String, CaseIterable {
+    public enum FieldsCiWorkflows_ciProductsWorkflowsGetToManyRelated: String, Sendable, CaseIterable {
         case name = "name"
         case description = "description"
         case branchstartcondition = "branchStartCondition"
@@ -1598,7 +1623,7 @@ open class CiProductsAPI {
     /**
      * enum for parameter fieldsCiProducts
      */
-    public enum FieldsCiProducts_ciProductsWorkflowsGetToManyRelated: String, CaseIterable {
+    public enum FieldsCiProducts_ciProductsWorkflowsGetToManyRelated: String, Sendable, CaseIterable {
         case name = "name"
         case createddate = "createdDate"
         case producttype = "productType"
@@ -1613,7 +1638,7 @@ open class CiProductsAPI {
     /**
      * enum for parameter fieldsScmRepositories
      */
-    public enum FieldsScmRepositories_ciProductsWorkflowsGetToManyRelated: String, CaseIterable {
+    public enum FieldsScmRepositories_ciProductsWorkflowsGetToManyRelated: String, Sendable, CaseIterable {
         case lastaccesseddate = "lastAccessedDate"
         case httpcloneurl = "httpCloneUrl"
         case sshcloneurl = "sshCloneUrl"
@@ -1628,7 +1653,7 @@ open class CiProductsAPI {
     /**
      * enum for parameter fieldsCiXcodeVersions
      */
-    public enum FieldsCiXcodeVersions_ciProductsWorkflowsGetToManyRelated: String, CaseIterable {
+    public enum FieldsCiXcodeVersions_ciProductsWorkflowsGetToManyRelated: String, Sendable, CaseIterable {
         case version = "version"
         case name = "name"
         case testdestinations = "testDestinations"
@@ -1638,7 +1663,7 @@ open class CiProductsAPI {
     /**
      * enum for parameter fieldsCiMacOsVersions
      */
-    public enum FieldsCiMacOsVersions_ciProductsWorkflowsGetToManyRelated: String, CaseIterable {
+    public enum FieldsCiMacOsVersions_ciProductsWorkflowsGetToManyRelated: String, Sendable, CaseIterable {
         case version = "version"
         case name = "name"
         case xcodeversions = "xcodeVersions"
@@ -1647,7 +1672,7 @@ open class CiProductsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_ciProductsWorkflowsGetToManyRelated: String, CaseIterable {
+    public enum Include_ciProductsWorkflowsGetToManyRelated: String, Sendable, CaseIterable {
         case product = "product"
         case repository = "repository"
         case xcodeversion = "xcodeVersion"
@@ -1664,20 +1689,22 @@ open class CiProductsAPI {
      - parameter fieldsCiMacOsVersions: (query) the fields to include for returned resources of type ciMacOsVersions (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: CiWorkflowsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciProductsWorkflowsGetToManyRelated(id: String, fieldsCiWorkflows: [FieldsCiWorkflows_ciProductsWorkflowsGetToManyRelated]? = nil, fieldsCiProducts: [FieldsCiProducts_ciProductsWorkflowsGetToManyRelated]? = nil, fieldsScmRepositories: [FieldsScmRepositories_ciProductsWorkflowsGetToManyRelated]? = nil, fieldsCiXcodeVersions: [FieldsCiXcodeVersions_ciProductsWorkflowsGetToManyRelated]? = nil, fieldsCiMacOsVersions: [FieldsCiMacOsVersions_ciProductsWorkflowsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_ciProductsWorkflowsGetToManyRelated]? = nil) async throws -> CiWorkflowsResponse {
-        return try await ciProductsWorkflowsGetToManyRelatedWithRequestBuilder(id: id, fieldsCiWorkflows: fieldsCiWorkflows, fieldsCiProducts: fieldsCiProducts, fieldsScmRepositories: fieldsScmRepositories, fieldsCiXcodeVersions: fieldsCiXcodeVersions, fieldsCiMacOsVersions: fieldsCiMacOsVersions, limit: limit, include: include).execute().body
+    open class func ciProductsWorkflowsGetToManyRelated(id: String, fieldsCiWorkflows: [FieldsCiWorkflows_ciProductsWorkflowsGetToManyRelated]? = nil, fieldsCiProducts: [FieldsCiProducts_ciProductsWorkflowsGetToManyRelated]? = nil, fieldsScmRepositories: [FieldsScmRepositories_ciProductsWorkflowsGetToManyRelated]? = nil, fieldsCiXcodeVersions: [FieldsCiXcodeVersions_ciProductsWorkflowsGetToManyRelated]? = nil, fieldsCiMacOsVersions: [FieldsCiMacOsVersions_ciProductsWorkflowsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_ciProductsWorkflowsGetToManyRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> CiWorkflowsResponse {
+        return try await ciProductsWorkflowsGetToManyRelatedWithRequestBuilder(id: id, fieldsCiWorkflows: fieldsCiWorkflows, fieldsCiProducts: fieldsCiProducts, fieldsScmRepositories: fieldsScmRepositories, fieldsCiXcodeVersions: fieldsCiXcodeVersions, fieldsCiMacOsVersions: fieldsCiMacOsVersions, limit: limit, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: CiWorkflowsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func ciProductsWorkflowsGetToManyRelated(urlString: String) async throws -> CiWorkflowsResponse {
-        return try await ciProductsWorkflowsGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func ciProductsWorkflowsGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> CiWorkflowsResponse {
+        return try await ciProductsWorkflowsGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1693,25 +1720,26 @@ open class CiProductsAPI {
      - parameter fieldsCiMacOsVersions: (query) the fields to include for returned resources of type ciMacOsVersions (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CiWorkflowsResponse> 
      */
-    open class func ciProductsWorkflowsGetToManyRelatedWithRequestBuilder(id: String, fieldsCiWorkflows: [FieldsCiWorkflows_ciProductsWorkflowsGetToManyRelated]? = nil, fieldsCiProducts: [FieldsCiProducts_ciProductsWorkflowsGetToManyRelated]? = nil, fieldsScmRepositories: [FieldsScmRepositories_ciProductsWorkflowsGetToManyRelated]? = nil, fieldsCiXcodeVersions: [FieldsCiXcodeVersions_ciProductsWorkflowsGetToManyRelated]? = nil, fieldsCiMacOsVersions: [FieldsCiMacOsVersions_ciProductsWorkflowsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_ciProductsWorkflowsGetToManyRelated]? = nil) -> RequestBuilder<CiWorkflowsResponse> {
+    open class func ciProductsWorkflowsGetToManyRelatedWithRequestBuilder(id: String, fieldsCiWorkflows: [FieldsCiWorkflows_ciProductsWorkflowsGetToManyRelated]? = nil, fieldsCiProducts: [FieldsCiProducts_ciProductsWorkflowsGetToManyRelated]? = nil, fieldsScmRepositories: [FieldsScmRepositories_ciProductsWorkflowsGetToManyRelated]? = nil, fieldsCiXcodeVersions: [FieldsCiXcodeVersions_ciProductsWorkflowsGetToManyRelated]? = nil, fieldsCiMacOsVersions: [FieldsCiMacOsVersions_ciProductsWorkflowsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_ciProductsWorkflowsGetToManyRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<CiWorkflowsResponse> {
         var localVariablePath = "/v1/ciProducts/{id}/workflows"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[ciWorkflows]": (wrappedValue: fieldsCiWorkflows?.encodeToJSON(), isExplode: false),
-            "fields[ciProducts]": (wrappedValue: fieldsCiProducts?.encodeToJSON(), isExplode: false),
-            "fields[scmRepositories]": (wrappedValue: fieldsScmRepositories?.encodeToJSON(), isExplode: false),
-            "fields[ciXcodeVersions]": (wrappedValue: fieldsCiXcodeVersions?.encodeToJSON(), isExplode: false),
-            "fields[ciMacOsVersions]": (wrappedValue: fieldsCiMacOsVersions?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "fields[ciWorkflows]": (wrappedValue: fieldsCiWorkflows?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[ciProducts]": (wrappedValue: fieldsCiProducts?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[scmRepositories]": (wrappedValue: fieldsScmRepositories?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[ciXcodeVersions]": (wrappedValue: fieldsCiXcodeVersions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[ciMacOsVersions]": (wrappedValue: fieldsCiMacOsVersions?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -1720,9 +1748,9 @@ open class CiProductsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CiWorkflowsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CiWorkflowsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -1731,17 +1759,18 @@ open class CiProductsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CiWorkflowsResponse> 
      */
-    open class func ciProductsWorkflowsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<CiWorkflowsResponse> {
+    open class func ciProductsWorkflowsGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<CiWorkflowsResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CiWorkflowsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CiWorkflowsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

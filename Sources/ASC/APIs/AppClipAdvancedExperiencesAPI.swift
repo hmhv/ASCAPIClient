@@ -6,29 +6,28 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class AppClipAdvancedExperiencesAPI {
 
     /**
 
      - parameter appClipAdvancedExperienceCreateRequest: (body) AppClipAdvancedExperience representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppClipAdvancedExperienceResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appClipAdvancedExperiencesCreateInstance(appClipAdvancedExperienceCreateRequest: AppClipAdvancedExperienceCreateRequest) async throws -> AppClipAdvancedExperienceResponse {
-        return try await appClipAdvancedExperiencesCreateInstanceWithRequestBuilder(appClipAdvancedExperienceCreateRequest: appClipAdvancedExperienceCreateRequest).execute().body
+    open class func appClipAdvancedExperiencesCreateInstance(appClipAdvancedExperienceCreateRequest: AppClipAdvancedExperienceCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppClipAdvancedExperienceResponse {
+        return try await appClipAdvancedExperiencesCreateInstanceWithRequestBuilder(appClipAdvancedExperienceCreateRequest: appClipAdvancedExperienceCreateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppClipAdvancedExperienceResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appClipAdvancedExperiencesCreateInstance(urlString: String) async throws -> AppClipAdvancedExperienceResponse {
-        return try await appClipAdvancedExperiencesCreateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func appClipAdvancedExperiencesCreateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppClipAdvancedExperienceResponse {
+        return try await appClipAdvancedExperiencesCreateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -37,12 +36,13 @@ open class AppClipAdvancedExperiencesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter appClipAdvancedExperienceCreateRequest: (body) AppClipAdvancedExperience representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppClipAdvancedExperienceResponse> 
      */
-    open class func appClipAdvancedExperiencesCreateInstanceWithRequestBuilder(appClipAdvancedExperienceCreateRequest: AppClipAdvancedExperienceCreateRequest) -> RequestBuilder<AppClipAdvancedExperienceResponse> {
+    open class func appClipAdvancedExperiencesCreateInstanceWithRequestBuilder(appClipAdvancedExperienceCreateRequest: AppClipAdvancedExperienceCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppClipAdvancedExperienceResponse> {
         let localVariablePath = "/v1/appClipAdvancedExperiences"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: appClipAdvancedExperienceCreateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: appClipAdvancedExperienceCreateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -52,9 +52,9 @@ open class AppClipAdvancedExperiencesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppClipAdvancedExperienceResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppClipAdvancedExperienceResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -63,24 +63,25 @@ open class AppClipAdvancedExperiencesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppClipAdvancedExperienceResponse> 
      */
-    open class func appClipAdvancedExperiencesCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppClipAdvancedExperienceResponse> {
+    open class func appClipAdvancedExperiencesCreateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppClipAdvancedExperienceResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppClipAdvancedExperienceResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppClipAdvancedExperienceResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsAppClipAdvancedExperiences
      */
-    public enum FieldsAppClipAdvancedExperiences_appClipAdvancedExperiencesGetInstance: String, CaseIterable {
+    public enum FieldsAppClipAdvancedExperiences_appClipAdvancedExperiencesGetInstance: String, Sendable, CaseIterable {
         case link = "link"
         case version = "version"
         case status = "status"
@@ -98,7 +99,7 @@ open class AppClipAdvancedExperiencesAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_appClipAdvancedExperiencesGetInstance: String, CaseIterable {
+    public enum Include_appClipAdvancedExperiencesGetInstance: String, Sendable, CaseIterable {
         case appclip = "appClip"
         case headerimage = "headerImage"
         case localizations = "localizations"
@@ -110,20 +111,22 @@ open class AppClipAdvancedExperiencesAPI {
      - parameter fieldsAppClipAdvancedExperiences: (query) the fields to include for returned resources of type appClipAdvancedExperiences (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitLocalizations: (query) maximum number of related localizations returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppClipAdvancedExperienceResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appClipAdvancedExperiencesGetInstance(id: String, fieldsAppClipAdvancedExperiences: [FieldsAppClipAdvancedExperiences_appClipAdvancedExperiencesGetInstance]? = nil, include: [Include_appClipAdvancedExperiencesGetInstance]? = nil, limitLocalizations: Int? = nil) async throws -> AppClipAdvancedExperienceResponse {
-        return try await appClipAdvancedExperiencesGetInstanceWithRequestBuilder(id: id, fieldsAppClipAdvancedExperiences: fieldsAppClipAdvancedExperiences, include: include, limitLocalizations: limitLocalizations).execute().body
+    open class func appClipAdvancedExperiencesGetInstance(id: String, fieldsAppClipAdvancedExperiences: [FieldsAppClipAdvancedExperiences_appClipAdvancedExperiencesGetInstance]? = nil, include: [Include_appClipAdvancedExperiencesGetInstance]? = nil, limitLocalizations: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppClipAdvancedExperienceResponse {
+        return try await appClipAdvancedExperiencesGetInstanceWithRequestBuilder(id: id, fieldsAppClipAdvancedExperiences: fieldsAppClipAdvancedExperiences, include: include, limitLocalizations: limitLocalizations, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppClipAdvancedExperienceResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appClipAdvancedExperiencesGetInstance(urlString: String) async throws -> AppClipAdvancedExperienceResponse {
-        return try await appClipAdvancedExperiencesGetInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func appClipAdvancedExperiencesGetInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppClipAdvancedExperienceResponse {
+        return try await appClipAdvancedExperiencesGetInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -135,21 +138,22 @@ open class AppClipAdvancedExperiencesAPI {
      - parameter fieldsAppClipAdvancedExperiences: (query) the fields to include for returned resources of type appClipAdvancedExperiences (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
      - parameter limitLocalizations: (query) maximum number of related localizations returned (when they are included) (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppClipAdvancedExperienceResponse> 
      */
-    open class func appClipAdvancedExperiencesGetInstanceWithRequestBuilder(id: String, fieldsAppClipAdvancedExperiences: [FieldsAppClipAdvancedExperiences_appClipAdvancedExperiencesGetInstance]? = nil, include: [Include_appClipAdvancedExperiencesGetInstance]? = nil, limitLocalizations: Int? = nil) -> RequestBuilder<AppClipAdvancedExperienceResponse> {
+    open class func appClipAdvancedExperiencesGetInstanceWithRequestBuilder(id: String, fieldsAppClipAdvancedExperiences: [FieldsAppClipAdvancedExperiences_appClipAdvancedExperiencesGetInstance]? = nil, include: [Include_appClipAdvancedExperiencesGetInstance]? = nil, limitLocalizations: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppClipAdvancedExperienceResponse> {
         var localVariablePath = "/v1/appClipAdvancedExperiences/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[appClipAdvancedExperiences]": (wrappedValue: fieldsAppClipAdvancedExperiences?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
-            "limit[localizations]": (wrappedValue: limitLocalizations?.encodeToJSON(), isExplode: true),
+            "fields[appClipAdvancedExperiences]": (wrappedValue: fieldsAppClipAdvancedExperiences?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit[localizations]": (wrappedValue: limitLocalizations?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -158,9 +162,9 @@ open class AppClipAdvancedExperiencesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppClipAdvancedExperienceResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppClipAdvancedExperienceResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -169,38 +173,41 @@ open class AppClipAdvancedExperiencesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppClipAdvancedExperienceResponse> 
      */
-    open class func appClipAdvancedExperiencesGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppClipAdvancedExperienceResponse> {
+    open class func appClipAdvancedExperiencesGetInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppClipAdvancedExperienceResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppClipAdvancedExperienceResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppClipAdvancedExperienceResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter appClipAdvancedExperienceUpdateRequest: (body) AppClipAdvancedExperience representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppClipAdvancedExperienceResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appClipAdvancedExperiencesUpdateInstance(id: String, appClipAdvancedExperienceUpdateRequest: AppClipAdvancedExperienceUpdateRequest) async throws -> AppClipAdvancedExperienceResponse {
-        return try await appClipAdvancedExperiencesUpdateInstanceWithRequestBuilder(id: id, appClipAdvancedExperienceUpdateRequest: appClipAdvancedExperienceUpdateRequest).execute().body
+    open class func appClipAdvancedExperiencesUpdateInstance(id: String, appClipAdvancedExperienceUpdateRequest: AppClipAdvancedExperienceUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppClipAdvancedExperienceResponse {
+        return try await appClipAdvancedExperiencesUpdateInstanceWithRequestBuilder(id: id, appClipAdvancedExperienceUpdateRequest: appClipAdvancedExperienceUpdateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppClipAdvancedExperienceResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appClipAdvancedExperiencesUpdateInstance(urlString: String) async throws -> AppClipAdvancedExperienceResponse {
-        return try await appClipAdvancedExperiencesUpdateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func appClipAdvancedExperiencesUpdateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppClipAdvancedExperienceResponse {
+        return try await appClipAdvancedExperiencesUpdateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -210,15 +217,16 @@ open class AppClipAdvancedExperiencesAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter appClipAdvancedExperienceUpdateRequest: (body) AppClipAdvancedExperience representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppClipAdvancedExperienceResponse> 
      */
-    open class func appClipAdvancedExperiencesUpdateInstanceWithRequestBuilder(id: String, appClipAdvancedExperienceUpdateRequest: AppClipAdvancedExperienceUpdateRequest) -> RequestBuilder<AppClipAdvancedExperienceResponse> {
+    open class func appClipAdvancedExperiencesUpdateInstanceWithRequestBuilder(id: String, appClipAdvancedExperienceUpdateRequest: AppClipAdvancedExperienceUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppClipAdvancedExperienceResponse> {
         var localVariablePath = "/v1/appClipAdvancedExperiences/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: appClipAdvancedExperienceUpdateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: appClipAdvancedExperienceUpdateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -228,9 +236,9 @@ open class AppClipAdvancedExperiencesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppClipAdvancedExperienceResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppClipAdvancedExperienceResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -239,17 +247,18 @@ open class AppClipAdvancedExperiencesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppClipAdvancedExperienceResponse> 
      */
-    open class func appClipAdvancedExperiencesUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppClipAdvancedExperienceResponse> {
+    open class func appClipAdvancedExperiencesUpdateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppClipAdvancedExperienceResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppClipAdvancedExperienceResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppClipAdvancedExperienceResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct PreReleaseVersionsWithoutIncludesResponse: Codable, JSONEncodable, Hashable {
+public struct PreReleaseVersionsWithoutIncludesResponse: Sendable, Codable, JSONEncodable, Hashable {
 
     public var data: [PrereleaseVersion]
     public var links: PagedDocumentLinks

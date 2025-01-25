@@ -6,13 +6,10 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AlternativeDistributionPackageDelta: Codable, JSONEncodable, Hashable {
+public struct AlternativeDistributionPackageDelta: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum ModelType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum ModelType: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case alternativedistributionpackagedeltas = "alternativeDistributionPackageDeltas"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }

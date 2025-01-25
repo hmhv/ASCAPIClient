@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct Property: Codable, JSONEncodable, Hashable {
+public struct Property: Sendable, Codable, JSONEncodable, Hashable {
 
     public var key: String?
     public var value: String?

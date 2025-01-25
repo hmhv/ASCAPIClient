@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppMediaStateError: Codable, JSONEncodable, Hashable {
+public struct AppMediaStateError: Sendable, Codable, JSONEncodable, Hashable {
 
     public var code: String?
     public var description: String?

@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct CiXcodeVersionRelationshipsMacOsVersions: Codable, JSONEncodable, Hashable {
+public struct CiXcodeVersionRelationshipsMacOsVersions: Sendable, Codable, JSONEncodable, Hashable {
 
     public var links: RelationshipLinks?
     public var meta: PagingInformation?

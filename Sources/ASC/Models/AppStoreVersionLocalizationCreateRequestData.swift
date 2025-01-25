@@ -6,13 +6,10 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppStoreVersionLocalizationCreateRequestData: Codable, JSONEncodable, Hashable {
+public struct AppStoreVersionLocalizationCreateRequestData: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum ModelType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum ModelType: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case appstoreversionlocalizations = "appStoreVersionLocalizations"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }

@@ -6,13 +6,10 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct CiMacOsVersion: Codable, JSONEncodable, Hashable {
+public struct CiMacOsVersion: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum ModelType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum ModelType: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case cimacosversions = "ciMacOsVersions"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }

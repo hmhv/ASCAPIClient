@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct CiGitUser: Codable, JSONEncodable, Hashable {
+public struct CiGitUser: Sendable, Codable, JSONEncodable, Hashable {
 
     public var displayName: String?
     public var avatarUrl: String?

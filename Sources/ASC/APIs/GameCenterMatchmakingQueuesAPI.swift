@@ -6,29 +6,28 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class GameCenterMatchmakingQueuesAPI {
 
     /**
 
      - parameter gameCenterMatchmakingQueueCreateRequest: (body) GameCenterMatchmakingQueue representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterMatchmakingQueueResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterMatchmakingQueuesCreateInstance(gameCenterMatchmakingQueueCreateRequest: GameCenterMatchmakingQueueCreateRequest) async throws -> GameCenterMatchmakingQueueResponse {
-        return try await gameCenterMatchmakingQueuesCreateInstanceWithRequestBuilder(gameCenterMatchmakingQueueCreateRequest: gameCenterMatchmakingQueueCreateRequest).execute().body
+    open class func gameCenterMatchmakingQueuesCreateInstance(gameCenterMatchmakingQueueCreateRequest: GameCenterMatchmakingQueueCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterMatchmakingQueueResponse {
+        return try await gameCenterMatchmakingQueuesCreateInstanceWithRequestBuilder(gameCenterMatchmakingQueueCreateRequest: gameCenterMatchmakingQueueCreateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterMatchmakingQueueResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterMatchmakingQueuesCreateInstance(urlString: String) async throws -> GameCenterMatchmakingQueueResponse {
-        return try await gameCenterMatchmakingQueuesCreateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func gameCenterMatchmakingQueuesCreateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterMatchmakingQueueResponse {
+        return try await gameCenterMatchmakingQueuesCreateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -37,12 +36,13 @@ open class GameCenterMatchmakingQueuesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter gameCenterMatchmakingQueueCreateRequest: (body) GameCenterMatchmakingQueue representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterMatchmakingQueueResponse> 
      */
-    open class func gameCenterMatchmakingQueuesCreateInstanceWithRequestBuilder(gameCenterMatchmakingQueueCreateRequest: GameCenterMatchmakingQueueCreateRequest) -> RequestBuilder<GameCenterMatchmakingQueueResponse> {
+    open class func gameCenterMatchmakingQueuesCreateInstanceWithRequestBuilder(gameCenterMatchmakingQueueCreateRequest: GameCenterMatchmakingQueueCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterMatchmakingQueueResponse> {
         let localVariablePath = "/v1/gameCenterMatchmakingQueues"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: gameCenterMatchmakingQueueCreateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: gameCenterMatchmakingQueueCreateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -52,9 +52,9 @@ open class GameCenterMatchmakingQueuesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingQueueResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingQueueResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -63,37 +63,40 @@ open class GameCenterMatchmakingQueuesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterMatchmakingQueueResponse> 
      */
-    open class func gameCenterMatchmakingQueuesCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterMatchmakingQueueResponse> {
+    open class func gameCenterMatchmakingQueuesCreateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterMatchmakingQueueResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingQueueResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingQueueResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterMatchmakingQueuesDeleteInstance(id: String) async throws {
-        return try await gameCenterMatchmakingQueuesDeleteInstanceWithRequestBuilder(id: id).execute().body
+    open class func gameCenterMatchmakingQueuesDeleteInstance(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await gameCenterMatchmakingQueuesDeleteInstanceWithRequestBuilder(id: id, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterMatchmakingQueuesDeleteInstance(urlString: String) async throws {
-        return try await gameCenterMatchmakingQueuesDeleteInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func gameCenterMatchmakingQueuesDeleteInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await gameCenterMatchmakingQueuesDeleteInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -102,14 +105,15 @@ open class GameCenterMatchmakingQueuesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func gameCenterMatchmakingQueuesDeleteInstanceWithRequestBuilder(id: String) -> RequestBuilder<Void> {
+    open class func gameCenterMatchmakingQueuesDeleteInstanceWithRequestBuilder(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/gameCenterMatchmakingQueues/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -120,9 +124,9 @@ open class GameCenterMatchmakingQueuesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -131,24 +135,25 @@ open class GameCenterMatchmakingQueuesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func gameCenterMatchmakingQueuesDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func gameCenterMatchmakingQueuesDeleteInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter granularity
      */
-    public enum Granularity_gameCenterMatchmakingQueuesExperimentMatchmakingQueueSizesGetMetrics: String, CaseIterable {
+    public enum Granularity_gameCenterMatchmakingQueuesExperimentMatchmakingQueueSizesGetMetrics: String, Sendable, CaseIterable {
         case p1D = "P1D"
         case pt1h = "PT1H"
         case pt15m = "PT15M"
@@ -157,7 +162,7 @@ open class GameCenterMatchmakingQueuesAPI {
     /**
      * enum for parameter sort
      */
-    public enum Sort_gameCenterMatchmakingQueuesExperimentMatchmakingQueueSizesGetMetrics: String, CaseIterable {
+    public enum Sort_gameCenterMatchmakingQueuesExperimentMatchmakingQueueSizesGetMetrics: String, Sendable, CaseIterable {
         case count = "count"
         case count2 = "-count"
         case averagenumberofrequests = "averageNumberOfRequests"
@@ -174,20 +179,22 @@ open class GameCenterMatchmakingQueuesAPI {
      - parameter granularity: (query) the granularity of the per-group dataset 
      - parameter sort: (query) comma-separated list of sort expressions; metrics will be sorted as specified (optional)
      - parameter limit: (query) maximum number of groups to return per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterMatchmakingQueueSizesV1MetricResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterMatchmakingQueuesExperimentMatchmakingQueueSizesGetMetrics(id: String, granularity: Granularity_gameCenterMatchmakingQueuesExperimentMatchmakingQueueSizesGetMetrics, sort: [Sort_gameCenterMatchmakingQueuesExperimentMatchmakingQueueSizesGetMetrics]? = nil, limit: Int? = nil) async throws -> GameCenterMatchmakingQueueSizesV1MetricResponse {
-        return try await gameCenterMatchmakingQueuesExperimentMatchmakingQueueSizesGetMetricsWithRequestBuilder(id: id, granularity: granularity, sort: sort, limit: limit).execute().body
+    open class func gameCenterMatchmakingQueuesExperimentMatchmakingQueueSizesGetMetrics(id: String, granularity: Granularity_gameCenterMatchmakingQueuesExperimentMatchmakingQueueSizesGetMetrics, sort: [Sort_gameCenterMatchmakingQueuesExperimentMatchmakingQueueSizesGetMetrics]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterMatchmakingQueueSizesV1MetricResponse {
+        return try await gameCenterMatchmakingQueuesExperimentMatchmakingQueueSizesGetMetricsWithRequestBuilder(id: id, granularity: granularity, sort: sort, limit: limit, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterMatchmakingQueueSizesV1MetricResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterMatchmakingQueuesExperimentMatchmakingQueueSizesGetMetrics(urlString: String) async throws -> GameCenterMatchmakingQueueSizesV1MetricResponse {
-        return try await gameCenterMatchmakingQueuesExperimentMatchmakingQueueSizesGetMetricsWithRequestBuilder(urlString: urlString).execute().body
+    open class func gameCenterMatchmakingQueuesExperimentMatchmakingQueueSizesGetMetrics(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterMatchmakingQueueSizesV1MetricResponse {
+        return try await gameCenterMatchmakingQueuesExperimentMatchmakingQueueSizesGetMetricsWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -199,21 +206,22 @@ open class GameCenterMatchmakingQueuesAPI {
      - parameter granularity: (query) the granularity of the per-group dataset 
      - parameter sort: (query) comma-separated list of sort expressions; metrics will be sorted as specified (optional)
      - parameter limit: (query) maximum number of groups to return per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterMatchmakingQueueSizesV1MetricResponse> 
      */
-    open class func gameCenterMatchmakingQueuesExperimentMatchmakingQueueSizesGetMetricsWithRequestBuilder(id: String, granularity: Granularity_gameCenterMatchmakingQueuesExperimentMatchmakingQueueSizesGetMetrics, sort: [Sort_gameCenterMatchmakingQueuesExperimentMatchmakingQueueSizesGetMetrics]? = nil, limit: Int? = nil) -> RequestBuilder<GameCenterMatchmakingQueueSizesV1MetricResponse> {
+    open class func gameCenterMatchmakingQueuesExperimentMatchmakingQueueSizesGetMetricsWithRequestBuilder(id: String, granularity: Granularity_gameCenterMatchmakingQueuesExperimentMatchmakingQueueSizesGetMetrics, sort: [Sort_gameCenterMatchmakingQueuesExperimentMatchmakingQueueSizesGetMetrics]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterMatchmakingQueueSizesV1MetricResponse> {
         var localVariablePath = "/v1/gameCenterMatchmakingQueues/{id}/metrics/experimentMatchmakingQueueSizes"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "granularity": (wrappedValue: granularity.encodeToJSON(), isExplode: false),
-            "sort": (wrappedValue: sort?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "granularity": (wrappedValue: granularity.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "sort": (wrappedValue: sort?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -222,9 +230,9 @@ open class GameCenterMatchmakingQueuesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingQueueSizesV1MetricResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingQueueSizesV1MetricResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -233,24 +241,25 @@ open class GameCenterMatchmakingQueuesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterMatchmakingQueueSizesV1MetricResponse> 
      */
-    open class func gameCenterMatchmakingQueuesExperimentMatchmakingQueueSizesGetMetricsWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterMatchmakingQueueSizesV1MetricResponse> {
+    open class func gameCenterMatchmakingQueuesExperimentMatchmakingQueueSizesGetMetricsWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterMatchmakingQueueSizesV1MetricResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingQueueSizesV1MetricResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingQueueSizesV1MetricResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter granularity
      */
-    public enum Granularity_gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics: String, CaseIterable {
+    public enum Granularity_gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics: String, Sendable, CaseIterable {
         case p1D = "P1D"
         case pt1h = "PT1H"
         case pt15m = "PT15M"
@@ -259,7 +268,7 @@ open class GameCenterMatchmakingQueuesAPI {
     /**
      * enum for parameter groupBy
      */
-    public enum GroupBy_gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics: String, CaseIterable {
+    public enum GroupBy_gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics: String, Sendable, CaseIterable {
         case result = "result"
         case gamecenterdetail = "gameCenterDetail"
     }
@@ -267,7 +276,7 @@ open class GameCenterMatchmakingQueuesAPI {
     /**
      * enum for parameter filterResult
      */
-    public enum FilterResult_gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics: String, CaseIterable {
+    public enum FilterResult_gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics: String, Sendable, CaseIterable {
         case matched = "MATCHED"
         case canceled = "CANCELED"
         case expired = "EXPIRED"
@@ -276,7 +285,7 @@ open class GameCenterMatchmakingQueuesAPI {
     /**
      * enum for parameter sort
      */
-    public enum Sort_gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics: String, CaseIterable {
+    public enum Sort_gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics: String, Sendable, CaseIterable {
         case count = "count"
         case count2 = "-count"
         case averagesecondsinqueue = "averageSecondsInQueue"
@@ -296,20 +305,22 @@ open class GameCenterMatchmakingQueuesAPI {
      - parameter filterGameCenterDetail: (query) filter by &#39;gameCenterDetail&#39; relationship dimension (optional)
      - parameter sort: (query) comma-separated list of sort expressions; metrics will be sorted as specified (optional)
      - parameter limit: (query) maximum number of groups to return per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterMatchmakingQueueRequestsV1MetricResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics(id: String, granularity: Granularity_gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics, groupBy: [GroupBy_gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics]? = nil, filterResult: FilterResult_gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics? = nil, filterGameCenterDetail: String? = nil, sort: [Sort_gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics]? = nil, limit: Int? = nil) async throws -> GameCenterMatchmakingQueueRequestsV1MetricResponse {
-        return try await gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetricsWithRequestBuilder(id: id, granularity: granularity, groupBy: groupBy, filterResult: filterResult, filterGameCenterDetail: filterGameCenterDetail, sort: sort, limit: limit).execute().body
+    open class func gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics(id: String, granularity: Granularity_gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics, groupBy: [GroupBy_gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics]? = nil, filterResult: FilterResult_gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics? = nil, filterGameCenterDetail: String? = nil, sort: [Sort_gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterMatchmakingQueueRequestsV1MetricResponse {
+        return try await gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetricsWithRequestBuilder(id: id, granularity: granularity, groupBy: groupBy, filterResult: filterResult, filterGameCenterDetail: filterGameCenterDetail, sort: sort, limit: limit, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterMatchmakingQueueRequestsV1MetricResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics(urlString: String) async throws -> GameCenterMatchmakingQueueRequestsV1MetricResponse {
-        return try await gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetricsWithRequestBuilder(urlString: urlString).execute().body
+    open class func gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterMatchmakingQueueRequestsV1MetricResponse {
+        return try await gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetricsWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -324,24 +335,25 @@ open class GameCenterMatchmakingQueuesAPI {
      - parameter filterGameCenterDetail: (query) filter by &#39;gameCenterDetail&#39; relationship dimension (optional)
      - parameter sort: (query) comma-separated list of sort expressions; metrics will be sorted as specified (optional)
      - parameter limit: (query) maximum number of groups to return per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterMatchmakingQueueRequestsV1MetricResponse> 
      */
-    open class func gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetricsWithRequestBuilder(id: String, granularity: Granularity_gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics, groupBy: [GroupBy_gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics]? = nil, filterResult: FilterResult_gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics? = nil, filterGameCenterDetail: String? = nil, sort: [Sort_gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics]? = nil, limit: Int? = nil) -> RequestBuilder<GameCenterMatchmakingQueueRequestsV1MetricResponse> {
+    open class func gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetricsWithRequestBuilder(id: String, granularity: Granularity_gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics, groupBy: [GroupBy_gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics]? = nil, filterResult: FilterResult_gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics? = nil, filterGameCenterDetail: String? = nil, sort: [Sort_gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetrics]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterMatchmakingQueueRequestsV1MetricResponse> {
         var localVariablePath = "/v1/gameCenterMatchmakingQueues/{id}/metrics/experimentMatchmakingRequests"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "granularity": (wrappedValue: granularity.encodeToJSON(), isExplode: false),
-            "groupBy": (wrappedValue: groupBy?.encodeToJSON(), isExplode: false),
-            "filter[result]": (wrappedValue: filterResult?.encodeToJSON(), isExplode: false),
-            "filter[gameCenterDetail]": (wrappedValue: filterGameCenterDetail?.encodeToJSON(), isExplode: false),
-            "sort": (wrappedValue: sort?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "granularity": (wrappedValue: granularity.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "groupBy": (wrappedValue: groupBy?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[result]": (wrappedValue: filterResult?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[gameCenterDetail]": (wrappedValue: filterGameCenterDetail?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "sort": (wrappedValue: sort?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -350,9 +362,9 @@ open class GameCenterMatchmakingQueuesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingQueueRequestsV1MetricResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingQueueRequestsV1MetricResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -361,24 +373,25 @@ open class GameCenterMatchmakingQueuesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterMatchmakingQueueRequestsV1MetricResponse> 
      */
-    open class func gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetricsWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterMatchmakingQueueRequestsV1MetricResponse> {
+    open class func gameCenterMatchmakingQueuesExperimentMatchmakingRequestsGetMetricsWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterMatchmakingQueueRequestsV1MetricResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingQueueRequestsV1MetricResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingQueueRequestsV1MetricResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsGameCenterMatchmakingQueues
      */
-    public enum FieldsGameCenterMatchmakingQueues_gameCenterMatchmakingQueuesGetCollection: String, CaseIterable {
+    public enum FieldsGameCenterMatchmakingQueues_gameCenterMatchmakingQueuesGetCollection: String, Sendable, CaseIterable {
         case referencename = "referenceName"
         case classicmatchmakingbundleids = "classicMatchmakingBundleIds"
         case ruleset = "ruleSet"
@@ -388,7 +401,7 @@ open class GameCenterMatchmakingQueuesAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_gameCenterMatchmakingQueuesGetCollection: String, CaseIterable {
+    public enum Include_gameCenterMatchmakingQueuesGetCollection: String, Sendable, CaseIterable {
         case ruleset = "ruleSet"
         case experimentruleset = "experimentRuleSet"
     }
@@ -398,20 +411,22 @@ open class GameCenterMatchmakingQueuesAPI {
      - parameter fieldsGameCenterMatchmakingQueues: (query) the fields to include for returned resources of type gameCenterMatchmakingQueues (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterMatchmakingQueuesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterMatchmakingQueuesGetCollection(fieldsGameCenterMatchmakingQueues: [FieldsGameCenterMatchmakingQueues_gameCenterMatchmakingQueuesGetCollection]? = nil, limit: Int? = nil, include: [Include_gameCenterMatchmakingQueuesGetCollection]? = nil) async throws -> GameCenterMatchmakingQueuesResponse {
-        return try await gameCenterMatchmakingQueuesGetCollectionWithRequestBuilder(fieldsGameCenterMatchmakingQueues: fieldsGameCenterMatchmakingQueues, limit: limit, include: include).execute().body
+    open class func gameCenterMatchmakingQueuesGetCollection(fieldsGameCenterMatchmakingQueues: [FieldsGameCenterMatchmakingQueues_gameCenterMatchmakingQueuesGetCollection]? = nil, limit: Int? = nil, include: [Include_gameCenterMatchmakingQueuesGetCollection]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterMatchmakingQueuesResponse {
+        return try await gameCenterMatchmakingQueuesGetCollectionWithRequestBuilder(fieldsGameCenterMatchmakingQueues: fieldsGameCenterMatchmakingQueues, limit: limit, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterMatchmakingQueuesResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterMatchmakingQueuesGetCollection(urlString: String) async throws -> GameCenterMatchmakingQueuesResponse {
-        return try await gameCenterMatchmakingQueuesGetCollectionWithRequestBuilder(urlString: urlString).execute().body
+    open class func gameCenterMatchmakingQueuesGetCollection(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterMatchmakingQueuesResponse {
+        return try await gameCenterMatchmakingQueuesGetCollectionWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -422,18 +437,19 @@ open class GameCenterMatchmakingQueuesAPI {
      - parameter fieldsGameCenterMatchmakingQueues: (query) the fields to include for returned resources of type gameCenterMatchmakingQueues (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterMatchmakingQueuesResponse> 
      */
-    open class func gameCenterMatchmakingQueuesGetCollectionWithRequestBuilder(fieldsGameCenterMatchmakingQueues: [FieldsGameCenterMatchmakingQueues_gameCenterMatchmakingQueuesGetCollection]? = nil, limit: Int? = nil, include: [Include_gameCenterMatchmakingQueuesGetCollection]? = nil) -> RequestBuilder<GameCenterMatchmakingQueuesResponse> {
+    open class func gameCenterMatchmakingQueuesGetCollectionWithRequestBuilder(fieldsGameCenterMatchmakingQueues: [FieldsGameCenterMatchmakingQueues_gameCenterMatchmakingQueuesGetCollection]? = nil, limit: Int? = nil, include: [Include_gameCenterMatchmakingQueuesGetCollection]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterMatchmakingQueuesResponse> {
         let localVariablePath = "/v1/gameCenterMatchmakingQueues"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[gameCenterMatchmakingQueues]": (wrappedValue: fieldsGameCenterMatchmakingQueues?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "fields[gameCenterMatchmakingQueues]": (wrappedValue: fieldsGameCenterMatchmakingQueues?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -442,9 +458,9 @@ open class GameCenterMatchmakingQueuesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingQueuesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingQueuesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -453,24 +469,25 @@ open class GameCenterMatchmakingQueuesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterMatchmakingQueuesResponse> 
      */
-    open class func gameCenterMatchmakingQueuesGetCollectionWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterMatchmakingQueuesResponse> {
+    open class func gameCenterMatchmakingQueuesGetCollectionWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterMatchmakingQueuesResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingQueuesResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingQueuesResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsGameCenterMatchmakingQueues
      */
-    public enum FieldsGameCenterMatchmakingQueues_gameCenterMatchmakingQueuesGetInstance: String, CaseIterable {
+    public enum FieldsGameCenterMatchmakingQueues_gameCenterMatchmakingQueuesGetInstance: String, Sendable, CaseIterable {
         case referencename = "referenceName"
         case classicmatchmakingbundleids = "classicMatchmakingBundleIds"
         case ruleset = "ruleSet"
@@ -480,7 +497,7 @@ open class GameCenterMatchmakingQueuesAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_gameCenterMatchmakingQueuesGetInstance: String, CaseIterable {
+    public enum Include_gameCenterMatchmakingQueuesGetInstance: String, Sendable, CaseIterable {
         case ruleset = "ruleSet"
         case experimentruleset = "experimentRuleSet"
     }
@@ -490,20 +507,22 @@ open class GameCenterMatchmakingQueuesAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsGameCenterMatchmakingQueues: (query) the fields to include for returned resources of type gameCenterMatchmakingQueues (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterMatchmakingQueueResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterMatchmakingQueuesGetInstance(id: String, fieldsGameCenterMatchmakingQueues: [FieldsGameCenterMatchmakingQueues_gameCenterMatchmakingQueuesGetInstance]? = nil, include: [Include_gameCenterMatchmakingQueuesGetInstance]? = nil) async throws -> GameCenterMatchmakingQueueResponse {
-        return try await gameCenterMatchmakingQueuesGetInstanceWithRequestBuilder(id: id, fieldsGameCenterMatchmakingQueues: fieldsGameCenterMatchmakingQueues, include: include).execute().body
+    open class func gameCenterMatchmakingQueuesGetInstance(id: String, fieldsGameCenterMatchmakingQueues: [FieldsGameCenterMatchmakingQueues_gameCenterMatchmakingQueuesGetInstance]? = nil, include: [Include_gameCenterMatchmakingQueuesGetInstance]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterMatchmakingQueueResponse {
+        return try await gameCenterMatchmakingQueuesGetInstanceWithRequestBuilder(id: id, fieldsGameCenterMatchmakingQueues: fieldsGameCenterMatchmakingQueues, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterMatchmakingQueueResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterMatchmakingQueuesGetInstance(urlString: String) async throws -> GameCenterMatchmakingQueueResponse {
-        return try await gameCenterMatchmakingQueuesGetInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func gameCenterMatchmakingQueuesGetInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterMatchmakingQueueResponse {
+        return try await gameCenterMatchmakingQueuesGetInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -514,20 +533,21 @@ open class GameCenterMatchmakingQueuesAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsGameCenterMatchmakingQueues: (query) the fields to include for returned resources of type gameCenterMatchmakingQueues (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterMatchmakingQueueResponse> 
      */
-    open class func gameCenterMatchmakingQueuesGetInstanceWithRequestBuilder(id: String, fieldsGameCenterMatchmakingQueues: [FieldsGameCenterMatchmakingQueues_gameCenterMatchmakingQueuesGetInstance]? = nil, include: [Include_gameCenterMatchmakingQueuesGetInstance]? = nil) -> RequestBuilder<GameCenterMatchmakingQueueResponse> {
+    open class func gameCenterMatchmakingQueuesGetInstanceWithRequestBuilder(id: String, fieldsGameCenterMatchmakingQueues: [FieldsGameCenterMatchmakingQueues_gameCenterMatchmakingQueuesGetInstance]? = nil, include: [Include_gameCenterMatchmakingQueuesGetInstance]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterMatchmakingQueueResponse> {
         var localVariablePath = "/v1/gameCenterMatchmakingQueues/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[gameCenterMatchmakingQueues]": (wrappedValue: fieldsGameCenterMatchmakingQueues?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "fields[gameCenterMatchmakingQueues]": (wrappedValue: fieldsGameCenterMatchmakingQueues?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -536,9 +556,9 @@ open class GameCenterMatchmakingQueuesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingQueueResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingQueueResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -547,24 +567,25 @@ open class GameCenterMatchmakingQueuesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterMatchmakingQueueResponse> 
      */
-    open class func gameCenterMatchmakingQueuesGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterMatchmakingQueueResponse> {
+    open class func gameCenterMatchmakingQueuesGetInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterMatchmakingQueueResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingQueueResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingQueueResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter granularity
      */
-    public enum Granularity_gameCenterMatchmakingQueuesMatchmakingQueueSizesGetMetrics: String, CaseIterable {
+    public enum Granularity_gameCenterMatchmakingQueuesMatchmakingQueueSizesGetMetrics: String, Sendable, CaseIterable {
         case p1D = "P1D"
         case pt1h = "PT1H"
         case pt15m = "PT15M"
@@ -573,7 +594,7 @@ open class GameCenterMatchmakingQueuesAPI {
     /**
      * enum for parameter sort
      */
-    public enum Sort_gameCenterMatchmakingQueuesMatchmakingQueueSizesGetMetrics: String, CaseIterable {
+    public enum Sort_gameCenterMatchmakingQueuesMatchmakingQueueSizesGetMetrics: String, Sendable, CaseIterable {
         case count = "count"
         case count2 = "-count"
         case averagenumberofrequests = "averageNumberOfRequests"
@@ -590,20 +611,22 @@ open class GameCenterMatchmakingQueuesAPI {
      - parameter granularity: (query) the granularity of the per-group dataset 
      - parameter sort: (query) comma-separated list of sort expressions; metrics will be sorted as specified (optional)
      - parameter limit: (query) maximum number of groups to return per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterMatchmakingQueueSizesV1MetricResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterMatchmakingQueuesMatchmakingQueueSizesGetMetrics(id: String, granularity: Granularity_gameCenterMatchmakingQueuesMatchmakingQueueSizesGetMetrics, sort: [Sort_gameCenterMatchmakingQueuesMatchmakingQueueSizesGetMetrics]? = nil, limit: Int? = nil) async throws -> GameCenterMatchmakingQueueSizesV1MetricResponse {
-        return try await gameCenterMatchmakingQueuesMatchmakingQueueSizesGetMetricsWithRequestBuilder(id: id, granularity: granularity, sort: sort, limit: limit).execute().body
+    open class func gameCenterMatchmakingQueuesMatchmakingQueueSizesGetMetrics(id: String, granularity: Granularity_gameCenterMatchmakingQueuesMatchmakingQueueSizesGetMetrics, sort: [Sort_gameCenterMatchmakingQueuesMatchmakingQueueSizesGetMetrics]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterMatchmakingQueueSizesV1MetricResponse {
+        return try await gameCenterMatchmakingQueuesMatchmakingQueueSizesGetMetricsWithRequestBuilder(id: id, granularity: granularity, sort: sort, limit: limit, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterMatchmakingQueueSizesV1MetricResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterMatchmakingQueuesMatchmakingQueueSizesGetMetrics(urlString: String) async throws -> GameCenterMatchmakingQueueSizesV1MetricResponse {
-        return try await gameCenterMatchmakingQueuesMatchmakingQueueSizesGetMetricsWithRequestBuilder(urlString: urlString).execute().body
+    open class func gameCenterMatchmakingQueuesMatchmakingQueueSizesGetMetrics(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterMatchmakingQueueSizesV1MetricResponse {
+        return try await gameCenterMatchmakingQueuesMatchmakingQueueSizesGetMetricsWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -615,21 +638,22 @@ open class GameCenterMatchmakingQueuesAPI {
      - parameter granularity: (query) the granularity of the per-group dataset 
      - parameter sort: (query) comma-separated list of sort expressions; metrics will be sorted as specified (optional)
      - parameter limit: (query) maximum number of groups to return per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterMatchmakingQueueSizesV1MetricResponse> 
      */
-    open class func gameCenterMatchmakingQueuesMatchmakingQueueSizesGetMetricsWithRequestBuilder(id: String, granularity: Granularity_gameCenterMatchmakingQueuesMatchmakingQueueSizesGetMetrics, sort: [Sort_gameCenterMatchmakingQueuesMatchmakingQueueSizesGetMetrics]? = nil, limit: Int? = nil) -> RequestBuilder<GameCenterMatchmakingQueueSizesV1MetricResponse> {
+    open class func gameCenterMatchmakingQueuesMatchmakingQueueSizesGetMetricsWithRequestBuilder(id: String, granularity: Granularity_gameCenterMatchmakingQueuesMatchmakingQueueSizesGetMetrics, sort: [Sort_gameCenterMatchmakingQueuesMatchmakingQueueSizesGetMetrics]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterMatchmakingQueueSizesV1MetricResponse> {
         var localVariablePath = "/v1/gameCenterMatchmakingQueues/{id}/metrics/matchmakingQueueSizes"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "granularity": (wrappedValue: granularity.encodeToJSON(), isExplode: false),
-            "sort": (wrappedValue: sort?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "granularity": (wrappedValue: granularity.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "sort": (wrappedValue: sort?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -638,9 +662,9 @@ open class GameCenterMatchmakingQueuesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingQueueSizesV1MetricResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingQueueSizesV1MetricResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -649,24 +673,25 @@ open class GameCenterMatchmakingQueuesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterMatchmakingQueueSizesV1MetricResponse> 
      */
-    open class func gameCenterMatchmakingQueuesMatchmakingQueueSizesGetMetricsWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterMatchmakingQueueSizesV1MetricResponse> {
+    open class func gameCenterMatchmakingQueuesMatchmakingQueueSizesGetMetricsWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterMatchmakingQueueSizesV1MetricResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingQueueSizesV1MetricResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingQueueSizesV1MetricResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter granularity
      */
-    public enum Granularity_gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics: String, CaseIterable {
+    public enum Granularity_gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics: String, Sendable, CaseIterable {
         case p1D = "P1D"
         case pt1h = "PT1H"
         case pt15m = "PT15M"
@@ -675,7 +700,7 @@ open class GameCenterMatchmakingQueuesAPI {
     /**
      * enum for parameter groupBy
      */
-    public enum GroupBy_gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics: String, CaseIterable {
+    public enum GroupBy_gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics: String, Sendable, CaseIterable {
         case result = "result"
         case gamecenterdetail = "gameCenterDetail"
     }
@@ -683,7 +708,7 @@ open class GameCenterMatchmakingQueuesAPI {
     /**
      * enum for parameter filterResult
      */
-    public enum FilterResult_gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics: String, CaseIterable {
+    public enum FilterResult_gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics: String, Sendable, CaseIterable {
         case matched = "MATCHED"
         case canceled = "CANCELED"
         case expired = "EXPIRED"
@@ -692,7 +717,7 @@ open class GameCenterMatchmakingQueuesAPI {
     /**
      * enum for parameter sort
      */
-    public enum Sort_gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics: String, CaseIterable {
+    public enum Sort_gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics: String, Sendable, CaseIterable {
         case count = "count"
         case count2 = "-count"
         case averagesecondsinqueue = "averageSecondsInQueue"
@@ -712,20 +737,22 @@ open class GameCenterMatchmakingQueuesAPI {
      - parameter filterGameCenterDetail: (query) filter by &#39;gameCenterDetail&#39; relationship dimension (optional)
      - parameter sort: (query) comma-separated list of sort expressions; metrics will be sorted as specified (optional)
      - parameter limit: (query) maximum number of groups to return per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterMatchmakingQueueRequestsV1MetricResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics(id: String, granularity: Granularity_gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics, groupBy: [GroupBy_gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics]? = nil, filterResult: FilterResult_gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics? = nil, filterGameCenterDetail: String? = nil, sort: [Sort_gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics]? = nil, limit: Int? = nil) async throws -> GameCenterMatchmakingQueueRequestsV1MetricResponse {
-        return try await gameCenterMatchmakingQueuesMatchmakingRequestsGetMetricsWithRequestBuilder(id: id, granularity: granularity, groupBy: groupBy, filterResult: filterResult, filterGameCenterDetail: filterGameCenterDetail, sort: sort, limit: limit).execute().body
+    open class func gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics(id: String, granularity: Granularity_gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics, groupBy: [GroupBy_gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics]? = nil, filterResult: FilterResult_gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics? = nil, filterGameCenterDetail: String? = nil, sort: [Sort_gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterMatchmakingQueueRequestsV1MetricResponse {
+        return try await gameCenterMatchmakingQueuesMatchmakingRequestsGetMetricsWithRequestBuilder(id: id, granularity: granularity, groupBy: groupBy, filterResult: filterResult, filterGameCenterDetail: filterGameCenterDetail, sort: sort, limit: limit, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterMatchmakingQueueRequestsV1MetricResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics(urlString: String) async throws -> GameCenterMatchmakingQueueRequestsV1MetricResponse {
-        return try await gameCenterMatchmakingQueuesMatchmakingRequestsGetMetricsWithRequestBuilder(urlString: urlString).execute().body
+    open class func gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterMatchmakingQueueRequestsV1MetricResponse {
+        return try await gameCenterMatchmakingQueuesMatchmakingRequestsGetMetricsWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -740,24 +767,25 @@ open class GameCenterMatchmakingQueuesAPI {
      - parameter filterGameCenterDetail: (query) filter by &#39;gameCenterDetail&#39; relationship dimension (optional)
      - parameter sort: (query) comma-separated list of sort expressions; metrics will be sorted as specified (optional)
      - parameter limit: (query) maximum number of groups to return per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterMatchmakingQueueRequestsV1MetricResponse> 
      */
-    open class func gameCenterMatchmakingQueuesMatchmakingRequestsGetMetricsWithRequestBuilder(id: String, granularity: Granularity_gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics, groupBy: [GroupBy_gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics]? = nil, filterResult: FilterResult_gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics? = nil, filterGameCenterDetail: String? = nil, sort: [Sort_gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics]? = nil, limit: Int? = nil) -> RequestBuilder<GameCenterMatchmakingQueueRequestsV1MetricResponse> {
+    open class func gameCenterMatchmakingQueuesMatchmakingRequestsGetMetricsWithRequestBuilder(id: String, granularity: Granularity_gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics, groupBy: [GroupBy_gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics]? = nil, filterResult: FilterResult_gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics? = nil, filterGameCenterDetail: String? = nil, sort: [Sort_gameCenterMatchmakingQueuesMatchmakingRequestsGetMetrics]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterMatchmakingQueueRequestsV1MetricResponse> {
         var localVariablePath = "/v1/gameCenterMatchmakingQueues/{id}/metrics/matchmakingRequests"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "granularity": (wrappedValue: granularity.encodeToJSON(), isExplode: false),
-            "groupBy": (wrappedValue: groupBy?.encodeToJSON(), isExplode: false),
-            "filter[result]": (wrappedValue: filterResult?.encodeToJSON(), isExplode: false),
-            "filter[gameCenterDetail]": (wrappedValue: filterGameCenterDetail?.encodeToJSON(), isExplode: false),
-            "sort": (wrappedValue: sort?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "granularity": (wrappedValue: granularity.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "groupBy": (wrappedValue: groupBy?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[result]": (wrappedValue: filterResult?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[gameCenterDetail]": (wrappedValue: filterGameCenterDetail?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "sort": (wrappedValue: sort?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -766,9 +794,9 @@ open class GameCenterMatchmakingQueuesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingQueueRequestsV1MetricResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingQueueRequestsV1MetricResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -777,24 +805,25 @@ open class GameCenterMatchmakingQueuesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterMatchmakingQueueRequestsV1MetricResponse> 
      */
-    open class func gameCenterMatchmakingQueuesMatchmakingRequestsGetMetricsWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterMatchmakingQueueRequestsV1MetricResponse> {
+    open class func gameCenterMatchmakingQueuesMatchmakingRequestsGetMetricsWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterMatchmakingQueueRequestsV1MetricResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingQueueRequestsV1MetricResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingQueueRequestsV1MetricResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter granularity
      */
-    public enum Granularity_gameCenterMatchmakingQueuesMatchmakingSessionsGetMetrics: String, CaseIterable {
+    public enum Granularity_gameCenterMatchmakingQueuesMatchmakingSessionsGetMetrics: String, Sendable, CaseIterable {
         case p1D = "P1D"
         case pt1h = "PT1H"
         case pt15m = "PT15M"
@@ -803,7 +832,7 @@ open class GameCenterMatchmakingQueuesAPI {
     /**
      * enum for parameter sort
      */
-    public enum Sort_gameCenterMatchmakingQueuesMatchmakingSessionsGetMetrics: String, CaseIterable {
+    public enum Sort_gameCenterMatchmakingQueuesMatchmakingSessionsGetMetrics: String, Sendable, CaseIterable {
         case count = "count"
         case count2 = "-count"
         case averageplayercount = "averagePlayerCount"
@@ -820,20 +849,22 @@ open class GameCenterMatchmakingQueuesAPI {
      - parameter granularity: (query) the granularity of the per-group dataset 
      - parameter sort: (query) comma-separated list of sort expressions; metrics will be sorted as specified (optional)
      - parameter limit: (query) maximum number of groups to return per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterMatchmakingSessionsV1MetricResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterMatchmakingQueuesMatchmakingSessionsGetMetrics(id: String, granularity: Granularity_gameCenterMatchmakingQueuesMatchmakingSessionsGetMetrics, sort: [Sort_gameCenterMatchmakingQueuesMatchmakingSessionsGetMetrics]? = nil, limit: Int? = nil) async throws -> GameCenterMatchmakingSessionsV1MetricResponse {
-        return try await gameCenterMatchmakingQueuesMatchmakingSessionsGetMetricsWithRequestBuilder(id: id, granularity: granularity, sort: sort, limit: limit).execute().body
+    open class func gameCenterMatchmakingQueuesMatchmakingSessionsGetMetrics(id: String, granularity: Granularity_gameCenterMatchmakingQueuesMatchmakingSessionsGetMetrics, sort: [Sort_gameCenterMatchmakingQueuesMatchmakingSessionsGetMetrics]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterMatchmakingSessionsV1MetricResponse {
+        return try await gameCenterMatchmakingQueuesMatchmakingSessionsGetMetricsWithRequestBuilder(id: id, granularity: granularity, sort: sort, limit: limit, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterMatchmakingSessionsV1MetricResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterMatchmakingQueuesMatchmakingSessionsGetMetrics(urlString: String) async throws -> GameCenterMatchmakingSessionsV1MetricResponse {
-        return try await gameCenterMatchmakingQueuesMatchmakingSessionsGetMetricsWithRequestBuilder(urlString: urlString).execute().body
+    open class func gameCenterMatchmakingQueuesMatchmakingSessionsGetMetrics(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterMatchmakingSessionsV1MetricResponse {
+        return try await gameCenterMatchmakingQueuesMatchmakingSessionsGetMetricsWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -845,21 +876,22 @@ open class GameCenterMatchmakingQueuesAPI {
      - parameter granularity: (query) the granularity of the per-group dataset 
      - parameter sort: (query) comma-separated list of sort expressions; metrics will be sorted as specified (optional)
      - parameter limit: (query) maximum number of groups to return per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterMatchmakingSessionsV1MetricResponse> 
      */
-    open class func gameCenterMatchmakingQueuesMatchmakingSessionsGetMetricsWithRequestBuilder(id: String, granularity: Granularity_gameCenterMatchmakingQueuesMatchmakingSessionsGetMetrics, sort: [Sort_gameCenterMatchmakingQueuesMatchmakingSessionsGetMetrics]? = nil, limit: Int? = nil) -> RequestBuilder<GameCenterMatchmakingSessionsV1MetricResponse> {
+    open class func gameCenterMatchmakingQueuesMatchmakingSessionsGetMetricsWithRequestBuilder(id: String, granularity: Granularity_gameCenterMatchmakingQueuesMatchmakingSessionsGetMetrics, sort: [Sort_gameCenterMatchmakingQueuesMatchmakingSessionsGetMetrics]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterMatchmakingSessionsV1MetricResponse> {
         var localVariablePath = "/v1/gameCenterMatchmakingQueues/{id}/metrics/matchmakingSessions"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "granularity": (wrappedValue: granularity.encodeToJSON(), isExplode: false),
-            "sort": (wrappedValue: sort?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "granularity": (wrappedValue: granularity.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "sort": (wrappedValue: sort?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -868,9 +900,9 @@ open class GameCenterMatchmakingQueuesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingSessionsV1MetricResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingSessionsV1MetricResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -879,38 +911,41 @@ open class GameCenterMatchmakingQueuesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterMatchmakingSessionsV1MetricResponse> 
      */
-    open class func gameCenterMatchmakingQueuesMatchmakingSessionsGetMetricsWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterMatchmakingSessionsV1MetricResponse> {
+    open class func gameCenterMatchmakingQueuesMatchmakingSessionsGetMetricsWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterMatchmakingSessionsV1MetricResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingSessionsV1MetricResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingSessionsV1MetricResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter gameCenterMatchmakingQueueUpdateRequest: (body) GameCenterMatchmakingQueue representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterMatchmakingQueueResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterMatchmakingQueuesUpdateInstance(id: String, gameCenterMatchmakingQueueUpdateRequest: GameCenterMatchmakingQueueUpdateRequest) async throws -> GameCenterMatchmakingQueueResponse {
-        return try await gameCenterMatchmakingQueuesUpdateInstanceWithRequestBuilder(id: id, gameCenterMatchmakingQueueUpdateRequest: gameCenterMatchmakingQueueUpdateRequest).execute().body
+    open class func gameCenterMatchmakingQueuesUpdateInstance(id: String, gameCenterMatchmakingQueueUpdateRequest: GameCenterMatchmakingQueueUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterMatchmakingQueueResponse {
+        return try await gameCenterMatchmakingQueuesUpdateInstanceWithRequestBuilder(id: id, gameCenterMatchmakingQueueUpdateRequest: gameCenterMatchmakingQueueUpdateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: GameCenterMatchmakingQueueResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func gameCenterMatchmakingQueuesUpdateInstance(urlString: String) async throws -> GameCenterMatchmakingQueueResponse {
-        return try await gameCenterMatchmakingQueuesUpdateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func gameCenterMatchmakingQueuesUpdateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> GameCenterMatchmakingQueueResponse {
+        return try await gameCenterMatchmakingQueuesUpdateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -920,15 +955,16 @@ open class GameCenterMatchmakingQueuesAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter gameCenterMatchmakingQueueUpdateRequest: (body) GameCenterMatchmakingQueue representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterMatchmakingQueueResponse> 
      */
-    open class func gameCenterMatchmakingQueuesUpdateInstanceWithRequestBuilder(id: String, gameCenterMatchmakingQueueUpdateRequest: GameCenterMatchmakingQueueUpdateRequest) -> RequestBuilder<GameCenterMatchmakingQueueResponse> {
+    open class func gameCenterMatchmakingQueuesUpdateInstanceWithRequestBuilder(id: String, gameCenterMatchmakingQueueUpdateRequest: GameCenterMatchmakingQueueUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterMatchmakingQueueResponse> {
         var localVariablePath = "/v1/gameCenterMatchmakingQueues/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: gameCenterMatchmakingQueueUpdateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: gameCenterMatchmakingQueueUpdateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -938,9 +974,9 @@ open class GameCenterMatchmakingQueuesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingQueueResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingQueueResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -949,17 +985,18 @@ open class GameCenterMatchmakingQueuesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GameCenterMatchmakingQueueResponse> 
      */
-    open class func gameCenterMatchmakingQueuesUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<GameCenterMatchmakingQueueResponse> {
+    open class func gameCenterMatchmakingQueuesUpdateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<GameCenterMatchmakingQueueResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingQueueResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GameCenterMatchmakingQueueResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

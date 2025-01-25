@@ -6,12 +6,9 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 @available(*, deprecated, message: "This schema is deprecated.")
-public struct PromotedPurchaseImageCreateRequest: Codable, JSONEncodable, Hashable {
+public struct PromotedPurchaseImageCreateRequest: Sendable, Codable, JSONEncodable, Hashable {
 
     public var data: PromotedPurchaseImageCreateRequestData
 

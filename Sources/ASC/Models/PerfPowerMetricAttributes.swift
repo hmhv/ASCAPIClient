@@ -6,17 +6,14 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct PerfPowerMetricAttributes: Codable, JSONEncodable, Hashable {
+public struct PerfPowerMetricAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum Platform: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum Platform: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case ios = "IOS"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
-    public enum MetricType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum MetricType: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case disk = "DISK"
         case hang = "HANG"
         case battery = "BATTERY"

@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct Location: Codable, JSONEncodable, Hashable {
+public struct Location: Sendable, Codable, JSONEncodable, Hashable {
 
     public var latitude: Double?
     public var longitude: Double?

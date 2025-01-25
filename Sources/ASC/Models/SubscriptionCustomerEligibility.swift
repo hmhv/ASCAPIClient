@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public enum SubscriptionCustomerEligibility: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+public enum SubscriptionCustomerEligibility: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
     case new = "NEW"
     case existing = "EXISTING"
     case expired = "EXPIRED"

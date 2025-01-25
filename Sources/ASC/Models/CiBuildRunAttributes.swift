@@ -6,13 +6,10 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct CiBuildRunAttributes: Codable, JSONEncodable, Hashable {
+public struct CiBuildRunAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum StartReason: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum StartReason: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case gitRefChange = "GIT_REF_CHANGE"
         case manual = "MANUAL"
         case manualRebuild = "MANUAL_REBUILD"
@@ -21,7 +18,7 @@ public struct CiBuildRunAttributes: Codable, JSONEncodable, Hashable {
         case schedule = "SCHEDULE"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
-    public enum CancelReason: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum CancelReason: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case automaticallyByNewerBuild = "AUTOMATICALLY_BY_NEWER_BUILD"
         case manuallyByUser = "MANUALLY_BY_USER"
         case unknownDefaultOpenApi = "unknown_default_open_api"

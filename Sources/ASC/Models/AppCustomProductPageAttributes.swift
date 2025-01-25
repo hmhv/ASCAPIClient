@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppCustomProductPageAttributes: Codable, JSONEncodable, Hashable {
+public struct AppCustomProductPageAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
     public var name: String?
     public var url: String?

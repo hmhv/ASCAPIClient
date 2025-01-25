@@ -6,29 +6,28 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class SubscriptionAppStoreReviewScreenshotsAPI {
 
     /**
 
      - parameter subscriptionAppStoreReviewScreenshotCreateRequest: (body) SubscriptionAppStoreReviewScreenshot representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: SubscriptionAppStoreReviewScreenshotResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionAppStoreReviewScreenshotsCreateInstance(subscriptionAppStoreReviewScreenshotCreateRequest: SubscriptionAppStoreReviewScreenshotCreateRequest) async throws -> SubscriptionAppStoreReviewScreenshotResponse {
-        return try await subscriptionAppStoreReviewScreenshotsCreateInstanceWithRequestBuilder(subscriptionAppStoreReviewScreenshotCreateRequest: subscriptionAppStoreReviewScreenshotCreateRequest).execute().body
+    open class func subscriptionAppStoreReviewScreenshotsCreateInstance(subscriptionAppStoreReviewScreenshotCreateRequest: SubscriptionAppStoreReviewScreenshotCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> SubscriptionAppStoreReviewScreenshotResponse {
+        return try await subscriptionAppStoreReviewScreenshotsCreateInstanceWithRequestBuilder(subscriptionAppStoreReviewScreenshotCreateRequest: subscriptionAppStoreReviewScreenshotCreateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: SubscriptionAppStoreReviewScreenshotResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionAppStoreReviewScreenshotsCreateInstance(urlString: String) async throws -> SubscriptionAppStoreReviewScreenshotResponse {
-        return try await subscriptionAppStoreReviewScreenshotsCreateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func subscriptionAppStoreReviewScreenshotsCreateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> SubscriptionAppStoreReviewScreenshotResponse {
+        return try await subscriptionAppStoreReviewScreenshotsCreateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -37,12 +36,13 @@ open class SubscriptionAppStoreReviewScreenshotsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter subscriptionAppStoreReviewScreenshotCreateRequest: (body) SubscriptionAppStoreReviewScreenshot representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<SubscriptionAppStoreReviewScreenshotResponse> 
      */
-    open class func subscriptionAppStoreReviewScreenshotsCreateInstanceWithRequestBuilder(subscriptionAppStoreReviewScreenshotCreateRequest: SubscriptionAppStoreReviewScreenshotCreateRequest) -> RequestBuilder<SubscriptionAppStoreReviewScreenshotResponse> {
+    open class func subscriptionAppStoreReviewScreenshotsCreateInstanceWithRequestBuilder(subscriptionAppStoreReviewScreenshotCreateRequest: SubscriptionAppStoreReviewScreenshotCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<SubscriptionAppStoreReviewScreenshotResponse> {
         let localVariablePath = "/v1/subscriptionAppStoreReviewScreenshots"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: subscriptionAppStoreReviewScreenshotCreateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: subscriptionAppStoreReviewScreenshotCreateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -52,9 +52,9 @@ open class SubscriptionAppStoreReviewScreenshotsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<SubscriptionAppStoreReviewScreenshotResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<SubscriptionAppStoreReviewScreenshotResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -63,37 +63,40 @@ open class SubscriptionAppStoreReviewScreenshotsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<SubscriptionAppStoreReviewScreenshotResponse> 
      */
-    open class func subscriptionAppStoreReviewScreenshotsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<SubscriptionAppStoreReviewScreenshotResponse> {
+    open class func subscriptionAppStoreReviewScreenshotsCreateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<SubscriptionAppStoreReviewScreenshotResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<SubscriptionAppStoreReviewScreenshotResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<SubscriptionAppStoreReviewScreenshotResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionAppStoreReviewScreenshotsDeleteInstance(id: String) async throws {
-        return try await subscriptionAppStoreReviewScreenshotsDeleteInstanceWithRequestBuilder(id: id).execute().body
+    open class func subscriptionAppStoreReviewScreenshotsDeleteInstance(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await subscriptionAppStoreReviewScreenshotsDeleteInstanceWithRequestBuilder(id: id, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionAppStoreReviewScreenshotsDeleteInstance(urlString: String) async throws {
-        return try await subscriptionAppStoreReviewScreenshotsDeleteInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func subscriptionAppStoreReviewScreenshotsDeleteInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await subscriptionAppStoreReviewScreenshotsDeleteInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -102,14 +105,15 @@ open class SubscriptionAppStoreReviewScreenshotsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func subscriptionAppStoreReviewScreenshotsDeleteInstanceWithRequestBuilder(id: String) -> RequestBuilder<Void> {
+    open class func subscriptionAppStoreReviewScreenshotsDeleteInstanceWithRequestBuilder(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/subscriptionAppStoreReviewScreenshots/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -120,9 +124,9 @@ open class SubscriptionAppStoreReviewScreenshotsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -131,24 +135,25 @@ open class SubscriptionAppStoreReviewScreenshotsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func subscriptionAppStoreReviewScreenshotsDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func subscriptionAppStoreReviewScreenshotsDeleteInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsSubscriptionAppStoreReviewScreenshots
      */
-    public enum FieldsSubscriptionAppStoreReviewScreenshots_subscriptionAppStoreReviewScreenshotsGetInstance: String, CaseIterable {
+    public enum FieldsSubscriptionAppStoreReviewScreenshots_subscriptionAppStoreReviewScreenshotsGetInstance: String, Sendable, CaseIterable {
         case filesize = "fileSize"
         case filename = "fileName"
         case sourcefilechecksum = "sourceFileChecksum"
@@ -163,7 +168,7 @@ open class SubscriptionAppStoreReviewScreenshotsAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_subscriptionAppStoreReviewScreenshotsGetInstance: String, CaseIterable {
+    public enum Include_subscriptionAppStoreReviewScreenshotsGetInstance: String, Sendable, CaseIterable {
         case subscription = "subscription"
     }
 
@@ -172,20 +177,22 @@ open class SubscriptionAppStoreReviewScreenshotsAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsSubscriptionAppStoreReviewScreenshots: (query) the fields to include for returned resources of type subscriptionAppStoreReviewScreenshots (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: SubscriptionAppStoreReviewScreenshotResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionAppStoreReviewScreenshotsGetInstance(id: String, fieldsSubscriptionAppStoreReviewScreenshots: [FieldsSubscriptionAppStoreReviewScreenshots_subscriptionAppStoreReviewScreenshotsGetInstance]? = nil, include: [Include_subscriptionAppStoreReviewScreenshotsGetInstance]? = nil) async throws -> SubscriptionAppStoreReviewScreenshotResponse {
-        return try await subscriptionAppStoreReviewScreenshotsGetInstanceWithRequestBuilder(id: id, fieldsSubscriptionAppStoreReviewScreenshots: fieldsSubscriptionAppStoreReviewScreenshots, include: include).execute().body
+    open class func subscriptionAppStoreReviewScreenshotsGetInstance(id: String, fieldsSubscriptionAppStoreReviewScreenshots: [FieldsSubscriptionAppStoreReviewScreenshots_subscriptionAppStoreReviewScreenshotsGetInstance]? = nil, include: [Include_subscriptionAppStoreReviewScreenshotsGetInstance]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> SubscriptionAppStoreReviewScreenshotResponse {
+        return try await subscriptionAppStoreReviewScreenshotsGetInstanceWithRequestBuilder(id: id, fieldsSubscriptionAppStoreReviewScreenshots: fieldsSubscriptionAppStoreReviewScreenshots, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: SubscriptionAppStoreReviewScreenshotResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionAppStoreReviewScreenshotsGetInstance(urlString: String) async throws -> SubscriptionAppStoreReviewScreenshotResponse {
-        return try await subscriptionAppStoreReviewScreenshotsGetInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func subscriptionAppStoreReviewScreenshotsGetInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> SubscriptionAppStoreReviewScreenshotResponse {
+        return try await subscriptionAppStoreReviewScreenshotsGetInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -196,20 +203,21 @@ open class SubscriptionAppStoreReviewScreenshotsAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsSubscriptionAppStoreReviewScreenshots: (query) the fields to include for returned resources of type subscriptionAppStoreReviewScreenshots (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<SubscriptionAppStoreReviewScreenshotResponse> 
      */
-    open class func subscriptionAppStoreReviewScreenshotsGetInstanceWithRequestBuilder(id: String, fieldsSubscriptionAppStoreReviewScreenshots: [FieldsSubscriptionAppStoreReviewScreenshots_subscriptionAppStoreReviewScreenshotsGetInstance]? = nil, include: [Include_subscriptionAppStoreReviewScreenshotsGetInstance]? = nil) -> RequestBuilder<SubscriptionAppStoreReviewScreenshotResponse> {
+    open class func subscriptionAppStoreReviewScreenshotsGetInstanceWithRequestBuilder(id: String, fieldsSubscriptionAppStoreReviewScreenshots: [FieldsSubscriptionAppStoreReviewScreenshots_subscriptionAppStoreReviewScreenshotsGetInstance]? = nil, include: [Include_subscriptionAppStoreReviewScreenshotsGetInstance]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<SubscriptionAppStoreReviewScreenshotResponse> {
         var localVariablePath = "/v1/subscriptionAppStoreReviewScreenshots/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[subscriptionAppStoreReviewScreenshots]": (wrappedValue: fieldsSubscriptionAppStoreReviewScreenshots?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "fields[subscriptionAppStoreReviewScreenshots]": (wrappedValue: fieldsSubscriptionAppStoreReviewScreenshots?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -218,9 +226,9 @@ open class SubscriptionAppStoreReviewScreenshotsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<SubscriptionAppStoreReviewScreenshotResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<SubscriptionAppStoreReviewScreenshotResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -229,38 +237,41 @@ open class SubscriptionAppStoreReviewScreenshotsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<SubscriptionAppStoreReviewScreenshotResponse> 
      */
-    open class func subscriptionAppStoreReviewScreenshotsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<SubscriptionAppStoreReviewScreenshotResponse> {
+    open class func subscriptionAppStoreReviewScreenshotsGetInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<SubscriptionAppStoreReviewScreenshotResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<SubscriptionAppStoreReviewScreenshotResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<SubscriptionAppStoreReviewScreenshotResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter subscriptionAppStoreReviewScreenshotUpdateRequest: (body) SubscriptionAppStoreReviewScreenshot representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: SubscriptionAppStoreReviewScreenshotResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionAppStoreReviewScreenshotsUpdateInstance(id: String, subscriptionAppStoreReviewScreenshotUpdateRequest: SubscriptionAppStoreReviewScreenshotUpdateRequest) async throws -> SubscriptionAppStoreReviewScreenshotResponse {
-        return try await subscriptionAppStoreReviewScreenshotsUpdateInstanceWithRequestBuilder(id: id, subscriptionAppStoreReviewScreenshotUpdateRequest: subscriptionAppStoreReviewScreenshotUpdateRequest).execute().body
+    open class func subscriptionAppStoreReviewScreenshotsUpdateInstance(id: String, subscriptionAppStoreReviewScreenshotUpdateRequest: SubscriptionAppStoreReviewScreenshotUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> SubscriptionAppStoreReviewScreenshotResponse {
+        return try await subscriptionAppStoreReviewScreenshotsUpdateInstanceWithRequestBuilder(id: id, subscriptionAppStoreReviewScreenshotUpdateRequest: subscriptionAppStoreReviewScreenshotUpdateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: SubscriptionAppStoreReviewScreenshotResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscriptionAppStoreReviewScreenshotsUpdateInstance(urlString: String) async throws -> SubscriptionAppStoreReviewScreenshotResponse {
-        return try await subscriptionAppStoreReviewScreenshotsUpdateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func subscriptionAppStoreReviewScreenshotsUpdateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> SubscriptionAppStoreReviewScreenshotResponse {
+        return try await subscriptionAppStoreReviewScreenshotsUpdateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -270,15 +281,16 @@ open class SubscriptionAppStoreReviewScreenshotsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter subscriptionAppStoreReviewScreenshotUpdateRequest: (body) SubscriptionAppStoreReviewScreenshot representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<SubscriptionAppStoreReviewScreenshotResponse> 
      */
-    open class func subscriptionAppStoreReviewScreenshotsUpdateInstanceWithRequestBuilder(id: String, subscriptionAppStoreReviewScreenshotUpdateRequest: SubscriptionAppStoreReviewScreenshotUpdateRequest) -> RequestBuilder<SubscriptionAppStoreReviewScreenshotResponse> {
+    open class func subscriptionAppStoreReviewScreenshotsUpdateInstanceWithRequestBuilder(id: String, subscriptionAppStoreReviewScreenshotUpdateRequest: SubscriptionAppStoreReviewScreenshotUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<SubscriptionAppStoreReviewScreenshotResponse> {
         var localVariablePath = "/v1/subscriptionAppStoreReviewScreenshots/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: subscriptionAppStoreReviewScreenshotUpdateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: subscriptionAppStoreReviewScreenshotUpdateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -288,9 +300,9 @@ open class SubscriptionAppStoreReviewScreenshotsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<SubscriptionAppStoreReviewScreenshotResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<SubscriptionAppStoreReviewScreenshotResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -299,17 +311,18 @@ open class SubscriptionAppStoreReviewScreenshotsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<SubscriptionAppStoreReviewScreenshotResponse> 
      */
-    open class func subscriptionAppStoreReviewScreenshotsUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<SubscriptionAppStoreReviewScreenshotResponse> {
+    open class func subscriptionAppStoreReviewScreenshotsUpdateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<SubscriptionAppStoreReviewScreenshotResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<SubscriptionAppStoreReviewScreenshotResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<SubscriptionAppStoreReviewScreenshotResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

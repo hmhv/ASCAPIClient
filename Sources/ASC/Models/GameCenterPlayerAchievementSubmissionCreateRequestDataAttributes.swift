@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct GameCenterPlayerAchievementSubmissionCreateRequestDataAttributes: Codable, JSONEncodable, Hashable {
+public struct GameCenterPlayerAchievementSubmissionCreateRequestDataAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
     public var bundleId: String
     public var challengeIds: [String]?

@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public enum AppVersionState: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+public enum AppVersionState: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
     case accepted = "ACCEPTED"
     case developerRejected = "DEVELOPER_REJECTED"
     case inReview = "IN_REVIEW"

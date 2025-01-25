@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppAvailabilityV2Attributes: Codable, JSONEncodable, Hashable {
+public struct AppAvailabilityV2Attributes: Sendable, Codable, JSONEncodable, Hashable {
 
     public var availableInNewTerritories: Bool?
 

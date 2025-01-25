@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct ReviewSubmissionItemUpdateRequestDataAttributes: Codable, JSONEncodable, Hashable {
+public struct ReviewSubmissionItemUpdateRequestDataAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
     public var resolved: Bool?
     public var removed: Bool?

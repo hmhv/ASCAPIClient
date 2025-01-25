@@ -6,13 +6,10 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct DeviceUpdateRequestDataAttributes: Codable, JSONEncodable, Hashable {
+public struct DeviceUpdateRequestDataAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum Status: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum Status: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case enabled = "ENABLED"
         case disabled = "DISABLED"
         case unknownDefaultOpenApi = "unknown_default_open_api"

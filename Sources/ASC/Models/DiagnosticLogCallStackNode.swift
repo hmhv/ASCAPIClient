@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct DiagnosticLogCallStackNode: Codable, JSONEncodable, Hashable {
+public struct DiagnosticLogCallStackNode: Sendable, Codable, JSONEncodable, Hashable {
 
     public var sampleCount: Int?
     public var isBlameFrame: Bool?

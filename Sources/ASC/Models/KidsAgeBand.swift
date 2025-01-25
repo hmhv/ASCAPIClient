@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public enum KidsAgeBand: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+public enum KidsAgeBand: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
     case fiveAndUnder = "FIVE_AND_UNDER"
     case sixToEight = "SIX_TO_EIGHT"
     case nineToEleven = "NINE_TO_ELEVEN"

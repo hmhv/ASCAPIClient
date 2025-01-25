@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppInfoRelationships: Codable, JSONEncodable, Hashable {
+public struct AppInfoRelationships: Sendable, Codable, JSONEncodable, Hashable {
 
     public var app: AlternativeDistributionKeyCreateRequestDataRelationshipsApp?
     public var ageRatingDeclaration: AppInfoRelationshipsAgeRatingDeclaration?

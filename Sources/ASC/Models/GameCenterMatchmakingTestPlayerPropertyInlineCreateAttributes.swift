@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct GameCenterMatchmakingTestPlayerPropertyInlineCreateAttributes: Codable, JSONEncodable, Hashable {
+public struct GameCenterMatchmakingTestPlayerPropertyInlineCreateAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
     public var playerId: String
     public var properties: [Property]?

@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppClipAdvancedExperienceAttributesPlaceMainAddressStructuredAddress: Codable, JSONEncodable, Hashable {
+public struct AppClipAdvancedExperienceAttributesPlaceMainAddressStructuredAddress: Sendable, Codable, JSONEncodable, Hashable {
 
     public var streetAddress: [String]?
     public var floor: String?

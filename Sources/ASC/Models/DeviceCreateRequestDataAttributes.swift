@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct DeviceCreateRequestDataAttributes: Codable, JSONEncodable, Hashable {
+public struct DeviceCreateRequestDataAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
     public var name: String
     public var platform: BundleIdPlatform

@@ -6,25 +6,22 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppClipAdvancedExperienceAttributes: Codable, JSONEncodable, Hashable {
+public struct AppClipAdvancedExperienceAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum Status: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum Status: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case received = "RECEIVED"
         case deactivated = "DEACTIVATED"
         case appTransferInProgress = "APP_TRANSFER_IN_PROGRESS"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
-    public enum PlaceStatus: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum PlaceStatus: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case pending = "PENDING"
         case matched = "MATCHED"
         case noMatch = "NO_MATCH"
         case unknownDefaultOpenApi = "unknown_default_open_api"
     }
-    public enum BusinessCategory: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum BusinessCategory: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case automotive = "AUTOMOTIVE"
         case beauty = "BEAUTY"
         case bikes = "BIKES"

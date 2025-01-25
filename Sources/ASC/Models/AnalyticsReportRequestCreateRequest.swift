@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AnalyticsReportRequestCreateRequest: Codable, JSONEncodable, Hashable {
+public struct AnalyticsReportRequestCreateRequest: Sendable, Codable, JSONEncodable, Hashable {
 
     public var data: AnalyticsReportRequestCreateRequestData
 

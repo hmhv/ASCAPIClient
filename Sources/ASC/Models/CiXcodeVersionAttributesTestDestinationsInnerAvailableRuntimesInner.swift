@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct CiXcodeVersionAttributesTestDestinationsInnerAvailableRuntimesInner: Codable, JSONEncodable, Hashable {
+public struct CiXcodeVersionAttributesTestDestinationsInnerAvailableRuntimesInner: Sendable, Codable, JSONEncodable, Hashable {
 
     public var runtimeName: String?
     public var runtimeIdentifier: String?

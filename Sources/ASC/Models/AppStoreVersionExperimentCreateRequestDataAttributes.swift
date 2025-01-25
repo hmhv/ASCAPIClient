@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppStoreVersionExperimentCreateRequestDataAttributes: Codable, JSONEncodable, Hashable {
+public struct AppStoreVersionExperimentCreateRequestDataAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
     public var name: String
     public var trafficProportion: Int

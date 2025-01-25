@@ -6,29 +6,28 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class InAppPurchaseSubmissionsAPI {
 
     /**
 
      - parameter inAppPurchaseSubmissionCreateRequest: (body) InAppPurchaseSubmission representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: InAppPurchaseSubmissionResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchaseSubmissionsCreateInstance(inAppPurchaseSubmissionCreateRequest: InAppPurchaseSubmissionCreateRequest) async throws -> InAppPurchaseSubmissionResponse {
-        return try await inAppPurchaseSubmissionsCreateInstanceWithRequestBuilder(inAppPurchaseSubmissionCreateRequest: inAppPurchaseSubmissionCreateRequest).execute().body
+    open class func inAppPurchaseSubmissionsCreateInstance(inAppPurchaseSubmissionCreateRequest: InAppPurchaseSubmissionCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> InAppPurchaseSubmissionResponse {
+        return try await inAppPurchaseSubmissionsCreateInstanceWithRequestBuilder(inAppPurchaseSubmissionCreateRequest: inAppPurchaseSubmissionCreateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: InAppPurchaseSubmissionResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchaseSubmissionsCreateInstance(urlString: String) async throws -> InAppPurchaseSubmissionResponse {
-        return try await inAppPurchaseSubmissionsCreateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func inAppPurchaseSubmissionsCreateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> InAppPurchaseSubmissionResponse {
+        return try await inAppPurchaseSubmissionsCreateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -37,12 +36,13 @@ open class InAppPurchaseSubmissionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter inAppPurchaseSubmissionCreateRequest: (body) InAppPurchaseSubmission representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<InAppPurchaseSubmissionResponse> 
      */
-    open class func inAppPurchaseSubmissionsCreateInstanceWithRequestBuilder(inAppPurchaseSubmissionCreateRequest: InAppPurchaseSubmissionCreateRequest) -> RequestBuilder<InAppPurchaseSubmissionResponse> {
+    open class func inAppPurchaseSubmissionsCreateInstanceWithRequestBuilder(inAppPurchaseSubmissionCreateRequest: InAppPurchaseSubmissionCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<InAppPurchaseSubmissionResponse> {
         let localVariablePath = "/v1/inAppPurchaseSubmissions"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: inAppPurchaseSubmissionCreateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: inAppPurchaseSubmissionCreateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -52,9 +52,9 @@ open class InAppPurchaseSubmissionsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseSubmissionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseSubmissionResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -63,17 +63,18 @@ open class InAppPurchaseSubmissionsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<InAppPurchaseSubmissionResponse> 
      */
-    open class func inAppPurchaseSubmissionsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<InAppPurchaseSubmissionResponse> {
+    open class func inAppPurchaseSubmissionsCreateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<InAppPurchaseSubmissionResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseSubmissionResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<InAppPurchaseSubmissionResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

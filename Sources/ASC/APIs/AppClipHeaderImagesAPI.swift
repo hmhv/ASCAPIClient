@@ -6,29 +6,28 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class AppClipHeaderImagesAPI {
 
     /**
 
      - parameter appClipHeaderImageCreateRequest: (body) AppClipHeaderImage representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppClipHeaderImageResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appClipHeaderImagesCreateInstance(appClipHeaderImageCreateRequest: AppClipHeaderImageCreateRequest) async throws -> AppClipHeaderImageResponse {
-        return try await appClipHeaderImagesCreateInstanceWithRequestBuilder(appClipHeaderImageCreateRequest: appClipHeaderImageCreateRequest).execute().body
+    open class func appClipHeaderImagesCreateInstance(appClipHeaderImageCreateRequest: AppClipHeaderImageCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppClipHeaderImageResponse {
+        return try await appClipHeaderImagesCreateInstanceWithRequestBuilder(appClipHeaderImageCreateRequest: appClipHeaderImageCreateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppClipHeaderImageResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appClipHeaderImagesCreateInstance(urlString: String) async throws -> AppClipHeaderImageResponse {
-        return try await appClipHeaderImagesCreateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func appClipHeaderImagesCreateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppClipHeaderImageResponse {
+        return try await appClipHeaderImagesCreateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -37,12 +36,13 @@ open class AppClipHeaderImagesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter appClipHeaderImageCreateRequest: (body) AppClipHeaderImage representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppClipHeaderImageResponse> 
      */
-    open class func appClipHeaderImagesCreateInstanceWithRequestBuilder(appClipHeaderImageCreateRequest: AppClipHeaderImageCreateRequest) -> RequestBuilder<AppClipHeaderImageResponse> {
+    open class func appClipHeaderImagesCreateInstanceWithRequestBuilder(appClipHeaderImageCreateRequest: AppClipHeaderImageCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppClipHeaderImageResponse> {
         let localVariablePath = "/v1/appClipHeaderImages"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: appClipHeaderImageCreateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: appClipHeaderImageCreateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -52,9 +52,9 @@ open class AppClipHeaderImagesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppClipHeaderImageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppClipHeaderImageResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -63,37 +63,40 @@ open class AppClipHeaderImagesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppClipHeaderImageResponse> 
      */
-    open class func appClipHeaderImagesCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppClipHeaderImageResponse> {
+    open class func appClipHeaderImagesCreateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppClipHeaderImageResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppClipHeaderImageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppClipHeaderImageResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appClipHeaderImagesDeleteInstance(id: String) async throws {
-        return try await appClipHeaderImagesDeleteInstanceWithRequestBuilder(id: id).execute().body
+    open class func appClipHeaderImagesDeleteInstance(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await appClipHeaderImagesDeleteInstanceWithRequestBuilder(id: id, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appClipHeaderImagesDeleteInstance(urlString: String) async throws {
-        return try await appClipHeaderImagesDeleteInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func appClipHeaderImagesDeleteInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await appClipHeaderImagesDeleteInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -102,14 +105,15 @@ open class AppClipHeaderImagesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func appClipHeaderImagesDeleteInstanceWithRequestBuilder(id: String) -> RequestBuilder<Void> {
+    open class func appClipHeaderImagesDeleteInstanceWithRequestBuilder(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/appClipHeaderImages/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -120,9 +124,9 @@ open class AppClipHeaderImagesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -131,24 +135,25 @@ open class AppClipHeaderImagesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func appClipHeaderImagesDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func appClipHeaderImagesDeleteInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsAppClipHeaderImages
      */
-    public enum FieldsAppClipHeaderImages_appClipHeaderImagesGetInstance: String, CaseIterable {
+    public enum FieldsAppClipHeaderImages_appClipHeaderImagesGetInstance: String, Sendable, CaseIterable {
         case filesize = "fileSize"
         case filename = "fileName"
         case sourcefilechecksum = "sourceFileChecksum"
@@ -161,7 +166,7 @@ open class AppClipHeaderImagesAPI {
     /**
      * enum for parameter include
      */
-    public enum Include_appClipHeaderImagesGetInstance: String, CaseIterable {
+    public enum Include_appClipHeaderImagesGetInstance: String, Sendable, CaseIterable {
         case appclipdefaultexperiencelocalization = "appClipDefaultExperienceLocalization"
     }
 
@@ -170,20 +175,22 @@ open class AppClipHeaderImagesAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAppClipHeaderImages: (query) the fields to include for returned resources of type appClipHeaderImages (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppClipHeaderImageResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appClipHeaderImagesGetInstance(id: String, fieldsAppClipHeaderImages: [FieldsAppClipHeaderImages_appClipHeaderImagesGetInstance]? = nil, include: [Include_appClipHeaderImagesGetInstance]? = nil) async throws -> AppClipHeaderImageResponse {
-        return try await appClipHeaderImagesGetInstanceWithRequestBuilder(id: id, fieldsAppClipHeaderImages: fieldsAppClipHeaderImages, include: include).execute().body
+    open class func appClipHeaderImagesGetInstance(id: String, fieldsAppClipHeaderImages: [FieldsAppClipHeaderImages_appClipHeaderImagesGetInstance]? = nil, include: [Include_appClipHeaderImagesGetInstance]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppClipHeaderImageResponse {
+        return try await appClipHeaderImagesGetInstanceWithRequestBuilder(id: id, fieldsAppClipHeaderImages: fieldsAppClipHeaderImages, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppClipHeaderImageResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appClipHeaderImagesGetInstance(urlString: String) async throws -> AppClipHeaderImageResponse {
-        return try await appClipHeaderImagesGetInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func appClipHeaderImagesGetInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppClipHeaderImageResponse {
+        return try await appClipHeaderImagesGetInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -194,20 +201,21 @@ open class AppClipHeaderImagesAPI {
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAppClipHeaderImages: (query) the fields to include for returned resources of type appClipHeaderImages (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppClipHeaderImageResponse> 
      */
-    open class func appClipHeaderImagesGetInstanceWithRequestBuilder(id: String, fieldsAppClipHeaderImages: [FieldsAppClipHeaderImages_appClipHeaderImagesGetInstance]? = nil, include: [Include_appClipHeaderImagesGetInstance]? = nil) -> RequestBuilder<AppClipHeaderImageResponse> {
+    open class func appClipHeaderImagesGetInstanceWithRequestBuilder(id: String, fieldsAppClipHeaderImages: [FieldsAppClipHeaderImages_appClipHeaderImagesGetInstance]? = nil, include: [Include_appClipHeaderImagesGetInstance]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppClipHeaderImageResponse> {
         var localVariablePath = "/v1/appClipHeaderImages/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[appClipHeaderImages]": (wrappedValue: fieldsAppClipHeaderImages?.encodeToJSON(), isExplode: false),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "fields[appClipHeaderImages]": (wrappedValue: fieldsAppClipHeaderImages?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -216,9 +224,9 @@ open class AppClipHeaderImagesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppClipHeaderImageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppClipHeaderImageResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -227,38 +235,41 @@ open class AppClipHeaderImagesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppClipHeaderImageResponse> 
      */
-    open class func appClipHeaderImagesGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppClipHeaderImageResponse> {
+    open class func appClipHeaderImagesGetInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppClipHeaderImageResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppClipHeaderImageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppClipHeaderImageResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
      - parameter appClipHeaderImageUpdateRequest: (body) AppClipHeaderImage representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppClipHeaderImageResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appClipHeaderImagesUpdateInstance(id: String, appClipHeaderImageUpdateRequest: AppClipHeaderImageUpdateRequest) async throws -> AppClipHeaderImageResponse {
-        return try await appClipHeaderImagesUpdateInstanceWithRequestBuilder(id: id, appClipHeaderImageUpdateRequest: appClipHeaderImageUpdateRequest).execute().body
+    open class func appClipHeaderImagesUpdateInstance(id: String, appClipHeaderImageUpdateRequest: AppClipHeaderImageUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppClipHeaderImageResponse {
+        return try await appClipHeaderImagesUpdateInstanceWithRequestBuilder(id: id, appClipHeaderImageUpdateRequest: appClipHeaderImageUpdateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AppClipHeaderImageResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appClipHeaderImagesUpdateInstance(urlString: String) async throws -> AppClipHeaderImageResponse {
-        return try await appClipHeaderImagesUpdateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func appClipHeaderImagesUpdateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AppClipHeaderImageResponse {
+        return try await appClipHeaderImagesUpdateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -268,15 +279,16 @@ open class AppClipHeaderImagesAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter appClipHeaderImageUpdateRequest: (body) AppClipHeaderImage representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppClipHeaderImageResponse> 
      */
-    open class func appClipHeaderImagesUpdateInstanceWithRequestBuilder(id: String, appClipHeaderImageUpdateRequest: AppClipHeaderImageUpdateRequest) -> RequestBuilder<AppClipHeaderImageResponse> {
+    open class func appClipHeaderImagesUpdateInstanceWithRequestBuilder(id: String, appClipHeaderImageUpdateRequest: AppClipHeaderImageUpdateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppClipHeaderImageResponse> {
         var localVariablePath = "/v1/appClipHeaderImages/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: appClipHeaderImageUpdateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: appClipHeaderImageUpdateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -286,9 +298,9 @@ open class AppClipHeaderImagesAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppClipHeaderImageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppClipHeaderImageResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -297,17 +309,18 @@ open class AppClipHeaderImagesAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppClipHeaderImageResponse> 
      */
-    open class func appClipHeaderImagesUpdateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AppClipHeaderImageResponse> {
+    open class func appClipHeaderImagesUpdateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AppClipHeaderImageResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AppClipHeaderImageResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AppClipHeaderImageResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

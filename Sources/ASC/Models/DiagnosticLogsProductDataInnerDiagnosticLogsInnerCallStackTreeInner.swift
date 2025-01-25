@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct DiagnosticLogsProductDataInnerDiagnosticLogsInnerCallStackTreeInner: Codable, JSONEncodable, Hashable {
+public struct DiagnosticLogsProductDataInnerDiagnosticLogsInnerCallStackTreeInner: Sendable, Codable, JSONEncodable, Hashable {
 
     public var callStackPerThread: Bool?
     public var callStacks: [DiagnosticLogsProductDataInnerDiagnosticLogsInnerCallStackTreeInnerCallStacksInner]?

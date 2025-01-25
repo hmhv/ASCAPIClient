@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct BuildBundleRelationships: Codable, JSONEncodable, Hashable {
+public struct BuildBundleRelationships: Sendable, Codable, JSONEncodable, Hashable {
 
     public var appClipDomainCacheStatus: BuildBundleRelationshipsAppClipDomainCacheStatus?
     public var appClipDomainDebugStatus: BuildBundleRelationshipsAppClipDomainCacheStatus?

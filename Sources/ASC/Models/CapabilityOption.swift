@@ -6,13 +6,10 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct CapabilityOption: Codable, JSONEncodable, Hashable {
+public struct CapabilityOption: Sendable, Codable, JSONEncodable, Hashable {
 
-    public enum Key: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+    public enum Key: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case xcode5 = "XCODE_5"
         case xcode6 = "XCODE_6"
         case completeProtection = "COMPLETE_PROTECTION"

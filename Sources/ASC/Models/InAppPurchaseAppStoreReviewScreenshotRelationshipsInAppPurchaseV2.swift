@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct InAppPurchaseAppStoreReviewScreenshotRelationshipsInAppPurchaseV2: Codable, JSONEncodable, Hashable {
+public struct InAppPurchaseAppStoreReviewScreenshotRelationshipsInAppPurchaseV2: Sendable, Codable, JSONEncodable, Hashable {
 
     public var data: AppRelationshipsInAppPurchasesDataInner?
 

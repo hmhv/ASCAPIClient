@@ -6,16 +6,13 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class InAppPurchasePricePointsAPI {
 
     /**
      * enum for parameter fieldsInAppPurchasePricePoints
      */
-    public enum FieldsInAppPurchasePricePoints_inAppPurchasePricePointsEqualizationsGetToManyRelated: String, CaseIterable {
+    public enum FieldsInAppPurchasePricePoints_inAppPurchasePricePointsEqualizationsGetToManyRelated: String, Sendable, CaseIterable {
         case customerprice = "customerPrice"
         case proceeds = "proceeds"
         case territory = "territory"
@@ -25,14 +22,14 @@ open class InAppPurchasePricePointsAPI {
     /**
      * enum for parameter fieldsTerritories
      */
-    public enum FieldsTerritories_inAppPurchasePricePointsEqualizationsGetToManyRelated: String, CaseIterable {
+    public enum FieldsTerritories_inAppPurchasePricePointsEqualizationsGetToManyRelated: String, Sendable, CaseIterable {
         case currency = "currency"
     }
 
     /**
      * enum for parameter include
      */
-    public enum Include_inAppPurchasePricePointsEqualizationsGetToManyRelated: String, CaseIterable {
+    public enum Include_inAppPurchasePricePointsEqualizationsGetToManyRelated: String, Sendable, CaseIterable {
         case territory = "territory"
     }
 
@@ -45,20 +42,22 @@ open class InAppPurchasePricePointsAPI {
      - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: InAppPurchasePricePointsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchasePricePointsEqualizationsGetToManyRelated(id: String, filterTerritory: [String]? = nil, filterInAppPurchaseV2: [String]? = nil, fieldsInAppPurchasePricePoints: [FieldsInAppPurchasePricePoints_inAppPurchasePricePointsEqualizationsGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_inAppPurchasePricePointsEqualizationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_inAppPurchasePricePointsEqualizationsGetToManyRelated]? = nil) async throws -> InAppPurchasePricePointsResponse {
-        return try await inAppPurchasePricePointsEqualizationsGetToManyRelatedWithRequestBuilder(id: id, filterTerritory: filterTerritory, filterInAppPurchaseV2: filterInAppPurchaseV2, fieldsInAppPurchasePricePoints: fieldsInAppPurchasePricePoints, fieldsTerritories: fieldsTerritories, limit: limit, include: include).execute().body
+    open class func inAppPurchasePricePointsEqualizationsGetToManyRelated(id: String, filterTerritory: [String]? = nil, filterInAppPurchaseV2: [String]? = nil, fieldsInAppPurchasePricePoints: [FieldsInAppPurchasePricePoints_inAppPurchasePricePointsEqualizationsGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_inAppPurchasePricePointsEqualizationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_inAppPurchasePricePointsEqualizationsGetToManyRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> InAppPurchasePricePointsResponse {
+        return try await inAppPurchasePricePointsEqualizationsGetToManyRelatedWithRequestBuilder(id: id, filterTerritory: filterTerritory, filterInAppPurchaseV2: filterInAppPurchaseV2, fieldsInAppPurchasePricePoints: fieldsInAppPurchasePricePoints, fieldsTerritories: fieldsTerritories, limit: limit, include: include, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: InAppPurchasePricePointsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func inAppPurchasePricePointsEqualizationsGetToManyRelated(urlString: String) async throws -> InAppPurchasePricePointsResponse {
-        return try await inAppPurchasePricePointsEqualizationsGetToManyRelatedWithRequestBuilder(urlString: urlString).execute().body
+    open class func inAppPurchasePricePointsEqualizationsGetToManyRelated(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> InAppPurchasePricePointsResponse {
+        return try await inAppPurchasePricePointsEqualizationsGetToManyRelatedWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -73,24 +72,25 @@ open class InAppPurchasePricePointsAPI {
      - parameter fieldsTerritories: (query) the fields to include for returned resources of type territories (optional)
      - parameter limit: (query) maximum resources per page (optional)
      - parameter include: (query) comma-separated list of relationships to include (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<InAppPurchasePricePointsResponse> 
      */
-    open class func inAppPurchasePricePointsEqualizationsGetToManyRelatedWithRequestBuilder(id: String, filterTerritory: [String]? = nil, filterInAppPurchaseV2: [String]? = nil, fieldsInAppPurchasePricePoints: [FieldsInAppPurchasePricePoints_inAppPurchasePricePointsEqualizationsGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_inAppPurchasePricePointsEqualizationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_inAppPurchasePricePointsEqualizationsGetToManyRelated]? = nil) -> RequestBuilder<InAppPurchasePricePointsResponse> {
+    open class func inAppPurchasePricePointsEqualizationsGetToManyRelatedWithRequestBuilder(id: String, filterTerritory: [String]? = nil, filterInAppPurchaseV2: [String]? = nil, fieldsInAppPurchasePricePoints: [FieldsInAppPurchasePricePoints_inAppPurchasePricePointsEqualizationsGetToManyRelated]? = nil, fieldsTerritories: [FieldsTerritories_inAppPurchasePricePointsEqualizationsGetToManyRelated]? = nil, limit: Int? = nil, include: [Include_inAppPurchasePricePointsEqualizationsGetToManyRelated]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<InAppPurchasePricePointsResponse> {
         var localVariablePath = "/v1/inAppPurchasePricePoints/{id}/equalizations"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "filter[territory]": (wrappedValue: filterTerritory?.encodeToJSON(), isExplode: false),
-            "filter[inAppPurchaseV2]": (wrappedValue: filterInAppPurchaseV2?.encodeToJSON(), isExplode: false),
-            "fields[inAppPurchasePricePoints]": (wrappedValue: fieldsInAppPurchasePricePoints?.encodeToJSON(), isExplode: false),
-            "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "include": (wrappedValue: include?.encodeToJSON(), isExplode: false),
+            "filter[territory]": (wrappedValue: filterTerritory?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "filter[inAppPurchaseV2]": (wrappedValue: filterInAppPurchaseV2?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[inAppPurchasePricePoints]": (wrappedValue: fieldsInAppPurchasePricePoints?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "fields[territories]": (wrappedValue: fieldsTerritories?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "include": (wrappedValue: include?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -99,9 +99,9 @@ open class InAppPurchasePricePointsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<InAppPurchasePricePointsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<InAppPurchasePricePointsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -110,17 +110,18 @@ open class InAppPurchasePricePointsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<InAppPurchasePricePointsResponse> 
      */
-    open class func inAppPurchasePricePointsEqualizationsGetToManyRelatedWithRequestBuilder(urlString: String) -> RequestBuilder<InAppPurchasePricePointsResponse> {
+    open class func inAppPurchasePricePointsEqualizationsGetToManyRelatedWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<InAppPurchasePricePointsResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<InAppPurchasePricePointsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<InAppPurchasePricePointsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

@@ -6,29 +6,28 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
 open class AlternativeDistributionDomainsAPI {
 
     /**
 
      - parameter alternativeDistributionDomainCreateRequest: (body) AlternativeDistributionDomain representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AlternativeDistributionDomainResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func alternativeDistributionDomainsCreateInstance(alternativeDistributionDomainCreateRequest: AlternativeDistributionDomainCreateRequest) async throws -> AlternativeDistributionDomainResponse {
-        return try await alternativeDistributionDomainsCreateInstanceWithRequestBuilder(alternativeDistributionDomainCreateRequest: alternativeDistributionDomainCreateRequest).execute().body
+    open class func alternativeDistributionDomainsCreateInstance(alternativeDistributionDomainCreateRequest: AlternativeDistributionDomainCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AlternativeDistributionDomainResponse {
+        return try await alternativeDistributionDomainsCreateInstanceWithRequestBuilder(alternativeDistributionDomainCreateRequest: alternativeDistributionDomainCreateRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AlternativeDistributionDomainResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func alternativeDistributionDomainsCreateInstance(urlString: String) async throws -> AlternativeDistributionDomainResponse {
-        return try await alternativeDistributionDomainsCreateInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func alternativeDistributionDomainsCreateInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AlternativeDistributionDomainResponse {
+        return try await alternativeDistributionDomainsCreateInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -37,12 +36,13 @@ open class AlternativeDistributionDomainsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter alternativeDistributionDomainCreateRequest: (body) AlternativeDistributionDomain representation 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AlternativeDistributionDomainResponse> 
      */
-    open class func alternativeDistributionDomainsCreateInstanceWithRequestBuilder(alternativeDistributionDomainCreateRequest: AlternativeDistributionDomainCreateRequest) -> RequestBuilder<AlternativeDistributionDomainResponse> {
+    open class func alternativeDistributionDomainsCreateInstanceWithRequestBuilder(alternativeDistributionDomainCreateRequest: AlternativeDistributionDomainCreateRequest, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AlternativeDistributionDomainResponse> {
         let localVariablePath = "/v1/alternativeDistributionDomains"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: alternativeDistributionDomainCreateRequest)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: alternativeDistributionDomainCreateRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -52,9 +52,9 @@ open class AlternativeDistributionDomainsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AlternativeDistributionDomainResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AlternativeDistributionDomainResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -63,37 +63,40 @@ open class AlternativeDistributionDomainsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AlternativeDistributionDomainResponse> 
      */
-    open class func alternativeDistributionDomainsCreateInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AlternativeDistributionDomainResponse> {
+    open class func alternativeDistributionDomainsCreateInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AlternativeDistributionDomainResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AlternativeDistributionDomainResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AlternativeDistributionDomainResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "POST", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
 
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func alternativeDistributionDomainsDeleteInstance(id: String) async throws {
-        return try await alternativeDistributionDomainsDeleteInstanceWithRequestBuilder(id: id).execute().body
+    open class func alternativeDistributionDomainsDeleteInstance(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await alternativeDistributionDomainsDeleteInstanceWithRequestBuilder(id: id, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func alternativeDistributionDomainsDeleteInstance(urlString: String) async throws {
-        return try await alternativeDistributionDomainsDeleteInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func alternativeDistributionDomainsDeleteInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await alternativeDistributionDomainsDeleteInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -102,14 +105,15 @@ open class AlternativeDistributionDomainsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func alternativeDistributionDomainsDeleteInstanceWithRequestBuilder(id: String) -> RequestBuilder<Void> {
+    open class func alternativeDistributionDomainsDeleteInstanceWithRequestBuilder(id: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/v1/alternativeDistributionDomains/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -120,9 +124,9 @@ open class AlternativeDistributionDomainsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -131,24 +135,25 @@ open class AlternativeDistributionDomainsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func alternativeDistributionDomainsDeleteInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<Void> {
+    open class func alternativeDistributionDomainsDeleteInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = ASCAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsAlternativeDistributionDomains
      */
-    public enum FieldsAlternativeDistributionDomains_alternativeDistributionDomainsGetCollection: String, CaseIterable {
+    public enum FieldsAlternativeDistributionDomains_alternativeDistributionDomainsGetCollection: String, Sendable, CaseIterable {
         case domain = "domain"
         case referencename = "referenceName"
         case createddate = "createdDate"
@@ -158,20 +163,22 @@ open class AlternativeDistributionDomainsAPI {
 
      - parameter fieldsAlternativeDistributionDomains: (query) the fields to include for returned resources of type alternativeDistributionDomains (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AlternativeDistributionDomainsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func alternativeDistributionDomainsGetCollection(fieldsAlternativeDistributionDomains: [FieldsAlternativeDistributionDomains_alternativeDistributionDomainsGetCollection]? = nil, limit: Int? = nil) async throws -> AlternativeDistributionDomainsResponse {
-        return try await alternativeDistributionDomainsGetCollectionWithRequestBuilder(fieldsAlternativeDistributionDomains: fieldsAlternativeDistributionDomains, limit: limit).execute().body
+    open class func alternativeDistributionDomainsGetCollection(fieldsAlternativeDistributionDomains: [FieldsAlternativeDistributionDomains_alternativeDistributionDomainsGetCollection]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AlternativeDistributionDomainsResponse {
+        return try await alternativeDistributionDomainsGetCollectionWithRequestBuilder(fieldsAlternativeDistributionDomains: fieldsAlternativeDistributionDomains, limit: limit, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AlternativeDistributionDomainsResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func alternativeDistributionDomainsGetCollection(urlString: String) async throws -> AlternativeDistributionDomainsResponse {
-        return try await alternativeDistributionDomainsGetCollectionWithRequestBuilder(urlString: urlString).execute().body
+    open class func alternativeDistributionDomainsGetCollection(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AlternativeDistributionDomainsResponse {
+        return try await alternativeDistributionDomainsGetCollectionWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -181,17 +188,18 @@ open class AlternativeDistributionDomainsAPI {
        - name: itc-bearer-token
      - parameter fieldsAlternativeDistributionDomains: (query) the fields to include for returned resources of type alternativeDistributionDomains (optional)
      - parameter limit: (query) maximum resources per page (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AlternativeDistributionDomainsResponse> 
      */
-    open class func alternativeDistributionDomainsGetCollectionWithRequestBuilder(fieldsAlternativeDistributionDomains: [FieldsAlternativeDistributionDomains_alternativeDistributionDomainsGetCollection]? = nil, limit: Int? = nil) -> RequestBuilder<AlternativeDistributionDomainsResponse> {
+    open class func alternativeDistributionDomainsGetCollectionWithRequestBuilder(fieldsAlternativeDistributionDomains: [FieldsAlternativeDistributionDomains_alternativeDistributionDomainsGetCollection]? = nil, limit: Int? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AlternativeDistributionDomainsResponse> {
         let localVariablePath = "/v1/alternativeDistributionDomains"
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[alternativeDistributionDomains]": (wrappedValue: fieldsAlternativeDistributionDomains?.encodeToJSON(), isExplode: false),
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "fields[alternativeDistributionDomains]": (wrappedValue: fieldsAlternativeDistributionDomains?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -200,9 +208,9 @@ open class AlternativeDistributionDomainsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AlternativeDistributionDomainsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AlternativeDistributionDomainsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -211,24 +219,25 @@ open class AlternativeDistributionDomainsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AlternativeDistributionDomainsResponse> 
      */
-    open class func alternativeDistributionDomainsGetCollectionWithRequestBuilder(urlString: String) -> RequestBuilder<AlternativeDistributionDomainsResponse> {
+    open class func alternativeDistributionDomainsGetCollectionWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AlternativeDistributionDomainsResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AlternativeDistributionDomainsResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AlternativeDistributionDomainsResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
      * enum for parameter fieldsAlternativeDistributionDomains
      */
-    public enum FieldsAlternativeDistributionDomains_alternativeDistributionDomainsGetInstance: String, CaseIterable {
+    public enum FieldsAlternativeDistributionDomains_alternativeDistributionDomainsGetInstance: String, Sendable, CaseIterable {
         case domain = "domain"
         case referencename = "referenceName"
         case createddate = "createdDate"
@@ -238,20 +247,22 @@ open class AlternativeDistributionDomainsAPI {
 
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAlternativeDistributionDomains: (query) the fields to include for returned resources of type alternativeDistributionDomains (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AlternativeDistributionDomainResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func alternativeDistributionDomainsGetInstance(id: String, fieldsAlternativeDistributionDomains: [FieldsAlternativeDistributionDomains_alternativeDistributionDomainsGetInstance]? = nil) async throws -> AlternativeDistributionDomainResponse {
-        return try await alternativeDistributionDomainsGetInstanceWithRequestBuilder(id: id, fieldsAlternativeDistributionDomains: fieldsAlternativeDistributionDomains).execute().body
+    open class func alternativeDistributionDomainsGetInstance(id: String, fieldsAlternativeDistributionDomains: [FieldsAlternativeDistributionDomains_alternativeDistributionDomainsGetInstance]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AlternativeDistributionDomainResponse {
+        return try await alternativeDistributionDomainsGetInstanceWithRequestBuilder(id: id, fieldsAlternativeDistributionDomains: fieldsAlternativeDistributionDomains, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: AlternativeDistributionDomainResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func alternativeDistributionDomainsGetInstance(urlString: String) async throws -> AlternativeDistributionDomainResponse {
-        return try await alternativeDistributionDomainsGetInstanceWithRequestBuilder(urlString: urlString).execute().body
+    open class func alternativeDistributionDomainsGetInstance(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) async throws(ErrorResponse) -> AlternativeDistributionDomainResponse {
+        return try await alternativeDistributionDomainsGetInstanceWithRequestBuilder(urlString: urlString, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -261,19 +272,20 @@ open class AlternativeDistributionDomainsAPI {
        - name: itc-bearer-token
      - parameter id: (path) the id of the requested resource 
      - parameter fieldsAlternativeDistributionDomains: (query) the fields to include for returned resources of type alternativeDistributionDomains (optional)
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AlternativeDistributionDomainResponse> 
      */
-    open class func alternativeDistributionDomainsGetInstanceWithRequestBuilder(id: String, fieldsAlternativeDistributionDomains: [FieldsAlternativeDistributionDomains_alternativeDistributionDomainsGetInstance]? = nil) -> RequestBuilder<AlternativeDistributionDomainResponse> {
+    open class func alternativeDistributionDomainsGetInstanceWithRequestBuilder(id: String, fieldsAlternativeDistributionDomains: [FieldsAlternativeDistributionDomains_alternativeDistributionDomainsGetInstance]? = nil, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AlternativeDistributionDomainResponse> {
         var localVariablePath = "/v1/alternativeDistributionDomains/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let localVariableURLString = ASCAPI.basePath + localVariablePath
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fields[alternativeDistributionDomains]": (wrappedValue: fieldsAlternativeDistributionDomains?.encodeToJSON(), isExplode: false),
+            "fields[alternativeDistributionDomains]": (wrappedValue: fieldsAlternativeDistributionDomains?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -282,9 +294,9 @@ open class AlternativeDistributionDomainsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AlternativeDistributionDomainResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AlternativeDistributionDomainResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -293,17 +305,18 @@ open class AlternativeDistributionDomainsAPI {
        - type: http
        - name: itc-bearer-token
      - parameter urlString: next or first url from App Store Connect API
+     - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AlternativeDistributionDomainResponse> 
      */
-    open class func alternativeDistributionDomainsGetInstanceWithRequestBuilder(urlString: String) -> RequestBuilder<AlternativeDistributionDomainResponse> {
+    open class func alternativeDistributionDomainsGetInstanceWithRequestBuilder(urlString: String, apiConfiguration: ASCAPIConfiguration = ASCAPIConfiguration.shared) -> RequestBuilder<AlternativeDistributionDomainResponse> {
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AlternativeDistributionDomainResponse>.Type = ASCAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AlternativeDistributionDomainResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        return localVariableRequestBuilder.init(method: "GET", URLString: urlString, parameters: nil, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

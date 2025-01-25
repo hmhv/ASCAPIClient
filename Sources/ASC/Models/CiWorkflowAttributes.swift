@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct CiWorkflowAttributes: Codable, JSONEncodable, Hashable {
+public struct CiWorkflowAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
     public var name: String?
     public var description: String?

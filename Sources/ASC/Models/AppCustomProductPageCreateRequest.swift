@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppCustomProductPageCreateRequest: Codable, JSONEncodable, Hashable {
+public struct AppCustomProductPageCreateRequest: Sendable, Codable, JSONEncodable, Hashable {
 
     public var data: AppCustomProductPageCreateRequestData
     public var included: [AppCustomProductPageCreateRequestIncludedInner]?

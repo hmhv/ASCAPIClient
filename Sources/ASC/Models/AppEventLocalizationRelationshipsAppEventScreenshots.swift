@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AppEventLocalizationRelationshipsAppEventScreenshots: Codable, JSONEncodable, Hashable {
+public struct AppEventLocalizationRelationshipsAppEventScreenshots: Sendable, Codable, JSONEncodable, Hashable {
 
     public var links: RelationshipLinks?
     public var meta: PagingInformation?

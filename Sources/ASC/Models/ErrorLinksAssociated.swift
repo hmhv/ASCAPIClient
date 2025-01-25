@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public enum ErrorLinksAssociated: Codable, JSONEncodable, Hashable {
+public enum ErrorLinksAssociated: Sendable, Codable, JSONEncodable, Hashable {
     case typeErrorLinksAssociatedOneOf(ErrorLinksAssociatedOneOf)
     case typeString(String)
 

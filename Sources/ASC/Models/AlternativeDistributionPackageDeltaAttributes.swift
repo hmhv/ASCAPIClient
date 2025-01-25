@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct AlternativeDistributionPackageDeltaAttributes: Codable, JSONEncodable, Hashable {
+public struct AlternativeDistributionPackageDeltaAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
     public var url: String?
     public var urlExpirationDate: Date?

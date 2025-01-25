@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public enum SubscriptionIntroductoryOffersResponseIncludedInner: Codable, JSONEncodable, Hashable {
+public enum SubscriptionIntroductoryOffersResponseIncludedInner: Sendable, Codable, JSONEncodable, Hashable {
     case typeSubscription(Subscription)
     case typeSubscriptionPricePoint(SubscriptionPricePoint)
     case typeTerritory(Territory)

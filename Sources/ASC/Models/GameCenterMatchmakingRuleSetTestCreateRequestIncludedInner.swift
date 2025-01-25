@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public enum GameCenterMatchmakingRuleSetTestCreateRequestIncludedInner: Codable, JSONEncodable, Hashable {
+public enum GameCenterMatchmakingRuleSetTestCreateRequestIncludedInner: Sendable, Codable, JSONEncodable, Hashable {
     case typeGameCenterMatchmakingTestPlayerPropertyInlineCreate(GameCenterMatchmakingTestPlayerPropertyInlineCreate)
     case typeGameCenterMatchmakingTestRequestInlineCreate(GameCenterMatchmakingTestRequestInlineCreate)
 

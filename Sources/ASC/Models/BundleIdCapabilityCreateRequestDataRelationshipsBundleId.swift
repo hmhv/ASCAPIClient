@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct BundleIdCapabilityCreateRequestDataRelationshipsBundleId: Codable, JSONEncodable, Hashable {
+public struct BundleIdCapabilityCreateRequestDataRelationshipsBundleId: Sendable, Codable, JSONEncodable, Hashable {
 
     public var data: BundleIdCapabilityCreateRequestDataRelationshipsBundleIdData
 

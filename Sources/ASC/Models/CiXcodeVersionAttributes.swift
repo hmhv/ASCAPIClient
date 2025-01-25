@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public struct CiXcodeVersionAttributes: Codable, JSONEncodable, Hashable {
+public struct CiXcodeVersionAttributes: Sendable, Codable, JSONEncodable, Hashable {
 
     public var version: String?
     public var name: String?

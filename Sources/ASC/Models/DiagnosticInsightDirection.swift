@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public enum DiagnosticInsightDirection: String, Codable, CaseIterable, CaseIterableDefaultsLast {
+public enum DiagnosticInsightDirection: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
     case up = "UP"
     case down = "DOWN"
     case undefined = "UNDEFINED"

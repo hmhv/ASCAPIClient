@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if canImport(AnyCodable)
-import AnyCodable
-#endif
 
-public enum AppCustomProductPageVersionsResponseIncludedInner: Codable, JSONEncodable, Hashable {
+public enum AppCustomProductPageVersionsResponseIncludedInner: Sendable, Codable, JSONEncodable, Hashable {
     case typeAppCustomProductPage(AppCustomProductPage)
     case typeAppCustomProductPageLocalization(AppCustomProductPageLocalization)
 
