@@ -36,7 +36,7 @@ used command for code generation
 ```bash
 brew install openapi-generator
 
-openapi-generator generate -i ./raw_data/app_store_connect_api_openapi.json -t ./raw_data/swift_template -g swift5 --additional-properties=responseAs=AsyncAwait,projectName=ASC,useSPMFileStructure=true,enumUnknownDefaultCase=true -o ./ASC
+./gen.sh
 ```
 
 used spec file and template files are [here](./raw_data).
