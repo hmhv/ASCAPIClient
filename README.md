@@ -36,7 +36,7 @@ used command for code generation
 ```bash
 brew install openapi-generator
 
-./gen.sh
+./gen6.sh
 ```
 
 used spec file and template files are [here](./raw_data).

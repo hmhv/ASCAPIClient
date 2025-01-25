@@ -32,9 +32,9 @@ dependencies: [
 ```bash
 brew install openapi-generator
 
-openapi-generator generate -i ./raw_data/app_store_connect_api_openapi.json -t ./raw_data/swift_template -g swift5 --additional-properties=responseAs=AsyncAwait,projectName=ASC,useSPMFileStructure=true,enumUnknownDefaultCase=true -o ./ASC
+./gen6.sh
 ```
 
 生成時使ったスペックファイルとテンプレートふぁいるは [ここ](./raw_data).
 
-[Generated README.md by openapi-generator](./Docs.md)
+[Generated README.md by openapi-generator](./README_GENERATOR.md)
